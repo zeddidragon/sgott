@@ -7,3 +7,8 @@ Usage:
 ```bash
   $ ./sgo.js < YOURFILE.SGO
 ```
+
+or:
+```bash
+  $ ./sgo.js inputfile [outputfile]
+```
