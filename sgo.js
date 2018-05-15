@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+const fs = require('fs')
 var remainder
 var endian
 
@@ -117,11 +118,23 @@ function consume(state, data, index = 0, values) {
   return state
 }
 
-process.stdin.on('data', chunk => {
-  const {variables, mab} = consume({mode: 'header'}, chunk)
-  console.log(JSON.stringify({
-    endian,
-    variables,
-    mab,
-  }, null, 2))
-})
+function toJSON(data) {
+  const {variables, mab} = data
+  return JSON.stringify({endian, variables, mab}, null, 2)
+}
+
+const readFile = process.argv[2]
+if(readFile) {
+  const buffer = fs.readFileSync(readFile)
+  const json = toJSON(consume({mode: 'header'}, buffer))
+  const writeFile = process.argv[3]
+  if(writeFile) {
+    fs.writeFileSync(writeFile, json)
+  } else {
+    console.log(json)
+  }
+} else {
+  process.stdin.on('data', chunk => {
+    console.log(toJSON(consume({mode: 'header'}, chunk)))
+  })
+}
