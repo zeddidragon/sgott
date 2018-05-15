@@ -2,9 +2,6 @@
 var remainder
 var endian
 
-const print = process.stdout.write
-const visited = new Set()
-
 const types = {
   0: ['ptr', UInt],
   1: ['int', Int],
@@ -28,31 +25,31 @@ function Float(buffer) {
   return buffer[`readFloat${endian}`]()
 }
 
+var visited = new Set()
 function StrPointer(buffer, index, size) {
+  visited.add(index)
   return Str(buffer.slice(index, index + size * 2))
 }
 
 const chomp = {
   header: (state, data, index) => {
     const header = Str(data.slice(index, index + 8))
-    endian = header === 'SGO' ? 'LE' : 'BE'
+    endian = header === '\0SGO' ? 'LE' : 'BE'
     console.log(`${header} (${endian})`)
+    state.structValues = UInt(data.slice(index + 16, index + 20))
+    state.structSize = index + 4 + UInt(data.slice(index + 28, index + 32))
+    console.log(`values: ${state.structValues}`)
+    console.log(`size: ${state.structSize}`)
     console.log(`=============================================================`)
-    state.mode = 'structHeader'
-    return index + 12
-  },
-  structHeader: (state, data, index) => {
-    endIndex = UInt(data.slice(index + 16, index + 32))
     state.mode = 'values'
     return index + 32
   },
   values: (state, data, index, depth) => {
-    if(visited.has(index)) return index + 12
-    visited.add(index)
+    state.consumed++
     const slice = data.slice(index, index + 4)
     const [type, transform, getPointed, renderPointed] = types[UInt(slice)] || []
     if(!type) {
-      console.error(`Type not found: `, slice)
+      console.error(index.toString(16), `Type not found: `, data.slice(index, index + 12))
       return index + 12
     }
     const isPointer = ['ptr',' struct'].includes(type)
@@ -65,6 +62,7 @@ const chomp = {
     const pointed = getPointed && getPointed(data, index + value, size)
     console.log([
       '  '.repeat(state.depth),
+      ('' + state.consumed).padStart(4),
       index.toString(16).padStart(4),
       type.padEnd(5),
       `(${size}b)`.padStart(6),
@@ -83,7 +81,24 @@ const chomp = {
       }, data, index + value, size)
       console.log('  '.repeat(state.depth) + '   }')
     }
+    if(state.consumed >= state.structValues) {
+      state.mode = 'mabHeader'
+      return state.structSize
+    }
     return end
+  },
+  mabHeader: (state, data ,index) => {
+    const header = Str(data.slice(index, index + 4))
+    state.mode = 'varnames'
+    console.log(`=============================================================`)
+    if(header !== 'MAB\0') return index
+    console.log(header)
+    console.log(`=============================================================`)
+    // Horrible hack, just jump to what we know is the first variable name
+    
+    const varnames = data.indexOf('\0A\0i\0m\0A\0n\0i\0m\0a\0t\0i\0o\0n', index)
+    if(!~varnames) throw new Error('AimAnimation not found!')
+    return varnames
   },
   varnames: (state, data, index) => {
     const end = data.indexOf('\0\0', index + 1)
@@ -91,27 +106,30 @@ const chomp = {
       state.mode = 'done'
       return
     }
-    if(visited.has(index)) return end + 2
-    const label = Str(data.slice(index, end + 2))
-    if(label.length > 6) console.log([
-      '  ',
-      index.toString(16).padStart(4),
-      label,
-    ].join('  '))
+    const label = Str(data.slice(index, end))
+    if(label.length > 6) {
+        console.log([
+        '  ',
+        index.toString(16).padStart(4),
+        label,
+      ].join('  '))
+    } else {
+      console.log(data.slice(index, end + 2), Str(data.slice(index, end)))
+    }
     return end + 2
   },
 }
 
 function consume(state, data, index = 0, values) {
   size = data.length
-  var consumed = 0
-  while(state.mode !== 'done' && (values == null || (consumed < values))) {
+  state.consumed = 0
+  state.variables = []
+  while(state.mode !== 'done' && (values == null || (state.consumed < values))) {
     if(index >= size) return
-    if(consumed >= values) return
+    if(state.consumed >= values) return
     index = chomp[state.mode](state, data, index)
-    if(state.mode === 'values' && index >= endIndex) state.mode = 'varnames'
-    consumed++
   }
+  return state.variables
 }
 
 process.stdin.on('data', chunk => {
