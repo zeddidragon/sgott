@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 const fs = require('fs')
+const debug = false
 var remainder
 var endian
 
@@ -40,10 +41,16 @@ function StrPointer(buffer, index, size) {
 
 const chomp = {
   header: (state, data, index) => {
-    const header = Str(data.slice(index, index + 8))
+    const header = Str(data.slice(index, index + 4))
     endian = header === 'SGO' ? 'LE' : 'BE'
-    state.structValues = UInt(data.slice(index + 16, index + 20))
-    state.structSize = index + 4 + UInt(data.slice(index + 28, index + 32))
+
+    state.structValues = UInt(data.slice(index + 8, index + 12))
+    state.structEnd = index + 4 + UInt(data.slice(index + 28, index + 32))
+
+    // m is for 'mystery', but let's pretend 'metadata'
+    const mIndex = UInt(data.slice(index + 20, index + 24))
+    state.mdata = data.slice(mIndex, state.structEnd).toString('base64')
+
     state.mode = 'values'
     return index + 32
   },
@@ -66,14 +73,20 @@ const chomp = {
     const value = transform(data.slice(index + 8, end))
     const pointed = getPointed && getPointed(data, index + value, size)
 
-    state.variables.push({
+    const payload = {
       type: type,
       value: isPointer ? pointed : pointed || value,
-    })
+    }
+    if(debug) {
+      payload.index = index.toString(16)
+      if(pointed) payload.pointer = (index + value).toString(16)
+    }
+
+    state.variables.push(payload)
 
     if(state.consumed >= state.structValues) {
       state.mode = 'mabHeader'
-      return state.structSize
+      return state.structEnd
     }
     return end
   },
@@ -119,8 +132,8 @@ function consume(state, data, index = 0, values) {
 }
 
 function toJSON(data) {
-  const {variables, mab} = data
-  return JSON.stringify({endian, variables, mab}, null, 2)
+  const {variables, mab, mdata} = data
+  return JSON.stringify({endian, variables, mdata, mab}, null, 2)
 }
 
 const readFile = process.argv[2]
