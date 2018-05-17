@@ -14,6 +14,7 @@ const types = {
   1: ['int', Int],
   2: ['float', Float],
   3: ['string', Int, StrPointer],
+  4: ['extra', Int, ExtraPointer],
 }
 
 function Str(buffer) {
@@ -45,6 +46,10 @@ function StrPointer(buffer, index, size) {
   const end = index + size * 2 || buffer.length
   const terminator = Math.min(buffer.indexOf('\0\0', index), end)
   return Str(buffer.slice(index, terminator > 0 ? terminator : end))
+}
+
+function ExtraPointer(buffer, index, size) {
+  return buffer.slice(index, index + size).toString('base64')
 }
 
 function chomp(data, index) {
@@ -107,6 +112,7 @@ function toJSON(data) {
   const mIndex = UInt(data, 20)
 
   // S is a relative pointer to the end of the struct, right after mdata ends
+  // We have no particular use for it
   const structEnd = 4 + Int(data, 28)
 
   // Read C variables from he fixed section, then assign names using the mTable
@@ -118,17 +124,7 @@ function toJSON(data) {
     variables[varIndex].name = StrPointer(data, index + strIndex)
   }
 
-  // MAB seems to be an extra class in a different format
-  // embedded in some SGO files (mostly weapons)
-  // We don't yet know how it works, but it exists between structEnd and
-  // the start of the variable names.
-  // It appears relatively isolated from the rest of the file.
-  const mabHeader = data.slice(structEnd, structEnd + 4).toString()
-  const mab = data
-    .slice(structEnd, mIndex + Int(data, mIndex))
-    .toString('base64')
-
-  return JSON.stringify({endian, variables, mab}, null, 2)
+  return JSON.stringify({endian, variables}, null, 2)
 }
 
 const readFile = process.argv[2]
