@@ -4,11 +4,16 @@ const debug = false
 const SIZE = 12
 var endian
 
+// Cheapo(tm) debugging
+function abort() {
+  throw new Error('abort')
+}
+
 const types = {
-  0: ['ptr', UInt, Pointer],
+  0: ['ptr', Int, Pointer],
   1: ['int', Int],
   2: ['float', Float],
-  3: ['string', UInt, StrPointer],
+  3: ['string', Int, StrPointer],
 }
 
 function Str(buffer) {
@@ -19,135 +24,118 @@ function Str(buffer) {
   ).trim()
 }
 
-function UInt(buffer) {
-  return buffer[`readUInt32${endian}`]()
+function UInt(buffer, offset = 0) {
+  return buffer[`readUInt32${endian}`](offset)
 }
 
-function Int(buffer) {
-  return buffer[`readInt32${endian}`]()
+function Int(buffer, offset = 0) {
+  return buffer[`readInt32${endian}`](offset)
 }
 
-function Float(buffer) {
-  return buffer[`readFloat${endian}`]()
+function Float(buffer, offset = 0) {
+  return buffer[`readFloat${endian}`](offset)
 }
 
 function Pointer(buffer, index, size) {
   if(!size) return null
-  return consume({mode: 'values'}, buffer, index, size).variables
+  return consume(buffer, index, size)
 }
 
-var visited = new Set()
 function StrPointer(buffer, index, size) {
-  visited.add(index)
-  const end = index + size * 2
+  const end = index + size * 2 || buffer.length
   const terminator = Math.min(buffer.indexOf('\0\0', index), end)
   return Str(buffer.slice(index, terminator > 0 ? terminator : end))
 }
 
-const chomp = {
-  header: (state, data, index) => {
-    const header = data.slice(index, index + 4).toString()
-    endian = header === 'SGO' ? 'LE' : 'BE'
-
-    state.structValues = UInt(data.slice(index + 8, index + 12))
-    state.structEnd = index + 4 + UInt(data.slice(index + 28, index + 32))
-
-    // m is for 'mystery', but let's pretend 'metadata'
-    const mIndex = UInt(data.slice(index + 20, index + 24))
-    state.mdata = data.slice(mIndex, state.structEnd).toString('base64')
-
-    state.mode = 'values'
-    return index + 32
-  },
-  values: (state, data, index) => {
-    state.consumed++
-    const slice = data.slice(index, index + 4)
-    const [type, transform, getPointed] = types[UInt(slice)] || []
-    if(!type) {
-      state.variables.push({
-        type: 'unknown',
-        value: slice.toString('base64'),
-      })
-      return index + SIZE
+function chomp(data, index) {
+  const [type, transform, getPointed] = types[UInt(data, index)] || []
+  if(!type) {
+    return {
+      type: 'unknown',
+      value: data.slice(index, index + SIZE).toString('base64'),
     }
-    const isPointer = ['ptr', 'string'].includes(type)
-    const size = UInt(data.slice(index + 4, index + 8))
-    const end = index + SIZE
-    const valueChunk = data.slice(index + 8, end)
-    const value = transform(data.slice(index + 8, end))
-    const pointed = getPointed && getPointed(data, index + value, size)
+  }
+  const isPointer = ['ptr', 'string'].includes(type)
+  const size = UInt(data, index + 4)
+  const value = transform(data, index + 8)
+  const pointed = getPointed && getPointed(data, index + value, size)
 
-    const payload = {
-      type: type,
-      value: isPointer ? pointed : pointed || value,
+  const payload = {
+    type: type,
+    value: isPointer ? pointed : pointed || value,
+  }
+  if(debug) {
+    payload.index = index.toString(16)
+    if(isPointer) {
+      payload.relative = value.toString(16)
+      payload.pointer = (index + value).toString(16)
+      payload.size = size
     }
-    if(debug) {
-      payload.index = index.toString(16)
-      if(isPointer) {
-        payload.relative = value.toString(16)
-        payload.pointer = (index + value).toString(16)
-        payload.size = size
-      }
-    }
+  }
 
-    state.variables.push(payload)
-
-    if(state.consumed >= state.structValues) {
-      state.mode = 'mabHeader'
-      return state.structEnd
-    }
-    return end
-  },
-  mabHeader: (state, data ,index) => {
-    const header = data.slice(index, index + 4).toString()
-    state.mode = 'varnames'
-    state.consumed = 0
-    if(header !== 'MAB\u0000') return index
-
-    // Horrible hack, just jump to what we know is the first variable name
-    const varnames = data.indexOf('\0A\0i\0m\0A\0n\0i\0m\0a\0t\0i\0o\0n', index)
-    if(!~varnames) throw new Error('AimAnimation not found!')
-    state.mab = data.slice(index, varnames).toString('base64')
-    return varnames
-  },
-  varnames: (state, data, index) => {
-    const end = data.indexOf('\0\0', index + 1)
-    if(visited.has(index)) return end + 2
-    if(end < 0) {
-      state.mode = 'done'
-      return
-    }
-    const label = Str(data.slice(index, end))
-    if(label.length > 3) {
-      state.variables[state.consumed].name = label
-      state.consumed++
-    }
-    if(state.consumed >= state.structValues) state.mode = 'done'
-    return end + 2
-  },
+  return payload
 }
 
-function consume(state, data, index = 0, values) {
-  size = data.length
-  state.consumed = 0
-  state.variables = []
-  while(state.mode !== 'done' && (values == null || (state.consumed < values))) {
-    if(index >= size) return state
-    if(state.consumed >= values) return state
-    index = chomp[state.mode](state, data, index)
+function consume(data, index, values) {
+  const ret = new Array(values)
+  for(var i = 0; i < values; i++) {
+    ret[i] = chomp(data, index + i * SIZE)
   }
-  return state
+  return ret
 }
 
 function toJSON(data) {
-  const {variables, mab, mdata} = data
-  return JSON.stringify({endian, variables, mdata, mab}, null, 2)
+  // Header of SGO file is 32 bytes, this is the structure as I know it:
+  //
+  // HHHH HHHH 0000 0102 CCCC CCCC 0000 0020
+  // CCCC CCCC MMMM MMMM 0000 0000 SSSS SSSS
+  //
+  // 8 distinct values, each 4 bytes
+
+  // H is the leader describing the file type
+  // It can be one of two strings:
+  //  Little endian: "\0SGO"
+  //  Big Endian:    "\0OGS"
+  const leader = data.slice(0, 4).toString().trim()
+  endian = leader === 'SGO' ? 'LE' : 'BE'
+  
+  // C is count of variables (not including values in pointed structs)
+  // It appears twice for reasons unknown
+  const varCount = UInt(data, 8)
+
+  // M is an absolute pointer to an array of tuples (*varname, index)
+  const mIndex = UInt(data, 20)
+
+  // S is a relative pointer to the end of the struct, right after mdata ends
+  const structEnd = 4 + Int(data, 28)
+
+  // Read C variables from he fixed section, then assign names using the mTable
+  const variables = consume(data, 32, varCount)
+  for(let i = 0; i < varCount; i++) {
+    const index = mIndex + i * 8
+    const strIndex = Int(data, index)
+    const varIndex = UInt(data, index + 4)
+    variables[varIndex].name = StrPointer(data, index + strIndex)
+  }
+
+  // MAB seems to be an extra class in a different format
+  // embedded in some SGO files (mostly weapons)
+  // We don't yet know how it works, but it exists between structEnd and
+  // the start of the variable names.
+  // It appears relatively isolated from the rest of the file.
+  const mabHeader = data.slice(structEnd, structEnd + 4).toString()
+  const offset = Int(data, mIndex)
+  const mab = data
+    .slice(mabHeader, mIndex + Int(data, mIndex))
+    .toString('base64')
+
+  return JSON.stringify({endian, variables, mab}, null, 2)
 }
 
 const readFile = process.argv[2]
 if(readFile) {
   const buffer = fs.readFileSync(readFile)
-  const json = toJSON(consume({mode: 'header'}, buffer))
+  const json = toJSON(buffer)
   const writeFile = process.argv[3]
   if(writeFile) {
     fs.writeFileSync(writeFile, json)
@@ -156,6 +144,6 @@ if(readFile) {
   }
 } else {
   process.stdin.on('data', chunk => {
-    console.log(toJSON(consume({mode: 'header'}, chunk)))
+    console.log(toJSON(chunk))
   })
 }
