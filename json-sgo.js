@@ -3,6 +3,11 @@
 var endian
 const SIZE = 12
 
+// Cheapo(tm) debugging
+function abort() {
+  throw new Error('abort')
+}
+
 const types = {
   ptr: 0,
   int: 1,
@@ -58,10 +63,10 @@ function bufferize(state, json) {
 
   // C is count of variables (not including values in pointed structs)
   // It appears twice for reasons unknown
-  UInt(header, json.variables.length, 0x8)
-  UInt(header, json.variables.length, 0x10)
+  const varCount = json.variables.length
+  UInt(header, varCount, 0x8)
+  UInt(header, varCount, 0x10)
 
-  const mdata = Buffer.from(json.mdata, 'base64')
   const mab = json.mab ? Buffer.from(json.mab, 'base64') : Buffer.alloc(0)
 
   const deferred = new Map()
@@ -73,7 +78,7 @@ function bufferize(state, json) {
     deferred.set(block, pointed)
   }
 
-  var stringId = 0
+  var stringId = varCount
   function deferString(block, string) {
     string = string.trim() + '\0'
     const stringData =
@@ -152,9 +157,9 @@ function bufferize(state, json) {
   // It is unknown if this is a requirement of the format
   const stringIndices = {}
   const strings = Object.values(deferredStringData)
-    .concat(json.variables.map(block => {
+    .concat(json.variables.map((block, index) => {
       const string = (block.name || '').trim() + '\0'
-      return [string, stringBytes(string)]
+      return [string, stringBytes(string), index]
     }))
     .sort(([a], [b]) => stringCompare(a, b))
   var stringIndex = 0
@@ -170,6 +175,14 @@ function bufferize(state, json) {
   const fixedBuffer = Buffer.alloc(values.length * SIZE)
   const heapBuffer = Buffer.alloc(heap.length * SIZE)
   const stringBuffer = Buffer.alloc(stringIndex)
+  const mTable = Buffer.alloc(varCount * 8)
+  for(let varIndex = 0; varIndex < varCount; varIndex++) {
+    const mIndex = varIndex * 8
+    const strIndex = stringIndices[varIndex]
+    const pointer = strIndex + mTable.length + mab.length - mIndex
+    Int(mTable, pointer, mIndex)
+    UInt(mTable, varIndex, mIndex + 4)
+  }
 
   function writeValue(buffer, block, index, isHeap) {
     if(block.type === 'unknown') {
@@ -200,13 +213,13 @@ function bufferize(state, json) {
         break
       case 'string': {
         // Strings are dead last in the file
-        // after whatever data is in mdata and the MAB portion
+        // after the mTable and the MAB portion
         // If we're not in the heap we need to add distance to the heap
         // then also skip the heap
         const pointer = (isHeap ? 0 : fixedBuffer.length)
           + heapBuffer.length
           - index
-          + mdata.length
+          + mTable.length
           + mab.length
           + value
         UInt(buffer, pointer, valueIndex)
@@ -232,7 +245,7 @@ function bufferize(state, json) {
   if(endian !== 'LE') stringBuffer.swap16()
 
   const size = fixedBuffer.length + heapBuffer.length
-  // M is pointer to mdata
+  // M is pointer to mTable
   // Equal to the size of every value (and pointed structs)
   // + sizeof header
   UInt(header, size + 32, 0x14)
@@ -242,13 +255,13 @@ function bufferize(state, json) {
   // + size of mystery data
   // + size of header
   // - the 4 leading bytes describing the filetype
-  UInt(header, size + 28 + mdata.length, 0x1c)
+  UInt(header, size + 28 + mTable.length, 0x1c)
 
   return Buffer.concat([
     header,
     fixedBuffer,
     heapBuffer,
-    mdata,
+    mTable,
     mab,
     stringBuffer,
   ])
