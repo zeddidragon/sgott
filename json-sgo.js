@@ -137,20 +137,26 @@ function bufferize(state, json) {
     return block
   }
 
-  const values = json.variables
-    .sort((a, b) => stringCompare(a.name.trim(), b.name.trim()))
-    .map(process)
-
-  // Unroll pointed values into the heap
-  // Since unrolled values can also have pointers, many passes might be needed
-  while(deferred.size) {
-    const pass = new Map(deferred)
-    deferred.clear()
-    for(const [block, pointed] of pass) {
-      block.value = heap.length
-      heap.push(...pointed.map(process))
+  function unroll() {
+    // Unroll pointed values into the heap
+    // Since unrolled values can also have pointers, many passes might be needed
+    while(deferred.size) {
+      const pass = new Map(deferred)
+      deferred.clear()
+      for(const [block, pointed] of pass) {
+        block.value = heap.length
+        heap.push(...pointed.map(process))
+      }
     }
   }
+
+  const values = json.variables
+    .sort((a, b) => stringCompare(a.name.trim(), b.name.trim()))
+    .map(node => {
+      const value = process(node)
+      unroll()
+      return value
+    })
 
   // Unroll strings into the string heap
   // In SGOs, the string heap is sorted
@@ -175,7 +181,7 @@ function bufferize(state, json) {
   const fixedBuffer = Buffer.alloc(values.length * SIZE)
   const heapBuffer = Buffer.alloc(heap.length * SIZE)
   const stringBuffer = Buffer.alloc(stringIndex)
-  const mTable = Buffer.alloc(varCount * 8)
+  const mTable = Buffer.alloc(varCount * 8 + 4)
   for(let varIndex = 0; varIndex < varCount; varIndex++) {
     const mIndex = varIndex * 8
     const strIndex = stringIndices[varIndex]
@@ -201,7 +207,7 @@ function bufferize(state, json) {
         // Pointers always point to the heap
         // If we're not in the heap, we want to add the distance to the heap
         // Null pointers should point to the start of the heap
-        const pointer = (isHeap ? 0 : fixedBuffer.length) - index + (value || 4) * SIZE
+        const pointer = (isHeap ? 0 : fixedBuffer.length) - index + value * SIZE
         UInt(buffer, Math.max(0, pointer), valueIndex)
         break
       }
