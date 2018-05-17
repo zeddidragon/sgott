@@ -1,7 +1,7 @@
 #! /usr/bin/env node
-
-var endian
+const fs = require('fs')
 const SIZE = 12
+var endian
 
 // Cheapo(tm) debugging
 function abort() {
@@ -13,6 +13,7 @@ const types = {
   int: 1,
   float: 2,
   string: 3,
+  extra: 4,
 }
 
 function stringCompare(a, b) {
@@ -40,7 +41,7 @@ function Float(buffer, value, offset = 0) {
   return buffer[`writeFloat${endian}`](value, offset)
 }
 
-function bufferize(state, json) {
+function bufferize(json) {
   endian = json.endian
   const header = Buffer.alloc(32)
 
@@ -67,12 +68,11 @@ function bufferize(state, json) {
   UInt(header, varCount, 0x8)
   UInt(header, varCount, 0x10)
 
-  const mab = json.mab ? Buffer.from(json.mab, 'base64') : Buffer.alloc(0)
-
+  const heap = []
   const deferred = new Map()
   const deferredStrings = new Map()
   const deferredStringData = {}
-  const heap = []
+  const deferredExtra = []
 
   function defer(block, pointed) {
     deferred.set(block, pointed)
@@ -86,6 +86,12 @@ function bufferize(state, json) {
       [string, stringBytes(string), ++stringId]
     deferredStringData[string] = stringData
     deferredStrings.set(block, stringData)
+  }
+
+  function deferExtra(block, data) {
+    const buffer = Buffer.from(data, 'base64')
+    deferredExtra.push([block, buffer])
+    return buffer
   }
 
   function process(node) {
@@ -130,6 +136,8 @@ function bufferize(state, json) {
       case 'string':
         deferString(block, node.value)
         break
+      case 'extra':
+        block.size = deferExtra(block, node.value).length
       default:
         block.value = node.value
     }
@@ -182,10 +190,18 @@ function bufferize(state, json) {
   const heapBuffer = Buffer.alloc(heap.length * SIZE)
   const stringBuffer = Buffer.alloc(stringIndex)
   const mTable = Buffer.alloc(varCount * 8 + 4)
+
+  var extraIndex = 0
+  const extraBuffer = Buffer.concat(deferredExtra.map(([block, buffer]) => {
+    block.value = extraIndex
+    extraIndex += buffer.length
+    return buffer
+  }))
+
   for(let varIndex = 0; varIndex < varCount; varIndex++) {
     const mIndex = varIndex * 8
     const strIndex = stringIndices[varIndex]
-    const pointer = strIndex + mTable.length + mab.length - mIndex
+    const pointer = strIndex + mTable.length + extraBuffer.length - mIndex
     Int(mTable, pointer, mIndex)
     UInt(mTable, varIndex, mIndex + 4)
   }
@@ -203,34 +219,47 @@ function bufferize(state, json) {
     UInt(buffer, size, index + 4)
     const valueIndex = index + 8
     switch(block.type) {
-      case 'ptr': {
-        // Pointers always point to the heap
-        // If we're not in the heap, we want to add the distance to the heap
-        // Null pointers should point to the start of the heap
-        const pointer = (isHeap ? 0 : fixedBuffer.length) - index + value * SIZE
-        UInt(buffer, Math.max(0, pointer), valueIndex)
-        break
-      }
       case 'int':
         Int(buffer, value, valueIndex)
         break
       case 'float':
         Float(buffer, value, valueIndex)
         break
+      case 'ptr': {
+        // Pointers always point to the heap
+        // If we're not in the heap, we want to add the distance to the heap
+        // Null pointers should point to the start of the heap
+        const pointer = (isHeap ? 0 : fixedBuffer.length)
+          - index
+          + value * SIZE
+        UInt(buffer, Math.max(0, pointer), valueIndex)
+        break
+      }
+      case 'extra': {
+        // Extra files are right after the struct definition
+        const pointer = (isHeap ? 0 : fixedBuffer.length)
+          + heapBuffer.length
+          + mTable.length
+          - index
+          + value
+        UInt(buffer, Math.max(0, pointer), valueIndex)
+        break
+      }
       case 'string': {
         // Strings are dead last in the file
-        // after the mTable and the MAB portion
+        // after the mTable and the extra buffer
         // If we're not in the heap we need to add distance to the heap
         // then also skip the heap
         const pointer = (isHeap ? 0 : fixedBuffer.length)
           + heapBuffer.length
           - index
           + mTable.length
-          + mab.length
+          + extraBuffer.length
           + value
         UInt(buffer, pointer, valueIndex)
         break
       }
+
       default:
         UInt(buffer, value, valueIndex)
     }
@@ -268,12 +297,25 @@ function bufferize(state, json) {
     fixedBuffer,
     heapBuffer,
     mTable,
-    mab,
+    extraBuffer,
     stringBuffer,
   ])
 }
 
-process.stdin.on('data', chunk => {
-  const buffer = bufferize({mode: 'header'}, JSON.parse(chunk.toString()))
-  process.stdout.write(buffer)
-})
+const readFile = process.argv[2]
+if(readFile) {
+  const json = JSON.parse(fs.readFileSync(readFile))
+  const buffer = bufferize(json)
+  const writeFile = process.argv[3]
+  if(writeFile) {
+    fs.writeFileSync(writeFile, buffer)
+  } else {
+    process.stdout.write(buffer)
+  }
+} else {
+  process.stdin.on('data', chunk => {
+    const json = JSON.parse(chunk.toString())
+    const buffer = bufferize(json)
+    process.stdout.write(buffer)
+  })
+}

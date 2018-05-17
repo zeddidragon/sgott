@@ -60,7 +60,7 @@ function chomp(data, index) {
       value: data.slice(index, index + SIZE).toString('base64'),
     }
   }
-  const isPointer = ['ptr', 'string'].includes(type)
+  const isPointer = ['ptr', 'string', 'extra'].includes(type)
   const size = UInt(data, index + 4)
   const value = transform(data, index + 8)
   const pointed = getPointed && getPointed(data, index + value, size)
