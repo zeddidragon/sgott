@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 const fs = require('fs')
 const debug = false
-var remainder
+const SIZE = 12
 var endian
 
 const types = {
@@ -12,7 +12,11 @@ const types = {
 }
 
 function Str(buffer) {
-  return buffer.toString().replace(/\0/g, '')
+  if(buffer.length % 2) return Str(buffer.slice(1))
+  return (endian === 'LE'
+    ? buffer.toString('utf16le')
+    : Buffer.from(buffer).swap16().toString('utf16le')
+  ).trim()
 }
 
 function UInt(buffer) {
@@ -27,21 +31,22 @@ function Float(buffer) {
   return buffer[`readFloat${endian}`]()
 }
 
-var visited = new Set()
-
 function Pointer(buffer, index, size) {
   if(!size) return null
   return consume({mode: 'values'}, buffer, index, size).variables
 }
 
+var visited = new Set()
 function StrPointer(buffer, index, size) {
   visited.add(index)
-  return Str(buffer.slice(index, index + size * 2))
+  const end = index + size * 2
+  const terminator = Math.min(buffer.indexOf('\0\0', index), end)
+  return Str(buffer.slice(index, terminator > 0 ? terminator : end))
 }
 
 const chomp = {
   header: (state, data, index) => {
-    const header = Str(data.slice(index, index + 4))
+    const header = data.slice(index, index + 4).toString()
     endian = header === 'SGO' ? 'LE' : 'BE'
 
     state.structValues = UInt(data.slice(index + 8, index + 12))
@@ -63,12 +68,11 @@ const chomp = {
         type: 'unknown',
         value: slice.toString('base64'),
       })
-      return index + 12
+      return index + SIZE
     }
     const isPointer = type === 'ptr'
     const size = UInt(data.slice(index + 4, index + 8))
-    const valueSize = 4
-    const end = index + 8 + valueSize
+    const end = index + SIZE
     const valueChunk = data.slice(index + 8, end)
     const value = transform(data.slice(index + 8, end))
     const pointed = getPointed && getPointed(data, index + value, size)
@@ -79,7 +83,10 @@ const chomp = {
     }
     if(debug) {
       payload.index = index.toString(16)
-      if(pointed) payload.pointer = (index + value).toString(16)
+      if(pointed) {
+        payload.pointer = (index + value).toString(16)
+        payload.size = size
+      }
     }
 
     state.variables.push(payload)
@@ -91,10 +98,10 @@ const chomp = {
     return end
   },
   mabHeader: (state, data ,index) => {
-    const header = Str(data.slice(index, index + 4))
+    const header = data.slice(index, index + 4).toString()
     state.mode = 'varnames'
     state.consumed = 0
-    if(header !== 'MAB') return index
+    if(header !== 'MAB\u0000') return index
 
     // Horrible hack, just jump to what we know is the first variable name
     const varnames = data.indexOf('\0A\0i\0m\0A\0n\0i\0m\0a\0t\0i\0o\0n', index)
