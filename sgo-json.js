@@ -70,7 +70,7 @@ const chomp = {
       })
       return index + SIZE
     }
-    const isPointer = type === 'ptr'
+    const isPointer = ['ptr', 'string'].includes(type)
     const size = UInt(data.slice(index + 4, index + 8))
     const end = index + SIZE
     const valueChunk = data.slice(index + 8, end)
@@ -83,7 +83,8 @@ const chomp = {
     }
     if(debug) {
       payload.index = index.toString(16)
-      if(pointed) {
+      if(isPointer) {
+        payload.relative = value.toString(16)
         payload.pointer = (index + value).toString(16)
         payload.size = size
       }
