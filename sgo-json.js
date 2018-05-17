@@ -124,9 +124,8 @@ function toJSON(data) {
   // the start of the variable names.
   // It appears relatively isolated from the rest of the file.
   const mabHeader = data.slice(structEnd, structEnd + 4).toString()
-  const offset = Int(data, mIndex)
   const mab = data
-    .slice(mabHeader, mIndex + Int(data, mIndex))
+    .slice(structEnd, mIndex + Int(data, mIndex))
     .toString('base64')
 
   return JSON.stringify({endian, variables, mab}, null, 2)
