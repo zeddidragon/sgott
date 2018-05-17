@@ -66,6 +66,7 @@ function bufferize(state, json) {
 
   const deferred = new Map()
   const deferredStrings = new Map()
+  const deferredStringData = {}
   const heap = []
 
   function defer(block, pointed) {
@@ -75,7 +76,11 @@ function bufferize(state, json) {
   var stringId = 0
   function deferString(block, string) {
     string = string.trim() + '\0'
-    deferredStrings.set(block, [string, stringBytes(string), ++stringId])
+    const stringData =
+      deferredStringData[string] ||
+      [string, stringBytes(string), ++stringId]
+    deferredStringData[string] = stringData
+    deferredStrings.set(block, stringData)
   }
 
   function process(node) {
@@ -114,7 +119,7 @@ function bufferize(state, json) {
         if(node.value) {
           defer(block, node.value)
         } else {
-          node.value = 0
+          block.value = 0
         }
         break
       case 'string':
@@ -146,7 +151,7 @@ function bufferize(state, json) {
   // In SGOs, the string heap is sorted
   // It is unknown if this is a requirement of the format
   const stringIndices = {}
-  const strings = Array.from(deferredStrings.values())
+  const strings = Object.values(deferredStringData)
     .concat(json.variables.map(block => {
       const string = (block.name || '').trim() + '\0'
       return [string, stringBytes(string)]
@@ -164,7 +169,7 @@ function bufferize(state, json) {
 
   const fixedBuffer = Buffer.alloc(values.length * SIZE)
   const heapBuffer = Buffer.alloc(heap.length * SIZE)
-  const stringBuffer = Buffer.alloc(stringIndex * 2)
+  const stringBuffer = Buffer.alloc(stringIndex)
 
   function writeValue(buffer, block, index, isHeap) {
     if(block.type === 'unknown') {
@@ -180,11 +185,11 @@ function bufferize(state, json) {
     const valueIndex = index + 8
     switch(block.type) {
       case 'ptr': {
-        if(!block.size) return // Null pointers should have the value 0
         // Pointers always point to the heap
         // If we're not in the heap, we want to add the distance to the heap
-        const pointer = (isHeap ? 0 : fixedBuffer.length) - index + value * SIZE
-        UInt(buffer, pointer, valueIndex)
+        // Null pointers should point to the start of the heap
+        const pointer = (isHeap ? 0 : fixedBuffer.length) - index + (value || 4) * SIZE
+        UInt(buffer, Math.max(0, pointer), valueIndex)
         break
       }
       case 'int':
