@@ -102,7 +102,7 @@ function parseCli(cb) {
   } else if(opts.help) {
     console.log(help)
   } else if(readFile) {
-    if(!type) type = (readFile.slice(-5) === '.json'
+    if(!type) type = (readFile.slice(-5).toLowerCase() === '.json'
       ? 'json'
       : 'sgo'
     )
