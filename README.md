@@ -1,7 +1,7 @@
 SGO Transformation Tool
 =======================
 
-SGOTT will be a tool that can parse and write SGO files. It's currently under development.
+SGOTT is a tool that can parse and write SGO files.
 
 Usage:
 ```bash
