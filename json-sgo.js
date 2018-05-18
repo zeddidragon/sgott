@@ -292,8 +292,7 @@ function compiler() {
     // Equal to size of every value (and pointed structs)
     // + size of mystery data
     // + size of header
-    // - the 4 leading bytes describing the filetype
-    UInt(header, size + 28 + mTable.length, 0x1c)
+    UInt(header, size + 32 + mTable.length, 0x1c)
 
     return Buffer.concat([
       header,

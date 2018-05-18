@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 const fs = require('fs')
-const debug = false
+const mode = null
+const debug = true
 const SIZE = 12
 
 // Cheapo(tm) debugging
@@ -8,7 +9,7 @@ function abort() {
   throw new Error('abort')
 }
 
-function decompiler() {
+function decompiler(config) {
   var endian
   const types = {
     0: ['ptr', Int, Pointer],
@@ -54,7 +55,7 @@ function decompiler() {
     if(['SGO\0', '\0OGS'].includes(leader)) {
       return {
         type: 'SGO',
-        data: decompiler()(data),
+        data: decompiler({offset: ((config && config.offset) || 0) + index})(data),
       }
     } else {
       return {
@@ -65,7 +66,7 @@ function decompiler() {
     return buffer.slice(index, index + size).toString('base64')
   }
 
-  function chomp(data, index) {
+  function chomp(data, index, opts = {}) {
     const [type, transform, getPointed] = types[UInt(data, index)] || []
     if(!type) {
       return {
@@ -76,33 +77,33 @@ function decompiler() {
     const isPointer = ['ptr', 'string', 'extra'].includes(type)
     const size = UInt(data, index + 4)
     const value = transform(data, index + 8)
-    const pointed = getPointed && getPointed(data, index + value, size)
+    const pointed = !opts.shallow && getPointed && getPointed(data, index + value, size)
+    const payload = {type}
 
-    const payload = {
-      type: type,
-      value: isPointer ? pointed : pointed || value,
-    }
     if(debug) {
-      payload.index = index.toString(16)
+      const pos = index + ((config && config.offset) || 0)
+      payload.index = pos.toString(16)
       if(isPointer) {
         payload.relative = value.toString(16)
-        payload.pointer = (index + value).toString(16)
+        payload.pointer = (pos + value).toString(16)
         payload.size = size
       }
     }
 
+    payload.value = isPointer ? pointed : pointed || value
+
     return payload
   }
 
-  function consume(data, index, values) {
+  function consume(data, index, values, opts) {
     const ret = new Array(values)
     for(var i = 0; i < values; i++) {
-      ret[i] = chomp(data, index + i * SIZE)
+      ret[i] = chomp(data, index + i * SIZE, opts)
     }
     return ret
   }
 
-  return function decompile(data) {
+  function readHeader(buffer) {
     // Header of SGO file is 32 bytes, this is the structure as I know it:
     //
     // HHHH HHHH 0000 0102 CCCC CCCC 0000 0020
@@ -115,37 +116,50 @@ function decompiler() {
     // It can be one of two strings:
     //  Little endian: "SGO\0"
     //  Big Endian:    "\0OGS"
-    const leader = data.slice(0, 4).toString()
+    const leader = buffer.slice(0, 4).toString()
     endian = leader === 'SGO\0' ? 'LE' : 'BE'
     
     // C is count of variables (not including values in pointed structs)
     // It appears twice for reasons unknown
-    const varCount = UInt(data, 8)
+    const varCount = UInt(buffer, 8)
 
     // M is a pointer to an array of tuples (*varname, index)
-    const mIndex = UInt(data, 20)
+    const mIndex = UInt(buffer, 20)
 
-    // S is a pointer to the end of the struct, right after mdata ends
+    // S is a pointer to the end of the struct, right after mbuffer ends
     // We have no particular use for it
-    const structEnd = 4 + Int(data, 28)
+    const structEnd = 4 + Int(buffer, 28)
 
-    // Read C variables from he fixed section, then assign names using the mTable
-    const variables = consume(data, 32, varCount)
-    for(let i = 0; i < varCount; i++) {
-      const index = mIndex + i * 8
-      const strIndex = Int(data, index)
-      const varIndex = UInt(data, index + 4)
-      variables[varIndex].name = StrPointer(data, index + strIndex)
-    }
-
-    return {endian, variables}
+    return {leader, varCount, mIndex, structEnd}
   }
+
+  return {
+    decompile(buffer) {
+      const {mIndex, varCount} = readHeader(buffer)
+
+      // Read C variables from he fixed section, then assign names using the mTable
+      const variables = consume(buffer, 32, varCount)
+      for(let i = 0; i < varCount; i++) {
+        const index = mIndex + i * 8
+        const strIndex = Int(buffer, index)
+        const varIndex = UInt(buffer, index + 4)
+        variables[varIndex].name = StrPointer(buffer, index + strIndex)
+      }
+
+      return {endian, variables}
+    },
+    dumpvalues(buffer) {
+      const {mIndex} = readHeader(buffer)
+
+      return consume(buffer, 32, Math.ceil(mIndex - 32 / 12), {shallow: true})
+    }
+  }[mode || 'decompile']
 }
 
 const readFile = process.argv[2]
 if(readFile) {
   const buffer = fs.readFileSync(readFile)
-  const json = JSON.stringify(decompiler()(buffer), null, 2)
+  const json = JSON.stringify(decompiler(mode)(buffer), null, 2)
   const writeFile = process.argv[3]
   if(writeFile) {
     fs.writeFileSync(writeFile, json)
