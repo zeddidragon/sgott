@@ -1,7 +1,3 @@
-#! /usr/bin/env node
-const fs = require('fs')
-const mode = null
-const debug = true
 const SIZE = 12
 
 // Cheapo(tm) debugging
@@ -80,7 +76,7 @@ function decompiler(config) {
     const pointed = !opts.shallow && getPointed && getPointed(data, index + value, size)
     const payload = {type}
 
-    if(debug) {
+    if(config.debug) {
       const pos = index + ((config && config.offset) || 0)
       payload.index = pos.toString(16)
       if(isPointer) {
@@ -153,21 +149,11 @@ function decompiler(config) {
 
       return consume(buffer, 32, Math.ceil(mIndex - 32 / 12), {shallow: true})
     }
-  }[mode || 'decompile']
+  }[config.mode || 'decompile']
 }
 
-const readFile = process.argv[2]
-if(readFile) {
-  const buffer = fs.readFileSync(readFile)
-  const json = JSON.stringify(decompiler(mode)(buffer), null, 2)
-  const writeFile = process.argv[3]
-  if(writeFile) {
-    fs.writeFileSync(writeFile, json)
-  } else {
-    console.log(json)
-  }
-} else {
-  process.stdin.on('data', chunk => {
-    console.log(JSON.stringify(decompiler()(chunk), null, 2))
-  })
+function decompile(buffer, opts) {
+  return JSON.stringify(decompiler(opts)(buffer.slice(opts.offset || 0)), null, 2)
 }
+
+module.exports = decompile

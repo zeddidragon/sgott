@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-const fs = require('fs')
 const SIZE = 12
 
 // Cheapo(tm) debugging
@@ -7,7 +5,7 @@ function abort() {
   throw new Error('abort')
 }
 
-function compiler() {
+function compiler(config) {
   var endian
   const types = {
     ptr: 0,
@@ -305,20 +303,8 @@ function compiler() {
   }
 }
 
-const readFile = process.argv[2]
-if(readFile) {
-  const json = JSON.parse(fs.readFileSync(readFile))
-  const buffer = compiler()(json)
-  const writeFile = process.argv[3]
-  if(writeFile) {
-    fs.writeFileSync(writeFile, buffer)
-  } else {
-    process.stdout.write(buffer)
-  }
-} else {
-  process.stdin.on('data', chunk => {
-    const json = JSON.parse(chunk.toString())
-    const buffer = compiler()(json)
-    process.stdout.write(buffer)
-  })
+function compile(buffer, opts) {
+  return compiler(opts)(JSON.parse(buffer.toString()))
 }
+
+module.exports = compile
