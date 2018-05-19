@@ -6,7 +6,7 @@ function abort() {
   throw new Error('abort')
 }
 
-function decompiler(config) {
+function decompiler(config = {}) {
   var endian
   const types = {
     0: ['ptr', Int, Pointer],
@@ -190,8 +190,21 @@ function decompiler(config) {
   }[config.mode || 'decompile']
 }
 
-function decompile(buffer, opts) {
-  return JSON.stringify(decompiler(opts)(buffer.slice(opts.offset || 0)), null, 2)
+function decompile(buffer, opts = {}) {
+  const data = decompiler(opts)(buffer.slice(opts.offset || 0))
+  data.meta = {
+    help: 'For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO',
+    id: null,
+    level: null,
+    category: null,
+    unlockState: null,
+    dropRateModifier: null,
+    description: null,
+  }
+
+  return JSON.stringify(data, null, 2)
 }
+
+decompile.decompiler = decompiler
 
 module.exports = decompile

@@ -307,4 +307,6 @@ function compile(buffer, opts) {
   return compiler(opts)(JSON.parse(buffer.toString()))
 }
 
+compile.compiler = compiler
+
 module.exports = compile
