@@ -1,4 +1,5 @@
 const SIZE = 12
+const sgoMeta = require('./sgo-meta')
 
 // Cheapo(tm) debugging
 function abort() {
@@ -129,6 +130,37 @@ function decompiler(config) {
     return {leader, varCount, mIndex, structEnd}
   }
 
+  var ammoClass
+  function addNames(parent) {
+    if(!parent.value) return
+    const nodes = parent.value
+    const {name} = parent
+    const names = name === 'Ammo_CustomParameter'
+      ? sgoMeta.names.ammoClasses[ammoClass]
+      : sgoMeta.names[name]
+    if(!names) return
+    for(var i = 0; i < nodes.length; i++) {
+      const name = names[i]
+      if(!name) continue
+      const node = nodes[i]
+      node.name = name
+      addNames(node)
+      addMetaData(node)
+    }
+  }
+
+  function addMetaData(node) {
+    const {name, value} = node
+    if(!name) return
+
+    const options = sgoMeta.values[name]
+    if(options) node.options = options
+
+    // Reorder value so it's listed below name
+    delete node.value
+    node.value = value
+  }
+
   return {
     decompile(buffer) {
       const {mIndex, varCount} = readHeader(buffer)
@@ -139,7 +171,13 @@ function decompiler(config) {
         const index = mIndex + i * 8
         const strIndex = Int(buffer, index)
         const varIndex = UInt(buffer, index + 4)
-        variables[varIndex].name = StrPointer(buffer, index + strIndex)
+        const name = StrPointer(buffer, index + strIndex)
+        const node = variables[varIndex]
+        node.name = name
+
+        if(name === 'AmmoClass') ammoClass = node.value
+        addNames(node)
+        addMetaData(node)
       }
 
       return {endian, variables}
