@@ -65,7 +65,7 @@ const ammoClasses = {
     "SummonType",
     "Summon_CustomParameter",
   ],
-  BomberPlane: [
+  Summon_CustomParameter02: [
     'PlaneModel',
     'PlaneCount',
     'PlaneInterval',

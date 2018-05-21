@@ -130,14 +130,18 @@ function decompiler(config = {}) {
     return {leader, varCount, mIndex, structEnd}
   }
 
-  var ammoClass
+  var ammoClass, summonType
   function addNames(parent) {
     if(!parent.value) return
     const nodes = parent.value
     const {name} = parent
-    const names = name === 'Ammo_CustomParameter'
-      ? sgoMeta.names.ammoClasses[ammoClass]
-      : sgoMeta.names[name]
+    if(name === 'SummonType') summonType = nodes
+    const names
+      = name === 'Ammo_CustomParameter'
+        ? sgoMeta.names.ammoClasses[ammoClass]
+      :  name === 'Summon_CustomParameter'
+        ? sgoMeta.names.ammoClasses['Summon_CustomParameter0' + summonType]
+        : sgoMeta.names[name]
     if(!names) return
     for(var i = 0; i < nodes.length; i++) {
       const name = names[i]
