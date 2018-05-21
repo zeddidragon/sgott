@@ -9,7 +9,7 @@
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 17
+      "value": 62
     },
     {
       "type": "string",
@@ -47,7 +47,7 @@
         "SupportUnitBullet01",
         "PileBunkerBullet01"
       ],
-      "value": "SolidBullet01"
+      "value": "LaserBullet01"
     },
     {
       "type": "ptr",
@@ -56,17 +56,17 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 8
+          "value": 1
         },
         {
           "type": "float",
           "name": "Green",
-          "value": 2.5
+          "value": 2
         },
         {
           "type": "float",
           "name": "Blue",
-          "value": 1.5
+          "value": 4
         },
         {
           "type": "float",
@@ -78,12 +78,12 @@
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 28
+      "value": 1
     },
     {
       "type": "float",
       "name": "AmmoDamage",
-      "value": 900
+      "value": 80000
     },
     {
       "type": "float",
@@ -108,7 +108,7 @@
     {
       "type": "float",
       "name": "AmmoHitSizeAdjust",
-      "value": 1
+      "value": 0
     },
     {
       "type": "int",
@@ -128,17 +128,96 @@
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 0.5
+      "value": 4
     },
     {
       "type": "float",
       "name": "AmmoSpeed",
-      "value": 40
+      "value": 20
     },
     {
       "type": "ptr",
       "name": "Ammo_CustomParameter",
-      "value": null
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 2
+            },
+            {
+              "type": "float",
+              "value": 2
+            },
+            {
+              "type": "float",
+              "value": 2
+            },
+            {
+              "type": "float",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "type": "float",
+          "value": 5
+        },
+        {
+          "type": "float",
+          "value": 3
+        },
+        {
+          "type": "int",
+          "value": 62
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "value": 1.5
+        },
+        {
+          "type": "float",
+          "value": 1.600000023841858
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "int",
+          "value": 5
+        }
+      ]
     },
     {
       "type": "ptr",
@@ -163,12 +242,12 @@
     {
       "type": "float",
       "name": "EnergyChargeRequire",
-      "value": -1
+      "value": 0.0001
     },
     {
       "type": "float",
       "name": "FireAccuracy",
-      "value": 0.004999999888241291
+      "value": 0
     },
     {
       "type": "int",
@@ -178,7 +257,7 @@
     {
       "type": "int",
       "name": "FireBurstInterval",
-      "value": 0
+      "value": 1
     },
     {
       "type": "int",
@@ -193,7 +272,7 @@
     {
       "type": "int",
       "name": "FireInterval",
-      "value": 15
+      "value": 1
     },
     {
       "type": "ptr",
@@ -203,7 +282,7 @@
     {
       "type": "float",
       "name": "FireRecoil",
-      "value": 0.4000000059604645
+      "value": 1.2000000476837158
     },
     {
       "type": "ptr",
@@ -216,11 +295,11 @@
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_Ranger_AF_AF99ST"
+          "value": "weapon_Ranger_SR_NovaBusterM3"
         },
         {
           "type": "float",
-          "value": 0.7943000197410583
+          "value": 0.8899999856948853
         },
         {
           "type": "float",
@@ -328,7 +407,7 @@
     {
       "type": "string",
       "name": "MuzzleFlash",
-      "value": ""
+      "value": "LaserMuzzleFlash01"
     },
     {
       "type": "ptr",
@@ -336,50 +415,26 @@
       "value": [
         {
           "type": "string",
-          "value": "マズルフラッシュパターン.dds"
+          "value": "Particle3_k.dds"
         },
         {
           "type": "float",
-          "value": 3
-        },
-        {
-          "type": "float",
-          "value": 0.6000000238418579
-        },
-        {
-          "type": "float",
-          "value": 0
-        },
-        {
-          "type": "int",
-          "value": 5
-        },
-        {
-          "type": "float",
-          "value": 1.2999999523162842
-        },
-        {
-          "type": "float",
-          "value": 0.11999999731779099
-        },
-        {
-          "type": "int",
-          "value": 2
+          "value": 0.25
         },
         {
           "type": "ptr",
           "value": [
             {
               "type": "float",
-              "value": 2.4000000953674316
+              "value": 0.4000000059604645
             },
             {
               "type": "float",
-              "value": 1
+              "value": 0.4000000059604645
             },
             {
               "type": "float",
-              "value": 2
+              "value": 1.399999976158142
             },
             {
               "type": "float",
@@ -388,20 +443,20 @@
           ]
         },
         {
-          "type": "float",
-          "value": -0.20000000298023224
+          "type": "int",
+          "value": 2
         }
       ]
     },
     {
       "type": "float",
       "name": "Range",
-      "value": 680
+      "value": 1240
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "assault_reload1"
+      "value": "assault_reload2"
     },
     {
       "type": "float",
@@ -411,7 +466,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 150
+      "value": 10800
     },
     {
       "type": "int",
@@ -421,7 +476,7 @@
     {
       "type": "float",
       "name": "SecondaryFire_Parameter",
-      "value": 2.5
+      "value": 5
     },
     {
       "type": "int",
@@ -440,40 +495,15 @@
       "value": [
         {
           "type": "string",
-          "value": "ShellCase_RB"
+          "value": ""
         },
         {
           "type": "string",
-          "value": "app:/Weapon/ShellCase401.rab"
+          "value": ""
         },
         {
-          "type": "ptr",
-          "value": [
-            {
-              "type": "int",
-              "value": 0
-            },
-            {
-              "type": "string",
-              "value": "weapon_Common_shell_9mm"
-            },
-            {
-              "type": "float",
-              "value": 0.20000000298023224
-            },
-            {
-              "type": "float",
-              "value": 0.699999988079071
-            },
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 5
-            }
-          ]
+          "type": "int",
+          "value": 0
         }
       ]
     },
@@ -517,7 +547,7 @@
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/AF99.dds"
+      "value": "app:/weapon/icon/assult_blaster.dds"
     },
     {
       "type": "ptr",
@@ -528,23 +558,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/s_assault_AF99st.rab"
+              "value": "app:/Weapon/s_assault_blasterriflenormal01.rab"
             },
             {
               "type": "string",
-              "value": "s_assault_AF99st.mdb"
+              "value": "s_assault_blasterriflenormal01.mdb"
             }
           ]
         },
         {
-          "type": "string",
-          "value": "app:/Weapon/s_assault_AF99st.cas"
+          "type": "int",
+          "value": 0
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwAEAAYAfgAkAAAAnAAAADABAADEBAAAAAABADwAAAABAAEAXAAAAAIAAQB8AAAAxAQAANAEAAACAAAAQAEAAGABAAAwAQAAAAAAAJABAADKBAAA0AQAAAIAAABwAQAAYAEAAFABAAAAAAAAkAEAADgFAADQBAAAAgAAAIABAABgAQAAMAEAAAAAAABcAwAA3AAAACwBAAAoBQAAAAAAANwAAAAsAQAACAUAAAIAAAD8AAAALAEAAPAEAAAAAAAA/AAAACwBAADaBAAAAwAAACIFAAAAAAAAAAAAAAQDAAAiBQAAAAAAAAAAAAAAAgAAIgUAAAAAAAAAAAAArAIAACIFAAAAAERCAAAAAFQCAAAiBQAAAADIQgAAAACwAQAAurq6ugAAAAAAAAAAAAAAAAAAgD8AAAAA1XjpPYcWeT8AAIA/Rsh6PAg0Ar8GjERAAACAP83MzDzNzMw8zczMPAAAgD89Ctc9pptEPKwcWj4AAIA/aJHtvB+F6z0fhes9AACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAACAAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAAAh/yb/Gf8Z/zP/NP/LaUgwAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAJAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAACH/Jv8Z/xn/M/80/0owjTBZMAAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAALAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAACH/Jv8Z/xn/M/80/94wsDC7MMMwyDAAAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAADAAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAAAh/yb/Gf8Z/zP/NP/eMLAw1lOKMPpRVzAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAwAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAIf8m/xn/Gf8z/zT/3jCwMOow6jD8MLkwAABTR08AAgEAAAQAAAAgAAAABAAAAOAAAAAAAAAAAAEAAAAAAAADAAAAMAAAAAAAAAADAAAASAAAAAAAAAADAAAAYAAAAAAAAAADAAAAeAAAAAIAAAAEAAAAAACAPwIAAAAEAAAAAACAPwIAAAAEAAAAAACAPwIAAAAEAAAAAACAvwIAAAAEAAAAAACAvwIAAAAEAAAAAACAvwIAAAAEAAAAAADAvwIAAAAEAAAAAAAAPwIAAAAEAAAAAAAAAAIAAAAEAAAAAACAvwIAAAAEAAAAAAAAAAIAAAAEAAAAAAAAACAAAAAAAAAAMgAAAAEAAABEAAAAAgAAAFYAAAADAAAAcgBvAHQAYQB0AGkAbwBuAF8AbQBhAHgAAAByAG8AdABhAHQAaQBvAG4AXwBtAGkAbgAAAHYAZQBsAG8AYwBpAHQAeQBfAG0AYQB4AAAAdgBlAGwAbwBjAGkAdAB5AF8AbQBpAG4AAAAwADEAAABJAEsAAABiAG8AZAB5AAAAcgBlAGwAbwBhAGQAXwBlAG4AZAAAAHIAZQBsAG8AYQBkAF8AbABvAG8AcAAAAHIAZQBsAG8AYQBkAF8AcwB0AGEAcgB0AAAAcwBlAAAAcwB0AGEAbgBkAGIAeQAAAKyFooMAAGMAULI="
+            "data": "TUFCAA8AAAADAAAAAwAAAAUAFAAkAAAAfAAAAIAAAABQAQAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAAUAEAAFwBAAACAAAAkAAAALAAAACAAAAAAAAAAPAAAABWAQAAXAEAAAIAAADAAAAAsAAAAKAAAAAAAAAA0AAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAABfZzj3Xo4A/AACAP+ub1jx468m+TX9GQAAAgD+PwvU8j8L1PI/C9TwAAIA/ZDvfPY/CdbwSg0A+AACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAABAAAABAAAAAEAAAAIAAAAAAAAAGYAaQByAGUAXwBtAG8AZABlAGwAXwBkAGkAcgBlAGMAdABpAG8AbgAAAAAAMAAxAAAASQBLAAAAbQBkAGwAAAA="
           }
         }
       ]
@@ -555,11 +585,11 @@
       "value": [
         {
           "type": "string",
-          "value": "assault_recoil3"
+          "value": "assault_recoil1"
         },
         {
           "type": "int",
-          "value": 0
+          "value": 1
         },
         {
           "type": "int",
@@ -578,32 +608,17 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "ＡＦ９９ＳＴ"
+          "value": "ノヴァバスターＺＤ"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "AF99-ST"
+          "value": "Nova Buster ZD"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "ＡＦ９９ＳＴ"
-        }
-      ]
-    },
-    {
-      "type": "ptr",
-      "name": "resource",
-      "value": [
-        {
-          "type": "string",
-          "name": "path",
-          "value": "app:/Weapon/ShellCase401.rab"
-        },
-        {
-          "type": "string",
-          "value": "app:/Weapon/ShellCase401.shkt"
+          "value": "ノヴァバスターＺＤ"
         }
       ]
     },
@@ -620,7 +635,11 @@
   ],
   "meta": {
     "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
-    "id": "Weapon026",
-    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>          Capacity: 28                         Zoom: 2.5x\n               ROF: 4.0/sec\n            Damage: 900.0\n       Reload Time: 2.5sec\n             Range: 680.0m\n          Accuracy: S+\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nThis upgraded AF99 sacrifices firing rate for power like other ST models, but no longer suffers from the low ammo capacity and long reload times of its predecessors. Range has also been extended, making it a most effective mid- to long-range weapon."
+    "id": "Weapon074",
+    "level": null,
+    "category": null,
+    "unlockState": null,
+    "dropRateModifier": null,
+    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>          Capacity: 1                           Zoom: 5x\n               ROF: ----\n            Damage: 80000.0\n       Reload Time: 180sec\n             Range: 1240.0m\n          Accuracy: S+\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA laser gun with destructive power beyond human comprehension (more or less). Boasts a tremendous amount of stored energy that can be released instantaneously to obliterate the target. The latest model is equipped with a small generator that will reload the gun even when it's not held, but the recharge process is very slow."
   }
 }

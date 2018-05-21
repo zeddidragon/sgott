@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 const fs = require('fs')
+const deepEqual = require('deep-equal')
 const sgoToJson = require('../sgo-json')
 const jsonToSgo = require('../json-sgo')
 
 const config = require('./config')
 const weaponTable = require('./weapontable')
 const weaponText = require('./weapontext')
+const gameText = require('./texttable-steam-en')
 
 const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
@@ -13,7 +15,30 @@ const weaponModDir = `${modDir}/weapon`
 const configPath = `${modDir}/CONFIG.SGO`
 const weaponTablePath = `${modDir}/_WEAPONTABLE.SGO`
 const weaponTextPath = `${modDir}/_WEAPONTEXT.SGO`
+const coreTemplateDir = `${templateDir}/core`
 const weaponTemplateDir = `${templateDir}/weapon`
+const gameTextPath = `${modDir}/TEXTTABLE_STEAM_EN.SGO`
+
+const filePath = Symbol('path')
+const exists = Symbol('exists')
+const touched = Symbol('touched')
+const files = {}
+
+function populate(key, path, fallback) {
+  var resource
+  if(fs.existsSync(path)) {
+    files[key] = sgoToJson.decompiler()(fs.readFileSync(path))
+    files[key][exists] = true
+  } else {
+    files[key] = fallback
+  }
+  files[key][filePath] = path
+}
+
+populate('CONFIG.SGO', configPath, config)
+populate('TEXTTABLE_STEAM_EN.TXT_SGO', gameTextPath, gameText)
+populate('_WEAPONTABLE.SGO', weaponTablePath, weaponTable)
+populate('_WEAPONTEXT.SGO', weaponTextPath, weaponText)
 
 console.log('Patching executable...')
 ;(function(){
@@ -27,13 +52,18 @@ console.log('Patching executable...')
 
   const path = './EDF41-sgott-backup.exe'
   if(fs.existsSync(path)) {
-    console.error('Backup already exists. Skipping...')
+    console.error('Backup already exists. Skipping backup...')
   } else {
     console.log('Backing up...')
     fs.writeFileSync(path, buffer)
   }
 
   buffer.write(configPath + '\0', index, 'utf16le')
+  const textTableIndex = buffer.indexOf('app:/etc/TextTable_steam_en.txt_sgo')
+  if(~textTableIndex) {
+    buffer.write(gameTextPath + '\0', index, 'utf16le')
+  }
+
   fs.writeFileSync(exePath, buffer)
 })()
 
@@ -48,33 +78,97 @@ mkdir(modDir)
 mkdir(weaponModDir)
 // JSON templates for modding
 mkdir(templateDir)
+mkdir(coreTemplateDir)
 mkdir(weaponTemplateDir)
 
-if(!fs.existsSync(configPath)) {
-  config.variables.find(n => n.name === 'WeaponTable').value = weaponTablePath
-  config.variables.find(n => n.name === 'WeaponText').value = weaponTextPath
-  fs.writeFileSync(configPath, jsonToSgo.compiler()(config))
+function patchNode(node, steps, replacement, opts) {
+  if(steps.length) {
+    return patchStep(node.value, steps, replacement, opts)
+  } else if(deepEqual(node, replacement)) {
+    return false
+  } else {
+    Object.assign(node, replacement)
+    return true
+  }
 }
 
+function patchStep(values, [step, ...steps], replacement, opts) {
+  if(/^\[\d+]$/.exec(step)) {
+    const [index] = /\d+/.exec(step)
+    const node = values[index]
+    if(node) {
+      return patchNode(node, steps, replacement, opts)
+    } else if(opts && opts.upsert) {
+      const newNode = {}
+      values[index] = newNode
+      patchNode(newNode, steps, replacement, opts)
+      return true
+    } else {
+      return false
+    }
+  } else if(/\{.*=.*\}/.exec(step)) {
+    const [search, value] = step.slice(1, -1).split('=')
+    const searchSteps = search.split(':')
+    const node = values.find(v => {
+      var current = v
+      for(const step of searchSteps) {
+        if(!current) return false
+        current = current[step]
+      }
+      return current == value
+    })
+    if(node) {
+      return patchNode(node, steps, replacement, opts)
+    } else if(opts && opts.upsert) {
+      console.error(`Upsert not supported with query: ${step}`)
+      return false
+    } else {
+      return false
+    }
+  } else {
+    const node = values.find(n => n.name === step)
+    if(node) {
+      return patchNode(node, steps, replacement, opts)
+    } else if(opts && opts.upsert) {
+      const newNode = {type: 'ptr', name: step, value: []}
+      values.push(newNode)
+      return patchNode(newNode, steps, replacement, opts)
+    } else {
+      return false
+    }
+  }
+}
+
+function patch(table, path, replacement, opts) {
+  const steps = path.split('.')
+  const patched = patchStep(table.variables, steps, replacement, opts)
+  if(patched) table[touched] = true
+}
+
+patch(config, 'WeaponTable', {
+  type: 'string',
+  name: 'WeaponTable',
+  value: weaponTablePath,
+})
+patch(config, 'WeaponText', {
+  type: 'string',
+  name: 'WeaponText',
+  value: weaponTextPath,
+})
+
 console.log('Patching weapons tables')
+var succeeded = 0
 var failed = 0
 
-const mods = fs
+const weaponMods = fs
   .readdirSync(weaponTemplateDir)
   .filter(name => name.slice(-5).toLowerCase() === '.json')
   .map(name => name.slice(0, -5))
 
-console.log(`Mods found: ${mods.length}`)
+console.log(`Weapon Mods found: ${weaponMods.length}`)
 
-const table = fs.existsSync(weaponTablePath)
-  ? sgoToJson.decompiler()(fs.readFileSync(weaponTablePath))
-  : weaponTable
-const tableValues = table.variables[0].value
-
-const text = fs.existsSync(weaponTextPath)
-  ? sgoToJson.decompiler()(fs.readFileSync(weaponTextPath))
-  : weaponText
-const textValues = text.variables[0].value
+const tableValues = files['_WEAPONTABLE.SGO'].variables[0].value
+const textValues = files['_WEAPONTEXT.SGO'].variables[0].value
 
 function findTableNode(id) {
   return tableValues.find(t => t.value[0].value === id)
@@ -90,7 +184,7 @@ const ids = {}
 function format(pair) {
   if(!pair) return ''.padStart(25)
   const [key, value] = pair
-  return ('' + key).padStart(12) + ':' + ('' + value).padEnd(12)
+  return ('' + key).padStart(12) + ': ' + ('' + value).padEnd(11)
 }
 
 function tabulate(pairs) {
@@ -101,12 +195,10 @@ function tabulate(pairs) {
     const rightPair = pairs[i + 6]
     ret += format(leftPair) + format(rightPair) + '\n'
   }
-  return ret +
-    '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n' +
-    'A custom weapon made using SGOTT.'
+  return ret
 }
 
-for(const mod of mods) {
+for(const mod of weaponMods) {
   console.log(`Applying: ${mod}`)
   const template = JSON
     .parse(fs.readFileSync(`${weaponTemplateDir}/${mod}.json`, 'utf8'))
@@ -124,6 +216,22 @@ for(const mod of mods) {
 
   function findVar(name) {
     return template.variables.find(n => n.name === name)
+  }
+
+  function autoStats() {
+    const damage = (+findVar('AmmoDamage').value).toFixed(1)
+    const fireCount = +findVar('FireCount').value
+    const zoom = +findVar('SecondaryFire_Type') === 1 &&
+        (+findVar('SeccondaryFire_Parameter').toFixed(1))
+    const entries = [
+      ['Capacity', findVar('AmmoCount').value],
+      ['ROF', (60 / +findVar('FireInterval').value).toFixed(1) + '/sec'],
+      ['Damage', fireCount > 1 ? `${damage}` : `${damage}x${fireCount}`],
+      ['Reload Time', +(+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'],
+    ]
+    if(zoom) entries.push(['Zoom', `${+zoom}x`])
+    return tabulate(entries) +
+      '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n' 
   }
 
   var tableNode, textNode
@@ -172,12 +280,7 @@ for(const mod of mods) {
         value: '',
       }, {
         type: 'string',
-        value: tabulate([
-          ['Capacity', findVar('AmmoCount').value],
-          ['ROF', +(60 / +findVar('FireInterval').value).toFixed(1)],
-          ['Damage', findVar('AmmoDamage').value],
-          ['Reload Time', +(60 / +findVar('ReloadTime')).toFixed(1)],
-        ]),
+        value: autoStats() + 'A custom weapon made using SGOTT.',
       }, {
         type: 'string',
         value: '',
@@ -194,7 +297,9 @@ for(const mod of mods) {
   if(meta.dropRateModifier != null) tableNode.value[3].value = meta.dropRateModifier
   if(meta.level != null) tableNode.value[4].value = meta.level / 25
   if(meta.unlockState != null) tableNode.value[5].value = meta.unlockState
-  if(meta.description != null) textNode.value[3].value = meta.description
+  if(meta.description != null) {
+    textNode.value[3].value = meta.description.replace('$AUTOSTATS$', autoStats())
+  }
   const name = findVar('name').value[1].value
   if(name !== textNode.value[2].value) {
     textNode.value[0].value = name
@@ -214,14 +319,52 @@ for(const mod of mods) {
   ids[id] = {path, template}
 }
 
+succeeded = Object.keys(ids).length
+
+if(succeeded) {
+  files['_WEAPONTABLE.SGO'][touched] = true
+  files['_WEAPONTEXT.SGO'][touched] = true
+}
+
 for(const {path, template} of Object.values(ids)) {
   console.log(`Writing file: ${path}`)
   fs.writeFileSync(path, jsonToSgo.compiler()(template))
 }
 
-console.log(`Writing table file: ${weaponTablePath}`)
-fs.writeFileSync(weaponTablePath, jsonToSgo.compiler()(table))
-console.log(`Writing text file: ${weaponTextPath}`)
-fs.writeFileSync(weaponTextPath, jsonToSgo.compiler()(text))
+const coreMods = fs
+  .readdirSync(coreTemplateDir)
+  .filter(name => name.slice(-5).toLowerCase() === '.json')
+  .map(name => name.slice(0, -5))
 
-console.log(`Done, ${Object.keys(ids).length} succeeded and ${failed} failed`)
+console.log(`Core Mods found: ${coreMods.length}`)
+
+for(const mod of coreMods) {
+  console.log(`Applying: ${mod}`)
+  const template = JSON
+    .parse(fs.readFileSync(`${coreTemplateDir}/${mod}.json`, 'utf8'))
+
+  for(const [path, operations] of Object.entries(template)) {
+    const file = files[path]
+    if(!file) {
+      console.error(`File not found: ${path}, aborting...`)
+      continue
+    }
+    for(const [steps, replacement] of Object.entries(operations.patch || {})) {
+      patch(file, steps, replacement)
+    }
+    for(const [steps, replacement] of Object.entries(operations.upsert || {})) {
+      patch(file, steps, replacement, {upsert: true})
+    }
+  }
+
+  succeeded++
+}
+
+for(const file of Object.values(files)) {
+  if(file[exists] && !file[touched]) continue
+  const path = file[filePath]
+  console.log(`Writing file: ${path}`)
+  fs.writeFileSync(path, jsonToSgo.compiler()(file))
+}
+
+console.log(`Done, ${succeeded} succeeded and ${failed} failed`)
