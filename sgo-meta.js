@@ -24,7 +24,7 @@ const ammoClasses = {
      null,
      'LedPosition',
      'BombExplosionType',
-     'SplendorParameters',
+     'SplendorParameter',
   ],
   MissileBullet02: [
     null,
@@ -58,13 +58,54 @@ const ammoClasses = {
     'Ammo_CustomParameter',
     'FireSe',
   ],
+  SmokeCandleBullet01: [
+    "SmokeSpread",
+    "SmokeSize",
+    "SummonDelay",
+    "SummonType",
+    "Summon_CustomParameter",
+  ],
+  BomberPlane: [
+    'PlaneModel',
+    'PlaneCount',
+    'PlaneInterval',
+    'PlaneElevation',
+    'PlaneSpeed',
+    'OriginFactor',
+    'DropDistance',
+    'FormationAngle',
+    'FormationType',
+    'Formation_CustomParameter',
+    'BombingPayloadParameters',
+  ]
 }
 
 const names = {
   ammoClasses: ammoClasses,
   AmmoColor: colors,
   LedPosition: colors,
-  SplendorParameters: [
+  BombingPayloadParameter: [
+    null,
+    null,
+    'BombingPayloadCount',
+    'BombingPayloadInterval',
+    'BombingPayloadClass',
+    'BombingPayloadSpeed',
+    'BombingPayloadInitialUpSpeed',
+    'BombingPayloadSpriteSize',
+    'BombingPayloadHitboxSize?',
+    'BombingPayloadExplosion',
+    'BombingPayloadAlive',
+    null,
+    'BombingPayloadColor',
+    null,
+    null,
+    'BombingPayloadDelay',
+    null,
+    null,
+    null,
+  ],
+  SplendorParameter: [
     'FlechetteSpread',
     'SearchRange',
     'FlechetteCount',
@@ -150,6 +191,7 @@ const values = {
   AmmoClass: ammoClassOptions,
   BombExplosionType: [0, 1, 2],
   SecondaryFire_Type: [0, 1, 2, 3],
+  BombingPathType: [0, 1],
 }
 
 module.exports = {names, values}
