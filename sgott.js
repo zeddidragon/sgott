@@ -23,8 +23,8 @@ ${config.name} ${config.version}
 ${config.description}
 
 Usage:
-  sgott <infile.sgo> <outfile.json>
-  sgott <infile.json> <outfile.sgo>
+  sgott <infile.sgo> [<outfile.json>]
+  sgott <infile.json> [<outfile.sgo>]
   sgott --type=json infile.txt outfile.sgo
   sgott < infile.sgo > outfile.json
   sgott < infile.json > outfile.sgo
@@ -86,9 +86,19 @@ function parseCli(cb) {
 
   const [readFile, writeFile] = plain
 
+  function convertFileName(fileName) {
+    const format = /\.json$/.exec(fileName) ? 'SGO' : '.json'
+    return fileName.replace(/\..*$/, '.' + format)
+  }
+
   function write(data) {
-    if(writeFile) {
+    if(writeFile && fs.existsSync(writeFile) && fs.lstatSync(writeFile).isDirectory()) {
+      const path = writeFile + '/' + convertFileName(readFile.split('/').pop())
+      fs.writeFileSync(path, data)
+    } else if(writeFile) {
       fs.writeFileSync(writeFile, data)
+    } else if(readFile) {
+      fs.writeFileSync(convertFileName(readFile), data)
     } else {
       process.stdout.write(data)
     }
