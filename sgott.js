@@ -87,7 +87,7 @@ function parseCli(cb) {
   const [readFile, writeFile] = plain
 
   function convertFileName(fileName) {
-    const format = /\.json$/.exec(fileName) ? 'SGO' : '.json'
+    const format = /\.json$/.exec(fileName) ? 'SGO' : 'json'
     return fileName.replace(/\..*$/, '.' + format)
   }
 

@@ -15,6 +15,16 @@ const soundEffect = [
   'SoundName',
 ]
 
+const hammerChargeParameters = [
+  'ChargeRequired',
+  'ChargeAnimation',
+  'ChargeAnimationSpeed',
+  'ChargeDamageFactor',
+  'ChargeSize',
+  null,
+  'AmmoClass',
+]
+
 const ammoClasses = {
   BombBullet01: [
     'IsMobile',
@@ -80,6 +90,15 @@ const ammoClasses = {
   ]
 }
 
+const ObjectClasses = {
+  Weapon_ImpactHammer: [
+    null,
+    null,
+    'DamageReduction',
+    'HammerChargeParameters',
+  ],
+}
+
 const names = {
   ammoClasses: ammoClasses,
   AmmoColor: colors,
@@ -114,43 +133,51 @@ const names = {
     'FlechetteSize',
   ],
   FlechetteSpread: [
-   'Horizontal',
-   'Vertical',
-   'VerticalOffset',
- ],
- SubMissiles: [
-   null,
-   null,
-   'SubAmmoCount',
-   null,
-   'AmmoClass',
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   'AmmoColor',
-   'Ammo_CustomParameter',
-   'ModelName',
-   null,
-   null,
-   null,
-   'FireSe',
-   'MuzzleFlash',
-   'MuzzleFlash_CustomParameter',
- ],
- AmmotHitSe: soundEffect,
- FireSe: soundEffect,
- name: [
+    'Horizontal',
+    'Vertical',
+    'VerticalOffset',
+  ],
+  HammerChargeParameters: [
+    'BasicCharge',
+    'HighVoltageCharge',
+    'MaximumCharge'
+  ],
+  BasicCharge: hammerChargeParameters,
+  HighVoltageCharge: hammerChargeParameters,
+  MaximumCharge: hammerChargeParameters,
+  SubMissiles: [
+    null,
+    null,
+    'SubAmmoCount',
+    null,
+    'AmmoClass',
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    'AmmoColor',
+    'Ammo_CustomParameter',
+    'ModelName',
+    null,
+    null,
+    null,
+    'FireSe',
+    'MuzzleFlash',
+    'MuzzleFlash_CustomParameter',
+  ],
+  AmmotHitSe: soundEffect,
+  FireSe: soundEffect,
+  name: [
    'Japanese',
    'English',
    'Chinese',
- ],
- resource: [
+  ],
+  resource: [
    'path',
- ],
+  ],
 }
 
 const ammoClassOptions = [
