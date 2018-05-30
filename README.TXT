@@ -14,9 +14,11 @@ Deleting the folder SgottMods and running sgottstrap.exe will also allow all set
 
 If someone makes a weapon mod using SGOTT, place the json file inside of SgottTemplates/weapon, then run sgottstrap.exe.
 
+Currently, mods only affect the main campaign. DLC campaigns will remain untouched.
+
 Making mods
 ===========
-Use CriPakGUI http://www.k73.com/down/soft/242290.html to open root.cpk,
+Use CriPakGUI https://github.com/wmltogether/CriPakTools/releases to open root.cpk
 then find the weapon file you wish to edit or base your new weapon on.
 If you don't know which file is which weapon, refer to this table:
 

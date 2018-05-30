@@ -5,10 +5,6 @@ const sgoToJson = require('../sgo-json')
 const jsonToSgo = require('../json-sgo')
 
 const config = require('./config')
-//const config1 = require('./config1')
-const config2 = require('./config2')
-//const package1 = require('./package1')
-const package2 = require('./package2')
 const weaponTable = require('./weapontable')
 const weaponText = require('./weapontext')
 const gameText = require('./texttable-steam-en')
@@ -17,10 +13,6 @@ const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
 const weaponModDir = `${modDir}/weapon`
 const configPath = `${modDir}/CONFIG.SGO`
-const config1Path = `${modDir}/1.SGO`
-const package1Path = `${modDir}/PACKAGE1.SGO`
-const config2Path = `${modDir}/2.SGO`
-const package2Path = `${modDir}/PACKAGE2.SGO`
 const weaponTablePath = `${modDir}/_WEAPONTABLE.SGO`
 const weaponTextPath = `${modDir}/_WEAPONTEXT.SGO`
 const coreTemplateDir = `${templateDir}/core`
@@ -44,10 +36,6 @@ function populate(key, path, fallback) {
 }
 
 populate('CONFIG.SGO', configPath, config)
-//populate('CONFIG1.SGO', config1Path, config)
-//populate('PACKAGE1.SGO', package1Path, config)
-populate('CONFIG2.SGO', config2Path, config2)
-populate('PACKAGE2.SGO', package2Path, package2)
 populate('TEXTTABLE_STEAM_EN.TXT_SGO', gameTextPath, gameText)
 populate('_WEAPONTABLE.SGO', weaponTablePath, weaponTable)
 populate('_WEAPONTEXT.SGO', weaponTextPath, weaponText)
@@ -73,8 +61,7 @@ console.log('Patching executable...')
   }
 
   replace('app:/DefaultPackage/config.sgo', configPath)
-  //replace('app:/etc/TextTable_steam_en.txt_sgo', gameTextPath)
-  //replace('addon:/Config2.sgo', config2Path)
+  replace('app:/etc/TextTable_steam_en.txt_sgo', gameTextPath)
 
   if(buffer[touched]) {
     fs.writeFileSync(exePath, buffer)
@@ -167,21 +154,6 @@ patch(config, 'WeaponTable', {
   value: weaponTablePath,
 })
 patch(config, 'WeaponText', {
-  type: 'string',
-  name: 'WeaponText',
-  value: weaponTextPath,
-})
-patch(config2, 'package', {
-  type: 'string',
-  name: 'package',
-  value: package2Path,
-})
-patch(package2, 'WeaponTable', {
-  type: 'string',
-  name: 'WeaponTable',
-  value: weaponTablePath,
-})
-patch(package2, 'WeaponText', {
   type: 'string',
   name: 'WeaponText',
   value: weaponTextPath,
