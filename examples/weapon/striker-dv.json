@@ -4,12 +4,12 @@
     {
       "type": "string",
       "name": "AimAnimation",
-      "value": "aim"
+      "value": "aim_hammer"
     },
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 62
+      "value": 40
     },
     {
       "type": "string",
@@ -47,7 +47,7 @@
         "SupportUnitBullet01",
         "PileBunkerBullet01"
       ],
-      "value": "LaserBullet01"
+      "value": "ShockWaveBullet01"
     },
     {
       "type": "ptr",
@@ -56,7 +56,7 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 1
+          "value": 0.5
         },
         {
           "type": "float",
@@ -66,7 +66,7 @@
         {
           "type": "float",
           "name": "Blue",
-          "value": 4
+          "value": 0.5
         },
         {
           "type": "float",
@@ -78,12 +78,12 @@
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 1
+      "value": 12
     },
     {
       "type": "float",
       "name": "AmmoDamage",
-      "value": 80000
+      "value": 450
     },
     {
       "type": "float",
@@ -103,12 +103,37 @@
     {
       "type": "ptr",
       "name": "AmmoHitSe",
-      "value": null
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "value": "weapon_Common_hitSound_zan"
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 50
+        }
+      ]
     },
     {
       "type": "float",
       "name": "AmmoHitSizeAdjust",
-      "value": 0
+      "value": 1
     },
     {
       "type": "int",
@@ -128,96 +153,17 @@
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 4
+      "value": 2
     },
     {
       "type": "float",
       "name": "AmmoSpeed",
-      "value": 20
+      "value": 1
     },
     {
       "type": "ptr",
       "name": "Ammo_CustomParameter",
-      "value": [
-        {
-          "type": "ptr",
-          "value": [
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "ptr",
-          "value": [
-            {
-              "type": "float",
-              "value": 2
-            },
-            {
-              "type": "float",
-              "value": 2
-            },
-            {
-              "type": "float",
-              "value": 2
-            },
-            {
-              "type": "float",
-              "value": 2
-            }
-          ]
-        },
-        {
-          "type": "float",
-          "value": 5
-        },
-        {
-          "type": "float",
-          "value": 3
-        },
-        {
-          "type": "int",
-          "value": 62
-        },
-        {
-          "type": "int",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "value": 1.5
-        },
-        {
-          "type": "float",
-          "value": 1.600000023841858
-        },
-        {
-          "type": "float",
-          "value": 1
-        },
-        {
-          "type": "int",
-          "value": 5
-        }
-      ]
+      "value": null
     },
     {
       "type": "ptr",
@@ -232,17 +178,17 @@
     {
       "type": "string",
       "name": "BaseAnimation",
-      "value": "assault"
+      "value": "base"
     },
     {
       "type": "string",
       "name": "ChangeAnimation",
-      "value": "assault_change1"
+      "value": "hammer_change1"
     },
     {
       "type": "float",
       "name": "EnergyChargeRequire",
-      "value": 0.0001
+      "value": -1
     },
     {
       "type": "float",
@@ -252,12 +198,12 @@
     {
       "type": "int",
       "name": "FireBurstCount",
-      "value": 1
+      "value": 2
     },
     {
       "type": "int",
       "name": "FireBurstInterval",
-      "value": 1
+      "value": 8
     },
     {
       "type": "int",
@@ -282,7 +228,7 @@
     {
       "type": "float",
       "name": "FireRecoil",
-      "value": 1.2000000476837158
+      "value": 0.5
     },
     {
       "type": "ptr",
@@ -295,11 +241,11 @@
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_Ranger_SR_NovaBusterM3"
+          "value": "weapon_Fencer_HM_forceAxeG3_lv1"
         },
         {
           "type": "float",
-          "value": 0.8899999856948853
+          "value": 0.7943000197410583
         },
         {
           "type": "float",
@@ -307,7 +253,7 @@
         },
         {
           "type": "float",
-          "value": 2
+          "value": 3
         },
         {
           "type": "float",
@@ -318,7 +264,7 @@
     {
       "type": "int",
       "name": "FireSpreadType",
-      "value": 0
+      "value": 2
     },
     {
       "type": "float",
@@ -400,63 +346,29 @@
       "value": [
         {
           "type": "string",
-          "value": "arms_r"
+          "value": "arms"
         }
       ]
     },
     {
       "type": "string",
       "name": "MuzzleFlash",
-      "value": "LaserMuzzleFlash01"
+      "value": ""
     },
     {
       "type": "ptr",
       "name": "MuzzleFlash_CustomParameter",
-      "value": [
-        {
-          "type": "string",
-          "value": "Particle3_k.dds"
-        },
-        {
-          "type": "float",
-          "value": 0.25
-        },
-        {
-          "type": "ptr",
-          "value": [
-            {
-              "type": "float",
-              "value": 0.4000000059604645
-            },
-            {
-              "type": "float",
-              "value": 0.4000000059604645
-            },
-            {
-              "type": "float",
-              "value": 1.399999976158142
-            },
-            {
-              "type": "float",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "int",
-          "value": 2
-        }
-      ]
+      "value": null
     },
     {
       "type": "float",
       "name": "Range",
-      "value": 1240
+      "value": 80
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "assault_reload2"
+      "value": "hammer_reload1"
     },
     {
       "type": "float",
@@ -466,7 +378,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 10800
+      "value": 120
     },
     {
       "type": "int",
@@ -474,9 +386,9 @@
       "value": 0
     },
     {
-      "type": "float",
+      "type": "ptr",
       "name": "SecondaryFire_Parameter",
-      "value": 5
+      "value": null
     },
     {
       "type": "int",
@@ -487,7 +399,7 @@
         2,
         3
       ],
-      "value": 1
+      "value": 5
     },
     {
       "type": "ptr",
@@ -526,11 +438,11 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/HUD/Sight01.rab"
+              "value": "app:/HUD/sight17.rab"
             },
             {
               "type": "string",
-              "value": "Sight01.mdb"
+              "value": "sight17.mdb"
             }
           ]
         },
@@ -547,7 +459,7 @@
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/assult_blaster.dds"
+      "value": "app:/weapon/icon/impact_blade.dds"
     },
     {
       "type": "ptr",
@@ -558,23 +470,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/s_assault_blasterriflenormal01.rab"
+              "value": "app:/Weapon/h_impact_blade01.rab"
             },
             {
               "type": "string",
-              "value": "s_assault_blasterriflenormal01.mdb"
+              "value": "h_impact_blade01.mdb"
             }
           ]
         },
         {
-          "type": "int",
-          "value": 0
+          "type": "string",
+          "value": "app:/Weapon/h_impact_blade01.cas"
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwAAAAUAFAAkAAAAfAAAAIAAAABQAQAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAAUAEAAFwBAAACAAAAkAAAALAAAACAAAAAAAAAAPAAAABWAQAAXAEAAAIAAADAAAAAsAAAAKAAAAAAAAAA0AAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAABfZzj3Xo4A/AACAP+ub1jx468m+TX9GQAAAgD+PwvU8j8L1PI/C9TwAAIA/ZDvfPY/CdbwSg0A+AACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAABAAAABAAAAAEAAAAIAAAAAAAAAGYAaQByAGUAXwBtAG8AZABlAGwAXwBkAGkAcgBlAGMAdABpAG8AbgAAAAAAMAAxAAAASQBLAAAAbQBkAGwAAAA="
+            "data": "TUFCAA8AAAADAAAAAwAEAAMAXgAkAAAAXAAAAMAAAAC4AQAAAAABADwAAAABAAAAXAAAAAIAAABcAAAAuAEAAPoBAAACAAAA0AAAAOAAAADAAAAAAAAAAPAAAACcAAAAvAAAAL4BAAABAAAArAAAALwAAADUAQAAAQAAALwAAAC8AAAA6gEAAAAAAAC8AAAAvAAAAAYCAAAAAAAA9AEAAAAAAAAAAAAAEAEAAPQBAAAAAAAAAAAAAGQBAAC6urq6AAAAAAAAAAAAAAAAAACAPwAAAAA/NT4/mpmZPgAAgD/NzEw9zcxMPc3MTD0AAIA/U0dPAAIBAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAKAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAM8w8zDeMPwwVVyLlQBSLP82/xL/AABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAKAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAM8w8zDeMPwwVVyLlQBSLP82/xP/AAAwADEAAABjAGgAYQByAGcAZQBfAGwAdgAyAAAAYwBoAGEAcgBnAGUAXwBsAHYAMwAAAGYAaQByAGUAAABzAGUAAABzAGwAaQBkAGUAAABzAHQAYQBuAGQAYgB5AAAA"
           }
         }
       ]
@@ -585,19 +497,128 @@
       "value": [
         {
           "type": "string",
-          "value": "assault_recoil1"
-        },
-        {
-          "type": "int",
-          "value": 1
-        },
-        {
-          "type": "int",
-          "value": 0
+          "value": "hammer_charge"
         },
         {
           "type": "float",
           "value": 1
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "string",
+                  "value": "hammer_swingUp"
+                },
+                {
+                  "type": "float",
+                  "value": 1.5
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "string",
+                  "value": "SlashWaveBullet01Exp"
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "int",
+                  "value": 120
+                },
+                {
+                  "type": "string",
+                  "value": "hammer_turnSwing"
+                },
+                {
+                  "type": "float",
+                  "value": 2
+                },
+                {
+                  "type": "float",
+                  "value": 1.2
+                },
+                {
+                  "type": "float",
+                  "value": 1.2999999523162842
+                },
+                {
+                  "type": "float",
+                  "value": 2
+                },
+                {
+                  "type": "string",
+                  "value": "SlashWaveBullet01Exp"
+                },
+                {
+                  "type": "int",
+                  "value": 6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "string",
+                  "value": "weapon_Fencer_HM_forceAxeG3_lv2"
+                },
+                {
+                  "type": "float",
+                  "value": 0.7943000197410583
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 3
+                },
+                {
+                  "type": "float",
+                  "value": 25
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -608,17 +629,28 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "ノヴァバスターＺＤ"
+          "value": "フォース・アックスＧ３"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "Nova Buster ZD"
+          "value": "Striker DV"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "ノヴァバスターＺＤ"
+          "value": "フォース・アックスＧ３"
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "resource",
+      "value": [
+        {
+          "type": "string",
+          "name": "path",
+          "value": "app:/WEAPON/bullet_timer01.rab"
         }
       ]
     },
@@ -630,16 +662,16 @@
     {
       "type": "string",
       "name": "xgs_scene_object_class",
-      "value": "Weapon_BasicShoot"
+      "value": "Weapon_ImpactHammer"
     }
   ],
   "meta": {
     "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
-    "id": "Weapon074",
-    "level": null,
-    "category": null,
-    "unlockState": null,
+    "id": "StrikerDv",
+    "level": 80,
+    "category": 20,
+    "unlockState": 1,
     "dropRateModifier": null,
-    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>          Capacity: 1                           Zoom: 5x\n               ROF: ----\n            Damage: 80000.0\n       Reload Time: 180sec\n             Range: 1240.0m\n          Accuracy: S+\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA laser gun with destructive power beyond human comprehension (more or less). Boasts a tremendous amount of stored energy that can be released instantaneously to obliterate the target. The latest model is equipped with a small generator that will reload the gun even when it's not held, but the recharge process is very slow."
+    "description": "$AUTOSTATS$An assassin's armament whose edge causes deep wounds that seep with vitriol. You should probably store it seperately from your snacks."
   }
 }

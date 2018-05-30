@@ -5,6 +5,10 @@ const sgoToJson = require('../sgo-json')
 const jsonToSgo = require('../json-sgo')
 
 const config = require('./config')
+//const config1 = require('./config1')
+const config2 = require('./config2')
+//const package1 = require('./package1')
+const package2 = require('./package2')
 const weaponTable = require('./weapontable')
 const weaponText = require('./weapontext')
 const gameText = require('./texttable-steam-en')
@@ -13,11 +17,15 @@ const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
 const weaponModDir = `${modDir}/weapon`
 const configPath = `${modDir}/CONFIG.SGO`
+const config1Path = `${modDir}/1.SGO`
+const package1Path = `${modDir}/PACKAGE1.SGO`
+const config2Path = `${modDir}/2.SGO`
+const package2Path = `${modDir}/PACKAGE2.SGO`
 const weaponTablePath = `${modDir}/_WEAPONTABLE.SGO`
 const weaponTextPath = `${modDir}/_WEAPONTEXT.SGO`
 const coreTemplateDir = `${templateDir}/core`
 const weaponTemplateDir = `${templateDir}/weapon`
-const gameTextPath = `${modDir}/TEXTTABLE_STEAM_EN.SGO`
+const gameTextPath = `${modDir}/TXT_STEAM_EN.TXT_SGO`
 
 const filePath = Symbol('path')
 const exists = Symbol('exists')
@@ -36,6 +44,10 @@ function populate(key, path, fallback) {
 }
 
 populate('CONFIG.SGO', configPath, config)
+//populate('CONFIG1.SGO', config1Path, config)
+//populate('PACKAGE1.SGO', package1Path, config)
+populate('CONFIG2.SGO', config2Path, config2)
+populate('PACKAGE2.SGO', package2Path, package2)
 populate('TEXTTABLE_STEAM_EN.TXT_SGO', gameTextPath, gameText)
 populate('_WEAPONTABLE.SGO', weaponTablePath, weaponTable)
 populate('_WEAPONTEXT.SGO', weaponTextPath, weaponText)
@@ -44,11 +56,6 @@ console.log('Patching executable...')
 ;(function(){
   const exePath = './EDF41.exe'
   const buffer = fs.readFileSync(exePath)
-  const index = buffer.indexOf('app:/DefaultPackage/config.sgo', 'utf16le')
-  if(!~index) {
-    console.error('Default executable not found. Skipping...')
-    return
-  }
 
   const path = './EDF41-sgott-backup.exe'
   if(fs.existsSync(path)) {
@@ -58,13 +65,22 @@ console.log('Patching executable...')
     fs.writeFileSync(path, buffer)
   }
 
-  buffer.write(configPath + '\0', index, 'utf16le')
-  const textTableIndex = buffer.indexOf('app:/etc/TextTable_steam_en.txt_sgo')
-  if(~textTableIndex) {
-    buffer.write(gameTextPath + '\0', index, 'utf16le')
+  function replace(from, to) {
+    const index = buffer.indexOf(from, 'utf16le')
+    if(!~index) return
+    buffer[touched] = true
+    buffer.write(to + '\0', index, 'utf16le')
   }
 
-  fs.writeFileSync(exePath, buffer)
+  replace('app:/DefaultPackage/config.sgo', configPath)
+  //replace('app:/etc/TextTable_steam_en.txt_sgo', gameTextPath)
+  //replace('addon:/Config2.sgo', config2Path)
+
+  if(buffer[touched]) {
+    fs.writeFileSync(exePath, buffer)
+  } else {
+    console.log('Default executable not found. Skipping...')
+  }
 })()
 
 function mkdir(path) {
@@ -155,6 +171,21 @@ patch(config, 'WeaponText', {
   name: 'WeaponText',
   value: weaponTextPath,
 })
+patch(config2, 'package', {
+  type: 'string',
+  name: 'package',
+  value: package2Path,
+})
+patch(package2, 'WeaponTable', {
+  type: 'string',
+  name: 'WeaponTable',
+  value: weaponTablePath,
+})
+patch(package2, 'WeaponText', {
+  type: 'string',
+  name: 'WeaponText',
+  value: weaponTextPath,
+})
 
 console.log('Patching weapons tables')
 var succeeded = 0
@@ -175,6 +206,8 @@ function findTableNode(id) {
 }
 
 function insertTableNode(index, tableNode, textNode) {
+  files['_WEAPONTABLE.SGO'][touched] = true
+  files['_WEAPONTEXT.SGO'][touched] = true
   tableValues.splice(index, 0, tableNode)
   textValues.splice(index, 0, textNode)
 }
