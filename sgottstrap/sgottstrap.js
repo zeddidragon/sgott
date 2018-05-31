@@ -251,20 +251,20 @@ for(const mod of weaponMods) {
         .map(({value}) => value)
         .map((stage, i) => {
           const label = labels[i]
-          const [type] = stage[6].value.split(/(?<!^)(?=[A-Z])/)
+          const [type] = (stage[6].value || findVar('AmmoClass').value).split(/(?<!^)(?=[A-Z])/)
           const dmg = damage * stage[3].value
           const rangeMod = range * stage[5].value
           const count = stage[7] && stage[7].value
           const damageTotal = [+dmg.toFixed(1)]
-          if(count && count > 1) damageTotal.push(count)
-          if(burstCount) damageTotal.push(burstCount)
+          if(count > 1) damageTotal.push(count)
+          if(burstCount > 1) damageTotal.push(burstCount)
           const typeLabel = type.padEnd(8)
           const damageLabel = `Damage: ${damageTotal.join('x')}`.padEnd(18)
           const rangeLabel = `Range: ${rangeMod}m`
           return [label, `(${typeLabel} ${damageLabel} ${rangeLabel})`]
         })
       if(params[2].value) {
-        attacks.push(['Defense', `${params[2].value * 100}%`])
+        attacks.push(['Defense', `${Math.round(params[2].value * 100)}%`])
       }
       return attacks
     }
@@ -278,7 +278,7 @@ for(const mod of weaponMods) {
     const entries = [
       ['Capacity', findVar('AmmoCount').value],
       ...damage,
-      ['Reload Time', (+findVar('ReloadTime').value / 60).toFixed(2) + 'sec'],
+      ['Reload Time', (+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'],
     ]
     if(zoom) entries.push(['Zoom', `${+zoom}x`])
     return tabulate(entries) +
