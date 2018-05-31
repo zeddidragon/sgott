@@ -277,7 +277,7 @@ for(const mod of weaponMods) {
     const entries = [
       ['Capacity', findVar('AmmoCount').value],
       ...damage,
-      ['Reload Time', +(+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'],
+      ['Reload Time', (+findVar('ReloadTime').value / 60).toFixed(2) + 'sec'],
     ]
     if(zoom) entries.push(['Zoom', `${+zoom}x`])
     return tabulate(entries) +
