@@ -233,9 +233,9 @@ for(const mod of weaponMods) {
       if(burstCount > 1) damage.push(burstCount)
       const rof = 60 / +findVar('FireInterval').value
       return [
-        ['ROF', `${rof.toFixed(1)}/sec`],
+        rof && ['ROF', `${rof.toFixed(1)}/sec`],
         ['Damage', damage.join(' x ')],
-      ]
+      ].filter(a => a)
     },
     Weapon_ImpactHammer() {
       const labels = [
