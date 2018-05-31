@@ -53,6 +53,14 @@ const ammoClasses = {
     null,
     'SubMissiles',
   ],
+  NapalmBullet01: [
+    null,
+    null,
+    null,
+    'SubProjectileSize',
+    'EmitterParameter',
+    'EmitterSe',
+  ],
   SentryGunBullet01: [
     null,
     null,
@@ -86,7 +94,8 @@ const ammoClasses = {
     'FormationAngle',
     'FormationType',
     'Formation_CustomParameter',
-    'BombingPayloadParameters',
+    'BombingPayloadParameter',
+    'BombingPayloadModel',
   ]
 }
 
@@ -117,12 +126,25 @@ const names = {
     'BombingPayloadAlive',
     null,
     'BombingPayloadColor',
-    null,
-    null,
+    'BombingPayloadCustomParameter',
+    'BombingPayloadModel',
     'BombingPayloadDelay',
     null,
     null,
     null,
+  ],
+  EmitterParameter: [
+    null,
+    null,
+    'EmitterAmmoCount',
+    'EmitterInterval',
+    'EmitterAmmoClass',
+    null,
+    null,
+    null,
+    null,
+    null,
+    'EmitterAmmoSize',
   ],
   SplendorParameter: [
     'FlechetteSpread',
@@ -170,6 +192,7 @@ const names = {
   ],
   AmmotHitSe: soundEffect,
   FireSe: soundEffect,
+  EmitterSe: soundEffect,
   name: [
    'Japanese',
    'English',

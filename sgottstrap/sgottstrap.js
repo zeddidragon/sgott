@@ -8,6 +8,7 @@ const config = require('./config')
 const weaponTable = require('./weapontable')
 const weaponText = require('./weapontext')
 const gameText = require('./texttable-steam-en')
+const blurbs = require('../helpers/blurbs')
 
 const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
@@ -187,9 +188,9 @@ function insertTableNode(index, tableNode, textNode) {
 const ids = {}
 
 function format(pair) {
-  if(!pair) return ''.padStart(25)
+  if(!pair) return ''
   const [key, value] = pair
-  return ('' + key).padStart(12) + ': ' + ('' + value).padEnd(11)
+  return ('' + key).padStart(18) + ': ' + ('' + value).padEnd(11)
 }
 
 function tabulate(pairs) {
@@ -281,7 +282,18 @@ for(const mod of weaponMods) {
     ]
     if(zoom) entries.push(['Zoom', `${+zoom}x`])
     return tabulate(entries) +
-      '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n' 
+      '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n'
+  }
+
+  function semiStats() {
+    const entries = (meta.stats || []).map(([key, val]) => {
+      const interpolated = val.replace(/\$\{(.*)\}/g, (_, keyword) => {
+        return findVar(keyword).value
+      })
+      return [key, interpolated]
+    })
+    return tabulate(entries) +
+      '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n'
   }
 
   var tableNode, textNode
@@ -348,7 +360,11 @@ for(const mod of weaponMods) {
   if(meta.level != null) tableNode.value[4].value = meta.level / 25
   if(meta.unlockState != null) tableNode.value[5].value = meta.unlockState
   if(meta.description != null) {
-    textNode.value[3].value = meta.description.replace('$AUTOSTATS$', autoStats())
+    textNode.value[3].value = meta.description
+      .replace('$AUTOSTATS$', autoStats())
+      .replace('$SEMISTATS$', semiStats())
+      .replace('$SMOKEGRENADE$', blurbs.smokeGrenade)
+      .replace('$CREDITS$', blurbs.credits)
   }
   const name = findVar('name').value[1].value
   if(name !== textNode.value[2].value) {
