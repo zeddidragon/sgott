@@ -223,15 +223,60 @@ for(const mod of weaponMods) {
     return template.variables.find(n => n.name === name)
   }
 
+  const damageStats = {
+    gun() {
+      const damage = [(+findVar('AmmoDamage').value).toFixed(1)]
+      const fireCount = +findVar('FireCount').value
+      const burstCount = +findVar('FireBurstCount').value
+      if(fireCount > 1) damage.push(fireCount)
+      if(burstCount > 1) damage.push(burstCount)
+      const rof = 60 / +findVar('FireInterval').value
+      return [
+        ['ROF', `${rof.toFixed(1)}/sec`],
+        ['Damage', damage.join(' x ')],
+      ]
+    },
+    Weapon_ImpactHammer() {
+      const labels = [
+        'Basic',
+        'High Voltage',
+        'Maximum',
+      ]
+      const params = findVar('custom_parameter').value
+      const damage = +findVar('AmmoDamage').value
+      const range = +findVar('AmmoSpeed').value * +findVar('AmmoAlive').value
+      const burstCount = +findVar('FireBurstCount').value
+      const attacks = params[3].value
+        .map(({value}) => value)
+        .map((stage, i) => {
+          const label = labels[i]
+          const [type] = stage[6].value.split(/(?<!^)(?=[A-Z])/)
+          const dmg = damage * stage[3].value
+          const rangeMod = range * stage[5].value
+          const count = stage[7] && stage[7].value
+          const damageTotal = [+dmg.toFixed(1)]
+          if(count && count > 1) damageTotal.push(count)
+          if(burstCount) damageTotal.push(burstCount)
+          const typeLabel = type.padEnd(8)
+          const damageLabel = `Damage: ${damageTotal.join('x')}`.padEnd(18)
+          const rangeLabel = `Range: ${rangeMod}m`
+          return [label, `(${typeLabel} ${damageLabel} ${rangeLabel})`]
+        })
+      if(params[2].value) {
+        attacks.push(['Defense', `${params[2].value * 100}%`])
+      }
+      return attacks
+    }
+  }
+
   function autoStats() {
-    const damage = (+findVar('AmmoDamage').value).toFixed(1)
-    const fireCount = +findVar('FireCount').value
+    const type = findVar('xgs_scene_object_class').value
+    const damage = (damageStats[type] || damageStats.gun)()
     const zoom = +findVar('SecondaryFire_Type') === 1 &&
         (+findVar('SeccondaryFire_Parameter').toFixed(1))
     const entries = [
       ['Capacity', findVar('AmmoCount').value],
-      ['ROF', (60 / +findVar('FireInterval').value).toFixed(1) + '/sec'],
-      ['Damage', fireCount > 1 ? `${damage}` : `${damage}x${fireCount}`],
+      ...damage,
       ['Reload Time', +(+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'],
     ]
     if(zoom) entries.push(['Zoom', `${+zoom}x`])
