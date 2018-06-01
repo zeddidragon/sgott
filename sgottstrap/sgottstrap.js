@@ -237,7 +237,7 @@ for(const mod of weaponMods) {
 
       return [
         ['Damage', damage.join(' x ')],
-        rof && ['ROF', `${rof.toFixed(1)}/sec`],
+        rof < 100 && ['ROF', `${rof.toFixed(1)}/sec`],
         life < 1000 && ['Range', `${Math.floor(life * speed)}m`],
       ]
     },
@@ -255,8 +255,8 @@ for(const mod of weaponMods) {
         .map(({value}) => value)
         .map((stage, i) => {
           const label = labels[i]
-          const [type] = (stage[6].value || findVar('AmmoClass').value)
-            .replace(/[a-z][A-Z].*/, matched => matches[0])
+          const type = (stage[6].value || findVar('AmmoClass').value)
+            .replace(/[a-z][A-Z].*/, matched => matched[0])
           const dmg = damage * stage[3].value
           const rangeMod = range * stage[5].value
           const count = stage[7] && stage[7].value
