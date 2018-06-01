@@ -20,9 +20,7 @@ Making mods
 ===========
 Use CriPakGUI https://github.com/wmltogether/CriPakTools/releases to open root.cpk
 then find the weapon file you wish to edit or base your new weapon on.
-If you don't know which file is which weapon, refer to this table:
-
-https://docs.google.com/spreadsheets/d/1fEb_OVwe_Z0XndrJ3J-psQ4rQ_n2ai95uJOq26XoDl0/edit#gid=0
+If you don't know which file is which weapon, refer to the table in ./docs/weapons.html
 
 After extracting the file, convert it to json using sgott.js or sgott.exe
 
