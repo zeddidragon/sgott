@@ -259,7 +259,7 @@ for(const mod of weaponMods) {
         value: '',
       }, {
         type: 'string',
-        value: autoStats() + 'A custom weapon made using SGOTT.',
+        value: generateWeaponText(template, '$AUTOSTATS$A custom weapon made using SGOTT'),
       }, {
         type: 'string',
         value: '',
