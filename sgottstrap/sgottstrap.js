@@ -8,7 +8,7 @@ const config = require('./config')
 const weaponTable = require('./weapontable')
 const weaponText = require('./weapontext')
 const gameText = require('./texttable-steam-en')
-const blurbs = require('../helpers/blurbs')
+const generateWeaponText = require('../helpers/weapon-text')
 
 const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
@@ -193,17 +193,6 @@ function format(pair) {
   return ('' + key).padStart(18) + ': ' + ('' + value).padEnd(11)
 }
 
-function tabulate(pairs) {
-  pairs = pairs.filter(p => p)
-  var ret = '<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>'
-  for(var i = 0; i < 6; i++) {
-    const leftPair = pairs[i]
-    const rightPair = pairs[i + 6]
-    ret += format(leftPair) + format(rightPair) + '\n'
-  }
-  return ret
-}
-
 for(const mod of weaponMods) {
   console.log(`Applying: ${mod}`)
   const template = JSON
@@ -222,83 +211,6 @@ for(const mod of weaponMods) {
 
   function findVar(name) {
     return template.variables.find(n => n.name === name)
-  }
-
-  const damageStats = {
-    gun() {
-      const damage = [(+findVar('AmmoDamage').value).toFixed(1)]
-      const fireCount = +findVar('FireCount').value
-      const burstCount = +findVar('FireBurstCount').value
-      if(fireCount > 1) damage.push(fireCount)
-      if(burstCount > 1) damage.push(burstCount)
-      const rof = 60 / +findVar('FireInterval').value
-      const life = findVar('AmmoAlive').value
-      const speed = findVar('AmmoSpeed').value
-
-      return [
-        ['Damage', damage.join(' x ')],
-        rof < 100 && ['ROF', `${rof.toFixed(1)}/sec`],
-        life < 1000 && ['Range', `${Math.floor(life * speed)}m`],
-      ]
-    },
-    Weapon_ImpactHammer() {
-      const labels = [
-        'Basic',
-        'High Voltage',
-        'Maximum',
-      ]
-      const params = findVar('custom_parameter').value
-      const damage = +findVar('AmmoDamage').value
-      const range = +findVar('AmmoSpeed').value * +findVar('AmmoAlive').value
-      const burstCount = +findVar('FireBurstCount').value
-      const attacks = params[3].value
-        .map(({value}) => value)
-        .map((stage, i) => {
-          const label = labels[i]
-          const type = (stage[6].value || findVar('AmmoClass').value)
-            .replace(/[a-z][A-Z].*/, matched => matched[0])
-          const dmg = damage * stage[3].value
-          const rangeMod = range * stage[5].value
-          const count = stage[7] && stage[7].value
-          const damageTotal = [+dmg.toFixed(1)]
-          if(count > 1) damageTotal.push(count)
-          if(burstCount > 1) damageTotal.push(burstCount)
-          const typeLabel = type.padEnd(8)
-          const damageLabel = `Damage: ${damageTotal.join('x')}`.padEnd(18)
-          const rangeLabel = `Range: ${rangeMod}m`
-          return [label, `(${typeLabel} ${damageLabel} ${rangeLabel})`]
-        })
-      if(params[2].value) {
-        attacks.push(['Defense', `${Math.round(params[2].value * 100)}%`])
-      }
-      return attacks
-    }
-  }
-
-  function autoStats() {
-    const type = findVar('xgs_scene_object_class').value
-    const damage = (damageStats[type] || damageStats.gun)()
-    const zoom = +findVar('SecondaryFire_Type') === 1 &&
-        (+findVar('SeccondaryFire_Parameter').toFixed(1))
-    const entries = [
-      ['Capacity', findVar('AmmoCount').value],
-      ...damage,
-      ['Reload Time', (+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'],
-    ].filter(a => a)
-    if(zoom) entries.push(['Zoom', `${+zoom}x`])
-    return tabulate(entries) +
-      '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n'
-  }
-
-  function semiStats() {
-    const entries = (meta.stats || []).map(([key, val]) => {
-      const interpolated = val.replace(/\$\{(.*)\}/g, (_, keyword) => {
-        return findVar(keyword).value
-      })
-      return [key, interpolated]
-    })
-    return tabulate(entries) +
-      '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n'
   }
 
   var tableNode, textNode
@@ -365,11 +277,7 @@ for(const mod of weaponMods) {
   if(meta.level != null) tableNode.value[4].value = meta.level / 25
   if(meta.unlockState != null) tableNode.value[5].value = meta.unlockState
   if(meta.description != null) {
-    textNode.value[3].value = meta.description
-      .replace('$AUTOSTATS$', autoStats())
-      .replace('$SEMISTATS$', semiStats())
-      .replace('$SMOKEGRENADE$', blurbs.smokeGrenade)
-      .replace('$CREDITS$', blurbs.credits)
+    textNode.value[3].value = generateWeaponText(template, meta.description)
   }
   const name = findVar('name').value[1].value
   if(name !== textNode.value[2].value) {
