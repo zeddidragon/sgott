@@ -36,6 +36,14 @@ const ammoClasses = {
      'BombExplosionType',
      'SplendorParameter',
   ],
+  GrenadeBullet01: [
+    'IsBouncy',
+    null,
+    null,
+    'BounceDampening',
+    'SmokeTrailSpeed',
+    'SmokeTrailAlive',
+  ],
   MissileBullet02: [
     null,
     null,

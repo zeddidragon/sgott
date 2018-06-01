@@ -1,6 +1,6 @@
 const fs = require('fs')
-const table = require('./sgottstrap/weapontable').variables[0].value
-const text = require('./sgottstrap/weapontext').variables[0].value
+const table = require('../sgottstrap/weapontable').variables[0].value
+const text = require('../sgottstrap/weapontext').variables[0].value
 
 const classes = [
   'Ranger',
@@ -73,6 +73,8 @@ const data = table.map(({value: node}, i) => {
     level: level,
     character: character,
     category: group,
+    raw: category,
+    text: text[i].value[3].value,
     odds: unlockStates[node[5].value] || (Math.floor(node[3].value * 100)),
   }
 })
@@ -80,6 +82,7 @@ const data = table.map(({value: node}, i) => {
 const props = [
   'character',
   'category',
+  'raw',
   'id',
   'level',
   'name',
@@ -102,7 +105,7 @@ const html = `
       background-color: #ffffff33;
     }
 
-    .id {
+    .id, .raw {
       opacity: 0.7;
     }
 
@@ -249,6 +252,7 @@ const html = `
     <thead>
       <th>Character</th>
       <th>Category</th>
+      <th>Raw</th>
       <th>ID</th>
       <th>Lvl</th>
       <th>Name</th>
@@ -266,3 +270,4 @@ const html = `
 `
 
 fs.writeFileSync('docs/weapons.html', html)
+fs.writeFileSync('docs/weapons.json', JSON.stringify(data, null, 2))
