@@ -5,7 +5,10 @@
   "main": "sgott.js",
   "bin": "sgott.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-sgott": "pkg -t node8-win -o ./release/sgott.exe ./sgott.js",
+    "build-strap": "pkg -t node8-win -o ./release/sgottstrap/sgottstrap.exe ./sgottstrap/sgottstrap.js",
+    "build": "npm run build-sgott && npm run build-strap"
   },
   "repository": {
     "type": "git",
@@ -25,5 +28,8 @@
   "homepage": "https://github.com/zeddidragon/sgott#readme",
   "dependencies": {
     "deep-equal": "^1.0.1"
+  },
+  "devDependencies": {
+    "pkg": "^4.3.1"
   }
 }

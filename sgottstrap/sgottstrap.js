@@ -255,7 +255,8 @@ for(const mod of weaponMods) {
         .map(({value}) => value)
         .map((stage, i) => {
           const label = labels[i]
-          const [type] = (stage[6].value || findVar('AmmoClass').value).split(/(?<!^)(?=[A-Z])/)
+          const [type] = (stage[6].value || findVar('AmmoClass').value)
+            .replace(/[a-z][A-Z].*/, matched => matches[0])
           const dmg = damage * stage[3].value
           const rangeMod = range * stage[5].value
           const count = stage[7] && stage[7].value
