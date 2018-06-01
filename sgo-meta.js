@@ -235,6 +235,7 @@ const ammoClassOptions = [
   'TargetMarkerBullet01',
   'SupportUnitBullet01',
   'PileBunkerBullet01',
+  'PlasmaBullet01',
 ]
 
 const values = {
