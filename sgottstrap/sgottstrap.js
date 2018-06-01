@@ -232,10 +232,14 @@ for(const mod of weaponMods) {
       if(fireCount > 1) damage.push(fireCount)
       if(burstCount > 1) damage.push(burstCount)
       const rof = 60 / +findVar('FireInterval').value
+      const life = findVar('AmmoAlive').value
+      const speed = findVar('AmmoSpeed').value
+
       return [
-        rof && ['ROF', `${rof.toFixed(1)}/sec`],
         ['Damage', damage.join(' x ')],
-      ].filter(a => a)
+        rof && ['ROF', `${rof.toFixed(1)}/sec`],
+        life < 1000 && ['Range', `${Math.floor(life * speed)}m`],
+      ]
     },
     Weapon_ImpactHammer() {
       const labels = [
@@ -279,7 +283,7 @@ for(const mod of weaponMods) {
       ['Capacity', findVar('AmmoCount').value],
       ...damage,
       ['Reload Time', (+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'],
-    ]
+    ].filter(a => a)
     if(zoom) entries.push(['Zoom', `${+zoom}x`])
     return tabulate(entries) +
       '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n'
