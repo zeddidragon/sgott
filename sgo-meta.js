@@ -16,12 +16,12 @@ const soundEffect = [
 ]
 
 const hammerChargeParameters = [
-  'ChargeRequired',
+  'ChargeTime',
   'ChargeAnimation',
   'ChargeAnimationSpeed',
-  'ChargeDamageFactor',
-  'ChargeSize',
-  null,
+  'AmmoDamageFactor',
+  'AmmoSize',
+  'AmmoAlive',
   'AmmoClass',
 ]
 
@@ -83,6 +83,9 @@ const ammoClasses = {
     'AmmoSize',
     'Ammo_CustomParameter',
     'FireSe',
+  ],
+  ShockWaveBullet01: [
+    'ShockWaveType',
   ],
   SmokeCandleBullet01: [
     "SmokeSpread",
@@ -248,9 +251,28 @@ const ammoClassOptions = [
 
 const values = {
   AmmoClass: ammoClassOptions,
-  BombExplosionType: [0, 1, 2],
-  SecondaryFire_Type: [0, 1, 2, 3],
-  BombingPathType: [0, 1],
+  BombExplosionType: {
+    'Explosion': 0,
+    'Shrapnel': 1,
+    'Burst': 2,
+  },
+  SecondaryFire_Type: {
+    'None': 0,
+    'Zoom': 1,
+    'Activation': 2,
+    'Jumpjets (Fencer)': 4,
+    'Dash (Fencer)': 5,
+    'Shield Reflect (Fencer)': 6,
+  },
+  BombingPathType: {
+    'Carpet': 0,
+    'Fan': 1,
+  },
+  ShocWaveType: {
+    'Shockwave': 0,
+    'Shockwave and Gravel': 1,
+    'Gravel': 2,
+  }
 }
 
 module.exports = {names, values}
