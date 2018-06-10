@@ -25,9 +25,14 @@ const hammerChargeParameters = [
   'AmmoClass',
 ]
 
+const vehicleWeaponParameters = [
+  'Vehicle_WeaponConfig',
+  'Vehicle_WeaponStrengthParameter',
+]
+
 const ammoClasses = {
   BombBullet01: [
-    'IsMobile',
+    'BombMobility',
     'IsDetector',
      null,
      'PrimerDelay',
@@ -94,6 +99,26 @@ const ammoClasses = {
     "SummonType",
     "Summon_CustomParameter",
   ],
+  Summon_CustomParameter00: [
+    null,
+    null,
+    'ArtilleryCount',
+    'ArtilleryInterval',
+    'ArtilleryClass',
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    'ArtilleryColor',
+  ],
+  Summon_CustomParameter00: [
+    'TransporterConfig',
+    'ContainerConfig',
+    'VehicleConfig',
+    'Vehicle_CustomParameter',
+  ],
   Summon_CustomParameter02: [
     'PlaneModel',
     'PlaneCount',
@@ -107,7 +132,38 @@ const ammoClasses = {
     'Formation_CustomParameter',
     'BombingPayloadParameter',
     'BombingPayloadModel',
-  ]
+  ],
+  Vehicle_CustomParameter: [
+    'Vehicle_StrengthParameter',
+    'Vehicle_MobilityParameter',
+    'Vehicle_WeaponParameter',
+  ],
+  Vehicle_StrengthParameter: [
+    'Vehicle_HealthFactor',
+    'Vehicle_DamageFactor',
+  ],
+  Vehicle_MobilityParameter: [
+    'Vehicle_Grip',
+    'Vehicle_Acceleration',
+    'Vehicle_Weight',
+    'Vehicle_TurnRate',
+    'Vehicle_TurnFriction',
+  ],
+  Vehicle_WeaponParameter: [
+    'Vehicle_Weapon0',
+    'Vehicle_Weapon1',
+    'Vehicle_Weapon2',
+    'Vehicle_Weapon3',
+  ],
+  Vehicle_Weapon0: vehicleWeaponParameters,
+  Vehicle_Weapon1: vehicleWeaponParameters,
+  Vehicle_Weapon2: vehicleWeaponParameters,
+  Vehicle_Weapon3: vehicleWeaponParameters,
+  Vehicle_WeaponStrengthParameters: [
+    'Vehicle_WeaponRecoil',
+    'Vehicle_WeaponLift',
+    'Vehicle_WeaponAimSpeed',
+  ],
 }
 
 const ObjectClasses = {
@@ -122,6 +178,7 @@ const ObjectClasses = {
 const names = {
   ammoClasses: ammoClasses,
   AmmoColor: colors,
+  ArtilleryColor: colors,
   LedPosition: colors,
   BombingPayloadParameter: [
     null,
@@ -259,14 +316,20 @@ const values = {
   SecondaryFire_Type: {
     'None': 0,
     'Zoom': 1,
-    'Activation': 2,
+    'Activate': 2,
+    'Activate and Reload': 3,
     'Jumpjets (Fencer)': 4,
     'Dash (Fencer)': 5,
     'Shield Reflect (Fencer)': 6,
   },
+  BombMobility: {
+    'None': 0,
+    'Roll': 1,
+    'Bounce': 2,
+  },
   BombingPathType: {
-    'Carpet': 0,
-    'Fan': 1,
+    'Carpet Formation': 0,
+    'Fan Formation': 1,
   },
   ShocWaveType: {
     'Shockwave': 0,
