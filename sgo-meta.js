@@ -49,6 +49,13 @@ const ammoClasses = {
     'SmokeTrailSpeed',
     'SmokeTrailAlive',
   ],
+  LightningBullet01: [
+    null,
+    null,
+    null,
+    null,
+    'TexDetail',
+  ],
   MissileBullet02: [
     null,
     null,
@@ -99,6 +106,9 @@ const ammoClasses = {
     "SummonType",
     "Summon_CustomParameter",
   ],
+  SolidBullet01: [
+    'IsBouncy',
+   ],
   Summon_CustomParameter00: [
     null,
     null,
