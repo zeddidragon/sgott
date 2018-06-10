@@ -1,0 +1,822 @@
+{
+  "endian": "BE",
+  "variables": [
+    {
+      "type": "string",
+      "name": "AimAnimation",
+      "value": "aim"
+    },
+    {
+      "type": "int",
+      "name": "AmmoAlive",
+      "value": 14400
+    },
+    {
+      "type": "string",
+      "name": "AmmoClass",
+      "options": [
+        "LightningBullet01",
+        "LaserBullet01",
+        "LaserBullet02",
+        "LaserBullet03",
+        "FlameBullet01",
+        "FlameBullet02",
+        "SpiderStringBullet01",
+        "SpiderStringBullet02",
+        "ShockWaveBullet01",
+        "SlashWaveBullet01",
+        "HomingLaserBullet01",
+        "BeamBullet01",
+        "DecoyBullet01",
+        "NeedleBullet01",
+        "BarrierBullet01",
+        "ClusterBullet01",
+        "AcidBullet01",
+        "NapalmBullet01",
+        "GrenadeBullet01",
+        "MissileBullet01",
+        "MissileBullet02",
+        "RocketBullet01",
+        "RocketBullet02",
+        "SolidBullet01",
+        "SolidBullet02",
+        "SmokeCandleBullet01",
+        "ShieldBashBullet01",
+        "SentryGunBullet01",
+        "TargetMarkerBullet01",
+        "SupportUnitBullet01",
+        "PileBunkerBullet01",
+        "PlasmaBullet01"
+      ],
+      "value": "DecoyBullet01"
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoColor",
+      "value": [
+        {
+          "type": "float",
+          "name": "Red",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "name": "Green",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "name": "Blue",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "name": "Alpha",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "AmmoCount",
+      "value": 3
+    },
+    {
+      "type": "float",
+      "name": "AmmoDamage",
+      "value": 40
+    },
+    {
+      "type": "float",
+      "name": "AmmoExplosion",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoGravityFactor",
+      "value": 0.10000000149011612
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitImpulseAdjust",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoHitSe",
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "value": "weapon_Engineer_EX_spcDecoySet"
+        },
+        {
+          "type": "float",
+          "value": 0.8913000226020813
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 100
+        }
+      ]
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitSizeAdjust",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "AmmoIsPenetration",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "AmmoModel",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoOwnerMove",
+      "value": 0.5
+    },
+    {
+      "type": "float",
+      "name": "AmmoSize",
+      "value": 1
+    },
+    {
+      "type": "float",
+      "name": "AmmoSpeed",
+      "value": 2
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_CustomParameter",
+      "value": [
+        {
+          "type": "int",
+          "value": 1
+        },
+        {
+          "type": "int",
+          "value": 60
+        },
+        {
+          "type": "int",
+          "value": 32
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "app:/Weapon/e_throw_decoycore01.rab"
+                },
+                {
+                  "type": "string",
+                  "value": "e_throw_decoycore01.mdb"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "app:/Weapon/e_throw_decoyscreen_mituki.rab"
+                },
+                {
+                  "type": "string",
+                  "value": "e_throw_decoyscreen_mituki.mdb"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "value": "app:/Weapon/e_throw_decoyscreen_mituki.cas"
+            },
+            {
+              "type": "extra",
+              "value": {
+                "type": "MAB\u0000",
+                "data": "TUFCAA8AAAADAAAABAADAAEAWgAkAAAAZAAAAOAAAABQAgAAAAAAAEQAAAABAAEARAAAAAIAAABkAAAAAwAAAGQAAACUAgAAUAIAAAAAAADgAAAAzczMPf////8AAAAA8AAAAJQAAADUAAAAagIAAAIAAAC0AAAA1AAAAHoCAAABAAAAxAAAANQAAABaAgAAAQAAAGQCAAAAAAAAAAAAABABAABkAgAAAAAgQQAAAAD8AQAAZAIAAAAAAAAAAAAArAEAAGQCAAAAAAAAAAAAAFwBAAC6urq6urq6urq6uroAAAAAMzNzPwAAAAAAAIA/U0dPAAIBAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAFAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAMcwszCkMIuVTzAAAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAABwAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAADHMLMwpDA0eMpYRZtPZwAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAHAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAMcwszCkMIYwiTCGMIkwAAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAoAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAxzCzMKQwd41NMApOTDCKMEWbT2cAAGIAbwBkAHkAAABoAGkAZABlAAAAcwBlAAAAcwB0AGEAbgBkAGIAeQAAAHMAdABhAG4AZABiAHkAXwBsAG8AbwBwAAAAvzD8MLIwwzDIMAAAT/uA8gARAIAAAA=="
+              }
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/weapon/e_throw_decoyscreen_mituki.shkt"
+            },
+            {
+              "type": "extra",
+              "value": {
+                "type": "SGO",
+                "data": {
+                  "endian": "BE",
+                  "variables": [
+                    {
+                      "type": "ptr",
+                      "name": "animation_from_ragdoll",
+                      "value": [
+                        {
+                          "type": "ptr",
+                          "value": [
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "string",
+                                  "value": "e_throw_decoyscreen_mituki.body"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "body"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "name": "ragdoll_from_animation",
+                      "value": [
+                        {
+                          "type": "ptr",
+                          "value": [
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "string",
+                                  "value": "body"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "e_throw_decoyscreen_mituki.body"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 0
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ptr",
+                              "value": [
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                },
+                                {
+                                  "type": "float",
+                                  "value": 1
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_EquipVoice",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "AngleAdjust",
+      "value": 0
+    },
+    {
+      "type": "string",
+      "name": "BaseAnimation",
+      "value": "assault"
+    },
+    {
+      "type": "string",
+      "name": "ChangeAnimation",
+      "value": "assault_change1"
+    },
+    {
+      "type": "float",
+      "name": "EnergyChargeRequire",
+      "value": -1
+    },
+    {
+      "type": "float",
+      "name": "FireAccuracy",
+      "value": 0.004999999888241291
+    },
+    {
+      "type": "int",
+      "name": "FireBurstCount",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "FireBurstInterval",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireCondition",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireCount",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "FireInterval",
+      "value": 60
+    },
+    {
+      "type": "ptr",
+      "name": "FireLoadSe",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "FireRecoil",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "FireSe",
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "name": "SoundName",
+          "value": "weapon_Engineer_EX_spcDecoy_Mian_shot"
+        },
+        {
+          "type": "float",
+          "value": 0.6309999823570251
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 25
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "FireSpreadType",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "FireSpreadWidth",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireType",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "FireVector",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "LockonAngle",
+      "value": [
+        {
+          "type": "float",
+          "value": 0.30000001192092896
+        },
+        {
+          "type": "float",
+          "value": 0.30000001192092896
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "LockonFailedTime",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonHoldTime",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "LockonRange",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonTargetType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonTime",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "Lockon_AutoTimeOut",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "Lockon_DistributionType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "Lockon_FireEndToClear",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ModelConstraint",
+      "value": [
+        {
+          "type": "string",
+          "value": "arms_r"
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "MuzzleFlash",
+      "value": ""
+    },
+    {
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "Range",
+      "value": 28800
+    },
+    {
+      "type": "string",
+      "name": "ReloadAnimation",
+      "value": "assault_reload1"
+    },
+    {
+      "type": "float",
+      "name": "ReloadInit",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "ReloadTime",
+      "value": 1800
+    },
+    {
+      "type": "int",
+      "name": "ReloadType",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "SecondaryFire_Parameter",
+      "value": 4
+    },
+    {
+      "type": "int",
+      "name": "SecondaryFire_Type",
+      "options": {
+        "None": 0,
+        "Zoom": 1,
+        "Activate": 2,
+        "Activate and Reload": 3,
+        "Jumpjets (Fencer)": 4,
+        "Dash (Fencer)": 5,
+        "Shield Reflect (Fencer)": 6
+      },
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase",
+      "value": [
+        {
+          "type": "string",
+          "value": ""
+        },
+        {
+          "type": "string",
+          "value": ""
+        },
+        {
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCaseDischargeSe",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "Sight_animation_model",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/HUD/sight13.rab"
+            },
+            {
+              "type": "string",
+              "value": "sight13.mdb"
+            }
+          ]
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "WeaponIcon",
+      "value": "app:/weapon/icon/m_launcher.dds"
+    },
+    {
+      "type": "ptr",
+      "name": "animation_model",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/Weapon/e_markerlauncher_normal04.rab"
+            },
+            {
+              "type": "string",
+              "value": "e_markerlauncher_normal04.mdb"
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/e_markerlauncher_normal01.cas"
+        },
+        {
+          "type": "extra",
+          "value": {
+            "type": "MAB\u0000",
+            "data": "TUFCAA8AAAADAAAAAwAEAAUAggAkAAAAfAAAAPAAAABcAgAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAAXAIAAGgCAAACAAAAMAEAAAABAADwAAAAAAAAAEABAABiAgAAdgIAAAIAAAAQAQAAAAEAACABAAAAAAAAQAEAALwAAADsAAAAzgIAAAAAAAC8AAAA7AAAAK4CAAABAAAAzAAAAOwAAACWAgAAAQAAANwAAADsAAAAgAIAAAEAAADIAgAAAAAAQQAAAACwAQAAyAIAAAAAAAAAAAAAYAEAAMgCAAAAAJBBAAAAAAQCAAC6urq6AAAAAAAAAAAAAAAAAACAP83MzD3NzMw9zczMPQAAgD+PwvU9zczMvOXQIj4AAIA/+2qyPna7ab5DTkhAAACAPwAAAIApXI+9KVyPPgAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAgAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAJf8u/+ow7TD8MMkwn1s+XwAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAACgAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAADeMPwwqzD8MOkw8zDBMOMwLn6AMAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAACwAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAADeMPwwqzD8MOkw8zDBMOMwOE9zMIswAAAAADAAMQAAAEkASwAAAGIAYQByAHIAZQBsAAAAYgBvAGQAeQAAAHIAZQBsAG8AYQBkAF8AZQBuAGQAAAByAGUAbABvAGEAZABfAGwAbwBvAHAAAAByAGUAbABvAGEAZABfAHMAdABhAHIAdAAAAHMAZQAAAHMAdABhAG4AZABiAHkAAAA="
+          }
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "custom_parameter",
+      "value": [
+        {
+          "type": "string",
+          "value": "assault_recoil1"
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "name",
+      "value": [
+        {
+          "type": "string",
+          "name": "Japanese",
+          "value": "ピュアデコイ・ランチャー〔美月〕"
+        },
+        {
+          "type": "string",
+          "name": "English",
+          "value": "Pure Decoy Launcher [Mitsuki]"
+        },
+        {
+          "type": "string",
+          "name": "Chinese",
+          "value": "ピュアデコイ・ランチャー〔美月〕"
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "resource",
+      "value": [
+        {
+          "type": "string",
+          "name": "path",
+          "value": "app:/Weapon/e_throw_decoycore01.rab"
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/e_throw_decoyscreen_mituki.rab"
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/e_throw_decoyscreen_mituki.cas"
+        },
+        {
+          "type": "string",
+          "value": "app:/weapon/e_throw_decoyscreen_mituki.shkt"
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "use_underground",
+      "value": 1
+    },
+    {
+      "type": "string",
+      "name": "xgs_scene_object_class",
+      "value": "Weapon_BasicShoot"
+    }
+  ],
+  "meta": {
+    "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
+    "id": null,
+    "level": null,
+    "category": null,
+    "unlockState": null,
+    "dropRateModifier": null,
+    "description": null
+  }
+}
