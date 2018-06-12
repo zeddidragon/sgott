@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
 const table = require('./originals/_WEAPONTABLE')
 const textTable = require('./originals/_WEAPONTEXT')
 const blurbs = require('../helpers/blurbs')
-const sgos = new Map()
+const rawSgos = new Map()
 const seconds = 60
 const minutes = seconds * 60
-const debug = true
 
 const modded = new Set()
 
@@ -45,14 +47,13 @@ function rebalance(query, cb) {
       const template = require(path)
       const text = textTable.variables[0].value[table.variables[0].value.indexOf(node)]
       modded.add(node)
-      if(debug) node.value.push(text.value[2].value)
       cb(template, i, node, text)
     })
 }
 
 function assign(property, value) {
   return function(template) {
-    patch(template, 'AmmoOwnerMove', value)
+    patch(template, property, value)
   }
 }
 
@@ -63,7 +64,10 @@ rebalance({category: 0, name: /AF\d\d-ST/}, (template, i, meta, text) => {
     'AF20-ST': 2.0,
     'AF99-ST': 2.5,
   }[getId(meta)] || 1.5
-  patch(template, 'SecondaryFire_Parameter', zoom)
+  patch(template, 'SecondaryFire_Parameter', (v, node) => {
+    node.type = 'float'
+    return zoom
+  })
 
   // Increase clip capacity by 40%.
   var cap
@@ -74,7 +78,7 @@ rebalance({category: 0, name: /AF\d\d-ST/}, (template, i, meta, text) => {
 
   replaceText(text,
     /Capacity: \d+/,
-    matched => `Capacity: ${cap}                          Zoom: ${zoom}x`
+    `Capacity: ${cap}                          Zoom: ${zoom}x`
   )
 })
 
@@ -84,7 +88,7 @@ rebalance({category: 0, name: /Fusion Blaster/}, (template, i, meta, text) => {
 
   replaceText(text,
     'However, that tremendous energy is difficult to control, so once the trigger is pulled, it will fire at full blast continuously until the wielder switches weapons. Recharging it, too, ',
-    'However, recharging it'
+    'However, recharging it '
   )
 })
 
@@ -96,7 +100,7 @@ rebalance({category: 1}, (template, i, meta, text) => {
       /Reload Time: .*sec/,
       `Reload Time: ${(reload / seconds).toFixed(1)}sec`
     )
-    return v * reload
+    return reload
   })
 })
 
@@ -108,7 +112,7 @@ rebalance({category: 2, name: /Nova Buster/}, (template, i, meta, text) => {
       'Reload Time: ----',
       `Reload Time: ${reload.toFixed(1)}sec`
     )
-    return v * reload
+    return reload
   })
   // No reload animation occurs with type 1.
   patch(template, 'ReloadType', 1)
@@ -155,7 +159,7 @@ rebalance({category: 4, name: /Prominence/}, (template, i, meta, text) => {
 
     replaceText(text,
       /Lock-on: 1000ｍ 1 target/,
-      `Lock-on: 1000ｍ ${ammo} targets/`
+      `Lock-on: 1000ｍ ${ammo} targets`
     )
     return ammo
   })
@@ -174,7 +178,7 @@ rebalance({category: 4, name: /Prominence/}, (template, i, meta, text) => {
     const lockon = Math.ceil(v / ammo)
     replaceText(text,
       /Lock-on Time: .*sec/,
-      `Lock-on Time: ${lockon.toFixed(1)}sec`
+      `Lock-on Time: ${(lockon / seconds).toFixed(1)}sec`
     )
 
     // Hold the lock-on for more than enough to make all lockons.
@@ -188,7 +192,7 @@ rebalance({category: 4, name: /Prominence/}, (template, i, meta, text) => {
     const reload = v * Math.pow(2, i)
     replaceText(text,
       /Reload Time: .*sec/,
-      `Reload Time: ${reload / seconds).toFixed(1)}sec`
+      `Reload Time: ${(reload / seconds).toFixed(1)}sec`
     )
     return reload
   })
@@ -217,35 +221,61 @@ rebalance({category: 6, name: 'PX50 Bound Shot'}, (template, i, meta, text) => {
     value[2].value = 0
     return value
   })
+
+  // Reduce reload time because it is a shotgun.
+  patch(template, 'ReloadTime', v => {
+    const reload = Math.floor(v * 0.75)
+    replaceText(text,
+      /Reload Time: .*sec/,
+      `Reload Time: ${(reload / seconds).toFixed(1)}sec`
+    )
+    return reload
+  })
 })
 
 // Make all lasers penetrate.
 rebalance({category: 11, name: /LAZR|LARG/}, assign('AmmoIsPenetration', 1))
 
 // Tighten spread on Thunder Bows.
-rebalance({category: 12, name: /Thunder Bow/}, assign('FireAccuracy', v => v * 0.5))
+rebalance({category: 12, name: /Thunder Bow/}, assign('FireAccuracy', v => v * 0.7))
 
-// Tighten spread a lot on Eclat series.
-rebalance({category: 12 name: /Eclat/}, assign('FireAccuracy', v => v * 0.2))
+rebalance({category: 13}, (template, i, meta, text) => {
+  // Cut momentum inheritance of all particle cannnons.
+  patch(template, 'AmmoOwnerMove', v => v * 0.2)
 
-// Cut momentum inheritance of all particle cannnons.
-rebalance({category: 13}, assign('AmmoOwnerMove', v => v * 0.2))
-// Halve energy cost of all particle cannons.
-rebalance({category: 13}, assign('EnergyChargeRequire', v => v * 0.5))
+  // Reduce energy cost.
+  patch(template, 'EnergyChargeRequire', v => {
+    const energy = v * 0.75
+    replaceText(text,
+      /Energy Cost: .*%/,
+      `Energy Cost: ${energy.toFixed(1)}%`
+    )
+    return energy
+  })
+})
 
 // Make laser snipers penetrate.
 rebalance({category: 14, name: /LRSL|SIG Sniper/}, assign('AmmoIsPenetration', 1))
 
-// Reduce rate of fire of Monster snipers to make managable.
-rebalance({category: 14, name: /Monster/}, assign('FireInterval', 6))
+rebalance({category: 15, name: 'Plasma Grenade Σ'}, (template, i, meta, text) => {
+  // Reduce energy cost.
+  patch(template, 'EnergyChargeRequire', 0.001)
+  replaceText(text, /Energy Cost: .*%/, '')
+})
 
-rebalance({category: 15}, (template, i, meta, text) => {
+rebalance({category: 14, name: /Monster/}, (template, i, meta, text) => {
+  // Reduce rate of fire of Monster snipers to make managable.
+  patch(template, 'ReloadTime', 2)
+  patch(template, 'FireInterval', 2)
+})
+
+rebalance({category: 16}, (template, i, meta, text) => {
   // Increase damage because missiles are just too weak.
   patch(template, 'AmmoDamage', v => {
     const damage = Math.ceil(v * 0.15) * 10
     replaceText(text,
-      /Damage: \d+ /,
-      `Damage: ${(damage + '').padEnd(4)}`
+      /Damage: \d+/,
+      `Damage: ${damage}`
     )
     return damage
   })
@@ -261,19 +291,14 @@ rebalance({category: 15}, (template, i, meta, text) => {
   })
 })
 
-rebalance({category: 16}, (template, i, meta, text) => {
-  // Enable penetration.
-  patch(template, 'AmmoIsPenetration', 1)
+// Increase lifetime of projectiles because they tend not to reach.
+rebalance({category: 16, name: 'Ghost Chaser'}, assign('AmmoAlive', v => v * 2))
 
-  // Reduce energy cost.
-  patch(template, 'EnergyChargeRequire', v => {
-    const energy = v * 0.5
-    replaceText(text,
-      /Energy Cost: .*%/,
-      `Energy Cost: ${energy}%`
-    )
-    return energy
-  })
+// All special weapons
+rebalance({category: 17}, (template, i, meta, text) => {
+  // Free energy cost
+  patch(template, 'EnergyChargeRequire', 0.001)
+  replaceText(text, /Energy Cost: .*%/, '')
 })
 
 rebalance({category: 20, name: /Vibro Roller/}, (template, i, meta, text) => {
@@ -284,7 +309,7 @@ rebalance({category: 20, name: /Vibro Roller/}, (template, i, meta, text) => {
       /Reload: .*sec/,
       `Reload: ${(reload / seconds).toFixed(1)}sec`
     )
-    return v * reload
+    return reload
   })
 
   // Make it faster to use
@@ -328,18 +353,18 @@ rebalance({category: 21, name: /Spine Driver/}, (template, i, meta, text) => {
 })
 
 // Choke spread on Dexter.
-rebalance({category: 23, name: /Dexter Automatic Shotgun/}, assign('FireAccuracy', v => v * 0.5))
+rebalance({category: 23, name: /Dexter Automatic Shotgun/}, assign('FireAccuracy', v => v * 0.7))
 
 // Choke spread on Cannon Shot.
-rebalance({category: 24, name: /Cannon Shot/}, assign('FireAccuracy', v => v * 0.5))
+rebalance({category: 24, name: /Cannon Shot/}, assign('FireAccuracy', v => v * 0.85))
 
 rebalance({category: 24, name: /Mortar/}, (template, i, meta, text) => {
   // Increase damage because mortars are super awkward and a bit too weak.
   patch(template, 'AmmoDamage', v => {
     const damage = v * 1.25
     replaceText(text,
-      /Damage: \d+ /,
-      `Damage: ${(damage + '').padEnd(4)}`
+      /Damage: \d+/,
+      `Damage: ${(damage + '')}`
     )
     return damage
   })
@@ -413,7 +438,7 @@ rebalance({category: 25, name: /Arcane/}, (template, i, meta, text) => {
   })
 })
 
-rebalance({category: 25, name: /High Altitude Impact Missiles/}, (template, i, meta, text) => {
+rebalance({category: 25, name: /High Altitude Impact/}, (template, i, meta, text) => {
   // Add jump jets to HAIL.
   patch(template, 'SecondaryFire_Type', 4)
   replaceText(text, /$/, blurbs.jump)
@@ -441,17 +466,17 @@ rebalance({category: 32, name: /Charger|Streamer|Post|Territory|Zone/}, (templat
   )
 })
 
-rebalance({category: 31, name: /Cannon .* Artillery Squad/}, (template, i, meta, text) => {
+rebalance({category: 31, name: /Cannon.*Artillery/}, (template, i, meta, text) => {
   // Start fully reloaded.
   patch(template, 'ReloadInit', 1)
   // Reduce interval and summon delay.
-  patch(template, 'Ammo_CustomParameter', node => {
-    const summonDelay = node.value[2]
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonDelay = values[2]
     summonDelay.value *= 0.25
-    const summonCustomParameter = node.value[4]
+    const summonCustomParameter = values[4]
     const artilleryInterval = summonCustomParameter.value[3]
     artilleryInterval.value = 2
-    return node
+    return values
   })
 })
 
@@ -478,7 +503,7 @@ rebalance({category: 31, name: /Rule of God/}, (template, i, meta, text) => {
       /Damage: \d+/,
       `Damage: ${damage}`
     )
-    return reload
+    return damage
   })
 })
 
@@ -489,7 +514,7 @@ rebalance({category: 34, name: /Bomb|Beetle/}, assign('SecondaryFire_Type', 2))
 rebalance({category: 35, name: /Bunker|Shelter|Prison|Wall|Border|^Decoy/}, (template, i, meta, text) => {
   // No reload animation occurs with type 1.
   patch(template, 'ReloadType', 1)
-  // Make posts reload in the background.
+  // Make special devices reload in the background.
   patch(template, 'EnergyChargeRequire', 0.0001)
 
   replaceText(text,
@@ -516,21 +541,35 @@ rebalance({category: 36, name: /Titan/}, (template, i, meta, text) => {
     const summonParameters = values[4]
     const vehicleParameters = summonParameters.value[3]
     const hardpointParameters = vehicleParameters.value[2]
-    const mainCannon = hardPointParameters.value[0]
+    const mainCannon = hardpointParameters.value[0]
     const mainCannonConfig = mainCannon.value[0]
 
-    const path = './SgotMods/weapon/v_404bigtank_mainCannon.sgo'
-    mainCannonConfig.value = path
+    const path = './SgottMods/weapon/v_404bigtank_mainCannon'
+    mainCannonConfig.value = path + '.SGO'
     const mainCannonTemplate = require('./originals/V_404BIGTANK_MAINCANNON')
     patch(mainCannonTemplate, 'AmmoAlive', 240)
     patch(mainCannonTemplate, 'AmmoSpeed', 20)
-    sgots.set(path, mainCannonTemplate)
+    rawSgos.set(path.split(/\//).pop(), mainCannonTemplate)
     return values
   })
+
+  // Increase durability for Titan
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 2.5
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 2.5}`
+  )
 })
 
-rebalance({category: 39}, (template, i, meta, text) => {
-  // Increase durabiity of all power suits
+rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
+  // Increase grip and weight of all bikes
   patch(template, 'Ammo_CustomParameter', values => {
     const summonDelay = values[2]
     // Instant appearance
@@ -544,14 +583,10 @@ rebalance({category: 39}, (template, i, meta, text) => {
     weight.value *= 1.5
     return values
   })
-  replaceText(text,
-    /Durability (\d+)/,
-    (match, hp) => `Durability: ${hp * 2}`
-  )
 })
 
 rebalance({category: 39}, (template, i, meta, text) => {
-  // Increase durabiity of all power suits
+  // Increase durability of all power suits
   patch(template, 'Ammo_CustomParameter', values => {
     const summonParameters = values[4]
     const vehicleParameters = summonParameters.value[3]
@@ -561,9 +596,38 @@ rebalance({category: 39}, (template, i, meta, text) => {
     return values
   })
   replaceText(text,
-    /Durability (\d+)/,
+    /Durability: (\d+)/,
     (match, hp) => `Durability: ${hp * 2}`
   )
 })
 
-if(debug) console.log(Array.from(modded).map(v => v.value.pop()))
+function json(obj) {
+  return JSON.stringify(obj, null, 2)
+}
+
+const outDir = './release/sgottstrap/SgottTemplates/weapon'
+for(const [path, template] of rawSgos) {
+  const filename = `${outDir}/${path}.json`
+  console.log(`Writing ${filename}` )
+  fs.writeFileSync(filename, json(template))
+}
+
+for(const node of modded) {
+  const id = getId(node)
+  const path = `./originals/${id.toUpperCase()}`
+  const template = require(path)
+  const text = textTable.variables[0].value[table.variables[0].value.indexOf(node)]
+  template.meta = {
+    id: id,
+    description: text.value[3].value,
+  }
+  const name = text.value[2]
+    .value
+    .replace(/\s+/g, '-')
+    .replace(/[^0-9a-zA-Z-]/g, '')
+  const filename = `${outDir}/_${id}_${name}.json`
+  console.log(`Writing ${filename}` )
+  fs.writeFileSync(filename, json(template))
+}
+
+console.log('Done!')

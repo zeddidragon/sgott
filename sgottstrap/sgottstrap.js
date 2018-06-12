@@ -186,6 +186,7 @@ function insertTableNode(index, tableNode, textNode) {
 }
 
 const ids = {}
+const raw = {}
 
 function format(pair) {
   if(!pair) return ''
@@ -199,8 +200,13 @@ for(const mod of weaponMods) {
     .parse(fs.readFileSync(`${weaponTemplateDir}/${mod}.json`, 'utf8'))
 
   const {meta} = template
-  const id = meta.id || mod
-  if(ids[id]) {
+  const path = `${weaponModDir}/${mod}.SGO`
+  const {id} = meta
+  if(!id) {
+    console.log(`No id located, ${mod} will not be added to the weapon table`)
+    raw[path] = template
+    continue
+  } else if(ids[id]) {
     console.log(`Overwriting already modded weapon with ID ${id}. Previous mod marked as failed.`)
     failed++
   }
@@ -270,7 +276,6 @@ for(const mod of weaponMods) {
     }
   }
 
-  const path = `${weaponModDir}/${mod}.SGO`
   tableNode.value[1].value = path
   if(meta.category != null) tableNode.value[2].value = meta.category
   if(meta.dropRateModifier != null) tableNode.value[3].value = meta.dropRateModifier
@@ -305,6 +310,11 @@ if(succeeded) {
   files['_WEAPONTEXT.SGO'][touched] = true
 }
 
+for(const [path, template] of Object.entries(raw)) {
+  console.log(`Writing file: ${path}`)
+  fs.writeFileSync(path, jsonToSgo.compiler()(template))
+}
+
 for(const {path, template} of Object.values(ids)) {
   console.log(`Writing file: ${path}`)
   fs.writeFileSync(path, jsonToSgo.compiler()(template))
@@ -312,7 +322,7 @@ for(const {path, template} of Object.values(ids)) {
 
 const coreMods = fs
   .readdirSync(coreTemplateDir)
-  .filter(name => name.slice(-5).toLowerCase() === '.json')
+  .filter(file => /\.json$/.test(file))
   .map(name => name.slice(0, -5))
 
 console.log(`Core Mods found: ${coreMods.length}`)
