@@ -49,6 +49,29 @@ const ammoClasses = {
     'SmokeTrailSpeed',
     'SmokeTrailAlive',
   ],
+  LaserBullet01: [
+    'FlareColour',
+    'FlareLightColour',
+    'FlareScale',
+    'FlareLightScale',
+    'FlareLife',
+    'NumLasers',
+    null,
+    null,
+    'LaserSpreadSpeed',
+    'LaserSpeed',
+    'LaserSegments',
+  ],
+  LaserBullet02: [
+    'LaserType'
+   ],
+  LightningBullet01: [
+    'InitialNoise',
+    'Random_Velocity',
+    'CurveNoise',
+    'BounceFactor',
+    'Modifier',
+  ],
   MissileBullet02: [
     null,
     null,
@@ -99,6 +122,9 @@ const ammoClasses = {
     "SummonType",
     "Summon_CustomParameter",
   ],
+  SolidBullet01: [
+    'IsBouncy',
+   ],
   Summon_CustomParameter00: [
     null,
     null,
@@ -180,6 +206,8 @@ const names = {
   AmmoColor: colors,
   ArtilleryColor: colors,
   LedPosition: colors,
+  FlareColour: colors,
+  FlareLightColour: colors,
   BombingPayloadParameter: [
     null,
     null,
