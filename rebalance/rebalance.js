@@ -234,7 +234,7 @@ rebalance({category: 6, name: 'PX50 Bound Shot'}, (template, i, meta, text) => {
 })
 
 // Make all lasers penetrate.
-rebalance({category: 11, name: /LAZR|LARG/}, assign('AmmoIsPenetration', 1))
+rebalance({category: 11, name: /LAZR|LARG|Cyclone/}, assign('AmmoIsPenetration', 1))
 
 // Tighten spread on Thunder Bows.
 rebalance({category: 12, name: /Thunder Bow/}, assign('FireAccuracy', v => v * 0.7))

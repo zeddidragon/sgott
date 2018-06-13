@@ -111,9 +111,13 @@ function patchStep(values, [step, ...steps], replacement, opts) {
       return false
     }
   } else if(/\{.*=.*\}/.exec(step)) {
+    if(opts && opts.upsert) {
+      console.error(`Upsert not supported with query: ${step}`)
+      return false
+    }
     const [search, value] = step.slice(1, -1).split('=')
     const searchSteps = search.split(':')
-    const node = values.find(v => {
+    const nodes = values.filter(v => {
       var current = v
       for(const step of searchSteps) {
         if(!current) return false
@@ -121,14 +125,11 @@ function patchStep(values, [step, ...steps], replacement, opts) {
       }
       return current == value
     })
-    if(node) {
-      return patchNode(node, steps, replacement, opts)
-    } else if(opts && opts.upsert) {
-      console.error(`Upsert not supported with query: ${step}`)
-      return false
-    } else {
-      return false
+    var modded = false
+    for(const node of nodes) {
+      modded = modded || patchNode(node, steps, replacement, opts)
     }
+    return modded
   } else {
     const node = values.find(n => n.name === step)
     if(node) {
