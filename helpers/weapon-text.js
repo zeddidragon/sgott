@@ -53,7 +53,7 @@ function weaponText(template, text) {
 
       return [
         rof < 100 && ['ROF', `${rof.toFixed(1)}/sec`],
-        ['Damage', damage.join(' x ')],
+        ['Damage', damage.join('×')],
         life < 1000 && ['Range', `${Math.floor(life * speed)}m`],
         blast && ['Blast Area', `${blast}m`],
       ]

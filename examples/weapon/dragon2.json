@@ -9,7 +9,7 @@
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 10
+      "value": 50
     },
     {
       "type": "string",
@@ -45,7 +45,8 @@
         "SentryGunBullet01",
         "TargetMarkerBullet01",
         "SupportUnitBullet01",
-        "PileBunkerBullet01"
+        "PileBunkerBullet01",
+        "PlasmaBullet01"
       ],
       "value": "NapalmBullet01"
     },
@@ -56,12 +57,12 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 1
+          "value": 4
         },
         {
           "type": "float",
           "name": "Green",
-          "value": 1
+          "value": 2
         },
         {
           "type": "float",
@@ -71,19 +72,19 @@
         {
           "type": "float",
           "name": "Alpha",
-          "value": 0.5
+          "value": 1
         }
       ]
     },
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 7
+      "value": 2
     },
     {
       "type": "float",
       "name": "AmmoDamage",
-      "value": 400
+      "value": 80
     },
     {
       "type": "float",
@@ -93,7 +94,7 @@
     {
       "type": "float",
       "name": "AmmoGravityFactor",
-      "value": 0.2
+      "value": 0
     },
     {
       "type": "float",
@@ -123,17 +124,17 @@
     {
       "type": "float",
       "name": "AmmoOwnerMove",
-      "value": 1
+      "value": 0
     },
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 8
+      "value": 0.3
     },
     {
       "type": "float",
       "name": "AmmoSpeed",
-      "value": 18
+      "value": 3
     },
     {
       "type": "ptr",
@@ -162,10 +163,12 @@
         },
         {
           "type": "int",
+          "name": "SubProjectileSize",
           "value": 20
         },
         {
           "type": "ptr",
+          "name": "EmitterParameter",
           "value": [
             {
               "type": "ptr",
@@ -195,27 +198,30 @@
             },
             {
               "type": "int",
-              "value": 90
+              "name": "EmitterAmmoCount",
+              "value": 80
             },
             {
               "type": "int",
+              "name": "EmitterInterval",
               "value": 2
             },
             {
               "type": "string",
+              "name": "EmitterAmmoClass",
               "value": "FlameBullet02"
             },
             {
               "type": "float",
-              "value": 0.6000000238418579
+              "value": 0.30000001192092896
             },
             {
               "type": "float",
-              "value": -3.200000047683716
+              "value": -2
             },
             {
               "type": "float",
-              "value": 3.200000047683716
+              "value": 2
             },
             {
               "type": "float",
@@ -227,7 +233,8 @@
             },
             {
               "type": "int",
-              "value": 60
+              "name": "EmitterAmmoSize",
+              "value": 35
             },
             {
               "type": "int",
@@ -238,15 +245,15 @@
               "value": [
                 {
                   "type": "float",
-                  "value": 0
+                  "value": 7
                 },
                 {
                   "type": "float",
-                  "value": 4
+                  "value": 7
                 },
                 {
                   "type": "float",
-                  "value": 14
+                  "value": 15
                 },
                 {
                   "type": "float",
@@ -320,6 +327,7 @@
         },
         {
           "type": "ptr",
+          "name": "EmitterSe",
           "value": [
             {
               "type": "int",
@@ -327,7 +335,8 @@
             },
             {
               "type": "string",
-              "value": "common_damages_impactNapalmZD"
+              "name": "SoundName",
+              "value": "common_damages_impactNapalm"
             },
             {
               "type": "float",
@@ -362,12 +371,12 @@
     {
       "type": "string",
       "name": "BaseAnimation",
-      "value": "waist"
+      "value": "assault2"
     },
     {
       "type": "string",
       "name": "ChangeAnimation",
-      "value": "waist_change1"
+      "value": "assault_change1"
     },
     {
       "type": "float",
@@ -377,7 +386,7 @@
     {
       "type": "float",
       "name": "FireAccuracy",
-      "value": 0.07
+      "value": 0.05
     },
     {
       "type": "int",
@@ -397,12 +406,12 @@
     {
       "type": "int",
       "name": "FireCount",
-      "value": 10
+      "value": 20
     },
     {
       "type": "int",
       "name": "FireInterval",
-      "value": 50
+      "value": 20
     },
     {
       "type": "ptr",
@@ -412,7 +421,7 @@
     {
       "type": "float",
       "name": "FireRecoil",
-      "value": 0.30000001192092896
+      "value": 0.3199999928474426
     },
     {
       "type": "ptr",
@@ -425,11 +434,11 @@
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_Ranger_GL_VolatileNapalmZD"
+          "value": "weapon_Ranger_SG_wideShot"
         },
         {
           "type": "float",
-          "value": 0.7943000197410583
+          "value": 0.8999999761581421
         },
         {
           "type": "float",
@@ -448,12 +457,12 @@
     {
       "type": "int",
       "name": "FireSpreadType",
-      "value": 1
+      "value": 2
     },
     {
       "type": "float",
       "name": "FireSpreadWidth",
-      "value": 0.2
+      "value": 0.35
     },
     {
       "type": "int",
@@ -537,22 +546,80 @@
     {
       "type": "string",
       "name": "MuzzleFlash",
-      "value": ""
+      "value": "MuzzleFlash02"
     },
     {
       "type": "ptr",
       "name": "MuzzleFlash_CustomParameter",
-      "value": null
+      "value": [
+        {
+          "type": "string",
+          "value": "マズルフラッシュパターン.dds"
+        },
+        {
+          "type": "float",
+          "value": 1.5
+        },
+        {
+          "type": "float",
+          "value": 0.20000000298023224
+        },
+        {
+          "type": "float",
+          "value": 1.5700000524520874
+        },
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "float",
+          "value": 1.2999999523162842
+        },
+        {
+          "type": "float",
+          "value": 0.20000000298023224
+        },
+        {
+          "type": "int",
+          "value": 4
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 1.2999999523162842
+            },
+            {
+              "type": "float",
+              "value": 1.399999976158142
+            },
+            {
+              "type": "float",
+              "value": 0.699999988079071
+            },
+            {
+              "type": "float",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "float",
+          "value": -0.15000000596046448
+        }
+      ]
     },
     {
       "type": "float",
       "name": "Range",
-      "value": 180
+      "value": 150
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "waist_reload2"
+      "value": "assault_reload2"
     },
     {
       "type": "float",
@@ -562,7 +629,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 150
+      "value": 108
     },
     {
       "type": "int",
@@ -577,12 +644,15 @@
     {
       "type": "int",
       "name": "SecondaryFire_Type",
-      "options": [
-        0,
-        1,
-        2,
-        3
-      ],
+      "options": {
+        "None": 0,
+        "Zoom": 1,
+        "Activate": 2,
+        "Activate and Reload": 3,
+        "Jumpjets (Fencer)": 4,
+        "Dash (Fencer)": 5,
+        "Shield Reflect (Fencer)": 6
+      },
       "value": 0
     },
     {
@@ -595,7 +665,7 @@
         },
         {
           "type": "string",
-          "value": "app:/Weapon/ShellCase401l.rab"
+          "value": "app:/Weapon/ShellCase401.rab"
         },
         {
           "type": "ptr",
@@ -606,7 +676,7 @@
             },
             {
               "type": "string",
-              "value": "weapon_Common_shell_srifle"
+              "value": "weapon_Common_shell_remington"
             },
             {
               "type": "float",
@@ -640,53 +710,35 @@
     },
     {
       "type": "ptr",
+      "name": "Sight_animation_model",
       "value": [
         {
           "type": "ptr",
           "value": [
             {
               "type": "string",
-              "value": "app:/HUD/sight07.rab",
-              "index": "50c",
-              "relative": "105e",
-              "pointer": "156a",
-              "size": 20
+              "value": "app:/HUD/sight07.rab"
             },
             {
               "type": "string",
-              "value": "sight07.mdb",
-              "index": "518",
-              "relative": "1248",
-              "pointer": "1760",
-              "size": 11
+              "value": "sight07.mdb"
             }
-          ],
-          "index": "4e8",
-          "relative": "24",
-          "pointer": "50c",
-          "size": 2
+          ]
         },
         {
           "type": "int",
-          "value": 0,
-          "index": "4f4"
+          "value": 0
         },
         {
           "type": "int",
-          "value": 0,
-          "index": "500"
+          "value": 0
         }
-      ],
-      "index": "2d8",
-      "relative": "210",
-      "pointer": "4e8",
-      "size": 3,
-      "name": "Sight_animation_model"
+      ]
     },
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/governor100.dds"
+      "value": "app:/weapon/icon/wideshot.dds"
     },
     {
       "type": "ptr",
@@ -697,23 +749,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/s_shotgun_governor100.rab"
+              "value": "app:/Weapon/s_shotgun_wideshot01.rab"
             },
             {
               "type": "string",
-              "value": "s_shotgun_governor100.mdb"
+              "value": "s_shotgun_wideshot01.mdb"
             }
           ]
         },
         {
-          "type": "int",
-          "value": 0
+          "type": "string",
+          "value": "app:/Weapon/s_shotgun_wideshot01.cas"
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwAAAAYAQgAkAAAAnAAAAKAAAACIAgAAAAABADwAAAABAAEAXAAAAAIAAQB8AAAAiAIAAJQCAAACAAAAsAAAAMAAAACgAAAAAAAAAAABAACOAgAAlAIAAAIAAADQAAAAwAAAAPAAAAAAAAAAAAEAAMACAACUAgAAAgAAAOAAAADAAAAAoAAAAAAAAAAgAQAAurq6ugAAAAAAAAAAAAAAAAAAgD8AAAAAZDvfPdnOVz8AAIA/zczMPM3MzDzNzMw8AACAP/T91D1/arw8PzWePgAAgD93vh+9/KlxPQaBFT4AAIA/aumVvcT+w7641DfAAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAU0dPAAIBAAAEAAAAIAAAAAQAAADgAAAAAAAAAAABAAAAAAAAAwAAADAAAAAAAAAAAwAAAEgAAAAAAAAAAwAAAGAAAAAAAAAAAwAAAHgAAAACAAAABAAAAAAAgD8CAAAABAAAAAAAgD8CAAAABAAAAAAAgD8CAAAABAAAAAAAgL8CAAAABAAAAAAAgL8CAAAABAAAAAAAgL8CAAAABAAAAAAAwL8CAAAABAAAAAAAAD8CAAAABAAAAAAAAAACAAAABAAAAAAAgL8CAAAABAAAAAAAAAACAAAABAAAAAAAAAAgAAAAAAAAADIAAAABAAAARAAAAAIAAABWAAAAAwAAAHIAbwB0AGEAdABpAG8AbgBfAG0AYQB4AAAAcgBvAHQAYQB0AGkAbwBuAF8AbQBpAG4AAAB2AGUAbABvAGMAaQB0AHkAXwBtAGEAeAAAAHYAZQBsAG8AYwBpAHQAeQBfAG0AaQBuAAAAMAAxAAAASQBLAAAAcwBfAHMAaABvAHQAZwB1AG4AXwBnAG8AdgBlAHIAbgBvAHIAMQAwADAAAACshaKDAAAyAAAA"
+            "data": "TUFCAA8AAAADAAAAAwAEAAYAlAAkAAAAnAAAAEABAADkBAAAAAABADwAAAABAAEAXAAAAAIAAQB8AAAA5AQAAPAEAAACAAAAUAEAAGABAABAAQAAAAAAAKABAADqBAAA8AQAAAIAAABwAQAAYAEAAJABAAAAAAAAoAEAAG4FAABYBQAAAgAAAIABAABgAQAAQAEAAAAAAAB8AwAA3AAAADwBAABIBQAAAAAAANwAAAA8AQAAKAUAAAMAAAAMAQAAPAEAABAFAAACAAAALAEAADwBAAD6BAAAAQAAAEIFAAAAAEBAAAAAABwDAABkBQAAZmbWQAAAAADAAQAAQgUAAAAAcEEAAAAAAAIAAEIFAAAAAAAAAAAAAFwCAABCBQAAAAAoQgAAAABcAgAAQgUAAAAAyEEAAAAAvAIAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAAH9qvD2amRk/AACAPwrXozwK16M8CtejPAAAgD9kO989MQisPPLSTT4AAIA/WDk0vHe+Hz0CK4e9AACAP9jHeLy6GAi/D7NCwAAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAQAAAAQAAAABAAAACAAAAAAAAAB0AHkAcABlAAAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAOAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAADP/J/83/yn/JP8l/zP/KP8v/zT/EP8R/5JjooMAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAA8AAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAM/8n/zf/Kf8k/yX/M/8o/y//NP8Q/xH/Pl9TMIEwAAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAABAAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAM/8n/zf/Kf8k/yX/M/8o/y//NP8Q/xH/g5KrjjtiWTAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAABAAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAM/8n/zf/Kf8k/yX/M/8o/y//NP8Q/xH/g5KrjphiizAAAFNHTwACAQAABAAAACAAAAAEAAAA4AAAAAAAAAAAAQAAAAAAAAMAAAAwAAAAAAAAAAMAAABIAAAAAAAAAAMAAABgAAAAAAAAAAMAAAB4AAAAAgAAAAQAAAAAAIA/AgAAAAQAAAAAAIA/AgAAAAQAAAAAAIA/AgAAAAQAAAAAAIC/AgAAAAQAAAAAAIC/AgAAAAQAAAAAAIC/AgAAAAQAAACamZm/AgAAAAQAAADNzEw+AgAAAAQAAAAAAAAAAgAAAAQAAAAAAIC/AgAAAAQAAAAAAAAAAgAAAAQAAAAAAAAAIAAAAAAAAAAyAAAAAQAAAEQAAAACAAAAVgAAAAMAAAByAG8AdABhAHQAaQBvAG4AXwBtAGEAeAAAAHIAbwB0AGEAdABpAG8AbgBfAG0AaQBuAAAAdgBlAGwAbwBjAGkAdAB5AF8AbQBhAHgAAAB2AGUAbABvAGMAaQB0AHkAXwBtAGkAbgAAADAAMQAAAEkASwAAAGIAbwBkAHkAAAByAGUAbABvAGEAZABfAGUAbgBkAAAAcgBlAGwAbwBhAGQAXwBsAG8AbwBwAAAAcgBlAGwAbwBhAGQAXwBzAHQAYQByAHQAAABzAGUAAABzAHQAYQBuAGQAYgB5AAAAcwB3AGkAbgBnAAAAkmOigwAAbgBkAKyFooMAAG4AZwA="
           }
         }
       ]
@@ -724,7 +776,7 @@
       "value": [
         {
           "type": "string",
-          "value": "waist_recoil2"
+          "value": "assault_recoil2"
         },
         {
           "type": "int",
@@ -747,17 +799,17 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "ヴァラトル・ナパームＺＤ"
+          "value": "ドラゴンM2"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "Dragon's Breath"
+          "value": "Dragon M2"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "ヴァラトル・ナパームＺＤ"
+          "value": "龙M2"
         }
       ]
     },
@@ -772,11 +824,12 @@
         },
         {
           "type": "string",
-          "value": "app:/Weapon/ShellCase401l.rab"
+          "name": "path",
+          "value": "app:/Weapon/ShellCase401.rab"
         },
         {
           "type": "string",
-          "value": "app:/Weapon/ShellCase401l.shkt"
+          "value": "app:/Weapon/ShellCase401.shkt"
         }
       ]
     },
@@ -793,10 +846,12 @@
   ],
   "meta": {
     "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
-    "id": "ZeddyDragonsBreath",
-    "level": 78,
-    "before": "Weapon050",
+    "id": "RsgDragonM2",
+    "level": 37,
+    "after": "Weapon041",
     "category": 1,
-    "description": "$AUTOSTATS$A powerful shotgun loaded with incindenary rounds"
+    "unlockState": null,
+    "dropRateModifier": null,
+    "description": "$AUTOSTATS$A double-barreled shotgun filled with Dragon's Breath incindinary napalm rounds. Humanity had collectively sworn never to use them again."
   }
 }
