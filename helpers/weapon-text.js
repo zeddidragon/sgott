@@ -49,11 +49,13 @@ function weaponText(template, text) {
       const rof = 60 / +findVar('FireInterval').value
       const life = findVar('AmmoAlive').value
       const speed = findVar('AmmoSpeed').value
+      const blast = findVar('AmmoExplosion').value
 
       return [
-        ['Damage', damage.join(' x ')],
         rof < 100 && ['ROF', `${rof.toFixed(1)}/sec`],
+        ['Damage', damage.join(' x ')],
         life < 1000 && ['Range', `${Math.floor(life * speed)}m`],
+        blast && ['Blast Area', `${blast}m`],
       ]
     },
     Weapon_ImpactHammer() {
