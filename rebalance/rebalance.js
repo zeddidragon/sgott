@@ -107,10 +107,10 @@ rebalance({category: 1}, (template, i, meta, text) => {
 rebalance({category: 2, name: /Nova Buster/}, (template, i, meta, text) => {
   // Make reloadable.
   patch(template, 'ReloadTime', v => {
-    const reload = (3 + i) * minutes
+    const reload = 1 * minutes + (i * 20) * seconds
     replaceText(text,
       'Reload Time: ----',
-      `Reload Time: ${reload.toFixed(1)}sec`
+      `Reload Time: ${Math.floor(reload / 60)}sec`
     )
     return reload
   })
