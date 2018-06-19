@@ -5,6 +5,14 @@ function abort() {
   throw new Error('abort')
 }
 
+function padCeil(value, divisor) {
+  return ceil(value, divisor) - value
+}
+
+function ceil(value, divisor) {
+  return Math.ceil(value / divisor) * divisor
+}
+
 function compiler(config) {
   var endian
   const types = {
@@ -91,8 +99,10 @@ function compiler(config) {
       const buffer = type === 'SGO'
         ? compiler()(data)
         : Buffer.from(data, 'base64')
-      deferredExtra.push([block, buffer])
-      return buffer
+      const padding = Buffer.alloc(padCeil(buffer.length, 16))
+      const padded = Buffer.concat([buffer, padding])
+      deferredExtra.push([block, padded])
+      return padded
     }
 
     function process(node) {
@@ -188,9 +198,11 @@ function compiler(config) {
     }
 
     const fixedBuffer = Buffer.alloc(values.length * SIZE)
-    const heapBuffer = Buffer.alloc(heap.length * SIZE)
-    const stringBuffer = Buffer.alloc(stringIndex)
-    const mTable = Buffer.alloc(varCount * 8 + 4)
+    const heapSize = heap.length * SIZE +
+      padCeil(fixedBuffer.length + heap.length * SIZE, 16)
+    const heapBuffer = Buffer.alloc(heapSize)
+    const stringBuffer = Buffer.alloc(ceil(stringIndex, 16))
+    const mTable = Buffer.alloc(ceil(varCount * 8, 16))
 
     var extraIndex = 0
     const extraBuffer = Buffer.concat(deferredExtra.map(([block, buffer]) => {
