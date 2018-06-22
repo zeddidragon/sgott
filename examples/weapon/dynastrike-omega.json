@@ -9,7 +9,7 @@
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 4
+      "value": 90
     },
     {
       "type": "string",
@@ -48,7 +48,7 @@
         "PileBunkerBullet01",
         "PlasmaBullet01"
       ],
-      "value": "LaserBullet01"
+      "value": "BeamBullet01"
     },
     {
       "type": "ptr",
@@ -57,17 +57,17 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 2
+          "value": 0.3
         },
         {
           "type": "float",
           "name": "Green",
-          "value": 1.2
+          "value": 0.6
         },
         {
           "type": "float",
           "name": "Blue",
-          "value": 0.4
+          "value": 1.5
         },
         {
           "type": "float",
@@ -79,12 +79,12 @@
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 1200
+      "value": 1
     },
     {
       "type": "float",
       "name": "AmmoDamage",
-      "value": 30
+      "value": 85
     },
     {
       "type": "float",
@@ -99,12 +99,37 @@
     {
       "type": "float",
       "name": "AmmoHitImpulseAdjust",
-      "value": 0.004999999888241291
+      "value": 1
     },
     {
       "type": "ptr",
       "name": "AmmoHitSe",
-      "value": null
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "value": "weapon_Common_impactWD_DynastAlpha"
+        },
+        {
+          "type": "float",
+          "value": 0.3499999940395355
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 25
+        }
+      ]
     },
     {
       "type": "float",
@@ -124,23 +149,27 @@
     {
       "type": "float",
       "name": "AmmoOwnerMove",
-      "value": 0
+      "value": 1
     },
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 0.4
+      "value": 0.28
     },
     {
       "type": "float",
       "name": "AmmoSpeed",
-      "value": 30
+      "value": 3
     },
     {
       "type": "ptr",
       "name": "Ammo_CustomParameter",
       "value": [
         {
+          "type": "int",
+          "value": 0
+        },
+        {
           "type": "ptr",
           "value": [
             {
@@ -166,19 +195,19 @@
           "value": [
             {
               "type": "float",
-              "value": 0.5
+              "value": 4
             },
             {
               "type": "float",
-              "value": 0.5
+              "value": 4
             },
             {
               "type": "float",
-              "value": 0.5
+              "value": 4
             },
             {
               "type": "float",
-              "value": 0.5
+              "value": 4
             }
           ]
         },
@@ -188,35 +217,15 @@
         },
         {
           "type": "float",
-          "value": 3
-        },
-        {
-          "type": "int",
-          "value": 10
-        },
-        {
-          "type": "int",
           "value": 5
         },
         {
           "type": "float",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "value": 1.5
-        },
-        {
-          "type": "float",
-          "value": 1.600000023841858
-        },
-        {
-          "type": "float",
-          "value": 1
+          "value": 3
         },
         {
           "type": "int",
-          "value": 10
+          "value": 30
         }
       ]
     },
@@ -233,22 +242,22 @@
     {
       "type": "string",
       "name": "BaseAnimation",
-      "value": "waist"
+      "value": "hand"
     },
     {
       "type": "string",
       "name": "ChangeAnimation",
-      "value": "waist_change1"
+      "value": "hand_change1"
     },
     {
       "type": "float",
       "name": "EnergyChargeRequire",
-      "value": 30
+      "value": 0.85
     },
     {
       "type": "float",
       "name": "FireAccuracy",
-      "value": 0
+      "value": 0.075
     },
     {
       "type": "int",
@@ -268,12 +277,12 @@
     {
       "type": "int",
       "name": "FireCount",
-      "value": 4
+      "value": 8
     },
     {
       "type": "int",
       "name": "FireInterval",
-      "value": 1
+      "value": 0
     },
     {
       "type": "ptr",
@@ -283,7 +292,7 @@
     {
       "type": "float",
       "name": "FireRecoil",
-      "value": 0.10000000149011612
+      "value": 0.11999999731779099
     },
     {
       "type": "ptr",
@@ -291,16 +300,16 @@
       "value": [
         {
           "type": "int",
-          "value": 1
+          "value": 0
         },
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_WD_MEDIUM_laserChainsaw"
+          "value": "weapon_WD_MEDIUM_ParticleDynastAlpha"
         },
         {
           "type": "float",
-          "value": 0.707099974155426
+          "value": 0.7078999876976013
         },
         {
           "type": "float",
@@ -319,12 +328,12 @@
     {
       "type": "int",
       "name": "FireSpreadType",
-      "value": 3
+      "value": 0
     },
     {
       "type": "float",
       "name": "FireSpreadWidth",
-      "value": 0.699999988079071
+      "value": 0
     },
     {
       "type": "int",
@@ -427,15 +436,15 @@
           "value": [
             {
               "type": "float",
-              "value": 1
+              "value": 0.09000000357627869
             },
             {
               "type": "float",
-              "value": 0.3499999940395355
+              "value": 0.18000000715255737
             },
             {
               "type": "float",
-              "value": 0.3499999940395355
+              "value": 0.5
             },
             {
               "type": "float",
@@ -452,12 +461,12 @@
     {
       "type": "float",
       "name": "Range",
-      "value": 180
+      "value": 260
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "waist_reload1"
+      "value": "hand_reload1"
     },
     {
       "type": "float",
@@ -467,7 +476,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 180
+      "value": 6
     },
     {
       "type": "int",
@@ -477,12 +486,7 @@
     {
       "type": "ptr",
       "name": "SecondaryFire_Parameter",
-      "value": [
-        {
-          "type": "int",
-          "value": 0
-        }
-      ]
+      "value": null
     },
     {
       "type": "int",
@@ -556,7 +560,7 @@
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/LZ_chainsaw.dds"
+      "value": "app:/weapon/icon/ixyon.dds"
     },
     {
       "type": "ptr",
@@ -567,23 +571,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/p_lazer_lazerchainsaw.rab"
+              "value": "app:/Weapon/p_particlegun_dynast01.rab"
             },
             {
               "type": "string",
-              "value": "p_lazer_lazerchainsaw.mdb"
+              "value": "p_particlegun_dynast01.mdb"
             }
           ]
         },
         {
           "type": "string",
-          "value": "app:/Weapon/p_lazer_lazerchainsaw.cas"
+          "value": "app:/Weapon/p_particlegun_dynast01.cas"
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwAFAAUAYgAkAAAAfAAAAPAAAAAQAgAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAAEAIAABwCAAACAAAAAAEAABABAADwAAAAAAAAAEABAAAWAgAAHAIAAAIAAAAgAQAAEAEAADABAAAAAAAAQAEAAMwAAADsAAAAYgIAAAAAAADMAAAA7AAAAFgCAAABAAAA3AAAAOwAAAAwAgAAAQAAAOwAAADsAAAAJgIAAAAAAADsAAAA7AAAADoCAAAAAAAAUgIAAAAAAAAAAAAAYAEAAFICAAAAAAAAAAAAALgBAAC6urq6AAAAAAAAAAAAAAAAAACAPwAAAAAbL928zcwMPwAAgD/NzEw9zcxMPc3MTD0AAIA/d76fPUa28z0ZBJY+AACAP4zBKz9xVxvAuKFhvwAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAsAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAA7DD8MLYw/DDBMKcw8zC9MPwwVVyLlQAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAMAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAOww/DC2MPwwwTCnMPMwvTD8MImVWDCLMAAAMAAxAAAASQBLAAAAYgBvAGQAeQAAAGYAaQByAGUAAABoAGkAZABlAAAAcgBlAGwAbwBhAGQAXwBsAG8AbwBwAAAAcwBlAAAAcwBoAG8AdwAAAHMAdABhAG4AZABiAHkAAAA="
+            "data": "TUFCAA8AAAADAAAAAwACAAkAUAAkAAAA3AAAABABAAAQAgAAAAAEADwAAAABAAEAvAAAAAIAAADcAAAAEAIAAEICAAACAAAAIAEAAFABAAAQAQAAAAAAAKABAAAWAgAAQgIAAAIAAABAAQAAUAEAABABAAAAAAAAoAEAABwCAABCAgAAAgAAAIABAABQAQAAEAEAAAAAAACgAQAAIgIAAEICAAACAAAAMAEAAFABAAAQAQAAAAAAAKABAAAoAgAALgIAAAIAAABwAQAAYAEAAJABAAAAAAAAoAEAAPwAAAAMAQAAUAIAAAAAAAD8AAAADAEAADgCAAABAAAASgIAAAAAAAAAAAAAwAEAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAALx0kzzVeAk/AACAPwAAAAC8dJO81XgJPwAAgD+8dJM8AAAAANV4CT8AAIA/CtejPArXozwK16M8AACAP83MTD3NzEw9zcxMPQAAgD/VeGk9pptEu4cWWb0AAIA/vHSTvAAAAADVeAk/AACAP+C4Xb91CKS/ithnvwAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAcAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAwDCkMMowuTDIMN5W4o4AAAAAMAAxAAAAMAAyAAAAMAAzAAAAMAA0AAAASQBLAAAAYgBvAGQAeQAAAGYAaQByAGUAAABnAHUAbgAAAHMAZQAAAHMAdABhAG4AZABiAHkAAAA="
           }
         }
       ]
@@ -594,7 +598,7 @@
       "value": [
         {
           "type": "string",
-          "value": "waist_recoil1"
+          "value": "hand_recoil1"
         },
         {
           "type": "int",
@@ -617,17 +621,17 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "レーザー・チェーンソー"
+          "value": "ダイナストΩ"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "SIG Chainsaw"
+          "value": "Dynastrike Ω"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "レーザー・チェーンソー"
+          "value": "ダイナストΩ"
         }
       ]
     },
@@ -644,12 +648,12 @@
   ],
   "meta": {
     "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
-    "id": "WlzChainsaw2",
-    "after": "Weapon226",
-    "level": 78,
-    "category": 11,
+    "id": "WptDynastrike5",
+    "after": "Weapon248",
+    "level": 82,
+    "category": 13,
     "unlockState": null,
     "dropRateModifier": null,
-    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>          Capacity: 1200                 Charge Time: 2.0sec\n               ROF: 60.0/sec             Energy Cost: 20%\n            Damage: 30x4\n             Range: 180.0m\n          Accuracy: S+\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA special laser weapon that fires vertical beams at an ever-changing angle, allowing you to attack aerial and ground enemies at the same time. It's like a massive chainsaw appearing out of thin air right before your eyes."
+    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>               ROF: 10/s                 Energy Cost: 0.85%\n            Damage: 85×8\n             Range: 270.0m\n          Accuracy: B-\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n\nThe ultimate Dynastrike particle Gatling gun, this extremely powerful weapon has been once again redesigned from the ground up for improved energy efficiency and output. A further enhancement to the already excellent Dynastrike α, it improves upon it and takes its capabilities to the end, earning itself the name Dynastrike Ω."
   }
 }
