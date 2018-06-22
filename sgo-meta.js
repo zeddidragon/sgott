@@ -359,6 +359,12 @@ const values = {
     'Carpet Formation': 0,
     'Fan Formation': 1,
   },
+  FireSpreadtype: {
+    'Normal': 0,
+    'Wide': 1,
+    'Wide and Even': 2,
+    'Tall': 3,
+  },
   ShocWaveType: {
     'Shockwave': 0,
     'Shockwave and Gravel': 1,
