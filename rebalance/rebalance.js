@@ -296,9 +296,15 @@ rebalance({category: 16, name: 'Ghost Chaser'}, assign('AmmoAlive', v => v * 2))
 
 // All special weapons
 rebalance({category: 17}, (template, i, meta, text) => {
-  // Free energy cost
-  patch(template, 'EnergyChargeRequire', 0.001)
-  replaceText(text, /Energy Cost: .*%/, '')
+  // Reduce energy cost.
+  patch(template, 'EnergyChargeRequire', v => {
+    const energy = v * 0.5
+    replaceText(text,
+      /Energy Cost: .*%/,
+      `Energy Cost: ${energy.toFixed(1)}%`
+    )
+    return energy
+  })
 })
 
 rebalance({category: 20, name: /Vibro Roller/}, (template, i, meta, text) => {
