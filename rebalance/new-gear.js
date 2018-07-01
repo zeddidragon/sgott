@@ -103,8 +103,12 @@ function add(meta, changes) {
 
   const name = ['name', {value: [Str(meta.name), Str(meta.name), Str(meta.name)]}]
   for(const [key, value] of Object.entries(changes).concat([name])) {
-    const node = getNode(weapon, key)
-    if(!node) throw new Error(`Failed to find node ${key}, adding it...`)
+    var node = getNode(weapon, key)
+    if(!node) {
+      console.error(`Failed to find node ${key}, adding it...`)
+      node = {name: key}
+      weapon.variables.push(node)
+    }
     if(typeof value === 'object') Object.assign(node, value)
     else if(typeof value === 'function') node.value = value(node.value, node)
     else node.value = value
@@ -276,6 +280,74 @@ add({
   SecondaryFire_Parameter: Float(3),
 }))
 
+const beaconGuide = {
+  AmmoClass: 'TargetMarkerBullet01',
+  AmmoHitSe: Ptr([
+    Int(0),
+    Str('weapon_Engineer_LM_set'),
+    Float(0.7),
+    Float(1),
+    Float(1),
+    Float(35),
+  ]),
+  AmmoModel: Str('app:/WEAPON/bullet_marker.rab'),
+  AmmoGravityFactor: 1,
+  resource: (v, node) => {
+    node.type = 'ptr'
+    if(!v) {
+      node.value = []
+      v = node.value
+    }
+    v.push(Str('app:/WEAPON/bullet_marker.rab'))
+    return v
+  },
+}
+
+for(let i = 0; i < 3; i++) {
+  const life = 400
+  const speed = 1 + i * 0.25
+  const rangeMod = [0.5, 0.6, 1][i]
+  const speedMod = [0.3, 0.4, 1][i]
+  const range = speed * life
+
+  add({
+    id: `FspSphereGuide${i + 1}`,
+    after: [
+      'FspLaserGuide3',
+      'FspSphereGuide1',
+      'FspSphereGuide2',
+    ][i],
+    soldier: 'fencer',
+    category: 'special',
+    base: 'Weapon474',
+    name: `Personal Guide Beacon` + (i ? ` M${i + 1}` : ''),
+    level: [4, 24, 82][i],
+    stats: [
+      ['Range', `${range}m`],
+      ['Lock-On Distance', `${rangeMod}x`],
+      ['Lock-On Speed', `${speedMod}x`],
+      ['Reload', '8sec'],
+    ],
+    description: [
+      '$SEMISTATS$A shoulder-mounted guide beacon launcher Fencers can use to guide their own missiles.',
+      'As the size of the beacons had to be reduced, they\'re not as strong as Air Raider\'s beacons.',
+      blurbs.jump,
+    ].join('\n\n'),
+  }, Object.assign({}, beaconGuide, {
+    AmmoAlive: life,
+    AmmoColor: Vector([0.0, 1.0, 0.0, 1.0]),
+    AmmoSpeed: speed,
+    AmmoSize: 0.05,
+    AmmoCount: 3,
+    Ammo_CustomParameter: Vector([speedMod, rangeMod, 1]),
+    FireAccuracy: 0.12 - i * 0.03,
+    MuzzleFlash: '',
+    MuzzleFlash_CustomParameter: Ptr(null),
+    Range: range,
+    ReloadTime: 8 * seconds,
+    SecondaryFire_Type: 4
+  }))
+}
 
 function json(obj) {
   return JSON.stringify(obj, null, 2)
