@@ -4,25 +4,15 @@ const fs = require('fs')
 const table = require('./originals/_WEAPONTABLE')
 const textTable = require('./originals/_WEAPONTEXT')
 const blurbs = require('../helpers/blurbs')
+const getId = require('../helpers/get-id')
+const getNode = require('../helpers/get-node')
+const patch = require('../helpers/patch')
+
 const rawSgos = new Map()
 const seconds = 60
 const minutes = seconds * 60
 
 const modded = new Set()
-
-function getId(meta) {
-  return meta.value[0].value
-}
-
-function getNode(template, name) {
-  return template.variables.find(n => n.name === name)
-}
-
-function patch(template, name, value) {
-  const node = getNode(template, name)
-  const v = typeof value === 'function' ? value(node.value, node) : value
-  node.value = v
-}
 
 function replaceText(textNode, pattern, replacement) {
   textNode.value[3].value = textNode.value[3].value.replace(pattern, replacement)
@@ -498,6 +488,13 @@ rebalance({category: 31, name: /Attack Whale/}, (template, i, meta, text) => {
       `Reload: ${(reload / seconds).toFixed(1)}sec`
     )
     return reload
+  })
+
+  // Add zoom.
+  patch(template, 'SecondaryFire_Type', 1)
+  patch(template, 'SecondaryFire_Parameter', (v, node) => {
+    node.type = 'float'
+    return 4
   })
 })
 
