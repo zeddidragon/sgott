@@ -349,6 +349,79 @@ for(let i = 0; i < 3; i++) {
   }))
 }
 
+// Trap Mortar
+for(let i = 0; i < 3; i++) {
+  const fuse = i + 2
+  const ammo = [10, 3, 5][i]
+  const radius = [15, 30, 40][i]
+  const damage = [1200, 4500, 9000][i]
+  const factor = i + 1
+  add({
+    id: `FspTrapMortar${factor}`,
+    after: [
+      'FspLaserGuide3',
+      'FspTrapMortar1',
+      'FspTrapMortar2',
+    ][i],
+    soldier: 'fencer',
+    category: 'special',
+    base: 'Weapon457',
+    name: `Trap Mortar B${[15, 24, 60][i]}`,
+    level: [33, 46, 66][i],
+    stats: [
+      ['Capacity', `${ammo}`],
+      ['Damage', `${damage}`],
+      ['Blast Radius', `${radius}m`],
+      ['Detonation Time', `${fuse}sec`],
+      ['Reload Time', `10sec`],
+    ],
+    description: [
+      '$SEMISTATS$A device that leaves powerful, timed bombs at the user\'s position. Designed to help the user escape giant from insects.',
+      'After planting, it\'s important to leave the blast area as fast as possible.',
+      blurbs.dash,
+    ].join('\n\n'),
+  }, {
+    AmmoDamage: damage,
+    AmmoClass: 'GrenadeBullet01',
+    AmmoModel: Str(grenade),
+    AmmoAlive: fuse * seconds,
+    AmmoSpeed: 0,
+    AmmoCount: ammo,
+    AmmoExplosion: radius,
+    AmmoColor: Vector([
+      0.1 * 3 * factor,
+      0.6 * 2 * factor,
+      0.3 * factor,
+      1.0,
+    ]),
+    Ammo_CustomParameter: Ptr([
+      Int(1), // Sticky Grenade
+      Float(-0.004),
+      Float(1 + i),
+      Float(0.2),
+      Float(0.3), // Smoke trail speed
+      Int(60), // Smoke Lifetime
+    ]),
+    AmmoHitImpulseAdjust: 3 + i * 2,
+    AmmoGravityFactor: 2,
+    Range: 1000,
+    ReloadTime: 8 * seconds,
+    FireAccuracy: 0.2,
+    FireInterval: 45,
+    FireVector: Vector([0, -1, 0]),
+    SecondaryFire_Type: 5,
+    resource: (v, node) => {
+      node.type = 'ptr'
+      if(!v) {
+        node.value = []
+        v = node.value
+      }
+      v.push(Str(grenade))
+      return v
+    },
+  })
+}
+
 function json(obj) {
   return JSON.stringify(obj, null, 2)
 }
