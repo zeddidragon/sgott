@@ -440,16 +440,6 @@ rebalance({category: 25, name: /High Altitude Impact/}, (template, i, meta, text
   replaceText(text, /$/, blurbs.jump)
 })
 
-rebalance({category: 25, name: /Phoenix/}, (template, i, meta, text) => {
-  // Make Phoenix independent.
-  patch(template, 'LockonTargetType', 0)
-  replaceText(text, ' [Only with Guide Kit]', '')
-  replaceText(text,
-    "Launches enormous laser-guided missiles which boast extreme destructive power, but the guidance component necessitates that this weapon not be used on its own: it must be paired with an Air Raider's Laser Guide Kit to establish a viable target lock.",
-    'Launches enormous missiles which boast extreme destructive power.'
-  )
-})
-
 rebalance({category: 32, name: /Charger|Streamer|Post|Territory|Zone/}, (template, i, meta, text) => {
   // No reload animation occurs with type 1.
   patch(template, 'ReloadType', 1)

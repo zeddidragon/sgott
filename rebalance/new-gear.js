@@ -117,11 +117,14 @@ function add(meta, changes) {
   weapon.meta.level = meta.level
   weapon.meta.category = category
   weapon.meta.description = meta.description
+  if(meta.stats) weapon.meta.stats = meta.stats
   if(meta.before) weapon.meta.before = meta.before
   else if(meta.after) weapon.meta.after = meta.after
 }
 
 const grenade = 'app:/WEAPON/bullet_grenade.rab'
+
+// EX (Explosive assault rifles)
 for(let i = 0; i < 4; i++) {
   const base = [
     'AssultRifle_18K',
@@ -186,6 +189,93 @@ for(let i = 0; i < 4; i++) {
     },
   })
 }
+
+
+// Personal Guide Kit (Guide kits for Fencer)
+const laserGuide = {
+  AmmoAlive: 1,
+  AmmoCount: 1,
+  AmmoClass: '',
+  AmmoDamage: 0,
+  AmmoModel: Int(0),
+  FireAccuracy: 0,
+  FireBurstCount: 1,
+  FireInterval: 0,
+  FireSe: Ptr([
+    Int(1),
+    Str('weapon_Engineer_LM_laserMark'),
+    Float(0.7),
+    Float(1),
+    Float(1),
+    Float(25),
+  ]),
+  ReloadTime: 0,
+  SecondaryFire_Type: 1,
+  SecondaryFire_Parameter: Float(3),
+  xgs_scene_object_class: 'Weapon_LaserMarker',
+}
+
+for(let i = 0; i < 3; i++) {
+  const range = 300 + 50 * i
+  const distance = [0.2, 0.5, 1][i]
+  const speed = [0.2, 0.5, 0.8][i]
+
+  add({
+    id: `FspLaserGuide${i + 1}`,
+    after: [
+      'Weapon507',
+      'FspLaserGuide1',
+      'FspLaserGuide2',
+    ][i],
+    soldier: 'fencer',
+    category: 'special',
+    base: 'Weapon431',
+    name: `Personal Guide Kit` + (i ? ` M${i + 1}` : ''),
+    level: [20, 60, 76][i],
+    stats: [
+      ['Laser Range', `${range}m`],
+      ['Lock-On Distance', `${distance}x`],
+      ['Lock-On Speed', `${speed}x`],
+      ['Zoom', '3x'],
+    ],
+    description: [
+      '$SEMISTATS$A shoulder-mounted laser guide Fencers can use to guide their own missiles.',
+      'Being shoulder-mounted, the laser is not as stable as the dedicated pointers used by Air Raiders, as such the targets will be more difficult than usual to lock on for missiles.',
+    ].join('\n\n'),
+  }, Object.assign({}, laserGuide, {
+    AmmoColor: Vector([0.25, 1.0, 0.25, 1.0]),
+    AmmoSpeed: range,
+    Ammo_CustomParameter: Vector([speed, distance]),
+    Range: range,
+    SecondaryFire_Parameter: Float(3),
+  }))
+}
+
+add({
+  id: 'FspLaserGuideA',
+  after: 'FspLaserGuide1',
+  soldier: 'fencer',
+  category: 'special',
+  base: 'Weapon431',
+  name: 'Focus Pointer',
+  level: 28,
+  stats: [
+    ['Laser Range', '160m'],
+    ['Lock-On Distance', '0.5x'],
+    ['Lock-On Speed', '2x'],
+  ],
+  description: [
+    '$SEMISTATS$A shoulder-mounted laser guide Fencers can use to guide their own missiles.',
+    'The problem of instability has been solved by using multiple lasers and triangulating the positions between them, but the range suffers, and the missile launcher must be used from very close by.',
+  ].join('\n\n'),
+}, Object.assign({}, laserGuide, {
+  AmmoColor: Vector([1.0, 0.25, 0.25, 1.0]),
+  AmmoSpeed: 160,
+  Ammo_CustomParameter: Vector([2, 0.5]),
+  Range: 160,
+  SecondaryFire_Parameter: Float(3),
+}))
+
 
 function json(obj) {
   return JSON.stringify(obj, null, 2)
