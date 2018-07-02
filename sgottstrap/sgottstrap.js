@@ -127,7 +127,7 @@ function patchStep(values, [step, ...steps], replacement, opts) {
     })
     var modded = false
     for(const node of nodes) {
-      modded = modded || patchNode(node, steps, replacement, opts)
+      if(patchNode(node, steps, replacement, opts) && !modded) modded = true
     }
     return modded
   } else {

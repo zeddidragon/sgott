@@ -422,6 +422,39 @@ for(let i = 0; i < 3; i++) {
   })
 }
 
+// Precision Gatling
+for(let i = 0; i < 4; i++) {
+  const base = [
+    'hGatling01',
+    'Weapon432',
+    'Weapon440',
+    'Weapon451',
+  ][i]
+  add({
+    id: `FatPrecGat${i + 1}`,
+    after: base,
+    soldier: 'fencer',
+    category: 'auto',
+    base: base,
+    name: `SG${[7, 9, 10, 'Z'][i]} Precision Gatling`,
+    level: [1, 28, 54, 81][i],
+    description: '$AUTOSTATS$A steadier Hand Gatling for precision use. The shots are highy accurate and the gatling completely absorbs recoil.',
+  }, {
+    AmmoDamage: v => v * 1.2,
+    AmmoAlive: v => Math.floor(v * 0.7),
+    AmmoSpeed: v => v * 1.6,
+    AmmoCount: v => Math.floor(v * 0.4),
+    FireAccuracy: v => v * 0.2,
+    FireInterval: v => Math.floor(v * 2.4),
+    FireRecoil: 0,
+    custom_parameter: v => {
+      v[4].value[0].value = 0
+      v[7].value = Math.floor(v[7].value * 0.5)
+      return v
+    },
+  })
+}
+
 function json(obj) {
   return JSON.stringify(obj, null, 2)
 }

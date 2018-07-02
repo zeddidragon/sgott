@@ -199,6 +199,16 @@ const ObjectClasses = {
     'DamageReduction',
     'HammerChargeParameters',
   ],
+  Weapon_Gatling: [
+    'RecoilAnimation',
+    null,
+    null,
+    null,
+    'RecoilVector',
+    null,
+    null,
+    'WindupTime',
+  ],
 }
 
 const names = {
