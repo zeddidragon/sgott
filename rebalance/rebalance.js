@@ -22,6 +22,7 @@ function rebalance(query, cb) {
   table.variables[0]
     .value
     .filter(({value: node}, i) => {
+      if(query.id && query.id !== node[0].value) return false
       if((query.category != null) && query.category !== node[2].value) {
         return false
       }
@@ -503,6 +504,17 @@ rebalance({category: 31, name: /Rule of God/}, (template, i, meta, text) => {
 // Make remote explosives able to detonate without forcing a reload.
 rebalance({category: 33}, assign('SecondaryFire_Type', 2))
 rebalance({category: 34, name: /Bomb|Beetle/}, assign('SecondaryFire_Type', 2))
+rebalance({category: 34, id: 'Weapon656'}, (template, i, meta, text) => {
+  patch(template, 'custom_parameter', v => {
+    v[0].value = 'throw_recoil2'
+    v[2].value = 0
+    return v
+  })
+  patch(template, 'Ammo_CustomParameter', v => {
+    v[5].value = 0.05
+    return v
+  })
+})
 
 rebalance({category: 35, name: /Bunker|Shelter|Prison|Wall|Border|^Decoy/}, (template, i, meta, text) => {
   // No reload animation occurs with type 1.
