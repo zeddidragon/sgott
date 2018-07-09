@@ -590,6 +590,28 @@ rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
   })
 })
 
+rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
+  // Add full rotation to grape's cannon
+  const path = './SgottMods/weapon/vehicle401_striker'
+  const vehicleTemplate = require('./originals/VEHICLE401_STRIKER.json')
+  const cannonControl = getNode(vehicleTemplate, 'striker_cannon_ctrl')
+  cannonControl.value[2].value = 60
+  rawSgos.set(path.split(/\//).pop(), vehicleTemplate)
+
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleConfig = summonParameters.value[2]
+    vehicleConfig.value = path + '.SGO'
+    return values
+  })
+
+  patch(template, 'resource', values => {
+    const original = values.find(node => node.value === 'app:/Object/Vehicle401_Striker.sgo')
+    if(!original) throw new Error('Original resource node not found!')
+    original.value = path + '.SGO'
+  })
+})
+
 rebalance({category: 39}, (template, i, meta, text) => {
   // Increase durability of all power suits
   patch(template, 'Ammo_CustomParameter', values => {
