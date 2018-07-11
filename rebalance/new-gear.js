@@ -194,6 +194,50 @@ for(let i = 0; i < 4; i++) {
   })
 }
 
+for(let i = 0; i < 2; i++) {
+  // CRUMBLE-J and UMA-J
+  add({
+    id: [
+      'RarGrCrumblej',
+      `RarGrUmaj`,
+    ][i],
+    before: [
+      'Weapon146',
+      'Weapon149',
+    ][i],
+    soldier: 'ranger',
+    category: 'grenade',
+    base: [
+      'Weapon143',
+      'Weapon150',
+    ][i],
+    name: [
+      'CRUMBLE-J Twin Grenade Launcher',
+      'UMA-J Grenade Launcher',
+    ][i],
+    level: [63, 78][i],
+    description: [
+      '$AUTOSTATS$For the sake of the user\s safety, CRUMBLE has been fitted with a timer. The power and size of the explosions have been dramatically increased.',
+      '$AUTOSTATS$The ultimate in timed grenade launchers features maximal destructive power.',
+    ][i],
+  }, {
+    AmmoDamage: v => v * 1.2,
+    AmmoAlive: 240,
+    AmmoSpeed: v => v * 0.5,
+    AmmoCount: v => v + i,
+    AmmoExplosion: [20, 30][i],
+    Ammo_CustomParameter: Ptr([
+      Int(1), // Bouncy Grenade
+      Float(-0.004),
+      Float(1),
+      Float(0.13), // Bounce dampening
+      Float(0.08), // Smoke trail speed
+      Int(240), // Smoke Lifetime
+    ]),
+    AmmoHitImpulseAdjust: v => v * 1.5,
+    ReloadTime: v => v * 0.675,
+  })
+}
 
 // Personal Guide Kit (Guide kits for Fencer)
 const laserGuide = {

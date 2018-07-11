@@ -204,6 +204,29 @@ rebalance({category: 5, name: /Stampede/}, (template, i, meta, text) => {
   }])
 })
 
+rebalance({category: 5, name: /UMA[XZ]/}, (template, i, meta, text) => {
+  // Increase clip capacity by 1
+  patch(template, 'AmmoCount', v => {
+    const cap = v + 1
+    replaceText(text,
+      /Capacity: \d/,
+      `Capacity: ${cap}`
+    )
+    return cap
+  })
+
+  if(!i) return
+  // Increase damage by 500 for UMAZ
+  patch(template, 'AmmoDamage', v => {
+    const damage = v + 500
+    replaceText(text,
+      /Damage: \d+/,
+      `Damage: ${(damage + '')}`
+    )
+    return damage
+  })
+})
+
 rebalance({category: 6, name: 'PX50 Bound Shot'}, (template, i, meta, text) => {
   // Remove recoil animation.
   patch(template, 'custom_parameter', value => {
