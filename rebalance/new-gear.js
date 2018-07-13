@@ -571,6 +571,38 @@ for(let i = 0; i < 4; i++) {
   })
 }
 
+// Personal Defense Shotgun for Air Raider
+for(let i = 0; i < 4; i++) {
+  add({
+    id: `AspShotgun${i + 1}`,
+    before: 'Weaponn674',
+    soldier: 'raider',
+    category: 'special',
+    base: 'Weapon032',
+    name: [
+      'Buckdeer 12Y',
+      'Buckdeer 15Y',
+      'Buckdeer 18Y',
+      'Buckdeer XY',
+    ][i],
+    level: [2, 26, 50, 90][i],
+    description: '$AUTOSTATS$A personal self-defense shotgun that\'s easy to handle for an untrained soldier. Handy for escaping the clutches of giant insects or finishing off what remains after the air raids have scorched the battlefield.',
+  }, {
+    AmmoAlive: Math.floor(10 - i * 1.5),
+    AmmoDamage: [20, 40, 100, 200][i],
+    AmmoCount: 2,
+    AmmoSpeed: 3 * (i + 1),
+    BaseAnimation: 'assault',
+    ChangeAnimation: 'assault_change1',
+    FireAccuracy: 0.3,
+    FireCount: [20, 26, 32, 48][i],
+    FireInterval: 30,
+    FireSpreadType: 0,
+    ReloadAnimation: 'assault_reload1',
+    ReloadTime: 210,
+  })
+}
+
 function json(obj) {
   return JSON.stringify(obj, null, 2)
 }
