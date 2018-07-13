@@ -596,10 +596,10 @@ for(let i = 0; i < 4; i++) {
     ChangeAnimation: 'assault_change1',
     FireAccuracy: 0.3,
     FireCount: [20, 26, 32, 48][i],
-    FireInterval: 30,
+    FireInterval: 45,
     FireSpreadType: 0,
     ReloadAnimation: 'assault_reload1',
-    ReloadTime: 210,
+    ReloadTime: 240,
   })
 }
 
