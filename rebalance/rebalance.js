@@ -476,6 +476,18 @@ rebalance({category: 32, name: /Charger|Streamer|Post|Territory|Zone/}, (templat
   )
 })
 
+rebalance({category: 32, name: /Post|Territory|Zone/}, (template, i, meta, text) => {
+  // Reduce reload time by 50% on all Guard and Power posts.
+  patch(template, 'ReloadTime', v => {
+    const reload = Math.floor(v * 0.5)
+    replaceText(text,
+      /Reload: .*sec/,
+      `Reload: ${(reload / seconds).toFixed(1)}sec`
+    )
+    return reload
+  })
+})
+
 rebalance({category: 31, name: /Cannon.*Artillery/}, (template, i, meta, text) => {
   // Start fully reloaded.
   patch(template, 'ReloadInit', 1)
