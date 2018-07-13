@@ -194,12 +194,12 @@ for(let i = 0; i < 4; i++) {
   })
 }
 
+// CRUMBLE-J and UMA-J
 for(let i = 0; i < 2; i++) {
-  // CRUMBLE-J and UMA-J
   add({
     id: [
-      'RarGrCrumblej',
-      `RarGrUmaj`,
+      'RgrCrumblej',
+      `RgrUmaj`,
     ][i],
     before: [
       'Weapon146',
@@ -236,6 +236,78 @@ for(let i = 0; i < 2; i++) {
     ]),
     AmmoHitImpulseAdjust: v => v * 1.5,
     ReloadTime: v => v * 0.675,
+  })
+}
+
+// C-Bombs
+for(let i = 0; i < 4; i++) {
+  const num = [628, 630, 633, 637][i]
+  const id = `Weapon${num}`
+  add({
+    id: `RspBomb${i + 1}`,
+    before: 'pRapier01',
+    soldier: 'ranger',
+    category: 'special',
+    base: id,
+    name: [
+      'C24 Bomb',
+      'C25 Special Bomb',
+      'C30 Bomb',
+      'C70 Bomb',
+    ][i],
+    level: [16, 33, 46, 66][i],
+    description: [
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 5\n            Damage: 1000\n        Blast Area: Radius 20m\n            Reload: 10.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA bomb designed for very specific tasks. Its blast radius is wide and its power output intense, but due to its weight, it cannot be thrown -- it must be deliberately set in place. Best laid as a trap for unsuspecting foes. Press the attack button to set it and the Zoom/Activate button to detonate it. To defuse the bomb without detonating, simply press the reload button.",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 20\n            Damage: 1500\n        Blast Area: Radius 15m\n            Reload: 15.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA high-capacity bomb designed for very specific tasks. Has many uses and can be set in large quantities, allowing for untold destructive potential in the hands of an expert. Press the attack button to set it and the Zoom/Activate button to detonate it. To defuse the bomb without detonating, simply press the reload button.",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 5\n            Damage: 6000\n        Blast Area: Radius 30m\n            Reload: 10.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA high-performance bomb with a very large blast area, so you need to be careful that you're not caught in the blast yourself. Its destructive power is almost frightening. Press the attack button to set it and the Zoom/Activate button to detonate it. To defuse the bomb without detonating, simply press the reload button.",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 10\n            Damage: 12000\n        Blast Area: Radius 40m\n            Reload: 15.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nThe most powerful bomb available. Rumored to have been developed with Ravager technology, but the truth of the matter is unknown. Its incredible power and blast radius make it rather dangerous to use, so careful discretion is highly recommended. Press the attack button to set it and the Zoom/Activate button to detonate it. To defuse the bomb without detonating, simply press the reload button.",
+    ][i],
+  }, {
+    SecondaryFire_Type: 2,
+  })
+}
+
+// Y-Mines
+for(let i = 0; i < 9; i++) {
+  const num = 642 + i
+  const id = `Weapon${num}`
+  add({
+    id: `RspClaymore${i + 1}`,
+    before: 'pRapier01',
+    soldier: 'ranger',
+    category: 'special',
+    base: id,
+    name: [
+      'Y10 Impulse',
+      'Y10 Anti-Aircraft Impulse',
+      'Y10 Wide Impulse',
+      'Y11 Impulse',
+      'Y11-Anti-Aircraft Impulse',
+      'Y20 Impulse',
+      'YDX Anti-Aircraft Impulse',
+      'YDX Strike Impulse',
+      'Y21 Impulse',
+    ][i],
+    level: [7,  13, 21,  30, 44, 48, 63, 71, 76][i],
+    description: [
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 12\n            Damage: 15×40\n             Range: 75m              Search Distance: 45m\n            Reload: 13.3sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nSet by pressing the fire button, then detonate with the Zoom/Activate button. Boasts better performance compared to the Y9, as well as improved capacity. Will also detonate automatically if an enemy enters its effective range. Spews out a large number of ball bearings, devastating whosoever they may strike. Can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 9\n            Damage: 22×20\n             Range: 300m             Search Distance: 100m\n            Reload: 10.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA multi-directional impulse landmine customized for use against aircraft. Both the ejection tube for the ball bearings and the enemy detection sensor point diagonally upward in order to target and attack airborne foes. Will also detonate automatically if an enemy enters its effective range. Spews out a large number of ball bearings, devastating whosoever they may strike. Can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 8\n            Damage: 17×40\n             Range: 60m              Search Distance: 45m\n            Reload: 9.3sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nAn upgraded Y10 Impulse mine. Scatters ball bearings over a wider horizontal area, affecting a greater range of enemies. Will also detonate automatically if an enemy enters its effective range. The large number of ball bearings it ejects will devastate whosoever they strike. Can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 15\n            Damage: 20×40\n             Range: 80m              Search Distance: 60m\n            Reload: 15.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nAn upgraded Y10 Impulse mine. Boasts improved firepower and allows for more mines to be set at once. Will also detonate automatically if an enemy enters its effective range. The large number of ball bearings it ejects will devastate whosoever they strike. Can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 15\n            Damage: 40×40\n             Range: 400m             Search Distance: 120m\n            Reload: 10.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA multi-directional impulse landmine customized for use against aircraft. Both the ejection tube for the ball bearings and the enemy detection sensor point diagonally upward in order to target and attack airborne foes. The sensor detection range is greater, making it much better at detecting flying bogeys. Will detonate automatically if an enemy enters its effective range. Spews out a large number of ball bearings, devastating whosoever they may strike. Can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 20\n            Damage: 20×40\n             Range: 90m              Search Distance: 60m\n            Reload: 15.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nAn upgraded Y11 Impulse model. The number of mines that can be set before detonation is higher than ever, allowing for broader applications in battle. Will detonate automatically if an enemy enters its effective range. The large number of ball bearings it ejects will devastate whosoever they strike. Can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 10\n            Damage: 120×40\n             Range: 500m             Search Distance: 150m\n            Reload: 11.0sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nThe ultimate anti-aircraft Impulse mine, boasting a greatly improved sensor. Can now target enemies even when they're flying at high altitudes. Scatters large ball bearings which, despite being few in number, are known to cause massive damage. Will also detonate automatically if enemies enter their effective range. Can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 8\n            Damage: 80×40\n             Range: 600m             Search Distance: 100m\n            Reload: 9.3sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA highly upgraded directional landmine that spreads out enormous ball bearings. Despite being few in number, these are known to cause massive damage, and they also discharge forward in a focused, deadly beam. Though the attack area is small, the damage inflicted by this weapon is extraordinary. The scope of its sensor data is also much greater, allowing for accurate close-range and long-range telemetry alike. Will detonate automatically if an enemy enters its effective range, and can be reloaded by pressing the reload button (complicated, I know!).",
+      "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>            Number: 20\n            Damage: 125×40\n             Range: 120m             Search Distance: 80m\n            Reload: 13.3sec\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nThe final form of the Impulse series, with its firepower pushed to the absolute limit and a much greater area of effect. Will detonate automatically if an enemy enters its effective range, and scatter a large number of ball bearings far and wide. Can be reloaded by pressing the reload button (complicated, I know!).",
+    ][i],
+  }, {
+    BaseAnimation: 'throw',
+    ChangeAnimation: 'throw_change1',
+    ReloadAnimation: 'throw_reload1',
+    custom_parameter: v => {
+      v[0].value = 'throw_recoil2'
+      return v
+    },
   })
 }
 
