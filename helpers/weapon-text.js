@@ -108,6 +108,8 @@ function weaponText(template, text) {
       .replace('$SEMISTATS$', semiStats())
       .replace('$SMOKEGRENADE$', blurbs.smokeGrenade)
       .replace('$CREDITS$', blurbs.credits)
+      .replace('$DASH$', blurbs.dash)
+      .replace('$JUMP$', blurbs.jump)
 }
 
 module.exports = weaponText

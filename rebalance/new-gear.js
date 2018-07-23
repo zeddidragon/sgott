@@ -419,6 +419,7 @@ const beaconGuide = {
   },
 }
 
+// Personal Guide Beacon (Fencer)
 for(let i = 0; i < 3; i++) {
   const life = 400
   const speed = 1 + i * 0.25
@@ -568,6 +569,43 @@ for(let i = 0; i < 4; i++) {
       v[7].value = Math.floor(v[7].value * 0.5)
       return v
     },
+  })
+}
+
+// Spritefall Pulse
+for(let i = 0; i < 3; i++) {
+  const base = 'Weapon' + [586, 589, 591][i]
+  add({
+    id: `AraSpritefallBeta${i + 1}`,
+    after: base,
+    soldier: 'raider',
+    category: 'raid',
+    base: base,
+    name: [
+      'Spritefall Pulse',
+      'Spritefall Blink',
+      'Spritefall Zero',
+    ][i],
+    level: [30, 66, 78][i],
+    description: '$AUTOSTATS$A variant of Spritefall that calls a single, highly concentrated laser burst.' + [
+      '',
+      'With upgrades in the EDF network system, the satellite is able to respond faster',
+      'Through unknown means, the laser travels faster than light itself.',
+    ][i],
+  }, {
+    AmmoDamage: [2000, 4000, 12000][i],
+    AmmoExplosion: 0,
+    AmmoSize: [12, 20, 20][i],
+    Ammo_CustomParameter: v => {
+      v[0].value = 50 - 30 * i // Summon delay
+      v[4].value[2].value = 1 // Laser count
+      return v
+    },
+    custom_parameter: v => {
+      v[0].value = 30 // Call-in time
+      return v
+    },
+    ReloadTime: 100,
   })
 }
 
