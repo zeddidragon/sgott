@@ -593,7 +593,7 @@ for(let i = 0; i < 3; i++) {
       'Through unknown means, the laser travels faster than light itself.',
     ][i],
   }, {
-    AmmoDamage: [2000, 4000, 12000][i],
+    AmmoDamage: [2000, 4000, 8000][i],
     AmmoExplosion: 0,
     AmmoSize: [12, 20, 20][i],
     Ammo_CustomParameter: v => {

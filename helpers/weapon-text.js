@@ -28,8 +28,17 @@ function weaponText(template, text) {
     const entries = [
       ['Capacity', findVar('AmmoCount').value],
       ...damage,
-      ['Reload Time', (+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'],
     ].filter(a => a)
+    const reloadType = findVar('ReloadType').value
+    if(reloadType) {
+      entries.push([
+        'Reload', (+findVar('ReloadTime').value) + 'pt'
+      ])
+    } else {
+      entries.push([
+        'Reload Time', (+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'
+      ])
+    }
     if(zoom) entries.push(['Zoom', `${+zoom}x`])
     return tabulate(entries) +
       '<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\n'

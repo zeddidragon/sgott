@@ -122,58 +122,42 @@ rebalance({category: 2, name: 'Lysander Z'}, (template, i, meta, text) => {
   replaceText(text, 'ROF: 0.3/sec', 'ROF: 0.5/sec')
 })
 
-rebalance({category: 4}, (template, i, meta, text) => {
+rebalance({category: 4, name: /^(?!Prominence).*$/}, (template, i, meta, text) => {
   // Increase damage because missiles are just too weak.
   patch(template, 'AmmoDamage', v => {
-    const damage = Math.ceil(v * 0.15) * 10
-    replaceText(text,
-      /Damage: \d+ /,
-      `Damage: ${(damage + '').padEnd(4)}`
-    )
-    return damage
-  })
-})
-
-rebalance({category: 4, name: /Prominence/}, (template, i, meta, text) => {
-  if(!i) return false // Change won't apply to Prominence M1.
-
-  // Give some lockon leniency:
-  patch(template, 'LockonFailedTime', 30)
-
-  // Split damage and lockons over multiple missiles.
-  const ammo = i + 1
-  patch(template, 'AmmoCount', v => {
-    replaceText(text,
-      /Capacity: 1/,
-      `Capacity: ${ammo}`
-    )
-
-    replaceText(text,
-      /Lock-on: 1000ｍ 1 target/,
-      `Lock-on: 1000ｍ ${ammo} targets`
-    )
-    return ammo
-  })
-  patch(template, 'FireBurstCount', ammo)
-
-  patch(template, 'AmmoDamage', v => {
-    const damage = Math.ceil(v / ammo)
+    const damage = Math.ceil(v * 0.12) * 10
     replaceText(text,
       /Damage: \d+/,
       `Damage: ${damage}`
     )
     return damage
   })
+})
 
+rebalance({category: 4, name: /Emerald/}, (template, i, meta, text) => {
+  // Increase ammo count for Emeralds
+  patch(template, 'AmmoCount', v => {
+    const count = Math.ceil(v * 1.5)
+    replaceText(text,
+      /Capacity: \d+ /,
+      `Capacity: ${count}`
+    )
+    replaceText(text,
+      /\d targets/,
+      `${count} targets`
+    )
+    return count
+    patch(template, 'FireBurstCount', count)
+  })
+})
+
+rebalance({category: 4, name: /Prominence/}, (template, i, meta, text) => {
   patch(template, 'LockonTime', v => {
-    const lockon = Math.ceil(v / ammo)
+    const lockon = i * 40  + 120
     replaceText(text,
       /Lock-on Time: .*sec/,
       `Lock-on Time: ${(lockon / seconds).toFixed(1)}sec`
     )
-
-    // Hold the lock-on for more than enough to make all lockons.
-    patch(template, 'LockonHoldTime', lockon * ammo * 2)
 
     return lockon
   })
