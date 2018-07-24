@@ -641,6 +641,37 @@ for(let i = 0; i < 4; i++) {
   })
 }
 
+add({
+  id: `AraWarHammer1`,
+  before: 'Weapon580',
+  soldier: 'raider',
+  category: 'raid',
+  base: 'Weapon582',
+  name: 'Tungsten Tempest',
+  level: 51,
+  description: '$AUTOSTATS$This experimental kinetic orbital bombardment cruise missile was developed to fight giant robots. With speed accumulated from traveling from space combined with raw mass, it can obliterate anything you can manage to steer it into.',
+}, {
+  AmmoDamage: 80000,
+  AmmoExplosion: 4,
+  Ammo_CustomParameter: v => {
+    v[0].value = 240 // Summon  delay
+    v[4].value[1].value[1].value = 800 // Missile spawn height
+    v[4].value[5].value = 5 // Missile Speed
+    v[4].value[7].value = 50 // Missile Size
+    v[4].value[9].value = 0 // Explosive radius
+    // Looking for ways to make meaningfully faster
+    v[4].value[10].value /= 2
+    v[4].value[13].value[2].value /= 4
+    v[4].value[13].value[8].value /= 4
+    return v
+  },
+  ReloadTime: 2000,
+  custom_parameter: v => {
+    v[0].value = 30 // Summon time
+    return v
+  },
+})
+
 function json(obj) {
   return JSON.stringify(obj, null, 2)
 }
