@@ -146,8 +146,8 @@ rebalance({category: 4, name: /Emerald/}, (template, i, meta, text) => {
       /\d targets/,
       `${count} targets`
     )
-    return count
     patch(template, 'FireBurstCount', count)
+    return count
   })
 })
 
