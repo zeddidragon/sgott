@@ -9,7 +9,7 @@
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 300
+      "value": 120
     },
     {
       "type": "string",
@@ -48,7 +48,7 @@
         "PileBunkerBullet01",
         "PlasmaBullet01"
       ],
-      "value": "SolidBullet01"
+      "value": "MissileBullet02"
     },
     {
       "type": "ptr",
@@ -57,17 +57,17 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 2
+          "value": 0.8
         },
         {
           "type": "float",
           "name": "Green",
-          "value": 1.25
+          "value": 0
         },
         {
           "type": "float",
           "name": "Blue",
-          "value": 0.15000000596046448
+          "value": 2
         },
         {
           "type": "float",
@@ -79,12 +79,12 @@
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 5
+      "value": 200
     },
     {
       "type": "float",
       "name": "AmmoDamage",
-      "value": 10
+      "value": 20
     },
     {
       "type": "float",
@@ -94,7 +94,7 @@
     {
       "type": "float",
       "name": "AmmoGravityFactor",
-      "value": 2
+      "value": 0
     },
     {
       "type": "float",
@@ -109,7 +109,7 @@
     {
       "type": "float",
       "name": "AmmoHitSizeAdjust",
-      "value": 1
+      "value": 0
     },
     {
       "type": "int",
@@ -117,9 +117,9 @@
       "value": 0
     },
     {
-      "type": "int",
+      "type": "string",
       "name": "AmmoModel",
-      "value": 0
+      "value": "app:/WEAPON/bullet_missile.rab"
     },
     {
       "type": "float",
@@ -129,22 +129,294 @@
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 0.5
+      "value": 0.01
     },
     {
       "type": "float",
       "name": "AmmoSpeed",
-      "value": 1
+      "value": 3
     },
     {
       "type": "ptr",
       "name": "Ammo_CustomParameter",
       "value": [
-	  {
-		"type": "int",
-		"value": 1
-	  }
-	  ]
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 20
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": -0.05000000074505806
+            }
+          ]
+        },
+        {
+          "type": "float",
+          "value": 0.07999999821186066
+        },
+        {
+          "type": "float",
+          "value": 0.10000000149011612
+        },
+        {
+          "type": "float",
+          "value": 2
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": 0.9800000190734863
+            }
+          ]
+        },
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "ptr",
+          "name": "FireSe",
+          "value": null
+        },
+        {
+          "type": "ptr",
+          "value": null
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": 70
+            },
+            {
+              "type": "float",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "name": "SubMissiles",
+          "value": [
+            {
+              "type": "int",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "float",
+                  "value": 0
+                },
+                {
+                  "type": "float",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "float",
+                  "value": 0
+                },
+                {
+                  "type": "float",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "type": "int",
+              "value": 4
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "string",
+              "value": "HomingLaserBullet01"
+            },
+            {
+              "type": "float",
+              "value": 0.1
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 0.2
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "int",
+              "value": 1200
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "float",
+                  "value": 0.5
+                },
+                {
+                  "type": "float",
+                  "value": 0
+                },
+                {
+                  "type": "float",
+                  "value": 3
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+				  "type": "int",
+				  "value": 2
+				},
+				{
+				  "type": "int",
+				  "value": 0
+				},
+				{
+				  "type": "int",
+				  "value": 40
+				},
+				{
+				  "type": "float",
+				  "value": 0.6
+				},
+				{
+				  "type": "float",
+				  "value": 0.5
+				},
+				{
+				  "type": "float",
+				  "value": 3
+				},
+				{
+				  "type": "int",
+				  "value": 4
+				},
+				{
+				  "type": "int",
+				  "value": 0
+				},
+				{
+				  "type": "float",
+				  "value": 0
+				},
+				{
+				  "type": "ptr",
+				  "value": null
+				}
+              ]
+            },
+            {
+              "type": "int",
+              "value": "0"
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "int",
+              "value": 1
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "ptr",
+              "value": null
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "ptr",
@@ -159,12 +431,12 @@
     {
       "type": "string",
       "name": "BaseAnimation",
-      "value": "waist"
+      "value": "assault"
     },
     {
       "type": "string",
       "name": "ChangeAnimation",
-      "value": "waist_change1"
+      "value": "assault_change1"
     },
     {
       "type": "float",
@@ -194,12 +466,12 @@
     {
       "type": "int",
       "name": "FireCount",
-      "value": 10
+      "value": 3
     },
     {
       "type": "int",
       "name": "FireInterval",
-      "value": 90
+      "value": 5
     },
     {
       "type": "ptr",
@@ -209,7 +481,7 @@
     {
       "type": "float",
       "name": "FireRecoil",
-      "value": 0.30000001192092896
+      "value": 0.3499999940395355
     },
     {
       "type": "ptr",
@@ -222,15 +494,15 @@
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_Ranger_SG_buffaloG1"
+          "value": "weapon_Ranger_AF_AF20ST"
         },
         {
           "type": "float",
-          "value": 0.8999999761581421
+          "value": 0.6
         },
         {
           "type": "float",
-          "value": 1
+          "value": 4
         },
         {
           "type": "float",
@@ -268,11 +540,11 @@
       "value": [
         {
           "type": "float",
-          "value": 0.30000001192092896
+          "value": 0.4
         },
         {
           "type": "float",
-          "value": 0.30000001192092896
+          "value": 0.2
         }
       ]
     },
@@ -284,12 +556,12 @@
     {
       "type": "int",
       "name": "LockonHoldTime",
-      "value": 0
+      "value": 30
     },
     {
       "type": "float",
       "name": "LockonRange",
-      "value": 0
+      "value": 250
     },
     {
       "type": "int",
@@ -304,22 +576,22 @@
     {
       "type": "int",
       "name": "LockonType",
-      "value": 0
+      "value": 3
     },
     {
       "type": "int",
       "name": "Lockon_AutoTimeOut",
-      "value": 1
-    },
-    {
-      "type": "int",
-      "name": "Lockon_DistributionType",
       "value": 0
     },
     {
       "type": "int",
-      "name": "Lockon_FireEndToClear",
+      "name": "Lockon_DistributionType",
       "value": 1
+    },
+    {
+      "type": "int",
+      "name": "Lockon_FireEndToClear",
+      "value": 0
     },
     {
       "type": "ptr",
@@ -346,11 +618,11 @@
         },
         {
           "type": "float",
-          "value": 1
+          "value": 5
         },
         {
           "type": "float",
-          "value": 0.20000000298023224
+          "value": 0.3199999928474426
         },
         {
           "type": "float",
@@ -358,34 +630,34 @@
         },
         {
           "type": "int",
-          "value": 8
+          "value": 5
         },
         {
           "type": "float",
-          "value": 0.699999988079071
+          "value": 0.5
         },
         {
           "type": "float",
-          "value": 0.11999999731779099
+          "value": 0.12999999523162842
         },
         {
           "type": "int",
-          "value": 4
+          "value": 2
         },
         {
           "type": "ptr",
           "value": [
             {
               "type": "float",
-              "value": 1.2000000476837158
+              "value": 1
             },
             {
               "type": "float",
-              "value": 1.2000000476837158
+              "value": 0.4
             },
             {
               "type": "float",
-              "value": 1.2000000476837158
+              "value": 3
             },
             {
               "type": "float",
@@ -402,12 +674,12 @@
     {
       "type": "float",
       "name": "Range",
-      "value": 130
+      "value": 250
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "waist_reload1"
+      "value": "assault_reload2"
     },
     {
       "type": "float",
@@ -417,7 +689,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 180
+      "value": 240
     },
     {
       "type": "int",
@@ -425,9 +697,9 @@
       "value": 0
     },
     {
-      "type": "ptr",
+      "type": "float",
       "name": "SecondaryFire_Parameter",
-      "value": null
+      "value": 0
     },
     {
       "type": "int",
@@ -449,43 +721,19 @@
       "value": [
         {
           "type": "string",
-          "value": "ShellCase_RB"
+          "value": ""
         },
         {
           "type": "string",
-          "value": "app:/Weapon/ShellCase401.rab"
+          "value": ""
         },
         {
-          "type": "ptr",
-          "value": [
-            {
-              "type": "int",
-              "value": 0
-            },
-            {
-              "type": "string",
-              "value": "weapon_Common_shell_remington"
-            },
-            {
-              "type": "float",
-              "value": 0.2800000011920929
-            },
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 5
-            }
-          ]
+          "type": "int",
+          "value": 0
         }
       ]
     },
+
     {
       "type": "ptr",
       "name": "ShellCaseDischargeSe",
@@ -505,11 +753,11 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/HUD/sight07.rab"
+              "value": "app:/HUD/Sight01.rab"
             },
             {
               "type": "string",
-              "value": "sight07.mdb"
+              "value": "Sight01.mdb"
             }
           ]
         },
@@ -526,7 +774,7 @@
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/buffalo.dds"
+      "value": "app:/weapon/icon/AF100.dds"
     },
     {
       "type": "ptr",
@@ -537,23 +785,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/s_shotgun_buffalo01.rab"
+              "value": "app:/Weapon/s_assault_AF100.rab"
             },
             {
               "type": "string",
-              "value": "s_shotgun_buffalo01.mdb"
+              "value": "s_assault_AF100.mdb"
             }
           ]
         },
         {
           "type": "string",
-          "value": "app:/Weapon/s_shotgun_buffalo01.cas"
+          "value": "app:/Weapon/s_assault_AF100.cas"
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwADAAYAdAAkAAAAnAAAADABAADUAwAAAAABADwAAAABAAEAXAAAAAIAAQB8AAAA1AMAAOADAAACAAAAQAEAAFABAAAwAQAAAAAAAJABAADaAwAA9AMAAAIAAABgAQAAUAEAAIABAAAAAAAAkAEAAD4EAADgAwAAAgAAAHABAABQAQAAMAEAAAAAAABsAgAAzAAAACwBAAAaBAAAAAAAAMwAAAAsAQAA6gMAAAQAAAAMAQAALAEAAP4DAAACAAAAKgQAADMzO0EAAAAAkAEAABQEAAAzMztBAAAAAAwCAAA0BAAAAABwQQAAAACQAQAAFAQAAAAAcEEAAAAAsAEAABQEAAAAAIBBAAAAAAwCAAAqBAAAzcyAQQAAAACQAQAAurq6ugAAAAAAAAAAAAAAAAAAgD8AAAAAuB6FPeF6ND8AAIA/zczMPM3MzDzNzMw8AACAP0a28z1YObQ8xSAwvQAAgD9vEoO8QmBlPQrXIz4AAIA/MZpOvZodlL5N7TrAAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAADQAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAAAz/yf/Iv8h/yb/Jv8h/yz/L/8Q/xH/kmOigwAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAQAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAADP/J/8i/yH/Jv8m/yH/LP8v/xD/Ef/dMPMw1zAVX08wAABTR08AAgEAAAQAAAAgAAAABAAAAOAAAAAAAAAAAAEAAAAAAAADAAAAMAAAAAAAAAADAAAASAAAAAAAAAADAAAAYAAAAAAAAAADAAAAeAAAAAIAAAAEAAAAAACAPwIAAAAEAAAAAACAPwIAAAAEAAAAAACAPwIAAAAEAAAAAACAvwIAAAAEAAAAAACAvwIAAAAEAAAAAACAvwIAAAAEAAAAAADAvwIAAAAEAAAAAAAAPwIAAAAEAAAAAAAAAAIAAAAEAAAAAACAvwIAAAAEAAAAAAAAAAIAAAAEAAAAAAAAACAAAAAAAAAAMgAAAAEAAABEAAAAAgAAAFYAAAADAAAAcgBvAHQAYQB0AGkAbwBuAF8AbQBhAHgAAAByAG8AdABhAHQAaQBvAG4AXwBtAGkAbgAAAHYAZQBsAG8AYwBpAHQAeQBfAG0AYQB4AAAAdgBlAGwAbwBjAGkAdAB5AF8AbQBpAG4AAAAwADEAAABJAEsAAABiAG8AZAB5AAAAZgBpAHIAZQAAAGcAcgBpAHAAAAByAGUAbABvAGEAZABfAGUAbgBkAAAAcwBlAAAAcwB0AGEAbgBkAGIAeQAAAMWIa1gAAGUAAACSY6KDAABuAGQArIWigwAAZQAAAA=="
+            "data": "TUFCAA8AAAADAAAAAwACAAYASAAkAAAAnAAAAMAAAACoAgAAAAABADwAAAABAAEAXAAAAAIAAQB8AAAAqAIAALQCAAACAAAA0AAAAOAAAADAAAAAAAAAACABAACuAgAAtAIAAAIAAAAAAQAA4AAAAPAAAAAAAAAAIAEAAOYCAAC0AgAAAgAAABABAADgAAAAwAAAAAAAAABAAQAAvAAAALwAAADWAgAAAAAAALwAAAC8AAAAvgIAAAAAAAC6urq6AAAAAAAAAAAAAAAAAACAPwAAAADNzMw9y6FFPwAAgD8K16M8CtejPArXozwAAIA/65vWPHjryb5kf0ZAAACAP2Q73z1vEoO6eekmPgAAgD/FIDC9XI/CPa5H4T0AAIA/U0dPAAIBAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAABTR08AAgEAAAQAAAAgAAAABAAAAOAAAAAAAAAAAAEAAAAAAAADAAAAMAAAAAAAAAADAAAASAAAAAAAAAADAAAAYAAAAAAAAAADAAAAeAAAAAIAAAAEAAAAAACAPwIAAAAEAAAAAACAPwIAAAAEAAAAAACAPwIAAAAEAAAAAACAvwIAAAAEAAAAAACAvwIAAAAEAAAAAACAvwIAAAAEAAAAAADAvwIAAAAEAAAAAAAAPwIAAAAEAAAAAAAAAAIAAAAEAAAAAACAvwIAAAAEAAAAAAAAAAIAAAAEAAAAAAAAACAAAAAAAAAAMgAAAAEAAABEAAAAAgAAAFYAAAADAAAAcgBvAHQAYQB0AGkAbwBuAF8AbQBhAHgAAAByAG8AdABhAHQAaQBvAG4AXwBtAGkAbgAAAHYAZQBsAG8AYwBpAHQAeQBfAG0AYQB4AAAAdgBlAGwAbwBjAGkAdAB5AF8AbQBpAG4AAAAwADEAAABJAEsAAABiAG8AZAB5AAAAcgBlAGwAbwBhAGQAXwBsAG8AbwBwAAAAcwB0AGEAbgBkAGIAeQAAAKyFooMAAAAAAAA="
           }
         }
       ]
@@ -564,7 +812,7 @@
       "value": [
         {
           "type": "string",
-          "value": "waist_recoil1"
+          "value": "assault_recoil1"
         },
         {
           "type": "int",
@@ -576,7 +824,7 @@
         },
         {
           "type": "float",
-          "value": 1
+          "value": 0
         }
       ]
     },
@@ -587,17 +835,17 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "Molten SG1"
+          "value": "SG-HFX N20"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "Molten SG1"
+          "value": "SG-HFX N20"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "Molten SG1"
+          "value": "SG-HFX N20"
         }
       ]
     },
@@ -624,16 +872,16 @@
     {
       "type": "string",
       "name": "xgs_scene_object_class",
-      "value": "Weapon_BasicShoot"
+      "value": "Weapon_HomingShoot"
     }
   ],
   "meta": {
-  "id": "RangerShrapnelgun",
-    "level": 0,
-    "category": 1,
+    "id": "RangerAssualtHoming5",
+    "level": 90,
+    "category": 0,
     "unlockState": 0,
     "dropRateModifier": 1,
-    "description": "$AUTOSTATS$A shotgun that uses a thermal charge to heat metal pellets. The near-liquid metal doesnt travel very quickly, and bounces uncontrollably, causing chaos to enemies ahead. Care must be taken to avoid self destruction.",
-    "after": "Weapon029"
+    "description": "$AUTOSTATS$The ultimate homing flechette gun. Each round is packed with high-energy nanotechnology that both guids the shot, and splits near a target to damage a wider area. This weapon is considered top secret, and only the most elite can be trusted with it.",
+    "after": "Weapon028"
 	}
 }
