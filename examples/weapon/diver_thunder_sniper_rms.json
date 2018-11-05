@@ -9,7 +9,7 @@
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 2
+      "value": 60
     },
     {
       "type": "string",
@@ -48,7 +48,7 @@
         "PileBunkerBullet01",
         "PlasmaBullet01"
       ],
-      "value": "LaserBullet01"
+      "value": "LightningBullet01"
     },
     {
       "type": "ptr",
@@ -57,34 +57,34 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 0.1
+          "value": 4
         },
         {
           "type": "float",
           "name": "Green",
-          "value": 0.5
+          "value": 2
         },
         {
           "type": "float",
           "name": "Blue",
-          "value": 0.5
+          "value": 2
         },
         {
           "type": "float",
           "name": "Alpha",
-          "value": 0.1
+          "value": 0.5
         }
       ]
     },
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 500
+      "value": 1
     },
     {
       "type": "float",
       "name": "AmmoDamage",
-      "value": 0.25
+      "value": 100
     },
     {
       "type": "float",
@@ -99,7 +99,7 @@
     {
       "type": "float",
       "name": "AmmoHitImpulseAdjust",
-      "value": 0
+      "value": 0.05000000074505806
     },
     {
       "type": "ptr",
@@ -129,78 +129,24 @@
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 0.05
+      "value": 0.05000000074505806
     },
     {
       "type": "float",
       "name": "AmmoSpeed",
-      "value": 120
+      "value": 10
     },
     {
       "type": "ptr",
       "name": "Ammo_CustomParameter",
       "value": [
         {
-          "type": "ptr",
-          "value": [
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 1
-            },
-            {
-              "type": "float",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "ptr",
-          "value": [
-            {
-              "type": "float",
-              "value": 0
-            },
-            {
-              "type": "float",
-              "value": 0
-            },
-            {
-              "type": "float",
-              "value": 0
-            },
-            {
-              "type": "float",
-              "value": 0
-            }
-          ]
+          "type": "float",
+          "value": 0.5
         },
         {
           "type": "float",
-          "value": 10
-        },
-        {
-          "type": "float",
-          "value": 0
-        },
-        {
-          "type": "int",
-          "value": 10
-        },
-        {
-          "type": "int",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "value": 0
+          "value": 0.01
         },
         {
           "type": "float",
@@ -208,15 +154,11 @@
         },
         {
           "type": "float",
-          "value": 1.600000023841858
-        },
-        {
-          "type": "float",
-          "value": 1
+          "value": 0.30000001192092896
         },
         {
           "type": "int",
-          "value": 10
+          "value": 4
         }
       ]
     },
@@ -233,22 +175,22 @@
     {
       "type": "string",
       "name": "BaseAnimation",
-      "value": "waist"
+      "value": "sniper"
     },
     {
       "type": "string",
       "name": "ChangeAnimation",
-      "value": "waist_change1"
+      "value": "sniper_change1"
     },
     {
       "type": "float",
       "name": "EnergyChargeRequire",
-      "value": 80
+      "value": 3
     },
     {
       "type": "float",
       "name": "FireAccuracy",
-      "value": 0.25
+      "value": 0
     },
     {
       "type": "int",
@@ -268,12 +210,12 @@
     {
       "type": "int",
       "name": "FireCount",
-      "value": 120
+      "value": 1
     },
     {
       "type": "int",
       "name": "FireInterval",
-      "value": 1
+      "value": 2
     },
     {
       "type": "ptr",
@@ -283,7 +225,7 @@
     {
       "type": "float",
       "name": "FireRecoil",
-      "value": 0.10000000149011612
+      "value": 1
     },
     {
       "type": "ptr",
@@ -291,24 +233,24 @@
       "value": [
         {
           "type": "int",
-          "value": 1
+          "value": 0
         },
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_WD_MEDIUM_laserChainsaw"
+          "value": "weapon_WD_MEDIUM_ParticleDynastAlpha"
         },
         {
           "type": "float",
-          "value": 0.707099974155426
+          "value": 0.8414000272750854
         },
         {
           "type": "float",
-          "value": 1
+          "value": 0.1
         },
         {
           "type": "float",
-          "value": 2
+          "value": 0.1
         },
         {
           "type": "float",
@@ -420,22 +362,22 @@
         },
         {
           "type": "float",
-          "value": 0.5
+          "value": 1
         },
         {
           "type": "ptr",
           "value": [
             {
               "type": "float",
-              "value": 0.3
-            },
-            {
-              "type": "float",
               "value": 1
             },
             {
               "type": "float",
-              "value": 2
+              "value": 0.4000000059604645
+            },
+            {
+              "type": "float",
+              "value": 0.4
             },
             {
               "type": "float",
@@ -452,12 +394,12 @@
     {
       "type": "float",
       "name": "Range",
-      "value": 180
+      "value": 1200
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "waist_reload1"
+      "value": "sniper_reload1"
     },
     {
       "type": "float",
@@ -467,7 +409,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 180
+      "value": 2
     },
     {
       "type": "int",
@@ -475,14 +417,9 @@
       "value": 0
     },
     {
-      "type": "ptr",
+      "type": "float",
       "name": "SecondaryFire_Parameter",
-      "value": [
-        {
-          "type": "int",
-          "value": 0
-        }
-      ]
+      "value": 4
     },
     {
       "type": "int",
@@ -496,7 +433,7 @@
         "Dash (Fencer)": 5,
         "Shield Reflect (Fencer)": 6
       },
-      "value": 0
+      "value": 1
     },
     {
       "type": "ptr",
@@ -535,11 +472,11 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/HUD/sight11.rab"
+              "value": "app:/HUD/sight10.rab"
             },
             {
               "type": "string",
-              "value": "sight11.mdb"
+              "value": "sight10.mdb"
             }
           ]
         },
@@ -556,7 +493,7 @@
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/plasma_launcer.dds"
+      "value": "app:/weapon/icon/monster01.dds"
     },
     {
       "type": "ptr",
@@ -567,23 +504,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/p_launcher_plasmalauncher02.rab"
+              "value": "app:/Weapon/p_sniper_MONSTER01.rab"
             },
             {
               "type": "string",
-              "value": "p_launcher_plasmalauncher02.mdb"
+              "value": "p_sniper_MONSTER01.mdb"
             }
           ]
         },
         {
-          "type": "int",
-          "value": 0
+          "type": "string",
+          "value": "app:/Weapon/p_sniper_MONSTER01.cas"
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwAAAAUARAAkAAAAfAAAAIAAAADwAAAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAA8AAAAPwAAAACAAAAkAAAAKAAAACAAAAAAAAAANAAAAD2AAAA/AAAAAIAAACwAAAAoAAAAMAAAAAAAAAA0AAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAANnO9z3b+T4/AACAP83MTD3NzEw9zcxMPQAAgD9QjZc9QmDlPJZDiz4AAIA/oebdupWioL4bayDAAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAMAAxAAAASQBLAAAAcABfAGwAYQB1AG4AYwBoAGUAcgBfAHAAbABhAHMAbQBhAGwAYQB1AG4AYwBoAGUAcgAwADIAAAA="
+            "data": "TUFCAA8AAAADAAAAAwAEAAUAYAAkAAAAfAAAAOAAAADwAQAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAA8AEAAPwBAAACAAAA8AAAABABAADgAAAAAAAAADABAAD2AQAA/AEAAAIAAAAgAQAAEAEAAAABAAAAAAAAMAEAALwAAADcAAAAKgIAAAEAAADMAAAA3AAAAAYCAAABAAAA3AAAANwAAAA0AgAAAAAAANwAAADcAAAAEgIAAAAAAABKAgAAAAAAQQAAAABQAQAASgIAAAAAAAAAAAAAoAEAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAAJZDCz26SQw/AACAPw8Gxjxex4G+7koNwAAAgD/NzEw9zcxMPc3MTD0AAIA/c2iRPc3MzDzTTWI+AACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAABwAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAADiMPMwuTC/MPwwVVyLlQAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAIAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAOIw8zC5ML8w/DCJlVgwizAAADAAMQAAAEkASwAAAGIAbwBkAHkAAABjAGwAbwBzAGUAAABjAGwAbwBzAGUAXwBzAHQAYQB0AGUAAABvAHAAZQBuAAAAbwBwAGUAbgBfAHMAdABhAHQAZQAAAHMAZQAAAA=="
           }
         }
       ]
@@ -594,11 +531,11 @@
       "value": [
         {
           "type": "string",
-          "value": "waist_recoil1"
+          "value": "sniper_recoil2"
         },
         {
           "type": "int",
-          "value": 1
+          "value": 0
         },
         {
           "type": "int",
@@ -617,17 +554,17 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "Diffusal Plasma Beam"
+          "value": "Thunder Sniper R-MS"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "Diffusal Plasma Beam"
+          "value": "Thunder Sniper R-MS"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "Diffusal Plasma Beam"
+          "value": "Thunder Sniper R-MS"
         }
       ]
     },
@@ -643,13 +580,12 @@
     }
   ],
   "meta": {
-    "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
-    "id": "WlzDiffuseLaser",
-    "after": "Weapon219",
-    "level": 42,
-    "category": 11,
-    "unlockState": null,
-    "dropRateModifier": null,
-    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>          Capacity: 500                  Charge Time: 2.0sec\n               ROF: 60.0/sec             Energy Cost: 20%\n            Damage: 0.25x120\n             Range: 180.0m\n          Accuracy: D\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA unique laser weapon that uses a plasma cannon as a base. Instead of launching a bolt of plasma, it discharges its energyy in a wide field ahead of its user."
+    "id": "DiverThunderSniperRMS",
+	"after" : "Weapon285",
+    "level": 50,
+    "category": 14,
+    "unlockState": 0,
+    "dropRateModifier": 1,
+    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>               ROF: ----                 Energy Cost: 6%\n            Damage: 100                         Zoom: 4x\n             Range: 1200.0m\n          Accuracy: S+\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA new varient of Thunder Sniper based on both the Monster and the Thunder Sniper R. Rapid-fires electrical arcs."
   }
 }
