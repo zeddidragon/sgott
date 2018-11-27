@@ -1,0 +1,156 @@
+﻿///
+/// MainScript共通ヘッダ
+///
+/// $HeadURL: https://svnrepos.sandlot.jp/svn/repos/kiyosu/branches/ps4_us/Data/MainScript/CommonTypes.h $
+/// $Id: CommonTypes.h 19777 2015-09-15 07:29:35Z prg_m_shimazaki $
+///
+
+enum ResetFlags{
+	RESET_FLAG_SYSTEM		   = 1<<0,		///< システム設定リセット
+	RESET_FLAG_COMMON		   = 1<<1,		///< モード間で共通の設定
+	RESET_FLAG_MODE_STATUS     = 1<<2,		///< モード毎の情報リセット
+	RESET_FLAG_GAME_STATUS	   = 1<<3,		///< ゲーム進行状況リセット
+	RESET_FLAG_NET_GAME_STATUS = 1<<4,		///< ネットワークゲーム情報のリセット
+	RESET_FLAG_ACHIEVEMENT	   = 1<<5,		///< 実績情報のリセット
+	RESET_FLAG_ADDON		   = 1<<6,		///< アドオンをリセット RESET_FLAG_MODE_STATUS | RESET_FLAG_GAME_STATUS | RESET_FLAG_NET_GAME_STATUS も適用されます。
+
+	//	RESET_FLAG_PLAY_DATA = RESET_FLAG_COMMON | RESET_FLAG_MODE_STATUS | RESET_FLAG_GAME_STATUS | RESET_FLAG_ADDON | RESET_FLAG_ACHIEVEMENT,
+	RESET_FLAG_SLOT_RESET = RESET_FLAG_COMMON | RESET_FLAG_MODE_STATUS | RESET_FLAG_GAME_STATUS | RESET_FLAG_ACHIEVEMENT,
+	RESET_FLAG_MODE_RESET = RESET_FLAG_MODE_STATUS | RESET_FLAG_GAME_STATUS,
+
+	RESET_FLAG_ALL = RESET_FLAG_SYSTEM | RESET_FLAG_COMMON | RESET_FLAG_MODE_STATUS | RESET_FLAG_GAME_STATUS | RESET_FLAG_NET_GAME_STATUS | RESET_FLAG_ADDON | RESET_FLAG_ACHIEVEMENT,
+};
+
+enum FadeControl{
+	FADE_CONTROL_OUT,
+	FADE_CONTROL_IN,
+	FADE_CONTROL_OUT_TO_IN,
+	FADE_CONTROL_IN_TO_OUT,
+};
+
+enum ResourceGroup{
+	RESOURCE_GROUP_TITLE,
+	RESOURCE_GROUP_TEXT1,
+	RESOURCE_GROUP_TEXT2,
+	RESOURCE_GROUP_MODE,
+	RESOURCE_GROUP_SCENE,
+};
+
+enum DialogFlags{
+	DIALOG_FLAG_DEFAULT_NO = 1<<0,
+	DIALOG_FLAG_CANCEL_BUTTON = 1<<1,
+};
+
+enum DialogResult{
+	DIALOG_RESULT_UNKNOWN,
+	DIALOG_RESULT_OK_YES,
+	DIALOG_RESULT_NO,
+	DIALOG_RESULT_CANCEL,
+};
+
+enum UiSlotSelectMode{
+	UISLOTSELECT_NORMAL,
+	UISLOTSELECT_INVITATION,
+};
+enum UiSlotSelectResult{
+	UISLOTSELECT_RESULT_OK,
+	UISLOTSELECT_RESULT_CANCEL,
+};
+
+enum GameModeID{
+	GAME_OFFLINE_SCENARIO,
+	GAME_ONLINE_SCENARIO,
+	GAME_VERSUS,
+	
+	UIMODESELECT_RESULT_CANCEL = -1,
+};
+
+enum UiHQSelectResult{
+	UIHQ_GOTO_MISSION,
+	UIHQ_GOTO_TITLE,
+};
+
+enum UiVersusMenuSelectResult{
+	UIVERSUS_GOTO_BATTLE,
+	UIVERSUS_GOTO_TITLE,
+};
+
+enum UiOnlineRoomResult {
+	UIONLINE_GOTO_MISSION,
+	UIONLINE_GOTO_LOBBY,
+};
+
+enum NetworkBeginResult {
+	NETWORKBEGINRESULT_SUCCESS,			/// 成功
+	NETWORKBEGINRESULT_NO_SIGNIN,		/// サインインされていない
+	NETWORKBEGINRESULT_FAILED,			/// 接続失敗
+	NETWORKBEGINRESULT_PARENTAL,		/// パレンタルコードによりオンラインモード不能
+	NETWORKBEGINRESULT_IRRELEVANT_NAME,	/// 名前が気に入らない
+	NETWORKBEGINRESULT_NO_PLUS,			/// PLUSに加入していない
+	//NETWORKBEGINRESULT_AGE_RESTRICTION,	/// 年齢制限にかかった
+};
+
+enum NetworkChatRestrict {
+	RESTRICT_CHAT = 1<<0,
+	RESTRICT_UGC = 1<<1,
+};
+
+enum NetworkJoinResult {
+	NETWORKJOINRESULT_SUCCESS,			/// 成功
+	NETWORKJOINRESULT_FAILED,			/// 接続失敗
+	NETWORKJOINRESULT_FILLED,			/// いっぱいだった。
+	NETWORKJOINRESULT_CHAT_RESTRICTION,	/// チャット制限にひっかかった
+	NETWORKJOINRESULT_UGC_RESTRICTION,	/// UGC制限にひっかかった
+};
+
+enum NetworkCreateRoomResult{
+	NETWORKCREATEROOM_SUCCESS,
+	NETWORKCREATEROOM_CANCEL,
+	NETWORKCREATEROOM_RETURN_TITLE,
+};
+
+enum NetworkLobbyMenuResult{
+	NETWORKLOBBYMENU_CREATEROOM,
+	NETWORKLOBBYMENU_RETURNWORLDSELECT,
+	NETWORKLOBBYMENU_RETURN_TITLE,
+	NETWORKLOBBYMENU_JOINROOM,
+};
+
+// 現在プレイヤーの操作状態
+enum NetworkLocation {
+	MENU_LOBBY,			/// メニュー：ロビー
+	MENU_ROOM,			/// メニュー：ルーム画面
+	GAME_PLAYING,		/// ゲーム：ゲーム中
+	GAME_LOADING,		/// ゲーム：ローディング中
+};
+
+enum SaveDataReturnCode{
+	/*  関数が正しく終了すれば0以上を返す _OK (0)
+		マイナスは関数の失敗エラーコード
+	*/
+	_RET_UNDEFINED					=  2,	//!作業中、帰り値が確定していない状況
+	_RET_EXIST						=  1,	//!ファイルまたはディレクトリがある。
+	_RET_OK							=  0,	//!エラーが無く終了した場合は0
+	_ERROR_							= -1,	//!エラー。想定外のも含めて
+	_ERROR_DIRNAME_TOO_LONG			= -2,	//!指定されたディレクトリ名が長すぎ
+	_ERROR_DIR_NOT_EXIST			= -3,	//!指定されたディレクトリが存在しない
+	_ERROR_FILE_NOT_EXIST			= -4,	//!指定されたファイルが存在しない
+	_ERROR_SAVE_DATA_ERROR_BROKEN	= -5,	//!セーブデータ(ディレクトリ)破損
+	_ERROR_SAVE_DATA_HEADER_ERR		= -6,	//!セーブデータヘッダーチェックでエラー
+	_ERROR_SAVE_DATA_HEADER_VER_ERR = -7,	//!セーブデータヘッダーバージョンチェックでエラー
+	_ERROR_SAVE_DATA_NOSPACE		= -8,	//!< セーブデータの領域不足
+
+};
+
+enum UIMessage {
+	LOBBY_LOADMODEDATA_REQUEST,
+	LOBBY_LOADMODEDATA_DONE,
+};
+
+enum RegionID {
+	_Region_JP,
+	_Region_US,
+	_Region_EU,
+	_Region_CN,
+};
+
