@@ -583,17 +583,33 @@ rebalance({category: 36, name: /Titan/}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 3.170289855
+    healthFactor.value *= 3.2
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 3.170289855}`
+    (match, hp) => `Durability: ${hp * 3.2}`
   )
 })
 
 rebalance({category: 36, name:/Gigantus/}, (template, i, meta, text) => {
   // Increase durability of all normal tanks
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 3.2
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 3.2}`
+  )
+})
+
+rebalance({category: 36, name:/Melt/}, (template, i, meta, text) => {
+  // Increase durability of all Melt tank variants
   patch(template, 'Ammo_CustomParameter', values => {
     const summonParameters = values[4]
     const vehicleParameters = summonParameters.value[3]
@@ -615,12 +631,12 @@ rebalance({category: 36, name:/Armored Railgun/}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 3
+    healthFactor.value *= 2
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 3}`
+    (match, hp) => `Durability: ${hp * 2}`
   )
 })
 
@@ -631,12 +647,12 @@ rebalance({category: 37}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 5.132275132
+    healthFactor.value *= 3.9
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 5.132275132}`
+    (match, hp) => `Durability: ${hp * 3.9}`
   )
 })
 
@@ -647,12 +663,12 @@ rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 0.2
+    healthFactor.value /= 3.9
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 0.2}`
+    (match, hp) => `Durability: ${hp / 3.9}`
   )
 })
 
@@ -702,12 +718,12 @@ rebalance({category: 38}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 4.166666667
+    healthFactor.value *= 4.2
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 4.166666667}`
+    (match, hp) => `Durability: ${hp * 4.2}`
   )
 })
 
@@ -718,12 +734,12 @@ rebalance({category: 39, name:/BEGARUTA/}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 3.571428571
+    healthFactor.value *= 3.6
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 3.571428571}`
+    (match, hp) => `Durability: ${hp * 3.6}`
   )
 })
 
@@ -734,12 +750,12 @@ rebalance({category: 39, /Depth-Crawler/}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 5.333333333
+    healthFactor.value *= 5.3
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 5.333333333}`
+    (match, hp) => `Durability: ${hp * 5.3}`
   )
 })
 
