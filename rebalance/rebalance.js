@@ -766,12 +766,12 @@ rebalance({category: 39, name:/Vegalta/}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 4
+    healthFactor.value *= 2.5
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 4}`
+    (match, hp) => `Durability: ${hp * 2.5}`
   )
 })
 
