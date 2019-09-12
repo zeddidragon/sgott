@@ -12,8 +12,10 @@ const generateWeaponText = require('../helpers/weapon-text')
 
 const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
+const saveDir = '\\My Games\\EDF4.1_MODSAVES\\'
 const weaponModDir = `${modDir}/weapon`
 const configPath = `${modDir}/CONFIG.SGO`
+const mainscriptPath = `${modDir}/Mainscript.as`
 const weaponTablePath = `${modDir}/_WEAPONTABLE.SGO`
 const weaponTextPath = `${modDir}/_WEAPONTEXT.SGO`
 const coreTemplateDir = `${templateDir}/core`
@@ -62,7 +64,17 @@ console.log('Patching executable...')
   }
 
   replace('app:/DefaultPackage/config.sgo', configPath)
+  //Todo: Actualy cound how many references and do this in a cleaner, more rational way
+  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
+  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
+  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
+  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
+  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
   replace('app:/etc/TextTable_steam_en.txt_sgo', gameTextPath)
+  //Todo: Actualy cound how many references and do this in a cleaner, more rational way
+  replace('app:/MainScript/MainScript.as', mainscriptPath)
+  replace('app:/MainScript/MainScript.as', mainscriptPath)
+  replace('app:/MainScript/MainScript.as', mainscriptPath)
 
   if(buffer[touched]) {
     fs.writeFileSync(exePath, buffer)

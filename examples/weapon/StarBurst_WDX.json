@@ -9,7 +9,7 @@
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 120
+      "value": 30
     },
     {
       "type": "string",
@@ -56,17 +56,17 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 0.0
+          "value": 1
         },
         {
           "type": "float",
           "name": "Green",
-          "value": 1.5
+          "value": 0.5
         },
         {
           "type": "float",
           "name": "Blue",
-          "value": 0.2
+          "value": 3
         },
         {
           "type": "float",
@@ -78,12 +78,12 @@
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 1
+      "value": 5
     },
     {
       "type": "float",
       "name": "AmmoDamage",
-      "value": 60
+      "value": 300
     },
     {
       "type": "float",
@@ -123,17 +123,17 @@
     {
       "type": "float",
       "name": "AmmoOwnerMove",
-      "value": 1
+      "value": 0
     },
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 0.20000000298023224
+      "value": 1
     },
     {
       "type": "float",
       "name": "AmmoSpeed",
-      "value": 0.10000000149011612
+      "value": 12.5
     },
     {
       "type": "ptr",
@@ -141,7 +141,7 @@
       "value": [
         {
           "type": "float",
-          "value": 0
+          "value": 0.95
         },
         {
           "type": "float",
@@ -149,11 +149,11 @@
         },
         {
           "type": "float",
-          "value": 0
+          "value": 3
         },
         {
           "type": "int",
-          "value": 1
+          "value": 3
         },
         {
           "type": "ptr",
@@ -164,7 +164,7 @@
             },
             {
               "type": "float",
-              "value": 700
+              "value": 400
             }
           ]
         },
@@ -199,19 +199,19 @@
             },
             {
               "type": "int",
-              "value": 700
+              "value": 25
             },
             {
               "type": "int",
-              "value": 3
+              "value": 0
             },
             {
               "type": "string",
-              "value": "HomingLaserBullet01"
+              "value": "BeamBullet01"
             },
             {
               "type": "float",
-              "value": 1
+              "value": 0.08
             },
             {
               "type": "float",
@@ -231,7 +231,7 @@
             },
             {
               "type": "int",
-              "value": 500
+              "value": 800
             },
             {
               "type": "int",
@@ -246,11 +246,11 @@
                 },
                 {
                   "type": "float",
-                  "value": 0.6000000238418579
+                  "value": 1
                 },
                 {
                   "type": "float",
-                  "value": 0
+                  "value": 1
                 },
                 {
                   "type": "float",
@@ -261,46 +261,68 @@
             {
               "type": "ptr",
               "value": [
-                {
-                  "type": "int",
-                  "value": 2
-                },
-                {
-                  "type": "int",
-                  "value": 0
-                },
-                {
-                  "type": "int",
-                  "value": 10
-                },
-                {
-                  "type": "float",
-                  "value": 2
-                },
-                {
-                  "type": "float",
-                  "value": 2
-                },
-                {
-                  "type": "float",
-                  "value": 2
-                },
-                {
-                  "type": "int",
-                  "value": 20
-                },
-                {
-                  "type": "int",
-                  "value": 0
-                },
-                {
-                  "type": "float",
-                  "value": 1
-                },
-                {
-                  "type": "ptr",
-                  "value": null
-                }
+				{
+					"type": "int",
+					"value": 1
+				},
+				{
+				  "type": "ptr",
+				  "value": [
+					{
+					  "type": "float",
+					  "value": 1
+					},
+					{
+					  "type": "float",
+					  "value": 0.5
+					},
+					{
+					  "type": "float",
+					  "value": 0.1
+					},
+					{
+					  "type": "float",
+					  "value": 1
+					}
+				  ]
+				},
+				{
+				  "type": "ptr",
+				  "value": [
+					{
+					  "type": "float",
+					  "value": 0
+					},
+					{
+					  "type": "float",
+					  "value": 0
+					},
+					{
+					  "type": "float",
+					  "value": 0
+					},
+					{
+					  "type": "float",
+					  "value": 0
+					}
+				  ]
+				},
+				{
+				  "type": "float",
+				  "value": 10
+				},
+				{
+				  "type": "float",
+				  "value": 0
+				},
+				{
+				  "type": "float",
+				  "value": 1
+				},
+				{
+				  "type": "int",
+				  "value": 10
+				}
               ]
             },
             {
@@ -317,32 +339,7 @@
             },
             {
               "type": "ptr",
-              "value": [
-                {
-                  "type": "int",
-                  "value": 1
-                },
-                {
-                  "type": "string",
-                  "value": "weapon_WD_SP_Gleipnir"
-                },
-                {
-                  "type": "float",
-                  "value": 0.8913000226020813
-                },
-                {
-                  "type": "float",
-                  "value": 1
-                },
-                {
-                  "type": "float",
-                  "value": 2
-                },
-                {
-                  "type": "float",
-                  "value": 25
-                }
-              ]
+              "value": null
             },
             {
               "type": "ptr",
@@ -390,22 +387,22 @@
     {
       "type": "string",
       "name": "BaseAnimation",
-      "value": "throw"
+      "value": "waist"
     },
     {
       "type": "string",
       "name": "ChangeAnimation",
-      "value": "throw_change1"
+      "value": "waist_change1"
     },
     {
       "type": "float",
       "name": "EnergyChargeRequire",
-      "value": 65
+      "value": 100
     },
     {
       "type": "float",
       "name": "FireAccuracy",
-      "value": 0
+      "value": 0.05
     },
     {
       "type": "int",
@@ -425,12 +422,12 @@
     {
       "type": "int",
       "name": "FireCount",
-      "value": 1
+      "value": 10
     },
     {
       "type": "int",
       "name": "FireInterval",
-      "value": 0
+      "value": 120
     },
     {
       "type": "ptr",
@@ -453,11 +450,7 @@
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_WD_SP_throwPandora"
-        },
-        {
-          "type": "float",
-          "value": 0.7078999876976013
+          "value": "weapon_WD_MEDIUM_ParticleDynastAlpha"
         },
         {
           "type": "float",
@@ -469,42 +462,33 @@
         },
         {
           "type": "float",
-          "value": 25
+          "value": 4
+        },
+        {
+          "type": "float",
+          "value": 60
         }
       ]
     },
     {
       "type": "int",
       "name": "FireSpreadType",
-      "value": 0
+      "value": 1
     },
     {
       "type": "float",
       "name": "FireSpreadWidth",
-      "value": 0
+      "value": 0.1
     },
     {
       "type": "int",
       "name": "FireType",
-      "value": 1
+      "value": 0
     },
     {
       "type": "ptr",
       "name": "FireVector",
-      "value": [
-        {
-          "type": "float",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "value": 0.4000000059604645
-        },
-        {
-          "type": "float",
-          "value": 1
-        }
-      ]
+      "value": null
     },
     {
       "type": "ptr",
@@ -588,12 +572,12 @@
     {
       "type": "float",
       "name": "Range",
-      "value": 12
+      "value": 50
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "throw_reload1"
+      "value": "waist_reload1"
     },
     {
       "type": "float",
@@ -603,7 +587,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 4000
+      "value": 750
     },
     {
       "type": "int",
@@ -657,9 +641,9 @@
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/g_unknown.dds"
+      "value": "app:/weapon/icon/plasma_launcer.dds"
     },
-    {
+     {
       "type": "ptr",
       "name": "animation_model",
       "value": [
@@ -668,23 +652,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/p_grenade_unknown02.rab"
+              "value": "app:/Weapon/p_launcher_plasmalauncher01.rab"
             },
             {
               "type": "string",
-              "value": "p_grenade_unknown02.mdb"
+              "value": "p_launcher_plasmalauncher01.mdb"
             }
           ]
         },
         {
-          "type": "string",
-          "value": "app:/Weapon/p_grenade_unknown.cas"
+          "type": "int",
+          "value": 0
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwACAAMAKAAkAAAAXAAAAIAAAADQAAAAAAABADwAAAABAAAAXAAAAAIAAABcAAAA0AAAAOAAAAACAAAAkAAAAKAAAACAAAAAAAAAALAAAAB8AAAAfAAAAOgAAAAAAAAAfAAAAHwAAADWAAAAAAAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAAI/CdT0AAAAAAACAP83MTD3NzEw9zcxMPQAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAADAAMQAAAGgAaQBkAGUAAABtAGQAbAAAAHMAdABhAG4AZABiAHkAAAA="
+            "data": "TUFCAA8AAAADAAAAAwAAAAUARAAkAAAAfAAAAIAAAADwAAAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAA8AAAAPwAAAACAAAAkAAAAKAAAACAAAAAAAAAANAAAAD2AAAA/AAAAAIAAACwAAAAoAAAAMAAAAAAAAAA0AAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAACPb+T36fgo/AACAP83MTD3NzEw9zcxMPQAAgD9QjZc9QmDlPJZDiz4AAIA/oebdupWioL4UayDAAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAMAAxAAAASQBLAAAAcABfAGwAYQB1AG4AYwBoAGUAcgBfAHAAbABhAHMAbQBhAGwAYQB1AG4AYwBoAGUAcgAwADEAAAA="
           }
         }
       ]
@@ -694,20 +678,16 @@
       "name": "custom_parameter",
       "value": [
         {
-          "type": "string",
-          "value": "throw_charge"
-        },
-        {
-          "type": "string",
-          "value": "throw_swing"
-        },
-        {
           "type": "int",
-          "value": 0
+          "value": 60
         },
         {
           "type": "float",
           "value": 1
+        },
+        {
+          "type": "int",
+          "value": 0
         }
       ]
     },
@@ -718,17 +698,17 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "グレイプニール改 HR"
+          "value": "Starburst WDX"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "Gleipnir HR"
+          "value": "Starburst WDX"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "グレイプニール改 HR"
+          "value": "Starburst WDX"
         }
       ]
     },
@@ -751,17 +731,17 @@
     {
       "type": "string",
       "name": "xgs_scene_object_class",
-      "value": "Weapon_Throw"
+      "value": "Weapon_VehicleShoot"
     }
   ],
   "meta": {
     "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
-    "id": "GliepnirHR",
-	"after": "PlasmaCapacitorYD",
-    "level": 62,
-    "category": 17,
+    "id": "StarBurstWDX",
+	"after" : "Weapon248",
+    "level": 80,
+    "category": 13,
     "unlockState": 0,
-    "dropRateModifier": 0.7,
-    "description": "$AUTOSTATS$A superweapon designed for anti-air supression. Based of \"Project: Gliepnir\", it discharges an orb that generates many pulses of light. These pulses track targets relentlessly."
+    "dropRateModifier": 1,
+    "description": null
   }
 }

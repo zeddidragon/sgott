@@ -9,7 +9,7 @@
     {
       "type": "int",
       "name": "AmmoAlive",
-      "value": 5
+      "value": 300
     },
     {
       "type": "string",
@@ -47,7 +47,7 @@
         "SupportUnitBullet01",
         "PileBunkerBullet01"
       ],
-      "value": "LightningBullet01"
+      "value": "NeedleBullet01"
     },
     {
       "type": "ptr",
@@ -56,29 +56,29 @@
         {
           "type": "float",
           "name": "Red",
-          "value": 1.7
+          "value": 0
         },
         {
           "type": "float",
           "name": "Green",
-          "value": 0.5400000214576721
-        },
+          "value": 0.5
+		},
         {
           "type": "float",
           "name": "Blue",
-          "value": 0.0
+          "value": 1
         },
         {
           "type": "float",
           "name": "Alpha",
-          "value": 0.2
+          "value": 0.6
         }
       ]
     },
     {
       "type": "int",
       "name": "AmmoCount",
-      "value": 800
+      "value": 20
     },
     {
       "type": "float",
@@ -98,12 +98,37 @@
     {
       "type": "float",
       "name": "AmmoHitImpulseAdjust",
-      "value": 0.05000000074505806
+      "value": 0
     },
-    {
+     {
       "type": "ptr",
       "name": "AmmoHitSe",
-      "value": null
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "value": "en_Bee_needleImpact"
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 50
+        }
+      ]
     },
     {
       "type": "float",
@@ -128,7 +153,7 @@
     {
       "type": "float",
       "name": "AmmoSize",
-      "value": 0.04500000298023224
+      "value": 0.1
     },
     {
       "type": "float",
@@ -138,24 +163,7 @@
     {
       "type": "ptr",
       "name": "Ammo_CustomParameter",
-      "value": [
-        {
-          "type": "float",
-          "value": 1
-        },
-        {
-          "type": "float",
-          "value": 8
-        },
-        {
-          "type": "float",
-          "value": 0.2
-        },
-        {
-          "type": "float",
-          "value": 0.2
-        }
-      ]
+      "value": null
     },
     {
       "type": "ptr",
@@ -170,17 +178,17 @@
     {
       "type": "string",
       "name": "BaseAnimation",
-      "value": "waist"
+      "value": "sniper"
     },
     {
       "type": "string",
       "name": "ChangeAnimation",
-      "value": "waist_change1"
+      "value": "sniper_change1"
     },
     {
       "type": "float",
       "name": "EnergyChargeRequire",
-      "value": 60
+      "value": 20
     },
     {
       "type": "float",
@@ -205,12 +213,12 @@
     {
       "type": "int",
       "name": "FireCount",
-      "value": 5
+      "value": 3
     },
     {
       "type": "int",
       "name": "FireInterval",
-      "value": 1
+      "value": 30
     },
     {
       "type": "ptr",
@@ -220,7 +228,7 @@
     {
       "type": "float",
       "name": "FireRecoil",
-      "value": 0.05000000074505806
+      "value": 0
     },
     {
       "type": "ptr",
@@ -228,16 +236,20 @@
       "value": [
         {
           "type": "int",
-          "value": 1
+          "value": 0
         },
         {
           "type": "string",
           "name": "SoundName",
-          "value": "weapon_WD_SHORT_rapierThrust"
+          "value": "en_Bee_needleImpact"
         },
         {
           "type": "float",
-          "value": 0.8913000226020813
+          "value": 3
+        },
+        {
+          "type": "float",
+          "value": 10
         },
         {
           "type": "float",
@@ -245,11 +257,7 @@
         },
         {
           "type": "float",
-          "value": 2
-        },
-        {
-          "type": "float",
-          "value": 25
+          "value": 50
         }
       ]
     },
@@ -357,14 +365,14 @@
         },
         {
           "type": "float",
-          "value": 0.4
+          "value": 0.2
         },
         {
           "type": "ptr",
           "value": [
             {
               "type": "float",
-              "value": 4
+              "value": 0
             },
             {
               "type": "float",
@@ -372,29 +380,29 @@
             },
             {
               "type": "float",
-              "value": 0
+              "value": 1
             },
             {
               "type": "float",
-              "value": 0.5
+              "value": 1
             }
           ]
         },
         {
           "type": "int",
-          "value": 2
+          "value": 0
         }
       ]
     },
     {
       "type": "float",
       "name": "Range",
-      "value": 40
+      "value": 3000
     },
     {
       "type": "string",
       "name": "ReloadAnimation",
-      "value": "waist_reload1"
+      "value": "sniper_reload1"
     },
     {
       "type": "float",
@@ -404,7 +412,7 @@
     {
       "type": "int",
       "name": "ReloadTime",
-      "value": 80
+      "value": 120
     },
     {
       "type": "int",
@@ -412,9 +420,9 @@
       "value": 0
     },
     {
-      "type": "ptr",
+      "type": "float",
       "name": "SecondaryFire_Parameter",
-      "value": null
+      "value": 4
     },
     {
       "type": "int",
@@ -425,7 +433,7 @@
         2,
         3
       ],
-      "value": 0
+      "value": 1
     },
     {
       "type": "ptr",
@@ -464,11 +472,11 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/HUD/sight09.rab"
+              "value": "app:/HUD/sight10.rab"
             },
             {
               "type": "string",
-              "value": "sight09.mdb"
+              "value": "sight10.mdb"
             }
           ]
         },
@@ -485,7 +493,7 @@
     {
       "type": "string",
       "name": "WeaponIcon",
-      "value": "app:/weapon/icon/holylance.dds"
+      "value": "app:/weapon/icon/LRSL.dds"
     },
     {
       "type": "ptr",
@@ -496,23 +504,23 @@
           "value": [
             {
               "type": "string",
-              "value": "app:/Weapon/p_lance_holylance01.rab"
+              "value": "app:/Weapon/p_sniper_LRSL01.rab"
             },
             {
               "type": "string",
-              "value": "p_lance_holylance01.mdb"
+              "value": "p_sniper_LRSL01.mdb"
             }
           ]
         },
         {
-          "type": "int",
-          "value": 0
+          "type": "string",
+          "value": "app:/Weapon/p_sniper_thundersniperinferno.cas"
         },
         {
           "type": "extra",
           "value": {
             "type": "MAB\u0000",
-            "data": "TUFCAA8AAAADAAAAAwAAAAUAFAAkAAAAfAAAAIAAAADwAAAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAA8AAAAPwAAAACAAAAkAAAAKAAAACAAAAAAAAAANAAAAD2AAAA/AAAAAIAAACwAAAAoAAAAMAAAAAAAAAA0AAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAAGDl0D3ufM8/AACAP83MTD3NzEw9zcxMPQAAgD+WQ4s9LbKdPRfZTj4AAIA/wtRfvexQDr4c4QXAAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAMAAxAAAASQBLAAAAbQBkAGwAAAA="
+            "data": "TUFCAA8AAAADAAAAAwAAAAUALgAkAAAAfAAAAIAAAADwAAAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAAEAEAAPAAAAACAAAAkAAAAKAAAACAAAAAAAAAANAAAAAQAQAA8AAAAAIAAACwAAAAoAAAAMAAAAAAAAAA0AAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAAAIrhz0zM3M/AACAP83MTD3NzEw9zcxMPQAAgD97FK497FE4vZqZGT4AAIA/6enXPvO3Gb8bEy7AAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAcABfAHMAbgBpAHAAZQByAF8ATABSAFMATAAwADEAAAANVCFxVzAAAAAAAADuGg=="
           }
         }
       ]
@@ -523,11 +531,11 @@
       "value": [
         {
           "type": "string",
-          "value": "waist_recoil3"
+          "value": "sniper_recoil1"
         },
         {
           "type": "int",
-          "value": 0
+          "value": 1
         },
         {
           "type": "int",
@@ -546,17 +554,17 @@
         {
           "type": "string",
           "name": "Japanese",
-          "value": "Electron Whip ZF"
+          "value": "Icicle Railgun"
         },
         {
           "type": "string",
           "name": "English",
-          "value": "Electron Whip ZF"
+          "value": "Icicle Railgun"
         },
         {
           "type": "string",
           "name": "Chinese",
-          "value": "Electron Whip ZF"
+          "value": "Icicle Railgun"
         }
       ]
     },
@@ -573,12 +581,12 @@
   ],
   "meta": {
     "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
-    "id": "ElectronWhipZF",
-    "after" : "Weapon209",
-    "level": 88,
-    "category": 10,
+    "id": "WDIcicleRailgun",
+    "level": 22,
+    "category": 14,
+    "after": "Weapon280",
     "unlockState": 0,
-    "dropRateModifier": 1,
-    "description": "$AUTOSTATS$The most powerful Electron Whip. Few of these devices were ever built. Boasts exceptional output, and increased range."
+    "dropRateModifier": 0.8,
+    "description": "<font face=%dq%$FixedFont%dq% color=%dq%#ffffff%dq%>               ROF: 2.0/s                Energy Cost: 20%\n            Damage: 20.0X3                Zoom: 4x\n             Range: 3000.0m\n          Accuracy: A\n<font face=%dq%$NormalFont%dq% color=%dq%#80c3f5%dq%>\nA new weapon developed with newly discovered technology. Rapidly freezes water vapour in the air into razor-sharp icicles, and propels them using electromagnetism. Its effectiveness isn't yet confirmed, however."
   }
 }

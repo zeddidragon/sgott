@@ -583,12 +583,44 @@ rebalance({category: 36, name: /Titan/}, (template, i, meta, text) => {
     const vehicleParameters = summonParameters.value[3]
     const strengthParameters = vehicleParameters.value[0]
     const healthFactor = strengthParameters.value[0]
-    healthFactor.value *= 2.5
+    healthFactor.value *= 3
     return values
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 2.5}`
+    (match, hp) => `Durability: ${hp * 3}`
+  )
+})
+
+rebalance({category: 36, name: /Gigantus|Melt/}, (template, i, meta, text) => {
+  // Increase durability of all normal tanks
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 3
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 3}`
+  )
+})
+
+rebalance({category: 36, name: /Armored Railgun/}, (template, i, meta, text) => {
+  // Increase durability of all Armored Railguns
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 2
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 2}`
   )
 })
 
@@ -607,6 +639,22 @@ rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
     weight.value *= 1.5
     return values
   })
+})
+
+rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
+  // Increase durability of all Bikes
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 2
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 2}`
+  )
 })
 
 rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
@@ -631,8 +679,24 @@ rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
   })
 })
 
-rebalance({category: 39}, (template, i, meta, text) => {
-  // Increase durability of all power suits
+rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
+  // Increase durability of all Grape models
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 4
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 4}`
+  )
+})
+
+rebalance({category: 37, name: /Caravan/}, (template, i, meta, text) => {
+  // Increase durability of all Caravan models
   patch(template, 'Ammo_CustomParameter', values => {
     const summonParameters = values[4]
     const vehicleParameters = summonParameters.value[3]
@@ -644,6 +708,85 @@ rebalance({category: 39}, (template, i, meta, text) => {
   replaceText(text,
     /Durability: (\d+)/,
     (match, hp) => `Durability: ${hp * 2}`
+  )
+})
+
+rebalance({category: 37, name: /Naegling/}, (template, i, meta, text) => {
+  // Increase durability of all Unarmored Ground Vehicle models
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 3
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 3}`
+  )
+})
+
+rebalance({category: 38}, (template, i, meta, text) => {
+  // Increase durability of all Helicopters
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 4
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 4}`
+  )
+})
+
+rebalance({category: 39, name: /Depth Crawler/}, (template, i, meta, text) => {
+  // Increase durability of all depth crawlers
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 5
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 5}`
+  )
+})
+
+rebalance({category: 39, name:/Vegalta/}, (template, i, meta, text) => {
+  // Increase durability of all Vegalta power suits
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 2.5
+    return values
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 2.5}`
+  )
+})
+
+rebalance({category: 39, name:/Proteus/}, (template, i, meta, text) => {
+  // Increase durability of all Proteus power suits
+  patch(template, 'Ammo_CustomParameter', values => {
+    const summonParameters = values[4]
+    const vehicleParameters = summonParameters.value[3]
+    const strengthParameters = vehicleParameters.value[0]
+    const healthFactor = strengthParameters.value[0]
+    healthFactor.value *= 1.5
+  })
+  replaceText(text,
+    /Durability: (\d+)/,
+    (match, hp) => `Durability: ${hp * 1.5}`
   )
 })
 
