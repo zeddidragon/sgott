@@ -5,9 +5,9 @@ const sgoToJson = require('../sgo-json')
 const jsonToSgo = require('../json-sgo')
 
 const config = require('./config')
-const weaponTable = require('./weapontable')
-const weaponText = require('./weapontext')
-const gameText = require('./texttable-steam-en')
+const weaponTable = require('../data/41/weapons/weapontable')
+const weaponText = require('./data/41/weapons/weapontext')
+const gameText = require('./data/41/texttable-steam-en')
 const generateWeaponText = require('../helpers/weapon-text')
 
 const modDir = './SgottMods'
