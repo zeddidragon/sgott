@@ -1,0 +1,888 @@
+{
+  "endian": "LE",
+  "variables": [
+    {
+      "type": "string",
+      "name": "AimAnimation",
+      "value": "aim_no_ik"
+    },
+    {
+      "type": "int",
+      "name": "AmmoAlive",
+      "value": 120
+    },
+    {
+      "type": "string",
+      "name": "AmmoClass",
+      "options": [
+        "LightningBullet01",
+        "LaserBullet01",
+        "LaserBullet02",
+        "LaserBullet03",
+        "FlameBullet01",
+        "FlameBullet02",
+        "SpiderStringBullet01",
+        "SpiderStringBullet02",
+        "ShockWaveBullet01",
+        "SlashWaveBullet01",
+        "HomingLaserBullet01",
+        "BeamBullet01",
+        "DecoyBullet01",
+        "NeedleBullet01",
+        "BarrierBullet01",
+        "ClusterBullet01",
+        "AcidBullet01",
+        "NapalmBullet01",
+        "GrenadeBullet01",
+        "MissileBullet01",
+        "MissileBullet02",
+        "RocketBullet01",
+        "RocketBullet02",
+        "SolidBullet01",
+        "SolidBullet02",
+        "SmokeCandleBullet01",
+        "ShieldBashBullet01",
+        "SentryGunBullet01",
+        "TargetMarkerBullet01",
+        "SupportUnitBullet01",
+        "PileBunkerBullet01",
+        "PlasmaBullet01"
+      ],
+      "value": "ClusterBullet01"
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoColor",
+      "value": [
+        {
+          "type": "float",
+          "name": "Red",
+          "value": 0.30000001192092896
+        },
+        {
+          "type": "float",
+          "name": "Green",
+          "value": 0.30000001192092896
+        },
+        {
+          "type": "float",
+          "name": "Blue",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "name": "Alpha",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "AmmoCount",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoDamage",
+      "value": [
+        {
+          "type": "float",
+          "value": 20
+        },
+        {
+          "type": "int",
+          "value": 8
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 10
+        },
+        {
+          "type": "float",
+          "value": 0.800000011920929
+        },
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoDamageReduce",
+      "value": [
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "float",
+      "name": "AmmoExplosion",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoGravityFactor",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitImpulseAdjust",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoHitSe",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitSizeAdjust",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "AmmoIsPenetration",
+      "value": 0
+    },
+    {
+      "type": "string",
+      "name": "AmmoModel",
+      "value": "app:/WEAPON/p_grenade_unknown03.rab"
+    },
+    {
+      "type": "float",
+      "name": "AmmoOwnerMove",
+      "value": 1
+    },
+    {
+      "type": "float",
+      "name": "AmmoSize",
+      "value": 0.5
+    },
+    {
+      "type": "float",
+      "name": "AmmoSpeed",
+      "value": 1.5
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_CustomParameter",
+      "value": [
+        {
+          "type": "float",
+          "value": 0.9900000095367432
+        },
+        {
+          "type": "float",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "float",
+                  "value": 0
+                },
+                {
+                  "type": "float",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "float",
+                  "value": 0
+                },
+                {
+                  "type": "float",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "type": "int",
+              "value": 600
+            },
+            {
+              "type": "int",
+              "value": 2
+            },
+            {
+              "type": "string",
+              "value": "LaserBullet01"
+            },
+            {
+              "type": "float",
+              "value": 15
+            },
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": 0.5
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "int",
+              "value": 10
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "float",
+                  "value": 0.30000001192092896
+                },
+                {
+                  "type": "float",
+                  "value": 0.30000001192092896
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "ptr",
+                  "value": [
+                    {
+                      "type": "float",
+                      "value": 1
+                    },
+                    {
+                      "type": "float",
+                      "value": 1
+                    },
+                    {
+                      "type": "float",
+                      "value": 1
+                    },
+                    {
+                      "type": "float",
+                      "value": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "ptr",
+                  "value": [
+                    {
+                      "type": "float",
+                      "value": 0.5
+                    },
+                    {
+                      "type": "float",
+                      "value": 0.5
+                    },
+                    {
+                      "type": "float",
+                      "value": 0.5
+                    },
+                    {
+                      "type": "float",
+                      "value": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "float",
+                  "value": 3
+                },
+                {
+                  "type": "float",
+                  "value": 3
+                },
+                {
+                  "type": "int",
+                  "value": 10
+                },
+                {
+                  "type": "int",
+                  "value": 5
+                },
+                {
+                  "type": "float",
+                  "value": 0
+                },
+                {
+                  "type": "float",
+                  "value": 1.5
+                },
+                {
+                  "type": "float",
+                  "value": 1.600000023841858
+                },
+                {
+                  "type": "float",
+                  "value": 0.5
+                },
+                {
+                  "type": "int",
+                  "value": 10
+                }
+              ]
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "int",
+              "value": 1
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "int",
+                  "value": 1
+                },
+                {
+                  "type": "string",
+                  "value": "e5w_WDnew_special_heavensGate"
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 2
+                },
+                {
+                  "type": "float",
+                  "value": 25
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "string",
+                  "value": "common_damages_impactWD_HeavensGate"
+                },
+                {
+                  "type": "float",
+                  "value": 0.3499999940395355
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 1
+                },
+                {
+                  "type": "float",
+                  "value": 20
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_EquipVoice",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "AngleAdjust",
+      "value": 0
+    },
+    {
+      "type": "string",
+      "name": "BaseAnimation",
+      "value": "throw"
+    },
+    {
+      "type": "string",
+      "name": "ChangeAnimation",
+      "value": "throw_change1"
+    },
+    {
+      "type": "ptr",
+      "name": "EnergyChargeRequire",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 87.53894805908203
+            },
+            {
+              "type": "int",
+              "value": 45
+            },
+            {
+              "type": "int",
+              "value": 2
+            },
+            {
+              "type": "int",
+              "value": 8
+            },
+            {
+              "type": "float",
+              "value": 0.5
+            },
+            {
+              "type": "float",
+              "value": 0.5
+            }
+          ]
+        },
+        {
+          "type": "float",
+          "value": 45
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "ExtPrams",
+      "value": [
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "float",
+      "name": "FireAccuracy",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireBurstCount",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "FireBurstInterval",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireCondition",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireCount",
+      "value": 4
+    },
+    {
+      "type": "int",
+      "name": "FireInterval",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "FireLoadSe",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "FireRecoil",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "FireSe",
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "name": "SoundName",
+          "value": "e5w_WDnew_special_throwSpecial"
+        },
+        {
+          "type": "float",
+          "value": 0.7078999876976013
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 2
+        },
+        {
+          "type": "float",
+          "value": 25
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "FireSpreadType",
+      "value": 2
+    },
+    {
+      "type": "float",
+      "name": "FireSpreadWidth",
+      "value": 0.20000000298023224
+    },
+    {
+      "type": "int",
+      "name": "FireType",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "FireVector",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "LockonAngle",
+      "value": [
+        {
+          "type": "float",
+          "value": 0.30000001192092896
+        },
+        {
+          "type": "float",
+          "value": 0.30000001192092896
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "LockonFailedTime",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonHoldTime",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "LockonRange",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonTargetType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonTime",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "Lockon_AutoTimeOut",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "Lockon_DistributionType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "Lockon_FireEndToClear",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ModelConstraint",
+      "value": [
+        {
+          "type": "string",
+          "value": "arms_r"
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "MuzzleFlash",
+      "value": ""
+    },
+    {
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "string",
+      "name": "ReloadAnimation",
+      "value": "throw_reload1"
+    },
+    {
+      "type": "float",
+      "name": "ReloadInit",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ReloadTime",
+      "value": [
+        {
+          "type": "int",
+          "value": 3600
+        },
+        {
+          "type": "int",
+          "value": 21
+        },
+        {
+          "type": "int",
+          "value": 1
+        },
+        {
+          "type": "int",
+          "value": 5
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "ReloadType",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter",
+      "value": null
+    },
+    {
+      "type": "int",
+      "name": "SecondaryFire_Type",
+      "options": {
+        "None": 0,
+        "Zoom": 1,
+        "Activate": 2,
+        "Activate and Reload": 3,
+        "Jumpjets (Fencer)": 4,
+        "Dash (Fencer)": 5,
+        "Shield Reflect (Fencer)": 6
+      },
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase",
+      "value": [
+        {
+          "type": "string",
+          "value": ""
+        },
+        {
+          "type": "string",
+          "value": ""
+        },
+        {
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCaseDischargeSe",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "string",
+      "name": "WeaponIcon",
+      "value": "app:/weapon/icon/g_unknown.dds"
+    },
+    {
+      "type": "ptr",
+      "name": "animation_model",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/Weapon/p_grenade_unknown03.rab"
+            },
+            {
+              "type": "string",
+              "value": "p_grenade_unknown03.mdb"
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/p_grenade_unknown.cas"
+        },
+        {
+          "type": "extra",
+          "value": {
+            "type": "MAB\u0000",
+            "data": "TUFCAA8AAAADAAAAAwACAAMAKAAkAAAAXAAAAIAAAADQAAAAAAABADwAAAABAAAAXAAAAAIAAABcAAAA0AAAAOAAAAACAAAAkAAAAKAAAACAAAAAAAAAALAAAAB8AAAAfAAAAOgAAAAAAAAAfAAAAHwAAADWAAAAAAAAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAAI/CdT0AAAAAAACAP83MTD3NzEw9zcxMPQAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAADAAMQAAAGgAaQBkAGUAAABtAGQAbAAAAHMAdABhAG4AZABiAHkAAAA="
+          }
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "custom_parameter",
+      "value": [
+        {
+          "type": "string",
+          "value": "throw_charge"
+        },
+        {
+          "type": "string",
+          "value": "throw_swing"
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "name.cn",
+      "value": "天國門扉"
+    },
+    {
+      "type": "string",
+      "name": "name.en",
+      "value": "Heaven's Gate"
+    },
+    {
+      "type": "string",
+      "name": "name.ja",
+      "value": "ヘブンズ・ゲート"
+    },
+    {
+      "type": "string",
+      "name": "name.kr",
+      "value": "헤븐스 게이트"
+    },
+    {
+      "type": "ptr",
+      "name": "resource",
+      "value": [
+        {
+          "type": "string",
+          "name": "path",
+          "value": "app:/WEAPON/p_grenade_unknown03.rab"
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "use_underground",
+      "value": 1
+    },
+    {
+      "type": "string",
+      "name": "xgs_scene_object_class",
+      "value": "Weapon_Throw"
+    }
+  ],
+  "meta": {
+    "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
+    "id": null,
+    "level": null,
+    "category": null,
+    "unlockState": null,
+    "dropRateModifier": null,
+    "description": null
+  }
+}

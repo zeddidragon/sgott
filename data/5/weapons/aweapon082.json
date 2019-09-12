@@ -1,0 +1,820 @@
+{
+  "endian": "LE",
+  "variables": [
+    {
+      "type": "string",
+      "name": "AimAnimation",
+      "value": "aim"
+    },
+    {
+      "type": "int",
+      "name": "AmmoAlive",
+      "value": 30
+    },
+    {
+      "type": "string",
+      "name": "AmmoClass",
+      "options": [
+        "LightningBullet01",
+        "LaserBullet01",
+        "LaserBullet02",
+        "LaserBullet03",
+        "FlameBullet01",
+        "FlameBullet02",
+        "SpiderStringBullet01",
+        "SpiderStringBullet02",
+        "ShockWaveBullet01",
+        "SlashWaveBullet01",
+        "HomingLaserBullet01",
+        "BeamBullet01",
+        "DecoyBullet01",
+        "NeedleBullet01",
+        "BarrierBullet01",
+        "ClusterBullet01",
+        "AcidBullet01",
+        "NapalmBullet01",
+        "GrenadeBullet01",
+        "MissileBullet01",
+        "MissileBullet02",
+        "RocketBullet01",
+        "RocketBullet02",
+        "SolidBullet01",
+        "SolidBullet02",
+        "SmokeCandleBullet01",
+        "ShieldBashBullet01",
+        "SentryGunBullet01",
+        "TargetMarkerBullet01",
+        "SupportUnitBullet01",
+        "PileBunkerBullet01",
+        "PlasmaBullet01"
+      ],
+      "value": "SolidBullet01"
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoColor",
+      "value": [
+        {
+          "type": "float",
+          "name": "Red",
+          "value": 14
+        },
+        {
+          "type": "float",
+          "name": "Green",
+          "value": 10
+        },
+        {
+          "type": "float",
+          "name": "Blue",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "name": "Alpha",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoCount",
+      "value": [
+        {
+          "type": "int",
+          "value": 5
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 4
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoDamage",
+      "value": [
+        {
+          "type": "float",
+          "value": 450
+        },
+        {
+          "type": "int",
+          "value": 8
+        },
+        {
+          "type": "int",
+          "value": 1
+        },
+        {
+          "type": "int",
+          "value": 8
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoDamageReduce",
+      "value": [
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "float",
+      "name": "AmmoExplosion",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoGravityFactor",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitImpulseAdjust",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoHitSe",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitSizeAdjust",
+      "value": 0.5
+    },
+    {
+      "type": "int",
+      "name": "AmmoIsPenetration",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "AmmoModel",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoOwnerMove",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "AmmoSize",
+      "value": 0.4000000059604645
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoSpeed",
+      "value": [
+        {
+          "type": "float",
+          "value": 20
+        },
+        {
+          "type": "int",
+          "value": 16
+        },
+        {
+          "type": "int",
+          "value": 3
+        },
+        {
+          "type": "int",
+          "value": 10
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_EquipVoice",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "AngleAdjust",
+      "value": 0
+    },
+    {
+      "type": "string",
+      "name": "BaseAnimation",
+      "value": "sniper"
+    },
+    {
+      "type": "string",
+      "name": "ChangeAnimation",
+      "value": "sniper_change1"
+    },
+    {
+      "type": "ptr",
+      "name": "EnergyChargeRequire",
+      "value": [
+        {
+          "type": "float",
+          "value": -1
+        },
+        {
+          "type": "float",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "ExtPrams",
+      "value": [
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "FireAccuracy",
+      "value": [
+        {
+          "type": "float",
+          "value": 0.004999999888241291
+        },
+        {
+          "type": "int",
+          "value": 13
+        },
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "int",
+          "value": 8
+        },
+        {
+          "type": "float",
+          "value": 20
+        },
+        {
+          "type": "float",
+          "value": 0.10000000149011612
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "FireBurstCount",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "FireBurstInterval",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireCondition",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireCount",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "FireInterval",
+      "value": [
+        {
+          "type": "int",
+          "value": 90
+        },
+        {
+          "type": "int",
+          "value": 25
+        },
+        {
+          "type": "int",
+          "value": 5
+        },
+        {
+          "type": "int",
+          "value": 7
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "FireLoadSe",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "FireRecoil",
+      "value": 0.4000000059604645
+    },
+    {
+      "type": "ptr",
+      "name": "FireSe",
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "name": "SoundName",
+          "value": "e5w_SRnew_SNR060"
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 2
+        },
+        {
+          "type": "float",
+          "value": 25
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "FireSpreadType",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "FireSpreadWidth",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireType",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "FireVector",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "LockonAngle",
+      "value": [
+        {
+          "type": "float",
+          "value": 0.30000001192092896
+        },
+        {
+          "type": "float",
+          "value": 0.30000001192092896
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "LockonFailedTime",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonHoldTime",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "LockonRange",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonTargetType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonTime",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "Lockon_AutoTimeOut",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "Lockon_DistributionType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "Lockon_FireEndToClear",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ModelConstraint",
+      "value": [
+        {
+          "type": "string",
+          "value": "arms_r"
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "MuzzleFlash",
+      "value": "MuzzleFlash01"
+    },
+    {
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter",
+      "value": [
+        {
+          "type": "string",
+          "value": "マズルフラッシュ01.dds"
+        },
+        {
+          "type": "float",
+          "value": 3
+        },
+        {
+          "type": "float",
+          "value": 0.6000000238418579
+        },
+        {
+          "type": "float",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 5
+        },
+        {
+          "type": "float",
+          "value": 1.2000000476837158
+        },
+        {
+          "type": "float",
+          "value": 0.10000000149011612
+        },
+        {
+          "type": "int",
+          "value": 4
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 1.399999976158142
+            },
+            {
+              "type": "float",
+              "value": 1.399999976158142
+            },
+            {
+              "type": "float",
+              "value": 0.699999988079071
+            },
+            {
+              "type": "float",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "float",
+          "value": -0.10000000149011612
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "ReloadAnimation",
+      "value": "sniper_reload1"
+    },
+    {
+      "type": "float",
+      "name": "ReloadInit",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ReloadTime",
+      "value": [
+        {
+          "type": "int",
+          "value": 120
+        },
+        {
+          "type": "int",
+          "value": 21
+        },
+        {
+          "type": "int",
+          "value": 4
+        },
+        {
+          "type": "int",
+          "value": 5
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "ReloadType",
+      "value": 0
+    },
+    {
+      "type": "float",
+      "name": "SecondaryFire_Parameter",
+      "value": 4
+    },
+    {
+      "type": "int",
+      "name": "SecondaryFire_Type",
+      "options": {
+        "None": 0,
+        "Zoom": 1,
+        "Activate": 2,
+        "Activate and Reload": 3,
+        "Jumpjets (Fencer)": 4,
+        "Dash (Fencer)": 5,
+        "Shield Reflect (Fencer)": 6
+      },
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase",
+      "value": [
+        {
+          "type": "string",
+          "value": "ShellCase_RB"
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/ShellCase401.rab"
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "string",
+              "value": "weapon_Common_shell_srifle"
+            },
+            {
+              "type": "float",
+              "value": 0.2199999988079071
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCaseDischargeSe",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "Sight_animation_model",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/HUD/sight05.rab"
+            },
+            {
+              "type": "string",
+              "value": "sight05.mdb"
+            }
+          ]
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "WeaponIcon",
+      "value": "app:/weapon/icon/srMMF.dds"
+    },
+    {
+      "type": "ptr",
+      "name": "animation_model",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/Weapon/s_sniper_mmf01.rab"
+            },
+            {
+              "type": "string",
+              "value": "s_sniper_mmf01.mdb"
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/s_sniper_mmf01.cas"
+        },
+        {
+          "type": "extra",
+          "value": {
+            "type": "MAB\u0000",
+            "data": "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"
+          }
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "custom_parameter",
+      "value": [
+        {
+          "type": "string",
+          "value": "sniper_recoil1"
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "name.cn",
+      "value": "ＫＦＦ５１ＬＳ"
+    },
+    {
+      "type": "string",
+      "name": "name.en",
+      "value": "KFF 51 LS"
+    },
+    {
+      "type": "string",
+      "name": "name.ja",
+      "value": "ＫＦＦ５１ＬＳ"
+    },
+    {
+      "type": "string",
+      "name": "name.kr",
+      "value": "KFF51 LS"
+    },
+    {
+      "type": "ptr",
+      "name": "resource",
+      "value": [
+        {
+          "type": "string",
+          "name": "path",
+          "value": "app:/Weapon/ShellCase401.rab"
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/ShellCase401.shkt"
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "use_underground",
+      "value": 1
+    },
+    {
+      "type": "string",
+      "name": "xgs_scene_object_class",
+      "value": "Weapon_BasicShoot"
+    }
+  ],
+  "meta": {
+    "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
+    "id": null,
+    "level": null,
+    "category": null,
+    "unlockState": null,
+    "dropRateModifier": null,
+    "description": null
+  }
+}
