@@ -1,6 +1,5 @@
-const fs = require('fs')
 const getNode = require('./get-node')
-const table = require('../sgottstrap/weapontable').variables[0].value
+const table = require('../data/41/weapons/weapontable').variables[0].value
 
 const classes = [
   'ranger',
@@ -89,7 +88,7 @@ const data = table.map(({value: node}, i) => {
   const character = classes[Math.floor(category / 10)]
   const group = categories[category]
 
-  const template = require(`../rebalance/originals/${id.toUpperCase()}`)
+  const template = require(`../data/41/weapons/${id.toUpperCase()}`)
   function attr(str) {
     return getNode(template, str).value
   }
@@ -118,4 +117,4 @@ const data = table.map(({value: node}, i) => {
   return ret
 })
 
-fs.writeFileSync('docs/weapons-calc.json', JSON.stringify(data, null, 2))
+console.log(JSON.stringify(data, null, 2))
