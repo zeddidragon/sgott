@@ -22,5 +22,5 @@ for(const [ weapon, id ] of allWeapons()) {
     console.log(id)
     console.log(custom.value.map(v => [v.name, v.type, v.value]))
   }
-  fs.writeFileSync(`data/41/weapons/${id.toUpperCase()}.json`, JSON.stringify(weapon, null, 2))
+  fs.writeFileSync(`data/5/weapons/${id.toLowerCase()}.json`, JSON.stringify(weapon, null, 2))
 }
