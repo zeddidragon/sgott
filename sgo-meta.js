@@ -109,7 +109,11 @@ const ammoClasses = {
     'AmmoClass',
     'AmmoCount',
     'AmmoSize',
-    'Ammo_CustomParameter',
+    'FireInterval',
+    null,
+    null,
+    null,
+    null,
     'FireSe',
   ],
   ShockWaveBullet01: [
