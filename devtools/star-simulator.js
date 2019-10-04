@@ -1,47 +1,45 @@
-{
-  console.log('Simulated growth for Air Tortoise ME')
-  const known = [
-    2000,
-    2179,
-    null,
-    null,
-    null,
-    4000,
-    null,
-    5313,
-    null,
-    null,
-    7656.9
-  ]
-  console.log('Rate\tExtrapolated\tKnown')
-  for(var i = 0; i <= 10; i++) {
-    console.log([
-      `${i}*:`,
-      (2000 + 178.885 * Math.pow(i, 1.5)).toFixed(1),
-      known[i] || ''
-    ].join('\t'))
+const allWeapons = require('./all-weapons')
+const getNode = require('../helpers/get-node')
+const render = require('./star-simulator-render')
+
+const maxDmg = {}
+const processed = []
+for(const [ weapon, meta ] of allWeapons.each()) {
+  const dmg = getNode(weapon, 'AmmoDamage')
+  const name = getNode(weapon, 'name.en')
+  const category = meta[2].value
+
+  if(!dmg) return
+  const wpn = { name: name.value, category }
+  if(Array.isArray(dmg.value)) {
+    const [
+      base,
+      _,
+      minLevel,
+      maxLevel,
+      zeroFactor,
+      growth,
+    ] = dmg.value.map(v => v.value)
+    const zeroDamage = base * zeroFactor
+    const growthBase = (base - zeroDamage) / Math.pow(5, growth)
+    const damages = {
+      minLevel,
+      maxLevel,
+      base,
+      values: Array(maxLevel).fill(0),
+    }
+    for(var i = minLevel; i <= maxLevel; i++) {
+      damages.values[i] = (zeroDamage + growthBase * Math.pow(i, growth))
+    }
+    wpn.damage = damages
+    maxDmg[category] = Math.max(maxDmg[category] || 0, damages.values[maxLevel - 1])
+  } else if(dmg.value) {
+    maxDmg[category] = Math.max(maxDmg[category] || 0, dmg.value)
   }
+
+  processed.push(wpn)
 }
 
-{
-  console.log('Simulated growth for PA-11')
-  const known = [
-    7.5,
-    null,
-    null,
-    null,
-    null,
-    15.0,
-    null,
-    null,
-    17.0,
-  ]
-  console.log('Lv\tExtrap.\tKnown')
-  for(var i = 0; i <= 8; i++) {
-    console.log([
-      `${i}*:`,
-      (7.5 + 3.3541 * Math.pow(i, 0.5)).toFixed(1),
-      known[i] || ''
-    ].join('\t'))
-  }
-}
+
+//console.log(processed)
+render(processed, maxDmg)
