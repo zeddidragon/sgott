@@ -1,3 +1,4 @@
+const json = require('json-stringify-pretty-compact')
 const SIZE = 12
 const sgoMeta = require('./sgo-meta')
 
@@ -209,7 +210,7 @@ function decompile(buffer, opts = {}) {
     description: null,
   }
 
-  return JSON.stringify(data, null, 2)
+  return json(data)
 }
 
 decompile.decompiler = decompiler
