@@ -197,7 +197,6 @@ function decompiler(config = {}) {
 function decompile(buffer, opts = {}) {
   const data = decompiler(opts)(buffer.slice(opts.offset || 0))
   data.meta = {
-    help: 'For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO',
     id: null,
     level: null,
     category: null,

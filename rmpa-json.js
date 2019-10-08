@@ -1,4 +1,6 @@
 const fs = require('fs')
+const sgo = require('./sgo-json').decompiler
+require('util').inspect.defaultOptions.depth = null
 
 // Cheapo(tm) debugging
 function abort() {
@@ -19,6 +21,15 @@ function decompiler(config = {}) {
     return buffer[`readUInt32${endian}`](offset)
   }
 
+  function UInt16(buffer, offset = 0) {
+    return buffer[`readUInt16${endian}`](offset)
+  }
+
+
+  function Int16(buffer, offset = 0) {
+    return buffer[`readInt16${endian}`](offset)
+  }
+
   function Int(buffer, offset = 0) {
     return buffer[`readInt32${endian}`](offset)
   }
@@ -32,10 +43,14 @@ function decompiler(config = {}) {
     return consume(buffer, index, size)
   }
 
-  function StrPointer(buffer, index, size) {
-    const end = index + size * 2 || buffer.length
+  function StrPointer(buffer, index, base) {
+    if(base) {
+      const uoffset = UInt16(buffer, index)
+      const ioffset = Int16(buffer, index)
+      return StrPointer(buffer, base + ioffset)
+    }
+    const end = buffer.length
     const terminator = Math.min(buffer.indexOf('\0', index, 'utf16le'), end)
-    console.log({ index, size, terminator })
     return Str(buffer.slice(index, terminator > 0 ? terminator : end))
   }
 
@@ -71,32 +86,69 @@ function decompiler(config = {}) {
     }
   }
 
+  function typeHeader(buffer, index) {
+    return {
+      count: UInt(buffer, index + 0x00),
+      startIndex: index + UInt(buffer, index + 0x04),
+      endIndex: index + UInt(buffer, index + 0x0C),
+      id: UInt(buffer, index + 0x10),
+      name: StrPointer(buffer, index + 0x180, index),
+    }
+  }
+
+  function subHeader(buffer, index) {
+    return {
+      unknownFlag: Int16(buffer, index + 0x00),
+      endIndex: index + Int(buffer, index + 0x08),
+      name: StrPointer(buffer, index + 0x14, index),
+      count: UInt(buffer, index + 0x18),
+      startIndex: index + Int(buffer, index + 0x1C),
+    }
+  }
+
   function parseRoutes(buffer, index) {
-    // 0x00 is amount of elements
-    const routeCount = UInt(buffer, index + 0x00)
-    // The remainder of the header is irrelevant for now
-    // Comments in json-rmpa will go into these
-    // 0x04 points us to the start of the data
-    index = index + UInt(buffer, index + 0x04)
+    const header = typeHeader(buffer, index)
+    index = header.startIndex
+    const routes = Array(header.count).fill(null)
+    for(var i = 0; i < header.count; i++) {
+      routes[i] = parseRoute(buffer, index)
+      index += 0x20
+    }
 
-    const routes = []
-    while(routes.length < routeCount) {
-      const nodes = []
-      const id = UInt(buffer, index + 0x10)
-      const name = StrPointer(buffer, index + 0x014)
-      const nodeCount = UInt(buffer, index + 0x018)
-      console.log({ id, name, nodeCount, index })
-      index = index + UInt(buffer, index + 0x01C)
-      console.log(`waypoint ${id}`, index)
+    return {
+      header,
+      routes,
+    }
+  }
 
-      for(var i = 0; i < nodeCount; i++) {
-        const idx = UInt(buffer, index + 0x00)
-        console.log(`node ${idx}`, index)
-        index = index + UInt(buffer, 0x3C)
-        nodes.push({ idx })
+  function parseRoute(buffer, index) {
+    const header = subHeader(buffer, index)
+    const nodes = Array(header.count).fill(null)
+    index = header.startIndex
+    for(var i = 0; i < header.count; i++) {
+      const cfg1 = Int(buffer, index + 0x10)
+      const cfg2 = Int(buffer, index + 0x1C)
+      const next = Int(buffer, index + 0x08)
+      nodes[i] = {
+        idx: UInt(buffer, index + 0x00),
+        next: UInt(buffer, index + next),
+        next2: UInt(buffer, index + next + 0x08),
+        config: sgo()(buffer.slice(index + cfg1)),
+        id: UInt(buffer, index + 0x14),
+        name: StrPointer(buffer, index + 0x24, index),
+        x: Float(buffer, index + 0x28),
+        y: Float(buffer, index + 0x2C),
+        z: Float(buffer, index + 0x30),
       }
+      if(cfg1 !== cfg2) {
+        nodes[i].config2 = sgo()(buffer.slice(index + cfg2))
+      }
+      index += 0x3C
+    }
 
-      routes.push({ id, name, nodes })
+    return {
+      header: header,
+      nodes,
     }
   }
 
@@ -117,8 +169,6 @@ function decompiler(config = {}) {
 
 function decompile(buffer, opts = {}) {
   const data = decompiler(opts)(buffer)
-  return data
-
   return JSON.stringify(data, null, 2)
 }
 
