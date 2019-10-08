@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs')
-const deepEqual = require('deep-equal')
+const deepEqual = require('fast-deep-equal')
 const sgoToJson = require('../sgo-json')
 const jsonToSgo = require('../json-sgo')
 
