@@ -147,16 +147,27 @@ function decompiler(config = {}) {
     return point
   }
 
+  const Spawn = Struct({
+    [0x08]: ['id', UInt],
+    [0x0c]: ['px', Float],
+    [0x10]: ['py', Float],
+    [0x14]: ['pz', Float],
+    [0x1c]: ['tx', Float],
+    [0x20]: ['ty', Float],
+    [0x24]: ['tz', Float],
+    [0x34]: ['name', StrPtr],
+  }, 0x40)
+
   const Main = Struct({
     [0x00]: ['leader', Leader],
-    [0x08]: ['isRoutes', Int],
+    [0x08]: ['isRoutes', UInt],
     [0x0C]: ['routes', Collection(WayPoints)],
-    [0x10]: ['isShapes', Int],
+    [0x10]: ['isShapes', UInt],
     [0x14]: ['shapes', Ptr],
-    [0x18]: ['isCameras', Int],
+    [0x18]: ['isCameras', UInt],
     [0x1C]: ['cameras', Ptr],
-    [0x20]: ['isSpawns', Int],
-    [0x24]: ['spawns', Ptr],
+    [0x20]: ['isSpawns', UInt],
+    [0x24]: ['spawns', Collection(Spawn)],
   }, 0x30)
 
   const CollectionHeader = Struct({
