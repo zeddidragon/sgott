@@ -184,7 +184,11 @@ function decompiler(config = {}) {
         addMetaData(node)
       }
 
-      return {endian, variables}
+      return {
+        format: 'SGO',
+        endian,
+        variables,
+      }
     },
     dumpvalues(buffer) {
       const {mIndex} = readHeader(buffer)

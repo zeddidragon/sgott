@@ -54,7 +54,7 @@ function decompiler(config = {}) {
     return Str(buffer.slice(index, terminator > 0 ? terminator : end))
   }
 
-  function readHeader(buffer) {
+  function mainHeader(buffer) {
     // Header of RMP file is 48 bytes, this is the structure as we know it:
     //
     // HHHH HHHH 0000 0001 ROUT ROUT ROUT ROUT
@@ -121,6 +121,11 @@ function decompiler(config = {}) {
     }
   }
 
+  // TODO: Make individual nodes more elegant, removing redundant data
+  // idx can likely be removed, implicit from array position
+  // omit `name` if it's empty
+  // omit `next2` if it's empty
+  // inline `rmpa_float_WayPointWidth`, omit if it's `-1`, omit rest of sgo
   function parseRoute(buffer, index) {
     const header = subHeader(buffer, index)
     const nodes = Array(header.count).fill(null)
@@ -158,9 +163,10 @@ function decompiler(config = {}) {
       shapesIndex,
       cameraIndex,
       spawnsIndex,
-    } = readHeader(buffer)
+    } = mainHeader(buffer)
 
     return {
+      format: 'RMP',
       endian,
       routes: routesIndex && parseRoutes(buffer, routesIndex),
     }
