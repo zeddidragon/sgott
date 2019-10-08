@@ -201,14 +201,6 @@ function decompiler(config = {}) {
 
 function decompile(buffer, opts = {}) {
   const data = decompiler(opts)(buffer.slice(opts.offset || 0))
-  data.meta = {
-    id: null,
-    level: null,
-    category: null,
-    unlockState: null,
-    dropRateModifier: null,
-    description: null,
-  }
 
   return json(data)
 }

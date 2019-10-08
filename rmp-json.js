@@ -142,12 +142,16 @@ function decompiler(config = {}) {
     const width = cfg.variables
       .find(n => n.name === 'rmpa_float_WayPointWidth')
     if(width && width.value !== -1) point.width = width.value
-    if(!(width && cfg.variables.length === 1)) point.cfg = cfg
+    if(!(width && cfg.variables.length === 1)) {
+      point.cfg = cfg
+      if(cfg.endian !== 'LE') pt.cfgEndian = cfg,endian
+    }
 
     return point
   }
 
   const Spawn = Struct({
+    [0x04]: ['str', StrPtr],
     [0x08]: ['id', UInt],
     [0x0c]: ['px', Float],
     [0x10]: ['py', Float],
