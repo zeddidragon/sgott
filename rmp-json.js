@@ -35,9 +35,9 @@ function decompiler(config = {}) {
   }
 
   function Ref(fn) {
-    return function Deref(buffer, index, baseIndex, obj) {
+    return function Deref(buffer, index, baseIndex) {
       const jump = Ptr(buffer, index, baseIndex)
-      return fn(buffer, jump, jump, obj)
+      return fn(buffer, jump, jump)
     }
   }
 
@@ -76,7 +76,7 @@ function decompiler(config = {}) {
         }
 
         const [key, fn] = def
-        const value = fn(buffer, index + i, index, obj)
+        const value = fn(buffer, index + i, index)
         if(value) obj[key] = value
       }
 
@@ -93,55 +93,64 @@ function decompiler(config = {}) {
     return leader
   }
 
-  function Routes(buffer, index, _index, obj) {
-    if(!obj.isRoutes) return
-    const header = TypeHeader(buffer, index)
-    index = header.startPtr
-    const routes = []
-    for(var i = 0; i < header.count; i++) {
-      const subHeader = SubHeader(buffer, index, index, obj)
-      const points = []
+  function Collection(Type) {
+    return function Collection(buffer, index, _index) {
+      const isEntry = UInt(buffer, index - 0x04)
+      if(!isEntry) return
+      index = Ptr(buffer, index, _index)
+      const header = CollectionHeader(buffer, index, index)
+      index = header.startPtr
+      const entries = Array(header.count).fill(null)
 
-      for(var j = 0; j < subHeader.count; j++) {
-        const pointPtr = subHeader.startPtr + j * WayPoint.size
-        const point = WayPoint(buffer, pointPtr, pointPtr, obj)
-        console.log({ point })
-        const cfg = SGO(buffer, point.config)
+      for(var i = 0; i < header.count; i++) {
+        const subHeader = SubHeader(buffer, index, index)
+        const nodes = Array(subHeader.count).fill(null)
 
-        delete point.idx
-
-        if(point.config !== point.config2) {
-          point.cfg2 = SGO(buffer, point.config2)
+        for(var j = 0; j < subHeader.count; j++) {
+          const location = subHeader.startPtr + j * Type.size
+          nodes[j] = Type(buffer, location, location)
         }
-        delete point.config
-        delete point.config2
 
-        const width = cfg.variables
-          .find(n => n.name === 'rmpa_float_WayPointWidth')
-        if(width) point.width = width.value
-        if(!(width && cfg.variables.length === 1)) point.cfg = cfg
+        delete subHeader.count
+        delete subHeader.startPtr
+        delete subHeader.endPtr
+        entries[i] = { ...subHeader, nodes }
 
-        points.push(point)
+        index += SubHeader.size
       }
 
-      delete subHeader.count
-      delete subHeader.startPtr
-      delete subHeader.endPtr
-      routes.push({ ...subHeader, points })
-
-      index += SubHeader.size
+      delete header.startPtr
+      delete header.endPtr
+      delete header.count
+      return { ...header, entries }
     }
+  }
+  Collection.size = 0x20
 
-    delete header.startPtr
-    delete header.endPtr
-    delete header.count
-    return { ...header, routes }
+  function WayPoints(buffer, index) {
+    const point = WayPoint(buffer, index, index)
+    const cfg = SGO(buffer, point.config)
+
+    delete point.idx
+
+    if(point.config !== point.config2) {
+      point.cfg2 = SGO(buffer, point.config2)
+    }
+    delete point.config
+    delete point.config2
+
+    const width = cfg.variables
+      .find(n => n.name === 'rmpa_float_WayPointWidth')
+    if(width && width.value !== -1) point.width = width.value
+    if(!(width && cfg.variables.length === 1)) point.cfg = cfg
+
+    return point
   }
 
   const Main = Struct({
     [0x00]: ['leader', Leader],
     [0x08]: ['isRoutes', Int],
-    [0x0C]: ['routes', Ref(Routes)],
+    [0x0C]: ['routes', Collection(WayPoints)],
     [0x10]: ['isShapes', Int],
     [0x14]: ['shapes', Ptr],
     [0x18]: ['isCameras', Int],
@@ -150,7 +159,7 @@ function decompiler(config = {}) {
     [0x24]: ['spawns', Ptr],
   }, 0x30)
 
-  const TypeHeader = Struct({
+  const CollectionHeader = Struct({
     [0x00]: ['count', UInt],
     [0x04]: ['startPtr', Ptr],
     [0x0C]: ['endPtr', Ptr],
@@ -165,7 +174,6 @@ function decompiler(config = {}) {
     [0x18]: ['count', UInt],
     [0x1C]: ['startPtr', Ptr],
   }, 0x20)
-
   
   function WayPointLink(buffer, index) {
     const ret = [0, 0]
@@ -191,6 +199,7 @@ function decompiler(config = {}) {
     [0x2C]: ['y', Float],
     [0x30]: ['z', Float],
   }, 0x3C)
+  WayPoints.size = WayPoint.size
 
   return function decompile(buffer, index = 0) {
     const result = Main(buffer, index)
