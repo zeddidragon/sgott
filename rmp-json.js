@@ -93,17 +93,50 @@ function decompiler(config = {}) {
     return leader
   }
 
-  function Collection(Type) {
+  const CollectionHeader = Struct({
+    [0x00]: ['count', UInt],
+    [0x04]: ['startPtr', Ptr],
+    [0x0C]: ['endPtr', Ptr],
+    [0x10]: ['id', UInt],
+    [0x18]: ['name', StrPtr],
+  }, 0x20)
+
+  const SubHeader = Struct({
+    [0x08]: ['endPtr', UInt],
+    [0x0C]: ['id', UInt],
+    [0x14]: ['name', StrPtr],
+    [0x18]: ['count', UInt],
+    [0x1C]: ['startPtr', Ptr],
+  }, 0x20)
+
+  const CamerasHeader = Struct({
+    [0x04]: ['endPtr', Ptr],
+    [0x08]: ['id', UInt],
+    [0x14]: ['name', StrPtr],
+    [0x18]: ['count', UInt],
+    [0x1C]: ['startPtr', Ptr],
+  }, 0x20)
+
+  const CameraSubHeader = Struct({
+    [0x04]: ['endPtr', UInt],
+    [0x14]: ['name', StrPtr],
+    [0x18]: ['count', UInt],
+    [0x1C]: ['startPtr', Ptr],
+    [0x24]: ['timing1', Ptr],
+    [0x2C]: ['timing2', Ptr],
+  }, 0x20)
+
+  function Collection(Type, CHeader=CollectionHeader, SHeader=SubHeader) {
     return function Collection(buffer, index, _index) {
       const isEntry = UInt(buffer, index - 0x04)
       if(!isEntry) return
       index = Ptr(buffer, index, _index)
-      const header = CollectionHeader(buffer, index, index)
+      const header = CHeader(buffer, index, index)
       index = header.startPtr
       const entries = Array(header.count).fill(null)
 
       for(var i = 0; i < header.count; i++) {
-        const subHeader = SubHeader(buffer, index, index)
+        const subHeader = SHeader(buffer, index, index)
         const nodes = Array(subHeader.count).fill(null)
 
         for(var j = 0; j < subHeader.count; j++) {
@@ -162,34 +195,69 @@ function decompiler(config = {}) {
     [0x34]: ['name', StrPtr],
   }, 0x40)
 
+  const ShapeCoords = Struct({
+    [0x00]: ['px', Float],
+    [0x04]: ['py', Float],
+    [0x08]: ['pz', Float],
+    [0x10]: ['sizex', Float],
+    [0x14]: ['sizey', Float],
+    [0x18]: ['sizez', Float],
+    [0x30]: ['diameter', StrPtr],
+  }, 0x40)
+
+  const Shape = Struct({
+    [0x08]: ['type', StrPtr],
+    [0x10]: ['name', StrPtr],
+    [0x24]: ['coords', Ref(ShapeCoords)],
+  }, 0x30)
+
+  // const CameraNode = Struct({
+  //   [0x0C]: ['config', Ref(SGO)],
+  //   [0x10]: ['id', UInt],
+  //   [0x68]: ['name', StrPtr],
+  // }, 0x74)
+  const CameraNodeKnownValues = {
+  //   [0x0C]: ['config', Ref(SGO)],
+  //   [0x10]: ['id', UInt],
+  //   [0x68]: ['name', StrPtr],
+}
+  function CameraNode(buffer, index, _index) {
+    const obj = {}
+
+    const cfg = SGO(buffer, Ptr(buffer, index, index))
+    if(cfg.variables.length) {
+      obj.cfg = cfg
+    } else {
+      obj.cfgen = cfg.endian
+    }
+    
+    const matrix = Array(16).fill(0)
+    cfg.matrix = matrix
+
+    const matrixStart = 0x1C
+    const matrixSize = 0x10
+    for(var i = 0; i < 16; i++) {
+      const idx = index + 0x1C + i * 0x04
+      matrix[i] = Float(buffer, idx)
+    }
+    obj.matrix = matrix
+
+    return obj
+  }
+  CameraNode.size = 0x74
+
   const Main = Struct({
     [0x00]: ['leader', Leader],
     [0x08]: ['isRoutes', UInt],
     [0x0C]: ['routes', Collection(WayPoints)],
     [0x10]: ['isShapes', UInt],
-    [0x14]: ['shapes', Ptr],
+    [0x14]: ['shapes', Collection(Shape)],
     [0x18]: ['isCameras', UInt],
-    [0x1C]: ['cameras', Ptr],
+    [0x1C]: ['cameras', Collection(CameraNode, CamerasHeader, CameraSubHeader)],
     [0x20]: ['isSpawns', UInt],
     [0x24]: ['spawns', Collection(Spawn)],
   }, 0x30)
 
-  const CollectionHeader = Struct({
-    [0x00]: ['count', UInt],
-    [0x04]: ['startPtr', Ptr],
-    [0x0C]: ['endPtr', Ptr],
-    [0x10]: ['id', UInt],
-    [0x18]: ['name', StrPtr],
-  }, 0x20)
-
-  const SubHeader = Struct({
-    [0x08]: ['endPtr', UInt],
-    [0x0C]: ['id', UInt],
-    [0x14]: ['name', StrPtr],
-    [0x18]: ['count', UInt],
-    [0x1C]: ['startPtr', Ptr],
-  }, 0x20)
-  
   function WayPointLink(buffer, index) {
     const ret = [0, 0]
     ret[0] = UInt(buffer, index + 0x00)
@@ -226,6 +294,8 @@ function decompiler(config = {}) {
     delete result.isCameras
     delete result.isSpawns
 
+    return result.cameras
+
     return {
       format: 'RMP',
       endian: endian,
@@ -240,5 +310,7 @@ function decompile(buffer, opts = {}) {
   return json(data)
 }
 
-const buffer = fs.readFileSync('testdata/M515/MISSION.RMPA')
-console.log(decompile(buffer))
+const buffer = fs.readFileSync('testdata/M190/BEFORE.RMPA')
+const result = decompile(buffer)
+console.log(result)
+//fs.writeFileSync('output.json', result)
