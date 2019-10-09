@@ -177,7 +177,7 @@ function decompiler(config = {}) {
     if(width && width.value !== -1) point.width = width.value
     if(!(width && cfg.variables.length === 1)) {
       point.cfg = cfg
-      if(cfg.endian !== 'LE') pt.cfgEndian = cfg,endian
+      if(cfg.endian !== endian) point.cfgEn = cfg,endian
     }
 
     return point
@@ -227,8 +227,8 @@ function decompiler(config = {}) {
     const cfg = SGO(buffer, Ptr(buffer, index, index))
     if(cfg.variables.length) {
       obj.cfg = cfg
-    } else {
-      obj.cfgen = cfg.endian
+    } else if(cfg.endian !== endian) {
+      obj.cfgEn = cfg.endian
     }
     
     const matrix = Array(16).fill(0)
