@@ -56,28 +56,41 @@ function decompiler(config = {}) {
     return sgo()(buffer.slice(index))
   }
 
+  function Hex(buffer, index) {
+    const isValue = UInt(buffer, index)
+    if(!isValue) return
+    return (
+      buffer
+        .slice(index, index + 0x04)
+        .toString('hex')
+        .replace(/^0+/, '')
+    )
+  }
+
+  function HexKey(i) {
+    return `0x${i.toString(16).padStart(2, '0')}`
+  }
+
   function Struct(definitions, size) {
     const block = 0x04
     if(!size) size = Math.max(...Object.keys(definitions).map(k => +k)) + block
     function StructDef(buffer, index = 0) {
       const obj = {}
 
-      for(var i = 0; i < size; i += block) {
+      for(var i = 0x00; i < size; i += block) {
         const def = definitions[i]
 
         if(!def) {
-          const value = buffer.slice(index + i, index + i + 0x04)
-            .toString('hex')
-            .replace(/^0+/, '')
+          const value = Hex(buffer, index + i)
           if(!value) continue
-          const key = `0x${i.toString(16).padStart(2, '0')}`
-          obj[key] = value
+          const key = HexKey(i)
+          obj[key] = value == null ? 0 : value
           continue
         }
 
         const [key, fn] = def
         const value = fn(buffer, index + i, index)
-        if(value) obj[key] = value
+        obj[key] = value == null ? 0 : value
       }
 
       return obj
@@ -217,30 +230,53 @@ function decompiler(config = {}) {
   //   [0x68]: ['name', StrPtr],
   // }, 0x74)
   const CameraNodeKnownValues = {
-  //   [0x0C]: ['config', Ref(SGO)],
-  //   [0x10]: ['id', UInt],
-  //   [0x68]: ['name', StrPtr],
-}
+    [0x0C]: ['config', Ref(SGO)],
+    [0x10]: ['id', UInt],
+    [0x68]: ['name', StrPtr],
+  }
   function CameraNode(buffer, index, _index) {
     const obj = {}
+    const definitions = CameraNodeKnownValues
 
-    const cfg = SGO(buffer, Ptr(buffer, index, index))
-    if(cfg.variables.length) {
-      obj.cfg = cfg
-    } else if(cfg.endian !== endian) {
-      obj.cfgEn = cfg.endian
-    }
-    
     const matrix = Array(16).fill(0)
-    cfg.matrix = matrix
-
     const matrixStart = 0x1C
-    const matrixSize = 0x10
+    const matrixEnd = matrixStart + 0x40
     for(var i = 0; i < 16; i++) {
-      const idx = index + 0x1C + i * 0x04
+      const idx = index + matrixStart + i * 0x04
       matrix[i] = Float(buffer, idx)
     }
-    obj.matrix = matrix
+
+    for(var i = 0; i < CameraNode.size; i += 0x04) {
+      if(i === matrixStart) {
+        obj.matrix = matrix
+        continue
+      }
+      if(i >= matrixStart && i < matrixEnd) continue
+      const def = definitions[i]
+
+      if(!def) {
+        const value = Hex(buffer, index + i)
+        if(!value) continue
+        const key = HexKey(i)
+        obj[key] = value == null ? 0 : value
+        continue
+      }
+
+      const [key, fn] = def
+      const value = fn(buffer, index + i, index)
+
+      if(key === 'config') {
+        if(value.variables.length) {
+          obj[key] = value
+        } else if(value.endian !== endian) {
+          obj.cfgEn = value.endian
+        }
+      } else {
+        obj[key] = value
+      }
+    }
+
+    const slice = buffer.slice(index + 0x6c, index + 0x6c + 0x08)
 
     return obj
   }
@@ -294,8 +330,6 @@ function decompiler(config = {}) {
     delete result.isCameras
     delete result.isSpawns
 
-    return result.cameras
-
     return {
       format: 'RMP',
       endian: endian,
@@ -306,11 +340,9 @@ function decompiler(config = {}) {
 
 function decompile(buffer, opts = {}) {
   const data = decompiler(opts)(buffer)
-  // return data
   return json(data)
 }
 
 const buffer = fs.readFileSync('testdata/M190/BEFORE.RMPA')
 const result = decompile(buffer)
 console.log(result)
-//fs.writeFileSync('output.json', result)
