@@ -1,7 +1,7 @@
 const fs = require('fs')
 const allWeapons = require('./all-weapons')
 const getNode = require('../helpers/get-node')
-const meta = require('../sgo-meta').names.ammoClasses.SentryGunBullet01
+const meta = require('../converters/sgo/meta').names.ammoClasses.SentryGunBullet01
 
 for(const [ weapon, id ] of allWeapons()) {
   const type = getNode(weapon, 'AmmoClass').value

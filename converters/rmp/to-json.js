@@ -1,6 +1,6 @@
 const fs = require('fs')
 const json = require('json-stringify-pretty-compact')
-const sgo = require('./sgo-json').decompiler
+const sgo = require('../sgo/to-json').decompiler
 require('util').inspect.defaultOptions.depth = null
 
 // Cheapo(tm) debugging

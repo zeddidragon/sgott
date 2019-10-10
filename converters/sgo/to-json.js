@@ -1,6 +1,6 @@
 const json = require('json-stringify-pretty-compact')
 const SIZE = 12
-const sgoMeta = require('./sgo-meta')
+const sgoMeta = require('./meta')
 
 // Cheapo(tm) debugging
 function abort() {

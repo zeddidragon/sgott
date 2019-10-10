@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const config = require('./package.json')
-const sgoToJson = require('./sgo-json')
-const jsonToSgo = require('./json-sgo')
+const sgoToJson = require('./converters/sgo/to-json')
+const jsonToSgo = require('./converters/sgo/from-json')
 
 const transforms = {
   sgo: sgoToJson,
