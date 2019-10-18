@@ -10,27 +10,27 @@ function abort() {
 function compiler(config = {}) {
   var endian
 
-  function Str(buffer, value, offset = 0) {
+  function Str(buffer, value, offset = 0x00) {
     return buffer.write(value, offset)
   }
 
-  function UInt(buffer, value, offset = 0) {
+  function UInt(buffer, value, offset = 0x00) {
     return buffer[`writeUInt32${endian}`](value, offset)
   }
 
-  function Int(buffer, value, offset = 0) {
+  function Int(buffer, value, offset = 0x00) {
     return buffer[`writeInt32${endian}`](value, offset)
   }
 
-  function Float(buffer, value, offset = 0) {
+  function Float(buffer, value, offset = 0x00) {
     return buffer[`writeFloat${endian}`](value, offset)
   }
   
-  function Hex(buffer, value, offset = 0) {
+  function Hex(buffer, value, offset = 0x00) {
     return buffer.write(value.padStart(8, '0'), offset, 'hex')
   }
 
-  function Unknowns(buffer, obj, offset = 0)  {
+  function Unknowns(buffer, obj, offset = 0x00)  {
     for(const key of Object.keys(obj)) {
       if(!key.startsWith('0x')) continue
       const pos = parseInt(key.slice(2), 16)
@@ -40,33 +40,44 @@ function compiler(config = {}) {
     }
   }
 
+  function TypeHeader(buffer, obj, offset = 0x00) {
+    Unknowns(buffer, obj, offset)
+    UInt(buffer, obj.entries.length, 0x00)
+  }
+
   return function compile(obj) {
     endian = obj.endian
 
     var fixedBufferSize = 0
     const header = Buffer.alloc(0x30)
-    Unknowns(header, obj)
+    Unknowns(header, obj, 0x00)
     Str(header, endian === 'LE' ? 'RMP\0' : '\0PMR', 0x00)
 
+    const types = []
     function addEntry(prop, offset, subHeaderSize = 0x20) {
       Int(header, header.length + fixedBufferSize, offset + 0x04)
       const count = prop && prop.entries.length
       if(!count) return
       UInt(header, 1, offset)
-      fixedBufferSize += prop.entries.reduce((size, entry) => {
+      const size = prop.entries.reduce((size, entry) => {
         return size + subHeaderSize + entry.nodes.length * (0x3C + 0x70 + 0x10)
       }, 0x20)
+      const buffer = Buffer.alloc(size)
+
+      TypeHeader(buffer, prop, 0x00)
+
+      types.push(buffer)
+      fixedBufferSize += size
     }
 
     addEntry(obj.routes,  0x08)
     addEntry(obj.shapes,  0x10)
     addEntry(obj.cameras, 0x18)
     addEntry(obj.spawns,  0x20)
-    const fixedBuffer = Buffer.alloc(fixedBufferSize)
 
     return Buffer.concat([
       header,
-      //fixedBuffer,
+      ...types,
     ])
   }
 }
@@ -97,7 +108,7 @@ function hexview(buffer) {
 const json = JSON.parse(fs.readFileSync('tmp/m190mission.json', 'utf8'))
 const result = compile(json)
 console.log('\nReconstructed')
-console.log(hexview(result))
+console.log(hexview(result.slice(0, 0x100)))
 const buffer = fs.readFileSync('testdata/M190/MISSION.RMPA')
 console.log('\nReal')
-console.log(hexview(buffer.slice(0, 0x30)))
+console.log(hexview(buffer.slice(0, 0x100)))
