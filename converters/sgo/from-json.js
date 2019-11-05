@@ -5,7 +5,7 @@ function abort() {
   throw new Error('abort')
 }
 
-function padCeil(value, divisor) {
+function padCeil(value, divisor = 0x10) {
   return ceil(value, divisor) - value
 }
 
@@ -99,7 +99,7 @@ function compiler(config) {
       const buffer = type === 'SGO'
         ? compiler()(data)
         : Buffer.from(data, 'base64')
-      const padding = Buffer.alloc(padCeil(buffer.length, 16))
+      const padding = Buffer.alloc(padCeil(buffer.length, 0x10))
       const padded = Buffer.concat([buffer, padding])
       deferredExtra.push([block, padded])
       return padded
@@ -199,10 +199,11 @@ function compiler(config) {
 
     const fixedBuffer = Buffer.alloc(values.length * SIZE)
     const heapSize = heap.length * SIZE +
-      padCeil(fixedBuffer.length + heap.length * SIZE, 16)
-    const heapBuffer = Buffer.alloc(heapSize)
-    const stringBuffer = Buffer.alloc(ceil(stringIndex, 16))
-    const mTable = Buffer.alloc(ceil(varCount * 8, 16))
+      padCeil(fixedBuffer.length + heap.length * SIZE, 0x10)
+    const heapBuffer = Buffer.alloc(heap.length ? heapSize : 0)
+    const stringBuffer = Buffer.alloc(stringIndex)
+    const mTableSize = varCount * 8
+    const mTable = Buffer.alloc(heap.length ? ceil(mTableSize, 16) : mTableSize)
 
     var extraIndex = 0
     const extraBuffer = Buffer.concat(deferredExtra.map(([block, buffer]) => {
@@ -296,14 +297,17 @@ function compiler(config) {
     // M is pointer to mTable
     // Equal to the size of every value (and pointed structs)
     // + sizeof header
-    UInt(header, size + 32, 0x14)
+    UInt(header, size + 0x20, 0x14)
 
     // S is total size of the class
     // Equal to size of every value (and pointed structs)
     // + size of mystery data
     // + size of header
-    UInt(header, size + 32 + mTable.length, 0x1c)
+    const classSize = size + 0x20 + mTable.length
+    UInt(header, classSize, 0x1c)
 
+    const totalSize = classSize + extraBuffer.length + stringBuffer.length
+    const padding = padCeil(totalSize, 0x10)
     return Buffer.concat([
       header,
       fixedBuffer,
@@ -311,6 +315,7 @@ function compiler(config) {
       mTable,
       extraBuffer,
       stringBuffer,
+      Buffer.alloc(padding),
     ])
   }
 }

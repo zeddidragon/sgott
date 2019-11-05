@@ -1,5 +1,6 @@
 const fs = require('fs')
 const json = require('json-stringify-pretty-compact')
+const hexview = require('../../helpers/hexview')
 const sgo = require('../sgo/to-json').decompiler
 require('util').inspect.defaultOptions.depth = null
 
@@ -43,7 +44,6 @@ function decompiler(config = {}) {
 
   function StrPtr(buffer, index, base) {
     if(base) {
-      const uoffset = UInt(buffer, index)
       const ioffset = Int(buffer, index)
       return StrPtr(buffer, base + ioffset)
     }
@@ -53,6 +53,7 @@ function decompiler(config = {}) {
   }
 
   function SGO(buffer, index) {
+    //console.log(hexview(buffer.slice(index, index + 0x70)), '\n')
     return sgo()(buffer.slice(index))
   }
 
@@ -190,7 +191,8 @@ function decompiler(config = {}) {
     if(width && width.value !== -1) point.width = width.value
     if(!(width && cfg.variables.length === 1)) {
       point.cfg = cfg
-      if(cfg.endian !== endian) point.cfgEn = cfg,endian
+    } else if(cfg.endian !== endian) {
+      point.cfgEn = cfg.endian
     }
 
     return point
@@ -343,6 +345,6 @@ function decompile(buffer, opts = {}) {
   return json(data)
 }
 
-const buffer = fs.readFileSync('testdata/M190/BEFORE.RMPA')
+const buffer = fs.readFileSync('testdata/M190/MISSION.RMPA')
 const result = decompile(buffer)
 console.log(result)
