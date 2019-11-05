@@ -1,4 +1,4 @@
-Note: Swiped from KittopiaCreator. Thanks, Kit!
+Note: Swiped from KittopiaCreator and Kamui. Thanks, Kit and Kamui!
 
 All offsets are calculated from the first byte of the respective data block (relative offsets).
 Route and Camera Waypoints aren't extended to keep aligned to 0, so only the first in a route will always be at 0.
