@@ -3,7 +3,6 @@ const json = require('json-stringify-pretty-compact')
 const hexview = require('../../helpers/hexview')
 const sgo = require('../sgo/to-json').decompiler
 require('util').inspect.defaultOptions.depth = null
-
 // Cheapo(tm) debugging
 function abort() {
   throw new Error('abort')
@@ -101,7 +100,7 @@ function decompiler(config = {}) {
     return StructDef
   }
 
-  function Leader() {
+  function Leader(buffer) {
     const leader = buffer.slice(0, 4).toString('ascii')
     endian = leader === 'RMP\0' ? 'LE' : 'BE'
     return leader
@@ -345,6 +344,6 @@ function decompile(buffer, opts = {}) {
   return json(data)
 }
 
-const buffer = fs.readFileSync('testdata/M190/MISSION.RMPA')
-const result = decompile(buffer)
-console.log(result)
+decompile.decompiler = decompiler
+
+module.exports = decompile

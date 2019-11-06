@@ -3,10 +3,33 @@ const fs = require('fs')
 const config = require('./package.json')
 const sgoToJson = require('./converters/sgo/to-json')
 const jsonToSgo = require('./converters/sgo/from-json')
+const rmpToJson = require('./converters/rmp/to-json')
+const jsonToRmp = require('./converters/rmp/from-json')
+
+function isSgo(obj) {
+  if(/^sgo$/i.test(obj.format)) return true
+  if(obj.variables) return true
+  return false
+}
+
+function isRmp(obj) {
+  if(/^rmp/i.test(obj.format)) return true
+  if(obj.routes) return true
+  if(obj.shapes) return true
+  if(obj.cameras) return true
+  if(obj.spawns) return true
+  return false
+}
 
 const transforms = {
   sgo: sgoToJson,
-  json: jsonToSgo,
+  rmp: rmpToJson,
+  json(buffer, opts) {
+    const parsed = JSON.parse(buffer.toString())
+    if(isSgo(parsed)) return jsonToSgo.compiler(opts)(parsed)
+    if(isRmp(parsed)) return jsonToRmp.compile(parsed, opts)
+    throw new Error('Unable to recognize JSON format')
+  },
 }
 
 const flagMap = {
@@ -31,7 +54,7 @@ Usage:
 
 Options:
   -t  --type
-      Can be "json" or "sgo". Override automatically inferred input type.
+      Can be "json", "sgo", or "rmp". Override automatically inferred input type.
 
   -h --help
       Prints this help text, then quits.
@@ -86,53 +109,69 @@ function parseCli(cb) {
 
   const [readFile, writeFile] = plain
 
-  function convertFileName(fileName) {
+  function convertFileName(fileName, target) {
     const format = /\.json$/.exec(fileName) ? 'SGO' : 'json'
-    return fileName.replace(/\..*$/, '.' + format)
+    return fileName.replace(/\..*$/, '.' + target)
   }
 
-  function write(data) {
+  function write(data, type) {
+    const target = type === 'json'
+      ? (data.format || 'sgo').toUpperCase()
+      : 'json'
     if(writeFile && fs.existsSync(writeFile) && fs.lstatSync(writeFile).isDirectory()) {
-      const path = writeFile + '/' + convertFileName(readFile.split('/').pop())
+      const path = writeFile + '/' + convertFileName(readFile.split('/').pop(), target)
       fs.writeFileSync(path, data)
+      console.log(path)
     } else if(writeFile) {
       fs.writeFileSync(writeFile, data)
+      console.log(writeFile)
     } else if(readFile) {
-      fs.writeFileSync(convertFileName(readFile), data)
+      const path = convertFileName(readFile, target)
+      fs.writeFileSync(path, data)
+      console.log(path)
     } else {
       process.stdout.write(data)
     }
   }
 
-  var type = (opts.t || opts.type || '').toLowerCase()
+  function inferType(buffer) {
+    const ext4 = readFile && readFile.slice(-4)
+    if(ext4 === '.sgo') return 'sgo'
+    if(ext4 === '.rmp') return 'rmp'
 
+    const ext5 = readFile && readFile.slice(-5)
+    if(ext5 === '.json') return 'json'
+    if(ext5 === '.rmpa') return 'rmp'
+
+    const leader = buffer.slice(0, 4).toString()
+    if(leader === 'SGO\0' || leader === '\0OGS') return 'sgo'
+    if(leader === 'RMP\0' || leader === '\0PMR') return 'rmp'
+    if(leader.replace(/\u0000/g, '').trim()[0] === '{') return 'json'
+
+    throw new Error('Unable to infer format')
+  }
+
+  const type = (opts.t || opts.type || '').toLowerCase()
   if(opts.version) {
     console.log(config.name, config.version)
     console.log(config.description)
   } else if(opts.help) {
     console.log(help)
   } else if(readFile) {
-    if(!type) type = (readFile.slice(-5).toLowerCase() === '.json'
-      ? 'json'
-      : 'sgo'
-    )
     const buffer = fs.readFileSync(readFile)
-    cb(buffer, type, opts, write)
+    cb(buffer, type || inferType(buffer), opts, write)
   } else {
     const chunks = []
     process.stdin.on('data', chunk => chunks.push(chunk))
     process.stdin.on('end', () => {
       const buffer = Buffer.concat(chunks)
-      if(!type) type = buffer.slice(0, 1).toString() === '{'
-        ? 'json'
-        : 'sgo'
-      cb(Buffer.concat(chunks), type, opts, write)
+      cb(Buffer.concat(chunks), type || inferType(buffer), opts, write)
     })
   }
 }
 
 function handle(buffer, type, opts, write) {
-  write(transforms[type](buffer, opts))
+  write(transforms[type](buffer, opts), type)
 }
 
 parseCli(handle)

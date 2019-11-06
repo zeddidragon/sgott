@@ -1,5 +1,4 @@
 const fs = require('fs')
-const hexview = require('../../helpers/hexview')
 const sgo = require('../sgo/from-json').compiler()
 require('util').inspect.defaultOptions.depth = null
 
@@ -10,7 +9,6 @@ function abort() {
 
 function compile(obj) {
   const { endian } = obj
-
   function Str(buffer, value, offset = 0x00, base = 0x00) {
     return buffer.write(value, base + offset)
   }
@@ -109,7 +107,6 @@ function compile(obj) {
 
     function addCfg(cfg, offset, base) {
       const buf = sgo(cfg)
-      console.log(hexview(buf), '\n')
       buffers.push(buf)
       heapSize += buf.length
       Int(buffer, heapIdx(base), offset, base)
@@ -210,12 +207,4 @@ function compile(obj) {
   return Buffer.concat(buffers)
 }
 
-const json = JSON.parse(fs.readFileSync('tmp/m190mission.json', 'utf8'))
-const result = compile(json)
-const slice = 0x180
-process.exit(0)
-console.log('\nReconstructed')
-console.log(hexview(result.slice(0, slice)))
-const buffer = fs.readFileSync('testdata/M190/MISSION.RMPA')
-console.log('\nReal')
-console.log(hexview(buffer.slice(0, slice)))
+exports.compile = compile
