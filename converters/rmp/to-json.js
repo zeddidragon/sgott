@@ -1,6 +1,5 @@
 const fs = require('fs')
 const json = require('json-stringify-pretty-compact')
-const hexview = require('../../helpers/hexview')
 const sgo = require('../sgo/to-json').decompiler
 require('util').inspect.defaultOptions.depth = null
 // Cheapo(tm) debugging
@@ -52,7 +51,6 @@ function decompiler(config = {}) {
   }
 
   function SGO(buffer, index) {
-    //console.log(hexview(buffer.slice(index, index + 0x70)), '\n')
     return sgo()(buffer.slice(index))
   }
 
@@ -198,7 +196,7 @@ function decompiler(config = {}) {
   }
 
   const Spawn = Struct({
-    [0x04]: ['str', StrPtr],
+    [0x04]: ['endPtr', Ptr],
     [0x08]: ['id', UInt],
     [0x0c]: ['px', Float],
     [0x10]: ['py', Float],

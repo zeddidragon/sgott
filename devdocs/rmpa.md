@@ -90,7 +90,7 @@ Remember! All offsets are calculated from the first byte of the _individual node
 - 0x18 always float 1?
 
 **Spawnpoints**, which are about 0x40 in length:
-- 0x04 has always been an offset pointing to a null string. I have seen a functional spawn not point to the string table, so it has nothing to do with the start of the string table.
+- 0x04 appears to be a pointer to the end of the current enumeration it's a part of.
 - 0x08 is the numeric waypoint identifier based on the whole RMPA?
 The first set of floats is the spawnpoint itself, while the second set is where the spawned entity will "Look at".
 - 0x34 is the offset to the spawn's name.

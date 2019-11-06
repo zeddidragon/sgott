@@ -27,7 +27,7 @@ const transforms = {
   json(buffer, opts) {
     const parsed = JSON.parse(buffer.toString())
     if(isSgo(parsed)) return jsonToSgo.compiler(opts)(parsed)
-    if(isRmp(parsed)) return jsonToRmp.compile(parsed, opts)
+    if(isRmp(parsed)) return jsonToRmp.compiler(opts)(parsed)
     throw new Error('Unable to recognize JSON format')
   },
 }

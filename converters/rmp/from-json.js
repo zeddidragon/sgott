@@ -208,3 +208,4 @@ function compile(obj) {
 }
 
 exports.compile = compile
+exports.compiler = opts => obj => compile(obj, opts)
