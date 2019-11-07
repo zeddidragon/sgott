@@ -5,7 +5,7 @@
   "main": "sgott.js",
   "bin": "sgott.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./test",
     "build-sgott": "pkg -t node8-win -o ./release/sgott.exe ./sgott.js",
     "build-strap": "pkg -t node8-win -o ./release/sgottstrap/sgottstrap.exe ./sgottstrap/sgottstrap.js",
     "build": "npm run build-sgott && npm run build-strap"

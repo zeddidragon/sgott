@@ -1,3 +1,18 @@
 #!/usr/bin/env bash
-hex() { xxd | awk '{ $1 = ""; print $0 }' }
-vimdiff <($1 | hex) <(./sgott.js < $1 | ./sgott.js | hex)
+hex() { xxd | awk '{ $1 = ""; print $0 }'; }
+sgott() { ./sgott.js; }
+
+if [ "$1" = "" ]; then
+  echo File not specified!
+  exit 1
+fi
+
+if [ "$2" = "diff" ]; then
+  diff \
+   <( hex <  $1 ) \
+   <( sgott < $1 | sgott | hex )
+else
+  hex < $1
+fi
+
+

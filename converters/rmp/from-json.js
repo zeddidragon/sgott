@@ -1,4 +1,3 @@
-const fs = require('fs')
 const sgo = require('../sgo/from-json').compiler()
 require('util').inspect.defaultOptions.depth = null
 
@@ -35,10 +34,6 @@ function compile(obj) {
   
   function Hex(buffer, value, offset = 0x00, base = 0x00) {
     return buffer.write(value.padStart(8, '0'), base + offset, 'hex')
-  }
-
-  function stringCompare(a, b) {
-    return a > b ? 1 : -1
   }
 
   function stringBytes(string) {
