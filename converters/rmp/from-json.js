@@ -7,6 +7,14 @@ function abort() {
   throw new Error('abort')
 }
 
+function padCeil(value, divisor = 0x10) {
+  return value + ceil(value, divisor) - value
+}
+
+function ceil(value, divisor) {
+  return Math.ceil(value / divisor) * divisor
+}
+
 function compile(obj) {
   const { endian } = obj
   function Str(buffer, value, offset = 0x00, base = 0x00) {
@@ -97,7 +105,7 @@ function compile(obj) {
   function WayPoints(obj) {
     const { nodes } = obj
     const nodeSize = 0x3C
-    const buffer = Buffer.alloc(nodes.length * nodeSize)
+    const buffer = Buffer.alloc(padCeil(nodes.length * nodeSize))
     const buffers = [buffer]
     var heapSize = 0x00
 
@@ -120,7 +128,7 @@ function compile(obj) {
       UInt(buffer, node.next, 0x04, offset)
       const next = Buffer.alloc(0x10)
       for(var j = 0; j < 4; j++) {
-        UInt(next, node.link[i] || 0, 0x04 * j)
+        UInt(next, node.link[j] || 0, 0x04 * j)
       }
       buffers.push(next)
       heapSize += next.length
@@ -135,7 +143,7 @@ function compile(obj) {
             type: "float",
             name: 'rmpa_float_WayPointWidth',
             value: node.width == null ? -1 : node.width,
-          }],
+          }]
         }
         addCfg(cfg, 0x10, offset)
       }

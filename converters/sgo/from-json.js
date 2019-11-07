@@ -188,12 +188,12 @@ function compiler(config) {
       }))
       .sort(([a], [b]) => stringCompare(a, b))
     var stringIndex = 0
-    for(const [_, bytes, id] of strings) {
+    for(const [, bytes, id] of strings) {
       stringIndices[id] = stringIndex
       stringIndex += bytes
     }
 
-    for(const [block, [string, _, id]] of deferredStrings) {
+    for(const [block, [, , id]] of deferredStrings) {
       block.value = stringIndices[id]
     }
 

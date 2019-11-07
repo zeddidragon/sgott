@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+hex() { xxd | awk '{ $1 = ""; print $0 }' }
+vimdiff <($1 | hex) <(./sgott.js < $1 | ./sgott.js | hex)
