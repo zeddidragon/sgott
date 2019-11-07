@@ -8,9 +8,11 @@ if [ "$1" = "" ]; then
 fi
 
 if [ "$2" = "diff" ]; then
-  diff \
+  vimdiff \
    <( hex <  $1 ) \
    <( sgott < $1 | sgott | hex )
+elif [ "$2" = "result" ]; then
+   sgott < $1 | sgott | hex
 else
   hex < $1
 fi

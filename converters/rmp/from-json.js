@@ -7,10 +7,6 @@ function abort() {
 }
 
 function padCeil(value, divisor = 0x10) {
-  return value + ceil(value, divisor) - value
-}
-
-function ceil(value, divisor) {
   return Math.ceil(value / divisor) * divisor
 }
 
