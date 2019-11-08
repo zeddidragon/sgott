@@ -86,7 +86,7 @@ function decompiler(config = {}) {
         }
 
         const [key, fn] = def
-        const value = fn(buffer, i, base)
+        const value = fn(buffer, i, index)
         obj[key] = value == null ? 0 : value
       }
 
@@ -97,8 +97,11 @@ function decompiler(config = {}) {
     return StructDef
   }
 
-  function Leader(buffer) {
-    const leader = buffer.slice(0, 4).toString('ascii')
+  function Leader(buffer, offset = 0, base = 0) {
+    const index = base + offset
+    const leader = buffer
+      .slice(index, index + 0x4)
+      .toString('ascii')
     endian = leader === 'RMP\0' ? 'LE' : 'BE'
     return leader
   }
@@ -146,7 +149,6 @@ function decompiler(config = {}) {
       base = header.startPtr
       const entries = Array(header.count).fill(null)
 
-      var index = base + offset
       for(var i = 0; i < header.count; i++) {
         const subHeader = SHeader(buffer, offset, base)
         const nodes = Array(subHeader.count).fill(null)
@@ -161,7 +163,7 @@ function decompiler(config = {}) {
         delete subHeader.endPtr
         entries[i] = { ...subHeader, nodes }
 
-        index += SubHeader.size
+        base += SubHeader.size
       }
 
       delete header.startPtr
