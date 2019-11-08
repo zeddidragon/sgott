@@ -1,4 +1,3 @@
-const fs = require('fs')
 const json = require('json-stringify-pretty-compact')
 const sgo = require('../sgo/to-json').decompiler
 require('util').inspect.defaultOptions.depth = null
@@ -10,53 +9,52 @@ function abort() {
 function decompiler(config = {}) {
   var endian
 
-  function Str(buffer) {
+  function Str(buffer, offset = 0, base = 0) {
+    buffer = buffer.slice(base + offset)
     return (endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
     ).trim()
   }
 
-  function UInt(buffer, offset = 0) {
-    return buffer[`readUInt32${endian}`](offset)
+  function UInt(buffer, offset = 0, base = 0) {
+    return buffer[`readUInt32${endian}`](base + offset)
   }
 
-  function Int(buffer, offset = 0) {
-    return buffer[`readInt32${endian}`](offset)
+  function Int(buffer, offset = 0, base = 0) {
+    return buffer[`readInt32${endian}`](base + offset)
   }
 
-  function Float(buffer, offset = 0) {
-    return buffer[`readFloat${endian}`](offset)
+  function Float(buffer, offset = 0, base = 0) {
+    return buffer[`readFloat${endian}`](base + offset)
   }
 
-  function Ptr(buffer, index, baseIndex) {
-    return baseIndex + Int(buffer, index)
+  function Ptr(buffer, offset = 0, base = 0) {
+    return base + Int(buffer, offset, base)
   }
 
   function Ref(fn) {
-    return function Deref(buffer, index, baseIndex) {
-      const jump = Ptr(buffer, index, baseIndex)
-      return fn(buffer, jump, jump)
+    return function Deref(buffer, offset = 0, base = 0) {
+      const jump = Ptr(buffer, offset, base)
+      return fn(buffer, 0, jump)
     }
   }
 
-  function StrPtr(buffer, index, base) {
-    if(base) {
-      const ioffset = Int(buffer, index)
-      return StrPtr(buffer, base + ioffset)
-    }
+  function StrPtr(buffer, offset = 0, base = 0) {
+    const index = base + offset
     const end = buffer.length
     const terminator = Math.min(buffer.indexOf('\0', index, 'utf16le'), end)
     return Str(buffer.slice(index, terminator > 0 ? terminator : end))
   }
 
-  function SGO(buffer, index) {
-    return sgo()(buffer.slice(index))
+  function SGO(buffer, offset = 0, base = 0) {
+    return sgo()(buffer.slice(base + offset))
   }
 
-  function Hex(buffer, index) {
-    const isValue = UInt(buffer, index)
+  function Hex(buffer, offset = 0, base = 0) {
+    const isValue = UInt(buffer, offset, base)
     if(!isValue) return
+    const index = base + offset
     return (
       buffer
         .slice(index, index + 0x04)
@@ -72,14 +70,15 @@ function decompiler(config = {}) {
   function Struct(definitions, size) {
     const block = 0x04
     if(!size) size = Math.max(...Object.keys(definitions).map(k => +k)) + block
-    function StructDef(buffer, index = 0) {
+    function StructDef(buffer, offset = 0, base = 0) {
       const obj = {}
+      const index = base + offset
 
       for(var i = 0x00; i < size; i += block) {
         const def = definitions[i]
 
         if(!def) {
-          const value = Hex(buffer, index + i)
+          const value = Hex(buffer, i, index)
           if(!value) continue
           const key = HexKey(i)
           obj[key] = value == null ? 0 : value
@@ -87,7 +86,7 @@ function decompiler(config = {}) {
         }
 
         const [key, fn] = def
-        const value = fn(buffer, index + i, index)
+        const value = fn(buffer, i, base)
         obj[key] = value == null ? 0 : value
       }
 
@@ -138,21 +137,23 @@ function decompiler(config = {}) {
   }, 0x20)
 
   function Collection(Type, CHeader=CollectionHeader, SHeader=SubHeader) {
-    return function Collection(buffer, index, _index) {
-      const isEntry = UInt(buffer, index - 0x04)
+    return function Collection(buffer, offset = 0, base = 0) {
+      const isEntry = UInt(buffer, offset - 0x04, base)
       if(!isEntry) return
-      index = Ptr(buffer, index, _index)
-      const header = CHeader(buffer, index, index)
-      index = header.startPtr
+      base = Ptr(buffer, offset, base)
+      offset = 0
+      const header = CHeader(buffer, offset, base)
+      base = header.startPtr
       const entries = Array(header.count).fill(null)
 
+      var index = base + offset
       for(var i = 0; i < header.count; i++) {
-        const subHeader = SHeader(buffer, index, index)
+        const subHeader = SHeader(buffer, offset, base)
         const nodes = Array(subHeader.count).fill(null)
 
         for(var j = 0; j < subHeader.count; j++) {
           const location = subHeader.startPtr + j * Type.size
-          nodes[j] = Type(buffer, location, location)
+          nodes[j] = Type(buffer, 0, location)
         }
 
         delete subHeader.count
@@ -171,14 +172,14 @@ function decompiler(config = {}) {
   }
   Collection.size = 0x20
 
-  function WayPoints(buffer, index) {
-    const point = WayPoint(buffer, index, index)
-    const cfg = SGO(buffer, point.config)
+  function WayPoints(buffer, offset = 0, base = 0) {
+    const point = WayPoint(buffer, offset, base)
+    const cfg = SGO(buffer, 0, point.config)
 
     delete point.idx
 
     if(point.config !== point.config2) {
-      point.cfg2 = SGO(buffer, point.config2)
+      point.cfg2 = SGO(buffer, 0, point.config2)
     }
     delete point.config
     delete point.config2
@@ -233,19 +234,20 @@ function decompiler(config = {}) {
     [0x10]: ['id', UInt],
     [0x68]: ['name', StrPtr],
   }
-  function CameraNode(buffer, index, _index) {
+  function CameraNode(buffer, offset = 0, base = 0) {
     const obj = {}
+    const index = base + offset
     const definitions = CameraNodeKnownValues
 
     const matrix = Array(16).fill(0)
     const matrixStart = 0x1C
     const matrixEnd = matrixStart + 0x40
-    for(var i = 0; i < 16; i++) {
+    for(let i = 0; i < 16; i++) {
       const idx = index + matrixStart + i * 0x04
       matrix[i] = Float(buffer, idx)
     }
 
-    for(var i = 0; i < CameraNode.size; i += 0x04) {
+    for(let i = 0; i < CameraNode.size; i += 0x04) {
       if(i === matrixStart) {
         obj.matrix = matrix
         continue
@@ -254,7 +256,7 @@ function decompiler(config = {}) {
       const def = definitions[i]
 
       if(!def) {
-        const value = Hex(buffer, index + i)
+        const value = Hex(buffer, i, index)
         if(!value) continue
         const key = HexKey(i)
         obj[key] = value == null ? 0 : value
@@ -262,7 +264,7 @@ function decompiler(config = {}) {
       }
 
       const [key, fn] = def
-      const value = fn(buffer, index + i, index)
+      const value = fn(buffer, i, index)
 
       if(key === 'config') {
         if(value.variables.length) {
@@ -274,8 +276,6 @@ function decompiler(config = {}) {
         obj[key] = value
       }
     }
-
-    const slice = buffer.slice(index + 0x6c, index + 0x6c + 0x08)
 
     return obj
   }
@@ -293,14 +293,14 @@ function decompiler(config = {}) {
     [0x24]: ['spawns', Collection(Spawn)],
   }, 0x30)
 
-  function WayPointLink(buffer, index) {
+  function WayPointLink(buffer, offset = 0, base = 0) {
+    const index = base + offset
     const ret = [0, 0]
-    ret[0] = UInt(buffer, index + 0x00)
-    ret[1] = UInt(buffer, index + 0x04)
-    const v2 = UInt(buffer, index + 0x08)
-    const v3 = UInt(buffer, index + 0x0C)
-    if(v2 || v3) ret.push(v2)
-    if(v3) ret.push(v3)
+    ret[0] = UInt(buffer, 0x00, index)
+    ret[1] = UInt(buffer, 0x04, index)
+    const v2 = UInt(buffer, 0x08, index)
+    const v3 = UInt(buffer, 0x0C, index)
+    if(v2 || v3) ret.push(v2, v3)
     return ret
   }
   WayPointLink.size = 0x10
@@ -320,7 +320,7 @@ function decompiler(config = {}) {
   WayPoints.size = WayPoint.size
 
   return function decompile(buffer, index = 0) {
-    const result = Main(buffer, index)
+    const result = Main(buffer, 0, index)
 
     // Cleanup redundant data
     delete result.leader
