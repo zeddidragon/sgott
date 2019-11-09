@@ -88,7 +88,7 @@ function decompiler(config = {}) {
 
         if(config.debug) {
           const dbg = [hexKey, Hex(buffer, i, index, true)]
-          if(key) dbg.push(key, value || 0)
+          if(key) dbg.push(key)
           obj.dbg.values.push(dbg)
         }
 
