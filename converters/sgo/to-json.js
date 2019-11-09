@@ -61,7 +61,6 @@ function decompiler(config = {}) {
         data: data.toString('base64'),
       }
     }
-    return buffer.slice(index, index + size).toString('base64')
   }
 
   function chomp(data, index, opts = {}) {

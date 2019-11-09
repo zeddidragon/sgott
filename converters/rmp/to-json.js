@@ -51,15 +51,15 @@ function decompiler(config = {}) {
     return sgo()(buffer.slice(base + offset))
   }
 
-  function Hex(buffer, offset = 0, base = 0) {
+  function Hex(buffer, offset = 0, base = 0, full = false) {
     const isValue = UInt(buffer, offset, base)
-    if(!isValue) return
+    if(!isValue && !full) return
     const index = base + offset
     return (
       buffer
         .slice(index, index + 0x04)
         .toString('hex')
-        .replace(/^0+/, '')
+        .replace(full ? '' : /^0+/, '')
     )
   }
 
@@ -73,21 +73,32 @@ function decompiler(config = {}) {
     function StructDef(buffer, offset = 0, base = 0) {
       const obj = {}
       const index = base + offset
+      if(config.debug) obj.dbg = {
+        '@': HexKey(index),
+        values: [],
+      }
 
       for(var i = 0x00; i < size; i += block) {
         const def = definitions[i]
+        const raw = config.debug || !def
+        const [key, fn, opts = {}] = def || []
+        const value = fn && (fn(buffer, i, index) || 0)
+        const hexKey = raw && HexKey(i)
+        const hexValue = raw && Hex(buffer, i, index)
 
-        if(!def) {
-          const value = Hex(buffer, i, index)
-          if(!value) continue
-          const key = HexKey(i)
-          obj[key] = value == null ? 0 : value
-          continue
+        if(config.debug) {
+          const dbg = [hexKey, Hex(buffer, i, index, true)]
+          if(key) dbg.push(key, value || 0)
+          obj.dbg.values.push(dbg)
         }
 
-        const [key, fn] = def
-        const value = fn(buffer, i, index)
-        obj[key] = value == null ? 0 : value
+        if(def && (config.debug || !opts.ignore)) {
+          obj[key] = value == null ? 0 : value
+        }
+        if(!def && hexValue) {
+          obj[hexKey] = hexValue
+        }
+
       }
 
       return obj
@@ -109,13 +120,13 @@ function decompiler(config = {}) {
   const CollectionHeader = Struct({
     [0x00]: ['count', UInt],
     [0x04]: ['startPtr', Ptr],
-    [0x0C]: ['endPtr', Ptr],
+    [0x0C]: ['endPtr', Ptr, { ignore: true }],
     [0x10]: ['id', UInt],
     [0x18]: ['name', StrPtr],
   }, 0x20)
 
   const SubHeader = Struct({
-    [0x08]: ['endPtr', UInt],
+    [0x08]: ['endPtr', UInt, { ignore: true }],
     [0x0C]: ['id', UInt],
     [0x14]: ['name', StrPtr],
     [0x18]: ['count', UInt],
@@ -123,7 +134,7 @@ function decompiler(config = {}) {
   }, 0x20)
 
   const CamerasHeader = Struct({
-    [0x04]: ['endPtr', Ptr],
+    [0x04]: ['endPtr', Ptr, { ignore: true }],
     [0x08]: ['id', UInt],
     [0x14]: ['name', StrPtr],
     [0x18]: ['count', UInt],
@@ -131,7 +142,7 @@ function decompiler(config = {}) {
   }, 0x20)
 
   const CameraSubHeader = Struct({
-    [0x04]: ['endPtr', UInt],
+    [0x04]: ['endPtr', UInt, { ignore: true }],
     [0x14]: ['name', StrPtr],
     [0x18]: ['count', UInt],
     [0x1C]: ['startPtr', Ptr],
@@ -160,14 +171,12 @@ function decompiler(config = {}) {
 
         delete subHeader.count
         delete subHeader.startPtr
-        delete subHeader.endPtr
         entries[i] = { ...subHeader, nodes }
 
         base += SubHeader.size
       }
 
       delete header.startPtr
-      delete header.endPtr
       delete header.count
       return { ...header, entries }
     }
@@ -176,11 +185,16 @@ function decompiler(config = {}) {
 
   function WayPoints(buffer, offset = 0, base = 0) {
     const point = WayPoint(buffer, offset, base)
+    if(config.debug) {
+      point.dbg.deref = {
+        link: point.link.dbg,
+      }
+    }
     const cfg = SGO(buffer, 0, point.config)
 
     delete point.idx
 
-    if(point.config !== point.config2) {
+    if(point.config2 && point.config !== point.config2) {
       point.cfg2 = SGO(buffer, 0, point.config2)
     }
     delete point.config
@@ -199,7 +213,7 @@ function decompiler(config = {}) {
   }
 
   const Spawn = Struct({
-    [0x04]: ['endPtr', Ptr],
+    [0x04]: ['endPtr', Ptr, { ignore: true }],
     [0x08]: ['id', UInt],
     [0x0c]: ['px', Float],
     [0x10]: ['py', Float],
@@ -298,18 +312,26 @@ function decompiler(config = {}) {
   function WayPointLink(buffer, offset = 0, base = 0) {
     const index = base + offset
     const ret = [0, 0]
-    ret[0] = UInt(buffer, 0x00, index)
-    ret[1] = UInt(buffer, 0x04, index)
-    const v2 = UInt(buffer, 0x08, index)
-    const v3 = UInt(buffer, 0x0C, index)
+    ret[0] = Int(buffer, 0x00, index)
+    ret[1] = Int(buffer, 0x04, index)
+    const v2 = Int(buffer, 0x08, index)
+    const v3 = Int(buffer, 0x0C, index)
     if(v2 || v3) ret.push(v2, v3)
+    if(config.debug) {
+      ret.dbg = {
+        '@': HexKey(index),
+        raw: [0x00, 0x04, 0x08, 0x0C]
+          .map(addr => Hex(buffer, addr, index, true))
+          .join(' ')
+      }
+    }
     return ret
   }
   WayPointLink.size = 0x10
 
   const WayPoint = Struct({
     [0x00]: ['idx', UInt],
-    [0x04]: ['next', UInt],
+    [0x04]: ['linkType', UInt],
     [0x08]: ['link', Ref(WayPointLink)],
     [0x10]: ['config', Ptr],
     [0x14]: ['id', UInt],

@@ -62,10 +62,10 @@ Options:
   -v --version
       Prints version information, then quits.
 
-  SGO to JSON only:
+  SGO to JSON:
 
   -d --debug
-      Appends debug data to output JSON.
+      inserts debug data in output json.
 
   -m --mode
       Can be "decompile" or "dumpvalues" .
@@ -79,6 +79,11 @@ Options:
   -o --offset
       Byte to start reading from.
     
+  RMP to JSON:
+
+  -d --debug
+      inserts debug data in output json.
+
 `
 
 function parseCli(cb) {
