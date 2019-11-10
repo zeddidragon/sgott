@@ -34,9 +34,14 @@ function decompiler(config = {}) {
   }
 
   function Ref(fn) {
-    return function Deref(buffer, offset = 0, base = 0) {
+    return function Deref(buffer, offset = 0, base = 0, obj = {}) {
       const jump = Ptr(buffer, offset, base)
-      return fn(buffer, 0, jump)
+      const value = fn(buffer, 0, jump, obj)
+      if(config.debug && value.dbg) {
+        if(!obj.dbg.deref) obj.dbg.deref = []
+        obj.dbg.deref.push([HexKey(jump), value.dbg])
+      }
+      return value
     }
   }
 
@@ -51,15 +56,15 @@ function decompiler(config = {}) {
     return sgo()(buffer.slice(base + offset))
   }
 
-  function Hex(buffer, offset = 0, base = 0, full = false) {
+  function Hex(buffer, offset = 0, base = 0, opts = {}) {
     const isValue = UInt(buffer, offset, base)
-    if(!isValue && !full) return
+    if(!isValue && !opts.full) return
     const index = base + offset
     return (
       buffer
         .slice(index, index + 0x04)
         .toString('hex')
-        .replace(full ? '' : /^0+/, '')
+        .replace(opts.full ? '' : /^0+/, '')
     )
   }
 
@@ -82,12 +87,12 @@ function decompiler(config = {}) {
         const def = definitions[i]
         const raw = config.debug || !def
         const [key, fn, opts = {}] = def || []
-        const value = fn && (fn(buffer, i, index) || 0)
+        const value = fn && fn(buffer, i, index, obj)
         const hexKey = raw && HexKey(i)
         const hexValue = raw && Hex(buffer, i, index)
 
         if(config.debug) {
-          const dbg = [hexKey, Hex(buffer, i, index, true)]
+          const dbg = [hexKey, Hex(buffer, i, index, { full: true })]
           if(key) dbg.push(key)
           obj.dbg.values.push(dbg)
         }
@@ -185,29 +190,25 @@ function decompiler(config = {}) {
 
   function WayPoints(buffer, offset = 0, base = 0) {
     const point = WayPoint(buffer, offset, base)
-    if(config.debug) {
-      point.dbg.deref = {
-        link: point.link.dbg,
-      }
-    }
-    const cfg = SGO(buffer, 0, point.config)
-
-    delete point.idx
-
-    if(point.config2 && point.config !== point.config2) {
-      point.cfg2 = SGO(buffer, 0, point.config2)
-    }
-    delete point.config
-    delete point.config2
-
+    const cfg = point.config
     const width = cfg.variables
       .find(n => n.name === 'rmpa_float_WayPointWidth')
     if(width && width.value !== -1) point.width = width.value
-    if(!(width && cfg.variables.length === 1)) {
-      point.cfg = cfg
-    } else if(cfg.endian !== endian) {
-      point.cfgEn = cfg.endian
+    if((width && cfg.variables.length === 1)) {
+      delete point.config
+      if(cfg.endian !== endian) point.cfgEn = cfg.endian
     }
+    if(point.unknownPtrSizeDescriptor) {
+      console.error(` \
+        Unknown pointer pair x0C and 0x14 is pointing to something. \
+        It usually does not! \
+        ID: ${point.id}
+        @: ${base + offset}
+        Value: ${point.unknownPtrSizeDescriptor}
+      `)
+      throw new Error('Please contact Zeddy or Kemui⊗52 and tell them which file this happened with!')
+    }
+    delete point.unknownPtrSizeDescriptor
 
     return point
   }
@@ -280,7 +281,7 @@ function decompiler(config = {}) {
       }
 
       const [key, fn] = def
-      const value = fn(buffer, i, index)
+      const value = fn(buffer, i, index, obj)
 
       if(key === 'config') {
         if(value.variables.length) {
@@ -309,33 +310,34 @@ function decompiler(config = {}) {
     [0x24]: ['spawns', Collection(Spawn)],
   }, 0x30)
 
-  function WayPointLink(buffer, offset = 0, base = 0) {
+  function WayPointLink(buffer, offset = 0, base = 0, obj = {}) {
     const index = base + offset
-    const ret = [0, 0]
-    ret[0] = Int(buffer, 0x00, index)
-    ret[1] = Int(buffer, 0x04, index)
-    const v2 = Int(buffer, 0x08, index)
-    const v3 = Int(buffer, 0x0C, index)
-    if(v2 || v3) ret.push(v2, v3)
+    const ret = Array(obj.linkCount || 0)
+    for(var i = 0; i < ret.length; i++) {
+      ret[i] = Int(buffer, i * 0x04, index)
+    }
+
     if(config.debug) {
       ret.dbg = {
         '@': HexKey(index),
-        raw: [0x00, 0x04, 0x08, 0x0C]
-          .map(addr => Hex(buffer, addr, index, true))
+        raw: ret
+          .map((v, i) => Hex(buffer, i * 0x04, index, { full: true }))
           .join(' ')
       }
     }
+    delete obj.linkCount
     return ret
   }
-  WayPointLink.size = 0x10
 
   const WayPoint = Struct({
-    [0x00]: ['idx', UInt],
-    [0x04]: ['linkType', UInt],
+    [0x00]: ['idx', UInt, { ignore: true }],
+    [0x04]: ['linkCount', UInt],
     [0x08]: ['link', Ref(WayPointLink)],
-    [0x10]: ['config', Ptr],
+    [0x0C]: ['unknownPtrSizeDescriptor', UInt],
+    [0x10]: ['unknownPtr', Ptr, { ignore: true }],
     [0x14]: ['id', UInt],
-    [0x1C]: ['config2', Ptr],
+    [0x18]: ['configSize', UInt, { ignore: true }],
+    [0x1C]: ['config', Ref(SGO)],
     [0x24]: ['name', StrPtr],
     [0x28]: ['x', Float],
     [0x2C]: ['y', Float],

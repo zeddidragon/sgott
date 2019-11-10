@@ -1,8 +1,7 @@
-Note: Swiped from KittopiaCreator and Kamui. Thanks, Kit and Kamui!
+Notes swiped from Kemui
 
 All offsets are calculated from the first byte of the respective data block (relative offsets).
 Route and Camera Waypoints aren't extended to keep aligned to 0, so only the first in a route will always be at 0.
-
 
 **RMPA Header**, which is about 0x30 in length:
 - 0x00 RMP file type string, or PMR because of byte-swapping.
@@ -50,14 +49,15 @@ Types:
 Remember! All offsets are calculated from the first byte of the _individual waypoint's_ data block.
 - 0x00 is the waypoint's number in the current route, starting from 0.
 - 0x08 is an offset to a 0x10 sized block that controls what the next waypoint will be.
-- 0x10 is an offset to an SGO that'll apply extra settings, mostly just width.
-- 0x1C is another offset to the same SGO? (possibly the real offset that's used?)
+- 0x10 is an offset to the end of that 0x10-sized next-waypoint block.
+- 0x1C is an offset to an SGO that'll apply extra settings, mostly just width.
 - 0x14 is the numeric waypoint identifier based on the whole RMPA.
 - 0x24 is an offset to the path waypoint's name. Not all waypoints direct to a valid string since not all are used by name.
 
 **Shape Setup**, which are about 0x30 in length:
-- 0x08 is the string offset naming the shape type (rectangle, sphere, whatwasthethird).
+- 0x08 is the string offset naming the shape type (rectangle, sphere, cylinder).
 - 0x10 is the offset to the shape's name.
+- 0x1C is the numeric waypoint identifier based on the whole RMPA.
 - 0x24 is the offset to the shape's size data.
 
 **Shape Data**, which are about 0x40 in length:
@@ -91,6 +91,6 @@ Remember! All offsets are calculated from the first byte of the _individual node
 
 **Spawnpoints**, which are about 0x40 in length:
 - 0x04 appears to be a pointer to the end of the current enumeration it's a part of.
-- 0x08 is the numeric waypoint identifier based on the whole RMPA?
+- 0x08 is the numeric waypoint identifier based on the whole RMPA.
 The first set of floats is the spawnpoint itself, while the second set is where the spawned entity will "Look at".
 - 0x34 is the offset to the spawn's name.

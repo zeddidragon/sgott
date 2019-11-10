@@ -106,9 +106,9 @@ function compile(obj) {
 
     function addCfg(cfg, offset, base) {
       const buf = sgo(cfg)
+      Int(buffer, heapIdx(base), offset, base)
       buffers.push(buf)
       heapSize += buf.length
-      Int(buffer, heapIdx(base), offset, base)
     }
 
     for(var i = 0; i < obj.nodes.length; i++) {
@@ -116,16 +116,22 @@ function compile(obj) {
       const node = obj.nodes[i]
       Unknowns(buffer, node, offset)
       UInt(buffer, i, 0x00, offset)
-      UInt(buffer, node.next, 0x04, offset)
-      const next = Buffer.alloc(0x10)
-      for(var j = 0; j < 4; j++) {
-        UInt(next, node.link[j] || 0, 0x04 * j)
+      const { link } = node
+      if(link && link.length) {
+        UInt(buffer, link.length, 0x04, offset)
+        const linkBuffer = Buffer.alloc(padCeil(link.length * 0x04))
+        for(var j = 0; j < link.length; j++) {
+          UInt(linkBuffer, link[j] || 0, 0x04 * j)
+        }
+        Int(buffer, heapIdx(offset), 0x08, offset)
+        buffers.push(linkBuffer)
+        heapSize += linkBuffer.length
       }
-      buffers.push(next)
-      heapSize += next.length
-      Int(buffer, heapIdx(offset), 0x08, offset)
-      if(node.cfg) {
-        addCfg(node.cfg, 0x10, offset)
+      Int(buffer, heapIdx(offset), 0x10, offset)
+      UInt(buffer, node.id, 0x14)
+
+      if(node.config) {
+        addCfg(node.config, 0x1C, offset)
       } else {
         const cfg = {
           format: 'SGO',
@@ -136,19 +142,13 @@ function compile(obj) {
             value: node.width == null ? -1 : node.width,
           }]
         }
-        addCfg(cfg, 0x10, offset)
+        addCfg(cfg, 0x1C, offset)
       }
-      UInt(buffer, node.id, 0x14)
-      if(node.cfg2) {
-        addCfg(node.cfg2, 0x1C, offset)
-      } else {
-        Int(buffer, heapIdx(offset), 0x1C, offset)
-      }
+
       DeferStr(buffer, node.name, 0x24, offset)
       Float(buffer, node.x, 0x28, offset)
       Float(buffer, node.y, 0x2C, offset)
       Float(buffer, node.z, 0x30, offset)
-      heapSize += next.length
     }
     return buffers
   }
