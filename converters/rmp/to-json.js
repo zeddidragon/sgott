@@ -193,7 +193,7 @@ function decompiler(config = {}) {
     const cfg = point.config
     const width = cfg.variables
       .find(n => n.name === 'rmpa_float_WayPointWidth')
-    if(width && width.value !== -1) point.width = width.value
+    if(width) point.width = width.value
     if((width && cfg.variables.length === 1)) {
       delete point.config
       if(cfg.endian !== endian) point.cfgEn = cfg.endian

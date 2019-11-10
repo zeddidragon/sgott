@@ -84,12 +84,12 @@ function compile(obj) {
   }
 
   function Unknowns(buffer, obj, offset = 0x00, base = 0x00) {
+    const index = base + offset
     for(const key of Object.keys(obj)) {
       if(!key.startsWith('0x')) continue
       const pos = parseInt(key.slice(2), 16)
       const value = obj[key]
-      Hex(buffer, value, base + offset + pos)
-      buffer.write
+      Hex(buffer, value, pos, index)
     }
   }
 
@@ -99,13 +99,13 @@ function compile(obj) {
     function StructDef(obj) {
       const { nodes } = obj
       const buffer = Buffer.alloc(padCeil(nodes.length * size))
-      const buffers = []
+      const buffers = [buffer]
       var heapSize = 0x00
       var offset = 0x00
 
       const mem = {
         addToHeap(buf) {
-          const idx = mem.headIdx()
+          const idx = mem.heapIdx()
           if(!buf) return idx
           heapSize += buf.length
           buffers.push(buf)
@@ -119,102 +119,65 @@ function compile(obj) {
       for(var i = 0; i < nodes.length; i++) {
         const tmp = {}
         const base = i * size
+        offset = base
         const node = nodes[i]
-        Unknowns(buffer, node, base)
+        Unknowns(buffer, node, 0x00, base)
         for(const [off, writeFn, valueFn] of definitions) {
-          offset = off
-          const value = valueFn(node, i, mem, tmp)
-          writeFn(buffer, value, offset, base, mem, tmp)
+          const value = valueFn(node, { i, mem, tmp })
+          writeFn(buffer, value, off, base, { i, mem, tmp })
         }
       }
+
+      return buffers
     }
     return StructDef
   }
 
-  function Ref(buffer, value, offset, base, mem) {
-    return Int(buffer, mem.addToHeap(value), offset, base)
+  function Ref(buffer, refBuffer, offset, base, { mem }) {
+    return Int(buffer, mem.addToHeap(refBuffer), offset, base)
   }
 
   function Null() {
     return null
   }
 
-  const WayPoint = StructCollection([
-    [0x00, UInt, (node, i) => i],
+  const WayPoints = StructCollection([
+    [0x00, UInt, (node, { i }) => i],
     [0x04, UInt, ({ link }) => (link && link.length) || 0],
     [0x08, Ref, WayPointLink],
     [0x10, Ref, Null],
     [0x14, UInt, node => node.id],
+    [0x18, UInt, WayPointConfig],
+    [0x1C, Ref, (node, { tmp }) => tmp.config],
+    [0x24, DeferStr, node => node.name || ''],
+    [0x28, Float, node => node.x],
+    [0x2C, Float, node => node.y],
+    [0x30, Float, node => node.z],
   ], 0x3C)
 
   function WayPointLink(node) {
     const { link } = node
-    if(!link) return
+    if(!(link && link.length)) return
     const buffer = Buffer.alloc(padCeil(link.length))
     link.forEach((v, i) => Int(buffer, v, i * 0x04, 0))
     return buffer
   }
 
-  function WayPoints(obj) {
-    const { nodes } = obj
-    const nodeSize = 0x3C
-    const buffer = Buffer.alloc(padCeil(nodes.length * nodeSize))
-    const buffers = [buffer]
-    var heapSize = 0x00
-
-    function heapIdx(offset) {
-      return buffer.length - offset + heapSize
+  function WayPointConfig(node, { tmp }) {
+    if(!node.config && node.width == null) return 0
+    const cfg = node.config || {
+      format: 'SGO',
+      endian: node.cfgEn || endian,
+      variables: [{
+        type: "float",
+        name: 'rmpa_float_WayPointWidth',
+        value: node.width == null ? -1 : node.width,
+      }],
     }
-
-    function addCfg(cfg, offset, base) {
-      const buf = sgo(cfg)
-      console.log('sgo size', buf.length)
-      abort()
-      Int(buffer, heapIdx(base), offset, base)
-      buffers.push(buf)
-      heapSize += buf.length
-    }
-
-    for(var i = 0; i < obj.nodes.length; i++) {
-      const offset = i * nodeSize
-      const node = obj.nodes[i]
-      Unknowns(buffer, node, offset)
-      UInt(buffer, i, 0x00, offset)
-      const { link } = node
-      if(link && link.length) {
-        UInt(buffer, link.length, 0x04, offset)
-        const linkBuffer = Buffer.alloc(padCeil(link.length * 0x04))
-        for(var j = 0; j < link.length; j++) {
-          UInt(linkBuffer, link[j] || 0, 0x04 * j)
-        }
-        Int(buffer, heapIdx(offset), 0x08, offset)
-        buffers.push(linkBuffer)
-        heapSize += linkBuffer.length
-      }
-      Int(buffer, heapIdx(offset), 0x10, offset)
-      UInt(buffer, node.id, 0x14)
-
-      if(node.config) {
-        addCfg(node.config, 0x1C, offset)
-      } else {
-        const cfg = {
-          format: 'SGO',
-          endian: node.cfgEn || endian,
-          variables: [{
-            type: "float",
-            name: 'rmpa_float_WayPointWidth',
-            value: node.width == null ? -1 : node.width,
-          }]
-        }
-        addCfg(cfg, 0x1C, offset)
-      }
-
-      DeferStr(buffer, node.name, 0x24, offset)
-      Float(buffer, node.x, 0x28, offset)
-      Float(buffer, node.y, 0x2C, offset)
-      Float(buffer, node.z, 0x30, offset)
-    }
-    return buffers
+    const buf = sgo(cfg)
+    const size = buf.length
+    tmp.config = Buffer.concat([buf, Buffer.alloc(padCeil(size) - size)])
+    return size
   }
 
   const header = Buffer.alloc(0x30)
