@@ -93,6 +93,39 @@ function compile(obj) {
     }
   }
 
+  function StructCollection(definitions, size) {
+    const block = 0x04
+    if(!size) size = Math.max(...definitions).map(([k]) => +k) + block
+    function StructDef(obj) {
+      const { nodes } = obj
+      const buffer = Buffer.alloc(padCeil(nodes.length * size))
+      const buffers = []
+      var heapSize = 0x00
+
+      function heapIdx(offset) {
+        return buffer.length - offset + heapSize
+      }
+
+      for(var i = 0; i < nodes.length; i++) {
+        const base = i * size
+        const node = nodes[i]
+        Unknowns(buffer, node, base)
+        for(const [offset, writeFn, valueFn, opts = {}] of definitions) {
+          if(opts.ignore) continue
+          const value = typeof writeFn === 'string'
+            ? node[writeFn]
+            : valueFn(node, i)
+          writeFn(buffer, value, offset, base)
+        }
+      }
+    }
+    return StructDef
+  }
+
+  const WayPoint = StructCollection([
+    [0x00, UInt, (node, i) => i], // Index
+  ], 0x3C)
+
   function WayPoints(obj) {
     const { nodes } = obj
     const nodeSize = 0x3C
