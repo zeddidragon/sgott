@@ -117,13 +117,14 @@ function compile(obj) {
       }
 
       for(var i = 0; i < nodes.length; i++) {
+        const tmp = {}
         const base = i * size
         const node = nodes[i]
         Unknowns(buffer, node, base)
         for(const [off, writeFn, valueFn] of definitions) {
           offset = off
-          const value = valueFn(node, i, mem)
-          writeFn(buffer, value, offset, base, mem)
+          const value = valueFn(node, i, mem, tmp)
+          writeFn(buffer, value, offset, base, mem, tmp)
         }
       }
     }
@@ -140,7 +141,7 @@ function compile(obj) {
 
   const WayPoint = StructCollection([
     [0x00, UInt, (node, i) => i],
-    [0x04, UInt, node => (node.link && node.link.length) || 0],
+    [0x04, UInt, ({ link }) => (link && link.length) || 0],
     [0x08, Ref, WayPointLink],
     [0x10, Ref, Null],
     [0x14, UInt, node => node.id],
