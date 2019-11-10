@@ -101,30 +101,58 @@ function compile(obj) {
       const buffer = Buffer.alloc(padCeil(nodes.length * size))
       const buffers = []
       var heapSize = 0x00
+      var offset = 0x00
 
-      function heapIdx(offset) {
-        return buffer.length - offset + heapSize
+      const mem = {
+        addToHeap(buf) {
+          const idx = mem.headIdx()
+          if(!buf) return idx
+          heapSize += buf.length
+          buffers.push(buf)
+          return idx
+        },
+        heapIdx() {
+          return buffer.length - offset + heapSize
+        }
       }
 
       for(var i = 0; i < nodes.length; i++) {
         const base = i * size
         const node = nodes[i]
         Unknowns(buffer, node, base)
-        for(const [offset, writeFn, valueFn, opts = {}] of definitions) {
-          if(opts.ignore) continue
-          const value = typeof writeFn === 'string'
-            ? node[writeFn]
-            : valueFn(node, i)
-          writeFn(buffer, value, offset, base)
+        for(const [off, writeFn, valueFn] of definitions) {
+          offset = off
+          const value = valueFn(node, i, mem)
+          writeFn(buffer, value, offset, base, mem)
         }
       }
     }
     return StructDef
   }
 
+  function Ref(buffer, value, offset, base, mem) {
+    return Int(buffer, mem.addToHeap(value), offset, base)
+  }
+
+  function Null() {
+    return null
+  }
+
   const WayPoint = StructCollection([
-    [0x00, UInt, (node, i) => i], // Index
+    [0x00, UInt, (node, i) => i],
+    [0x04, UInt, node => (node.link && node.link.length) || 0],
+    [0x08, Ref, WayPointLink],
+    [0x10, Ref, Null],
+    [0x14, UInt, node => node.id],
   ], 0x3C)
+
+  function WayPointLink(node) {
+    const { link } = node
+    if(!link) return
+    const buffer = Buffer.alloc(padCeil(link.length))
+    link.forEach((v, i) => Int(buffer, v, i * 0x04, 0))
+    return buffer
+  }
 
   function WayPoints(obj) {
     const { nodes } = obj
@@ -139,6 +167,8 @@ function compile(obj) {
 
     function addCfg(cfg, offset, base) {
       const buf = sgo(cfg)
+      console.log('sgo size', buf.length)
+      abort()
       Int(buffer, heapIdx(base), offset, base)
       buffers.push(buf)
       heapSize += buf.length

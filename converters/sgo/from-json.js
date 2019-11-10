@@ -306,8 +306,6 @@ function compiler(config) {
     const classSize = size + 0x20 + mTable.length
     UInt(header, classSize, 0x1c)
 
-    const totalSize = classSize + extraBuffer.length + stringBuffer.length
-    const padding = padCeil(totalSize, 0x10)
     return Buffer.concat([
       header,
       fixedBuffer,
@@ -315,7 +313,6 @@ function compiler(config) {
       mTable,
       extraBuffer,
       stringBuffer,
-      Buffer.alloc(padding),
     ])
   }
 }
