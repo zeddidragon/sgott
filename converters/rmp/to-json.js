@@ -200,7 +200,7 @@ function decompiler(config = {}) {
     }
     if(point.unknownPtrSizeDescriptor) {
       console.error(` \
-        Unknown pointer pair x0C and 0x14 is pointing to something. \
+        Unknown pointer pair x0C and 0x10 is pointing to something. \
         It usually does not! \
         ID: ${point.id}
         @: ${base + offset}
