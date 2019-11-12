@@ -4,7 +4,7 @@ const config = require('./package.json')
 const sgoToJson = require('./converters/sgo/to-json')
 const jsonToSgo = require('./converters/sgo/from-json')
 const rmpToJson = require('./converters/rmp/to-json')
-const jsonToRmp = require('./converters/rmp/from-json2')
+const jsonToRmp = require('./converters/rmp/from-json')
 
 function isSgo(obj) {
   if(/^sgo$/i.test(obj.format)) return true

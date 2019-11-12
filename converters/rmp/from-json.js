@@ -12,159 +12,179 @@ function padCeil(value, divisor = 0x10) {
 
 function compile(obj) {
   const { endian } = obj
-  function Str(buffer, value, offset = 0x00, base = 0x00) {
-    return buffer.write(value, base + offset)
+  function Str({ buffer, index }, value, offset = 0x00) {
+    return buffer.write(value, index + offset)
   }
 
-  function UInt(buffer, value, offset = 0x00, base = 0x00) {
-    return buffer[`writeUInt32${endian}`](value, base + offset)
+  function UInt({ buffer, index }, value, offset = 0x00) {
+    return buffer[`writeUInt32${endian}`](value, index + offset)
   }
+  UInt.size = 0x04
 
-  function Int(buffer, value, offset = 0x00, base = 0x00) {
-    return buffer[`writeInt32${endian}`](value, base + offset)
+  function Int({ buffer, index }, value, offset = 0x00) {
+    return buffer[`writeInt32${endian}`](value, index + offset)
   }
+  Int.size = 0x04
 
-  function Float(buffer, value, offset = 0x00, base = 0x00) {
-    return buffer[`writeFloat${endian}`](value, base + offset)
+  function Float({ buffer, index }, value, offset = 0x00) {
+    return buffer[`writeFloat${endian}`](value, index + offset)
   }
+  Float.size = 0x04
   
-  function Hex(buffer, value, offset = 0x00, base = 0x00) {
-    return buffer.write(value.padStart(8, '0'), base + offset, 'hex')
-  }
-
-  function stringBytes(string) {
-    // SGO uses wide chars for strings
-    return Buffer.byteLength(string, 'utf16le')
-  }
-
-  function buffersBytes(buffers) {
-    return buffers.reduce((sum, buf) => sum + buf.length, 0)
+  function Hex({ buffer, index }, value, offset = 0x00) {
+    return buffer.write(value.padStart(8, '0'), index + offset, 'hex')
   }
 
   const deferredStrings = new Set()
   const stringDefers = []
-  function DeferStr(buffer, str, offset = 0x00, base = 0x00) {
+  function DeferStr(cursor, str, offset = 0x00) {
     str = str.trim() + '\0'
     deferredStrings.add(str)
-    stringDefers.push({ str, buffer, base, offset })
+    stringDefers.push({ str, cursor: cursor.clone(), offset })
   }
+  DeferStr.size = 0x04
 
-  function unrollStrings(buffers) {
-    const bufferIdxs = new Map()
-
+  function unrollStrings() {
     const strings = Array.from(deferredStrings).sort()
-    const stringBufferSize = strings.reduce((sum, str) => {
-      return sum + stringBytes(str)
-    }, 0)
-    const stringBuffer = Buffer.alloc(stringBufferSize)
-    const stringIdxs = {}
-
-    var idx = 0x00
-    for(const buf of buffers) {
-      bufferIdxs.set(buf, idx)
-      idx += buf.length
-    }
-    var strIdx = 0x00
+    const stringCursors = {}
     for(const str of strings) {
-      stringIdxs[str] = idx
-      stringBuffer.write(str, strIdx, 'utf16le')
-      const size = stringBytes(str)
-      strIdx += size
-      idx += size
-    }
-    if(endian !== 'LE') stringBuffer.swap16()
-
-    for(const { str, buffer, base, offset } of stringDefers) {
-      const strIdx = stringIdxs[str]
-      const bufIdx = bufferIdxs.get(buffer)
-      Int(buffer, strIdx - bufIdx - base, offset, base)
+      const cursor = malloc(stringBytes(str))
+      cursor.buffer.write(str, 'utf16le')
+      if(endian !== 'LE') cursor.buffer.swap16()
+      stringCursors[str] = cursor
     }
 
-    return stringBuffer
+    for(const { str, cursor, offset } of stringDefers) {
+      Int(cursor, cursor.pointer(stringCursors[str].pos), offset)
+    }
   }
 
-  function Unknowns(buffer, obj, offset = 0x00, base = 0x00) {
-    const index = base + offset
+  function stringBytes(string) {
+    return Buffer.byteLength(string, 'utf16le')
+  }
+
+  function Unknowns(cursor, obj, offset = 0x00) {
     for(const key of Object.keys(obj)) {
       if(!key.startsWith('0x')) continue
       const pos = parseInt(key.slice(2), 16)
       const value = obj[key]
-      Hex(buffer, value, pos, index)
+      Hex(cursor, value, offset + pos)
     }
   }
 
-  function StructCollection(definitions, size) {
-    const block = 0x04
-    if(!size) size = Math.max(...definitions).map(([k]) => +k) + block
-    function StructDef(obj) {
-      const { nodes } = obj
-      const buffer = Buffer.alloc(padCeil(nodes.length * size))
-      const buffers = [buffer]
-      var heapSize = 0x00
-      var offset = 0x00
-
-      const mem = {
-        addToHeap(buf) {
-          const idx = mem.heapIdx()
-          if(!buf) return idx
-          heapSize += buf.length
-          buffers.push(buf)
-          return idx
-        },
-        heapIdx() {
-          return buffer.length - offset + heapSize
-        }
-      }
-
-      for(var i = 0; i < nodes.length; i++) {
-        const tmp = {}
-        const base = i * size
-        offset = base
-        const node = nodes[i]
-        Unknowns(buffer, node, 0x00, base)
-        for(const [off, writeFn, valueFn] of definitions) {
-          const value = valueFn(node, { i, mem, tmp })
-          writeFn(buffer, value, off, base, { i, mem, tmp })
-        }
-      }
-
-      return buffers
+  function Ref(cursor, value, offset) {
+    if(!value) return Int(cursor, cursor.pointer(heapIdx), offset)
+    if(!(value instanceof Cursor)) {
+      throw new Error('Value expected to be a cursor')
     }
-    return StructDef
-  }
-
-  function Ref(buffer, refBuffer, offset, base, { mem }) {
-    return Int(buffer, mem.addToHeap(refBuffer), offset, base)
+    const jump = cursor.pointer(value.pos)
+    Int(cursor, jump, offset)
   }
 
   function Null() {
     return null
   }
 
-  const WayPoints = StructCollection([
-    [0x00, UInt, (node, { i }) => i],
-    [0x04, UInt, ({ link }) => (link && link.length) || 0],
-    [0x08, Ref, WayPointLink],
-    [0x10, Ref, Null],
-    [0x14, UInt, node => node.id],
-    [0x18, UInt, WayPointConfig],
-    [0x1C, Ref, (node, { tmp }) => tmp.config],
-    [0x24, DeferStr, node => node.name || ''],
-    [0x28, Float, node => node.x],
-    [0x2C, Float, node => node.y],
-    [0x30, Float, node => node.z],
-  ], 0x3C)
+  class Cursor {
+    constructor(buffer, pos, index = 0x00) {
+      if(buffer instanceof Cursor) {
+        this.buffer = buffer.buffer
+        this.pos = buffer.pos
+        this.index = buffer.index
+        this.writeCount = buffer.writeCount
+      } else {
+        this.buffer = buffer
+        this.pos = pos
+        this.index = index
+        this.writeCount = 0
+      }
+    }
 
-  function WayPointLink(node) {
-    const { link } = node
-    if(!(link && link.length)) return
-    const buffer = Buffer.alloc(padCeil(link.length))
-    link.forEach((v, i) => Int(buffer, v, i * 0x04, 0))
-    return buffer
+    write(Type, data) {
+      if(this.index > this.buffer.length - Type.size) {
+        throw new Error('End of buffer exceeded')
+      }
+      if(!Type.size) {
+        throw new Error('Trying to write a type without a size!')
+      }
+      Type(this, data)
+      this.index += Type.size
+      this.writeCount++
+      return this
+    }
+
+    clone() {
+      return new Cursor(this)
+    }
+
+    pointer(pos) {
+      return pos - this.pos - this.index
+    }
   }
 
-  function WayPointConfig(node, { tmp }) {
-    if(!node.config && node.width == null) return 0
+  const heap = []
+  var heapIdx = 0x00
+  function malloc(size) {
+    const pos = heapIdx
+    const buffer = Buffer.alloc(size)
+    heap.push(buffer)
+    heapIdx += size
+    return new Cursor(buffer, pos)
+  }
+
+  function Allocate(Type, cb) {
+    return function(data) {
+      return malloc(Type.size).write(Type, cb(data))
+    }
+  }
+
+  function Struct(definitions, size) {
+    const block = 0x04
+    if(!size) size = Math.max(...definitions).map(([k]) => +k) + block
+    function StructDef(cursor, data) {
+      if(!data) return null
+      Unknowns(cursor, data)
+      const tmp = {}
+      for(const [off, writeFn, valueFn] of definitions) {
+        const value = valueFn(data, cursor, tmp)
+        writeFn(cursor, value, off)
+      }
+
+      return cursor
+    }
+    StructDef.size = size
+    return StructDef
+  }
+
+  function Collection(Type, cb) {
+    return function CollectionDef(data) {
+      if(!data) return null
+      const entries = cb(data)
+      if(!(entries && entries.length)) return null
+
+      const cursor = malloc(padCeil(entries.length * Type.size))
+      entries.forEach(entry => cursor.write(Type, entry))
+      return cursor
+    }
+  }
+
+  function SubHeader(Type) {
+    return Struct([
+      [0x14, DeferStr, entry => entry.name || ''],
+      [0x18, UInt, entry => entry.nodes.length],
+      [0x1C, Ref, Collection(Type, entry => entry.nodes)],
+      [0x08, Ref, Null],
+    ], 0x20)
+  }
+
+  function WayPointLink(node) {
+    if(!(node.link && node.link.length)) return 
+    const cursor = malloc(padCeil(node.link.length * 0x04))
+    node.link.forEach(v => cursor.write(UInt, v))
+    return cursor
+  }
+
+  function WayPointSgo(node, _cursor, tmp) {
     const cfg = node.config || {
       format: 'SGO',
       endian: node.cfgEn || endian,
@@ -174,63 +194,76 @@ function compile(obj) {
         value: node.width == null ? -1 : node.width,
       }],
     }
-    const buf = sgo(cfg)
-    const size = buf.length
-    tmp.config = Buffer.concat([buf, Buffer.alloc(padCeil(size) - size)])
-    return size
+    const buffer = sgo(cfg)
+    tmp.sgoSize = buffer.length
+    const cursor = malloc(padCeil(buffer.length))
+    buffer.copy(cursor.buffer)
+    return cursor
   }
 
-  const header = Buffer.alloc(0x30)
-  Unknowns(header, obj, 0x00)
-  Str(header, endian === 'LE' ? 'RMP\0' : '\0PMR', 0x00)
+  const WayPoint = Struct([
+    [0x00, UInt, (node, cursor) => cursor.writeCount],
+    [0x04, UInt, node => (node.link && node.link.length) || 0],
+    [0x08, Ref, WayPointLink],
+    [0x10, Ref, Null],
+    [0x1C, Ref, WayPointSgo],
+    [0x14, UInt, node => node.sgoSize],
+    [0x18, UInt, (node, cursor, tmp) => tmp.sgoSize],
+    [0x24, DeferStr, node => node.name || ''],
+    [0x28, Float, node => node.x],
+    [0x2C, Float, node => node.y],
+    [0x30, Float, node => node.z],
+  ], 0x3C)
 
-  const types = []
-  function addEntry(prop, Type, offset = 0x00) {
-    const typeHeaderSize = 0x20
-    const subHeaderSize = 0x20
+  const ShapeData = Struct([
+    [0x00, Float, node => node.px],
+    [0x04, Float, node => node.py],
+    [0x08, Float, node => node.pz],
+    [0x10, Float, node => node.sizex],
+    [0x14, Float, node => node.sizey],
+    [0x18, Float, node => node.sizez],
+    [0x30, Float, node => node.diameter],
+  ], 0x40)
 
-    Int(header, 0x30 + buffersBytes(types), 0x04, offset)
-    const count = prop && prop.entries.length
-    if(!count) return
-    UInt(header, 1, offset)
+  const Shape = Struct([
+    [0x08, DeferStr, node => node.type],
+    [0x10, DeferStr, node => node.name || ''],
+    [0x1C, UInt, node => node.id],
+    [0x24, Ref, Allocate(ShapeData, node => node.coords)],
+  ], 0x30)
 
-    const headerSize = typeHeaderSize + subHeaderSize * prop.entries.length
-    const typeHeader = Buffer.alloc(headerSize)
-    types.push(typeHeader)
-    Unknowns(typeHeader, prop, 0x00)
-    UInt(typeHeader, prop.entries.length, 0x00) // Amount of entries
-    Int(typeHeader, typeHeaderSize, 0x04) // Pointer to first entry
-    Int(typeHeader, prop.id, 0x10) // ID
-    DeferStr(typeHeader, '', 0x18, 0x00) // Name?
-    var headerIdx = typeHeaderSize
-    var heapIdx = headerSize
-    for(const entry of prop.entries) {
-      Unknowns(typeHeader, entry, headerIdx + 0x00)
-      Int(typeHeader, heapIdx, headerIdx + 0x1C) // Beginning of enumeration
-      Int(typeHeader, entry.id, headerIdx + 0x0C) // ID
-      DeferStr(typeHeader, entry.name, 0x14, headerIdx)
-      UInt(typeHeader, entry.nodes.length, 0x18, headerIdx)
-      const nodes = Type(entry)
-      types.push(...nodes)
-      heapIdx += buffersBytes(nodes)
-      Int(typeHeader, heapIdx - headerIdx, 0x08, headerIdx) // End of enumeration
-      headerIdx += subHeaderSize
+  function TypeHeader(Type, cb) {
+    const Header = Struct([
+      [0x00, UInt, obj => obj.entries.length],
+      [0x04, Ref, Collection(SubHeader(Type), obj => obj.entries)],
+      [0x0C, Ref, Null],
+      [0x10, UInt, obj => obj.id],
+      [0x18, DeferStr, obj => obj.name || ''],
+    ], 0x20)
+
+    return function AllocateHeader(obj) {
+      const entry = cb(obj)
+      if(!entry) return null
+      return malloc(Header.size).write(Header, entry)
     }
-    Int(typeHeader, heapIdx, 0x0C) // Pointer to end of entry
   }
 
-  addEntry(obj.routes, WayPoints, 0x08)
-  // addEntry(obj.shapes, 0x10)
-  // addEntry(obj.cameras, 0x18)
-  // addEntry(obj.spawns, 0x20)
-  
-  const buffers = [
-    header,
-    ...types,
-  ]
+  const RmpHeader = Struct([
+    [0x00, Str, obj => (obj.endian === 'LE' ? 'RMP\0' : '\0PMR')],
+    [0x08, UInt, obj => +!!obj.routes],
+    [0x0C, Ref, TypeHeader(WayPoint, obj => obj.routes)],
+    [0x10, UInt, obj => +!!obj.shapes],
+    [0x14, Ref, TypeHeader(Shape, obj => obj.shapes)],
+    // [0x08, UInt, obj => anyEntries(obj.cameras)],
+    // [0x1C, Ref, Batch(CameraHeader(Camera))],
+    // [0x20, UInt, obj => anyEntries(obj.spawns)],
+    // [0x24, Ref, Batch(TypeHeader(WayPoint))],
+  ], 0x30)
+  heapIdx = RmpHeader.size
 
-  buffers.push(unrollStrings(buffers))
-  return Buffer.concat(buffers)
+  malloc(padCeil(RmpHeader.size)).write(RmpHeader, obj)
+  unrollStrings()
+  return Buffer.concat(heap)
 }
 
 exports.compile = compile

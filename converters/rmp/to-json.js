@@ -102,7 +102,7 @@ function decompiler(config = {}) {
         }
 
         if(def && (config.debug || !opts.ignore)) {
-          obj[key] = value == null ? 0 : value
+          obj[key] = value == null ? null : value
         }
         if(!def && hexValue) {
           obj[hexKey] = hexValue
