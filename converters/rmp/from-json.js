@@ -134,7 +134,9 @@ function compile(obj) {
 
   function Allocate(Type, cb) {
     return function(data) {
-      return malloc(Type.size).write(Type, cb(data))
+      const value = cb(data)
+      if(!value) return null
+      return malloc(Type.size).write(Type, value)
     }
   }
 
@@ -248,14 +250,28 @@ function compile(obj) {
     }
   }
 
+  const CameraSubHeader = Struct([
+    q
+    [0x04, Ref, Null],
+  ], 0x30)
+  
+
+  const CameraHeader = Struct([
+    [0x08, UInt, entry => entry.id],
+    [0x14, DeferStr, entry => entry.name || ''],
+    [0x18, UInt, entry => entry.nodes.length],
+    [0x1C, Ref, Collection(CameraSubHeader, entry => entry.entrie)],
+    [0x04, Ref, Null],
+  ], 0x20)
+
   const RmpHeader = Struct([
     [0x00, Str, obj => (obj.endian === 'LE' ? 'RMP\0' : '\0PMR')],
     [0x08, UInt, obj => +!!obj.routes],
     [0x0C, Ref, TypeHeader(WayPoint, obj => obj.routes)],
     [0x10, UInt, obj => +!!obj.shapes],
     [0x14, Ref, TypeHeader(Shape, obj => obj.shapes)],
-    // [0x08, UInt, obj => anyEntries(obj.cameras)],
-    // [0x1C, Ref, Batch(CameraHeader(Camera))],
+    [0x08, UInt, obj => +!!obj.cameras],
+    [0x1C, Ref, Allocate(CameraHeader, obj => obj.cameras)],
     // [0x20, UInt, obj => anyEntries(obj.spawns)],
     // [0x24, Ref, Batch(TypeHeader(WayPoint))],
   ], 0x30)
