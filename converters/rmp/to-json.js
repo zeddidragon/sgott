@@ -39,17 +39,21 @@ function decompiler(config = {}) {
       const value = fn(buffer, 0, jump, obj)
       if(config.debug && value.dbg) {
         if(!obj.dbg.deref) obj.dbg.deref = []
-        obj.dbg.deref.push([HexKey(jump), value.dbg])
+        obj.dbg.deref.push([HexKey(offset), HexKey(jump), value.dbg])
       }
       return value
     }
   }
 
-  function StrPtr(buffer, offset = 0, base = 0) {
-    const index = base + offset
+  function StrPtr(buffer, offset = 0, base = 0, obj = {}) {
+    const jump = Ptr(buffer, offset, base)
+    if(config.debug) {
+      if(!obj.dbg.deref) obj.dbg.deref = []
+      obj.dbg.deref.push([HexKey(offset), HexKey(jump)])
+    }
     const end = buffer.length
-    const terminator = Math.min(buffer.indexOf('\0', index, 'utf16le'), end)
-    return Str(buffer.slice(index, terminator > 0 ? terminator : end))
+    const terminator = Math.min(buffer.indexOf('\0', jump, 'utf16le'), end)
+    return Str(buffer.slice(jump, terminator > 0 ? terminator : end))
   }
 
   function SGO(buffer, offset = 0, base = 0) {
@@ -232,20 +236,16 @@ function decompiler(config = {}) {
     [0x10]: ['sizex', Float],
     [0x14]: ['sizey', Float],
     [0x18]: ['sizez', Float],
-    [0x30]: ['diameter', StrPtr],
+    [0x30]: ['diameter', Float],
   }, 0x40)
 
   const Shape = Struct({
     [0x08]: ['type', StrPtr],
     [0x10]: ['name', StrPtr],
+    [0x1C]: ['id', UInt],
     [0x24]: ['coords', Ref(ShapeCoords)],
   }, 0x30)
 
-  // const CameraNode = Struct({
-  //   [0x0C]: ['config', Ref(SGO)],
-  //   [0x10]: ['id', UInt],
-  //   [0x68]: ['name', StrPtr],
-  // }, 0x74)
   const CameraNodeKnownValues = {
     [0x0C]: ['config', Ref(SGO)],
     [0x10]: ['id', UInt],
