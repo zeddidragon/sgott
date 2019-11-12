@@ -13,7 +13,7 @@ function ceil(value, divisor) {
   return Math.ceil(value / divisor) * divisor
 }
 
-function compiler(config) {
+function compiler() {
   var endian
   const types = {
     ptr: 0,

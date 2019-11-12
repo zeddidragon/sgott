@@ -35,6 +35,10 @@ function compile(obj) {
     return buffer.write(value.padStart(8, '0'), index + offset, 'hex')
   }
 
+  function Matrix(cursor, value, offset) {
+    value.forEach((v, i) => Float(cursor, v, offset + i * 0x04))
+  }
+
   const deferredStrings = new Set()
   const stringDefers = []
   function DeferStr(cursor, str, offset = 0x00) {
@@ -173,7 +177,7 @@ function compile(obj) {
   function SubHeader(Type) {
     return Struct([
       [0x14, DeferStr, entry => entry.name || ''],
-      [0x18, UInt, entry => entry.nodes.length],
+      [0x18, UInt, entry => (entry.nodes && entry.nodes.length) || 0],
       [0x1C, Ref, Collection(Type, entry => entry.nodes)],
       [0x08, Ref, Null],
     ], 0x20)
@@ -236,7 +240,7 @@ function compile(obj) {
 
   function TypeHeader(Type, cb) {
     const Header = Struct([
-      [0x00, UInt, obj => obj.entries.length],
+      [0x00, UInt, obj => (obj.entries && obj.entries.length) || 0],
       [0x04, Ref, Collection(SubHeader(Type), obj => obj.entries)],
       [0x0C, Ref, Null],
       [0x10, UInt, obj => obj.id],
@@ -250,17 +254,51 @@ function compile(obj) {
     }
   }
 
+  function SgoConfig(node, _cursor, tmp) {
+    if(!node.config) return null
+    const buffer = sgo(node.config)
+    tmp.sgoSize = buffer.length
+    const cursor = malloc(padCeil(buffer.length))
+    buffer.copy(cursor.buffer)
+    return cursor
+  }
+
+  const CameraNode = Struct([
+    [0x0C, Ref, SgoConfig],
+    [0x08, UInt, (node, cursor, tmp) => tmp.sgoSize],
+    [0x10, UInt, node => node.id],
+    [0x1C, Matrix, node => node.matrix],
+    [0x68, DeferStr, node => node.name || ''],
+  ], 0x74)
+
+  const CameraTimingNode = Struct([
+    [0x00, Float, node => node.f1 || 0],
+    [0x04, Float, node => node.f2 || 0],
+    [0x08, Int, node => (node.i3 == null ? 1 : node.i3)],
+    [0x14, Float, node => (node.f4 == null ? 1 : node.f4)],
+    [0x18, Float, node => (node.f5 == null ? 1 : node.f5)],
+  ], 0x1C)
+
+  const CameraTimingHeader = Struct([
+    [0x00, Float, timer => timer.f1 || 0],
+    [0x04, UInt, timer => (timer.nodes && timer.nodes.length) || 0],
+    [0x08, Ref, Collection(CameraTimingNode, timer => timer.nodes)],
+  ], 0x10)
+
   const CameraSubHeader = Struct([
-    q
+    [0x14, DeferStr, entry => entry.name || ''],
+    [0x18, UInt, entry => (entry.nodes && entry.nodes.length) || 0],
+    [0x1C, Ref, Collection(CameraNode, entry => entry.nodes)],
+    [0x24, Ref, Allocate(CameraTimingHeader, entry => entry.timing1)],
+    [0x2C, Ref, Allocate(CameraTimingHeader, entry => entry.timing2)],
     [0x04, Ref, Null],
   ], 0x30)
   
-
   const CameraHeader = Struct([
-    [0x08, UInt, entry => entry.id],
-    [0x14, DeferStr, entry => entry.name || ''],
-    [0x18, UInt, entry => entry.nodes.length],
-    [0x1C, Ref, Collection(CameraSubHeader, entry => entry.entrie)],
+    [0x08, UInt, obj => obj.id],
+    [0x14, DeferStr, obj => obj.name || ''],
+    [0x18, UInt, obj => (obj.entries && obj.entries.length) || 0],
+    [0x1C, Ref, Collection(CameraSubHeader, obj => obj.entries)],
     [0x04, Ref, Null],
   ], 0x20)
 
