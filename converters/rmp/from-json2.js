@@ -60,7 +60,6 @@ function compile(obj) {
   }
 
   function stringBytes(string) {
-    // SGO uses wide chars for index
     return Buffer.byteLength(string, 'utf16le')
   }
 
@@ -73,12 +72,13 @@ function compile(obj) {
     }
   }
 
-  function Ref(cursor, value) {
-    if(!value) return cursor.pointer(heapIdx)
+  function Ref(cursor, value, offset) {
+    if(!value) return Int(cursor, cursor.pointer(heapIdx), offset)
     if(!(value instanceof Cursor)) {
       throw new Error('Value expected to be a cursor')
     }
-    return cursor.pointer(value.pos)
+    const jump = cursor.pointer(value.pos)
+    Int(cursor, jump, offset)
   }
 
   function Null() {
@@ -101,14 +101,14 @@ function compile(obj) {
     }
 
     write(Type, data) {
-      if(this.iter > this.buffer.length - Type.size) {
+      if(this.index > this.buffer.length - Type.size) {
         throw new Error('End of buffer exceeded')
       }
       if(!Type.size) {
         throw new Error('Trying to write a type without a size!')
       }
       Type(this, data)
-      this.iter += 0x04
+      this.index += Type.size
       this.writeCount++
       return this
     }
@@ -191,7 +191,7 @@ function compile(obj) {
     const buffer = sgo(cfg)
     tmp.sgoSize = buffer.length
     const cursor = malloc(padCeil(buffer.length))
-    cursor.buffer.copy(buffer)
+    buffer.copy(cursor.buffer)
     return cursor
   }
 
@@ -240,8 +240,6 @@ function compile(obj) {
 
   malloc(padCeil(RmpHeader.size)).write(RmpHeader, obj)
   unrollStrings()
-  console.log({ heapIdx: heapIdx.toString(16) })
-  return Buffer.alloc(0)
   return Buffer.concat(heap)
 }
 
