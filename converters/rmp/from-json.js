@@ -308,7 +308,7 @@ function compile(obj) {
     [0x0C, Ref, TypeHeader(WayPoint, obj => obj.routes)],
     [0x10, UInt, obj => +!!obj.shapes],
     [0x14, Ref, TypeHeader(Shape, obj => obj.shapes)],
-    [0x08, UInt, obj => +!!obj.cameras],
+    [0x18, UInt, obj => +!!obj.cameras],
     [0x1C, Ref, Allocate(CameraHeader, obj => obj.cameras)],
     // [0x20, UInt, obj => anyEntries(obj.spawns)],
     // [0x24, Ref, Batch(TypeHeader(WayPoint))],
