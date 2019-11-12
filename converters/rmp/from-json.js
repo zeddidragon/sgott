@@ -176,6 +176,7 @@ function compile(obj) {
 
   function SubHeader(Type) {
     return Struct([
+      [0x0C, UInt, entry => entry.id],
       [0x14, DeferStr, entry => entry.name || ''],
       [0x18, UInt, entry => (entry.nodes && entry.nodes.length) || 0],
       [0x1C, Ref, Collection(Type, entry => entry.nodes)],
@@ -237,6 +238,18 @@ function compile(obj) {
     [0x1C, UInt, node => node.id],
     [0x24, Ref, Allocate(ShapeData, node => node.coords)],
   ], 0x30)
+
+  const Spawn = Struct([
+    [0x08, UInt, node => node.id],
+    [0x0C, Float, node => node.px],
+    [0x10, Float, node => node.py],
+    [0x14, Float, node => node.pz],
+    [0x1C, Float, node => node.tx],
+    [0x20, Float, node => node.ty],
+    [0x24, Float, node => node.tz],
+    [0x34, DeferStr, node => node.name || ''],
+    [0x04, Ref, Null],
+  ], 0x40)
 
   function TypeHeader(Type, cb) {
     const Header = Struct([
@@ -310,8 +323,8 @@ function compile(obj) {
     [0x14, Ref, TypeHeader(Shape, obj => obj.shapes)],
     [0x18, UInt, obj => +!!obj.cameras],
     [0x1C, Ref, Allocate(CameraHeader, obj => obj.cameras)],
-    // [0x20, UInt, obj => anyEntries(obj.spawns)],
-    // [0x24, Ref, Batch(TypeHeader(WayPoint))],
+    [0x20, UInt, obj => +!!obj.spawns],
+    [0x24, Ref, TypeHeader(Spawn, obj => obj.spawns)],
   ], 0x30)
   heapIdx = RmpHeader.size
 
