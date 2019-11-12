@@ -213,7 +213,7 @@ function compile(obj) {
     [0x08, Ref, WayPointLink],
     [0x10, Ref, Null],
     [0x1C, Ref, WayPointSgo],
-    [0x14, UInt, node => node.sgoSize],
+    [0x14, UInt, node => node.id],
     [0x18, UInt, (node, cursor, tmp) => tmp.sgoSize],
     [0x24, DeferStr, node => node.name || ''],
     [0x28, Float, node => node.x],
