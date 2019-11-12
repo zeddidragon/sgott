@@ -49,7 +49,7 @@ function compile(obj) {
     const stringCursors = {}
     for(const str of strings) {
       const cursor = malloc(stringBytes(str))
-      Str(cursor, str)
+      cursor.buffer.write(str, 'utf16le')
       if(endian !== 'LE') cursor.buffer.swap16()
       stringCursors[str] = cursor
     }
@@ -132,6 +132,12 @@ function compile(obj) {
     return new Cursor(buffer, pos)
   }
 
+  function Allocate(Type, cb) {
+    return function(data) {
+      return malloc(Type.size).write(Type, cb(data))
+    }
+  }
+
   function Struct(definitions, size) {
     const block = 0x04
     if(!size) size = Math.max(...definitions).map(([k]) => +k) + block
@@ -209,6 +215,23 @@ function compile(obj) {
     [0x30, Float, node => node.z],
   ], 0x3C)
 
+  const ShapeData = Struct([
+    [0x00, Float, node => node.px],
+    [0x04, Float, node => node.py],
+    [0x08, Float, node => node.pz],
+    [0x10, Float, node => node.sizex],
+    [0x14, Float, node => node.sizey],
+    [0x18, Float, node => node.sizez],
+    [0x30, Float, node => node.diameter],
+  ], 0x40)
+
+  const Shape = Struct([
+    [0x08, DeferStr, node => node.type],
+    [0x10, DeferStr, node => node.name || ''],
+    [0x1C, UInt, node => node.id],
+    [0x24, Ref, Allocate(ShapeData, node => node.coords)],
+  ], 0x30)
+
   function TypeHeader(Type, cb) {
     const Header = Struct([
       [0x00, UInt, obj => obj.entries.length],
@@ -229,8 +252,8 @@ function compile(obj) {
     [0x00, Str, obj => (obj.endian === 'LE' ? 'RMP\0' : '\0PMR')],
     [0x08, UInt, obj => +!!obj.routes],
     [0x0C, Ref, TypeHeader(WayPoint, obj => obj.routes)],
-    // [0x10, UInt, obj => anyEntries(obj.shapes)],
-    // [0x14, Ref, Batch(TypeHeader(Shape))],
+    [0x10, UInt, obj => +!!obj.shapes],
+    [0x14, Ref, TypeHeader(Shape, obj => obj.shapes)],
     // [0x08, UInt, obj => anyEntries(obj.cameras)],
     // [0x1C, Ref, Batch(CameraHeader(Camera))],
     // [0x20, UInt, obj => anyEntries(obj.spawns)],
