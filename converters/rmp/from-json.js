@@ -267,9 +267,14 @@ function compile(obj) {
     }
   }
 
-  function SgoConfig(node, _cursor, tmp) {
+  function CameraConfigSgo(node, _cursor, tmp) {
     if(!node.config) return null
-    const buffer = sgo(node.config)
+    const cfg = node.config || {
+      format: 'SGO',
+      endian: node.cfgEn || endian,
+      variables: [],
+    }
+    const buffer = sgo(cfg)
     tmp.sgoSize = buffer.length
     const cursor = malloc(padCeil(buffer.length))
     buffer.copy(cursor.buffer)
@@ -277,7 +282,7 @@ function compile(obj) {
   }
 
   const CameraNode = Struct([
-    [0x0C, Ref, SgoConfig],
+    [0x0C, Ref, CameraConfigSgo],
     [0x08, UInt, (node, cursor, tmp) => tmp.sgoSize],
     [0x10, UInt, node => node.id],
     [0x1C, Matrix, node => node.matrix],
