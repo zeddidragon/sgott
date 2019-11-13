@@ -293,7 +293,9 @@ function compile(obj) {
     [0x14, DeferStr, entry => entry.name || ''],
     [0x18, UInt, entry => (entry.nodes && entry.nodes.length) || 0],
     [0x1C, Ref, Collection(CameraNode, entry => entry.nodes)],
+    [0x20, UInt, entry => +!!entry.timing1],
     [0x24, Ref, Allocate(CameraTimingHeader, entry => entry.timing1)],
+    [0x28, UInt, entry => +!!entry.timing2],
     [0x2C, Ref, Allocate(CameraTimingHeader, entry => entry.timing2)],
     [0x04, Ref, Null],
   ], 0x30)

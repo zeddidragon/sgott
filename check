@@ -7,10 +7,14 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-if [ "$2" = "diff" ]; then
+if [ "$2" = "hexdiff" ]; then
   vimdiff \
-   <( hex <  $1 ) \
+   <( hex < $1 ) \
    <( sgott < $1 | sgott | hex )
+elif [ "$2" = "jsondiff" ]; then
+  vimdiff \
+   <( sgott < $1 ) \
+   <( sgott < $1 | sgott | sgott )
 elif [ "$2" = "result" ]; then
    sgott < $1 | sgott | hex
 else
