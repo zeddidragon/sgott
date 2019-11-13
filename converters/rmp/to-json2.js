@@ -7,7 +7,14 @@ function padCeil(value, divisor = 0x10) {
 
 function compile(fullBuffer, config) {
   if(config.index) fullBuffer = fullBuffer.slice(config.index)
-  var endian
+  {
+    const length = padCeil(fullBuffer.length)
+    if(length !== fullBuffer.length) {
+      const buf = Buffer.alloc(length)
+      fullBuffer.copy(buf)
+      fullBuffer = buf
+    }
+  }
 
   function Ptr(cursor, offset) {
     return cursor.copy().move(Int(cursor, offset))
@@ -18,7 +25,7 @@ function compile(fullBuffer, config) {
     const terminator = length * 2 || Math.min(
       cursor.buffer.indexOf('\0', cursor.pos, 'utf16le'),
       cursor.buffer.length)
-    const buffer = cursor.buffer.slice(cursor.pos, padCeil(terminator))
+    const buffer = cursor.buffer.slice(cursor.pos, padCeil(terminator)) 
     return (endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
@@ -203,14 +210,12 @@ Contact the developers of this tool and tell them which file this happened in!
     [0x14]: ['id', UInt],
     [0x18]: ['config', Ref(SGO)],
     [0x24]: ['name', Str],
-    [0x28]: ['x', Float],
-    [0x2C]: ['y', Float],
-    [0x30]: ['z', Float],
+    [0x28]: ['pos', Tuple(Float, 3)],
   }, 0x3C)
 
   const ShapeData = Struct({
-    [0x00]: ['pos', Tuple(Float, 4)],
-    [0x10]: ['box', Tuple(Float, 4)],
+    [0x00]: ['pos', Tuple(Float, 3)],
+    [0x10]: ['box', Tuple(Float, 3)],
     [0x30]: ['diameter', Float],
   }, 0x40)
 
@@ -222,11 +227,20 @@ Contact the developers of this tool and tell them which file this happened in!
     [0x20]: ['coords', Ref(ShapeData)],
   }, 0x30)
 
+  const Spawn = Struct({
+    [0x00]: ['nullPtr', NullPtr('Spawn'), { ignore: true }],
+    [0x08]: ['id', UInt],
+    [0x0C]: ['pos', Tuple(Float, 3)],
+    [0x1C]: ['look', Tuple(Float, 3)],
+    [0x34]: ['name', Str],
+  }, 0x40)
+
   const RmpHeader = Struct({
     [0x00]: ['endian', Leader],
     [0x08]: ['routes', Ref(TypeHeader(WayPoint))],
     [0x10]: ['shapes', Ref(TypeHeader(Shape))],
     [0x18]: ['cameras', NullPtr('RmpHeader')],
+    [0x20]: ['spawns', Ref(TypeHeader(Spawn))],
   }, 0x30)
 
   return json({
