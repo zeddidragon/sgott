@@ -254,7 +254,6 @@ function compile(obj) {
   }
 
   function CameraConfigSgo(node, _cursor, tmp) {
-    if(!node.config) return null
     const cfg = node.config || {
       format: 'SGO',
       endian: node.cfgEn || endian,

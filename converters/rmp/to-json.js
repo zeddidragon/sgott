@@ -70,10 +70,10 @@ function compile(fullBuffer, config) {
     return '0x' + idx.toString(16).padStart(2, '0')
   }
 
-  function Ref(Type) {
+  function Ref(Type, opts = {}) {
     function Deref(cursor, offset = 0x00) {
       const count = UInt(cursor, offset)
-      if(!count) return null
+      if(!count && !opts.force) return null
       return Type(Ptr(cursor, offset + 0x04), 0x00, count)
     }
     Deref.size = 0x08
@@ -196,7 +196,6 @@ Contact the developers of this tool and tell them which file this happened in!
   }
 
   function SGO(cursor, offset = 0x00, size = 0) {
-    if(!size) return null
     const value = sgo()(cursor.at(offset))
     return value
   }
@@ -215,6 +214,17 @@ Contact the developers of this tool and tell them which file this happened in!
     const width = val.variables.find(v => v.name === 'rmpa_float_WayPointWidth')
     if(width && val.variables.length === 1) {
       obj.width = width.value
+      if(val.endian !== endian) obj.cfgEn = val.endian
+    } else {
+      obj.config = val
+    }
+  }
+
+  function CameraConfig(obj, val) {
+    if(!val) {
+      return
+    }
+    if(!val.variables.length) {
       if(val.endian !== endian) obj.cfgEn = val.endian
     } else {
       obj.config = val
@@ -254,7 +264,7 @@ Contact the developers of this tool and tell them which file this happened in!
   }, 0x40)
 
   const CameraNode = Struct({
-    [0x08]: ['config', Ref(SGO)],
+    [0x08]: [CameraConfig, Ref(SGO, { force: true })],
     [0x10]: ['id', UInt],
     [0x1C]: ['matrix', Tuple(Float, 16)],
     [0x68]: ['name', Str],
@@ -294,6 +304,7 @@ Contact the developers of this tool and tell them which file this happened in!
     [0x10]: ['shapes', Ref(TypeHeader(Shape))],
     [0x18]: ['cameras', Ref(CameraHeader)],
     [0x20]: ['spawns', Ref(TypeHeader(Spawn))],
+    // [0x28]: ['abort', process.exit]
   }, 0x30)
 
   return json({
