@@ -6,6 +6,7 @@ function padCeil(value, divisor = 0x10) {
 }
 
 function compile(fullBuffer, config) {
+  var endian
   if(config.index) fullBuffer = fullBuffer.slice(config.index)
   {
     const length = padCeil(fullBuffer.length)
@@ -145,7 +146,10 @@ Contact the developers of this tool and tell them which file this happened in!
         if(!def && hexVal != '00000000') {
           obj[hexKey] = hexVal
         } else if(def && !opts.ignore) {
-          obj[key] = value == null ? null : value
+          const setter = typeof key === 'function'
+            ? key
+            : (obj, val) => (obj[key] = val)
+          setter(obj, value == null ? null : value)
         }
 
         if(config.debug) {
@@ -193,7 +197,8 @@ Contact the developers of this tool and tell them which file this happened in!
 
   function SGO(cursor, offset = 0x00, size = 0) {
     if(!size) return null
-    return sgo(cursor.at(offset))
+    const value = sgo()(cursor.at(offset))
+    return value
   }
 
   function Leader(cursor) {
@@ -203,12 +208,25 @@ Contact the developers of this tool and tell them which file this happened in!
   }
   Leader.size = 0x04
 
+  function WayPointConfig(obj, val) {
+    if(!val) {
+      return
+    }
+    const width = val.variables.find(v => v.name === 'rmpa_float_WayPointWidth')
+    if(width && val.variables.length === 1) {
+      obj.width = width.value
+      if(val.endian !== endian) obj.cfgEn = val.endian
+    } else {
+      obj.config = val
+    }
+  }
+
   const WayPoint = Struct({
     [0x00]: ['idx', UInt, { ignore: true }],
     [0x04]: ['link', Ref(Collection(UInt))],
     [0x0C]: ['nullPtr', NullPtr('WayPoint'), { ignore: true }],
     [0x14]: ['id', UInt],
-    [0x18]: ['config', Ref(SGO)],
+    [0x18]: [WayPointConfig, Ref(SGO)],
     [0x24]: ['name', Str],
     [0x28]: ['pos', Tuple(Float, 3)],
   }, 0x3C)
