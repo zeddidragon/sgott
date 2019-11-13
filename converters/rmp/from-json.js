@@ -224,6 +224,7 @@ function compile(obj) {
     [0x08, DeferStr, node => node.type],
     [0x10, DeferStr, node => node.name || ''],
     [0x1C, UInt, node => node.id],
+    [0x20, Ref, Allocate(ShapeData, node => +!!node.coords)],
     [0x24, Ref, Allocate(ShapeData, node => node.coords)],
   ], 0x30)
 

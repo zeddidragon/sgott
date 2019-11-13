@@ -26,11 +26,11 @@ function compile(fullBuffer, config) {
     const terminator = length * 2 || Math.min(
       cursor.buffer.indexOf('\0', cursor.pos, 'utf16le'),
       cursor.buffer.length)
-    const buffer = cursor.buffer.slice(cursor.pos, padCeil(terminator)) 
+    const buffer = cursor.buffer.slice(cursor.pos, terminator) 
     return (endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
-    ).replace(/\u0000/g, '').trim()
+    ).trim()
   }
 
   function UInt(cursor, offset = 0x00) {
