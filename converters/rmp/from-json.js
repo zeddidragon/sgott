@@ -1,10 +1,4 @@
 const sgo = require('../sgo/from-json').compiler()
-require('util').inspect.defaultOptions.depth = null
-
-// Cheapo(tm) debugging
-function abort() {
-  throw new Error('abort')
-}
 
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor

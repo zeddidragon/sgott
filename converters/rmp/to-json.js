@@ -1,373 +1,293 @@
 const json = require('json-stringify-pretty-compact')
 const sgo = require('../sgo/to-json').decompiler
-require('util').inspect.defaultOptions.depth = null
-// Cheapo(tm) debugging
-function abort() {
-  throw new Error('abort')
+
+function padCeil(value, divisor = 0x10) {
+  return Math.ceil(value / divisor) * divisor
 }
 
-function decompiler(config = {}) {
-  var endian
+function compile(fullBuffer, config) {
+  if(config.index) fullBuffer = fullBuffer.slice(config.index)
+  {
+    const length = padCeil(fullBuffer.length)
+    if(length !== fullBuffer.length) {
+      const buf = Buffer.alloc(length)
+      fullBuffer.copy(buf)
+      fullBuffer = buf
+    }
+  }
 
-  function Str(buffer, offset = 0, base = 0) {
-    buffer = buffer.slice(base + offset)
+  function Ptr(cursor, offset) {
+    return cursor.copy().move(Int(cursor, offset))
+  }
+
+  function Str(cursor, offset = 0x00, length = 0) {
+    cursor = Ptr(cursor, offset)
+    const terminator = length * 2 || Math.min(
+      cursor.buffer.indexOf('\0', cursor.pos, 'utf16le'),
+      cursor.buffer.length)
+    const buffer = cursor.buffer.slice(cursor.pos, padCeil(terminator)) 
     return (endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
-    ).trim()
+    ).replace(/\u0000/g, '').trim()
   }
 
-  function UInt(buffer, offset = 0, base = 0) {
-    return buffer[`readUInt32${endian}`](base + offset)
+  function UInt(cursor, offset = 0x00) {
+    return cursor.at(offset)[`readUInt32${endian}`]()
   }
+  UInt.size = 0x04
 
-  function Int(buffer, offset = 0, base = 0) {
-    return buffer[`readInt32${endian}`](base + offset)
+  function Int(cursor, offset = 0x00) {
+    return cursor.at(offset)[`readInt32${endian}`]()
   }
+  Int.size = 0x04
 
-  function Float(buffer, offset = 0, base = 0) {
-    return buffer[`readFloat${endian}`](base + offset)
+  function Float(cursor, offset = 0x00) {
+    return cursor.at(offset)[`readFloat${endian}`]()
   }
+  Float.size = 0x04
 
-  function Ptr(buffer, offset = 0, base = 0) {
-    return base + Int(buffer, offset, base)
-  }
-
-  function Ref(fn) {
-    return function Deref(buffer, offset = 0, base = 0, obj = {}) {
-      const jump = Ptr(buffer, offset, base)
-      const value = fn(buffer, 0, jump, obj)
-      if(config.debug && value.dbg) {
-        if(!obj.dbg.deref) obj.dbg.deref = []
-        obj.dbg.deref.push([HexKey(offset), HexKey(jump), value.dbg])
-      }
-      return value
+  function Tuple(Type, size) {
+    const block = Type.size || 0x04
+    function TupleDef(cursor, offset = 0x00) {
+      return Array(size).fill(0).map((v, i) => Type(cursor, offset + i * block))
     }
+    TupleDef.size = size * block
+    return TupleDef
   }
 
-  function StrPtr(buffer, offset = 0, base = 0, obj = {}) {
-    const jump = Ptr(buffer, offset, base)
-    if(config.debug) {
-      if(!obj.dbg.deref) obj.dbg.deref = []
-      obj.dbg.deref.push([HexKey(offset), HexKey(jump)])
-    }
-    const end = buffer.length
-    const terminator = Math.min(buffer.indexOf('\0', jump, 'utf16le'), end)
-    return Str(buffer.slice(jump, terminator > 0 ? terminator : end))
-  }
-
-  function SGO(buffer, offset = 0, base = 0) {
-    return sgo()(buffer.slice(base + offset))
-  }
-
-  function Hex(buffer, offset = 0, base = 0, opts = {}) {
-    const isValue = UInt(buffer, offset, base)
-    if(!isValue && !opts.full) return
-    const index = base + offset
-    return (
-      buffer
-        .slice(index, index + 0x04)
-        .toString('hex')
-        .replace(opts.full ? '' : /^0+/, '')
+  function Hex(cursor, offset = 0x00) {
+    return ( cursor
+      .at(offset)
+      .slice(0x00, 0x04)
+      .toString('hex')
     )
   }
+  Hex.size = 0x04
 
-  function HexKey(i) {
-    return `0x${i.toString(16).padStart(2, '0')}`
+  function HexKey(idx) {
+    return '0x' + idx.toString(16).padStart(2, '0')
+  }
+
+  function Ref(Type) {
+    function Deref(cursor, offset = 0x00) {
+      const count = UInt(cursor, offset)
+      if(!count) return null
+      return Type(Ptr(cursor, offset + 0x04), 0x00, count)
+    }
+    Deref.size = 0x08
+
+    return Deref
+  }
+
+  function NullPtr(label) {
+    function AssertNullPtr(cursor, offset = 0x00) {
+      const count = UInt(cursor, offset)
+      if(!count) return null
+      if(config.debug) return [count, Hex(cursor, offset + 0x04)]
+      console.error(`Expected count at ${HexKey(offset)} \
+in ${label} (${HexKey(cursor.pos)}) to be 0, \
+but it was ${count}, pointing to ${HexKey(Ptr(cursor, offset + 0x04).pos)}.
+
+Contact the developers of this tool and tell them which file this happened in!
+(Use --debug to force this file to parse regardless)`)
+      process.exit(1)
+    }
+    AssertNullPtr.size = 0x08
+
+    return AssertNullPtr
+  }
+
+  class Cursor {
+    constructor(buffer, pos = 0x00) {
+      if(buffer instanceof Cursor) {
+        this.buffer = buffer.buffer
+        this.pos = buffer.pos
+      } else {
+        this.buffer = buffer
+        this.pos = pos
+      }
+    }
+
+    at(offset = 0x00) {
+      return this.buffer.slice(this.pos + offset)
+    }
+
+    move(offset) {
+      if(offset == null) throw new Error('No amount specified')
+      this.pos += offset
+      return this
+    }
+
+    copy() {
+      return new Cursor(this)
+    }
   }
 
   function Struct(definitions, size) {
-    const block = 0x04
     if(!size) throw new Error('Size is not provided!')
-    function StructDef(buffer, offset = 0, base = 0) {
-      const obj = {}
-      const index = base + offset
-      if(config.debug) obj.dbg = {
-        '@': HexKey(index),
-        values: [],
+    function StructDef(cursor, offset = 0x00) {
+      if(offset) {
+        cursor = cursor.copy().move(offset)
       }
 
-      for(var i = 0x00; i < size; i += block) {
-        const def = definitions[i]
-        const raw = config.debug || !def
+      var idx = 0x00 
+      const obj = {}
+      if(config.debug) obj.dbg = { '@': HexKey(cursor.pos), raw: [], deref: [] }
+      while(idx < size) {
+        const def = definitions[idx]
+        const raw = !def || config.debug
+        const hexKey = raw && HexKey(idx)
+        const hexVal = raw && Hex(cursor, idx)
         const [key, fn, opts = {}] = def || []
-        const value = fn && fn(buffer, i, index, obj)
-        const hexKey = raw && HexKey(i)
-        const hexValue = raw && Hex(buffer, i, index)
+        const value = fn && fn(cursor, idx)
 
-        if(config.debug) {
-          const dbg = [hexKey, Hex(buffer, i, index, { full: true })]
-          if(key) dbg.push(key)
-          obj.dbg.values.push(dbg)
-        }
-
-        if(def && (config.debug || !opts.ignore)) {
+        if(!def && hexVal != '00000000') {
+          obj[hexKey] = hexVal
+        } else if(def && !opts.ignore) {
           obj[key] = value == null ? null : value
         }
-        if(!def && hexValue) {
-          obj[hexKey] = hexValue
+
+        if(config.debug) {
+          obj.dbg.raw.push([hexKey, hexVal])
         }
 
+        idx += fn && fn.size != null ? fn.size : 0x04
       }
 
       return obj
     }
-
     StructDef.size = size
+
     return StructDef
   }
 
-  function Leader(buffer, offset = 0, base = 0) {
-    const index = base + offset
-    const leader = buffer
-      .slice(index, index + 0x4)
-      .toString('ascii')
+  function Collection(Type) {
+    function CollectionDef(cursor, offset = 0x00, count = 0) {
+      if(!count) return null
+      cursor = cursor.copy().move(offset)
+      const size = Type.size || 0x04
+      return Array(count).fill(null).map((v, i) => Type(cursor, i * size))
+    }
+
+    return CollectionDef
+  }
+
+  function SubHeader(Type) {
+    return Struct({
+      [0x04]: ['nullPtr', NullPtr('SubHeader'), { ignore: true }],
+      [0x0C]: ['id', UInt],
+      [0x14]: ['name', Str],
+      [0x18]: ['nodes', Ref(Collection(Type))],
+    }, 0x20)
+  }
+
+  function TypeHeader(Type) {
+    return Struct({
+      [0x00]: ['entries', Ref(Collection(SubHeader(Type)))],
+      [0x08]: ['nullPtr', NullPtr('TypeHeader'), { ignore: true }],
+      [0x10]: ['id', UInt],
+      [0x18]: ['name', Str],
+    }, 0x20)
+  }
+
+  function SGO(cursor, offset = 0x00, size = 0) {
+    if(!size) return null
+    return sgo(cursor.at(offset))
+  }
+
+  function Leader(cursor) {
+    const leader = cursor.at(0x00).slice(0x00, 0x04).toString('ascii')
     endian = leader === 'RMP\0' ? 'LE' : 'BE'
-    return leader
+    return endian
   }
+  Leader.size = 0x04
 
-  const CollectionHeader = Struct({
-    [0x00]: ['count', UInt],
-    [0x04]: ['startPtr', Ptr],
-    [0x0C]: ['endPtr', Ptr, { ignore: true }],
-    [0x10]: ['id', UInt],
-    [0x18]: ['name', StrPtr],
-  }, 0x20)
+  const WayPoint = Struct({
+    [0x00]: ['idx', UInt, { ignore: true }],
+    [0x04]: ['link', Ref(Collection(UInt))],
+    [0x0C]: ['nullPtr', NullPtr('WayPoint'), { ignore: true }],
+    [0x14]: ['id', UInt],
+    [0x18]: ['config', Ref(SGO)],
+    [0x24]: ['name', Str],
+    [0x28]: ['pos', Tuple(Float, 3)],
+  }, 0x3C)
 
-  const SubHeader = Struct({
-    [0x08]: ['endPtr', UInt, { ignore: true }],
-    [0x0C]: ['id', UInt],
-    [0x14]: ['name', StrPtr],
-    [0x18]: ['count', UInt],
-    [0x1C]: ['startPtr', Ptr],
-  }, 0x20)
-
-  const CamerasHeader = Struct({
-    [0x04]: ['endPtr', Ptr, { ignore: true }],
-    [0x08]: ['id', UInt],
-    [0x14]: ['name', StrPtr],
-    [0x18]: ['count', UInt],
-    [0x1C]: ['startPtr', Ptr],
-  }, 0x20)
-
-  const CameraSubHeader = Struct({
-    [0x04]: ['endPtr', UInt, { ignore: true }],
-    [0x14]: ['name', StrPtr],
-    [0x18]: ['count', UInt],
-    [0x1C]: ['startPtr', Ptr],
-    [0x24]: ['timing1', Ptr],
-    [0x2C]: ['timing2', Ptr],
-  }, 0x20)
-
-  function Collection(Type, CHeader=CollectionHeader, SHeader=SubHeader) {
-    return function Collection(buffer, offset = 0, base = 0) {
-      const isEntry = UInt(buffer, offset - 0x04, base)
-      if(!isEntry) return
-      base = Ptr(buffer, offset, base)
-      offset = 0
-      const header = CHeader(buffer, offset, base)
-      base = header.startPtr
-      const entries = Array(header.count).fill(null)
-
-      for(var i = 0; i < header.count; i++) {
-        const subHeader = SHeader(buffer, offset, base)
-        const nodes = Array(subHeader.count).fill(null)
-
-        for(var j = 0; j < subHeader.count; j++) {
-          const location = subHeader.startPtr + j * Type.size
-          nodes[j] = Type(buffer, 0, location)
-        }
-
-        delete subHeader.count
-        delete subHeader.startPtr
-        entries[i] = { ...subHeader, nodes }
-
-        base += SubHeader.size
-      }
-
-      delete header.startPtr
-      delete header.count
-      return { ...header, entries }
-    }
-  }
-  Collection.size = 0x20
-
-  function WayPoints(buffer, offset = 0, base = 0) {
-    const point = WayPoint(buffer, offset, base)
-    const cfg = point.config
-    const width = cfg.variables
-      .find(n => n.name === 'rmpa_float_WayPointWidth')
-    if(width) point.width = width.value
-    if((width && cfg.variables.length === 1)) {
-      delete point.config
-      if(cfg.endian !== endian) point.cfgEn = cfg.endian
-    }
-    if(point.unknownPtrSizeDescriptor) {
-      console.error(` \
-        Unknown pointer pair x0C and 0x10 is pointing to something. \
-        It usually does not! \
-        ID: ${point.id}
-        @: ${base + offset}
-        Value: ${point.unknownPtrSizeDescriptor}
-      `)
-      throw new Error('Please contact Zeddy or Kemui⊗52 and tell them which file this happened with!')
-    }
-    delete point.unknownPtrSizeDescriptor
-
-    return point
-  }
-
-  const Spawn = Struct({
-    [0x04]: ['endPtr', Ptr, { ignore: true }],
-    [0x08]: ['id', UInt],
-    [0x0c]: ['px', Float],
-    [0x10]: ['py', Float],
-    [0x14]: ['pz', Float],
-    [0x1c]: ['tx', Float],
-    [0x20]: ['ty', Float],
-    [0x24]: ['tz', Float],
-    [0x34]: ['name', StrPtr],
-  }, 0x40)
-
-  const ShapeCoords = Struct({
-    [0x00]: ['px', Float],
-    [0x04]: ['py', Float],
-    [0x08]: ['pz', Float],
-    [0x10]: ['sizex', Float],
-    [0x14]: ['sizey', Float],
-    [0x18]: ['sizez', Float],
+  const ShapeData = Struct({
+    [0x00]: ['pos', Tuple(Float, 3)],
+    [0x10]: ['box', Tuple(Float, 3)],
     [0x30]: ['diameter', Float],
   }, 0x40)
 
   const Shape = Struct({
-    [0x08]: ['type', StrPtr],
-    [0x10]: ['name', StrPtr],
+    [0x08]: ['type', Str],
+    [0x10]: ['name', Str],
+    [0x14]: ['nullPtr', NullPtr('Shape'), { ignore: true }],
     [0x1C]: ['id', UInt],
-    [0x24]: ['coords', Ref(ShapeCoords)],
+    [0x20]: ['coords', Ref(ShapeData)],
   }, 0x30)
 
-  const CameraNodeKnownValues = {
-    [0x0C]: ['config', Ref(SGO)],
+  const Spawn = Struct({
+    [0x00]: ['nullPtr', NullPtr('Spawn'), { ignore: true }],
+    [0x08]: ['id', UInt],
+    [0x0C]: ['pos', Tuple(Float, 3)],
+    [0x1C]: ['look', Tuple(Float, 3)],
+    [0x34]: ['name', Str],
+  }, 0x40)
+
+  const CameraNode = Struct({
+    [0x08]: ['config', Ref(SGO)],
     [0x10]: ['id', UInt],
-    [0x68]: ['name', StrPtr],
-  }
-  function CameraNode(buffer, offset = 0, base = 0) {
-    const obj = {}
-    const index = base + offset
-    const definitions = CameraNodeKnownValues
+    [0x1C]: ['matrix', Tuple(Float, 16)],
+    [0x68]: ['name', Str],
+  }, 0x74)
 
-    const matrix = Array(16).fill(0)
-    const matrixStart = 0x1C
-    const matrixEnd = matrixStart + 0x40
-    for(let i = 0; i < 16; i++) {
-      const idx = index + matrixStart + i * 0x04
-      matrix[i] = Float(buffer, idx)
-    }
+  const CameraTimingNode = Struct({
+    [0x00]: ['f00', Float],
+    [0x04]: ['f04', Float],
+    [0x08]: ['i08', Int],
+    [0x14]: ['f14', Float],
+    [0x18]: ['f18', Float],
+  }, 0x1C)
 
-    for(let i = 0; i < CameraNode.size; i += 0x04) {
-      if(i === matrixStart) {
-        obj.matrix = matrix
-        continue
-      }
-      if(i >= matrixStart && i < matrixEnd) continue
-      const def = definitions[i]
+  const CameraTimingHeader = Struct({
+    [0x00]: ['f00', Float],
+    [0x04]: ['nodes', Ref(Collection(CameraTimingNode))],
+  }, 0x10)
 
-      if(!def) {
-        const value = Hex(buffer, i, index)
-        if(!value) continue
-        const key = HexKey(i)
-        obj[key] = value == null ? 0 : value
-        continue
-      }
-
-      const [key, fn] = def
-      const value = fn(buffer, i, index, obj)
-
-      if(key === 'config') {
-        if(value.variables.length) {
-          obj[key] = value
-        } else if(value.endian !== endian) {
-          obj.cfgEn = value.endian
-        }
-      } else {
-        obj[key] = value
-      }
-    }
-
-    return obj
-  }
-  CameraNode.size = 0x74
-
-  const Main = Struct({
-    [0x00]: ['leader', Leader],
-    [0x08]: ['isRoutes', UInt],
-    [0x0C]: ['routes', Collection(WayPoints)],
-    [0x10]: ['isShapes', UInt],
-    [0x14]: ['shapes', Collection(Shape)],
-    [0x18]: ['isCameras', UInt],
-    [0x1C]: ['cameras', Collection(CameraNode, CamerasHeader, CameraSubHeader)],
-    [0x20]: ['isSpawns', UInt],
-    [0x24]: ['spawns', Collection(Spawn)],
+  const CameraSubHeader = Struct({
+    [0x00]: ['nullPtr', NullPtr('Spawn'), { ignore: true }],
+    [0x14]: ['name', Str],
+    [0x18]: ['nodes', Ref(Collection(CameraNode))],
+    [0x20]: ['timing1', Ref(CameraTimingHeader)],
+    [0x28]: ['timing2', Ref(CameraTimingHeader)],
   }, 0x30)
 
-  function WayPointLink(buffer, offset = 0, base = 0, obj = {}) {
-    const index = base + offset
-    const ret = Array(obj.linkCount || 0)
-    for(var i = 0; i < ret.length; i++) {
-      ret[i] = Int(buffer, i * 0x04, index)
-    }
+  const CameraHeader = Struct({
+    [0x00]: ['nullPtr', NullPtr('Spawn'), { ignore: true }],
+    [0x08]: ['id', UInt],
+    [0x14]: ['name', Str],
+    [0x18]: ['entries', Ref(Collection(CameraSubHeader))],
+  }, 0x20)
 
-    if(config.debug) {
-      ret.dbg = {
-        '@': HexKey(index),
-        raw: ret
-          .map((v, i) => Hex(buffer, i * 0x04, index, { full: true }))
-          .join(' ')
-      }
-    }
-    delete obj.linkCount
-    return ret
-  }
+  const RmpHeader = Struct({
+    [0x00]: ['endian', Leader],
+    [0x08]: ['routes', Ref(TypeHeader(WayPoint))],
+    [0x10]: ['shapes', Ref(TypeHeader(Shape))],
+    [0x18]: ['cameras', Ref(CameraHeader)],
+    [0x20]: ['spawns', Ref(TypeHeader(Spawn))],
+  }, 0x30)
 
-  const WayPoint = Struct({
-    [0x00]: ['idx', UInt, { ignore: true }],
-    [0x04]: ['linkCount', UInt],
-    [0x08]: ['link', Ref(WayPointLink)],
-    [0x0C]: ['unknownPtrSizeDescriptor', UInt],
-    [0x10]: ['unknownPtr', Ptr, { ignore: true }],
-    [0x14]: ['id', UInt],
-    [0x18]: ['configSize', UInt, { ignore: true }],
-    [0x1C]: ['config', Ref(SGO)],
-    [0x24]: ['name', StrPtr],
-    [0x28]: ['x', Float],
-    [0x2C]: ['y', Float],
-    [0x30]: ['z', Float],
-  }, 0x3C)
-  WayPoints.size = WayPoint.size
-
-  return function decompile(buffer, index = 0) {
-    const result = Main(buffer, 0, index)
-
-    // Cleanup redundant data
-    delete result.leader
-    delete result.isRoutes
-    delete result.isShapes
-    delete result.isCameras
-    delete result.isSpawns
-
-    return {
-      format: 'RMP',
-      endian: endian,
-      ...result,
-    }
-  }
+  return json({
+    format: 'RMP',
+    ...RmpHeader(new Cursor(fullBuffer)),
+  })
 }
 
-function decompile(buffer, opts = {}) {
-  const data = decompiler(opts)(buffer)
-  return json(data)
+function compiler(config) {
+  return buffer => compile(buffer, config)
 }
+compile.compiler = compiler
+compile.compile = compile
 
-decompile.decompiler = decompiler
-
-module.exports = decompile
+module.exports = compile
