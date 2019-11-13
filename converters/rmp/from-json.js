@@ -35,8 +35,15 @@ function compile(obj) {
     return buffer.write(value.padStart(8, '0'), index + offset, 'hex')
   }
 
-  function Matrix(cursor, value, offset) {
-    value.forEach((v, i) => Float(cursor, v, offset + i * 0x04))
+  function Tuple(Type, size) {
+    const block = Type.size || 0x04
+    function TupleDef(cursor, value, offset) {
+      (value || [])
+        .slice(0, size)
+        .forEach((v, i) => Type(cursor, v, offset + i * block))
+    }
+    TupleDef.size = size * block
+    return TupleDef
   }
 
   const deferredStrings = new Set()
@@ -184,13 +191,6 @@ function compile(obj) {
     ], 0x20)
   }
 
-  function WayPointLink(node) {
-    if(!(node.link && node.link.length)) return 
-    const cursor = malloc(padCeil(node.link.length * 0x04))
-    node.link.forEach(v => cursor.write(UInt, v))
-    return cursor
-  }
-
   function WayPointSgo(node, _cursor, tmp) {
     const cfg = node.config || {
       format: 'SGO',
@@ -211,24 +211,18 @@ function compile(obj) {
   const WayPoint = Struct([
     [0x00, UInt, (node, cursor) => cursor.writeCount],
     [0x04, UInt, node => (node.link && node.link.length) || 0],
-    [0x08, Ref, WayPointLink],
+    [0x08, Ref, Collection(UInt, node => node.link)],
     [0x10, Ref, Null],
     [0x1C, Ref, WayPointSgo],
     [0x14, UInt, node => node.id],
     [0x18, UInt, (node, cursor, tmp) => tmp.sgoSize],
     [0x24, DeferStr, node => node.name || ''],
-    [0x28, Float, node => node.x],
-    [0x2C, Float, node => node.y],
-    [0x30, Float, node => node.z],
+    [0x28, Tuple(Float, 4), node => node.pos],
   ], 0x3C)
 
   const ShapeData = Struct([
-    [0x00, Float, node => node.px],
-    [0x04, Float, node => node.py],
-    [0x08, Float, node => node.pz],
-    [0x10, Float, node => node.sizex],
-    [0x14, Float, node => node.sizey],
-    [0x18, Float, node => node.sizez],
+    [0x00, Tuple(Float, 4), node => node.pos],
+    [0x10, Tuple(Float, 4), node => node.box],
     [0x30, Float, node => node.diameter],
   ], 0x40)
 
@@ -241,12 +235,8 @@ function compile(obj) {
 
   const Spawn = Struct([
     [0x08, UInt, node => node.id],
-    [0x0C, Float, node => node.px],
-    [0x10, Float, node => node.py],
-    [0x14, Float, node => node.pz],
-    [0x1C, Float, node => node.tx],
-    [0x20, Float, node => node.ty],
-    [0x24, Float, node => node.tz],
+    [0x0C, Tuple(Float, 4), node => node.pos],
+    [0x1C, Tuple(Float, 4), node => node.look],
     [0x34, DeferStr, node => node.name || ''],
     [0x04, Ref, Null],
   ], 0x40)
@@ -285,7 +275,7 @@ function compile(obj) {
     [0x0C, Ref, CameraConfigSgo],
     [0x08, UInt, (node, cursor, tmp) => tmp.sgoSize],
     [0x10, UInt, node => node.id],
-    [0x1C, Matrix, node => node.matrix],
+    [0x1C, Tuple(Float, 16), node => node.matrix],
     [0x68, DeferStr, node => node.name || ''],
   ], 0x74)
 

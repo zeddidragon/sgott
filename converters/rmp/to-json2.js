@@ -205,7 +205,7 @@ Contact the developers of this tool and tell them which file this happened in!
 
   const WayPoint = Struct({
     [0x00]: ['idx', UInt, { ignore: true }],
-    [0x04]: ['link', Ref(UInt)],
+    [0x04]: ['link', Ref(Collection(UInt))],
     [0x0C]: ['nullPtr', NullPtr('WayPoint'), { ignore: true }],
     [0x14]: ['id', UInt],
     [0x18]: ['config', Ref(SGO)],
