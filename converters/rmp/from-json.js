@@ -223,8 +223,9 @@ function compile(obj) {
   const Shape = Struct([
     [0x08, DeferStr, node => node.type],
     [0x10, DeferStr, node => node.name || ''],
+    [0x18, Ref, Null],
     [0x1C, UInt, node => node.id],
-    [0x20, Ref, Allocate(ShapeData, node => +!!node.coords)],
+    [0x20, UInt, node => +!!node.coords],
     [0x24, Ref, Allocate(ShapeData, node => node.coords)],
   ], 0x30)
 
