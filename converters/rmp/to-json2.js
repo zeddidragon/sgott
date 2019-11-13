@@ -235,11 +235,46 @@ Contact the developers of this tool and tell them which file this happened in!
     [0x34]: ['name', Str],
   }, 0x40)
 
+  const CameraNode = Struct({
+    [0x08]: ['config', Ref(SGO)],
+    [0x10]: ['id', UInt],
+    [0x1C]: ['matrix', Tuple(Float, 16)],
+    [0x68]: ['name', Str],
+  }, 0x74)
+
+  const CameraTimingNode = Struct({
+    [0x00]: ['f00', Float],
+    [0x04]: ['f04', Float],
+    [0x08]: ['i08', Int],
+    [0x14]: ['f14', Float],
+    [0x18]: ['f18', Float],
+  }, 0x1C)
+
+  const CameraTimingHeader = Struct({
+    [0x00]: ['f00', Float],
+    [0x04]: ['nodes', Ref(Collection(CameraTimingNode))],
+  }, 0x10)
+
+  const CameraSubHeader = Struct({
+    [0x00]: ['nullPtr', NullPtr('Spawn'), { ignore: true }],
+    [0x14]: ['name', Str],
+    [0x18]: ['nodes', Ref(Collection(CameraNode))],
+    [0x20]: ['timing1', Ref(CameraTimingHeader)],
+    [0x28]: ['timing2', Ref(CameraTimingHeader)],
+  }, 0x30)
+
+  const CameraHeader = Struct({
+    [0x00]: ['nullPtr', NullPtr('Spawn'), { ignore: true }],
+    [0x08]: ['id', UInt],
+    [0x14]: ['name', Str],
+    [0x18]: ['entries', Ref(Collection(CameraSubHeader))],
+  }, 0x20)
+
   const RmpHeader = Struct({
     [0x00]: ['endian', Leader],
     [0x08]: ['routes', Ref(TypeHeader(WayPoint))],
     [0x10]: ['shapes', Ref(TypeHeader(Shape))],
-    [0x18]: ['cameras', NullPtr('RmpHeader')],
+    [0x18]: ['cameras', Ref(CameraHeader)],
     [0x20]: ['spawns', Ref(TypeHeader(Spawn))],
   }, 0x30)
 

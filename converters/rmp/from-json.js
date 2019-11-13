@@ -290,15 +290,15 @@ function compile(obj) {
   ], 0x74)
 
   const CameraTimingNode = Struct([
-    [0x00, Float, node => node.f1 || 0],
-    [0x04, Float, node => node.f2 || 0],
-    [0x08, Int, node => (node.i3 == null ? 1 : node.i3)],
-    [0x14, Float, node => (node.f4 == null ? 1 : node.f4)],
-    [0x18, Float, node => (node.f5 == null ? 1 : node.f5)],
+    [0x00, Float, node => node.f00 || 0],
+    [0x04, Float, node => node.f04 || 0],
+    [0x08, Int, node => (node.i08 == null ? 1 : node.i08)],
+    [0x14, Float, node => (node.f14 == null ? 1 : node.f14)],
+    [0x18, Float, node => (node.f18 == null ? 1 : node.f18)],
   ], 0x1C)
 
   const CameraTimingHeader = Struct([
-    [0x00, Float, timer => timer.f1 || 0],
+    [0x00, Float, timer => timer.f00 || 0],
     [0x04, UInt, timer => (timer.nodes && timer.nodes.length) || 0],
     [0x08, Ref, Collection(CameraTimingNode, timer => timer.nodes)],
   ], 0x10)
