@@ -1,3 +1,4 @@
+const json = require('json-stringify-pretty-compact')
 const sgo = require('../sgo/to-json').decompiler
 
 function padCeil(value, divisor = 0x10) {
@@ -21,7 +22,7 @@ function compile(fullBuffer, config) {
     return (endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
-    ).trim()
+    ).replace(/\u0000/g, '').trim()
   }
 
   function UInt(cursor, offset = 0x00) {
@@ -38,6 +39,15 @@ function compile(fullBuffer, config) {
     return cursor.at(offset)[`readFloat${endian}`]()
   }
   Float.size = 0x04
+
+  function Tuple(Type, size) {
+    const block = Type.size || 0x04
+    function TupleDef(cursor, offset = 0x00) {
+      return Array(size).fill(0).map((v, i) => Type(cursor, offset + i * block))
+    }
+    TupleDef.size = size * block
+    return TupleDef
+  }
 
   function Hex(cursor, offset = 0x00) {
     return ( cursor
@@ -116,7 +126,7 @@ Contact the developers of this tool and tell them which file this happened in!
 
       var idx = 0x00 
       const obj = {}
-      if(config.debug) obj.dbg = { '@': cursor.pos, raw: [], deref: [] }
+      if(config.debug) obj.dbg = { '@': HexKey(cursor.pos), raw: [], deref: [] }
       while(idx < size) {
         const def = definitions[idx]
         const raw = !def || config.debug
@@ -198,13 +208,31 @@ Contact the developers of this tool and tell them which file this happened in!
     [0x30]: ['z', Float],
   }, 0x3C)
 
+  const ShapeData = Struct({
+    [0x00]: ['pos', Tuple(Float, 4)],
+    [0x10]: ['box', Tuple(Float, 4)],
+    [0x30]: ['diameter', Float],
+  }, 0x40)
+
+  const Shape = Struct({
+    [0x08]: ['type', Str],
+    [0x10]: ['name', Str],
+    [0x14]: ['nullPtr', NullPtr('Shape'), { ignore: true }],
+    [0x1C]: ['id', UInt],
+    [0x20]: ['coords', Ref(ShapeData)],
+  }, 0x30)
+
   const RmpHeader = Struct({
     [0x00]: ['endian', Leader],
     [0x08]: ['routes', Ref(TypeHeader(WayPoint))],
+    [0x10]: ['shapes', Ref(TypeHeader(Shape))],
     [0x18]: ['cameras', NullPtr('RmpHeader')],
   }, 0x30)
 
-  return JSON.stringify(RmpHeader(new Cursor(fullBuffer)))
+  return json({
+    format: 'RMP',
+    ...RmpHeader(new Cursor(fullBuffer)),
+  })
 }
 
 function compiler(config) {
