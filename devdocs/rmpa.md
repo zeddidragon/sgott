@@ -50,8 +50,8 @@ Remember! All offsets are calculated from the first byte of the _individual wayp
 - 0x00 is the waypoint's number in the current route, starting from 0.
 - 0x08 is an offset to a 0x10 sized block that controls what the next waypoint will be.
 - 0x10 is an offset to the end of that 0x10-sized next-waypoint block.
-- 0x1C is an offset to an SGO that'll apply extra settings, mostly just width.
 - 0x14 is the numeric waypoint identifier based on the whole RMPA.
+- 0x1C is an offset to an SGO that'll apply extra settings, mostly just width.
 - 0x24 is an offset to the path waypoint's name. Not all waypoints direct to a valid string since not all are used by name.
 
 **Shape Setup**, which are about 0x30 in length:

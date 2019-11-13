@@ -3,7 +3,7 @@ const fs = require('fs')
 const config = require('./package.json')
 const sgoToJson = require('./converters/sgo/to-json')
 const jsonToSgo = require('./converters/sgo/from-json')
-const rmpToJson = require('./converters/rmp/to-json')
+const rmpToJson = require('./converters/rmp/to-json2')
 const jsonToRmp = require('./converters/rmp/from-json')
 
 function isSgo(obj) {

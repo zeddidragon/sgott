@@ -78,7 +78,7 @@ function decompiler(config = {}) {
 
   function Struct(definitions, size) {
     const block = 0x04
-    if(!size) size = Math.max(...Object.keys(definitions).map(k => +k)) + block
+    if(!size) throw new Error('Size is not provided!')
     function StructDef(buffer, offset = 0, base = 0) {
       const obj = {}
       const index = base + offset
