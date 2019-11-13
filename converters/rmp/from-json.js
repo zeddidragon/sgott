@@ -207,8 +207,8 @@ function compile(obj) {
     [0x04, UInt, node => (node.link && node.link.length) || 0],
     [0x08, Ref, Collection(UInt, node => node.link)],
     [0x10, Ref, Null],
-    [0x1C, Ref, WayPointSgo],
     [0x14, UInt, node => node.id],
+    [0x1C, Ref, WayPointSgo],
     [0x18, UInt, (node, cursor, tmp) => tmp.sgoSize],
     [0x24, DeferStr, node => node.name || ''],
     [0x28, Tuple(Float, 4), node => node.pos],
@@ -268,7 +268,7 @@ function compile(obj) {
 
   const CameraNode = Struct([
     [0x0C, Ref, CameraConfigSgo],
-    [0x08, UInt, (node, cursor, tmp) => tmp.sgoSize],
+    [0x08, UInt, (node, cursor, tmp) => (node.config && tmp.sgoSize) || 0],
     [0x10, UInt, node => node.id],
     [0x1C, Tuple(Float, 16), node => node.matrix],
     [0x68, DeferStr, node => node.name || ''],
