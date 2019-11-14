@@ -80,7 +80,7 @@ function compile(obj) {
     [0x04, Ref, Null],
   ], 0x40)
 
-  function TypeHeader(Type, cb) {
+  function TypeHeader(Type) {
     return Struct([
       [0x00, UInt, obj => (obj.entries && obj.entries.length) || 0],
       [0x04, Ref, Collection(SubHeader(Type), obj => obj.entries)],
