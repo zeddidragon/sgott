@@ -23,7 +23,7 @@ function compileRmp(obj) {
       [0x0C, UInt, entry => entry.id],
       [0x14, DeferStr, entry => entry.name || ''],
       [0x18, UInt, entry => (entry.nodes && entry.nodes.length) || 0],
-      [0x1C, Ref, Collection(Type, entry => entry.nodes)],
+      [0x1C, Ref, Collection(Type, entry => entry.nodes, { padding: 0x10 })],
       [0x08, Ref, Null],
     ], 0x20)
   }
@@ -46,7 +46,7 @@ function compileRmp(obj) {
   const WayPoint = Struct([
     [0x00, UInt, (node, cursor) => cursor.writeCount],
     [0x04, UInt, node => (node.link && node.link.length) || 0],
-    [0x08, Ref, Collection(UInt, node => node.link)],
+    [0x08, Ref, Collection(UInt, node => node.link), { padding: 0x10 }],
     [0x10, Ref, Null],
     [0x14, UInt, node => node.id],
     [0x18, UInt, WayPointSgo],
@@ -81,7 +81,7 @@ function compileRmp(obj) {
   function TypeHeader(Type) {
     return Struct([
       [0x00, UInt, obj => (obj.entries && obj.entries.length) || 0],
-      [0x04, Ref, Collection(SubHeader(Type), obj => obj.entries)],
+      [0x04, Ref, Collection(SubHeader(Type), obj => obj.entries), {}],
       [0x0C, Ref, Null],
       [0x10, UInt, obj => obj.id],
       [0x18, DeferStr, obj => obj.name || ''],
@@ -118,13 +118,13 @@ function compileRmp(obj) {
   const CameraTimingHeader = Struct([
     [0x00, Float, timer => timer.f00 || 0],
     [0x04, UInt, timer => (timer.nodes && timer.nodes.length) || 0],
-    [0x08, Ref, Collection(CameraTimingNode, timer => timer.nodes)],
+    [0x08, Ref, Collection(CameraTimingNode, timer => timer.nodes), { padding: 0x10 }],
   ], 0x10)
 
   const CameraSubHeader = Struct([
     [0x14, DeferStr, entry => entry.name || ''],
     [0x18, UInt, entry => (entry.nodes && entry.nodes.length) || 0],
-    [0x1C, Ref, Collection(CameraNode, entry => entry.nodes)],
+    [0x1C, Ref, Collection(CameraNode, entry => entry.nodes), { padding: 0x10 }],
     [0x20, UInt, entry => +!!entry.timing1],
     [0x24, Ref, Allocate(CameraTimingHeader, entry => entry.timing1)],
     [0x28, UInt, entry => +!!entry.timing2],

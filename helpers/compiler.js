@@ -38,6 +38,20 @@ function compile(obj) {
     return TupleDef
   }
 
+  const deferred = []
+  function Defer(cursor, buffer, offset = 0x00) {
+    deferred.push({ buffer, cursor: cursor.clone(), offset })
+  }
+  Defer.size = 0x04
+
+  function unrollDeferred() {
+    for(const { buffer, cursor, offset } of deferred) {
+      const allocated = malloc(padCeil(buffer.length))
+      buffer.copy(allocated.buffer)
+      Int(cursor, cursor.pointer(allocated.pos), offset)
+    }
+  }
+
   const deferredStrings = new Set()
   const stringDefers = []
   function DeferStr(cursor, str, offset = 0x00) {
@@ -109,14 +123,14 @@ function compile(obj) {
       }
     }
 
-    write(Type, value, tmp, opts = {}) {
+    write(Type, value, off, tmp, opts = {}) {
       if(this.index > this.buffer.length - Type.size) {
         throw new Error('End of buffer exceeded')
       }
       if(!Type.size && !opts.size) {
         throw new Error('Trying to write a type without a size!')
       }
-      Type(this, value, tmp)
+      Type(this, value, off, tmp)
       this.index += opts.size || Type.size || 0
       this.writeCount++
       return this
@@ -133,8 +147,14 @@ function compile(obj) {
 
   const heap = []
   var heapIdx = 0x00
-  function malloc(size) {
+  function malloc(size, opts = {}) {
     if(size == null) throw new Error('No size provided to allocate (0 is valid)')
+    if(opts.padding) {
+      size = padCeil(size, opts.padding)
+    }
+    if(opts.padding && heapIdx % opts.padding) {
+      malloc(opts.padding - (heapIdx % opts.padding))
+    }
     const pos = heapIdx
     const buffer = Buffer.alloc(size)
     heap.push(buffer)
@@ -143,7 +163,7 @@ function compile(obj) {
   }
 
   function Allocate(Type, cb, opts = {}) {
-    function AllocateDef(data, cursor, tmp = {}) {
+    function AllocateDef(data, cursor, off = 0x00, tmp = {}) {
       const value = cb(data, cursor, tmp)
       if(!value) return null
       const writeOpts = {}
@@ -153,10 +173,9 @@ function compile(obj) {
         writeOpts.size = size
       }
       if(opts.padding) {
-        size = padCeil(size, opts.padding)
         writeOpts.size = size
       }
-      return malloc(size).write(Type, value, tmp, writeOpts)
+      return malloc(size, opts).write(Type, value, off, tmp, writeOpts)
     }
     AllocateDef.size = 0x04
     return AllocateDef
@@ -171,7 +190,7 @@ function compile(obj) {
       const tmp = {}
       for(const [off, writeFn, valueFn] of definitions) {
         const value = valueFn(data, cursor, tmp)
-        writeFn(cursor, value, off)
+        writeFn(cursor, value, off, tmp)
       }
 
       return cursor
@@ -180,13 +199,14 @@ function compile(obj) {
     return StructDef
   }
 
-  function Collection(Type, cb) {
+  function Collection(Type, cb, opts = {}) {
     return function CollectionDef(data) {
       if(!data) return null
       const entries = cb ? cb(data) : data
       if(!(entries && entries.length)) return null
 
-      const cursor = malloc(padCeil(entries.length * Type.size))
+      var size = entries.length * Type.size
+      const cursor = malloc(size, opts)
       entries.forEach(entry => cursor.write(Type, entry))
       return cursor
     }
@@ -194,6 +214,7 @@ function compile(obj) {
 
   function compile(Entry) {
     malloc(Entry.size).write(Entry, obj)
+    unrollDeferred()
     unrollStrings()
     return Buffer.concat(heap)
   }
@@ -206,6 +227,7 @@ function compile(obj) {
     Float,
     Hex,
     Tuple,
+    Defer,
     DeferStr,
     Ref,
     Null,
