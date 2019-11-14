@@ -16,11 +16,11 @@ function compileSgo(obj) {
     DeferStr,
   } = types
   const sgoValueTypes = {
-    ptr: 0,
-    int: 1,
-    float: 2,
-    string: 3,
-    extra: 4,
+    ptr: [0, Ref],
+    int: [1, Int],
+    float: [2, Float],
+    string: [3, DeferStr],
+    extra: [4, Ref],
   }
 
   function SgoSize({ type, value }, cursor, tmp) {
@@ -61,10 +61,12 @@ function compileSgo(obj) {
     }
   }
 
-  function WriteSgoValue(cursor, node, tmp)
+  function WriteSgoValue(cursor, value) {
+    sgoValueTypes[node.type][0](cursor, value)
+  }
 
   const SgoNode = Struct([
-    [0x00, UInt, node => sgoValueTypes[node.type]],
+    [0x00, UInt, node => sgoValueTypes[node.type][0]],
     [0x04, UInt, SgoSize],
     [0x08, WriteSgoValue, node => SgoValue[node.type](node)],
   ], 0x0C)
