@@ -1,5 +1,5 @@
 const compiler = require('../../helpers/compiler')
-const sgo = require('../sgo/from-json').compiler()
+const sgo = require('../sgo/from-json')
 
 function compile(obj) {
   const { compile, types } = compiler(obj)

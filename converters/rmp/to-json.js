@@ -1,5 +1,5 @@
 const decompiler = require('../../helpers/decompiler')
-const sgo = require('../sgo/to-json').decompiler
+const sgo = require('../sgo/to-json')
 
 function decompile(buffer, config) {
   const { decompile, types } = decompiler('RMP', buffer, config)
@@ -33,8 +33,8 @@ function decompile(buffer, config) {
     }, 0x20)
   }
 
-  function SGO(cursor, offset = 0x00) {
-    const value = sgo()(cursor.at(offset))
+  function Sgo(cursor, offset = 0x00) {
+    const value = sgo(cursor.at(offset))
     return value
   }
 
@@ -74,7 +74,7 @@ function decompile(buffer, config) {
     [0x04]: ['link', Ref(Collection(UInt))],
     [0x0C]: ['nullPtr', NullPtr('WayPoint'), { ignore: true }],
     [0x14]: ['id', UInt],
-    [0x18]: [WayPointConfig, Ref(SGO)],
+    [0x18]: [WayPointConfig, Ref(Sgo)],
     [0x24]: ['name', Str],
     [0x28]: ['pos', Tuple(Float, 3)],
   }, 0x3C)
@@ -102,7 +102,7 @@ function decompile(buffer, config) {
   }, 0x40)
 
   const CameraNode = Struct({
-    [0x08]: [CameraConfig, Ref(SGO, { force: true })],
+    [0x08]: [CameraConfig, Ref(Sgo, { force: true })],
     [0x10]: ['id', UInt],
     [0x1C]: ['matrix', Tuple(Float, 16)],
     [0x68]: ['name', Str],

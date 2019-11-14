@@ -317,8 +317,8 @@ function compiler() {
   }
 }
 
-function compile(buffer, opts) {
-  return compiler(opts)(JSON.parse(buffer.toString()))
+function compile(obj, opts) {
+  return compiler(opts)(obj)
 }
 
 compile.compiler = compiler
