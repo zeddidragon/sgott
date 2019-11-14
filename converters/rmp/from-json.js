@@ -1,7 +1,7 @@
 const compiler = require('../../helpers/compiler')
 const sgo = require('../sgo/from-json')
 
-function compile(obj) {
+function compileRmp(obj) {
   const { compile, types } = compiler(obj)
   const {
     Str,
@@ -12,6 +12,7 @@ function compile(obj) {
     DeferStr,
     Ref,
     Null,
+    Copy,
     Allocate,
     Struct,
     Collection,
@@ -27,12 +28,7 @@ function compile(obj) {
     ], 0x20)
   }
 
-  function Sgo(cursor, buffer, tmp) {
-    tmp.sgoSize = buffer.length
-    buffer.copy(cursor.buffer)
-  }
-
-  function WayPointSgo(node, { endian }) {
+  function WayPointSgo(node, { endian }, tmp) {
     const cfg = node.config || {
       format: 'SGO',
       endian: node.cfgEn || endian,
@@ -42,7 +38,9 @@ function compile(obj) {
         value: node.width == null ? -1 : node.width,
       }],
     }
-    return sgo(cfg)
+    const buffer = sgo(cfg)
+    tmp.buffer = buffer
+    return buffer.length
   }
 
   const WayPoint = Struct([
@@ -51,8 +49,8 @@ function compile(obj) {
     [0x08, Ref, Collection(UInt, node => node.link)],
     [0x10, Ref, Null],
     [0x14, UInt, node => node.id],
-    [0x1C, Ref, Allocate(Sgo, WayPointSgo, { padding: 0x10 })],
-    [0x18, UInt, (node, cursor, tmp) => tmp.sgoSize],
+    [0x18, UInt, WayPointSgo],
+    [0x1C, Ref, Allocate(Copy, (n, c, tmp) => tmp.buffer, { padding: 0x10 })],
     [0x24, DeferStr, node => node.name || ''],
     [0x28, Tuple(Float, 4), node => node.pos],
   ], 0x3C)
@@ -90,18 +88,20 @@ function compile(obj) {
     ], 0x20)
   }
 
-  function CameraConfigSgo(node, { endian }) {
+  function CameraConfigSgo(node, { endian }, tmp) {
     const cfg = node.config || {
       format: 'SGO',
       endian: node.cfgEn || endian,
       variables: [],
     }
-    return sgo(cfg)
+    const buffer = sgo(cfg)
+    tmp.buffer = buffer
+    return cfg.variables.length ? buffer.length : 0
   }
 
   const CameraNode = Struct([
-    [0x0C, Ref, Allocate(Sgo, CameraConfigSgo, { padding: 0x10 })],
-    [0x08, UInt, (node, cursor, tmp) => (node.config && tmp.sgoSize) || 0],
+    [0x08, UInt, CameraConfigSgo],
+    [0x0C, Ref, Allocate(Copy, (n, c, tmp) => tmp.buffer, { padding: 0x10 })],
     [0x10, UInt, node => node.id],
     [0x1C, Tuple(Float, 16), node => node.matrix],
     [0x68, DeferStr, node => node.name || ''],
@@ -141,7 +141,7 @@ function compile(obj) {
   ], 0x20)
 
   const RmpHeader = Struct([
-    [0x00, Str, obj => (obj.endian === 'LE' ? 'RMP\0' : '\0PMR')],
+    [0x00, Str, obj => (obj.endian === 'BE' ? '\0PMR' : 'RMP\0')],
     [0x08, UInt, obj => +!!obj.routes],
     [0x0C, Ref, Allocate(TypeHeader(WayPoint), obj => obj.routes)],
     [0x10, UInt, obj => +!!obj.shapes],
@@ -155,7 +155,7 @@ function compile(obj) {
   return compile(RmpHeader)
 }
 
-compile.compile = compile
-compile.compiler = opts => obj => compile(obj, opts)
+compileRmp.compile = compileRmp
+compileRmp.compiler = opts => obj => compileRmp(obj, opts)
 
-module.exports = compile
+module.exports = compileRmp

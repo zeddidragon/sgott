@@ -87,6 +87,10 @@ function compile(obj) {
   function Null() {
     return null
   }
+  
+  function Copy(cursor, buffer) {
+    buffer.copy(cursor.buffer)
+  }
 
   class Cursor {
     constructor(buffer, pos, index = 0x00) {
@@ -179,7 +183,7 @@ function compile(obj) {
   function Collection(Type, cb) {
     return function CollectionDef(data) {
       if(!data) return null
-      const entries = cb(data)
+      const entries = cb ? cb(data) : data
       if(!(entries && entries.length)) return null
 
       const cursor = malloc(padCeil(entries.length * Type.size))
@@ -205,6 +209,7 @@ function compile(obj) {
     DeferStr,
     Ref,
     Null,
+    Copy,
     Allocate,
     Struct,
     Collection,

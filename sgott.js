@@ -3,7 +3,7 @@ const fs = require('fs')
 const json = require('json-stringify-pretty-compact')
 const config = require('./package.json')
 const sgoToJson = require('./converters/sgo/to-json')
-const jsonToSgo = require('./converters/sgo/from-json')
+const jsonToSgo = require('./converters/sgo/from-json2')
 const rmpToJson = require('./converters/rmp/to-json')
 const jsonToRmp = require('./converters/rmp/from-json')
 
