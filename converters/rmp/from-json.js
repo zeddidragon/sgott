@@ -325,5 +325,7 @@ function compile(obj) {
   return Buffer.concat(heap)
 }
 
-exports.compile = compile
-exports.compiler = opts => obj => compile(obj, opts)
+compile.compile = compile
+compile.compiler = opts => obj => compile(obj, opts)
+
+module.exports = compile

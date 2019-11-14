@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs')
+const json = require('json-stringify-pretty-compact')
 const config = require('./package.json')
 const sgoToJson = require('./converters/sgo/to-json')
 const jsonToSgo = require('./converters/sgo/from-json')
@@ -22,12 +23,12 @@ function isRmp(obj) {
 }
 
 const transforms = {
-  sgo: sgoToJson,
-  rmp: rmpToJson,
+  sgo: (...args) => json(sgoToJson(...args)),
+  rmp: (...args) => json(rmpToJson(...args)),
   json(buffer, opts) {
     const parsed = JSON.parse(buffer.toString())
-    if(isSgo(parsed)) return jsonToSgo.compiler(opts)(parsed)
-    if(isRmp(parsed)) return jsonToRmp.compiler(opts)(parsed)
+    if(isSgo(parsed)) return jsonToSgo(parsed, opts)
+    if(isRmp(parsed)) return jsonToRmp(parsed, opts)
     throw new Error('Unable to recognize JSON format')
   },
 }
@@ -115,7 +116,6 @@ function parseCli(cb) {
   const [readFile, writeFile] = plain
 
   function convertFileName(fileName, target) {
-    const format = /\.json$/.exec(fileName) ? 'SGO' : 'json'
     return fileName.replace(/\..*$/, '.' + target)
   }
 

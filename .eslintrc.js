@@ -125,6 +125,7 @@ module.exports = {
         "no-console": "off",
         "no-continue": "off",
         "no-div-regex": "error",
+        "no-control-regex": "off",
         "no-duplicate-imports": "error",
         "no-else-return": "off",
         "no-empty-function": "error",
