@@ -1,4 +1,4 @@
-const decompiler = require('../../helpers/read-bytes')
+const decompiler = require('../../helpers/decompiler')
 const sgo = require('../sgo/to-json').decompiler
 
 function decompile(buffer, config) {
