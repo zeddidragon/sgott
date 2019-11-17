@@ -1,11 +1,6 @@
 const SIZE = 12
 const sgoMeta = require('./meta')
 
-// Cheapo(tm) debugging
-function abort() {
-  throw new Error('abort')
-}
-
 function decompiler(config = {}) {
   var endian
   const types = {
@@ -176,7 +171,6 @@ function decompiler(config = {}) {
         const varIndex = UInt(buffer, index + 4)
         const name = StrPointer(buffer, index + strIndex)
         const node = variables[varIndex]
-        console.log({ node, varIndex, strIndex, name, varCount, mIndex })
         node.name = name
 
         if(name === 'AmmoClass') ammoClass = node.value

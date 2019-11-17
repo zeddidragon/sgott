@@ -2,6 +2,18 @@ function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
 
+function trimBuffer(buf, upTo = 0x10) {
+  var end = null
+  for(var i = buf.length - upTo; i < buf.length; i++) {
+    if(buf[i]) {
+      end = null
+    } else if(end == null) {
+      end = i
+    }
+  }
+  return buf.slice(0x00, end == null ? -1 : end)
+}
+
 function compile(obj) {
   const endian = obj.endian || 'LE'
   function Str({ buffer, index }, value, offset = 0x00) {
@@ -235,6 +247,7 @@ function compile(obj) {
     Allocate,
     Struct,
     Collection,
+    trimBuffer,
   }
 
   return compile
