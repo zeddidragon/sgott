@@ -1,4 +1,4 @@
-const decompiler = require('../../helpers/decompiler')
+const decompiler = require('../decompiler')
 const sgo = require('../sgo/to-json')
 
 function decompile(buffer, config) {
@@ -11,6 +11,7 @@ function decompile(buffer, config) {
     Ref,
     NullPtr,
     Tuple,
+    Leader,
     Struct,
     Collection,
   } = types
@@ -37,13 +38,6 @@ function decompile(buffer, config) {
     const value = sgo(cursor.at(offset))
     return value
   }
-
-  function Leader(cursor) {
-    const leader = cursor.at(0x00).slice(0x00, 0x04).toString('ascii')
-    cursor.endian = leader === 'RMP\0' ? 'LE' : 'BE'
-    return cursor.endian
-  }
-  Leader.size = 0x04
 
   function WayPointConfig(obj, val, cursor) {
     if(!val) {
@@ -137,7 +131,7 @@ function decompile(buffer, config) {
   }, 0x20)
 
   const RmpHeader = Struct({
-    [0x00]: ['endian', Leader],
+    [0x00]: ['endian', Leader('RMP')],
     [0x08]: ['routes', Ref(TypeHeader(WayPoint))],
     [0x10]: ['shapes', Ref(TypeHeader(Shape))],
     [0x18]: ['cameras', Ref(CameraHeader)],

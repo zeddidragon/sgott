@@ -1,4 +1,5 @@
-const compiler = require('../../helpers/compiler')
+const compiler = require('../compiler')
+const { compileData } = require('../infer')
 
 function compileSgo(obj) {
   const { compile, types } = compiler(obj)
@@ -10,70 +11,49 @@ function compileSgo(obj) {
     Float,
     Null,
     Struct,
+    Union,
     Collection,
     Defer,
     DeferStr,
-    trimBuffer,
   } = types
-  const sgoValueTypes = {
-    ptr: [0, Ref],
-    int: [1, Int],
-    float: [2, Float],
-    string: [3, DeferStr],
-    extra: [4, Defer],
-  }
 
-  function SgoType(node, cursor, tmp) {
-    const [typeId, typeFn] = sgoValueTypes[node.type]
-    tmp.typeFn = typeFn
-    return typeId
-  }
-
-  function SgoSize({ type, value }, cursor, tmp) {
-    if(value == null) return 0
-    if(type === 'ptr') return value.length
-    if(type === 'string') return value.trim().length
-    if(type === 'extra') return ExtraSize(value, cursor, tmp)
-    return 0x04
-  }
-
-  function ExtraSgo(value, cursor, tmp) {
-    const buffer = compileSgo(value)
+  function ExtraSize(cursor, value, offset, tmp) {
+    const buffer = compileData(value.data || value)
     tmp.buffer = buffer
-    const variables = value.variables || value.data.variables
-    if(variables && variables.length) return buffer.length
-    return 0
+    if(/sgo/i.test(value.format || value.type)) {
+      const variables = value.data ? value.data.variables : value.variables
+      if(!(variables && variables.length)) return
+    }
+    UInt(cursor, buffer.length, offset)
   }
 
-  function ExtraSize(value, cursor, tmp) {
-    const format = value.type || value.format
-    if(/sgo/i.test(format)) return ExtraSgo(value, cursor, tmp)
-
-    const buffer = trimBuffer(Buffer.from(value.data || value, 'base64'))
-    tmp.buffer = buffer
-    return buffer.length
-  }
-
-  const SgoValue = {
-    ptr({ value }) {
-      if(value == null) return 0
-      return Collection(SgoNode)(value)
-    },
-    int: ({ value }) => value,
-    float: ({ value }) => value,
-    string: ({ value }) => (value || '').trim(),
-    extra: (node, cursor, tmp) => tmp.buffer,
-  }
-
-  function WriteSgoValue(cursor, value, off, tmp) {
-    tmp.typeFn(cursor, value, off, tmp)
-  }
-
-  const SgoNode = Struct([
-    [0x00, UInt, SgoType],
-    [0x04, UInt, SgoSize],
-    [0x08, WriteSgoValue, (...args) => SgoValue[args[0].type](...args)],
-  ], 0x0C)
+  const SgoNode = Union('type', {
+    'ptr': Struct([
+      [0x00, UInt, () => 0],
+      [0x04, UInt, obj => (obj.value && obj.value.length) || 0x00],
+      [0x08, Ref, Collection((...args) => SgoNode(...args), obj => obj.value, { size: 0x0C })],
+    ], 0x0C),
+    'int': Struct([
+      [0x00, UInt, () => 1],
+      [0x04, UInt, () => 0x04],
+      [0x08, Int, obj => obj.value || 0],
+    ], 0x0C),
+    'float': Struct([
+      [0x00, UInt, () => 2],
+      [0x04, UInt, () => 0x04],
+      [0x08, Float, obj => obj.value || 0],
+    ], 0x0C),
+    'string': Struct([
+      [0x00, UInt, () => 3],
+      [0x04, UInt, obj => (obj.value && obj.value.length) || 0x00],
+      [0x08, DeferStr, obj => obj.value || ''],
+    ], 0x0C),
+    'extra': Struct([
+      [0x00, UInt, () => 4],
+      [0x04, ExtraSize, obj => obj.value],
+      [0x08, Defer, (obj, cursor, tmp) => tmp.buffer],
+    ], 0x0C),
+  }, 0x0C)
 
   const SgoIndex = Struct([
     [0x00, DeferStr, node => node.name],

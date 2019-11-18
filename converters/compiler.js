@@ -2,18 +2,6 @@ function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
 
-function trimBuffer(buf, upTo = 0x10) {
-  var end = null
-  for(var i = buf.length - upTo; i < buf.length; i++) {
-    if(buf[i]) {
-      end = null
-    } else if(end == null) {
-      end = i
-    }
-  }
-  return buf.slice(0x00, end == null ? -1 : end)
-}
-
 function compile(obj) {
   const endian = obj.endian || 'LE'
   function Str({ buffer, index }, value, offset = 0x00) {
@@ -211,15 +199,23 @@ function compile(obj) {
     return StructDef
   }
 
+  function Union(prop, Types, size) {
+    function UnionDef(cursor, data) {
+      return Types[data[prop]](cursor, data)
+    }
+    UnionDef.size = size
+    return UnionDef
+  }
+
   function Collection(Type, cb, opts = {}) {
     return function CollectionDef(data) {
       if(!data) return null
       const entries = cb ? cb(data) : data
       if(!(entries && entries.length)) return null
 
-      var size = entries.length * Type.size
+      var size = entries.length * (opts.size || Type.size)
       const cursor = malloc(size, opts)
-      entries.forEach(entry => cursor.write(Type, entry))
+      entries.forEach(entry => cursor.write(Type, entry, 0x00, {}, opts))
       return cursor
     }
   }
@@ -246,8 +242,8 @@ function compile(obj) {
     Copy,
     Allocate,
     Struct,
+    Union,
     Collection,
-    trimBuffer,
   }
 
   return compile

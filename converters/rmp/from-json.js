@@ -1,4 +1,4 @@
-const compiler = require('../../helpers/compiler')
+const compiler = require('../compiler')
 const sgo = require('../sgo/from-json')
 
 function compileRmp(obj) {

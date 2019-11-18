@@ -1,3 +1,5 @@
+const { decompileBuffer } = require('./infer')
+
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
@@ -123,6 +125,17 @@ Contact the developers of this tool and tell them which file this happened in!
     }
   }
 
+  function Leader(lead) {
+    lead = lead.trim().padEnd(0x04, '\0')
+    function LeaderDef(cursor) {
+      const leader = cursor.at(0x00).slice(0x00, 0x04).toString('ascii')
+      cursor.endian = leader === lead ? 'LE' : 'BE'
+      return cursor.endian
+    }
+    LeaderDef.size = 0x04
+    return LeaderDef
+  }
+
   function Struct(definitions, size) {
     if(!size) throw new Error('Size is not provided!')
     function StructDef(cursor, offset = 0x00) {
@@ -164,11 +177,24 @@ Contact the developers of this tool and tell them which file this happened in!
     return StructDef
   }
 
-  function Collection(Type) {
+  function Union(Types, size) {
+    function UnionDef(cursor, offset = 0x00) {
+      return Types[UInt(cursor, offset)](cursor, offset)
+    }
+    UnionDef.size = size
+    return UnionDef
+  }
+
+  function Attachment(cursor, offset = 0x00, size = null) {
+    if(offset) cursor = cursor.clone().move(offset)
+    return decompileBuffer(cursor.buffer, size)
+  }
+
+  function Collection(Type, typeSize) {
     function CollectionDef(cursor, offset = 0x00, count = 0) {
       if(!count) return null
       cursor = cursor.copy().move(offset)
-      const size = Type.size || 0x04
+      const size = typeSize || Type.size || 0x04
       return Array(count).fill(null).map((v, i) => Type(cursor, i * size))
     }
 
@@ -176,9 +202,10 @@ Contact the developers of this tool and tell them which file this happened in!
   }
 
   function decompile(Entry) {
+    const data = Entry(new Cursor(fullBuffer), 0x00)
     return {
       format: format,
-      ...Entry(new Cursor(fullBuffer), 0x00)
+      ...data
     }
   }
 
@@ -193,8 +220,11 @@ Contact the developers of this tool and tell them which file this happened in!
     Ref,
     NullPtr,
     Tuple,
+    Leader,
     Struct,
+    Union,
     Collection,
+    Attachment,
   }
   decompile.decompile = decompile
 
