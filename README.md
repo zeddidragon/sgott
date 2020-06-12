@@ -11,8 +11,8 @@ Usage:
   SGO Transformation Tool, SGO to JSON and back.
 
   Usage:
-    sgott <infile.sgo> <outfile.json>
-    sgott <infile.json> <outfile.sgo>
+    sgott infile.sgo outfile.json
+    sgott infile.json outfile.sgo
     sgott --type=json infile.txt outfile.sgo
     sgott < infile.sgo > outfile.json
     sgott < infile.json > outfile.sgo
