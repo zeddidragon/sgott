@@ -2,8 +2,8 @@
 
 const rbDataPath = "../data/41/weapons/";
 
-const outDir = "C:/Program Files (x86)/Steam/steamapps/common/Earth Defense Force 4.1/SgottTemplates/weapon";
-//const outDir = './release/sgottstrap/SgottTemplates/weapon';
+//const outDir = "C:/Program Files (x86)/Steam/steamapps/common/Earth Defense Force 4.1/SgottTemplates/weapon";
+const outDir = './release/sgottstrap/SgottTemplates/weapon';
 
 const fs = require('fs');
 const Papa = require('papaparse');
