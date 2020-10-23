@@ -1,0 +1,650 @@
+{
+  "endian": "BE",
+  "variables": [
+    {
+      "type": "string",
+      "name": "AimAnimation",
+      "value": "aim"
+    },
+    {
+      "type": "int",
+      "name": "AmmoAlive",
+      "value": 600
+    },
+    {
+      "type": "string",
+      "name": "AmmoClass",
+      "options": [
+        "LightningBullet01",
+        "LaserBullet01",
+        "LaserBullet02",
+        "LaserBullet03",
+        "FlameBullet01",
+        "FlameBullet02",
+        "SpiderStringBullet01",
+        "SpiderStringBullet02",
+        "ShockWaveBullet01",
+        "SlashWaveBullet01",
+        "HomingLaserBullet01",
+        "BeamBullet01",
+        "DecoyBullet01",
+        "NeedleBullet01",
+        "BarrierBullet01",
+        "ClusterBullet01",
+        "AcidBullet01",
+        "NapalmBullet01",
+        "GrenadeBullet01",
+        "MissileBullet01",
+        "MissileBullet02",
+        "RocketBullet01",
+        "RocketBullet02",
+        "SolidBullet01",
+        "SolidBullet02",
+        "SmokeCandleBullet01",
+        "ShieldBashBullet01",
+        "SentryGunBullet01",
+        "TargetMarkerBullet01",
+        "SupportUnitBullet01",
+        "PileBunkerBullet01",
+        "PlasmaBullet01"
+      ],
+      "value": "MissileBullet01"
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoColor",
+      "value": [
+        {
+          "type": "float",
+          "name": "Red",
+          "value": 1.5
+        },
+        {
+          "type": "float",
+          "name": "Green",
+          "value": 1.5
+        },
+        {
+          "type": "float",
+          "name": "Blue",
+          "value": 1.5
+        },
+        {
+          "type": "float",
+          "name": "Alpha",
+          "value": 0.05000000074505806
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "AmmoCount",
+      "value": 1
+    },
+    {
+      "type": "float",
+      "name": "AmmoDamage",
+      "value": 30
+    },
+    {
+      "type": "float",
+      "name": "AmmoExplosion",
+      "value": 2
+    },
+    {
+      "type": "float",
+      "name": "AmmoGravityFactor",
+      "value": 0.75
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitImpulseAdjust",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "AmmoHitSe",
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "value": "common_damages_impactMissle_FORK"
+        },
+        {
+          "type": "float",
+          "value": 0.7943000197410583
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 150
+        }
+      ]
+    },
+    {
+      "type": "float",
+      "name": "AmmoHitSizeAdjust",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "AmmoIsPenetration",
+      "value": 0
+    },
+    {
+      "type": "string",
+      "name": "AmmoModel",
+      "value": "app:/WEAPON/bullet_missile.rab"
+    },
+    {
+      "type": "float",
+      "name": "AmmoOwnerMove",
+      "value": 1
+    },
+    {
+      "type": "float",
+      "name": "AmmoSize",
+      "value": 0.5
+    },
+    {
+      "type": "float",
+      "name": "AmmoSpeed",
+      "value": 0.10000000149011612
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_CustomParameter",
+      "value": [
+        {
+          "type": "int",
+          "value": 1
+        },
+        {
+          "type": "int",
+          "value": 1
+        },
+        {
+          "type": "int",
+          "value": 300
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": 0
+            },
+            {
+              "type": "float",
+              "value": -0.05000000074505806
+            }
+          ]
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 0.20000000298023224
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 20
+            },
+            {
+              "type": "float",
+              "value": 0.9800000190734863
+            }
+          ]
+        },
+        {
+          "type": "int",
+          "value": 5
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "float",
+              "value": 0.20000000298023224
+            },
+            {
+              "type": "float",
+              "value": 0.4000000059604645
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "string",
+              "value": "weapon_Ranger_ML_go_Haretsu"
+            },
+            {
+              "type": "float",
+              "value": 0.5299999713897705
+            },
+            {
+              "type": "float",
+              "value": 1
+            },
+            {
+              "type": "float",
+              "value": 10
+            },
+            {
+              "type": "float",
+              "value": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "Ammo_EquipVoice",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "AngleAdjust",
+      "value": -0.15000000596046448
+    },
+    {
+      "type": "string",
+      "name": "BaseAnimation",
+      "value": "shoulder"
+    },
+    {
+      "type": "string",
+      "name": "ChangeAnimation",
+      "value": "shoulder_change1"
+    },
+    {
+      "type": "float",
+      "name": "EnergyChargeRequire",
+      "value": -1
+    },
+    {
+      "type": "float",
+      "name": "FireAccuracy",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireBurstCount",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "FireBurstInterval",
+      "value": 20
+    },
+    {
+      "type": "int",
+      "name": "FireCondition",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "FireCount",
+      "value": 15
+    },
+    {
+      "type": "int",
+      "name": "FireInterval",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "FireLoadSe",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "FireRecoil",
+      "value": 0.6000000238418579
+    },
+    {
+      "type": "ptr",
+      "name": "FireSe",
+      "value": [
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "string",
+          "name": "SoundName",
+          "value": "weapon_Ranger_RL_forkA20"
+        },
+        {
+          "type": "float",
+          "value": 0.8500000238418579
+        },
+        {
+          "type": "float",
+          "value": 1
+        },
+        {
+          "type": "float",
+          "value": 2
+        },
+        {
+          "type": "float",
+          "value": 25
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "FireSpreadType",
+      "value": 2
+    },
+    {
+      "type": "float",
+      "name": "FireSpreadWidth",
+      "value": 0.699999988079071
+    },
+    {
+      "type": "int",
+      "name": "FireType",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "FireVector",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "LockonAngle",
+      "value": [
+        {
+          "type": "float",
+          "value": 0.15000000596046448
+        },
+        {
+          "type": "float",
+          "value": 0.10000000149011612
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "LockonFailedTime",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonHoldTime",
+      "value": 300
+    },
+    {
+      "type": "float",
+      "name": "LockonRange",
+      "value": 250
+    },
+    {
+      "type": "int",
+      "name": "LockonTargetType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "LockonTime",
+      "value": 15
+    },
+    {
+      "type": "int",
+      "name": "LockonType",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "Lockon_AutoTimeOut",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "Lockon_DistributionType",
+      "value": 0
+    },
+    {
+      "type": "int",
+      "name": "Lockon_FireEndToClear",
+      "value": 1
+    },
+    {
+      "type": "ptr",
+      "name": "ModelConstraint",
+      "value": [
+        {
+          "type": "string",
+          "value": "arms_r"
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "name": "MuzzleFlash",
+      "value": ""
+    },
+    {
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "float",
+      "name": "Range",
+      "value": 60
+    },
+    {
+      "type": "string",
+      "name": "ReloadAnimation",
+      "value": "shoulder_reload1"
+    },
+    {
+      "type": "float",
+      "name": "ReloadInit",
+      "value": 1
+    },
+    {
+      "type": "int",
+      "name": "ReloadTime",
+      "value": 180
+    },
+    {
+      "type": "int",
+      "name": "ReloadType",
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter",
+      "value": null
+    },
+    {
+      "type": "int",
+      "name": "SecondaryFire_Type",
+      "options": {
+        "None": 0,
+        "Zoom": 1,
+        "Activate": 2,
+        "Activate and Reload": 3,
+        "Jumpjets (Fencer)": 4,
+        "Dash (Fencer)": 5,
+        "Shield Reflect (Fencer)": 6
+      },
+      "value": 0
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase",
+      "value": [
+        {
+          "type": "string",
+          "value": ""
+        },
+        {
+          "type": "string",
+          "value": ""
+        },
+        {
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCaseDischargeSe",
+      "value": null
+    },
+    {
+      "type": "ptr",
+      "name": "ShellCase_CustomParameter",
+      "value": null
+    },
+    {
+      "type": "string",
+      "name": "WeaponIcon",
+      "value": "app:/weapon/icon/FORK.dds"
+    },
+    {
+      "type": "ptr",
+      "name": "animation_model",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/Weapon/s_missile_verticalmissile01.rab"
+            },
+            {
+              "type": "string",
+              "value": "s_missile_verticalmissile01.mdb"
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "value": "app:/Weapon/s_missile_verticalmissile01.cas"
+        },
+        {
+          "type": "extra",
+          "value": {
+            "type": "MAB\u0000",
+            "data": "TUFCAA8AAAADAAAAAwAEAAoAeAAkAAAA/AAAAGABAAA8AwAAAAAFADwAAAABAAEA3AAAAAIAAAD8AAAAPAMAAGADAAACAAAAoAEAALABAADgAQAAAAAAACACAABCAwAAYAMAAAIAAACQAQAAsAEAAOABAAAAAAAAIAIAAEgDAABgAwAAAgAAAIABAACwAQAA4AEAAAAAAAAgAgAATgMAAGADAAACAAAAYAEAALABAADgAQAAAAAAACACAABUAwAAYAMAAAIAAABwAQAAsAEAAOABAAAAAAAAIAIAAFoDAABgAwAAAgAAANABAADAAQAA8AEAAAAAAAAAAgAAPAEAAFwBAACOAwAAAQAAAEwBAABcAQAAagMAAAEAAABcAQAAXAEAAJgDAAAAAAAAXAEAAFwBAAB2AwAAAAAAAK4DAAAAAAAAAAAAAIACAACuAwAAAAAAAAAAAADcAgAAurq6ugAAAAAX2Y4+pptEOwAAgD8AAAAAF9mOPiUGAT4AAIA/AAAAABfZjj5GtvO9AACAPwAAAAAX2Y4+tMh2vgAAgD8AAAAAF9mOPiPbub4AAIA/CtcjPQrXIz0K1yM9AACAP83MTD3NzEw9zcxMPQAAgD/VeOk9c2iRvQIrBz4AAIA/2w/JvwAAAAAAAAAAAACAP3330b8OJCrAjtufvgAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAQAAAAQAAAABAAAACAAAAAAAAABmAGkAcgBlAF8AbQBvAGQAZQBsAF8AZABpAHIAZQBjAHQAaQBvAG4AAAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAA4AAAAeAAAACAAAAAAAAABuAGEAbQBlAAAALf8s/zb/Lf8p/zP/M/8p/yz/Jf8Q/xH/i5VPMAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAADwAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAAAt/yz/Nv8t/yn/M/8z/yn/LP8l/xD/Ef+JlVgwizAAAAAAMAAxAAAAMAAyAAAAMAAzAAAAMAA0AAAAMAA1AAAASQBLAAAAYgBvAGQAeQAAAGMAbABvAHMAZQAAAGMAbABvAHMAZQBfAHMAdABhAHQAZQAAAG8AcABlAG4AAABvAHAAZQBuAF8AcwB0AGEAdABlAAAAcwBlAAAA"
+          }
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "custom_parameter",
+      "value": [
+        {
+          "type": "string",
+          "value": "shoulder_recoil1"
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "int",
+          "value": 0
+        },
+        {
+          "type": "float",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "name",
+      "value": [
+        {
+          "type": "string",
+          "name": "Japanese",
+          "value": "ＦＯＲＫ－Ａ１５"
+        },
+        {
+          "type": "string",
+          "name": "English",
+          "value": "FORK-A15_Default"
+        },
+        {
+          "type": "string",
+          "name": "Chinese",
+          "value": "ＦＯＲＫ－Ａ１５"
+        }
+      ]
+    },
+    {
+      "type": "ptr",
+      "name": "resource",
+      "value": [
+        {
+          "type": "string",
+          "name": "path",
+          "value": "app:/WEAPON/bullet_missile.rab"
+        }
+      ]
+    },
+    {
+      "type": "int",
+      "name": "use_underground",
+      "value": 1
+    },
+    {
+      "type": "string",
+      "name": "xgs_scene_object_class",
+      "value": "Weapon_HomingShoot"
+    }
+  ],
+  "meta": {
+    "help": "For examples of these values, open WEAPONTABLE.SGO and WEAPONTEXT.SGO",
+    "id": "test2",
+    "level": null,
+    "category": null,
+    "unlockState": 1,
+    "dropRateModifier": null,
+    "description": null
+  }
+}
