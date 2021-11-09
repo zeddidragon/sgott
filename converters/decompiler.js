@@ -4,7 +4,7 @@ function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
 
-function decompiler(format, fullBuffer, config) {
+function decompiler(format, fullBuffer, config = {}) {
   if(config.index) fullBuffer = fullBuffer.slice(config.index)
   {
     const length = padCeil(fullBuffer.length)

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const deepEqual = require('fast-deep-equal')
-const sgoToJson = require('../converters/sgo/to-json')
-const jsonToSgo = require('../converters/sgo/from-json')
+const sgoToJson = require('./converters/sgo/to-json')
+const jsonToSgo = require('./converters/sgo/from-json')
 
-const config = require('./config')
-const weaponTable = require('../data/41/weapons/weapontable')
+const config = require('./data/41/config')
+const weaponTable = require('./data/41/weapons/weapontable')
 const weaponText = require('./data/41/weapons/weapontext')
 const gameText = require('./data/41/texttable-steam-en')
-const generateWeaponText = require('../helpers/weapon-text')
+const generateWeaponText = require('./helpers/weapon-text')
 
 const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
@@ -28,7 +28,6 @@ const touched = Symbol('touched')
 const files = {}
 
 function populate(key, path, fallback) {
-  var resource
   if(fs.existsSync(path)) {
     files[key] = sgoToJson.decompiler()(fs.readFileSync(path))
     files[key][exists] = true
