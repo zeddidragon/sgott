@@ -71,9 +71,9 @@ console.log('Patching executable...')
   replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
   replace('app:/etc/TextTable_steam_en.txt_sgo', gameTextPath)
   //Todo: Actualy cound how many references and do this in a cleaner, more rational way
-  replace('app:/MainScript/MainScript.as', mainscriptPath)
-  replace('app:/MainScript/MainScript.as', mainscriptPath)
-  replace('app:/MainScript/MainScript.as', mainscriptPath)
+  // replace('app:/MainScript/MainScript.as', mainscriptPath)
+  // replace('app:/MainScript/MainScript.as', mainscriptPath)
+  // replace('app:/MainScript/MainScript.as', mainscriptPath)
 
   if(buffer[touched]) {
     fs.writeFileSync(exePath, buffer)
