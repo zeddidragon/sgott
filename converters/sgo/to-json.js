@@ -8,6 +8,7 @@ function decompileSgo(buffer, config) {
     Int,
     Float,
     Ref,
+    XRef,
     NullPtr,
     Leader,
     Struct,
@@ -56,13 +57,43 @@ function decompileSgo(buffer, config) {
     }
   }
 
-  const SgoHeader = Struct({
-    [0x00]: ['endian', Leader('SGO')],
-    [0x04]: ['version', UInt],
-    [0x08]: ['variables', Ref(Collection(SgoNode))],
-    [0x10]: [AddVariableNames, Ref(Collection(SgoIndex))],
-    [0x18]: ['nullPtr', NullPtr('SgoHeader'), { ignore: true }],
-  }, 0x20)
+  function AddVariables2017(obj, [variables, labels]) {
+    let i = 0
+    for(const { name } of labels) {
+      variables[i++].name = name
+    }
+    obj.variables = variables
+    obj.version = 0xEDF2017
+  }
+
+  const SgoIndex2017 = Struct({
+    [0x00]: ['name', Str],
+  }, 0x04)
+
+  const SgoHeader = (() => {
+    const SgoLeader = Struct({
+      [0x00]: ['endian', Leader('SGO')],
+      [0x04]: ['version', UInt],
+      [0x08]: ['offset2017', UInt],
+    }, 0x0a)
+    const { version, offset2017 } = decompile(SgoLeader)
+    if(offset2017 === 0x10 && version !== 0x102) { // 2017 style header block
+      return Struct({
+        [0x00]: ['endian', Leader('SGO')],
+        [0x04]: [AddVariables2017, XRef([
+          Collection(SgoNode),
+          Collection(SgoIndex2017)])],
+      }, 0x10)
+    }
+
+    return Struct({
+      [0x00]: ['endian', Leader('SGO')],
+      [0x04]: ['version', UInt],
+      [0x08]: ['variables', Ref(Collection(SgoNode))],
+      [0x10]: [AddVariableNames, Ref(Collection(SgoIndex))],
+      [0x18]: ['nullPtr', NullPtr('SgoHeader'), { ignore: true }],
+    }, 0x20)
+  })()
 
   return decompile(SgoHeader)
 }

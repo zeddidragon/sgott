@@ -68,6 +68,11 @@ function decompiler(format, fullBuffer, config = {}) {
     return '0x' + idx.toString(16).padStart(2, '0')
   }
 
+  function HexInt(cursor, offset = 0x00) {
+    return `0x${UInt(cursor, offset).toString(16)}`
+  }
+  HexInt.size = 0x04
+
   function Ref(Type, opts = {}) {
     function Deref(cursor, offset = 0x00) {
       const count = UInt(cursor, offset)
@@ -75,6 +80,20 @@ function decompiler(format, fullBuffer, config = {}) {
       return Type(Ptr(cursor, offset + 0x04), 0x00, count)
     }
     Deref.size = 0x08
+
+    return Deref
+  }
+
+  function XRef(Types, opts = {}) {
+    function Deref(cursor, offset = 0x00) {
+      const count = UInt(cursor, offset)
+      if(!count && !opts.force) return null
+      return Types.map((Type, i) => {
+        const off = offset + 0x04 * (i + 1)
+        return Type(Ptr(cursor, off), 0x00, count)
+      })
+    }
+    Deref.size = 0x04 * (1 + Types.length)
 
     return Deref
   }
@@ -217,7 +236,9 @@ Contact the developers of this tool and tell them which file this happened in!
     Float,
     Hex,
     HexKey,
+    HexInt,
     Ref,
+    XRef,
     NullPtr,
     Tuple,
     Leader,
