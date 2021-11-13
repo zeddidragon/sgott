@@ -55,20 +55,39 @@ function compileSgo(obj) {
     ], 0x0C),
   }, 0x0C)
 
-  const SgoIndex = Struct([
-    [0x00, DeferStr, node => node.name],
-    [0x04, UInt, (node, cursor) => cursor.writeCount],
-  ], 0x08)
+  const SgoHeader = (() => {
+    if(obj.version === 0xEDF2017) {
+      const SgoIndex2017 = Struct([
+        [0x00, DeferStr, node => node.name],
+      ], 0x04)
 
-  const SgoHeader = Struct([
-    [0x00, Str, obj => (obj.endian === 'BE' ? '\0OGS' : 'SGO\0')],
-    [0x04, UInt, obj => obj.version || 0x0102],
-    [0x08, UInt, obj => obj.variables.length],
-    [0x0C, Ref, Collection(SgoNode, obj => obj.variables)],
-    [0x10, UInt, obj => obj.variables.length],
-    [0x14, Ref, Collection(SgoIndex, obj => obj.variables, { padding: 0x10 })],
-    [0x1C, Ref, Null],
-  ], 0x20)
+      return Struct([
+        [0x00, Str, obj => (obj.endian === 'BE' ? '\0OGS' : 'SGO\0')],
+        [0x04, UInt, obj => obj.variables.length],
+        [0x08, Ref, Collection(SgoNode, obj => obj.variables)],
+        [0x0C, Ref, Collection(SgoIndex2017, obj => obj.variables, {
+          padding: 0x10,
+        })],
+      ], 0x10)
+    }
+
+    const SgoIndex = Struct([
+      [0x00, DeferStr, node => node.name],
+      [0x04, UInt, (node, cursor) => cursor.writeCount],
+    ], 0x08)
+
+    return Struct([
+      [0x00, Str, obj => (obj.endian === 'BE' ? '\0OGS' : 'SGO\0')],
+      [0x04, UInt, obj => obj.version || 0x0102],
+      [0x08, UInt, obj => obj.variables.length],
+      [0x0C, Ref, Collection(SgoNode, obj => obj.variables)],
+      [0x10, UInt, obj => obj.variables.length],
+      [0x14, Ref, Collection(SgoIndex, obj => obj.variables, {
+        padding: 0x10,
+      })],
+      [0x1C, Ref, Null],
+    ], 0x20)
+  })()
 
   return compile(SgoHeader)
 }
