@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs')
-const table = require('./originals/_WEAPONTABLE')
-const textTable = require('./originals/_WEAPONTEXT')
+const json = require('json-stringify-pretty-compact')
+const table = require('../data/41/weapons/_WEAPONTABLE.json')
+const textTable = require('../data/41/weapons/_WEAPONTEXT.json')
 const blurbs = require('../helpers/blurbs')
 const getId = require('../helpers/get-id')
 const getNode = require('../helpers/get-node')
@@ -34,7 +35,7 @@ function rebalance(query, cb) {
       return true
     })
     .forEach((node, i) => {
-      const path = `./originals/${getId(node).toUpperCase()}`
+      const path = `../data/41/weapons/${getId(node).toUpperCase()}.json`
       const template = require(path)
       const text = textTable.variables[0].value[table.variables[0].value.indexOf(node)]
       modded.add(node)
@@ -570,7 +571,7 @@ rebalance({category: 36, name: /Titan/}, (template, i, meta, text) => {
 
     const path = './SgottMods/weapon/v_404bigtank_mainCannon'
     mainCannonConfig.value = path + '.SGO'
-    const mainCannonTemplate = require('./originals/V_404BIGTANK_MAINCANNON')
+    const mainCannonTemplate = require('../data/41/weapons/V_404BIGTANK_MAINCANNON')
     patch(mainCannonTemplate, 'AmmoAlive', 240)
     patch(mainCannonTemplate, 'AmmoSpeed', 20)
     rawSgos.set(path.split(/\//).pop(), mainCannonTemplate)
@@ -660,7 +661,7 @@ rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
 rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
   // Add full rotation to grape's cannon
   const path = './SgottMods/weapon/vehicle401_striker'
-  const vehicleTemplate = require('./originals/VEHICLE401_STRIKER.json')
+  const vehicleTemplate = require('../data/41/weapons/VEHICLE401_STRIKER.json')
   const cannonControl = getNode(vehicleTemplate, 'striker_cannon_ctrl')
   cannonControl.value[2].value = 60
   rawSgos.set(path.split(/\//).pop(), vehicleTemplate)
@@ -790,11 +791,8 @@ rebalance({category: 39, name:/Proteus/}, (template, i, meta, text) => {
   )
 })
 
-function json(obj) {
-  return JSON.stringify(obj, null, 2)
-}
-
 const outDir = './release/sgottstrap/SgottTemplates/weapon'
+fs.mkdirSync(outDir, { recursive: true })
 for(const [path, template] of rawSgos) {
   const filename = `${outDir}/${path}.json`
   console.log(`Writing ${filename}` )
@@ -803,7 +801,7 @@ for(const [path, template] of rawSgos) {
 
 for(const node of modded) {
   const id = getId(node)
-  const path = `./originals/${id.toUpperCase()}`
+  const path = `../data/41/weapons/${id.toUpperCase()}`
   const template = require(path)
   const text = textTable.variables[0].value[table.variables[0].value.indexOf(node)]
   template.meta = {
