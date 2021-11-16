@@ -1,166 +1,46 @@
 {
   "endian": "BE",
   "variables": [
-    {
-      "type": "string",
-      "name": "AimAnimation",
-      "value": "aim"
-    },
-    {
-      "type": "int",
-      "name": "AmmoAlive",
-      "value": 1200
-    },
-    {
-      "type": "string",
-      "name": "AmmoClass",
-      "options": [
-        "LightningBullet01",
-        "LaserBullet01",
-        "LaserBullet02",
-        "LaserBullet03",
-        "FlameBullet01",
-        "FlameBullet02",
-        "SpiderStringBullet01",
-        "SpiderStringBullet02",
-        "ShockWaveBullet01",
-        "SlashWaveBullet01",
-        "HomingLaserBullet01",
-        "BeamBullet01",
-        "DecoyBullet01",
-        "NeedleBullet01",
-        "BarrierBullet01",
-        "ClusterBullet01",
-        "AcidBullet01",
-        "NapalmBullet01",
-        "GrenadeBullet01",
-        "MissileBullet01",
-        "MissileBullet02",
-        "RocketBullet01",
-        "RocketBullet02",
-        "SolidBullet01",
-        "SolidBullet02",
-        "SmokeCandleBullet01",
-        "ShieldBashBullet01",
-        "SentryGunBullet01",
-        "TargetMarkerBullet01",
-        "SupportUnitBullet01",
-        "PileBunkerBullet01",
-        "PlasmaBullet01"
-      ],
-      "value": "BombBullet01"
-    },
+    {"type": "string", "name": "AimAnimation", "value": "aim"},
+    {"type": "int", "name": "AmmoAlive", "value": 1200},
+    {"type": "string", "name": "AmmoClass", "value": "BombBullet01"},
     {
       "type": "ptr",
       "name": "AmmoColor",
       "value": [
-        {
-          "type": "float",
-          "name": "Red",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "name": "Green",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "name": "Blue",
-          "value": 1
-        },
-        {
-          "type": "float",
-          "name": "Alpha",
-          "value": 0.5
-        }
+        {"type": "float", "name": "Red", "value": 0},
+        {"type": "float", "name": "Green", "value": 0},
+        {"type": "float", "name": "Blue", "value": 1},
+        {"type": "float", "name": "Alpha", "value": 0.5}
       ]
     },
-    {
-      "type": "int",
-      "name": "AmmoCount",
-      "value": 5
-    },
-    {
-      "type": "float",
-      "name": "AmmoDamage",
-      "value": 58
-    },
-    {
-      "type": "float",
-      "name": "AmmoExplosion",
-      "value": 0
-    },
-    {
-      "type": "float",
-      "name": "AmmoGravityFactor",
-      "value": 1
-    },
-    {
-      "type": "float",
-      "name": "AmmoHitImpulseAdjust",
-      "value": 1
-    },
+    {"type": "int", "name": "AmmoCount", "value": 5},
+    {"type": "float", "name": "AmmoDamage", "value": 58},
+    {"type": "float", "name": "AmmoExplosion", "value": 0},
+    {"type": "float", "name": "AmmoGravityFactor", "value": 1},
+    {"type": "float", "name": "AmmoHitImpulseAdjust", "value": 1},
     {
       "type": "ptr",
       "name": "AmmoHitSe",
       "value": [
-        {
-          "type": "int",
-          "value": 0
-        },
-        {
-          "type": "string",
-          "value": "common_damages_explodeFrechette_M"
-        },
-        {
-          "type": "float",
-          "value": 0.8913000226020813
-        },
-        {
-          "type": "float",
-          "value": 1
-        },
-        {
-          "type": "float",
-          "value": 1
-        },
-        {
-          "type": "float",
-          "value": 200
-        }
+        {"type": "int", "value": 0},
+        {"type": "string", "value": "common_damages_explodeFrechette_M"},
+        {"type": "float", "value": 0.8913000226020813},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 200}
       ]
     },
-    {
-      "type": "float",
-      "name": "AmmoHitSizeAdjust",
-      "value": 1
-    },
-    {
-      "type": "int",
-      "name": "AmmoIsPenetration",
-      "value": 0
-    },
+    {"type": "float", "name": "AmmoHitSizeAdjust", "value": 1},
+    {"type": "int", "name": "AmmoIsPenetration", "value": 0},
     {
       "type": "string",
       "name": "AmmoModel",
       "value": "app:/WEAPON/bullet_marker02.rab"
     },
-    {
-      "type": "float",
-      "name": "AmmoOwnerMove",
-      "value": 0
-    },
-    {
-      "type": "float",
-      "name": "AmmoSize",
-      "value": 2
-    },
-    {
-      "type": "float",
-      "name": "AmmoSpeed",
-      "value": 1.8
-    },
+    {"type": "float", "name": "AmmoOwnerMove", "value": 0},
+    {"type": "float", "name": "AmmoSize", "value": 2},
+    {"type": "float", "name": "AmmoSpeed", "value": 1.8},
     {
       "type": "ptr",
       "name": "Ammo_CustomParameter",
@@ -168,60 +48,26 @@
         {
           "type": "int",
           "name": "BombMobility",
-          "options": {
-            "None": 0,
-            "Roll": 1,
-            "Bounce": 2
-          },
+          "options": {"None": 0, "Roll": 1, "Bounce": 2},
           "value": 0
         },
-        {
-          "type": "int",
-          "name": "IsDetector",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "value": 0
-        },
-        {
-          "type": "int",
-          "name": "PrimerDelay",
-          "value": 0
-        },
-        {
-          "type": "int",
-          "value": 5
-        },
+        {"type": "int", "name": "IsDetector", "value": 0},
+        {"type": "float", "value": 0},
+        {"type": "int", "name": "PrimerDelay", "value": 0},
+        {"type": "int", "value": 5},
         {
           "type": "ptr",
           "name": "LedPosition",
           "value": [
-            {
-              "type": "float",
-              "name": "Red",
-              "value": 0
-            },
-            {
-              "type": "float",
-              "name": "Green",
-              "value": 0.5
-            },
-            {
-              "type": "float",
-              "name": "Blue",
-              "value": 0
-            }
+            {"type": "float", "name": "Red", "value": 0},
+            {"type": "float", "name": "Green", "value": 0.5},
+            {"type": "float", "name": "Blue", "value": 0}
           ]
         },
         {
           "type": "int",
           "name": "BombExplosionType",
-          "options": {
-            "Explosion": 0,
-            "Shrapnel": 1,
-            "Burst": 2
-          },
+          "options": {"Explosion": 0, "Shrapnel": 1, "Burst": 2},
           "value": 1
         },
         {
@@ -249,332 +95,100 @@
                 }
               ]
             },
-            {
-              "type": "float",
-              "name": "SearchRange",
-              "value": 0
-            },
-            {
-              "type": "int",
-              "name": "FlechetteCount",
-              "value": 20
-            },
-            {
-              "type": "int",
-              "name": "FlechetteAlive",
-              "value": 27
-            },
-            {
-              "type": "float",
-              "name": "FlechetteSpeed",
-              "value": 1.18
-            },
-            {
-              "type": "float",
-              "name": "FlechetteSize",
-              "value": 0.32
-            },
-            {
-              "type": "ptr",
-              "value": [
-                {
-                  "type": "int",
-                  "value": 1
-                }
-              ]
-            }
+            {"type": "float", "name": "SearchRange", "value": 0},
+            {"type": "int", "name": "FlechetteCount", "value": 20},
+            {"type": "int", "name": "FlechetteAlive", "value": 27},
+            {"type": "float", "name": "FlechetteSpeed", "value": 1.18},
+            {"type": "float", "name": "FlechetteSize", "value": 0.32},
+            {"type": "ptr", "value": [{"type": "int", "value": 1}]}
           ]
         },
         {
           "type": "ptr",
           "value": [
-            {
-              "type": "string",
-              "value": "武器フレシェット着弾"
-            },
-            {
-              "type": "int",
-              "value": 0
-            },
-            {
-              "type": "int",
-              "value": 0
-            },
-            {
-              "type": "int",
-              "value": 0
-            }
+            {"type": "string", "value": "武器フレシェット着弾"},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 0}
           ]
         }
       ]
     },
-    {
-      "type": "ptr",
-      "name": "Ammo_EquipVoice",
-      "value": null
-    },
-    {
-      "type": "float",
-      "name": "AngleAdjust",
-      "value": 0
-    },
-    {
-      "type": "string",
-      "name": "BaseAnimation",
-      "value": "assault"
-    },
-    {
-      "type": "string",
-      "name": "ChangeAnimation",
-      "value": "assault_change1"
-    },
-    {
-      "type": "float",
-      "name": "EnergyChargeRequire",
-      "value": -1
-    },
-    {
-      "type": "float",
-      "name": "FireAccuracy",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "FireBurstCount",
-      "value": 1
-    },
-    {
-      "type": "int",
-      "name": "FireBurstInterval",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "FireCondition",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "FireCount",
-      "value": 1
-    },
-    {
-      "type": "int",
-      "name": "FireInterval",
-      "value": 72
-    },
-    {
-      "type": "ptr",
-      "name": "FireLoadSe",
-      "value": null
-    },
-    {
-      "type": "float",
-      "name": "FireRecoil",
-      "value": 0.20000000298023224
-    },
+    {"type": "ptr", "name": "Ammo_EquipVoice", "value": null},
+    {"type": "float", "name": "AngleAdjust", "value": 0},
+    {"type": "string", "name": "BaseAnimation", "value": "assault"},
+    {"type": "string", "name": "ChangeAnimation", "value": "assault_change1"},
+    {"type": "float", "name": "EnergyChargeRequire", "value": -1},
+    {"type": "float", "name": "FireAccuracy", "value": 0},
+    {"type": "int", "name": "FireBurstCount", "value": 1},
+    {"type": "int", "name": "FireBurstInterval", "value": 0},
+    {"type": "int", "name": "FireCondition", "value": 0},
+    {"type": "int", "name": "FireCount", "value": 1},
+    {"type": "int", "name": "FireInterval", "value": 72},
+    {"type": "ptr", "name": "FireLoadSe", "value": null},
+    {"type": "float", "name": "FireRecoil", "value": 0.20000000298023224},
     {
       "type": "ptr",
       "name": "FireSe",
       "value": [
-        {
-          "type": "int",
-          "value": 0
-        },
+        {"type": "int", "value": 0},
         {
           "type": "string",
           "name": "SoundName",
           "value": "weapon_Engineer_BOM_frechetteShot_splenderM9"
         },
-        {
-          "type": "float",
-          "value": 0.5299999713897705
-        },
-        {
-          "type": "float",
-          "value": 1
-        },
-        {
-          "type": "float",
-          "value": 1
-        },
-        {
-          "type": "float",
-          "value": 25
-        }
+        {"type": "float", "value": 0.5299999713897705},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 25}
       ]
     },
-    {
-      "type": "int",
-      "name": "FireSpreadType",
-      "value": 0
-    },
-    {
-      "type": "float",
-      "name": "FireSpreadWidth",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "FireType",
-      "value": 0
-    },
-    {
-      "type": "ptr",
-      "name": "FireVector",
-      "value": null
-    },
+    {"type": "int", "name": "FireSpreadType", "value": 0},
+    {"type": "float", "name": "FireSpreadWidth", "value": 0},
+    {"type": "int", "name": "FireType", "value": 0},
+    {"type": "ptr", "name": "FireVector", "value": null},
     {
       "type": "ptr",
       "name": "LockonAngle",
       "value": [
-        {
-          "type": "float",
-          "value": 0.30000001192092896
-        },
-        {
-          "type": "float",
-          "value": 0.30000001192092896
-        }
+        {"type": "float", "value": 0.30000001192092896},
+        {"type": "float", "value": 0.30000001192092896}
       ]
     },
-    {
-      "type": "int",
-      "name": "LockonFailedTime",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "LockonHoldTime",
-      "value": 0
-    },
-    {
-      "type": "float",
-      "name": "LockonRange",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "LockonTargetType",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "LockonTime",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "LockonType",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "Lockon_AutoTimeOut",
-      "value": 1
-    },
-    {
-      "type": "int",
-      "name": "Lockon_DistributionType",
-      "value": 0
-    },
-    {
-      "type": "int",
-      "name": "Lockon_FireEndToClear",
-      "value": 1
-    },
+    {"type": "int", "name": "LockonFailedTime", "value": 0},
+    {"type": "int", "name": "LockonHoldTime", "value": 0},
+    {"type": "float", "name": "LockonRange", "value": 0},
+    {"type": "int", "name": "LockonTargetType", "value": 0},
+    {"type": "int", "name": "LockonTime", "value": 0},
+    {"type": "int", "name": "LockonType", "value": 0},
+    {"type": "int", "name": "Lockon_AutoTimeOut", "value": 1},
+    {"type": "int", "name": "Lockon_DistributionType", "value": 0},
+    {"type": "int", "name": "Lockon_FireEndToClear", "value": 1},
     {
       "type": "ptr",
       "name": "ModelConstraint",
-      "value": [
-        {
-          "type": "string",
-          "value": "arms_r"
-        }
-      ]
+      "value": [{"type": "string", "value": "arms_r"}]
     },
-    {
-      "type": "string",
-      "name": "MuzzleFlash",
-      "value": ""
-    },
-    {
-      "type": "ptr",
-      "name": "MuzzleFlash_CustomParameter",
-      "value": null
-    },
-    {
-      "type": "float",
-      "name": "Range",
-      "value": 545
-    },
-    {
-      "type": "string",
-      "name": "ReloadAnimation",
-      "value": "assault_reload1"
-    },
-    {
-      "type": "float",
-      "name": "ReloadInit",
-      "value": 1
-    },
-    {
-      "type": "int",
-      "name": "ReloadTime",
-      "value": 189
-    },
-    {
-      "type": "int",
-      "name": "ReloadType",
-      "value": 0
-    },
-    {
-      "type": "ptr",
-      "name": "SecondaryFire_Parameter",
-      "value": null
-    },
-    {
-      "type": "int",
-      "name": "SecondaryFire_Type",
-      "options": {
-        "None": 0,
-        "Zoom": 1,
-        "Activate": 2,
-        "Activate and Reload": 3,
-        "Jumpjets (Fencer)": 4,
-        "Dash (Fencer)": 5,
-        "Shield Reflect (Fencer)": 6
-      },
-      "value": 2
-    },
+    {"type": "string", "name": "MuzzleFlash", "value": ""},
+    {"type": "ptr", "name": "MuzzleFlash_CustomParameter", "value": null},
+    {"type": "float", "name": "Range", "value": 545},
+    {"type": "string", "name": "ReloadAnimation", "value": "assault_reload1"},
+    {"type": "float", "name": "ReloadInit", "value": 1},
+    {"type": "int", "name": "ReloadTime", "value": 189},
+    {"type": "int", "name": "ReloadType", "value": 0},
+    {"type": "ptr", "name": "SecondaryFire_Parameter", "value": null},
+    {"type": "int", "name": "SecondaryFire_Type", "value": 2},
     {
       "type": "ptr",
       "name": "ShellCase",
       "value": [
-        {
-          "type": "string",
-          "value": ""
-        },
-        {
-          "type": "string",
-          "value": ""
-        },
-        {
-          "type": "int",
-          "value": 0
-        }
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "int", "value": 0}
       ]
     },
-    {
-      "type": "ptr",
-      "name": "ShellCaseDischargeSe",
-      "value": null
-    },
-    {
-      "type": "ptr",
-      "name": "ShellCase_CustomParameter",
-      "value": null
-    },
+    {"type": "ptr", "name": "ShellCaseDischargeSe", "value": null},
+    {"type": "ptr", "name": "ShellCase_CustomParameter", "value": null},
     {
       "type": "ptr",
       "name": "Sight_animation_model",
@@ -582,24 +196,12 @@
         {
           "type": "ptr",
           "value": [
-            {
-              "type": "string",
-              "value": "app:/HUD/sight13.rab"
-            },
-            {
-              "type": "string",
-              "value": "sight13.mdb"
-            }
+            {"type": "string", "value": "app:/HUD/sight13.rab"},
+            {"type": "string", "value": "sight13.mdb"}
           ]
         },
-        {
-          "type": "int",
-          "value": 0
-        },
-        {
-          "type": "int",
-          "value": 0
-        }
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 0}
       ]
     },
     {
@@ -618,10 +220,7 @@
               "type": "string",
               "value": "app:/Weapon/e_markerlauncher_normal02.rab"
             },
-            {
-              "type": "string",
-              "value": "e_markerlauncher_normal02.mdb"
-            }
+            {"type": "string", "value": "e_markerlauncher_normal02.mdb"}
           ]
         },
         {
@@ -641,43 +240,19 @@
       "type": "ptr",
       "name": "custom_parameter",
       "value": [
-        {
-          "type": "string",
-          "value": "assault_recoil1"
-        },
-        {
-          "type": "int",
-          "value": 0
-        },
-        {
-          "type": "int",
-          "value": 0
-        },
-        {
-          "type": "float",
-          "value": 1
-        }
+        {"type": "string", "value": "assault_recoil1"},
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 0},
+        {"type": "float", "value": 1}
       ]
     },
     {
       "type": "ptr",
       "name": "name",
       "value": [
-        {
-          "type": "string",
-          "name": "Japanese",
-          "value": "リムペット・スプレンダーＭ９"
-        },
-        {
-          "type": "string",
-          "name": "English",
-          "value": "Limpet Splendor M9"
-        },
-        {
-          "type": "string",
-          "name": "Chinese",
-          "value": "リムペット・スプレンダーＭ９"
-        }
+        {"type": "string", "name": "Japanese", "value": "リムペット・スプレンダーＭ９"},
+        {"type": "string", "name": "English", "value": "Limpet Splendor M9"},
+        {"type": "string", "name": "Chinese", "value": "リムペット・スプレンダーＭ９"}
       ]
     },
     {
@@ -691,11 +266,7 @@
         }
       ]
     },
-    {
-      "type": "int",
-      "name": "use_underground",
-      "value": 1
-    },
+    {"type": "int", "name": "use_underground", "value": 1},
     {
       "type": "string",
       "name": "xgs_scene_object_class",

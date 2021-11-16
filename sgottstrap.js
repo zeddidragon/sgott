@@ -211,8 +211,7 @@ var failed = 0
 
 const weaponMods = fs
   .readdirSync(weaponTemplateDir)
-  .filter(name => name.slice(-5).toLowerCase() === '.json')
-  .map(name => name.slice(0, -5))
+  .filter(file => /\.json|\.cson$/i.test(file))
 
 console.log(`Weapon Mods found: ${weaponMods.length}`)
 
@@ -236,7 +235,7 @@ const raw = {}
 for(const mod of weaponMods) {
   console.log(`Applying: ${mod}`)
   const template = CSON
-    .parse(fs.readFileSync(`${weaponTemplateDir}/${mod}.json`, 'utf8'))
+    .parse(fs.readFileSync(`${weaponTemplateDir}/${mod}`, 'utf8'))
 
   const {meta} = template
   const path = `${weaponModDir}/${mod}.SGO`
@@ -357,15 +356,14 @@ for(const {path, template} of Object.values(ids)) {
 
 const coreMods = fs
   .readdirSync(coreTemplateDir)
-  .filter(file => /\.json$/.test(file))
-  .map(name => name.slice(0, -5))
+  .filter(file => /\.json|\.cson$/i.test(file))
 
 console.log(`Core Mods found: ${coreMods.length}`)
 
 for(const mod of coreMods) {
   console.log(`Applying: ${mod}`)
-  const template = JSON
-    .parse(fs.readFileSync(`${coreTemplateDir}/${mod}.json`, 'utf8'))
+  const template = CSON
+    .parse(fs.readFileSync(`${coreTemplateDir}/${mod}`, 'utf8'))
 
   for(const [path, operations] of Object.entries(template)) {
     const file = files[path]
