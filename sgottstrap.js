@@ -1,26 +1,51 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const deepEqual = require('fast-deep-equal')
+const CSON = require('cson')
 const sgoToJson = require('./converters/sgo/to-json')
 const jsonToSgo = require('./converters/sgo/from-json')
-
-const config = require('./data/41/config')
-const weaponTable = require('./data/41/weapons/weapontable')
-const weaponText = require('./data/41/weapons/weapontext')
-const gameText = require('./data/41/texttable-steam-en')
 const generateWeaponText = require('./helpers/weapon-text')
+
+const config41 = require('./data/41/config.json')
+const weaponTable41 = require('./data/41/weapons/_WEAPONTABLE.json')
+const weaponText41 = require('./data/41/weapons/_WEAPONTEXT.json')
+
+const config5 = require('./data/5/config.json')
+const weaponTable5 = require('./data/5/weapons/WEAPONTABLE.json')
+const weaponText5 = require('./data/5/weapons/WEAPONTEXT.json')
+
+const edfVersion = fs.existsSync('EDF5.exe') ? 5 : 41
+const edfName = edfVersion === 5 ? 'EDF5' : 'EDF4.1'
+
+const {
+  config,
+  weaponTable,
+  weaponText,
+  weaponTableName,
+  weaponTextName,
+} = edfVersion === 5 ? {
+  config: config5,
+  weaponTable: weaponTable5,
+  weaponText: weaponText5,
+  weaponTableName: 'WEAPONTABLE',
+  weaponTextName: 'WEAPONTEXT',
+} : {
+  config: config41,
+  weaponTable: weaponTable41,
+  weaponText: weaponText41,
+  weaponTableName: '_WEAPONTABLE',
+  weaponTextName: '_WEAPONTEXT',
+}
 
 const modDir = './SgottMods'
 const templateDir = './SgottTemplates'
-const saveDir = '\\My Games\\EDF4.1_MODSAVES\\'
+const saveDir = `\\My Games\\${edfName}_MODSAVES\\`
 const weaponModDir = `${modDir}/weapon`
 const configPath = `${modDir}/CONFIG.SGO`
-const mainscriptPath = `${modDir}/Mainscript.as`
-const weaponTablePath = `${modDir}/_WEAPONTABLE.SGO`
-const weaponTextPath = `${modDir}/_WEAPONTEXT.SGO`
+const weaponTablePath = `${modDir}/${weaponTableName}.SGO`
+const weaponTextPath = `${modDir}/${weaponTextName}.SGO`
 const coreTemplateDir = `${templateDir}/core`
 const weaponTemplateDir = `${templateDir}/weapon`
-const gameTextPath = `${modDir}/TXT_STEAM_EN.TXT_SGO`
 
 const filePath = Symbol('path')
 const exists = Symbol('exists')
@@ -38,16 +63,26 @@ function populate(key, path, fallback) {
 }
 
 populate('CONFIG.SGO', configPath, config)
-populate('TEXTTABLE_STEAM_EN.TXT_SGO', gameTextPath, gameText)
-populate('_WEAPONTABLE.SGO', weaponTablePath, weaponTable)
-populate('_WEAPONTEXT.SGO', weaponTextPath, weaponText)
+populate(`${weaponTableName}.SGO`, weaponTablePath, weaponTable)
+populate(`${weaponTextName}.SGO`, weaponTextPath, weaponText)
+
+function findVar(template, name) {
+  return template.variables.find(n => n.name === name)
+}
+
+let keepSaves = false
+const keepSavesIdx = process.argv.indexOf('--keep-saves')
+if(~keepSavesIdx) {
+  process.argv.splice(keepSavesIdx, 1)
+  keepSaves = true
+}
 
 console.log('Patching executable...')
 ;(function(){
-  const exePath = './EDF41.exe'
+  const exePath = `./EDF${edfVersion}.exe`
   const buffer = fs.readFileSync(exePath)
 
-  const path = './EDF41-sgott-backup.exe'
+  const path = `./EDF${edfVersion}-sgott-backup.exe`
   if(fs.existsSync(path)) {
     console.error('Backup already exists. Skipping backup...')
   } else {
@@ -62,18 +97,16 @@ console.log('Patching executable...')
     buffer.write(to + '\0', index, 'utf16le')
   }
 
+  function replaceAll(from, to) {
+    let index = buffer.indexOf(from, 'utf16le')
+    while(~(index = buffer.indexOf(from, 'utf16le'))) {
+      buffer[touched] = true
+      buffer.write(to + '\0', index, 'utf16le')
+    }
+  }
+
   replace('app:/DefaultPackage/config.sgo', configPath)
-  //Todo: Actualy cound how many references and do this in a cleaner, more rational way
-  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
-  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
-  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
-  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
-  replace('\\My Games\\EDF4.1\\SAVE_DATA\\', saveDir)
-  replace('app:/etc/TextTable_steam_en.txt_sgo', gameTextPath)
-  //Todo: Actualy cound how many references and do this in a cleaner, more rational way
-  // replace('app:/MainScript/MainScript.as', mainscriptPath)
-  // replace('app:/MainScript/MainScript.as', mainscriptPath)
-  // replace('app:/MainScript/MainScript.as', mainscriptPath)
+  if(!keepSaves) replaceAll(`\\My Games\\${edfName}\\SAVE_DATA\\`, saveDir)
 
   if(buffer[touched]) {
     fs.writeFileSync(exePath, buffer)
@@ -183,16 +216,16 @@ const weaponMods = fs
 
 console.log(`Weapon Mods found: ${weaponMods.length}`)
 
-const tableValues = files['_WEAPONTABLE.SGO'].variables[0].value
-const textValues = files['_WEAPONTEXT.SGO'].variables[0].value
+const tableValues = files[`${weaponTableName}.SGO`].variables[0].value
+const textValues = files[`${weaponTextName}.SGO`].variables[0].value
 
 function findTableNode(id) {
   return tableValues.find(t => t.value[0].value === id)
 }
 
 function insertTableNode(index, tableNode, textNode) {
-  files['_WEAPONTABLE.SGO'][touched] = true
-  files['_WEAPONTEXT.SGO'][touched] = true
+  files[`${weaponTableName}.SGO`][touched] = true
+  files[`${weaponTextName}.SGO`][touched] = true
   tableValues.splice(index, 0, tableNode)
   textValues.splice(index, 0, textNode)
 }
@@ -200,15 +233,9 @@ function insertTableNode(index, tableNode, textNode) {
 const ids = {}
 const raw = {}
 
-function format(pair) {
-  if(!pair) return ''
-  const [key, value] = pair
-  return ('' + key).padStart(18) + ': ' + ('' + value).padEnd(11)
-}
-
 for(const mod of weaponMods) {
   console.log(`Applying: ${mod}`)
-  const template = JSON
+  const template = CSON
     .parse(fs.readFileSync(`${weaponTemplateDir}/${mod}.json`, 'utf8'))
 
   const {meta} = template
@@ -226,10 +253,6 @@ for(const mod of weaponMods) {
   const existing = findTableNode(id)
   var before = meta.before && findTableNode(meta.before)
   var after = meta.after && findTableNode(meta.after)
-
-  function findVar(name) {
-    return template.variables.find(n => n.name === name)
-  }
 
   var tableNode, textNode
   if(existing) {
@@ -296,7 +319,7 @@ for(const mod of weaponMods) {
   if(meta.description != null) {
     textNode.value[3].value = generateWeaponText(template, meta.description)
   }
-  const name = findVar('name').value[1].value
+  const name = findVar(template, 'name').value[1].value
   if(name !== textNode.value[2].value) {
     textNode.value[0].value = name
     textNode.value[2].value = name
@@ -318,8 +341,8 @@ for(const mod of weaponMods) {
 succeeded = Object.keys(ids).length
 
 if(succeeded) {
-  files['_WEAPONTABLE.SGO'][touched] = true
-  files['_WEAPONTEXT.SGO'][touched] = true
+  files[`${weaponTableName}.SGO`][touched] = true
+  files[`${weaponTextName}.SGO`][touched] = true
 }
 
 for(const [path, template] of Object.entries(raw)) {
