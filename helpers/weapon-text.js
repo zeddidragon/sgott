@@ -59,10 +59,33 @@ function weaponText(template, text) {
       const life = findVar('AmmoAlive').value
       const speed = findVar('AmmoSpeed').value
       const blast = findVar('AmmoExplosion').value
+      const accuracy = findVar('FireAccuracy').value
+      const accuracyRating = [
+        ['S++', 0.0005],
+        ['S+', 0.0025],
+        ['S', 0.005],
+        ['A', 0.015],
+        ['A-', 0.02],
+        ['B+', 0.03],
+        ['B', 0.1],
+        ['C+', 0.15],
+        ['C', 0.2],
+        ['C-', 0.25],
+        ['D', 0.3],
+        ['E', 0.4],
+        ['F', 0.5],
+        ['G', 0.6],
+        ['I', 0.8],
+        ['J', 1.0],
+        ['K', 1.2],
+        ['L', 1.4],
+        ['Z', Infinity],
+      ].find((rank, value) => accuracy < value)[0]
 
       return [
         rof < 100 && ['ROF', `${rof.toFixed(1)}/sec`],
         ['Damage', damage.join('×')],
+        ['Accuracy', accuracyRating],
         life < 1000 && ['Range', `${Math.floor(life * speed)}m`],
         blast && ['Blast Area', `${blast}m`],
       ]
