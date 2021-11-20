@@ -64,7 +64,7 @@ for(const node of table.variables[0].value) {
   const damageNode = getNode(data, 'AmmoDamage')
   const oldDamage = damageNode.value
   const newDamage = pretty(oldDamage / factor)
-  // console.log(getNode(data, 'name').value[1].value.padEnd(48), `${oldDamage} => ${newDamage}`)
+  console.log(getNode(data, 'name').value[1].value.padEnd(48), `${oldDamage} => ${newDamage}`)
 }
 
 /*
