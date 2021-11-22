@@ -79,7 +79,7 @@ for(const node of table.variables[0].value) {
       .replace(/^app:\/Object/, '')
       .toUpperCase()
       .replace(/\.SGO$/, '.json')
-      .replace(/^/, 'data/41/weapon')
+      .replace(/^/, 'data/41/Object')
     console.log(id)
     const vehicleData = vehicleMap[vehiclePath]
       || (vehicleMap[vehicleMap] = JSON.parse(fs.readFileSync(vehiclePath)))
