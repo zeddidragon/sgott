@@ -48,23 +48,61 @@ const blacklistNames = RegExp([
   'Speed Star',
 ].join('|'))
 
+const vehicleMap = {}
+
 for(const node of table.variables[0].value) {
-  const path = `./data/41/weapon/${getId(node).toUpperCase()}.json`
+  const id = getId(node)
+  const path = `./data/41/weapon/${id.toUpperCase()}.json`
   const data = JSON.parse(fs.readFileSync(path))
   const name = getNode(data, 'name').value[1].value
-  const shouldSkip = blacklistNames.test(name)
+  const category = node.value[2].value
+  const unlockState = node.value[5].value
+  if(unlockState === 3) continue // Skip DLC weapons
+  const shouldSkip = blacklistNames.test(name) || category == 22
   if(shouldSkip) {
     console.log(`Skipping: ${name}`)
     continue
   }
   const level = node.value[4].value
   if(level >= 4) continue
+
   const rung = difficulties[Math.floor(level)] || [1, 1]
   const factor = (rung[0] + (rung[1] - rung[0]) * (level % 1))
-  const damageNode = getNode(data, 'AmmoDamage')
-  const oldDamage = damageNode.value
-  const newDamage = pretty(oldDamage / factor)
-  console.log(getNode(data, 'name').value[1].value.padEnd(48), `${oldDamage} => ${newDamage}`)
+
+  const isVehicle = category >= 36 && category <= 39
+  if(isVehicle) {
+    const customParams = getNode(data, 'Ammo_CustomParameter')
+    const vehiclePath = customParams
+      .value[4]
+      .value[2]
+      .value
+      .replace(/^app:\/Object/, '')
+      .toUpperCase()
+      .replace(/\.SGO$/, '.json')
+      .replace(/^/, 'data/41/weapon')
+    console.log(id)
+    const vehicleData = vehicleMap[vehiclePath]
+      || (vehicleMap[vehicleMap] = JSON.parse(fs.readFileSync(vehiclePath)))
+    //console.log(vehicleData)
+
+    const strengthParameters = customParams
+      .value[4]
+      .value[3]
+      .value[0]
+      .value
+    const oldDamage = strengthParameters[0].value
+    const newDamage = oldDamage / factor
+    const oldHp = strengthParameters[1].value
+    const newHp = oldHp / factor
+    strengthParameters[0].value = newHp
+    strengthParameters[1].value = newDamage
+    console.log(id, getNode(data, 'name').value[1].value.padEnd(48), `${oldHp} => ${newHp}`)
+  } else {
+    const damageNode = getNode(data, 'AmmoDamage')
+    const oldDamage = damageNode.value
+    const newDamage = pretty(oldDamage / factor)
+    console.log(getNode(data, 'name').value[1].value.padEnd(48), `${oldDamage} => ${newDamage}`)
+  }
 }
 
 /*
