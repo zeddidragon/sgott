@@ -15,8 +15,7 @@ meta usage
 |DLCWeapon|Whether it is a DLC weapon||
 ||0 is main, 1 is MP01, 2 is MP02||
 ||3 is dlc unlock(can't use it)||
-|Name|Description|Value Type|
-|---|---|---|
+||||
 |AbilityDescCN|Chinese language|Structure|
 |AbilityDescEN|English language|Structure|
 |AbilityDescJA|Japanese language|Structure|
@@ -24,8 +23,7 @@ meta usage
 ||Performance description of the weapon||
 ||Can include star rating, null if not needed||
 ||Should refer to WEAPONTEXT.language||
-|Name|Description|Value Type|
-|---|---|---|
+||||
 |TextDescCN|Chinese language|String|
 |TextDescEN|English language|String|
 |TextDescJA|Japanese language|String|
