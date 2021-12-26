@@ -54,11 +54,17 @@ function populate(key, path, fallback) {
   files[key][filePath] = path
 }
 
+// Becuase upsert will be written repeatedly, only create original file.
+function populatealways(key, path, fallback) {
+  files[key] = fallback
+  files[key][filePath] = path
+}
+
 populate('CONFIG.SGO', configPath, config)
-populate('TextTable_xbox.CN.TXT_SGO', gameTextCNPath, gameTextCN)
-populate('TextTable_xbox.EN.TXT_SGO', gameTextENPath, gameTextEN)
-populate('TextTable_xbox.JA.TXT_SGO', gameTextJAPath, gameTextJA)
-populate('TextTable_xbox.KR.TXT_SGO', gameTextKRPath, gameTextKR)
+populatealways('TextTable_xbox.CN.TXT_SGO', gameTextCNPath, gameTextCN)
+populatealways('TextTable_xbox.EN.TXT_SGO', gameTextENPath, gameTextEN)
+populatealways('TextTable_xbox.JA.TXT_SGO', gameTextJAPath, gameTextJA)
+populatealways('TextTable_xbox.KR.TXT_SGO', gameTextKRPath, gameTextKR)
 populate('_WEAPONTABLE.SGO', weaponTablePath, weaponTable)
 populate('_WEAPONTEXT.CN.SGO', weaponTextCNPath, weaponTextCN)
 populate('_WEAPONTEXT.EN.SGO', weaponTextENPath, weaponTextEN)
