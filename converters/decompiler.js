@@ -6,6 +6,7 @@ function padCeil(value, divisor = 0x10) {
 
 function decompiler(format, fullBuffer, config = {}) {
   if(config.index) fullBuffer = fullBuffer.slice(config.index)
+  if(fullBuffer.pos) fullBuffer = fullBuffer.buffer.slice(fullBuffer.pos)
   {
     const length = padCeil(fullBuffer.length)
     if(length !== fullBuffer.length) {

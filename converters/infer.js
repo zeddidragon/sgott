@@ -25,7 +25,10 @@ function decompileBuffer(buffer, size) {
   const type = identifyBuffer(buffer)
   if(size) buffer = buffer.slice(0, size)
   if(supported.includes(type)) {
-    return require(`./${type}/decompiler`)(buffer)
+    return ({
+      sgo: require('./sgo/to-json'),
+      rmp: require('./rmp/to-json'),
+    })(buffer)
   }
   return buffer.toString('base64')
 }
@@ -56,7 +59,10 @@ function trimBuffer(buf, upTo = 0x10) {
 function compileData(obj) {
   const type = identifyData(obj)
   if(supported.includes(type))  {
-    return require(`./${type}/compiler`)(obj)
+    return ({
+      sgo: require('./sgo/from-json'),
+      rmp: require('./rmp/from-json'),
+    })[type](obj)
   }
   return trimBuffer(Buffer.from(obj, 'base64'))
 }
