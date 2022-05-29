@@ -56,7 +56,7 @@ function trimBuffer(buf, upTo = 0x10) {
 function compileData(obj) {
   const type = identifyData(obj)
   if(supported.includes(type))  {
-    return require(`./${type}/compiler`)(obj)
+    return require(`./${type}/from-json`)(obj)
   }
   return trimBuffer(Buffer.from(obj, 'base64'))
 }
