@@ -56,7 +56,7 @@ function decompile(buffer, config) {
     if(!val) {
       return
     }
-    if(!val.variables.length) {
+    if(!(val.variables && val.variables.length)) {
       if(val.endian !== cursor.endian) obj.cfgEn = val.endian
     } else {
       obj.config = val

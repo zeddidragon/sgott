@@ -164,6 +164,10 @@ function compile(obj) {
 
   function Allocate(Type, cb, opts = {}) {
     function AllocateDef(data, cursor, off = 0x00, tmp = {}) {
+      if(isNaN(off)) { // tmp is third parameter
+        tmp = off
+        off = 0x00
+      }
       const value = cb(data, cursor, tmp)
       if(!value) return null
       const writeOpts = {}
