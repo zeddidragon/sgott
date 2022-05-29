@@ -17,7 +17,19 @@ function decompileSgo(buffer, config) {
   } = types
 
   function Extra(cursor, offset, size) {
-    return cursor.at(offset).slice(0x00, size).toString('base64')
+    const leader = cursor.at(offset).slice(0x00, 0x04).toString()
+    const data = cursor.at(offset).slice(0x00, size)
+    switch(leader) {
+      case 'SGO\0':
+      case '\0OGS': {
+        return decompileSgo(cursor, {
+          offset,
+        })
+      }
+      default: {
+        return data.toString('base64')
+      }
+    }
   }
 
   const SgoNode = Union([
