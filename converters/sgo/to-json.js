@@ -65,7 +65,10 @@ function decompileSgo(buffer, config) {
 
   function AddVariableNames(obj, value) {
     for(const { name, idx } of value) {
-      obj.variables[idx].name = name
+      obj.variables[idx] = {
+        name,
+        ...obj.variables[idx],
+      }
     }
   }
 
