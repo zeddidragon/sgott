@@ -6,9 +6,8 @@
   "bin": "sgott.js",
   "scripts": {
     "test": "./test",
-    "build-sgott": "pkg -t node8-win -o ./release/sgott.exe ./sgott.js",
-    "build-strap": "pkg -t node8-win -o ./release/sgottstrap/sgottstrap.exe ./sgottstrap/sgottstrap.js",
-    "build": "npm run build-sgott && npm run build-strap"
+    "build-sgott": "pkg -t node16-win -o ./release/sgott.exe ./sgott.js",
+    "build": "npm run build-sgott"
   },
   "repository": {
     "type": "git",
@@ -33,6 +32,7 @@
   },
   "devDependencies": {
     "eslint": "^8.2.0",
-    "kleur": "^4.1.4"
+    "kleur": "^4.1.4",
+    "pkg": "^5.7.0"
   }
 }
