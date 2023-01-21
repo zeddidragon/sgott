@@ -62,7 +62,14 @@ function compile(obj) {
   DeferStr.size = 0x04
 
   function unrollStrings() {
+    const nullString = '\x00'
     const strings = Array.from(deferredStrings).sort()
+    // SGO sorts this nullstring at the end, js wants it first
+    // For consistency, perform that manually
+    if(strings[0] === nullString) {
+      strings.splice(0, 1)
+      strings.push(nullString)
+    }
     const stringCursors = {}
     for(const str of strings) {
       const cursor = malloc(stringBytes(str))
