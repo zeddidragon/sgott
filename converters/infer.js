@@ -44,18 +44,6 @@ function identifyData(obj) {
   if(obj.spawns) return 'rmp'
 }
 
-function trimBuffer(buf, upTo = 0x10) {
-  var end = null
-  for(var i = buf.length - upTo; i < buf.length; i++) {
-    if(buf[i]) {
-      end = null
-    } else if(end == null) {
-      end = i
-    }
-  }
-  return buf.slice(0x00, end == null ? -1 : end)
-}
-
 function compileData(obj) {
   const type = identifyData(obj)
   if(supported.includes(type))  {
@@ -64,7 +52,7 @@ function compileData(obj) {
       rmp: require('./rmp/from-json'),
     })[type](obj)
   }
-  return trimBuffer(Buffer.from(obj, 'base64'))
+  return Buffer.from(obj, 'base64')
 }
 
 module.exports = {
