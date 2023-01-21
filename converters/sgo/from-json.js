@@ -77,21 +77,13 @@ function compileSgo(obj) {
     ], 0x08)
 
     return Struct([
-      // Filetype header indicating this is an SGO file.
-      // For big-endian the header instead says OGS
       [0x00, Str, obj => (obj.endian === 'BE' ? '\0OGS' : 'SGO\0')],
-      // SGO version number?
       [0x04, UInt, obj => obj.version || 0x0102],
-      // Amount of top-level variables.
       [0x08, UInt, obj => obj.variables.length],
-      // Pointer to the start of the top-level variables.
       [0x0C, Ref, Collection(SgoNode, obj => obj.variables)],
-      // Also amount of top-level variables? Likely points at the amount of variable names.
       [0x10, UInt, obj => obj.variables.length],
-      // Pointer to string array of variable namese.
       [0x14, Ref, Collection(SgoIndex, obj => obj.variables, {
         padding: 0x10,
-        dbg: 'vars',
       })],
       [0x1C, Ref, Null],
     ], 0x20)
