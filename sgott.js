@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs')
+const path = require('path')
 const json = require('json-stringify-pretty-compact')
 const config = require('./package.json')
 const sgoToJson = require('./converters/sgo/to-json')
@@ -116,7 +117,10 @@ function parseCli(cb) {
   const [readFile, writeFile] = plain
 
   function convertFileName(fileName, target) {
-    return fileName.replace(/\..*$/, '.' + target)
+    return [
+      path.dirname(fileName),
+      path.basename(fileName, path.extname(fileName)),
+    ].join(path.sep) + '.' + target
   }
 
   function write(data, type) {
