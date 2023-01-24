@@ -59,6 +59,7 @@ const unlockStates = [
 ]
 
 const autoProps = {
+  type: 'AmmoClass',
   ammo: 'AmmoCount',
   weapon: 'xgs_scene_object_class',
   damage: 'AmmoDamage',
@@ -92,7 +93,7 @@ const strikes = [
 
 const data = table.map(({value: node}, i) => {
   const id = node[0].value
-  const level = Math.max(0, Math.floor(node[4].value * 25))
+  const level = Math.max(0, Math.floor(node[4].value * 25 + 0.0001))
   const category = node[2].value
   const character = classes[Math.floor(category / 10)]
   const group = categories[category]
@@ -116,6 +117,14 @@ const data = table.map(({value: node}, i) => {
   ret.accuracy = +(1 - ret.accuracy).toFixed(4)
   if(group === 'support') {
     ret.duration = ret.range
+  }
+  if(ammoType === 'FlameBullet02') {
+    ret.piercing = true
+    const custom = getNode(template, 'Ammo_CustomParameter').value
+    if(custom[3].value) { // Continous damage type flame
+      ret.duration = ret.range
+      ret.continous = true
+    }
   }
   if(ammoType === 'NapalmBullet01') {
     const custom = getNode(template, 'Ammo_CustomParameter').value
