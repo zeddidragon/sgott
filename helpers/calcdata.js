@@ -152,7 +152,7 @@ const data = table.map(({value: node}, i) => {
   if(ammoType === 'GrenadeBullet01') {
     const custom = getNode(template, 'Ammo_CustomParameter').value
     if(custom[0].value === 1) {
-      ret.duration = ret.range
+      ret.fuse = ret.range
     }
   }
   ret.range = ret.range * ret.speed / Math.max(ret.gravity, 1)
