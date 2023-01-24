@@ -91,7 +91,8 @@ const strikes = [
   'bomber',
 ]
 
-const data = table.map(({value: node}, i) => {
+/* eslint-disable complexity */
+function processWeapon({ value: node }) {
   const id = node[0].value
   const level = Math.max(0, Math.floor(node[4].value * 25 + 0.0001))
   const category = node[2].value
@@ -105,12 +106,14 @@ const data = table.map(({value: node}, i) => {
     level: level,
     character: character,
     category: group,
-    raw: category,
     odds: unlockStates[node[5].value] || (Math.floor(node[3].value * 100)),
   }
 
   for(const [prop, node] of Object.entries(autoProps)) {
-    ret[prop] = getNode(template, node).value
+    const v = getNode(template, node).value
+    if(v) {
+      ret[prop] = v
+    }
   }
   const ammoType = getNode(template, 'AmmoClass').value
 
@@ -155,11 +158,30 @@ const data = table.map(({value: node}, i) => {
       ret.fuse = ret.range
     }
   }
-  ret.range = ret.range * ret.speed / Math.max(ret.gravity, 1)
-  ret.piercing = !!ret.piercing
-  ret.credits = ret.credits === 1
-  ret.zoom = ret.zoom || 0
-  ret.underground = !!ret.underground
+  ret.range = ret.range * ret.speed / Math.max(ret.gravity || 0, 1)
+  if(ret.piercing) {
+    ret.piercing = true
+  }
+  if(ret.credits) {
+    ret.credits = true
+  }
+  if(!ret.underground) {
+    ret.underground = 'blocked'
+  } else {
+    delete ret.underground
+  }
+  if(ret.energy < 0) {
+    delete ret.energy
+  }
+  if(ret.odds === 100) {
+    delete ret.odds
+  }
+  if(ret.burst === 1) {
+    delete ret.burst
+  }
+  if(ret.count === 1) {
+    delete ret.count
+  }
 
   if(group === 'raid') {
     const custom = getNode(template, 'Ammo_CustomParameter').value
@@ -188,6 +210,7 @@ const data = table.map(({value: node}, i) => {
   }
 
   return ret
-})
+}
 
+const data = table.map(processWeapon).filter(w => w.name === 'AF99-ST')
 console.log(JSON.stringify(data, null, 2))
