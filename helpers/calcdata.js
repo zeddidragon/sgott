@@ -92,7 +92,7 @@ const strikes = [
 
 const data = table.map(({value: node}, i) => {
   const id = node[0].value
-  const level = Math.floor(node[4].value * 25)
+  const level = Math.max(0, Math.floor(node[4].value * 25))
   const category = node[2].value
   const character = classes[Math.floor(category / 10)]
   const group = categories[category]
