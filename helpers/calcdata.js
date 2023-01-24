@@ -117,7 +117,7 @@ function processWeapon({ value: node }) {
   }
   const ammoType = getNode(template, 'AmmoClass').value
 
-  ret.accuracy = +(1 - ret.accuracy).toFixed(4)
+  ret.accuracy = +(1 - (ret.accuracy || 0)).toFixed(4)
   if(group === 'support') {
     ret.duration = ret.range
   }
