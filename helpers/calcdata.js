@@ -188,6 +188,11 @@ function processWeapon({ value: node }) {
     let type = strikes[custom[3].value]
     if(ret.name === 'Rule of God') {
       type = 'rog'
+      delete ret.radius
+      ret.ammo = 2
+    }
+    if(ret.name === 'Laguna Blaster') {
+      delete ret.radius
     }
 
     ret.strikeType = type
