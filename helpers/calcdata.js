@@ -212,5 +212,5 @@ function processWeapon({ value: node }) {
   return ret
 }
 
-const data = table.map(processWeapon).filter(w => w.name === 'AF99-ST')
+const data = table.map(processWeapon)
 console.log(JSON.stringify(data, null, 2))
