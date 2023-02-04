@@ -258,10 +258,31 @@ const subWeaponProps = {
 }
 
 async function ShieldBashBullet01(wpn) {
-  wpn.damage = wpn.wCustom[0].value
+  wpn.defense = Math.round(wpn.wCustom[0].value * 100)
   wpn.range = Math.round(wpn.wCustom[1].value * 360 / Math.PI)
   wpn.energy = +(wpn.wCustom[2].value * 100).toFixed(1)
+  delete wpn.damage
   delete wpn.speed
+}
+
+// Hammers and Blades
+async function ShockWaveBullet01(wpn) {
+  wpn.defense = Math.round(wpn.wCustom[2].value * 100) // Defense
+  const attacks = wpn.wCustom[3].value.map(({ value: atk }, i) => {
+    return {
+      name: ['Low', 'Mid', 'Max'][i],
+      charge: atk[0].value,
+      type: atk[6].value || wpn.type,
+      damage: Math.round(atk[3].value * wpn.damage),
+      range: Math.round(atk[5].value * wpn.range * wpn.speed),
+      radius: Math.round(atk[4].value * 2),
+    }
+  })
+  wpn.attacks = attacks
+  const low = attacks.shift()
+  wpn.damage = low.damage
+  wpn.range = low.range
+  wpn.radius = low.radius
 }
 
 async function SmokeCandleBullet01(wpn) {
@@ -351,6 +372,7 @@ const bullets = {
   NapalmBullet01,
   SentryGunBullet01,
   ShieldBashBullet01,
+  ShockWaveBullet01,
   SmokeCandleBullet01,
   SupportUnitBullet01,
 }
