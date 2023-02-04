@@ -1,5 +1,25 @@
-const getNode = require('./get-node')
-const table = require('../data/41/weapon/_WEAPONTABLE').variables[0].value
+import syncFs from 'fs'
+const fs = syncFs.promises
+
+function getNode(template, name) {
+  return template.variables.find(n => n.name === name)
+}
+
+function loadJson(path) {
+  return fs.readFile(`data/41/${path}.json`).then(data => JSON.parse(data))
+}
+
+const cache = {}
+function loadLinked(path) {
+  const parts = path.split('/').slice(1)
+  parts[1] = parts[1]
+    .toUpperCase()
+    .replace('.SGO', '')
+  if(!cache[path]) {
+    cache[path] = loadJson(parts.join('/'))
+  }
+  return cache[path]
+}
 
 const classes = [
   'ranger',
@@ -77,12 +97,15 @@ const autoProps = {
   lockRange: 'LockonRange',
   lockTime: 'LockonTime',
   lockType: 'LockonType',
+  lockDist: 'Lockon_DistributionType',
   reload: 'ReloadTime',
   reloadInit: 'ReloadInit',
   credits: 'ReloadType',
   secondary: 'SecondaryFire_Type',
   zoom: 'SecondaryFire_Parameter',
   underground: 'use_underground',
+  custom: 'Ammo_CustomParameter',
+  wCustom: 'custom_parameter',
 }
 
 const strikes = [
@@ -91,16 +114,15 @@ const strikes = [
   'bomber',
 ]
 
-/* eslint-disable complexity */
-function processWeapon({ value: node }) {
+async function processWeapon({ value: node }) {
   const id = node[0].value
   const level = Math.max(0, Math.floor(node[4].value * 25 + 0.0001))
   const category = node[2].value
   const character = classes[Math.floor(category / 10)]
   const group = categories[category]
 
-  const template = require(`../data/41/weapon/${id.toUpperCase()}`)
-  const ret = {
+  const template = await loadJson(`weapon/${id.toUpperCase()}`)
+  const wpn = {
     id: id,
     name: getNode(template, 'name').value[1].value,
     level: level,
@@ -112,110 +134,272 @@ function processWeapon({ value: node }) {
   for(const [prop, node] of Object.entries(autoProps)) {
     const v = getNode(template, node).value
     if(v) {
-      ret[prop] = v
+      wpn[prop] = v
     }
   }
-  const ammoType = getNode(template, 'AmmoClass').value
 
-  ret.accuracy = +(1 - (ret.accuracy || 0)).toFixed(4)
-  if(group === 'support') {
-    ret.duration = ret.range
+  wpn.accuracy = +(1 - (wpn.accuracy || 0)).toFixed(4)
+  await bullets[wpn.type]?.(wpn)
+  groups[group]?.(wpn)
+  if(wpn.range && wpn.speed) {
+    wpn.range *= wpn.speed
   }
-  if(ammoType === 'FlameBullet02') {
-    ret.piercing = true
-    const custom = getNode(template, 'Ammo_CustomParameter').value
-    if(custom[3].value) { // Continous damage type flame
-      ret.duration = ret.range
-      ret.continous = true
+
+  for(const prop of [
+    'piercing',
+    'credits',
+  ]) {
+    if(wpn[prop]) {
+      wpn[prop] = true
     }
   }
-  if(ammoType === 'NapalmBullet01') {
-    const custom = getNode(template, 'Ammo_CustomParameter').value
-    ret.duration = custom[4].value[2].value * 3
-  }
-  if(ammoType === 'ClusterBullet01') {
-    const custom = getNode(template, 'Ammo_CustomParameter').value
-    const shots = custom[5].value[2].value
-    const interval = custom[5].value[3].value + 1
-    ret.shots = shots
-    ret.duration = shots * interval
-    if(ret.duration < 10) {
-      delete ret.duration
+  for(const prop of [
+    'burst',
+    'count',
+  ]) {
+    if(wpn[prop] === 1) {
+      delete wpn[prop]
     }
   }
-  if(ammoType === 'SupportUnitBullet01') {
-    const custom = getNode(template, 'Ammo_CustomParameter').value
-    ret.supportType = [
-      'life',
-      'plasma',
-      'power',
-      'guard',
-    ][custom[0].value]
-  }
-  if(ammoType === 'GrenadeBullet01') {
-    const custom = getNode(template, 'Ammo_CustomParameter').value
-    if(custom[0].value === 1) {
-      ret.fuse = ret.range
+  for(const prop of [
+    'damage',
+    'speed',
+    'range',
+    'reloadInit',
+  ]) {
+    if(wpn[prop]) {
+      wpn[prop] = +wpn[prop].toFixed(1)
     }
   }
-  ret.range = ret.range * ret.speed / Math.max(ret.gravity || 0, 1)
-  if(ret.piercing) {
-    ret.piercing = true
-  }
-  if(ret.credits) {
-    ret.credits = true
-  }
-  if(!ret.underground) {
-    ret.underground = 'blocked'
+  if(!wpn.underground) {
+    wpn.underground = 'blocked'
   } else {
-    delete ret.underground
+    delete wpn.underground
   }
-  if(ret.energy < 0) {
-    delete ret.energy
+  if(wpn.energy < 0) {
+    delete wpn.energy
   }
-  if(ret.odds === 100) {
-    delete ret.odds
-  }
-  if(ret.burst === 1) {
-    delete ret.burst
-  }
-  if(ret.count === 1) {
-    delete ret.count
+  if(wpn.odds === 100) {
+    delete wpn.odds
   }
 
-  if(group === 'raid') {
-    const custom = getNode(template, 'Ammo_CustomParameter').value
-    let type = strikes[custom[3].value]
-    if(ret.name === 'Rule of God') {
-      type = 'rog'
-      delete ret.radius
-      ret.ammo = 2
-    }
-    if(ret.name === 'Laguna Blaster') {
-      delete ret.radius
-    }
-
-    ret.strikeType = type
-
-    const strike = custom[4].value
-    switch(type) {
-      case 'rog': {
-        break;
-      }
-      case 'bomber': {
-        ret.bombers = strike[1].value
-        ret.shots = strike[10].value[2].value
-        break;
-      }
-      default: { // Shelling
-        ret.shots = strike[2].value
-        break;
-      }
-    }
+  delete wpn.custom
+  delete wpn.wCustom
+  if(!wpn.range) {
+    delete wpn.range
   }
 
-  return ret
+  return wpn
 }
 
-const data = table.map(processWeapon)
-console.log(JSON.stringify(data, null, 2))
+function BlankBullet(wpn) {
+  // Laser guide kit
+  delete wpn.ammo
+}
+
+function BombBullet01(wpn) {
+  const payload = wpn.custom[6].value
+  if(payload === 1) { // Splendor
+    wpn.shots = wpn.custom[7].value[2].value
+  }
+}
+
+function ClusterBullet01(wpn) {
+  const shots = wpn.custom[5].value[2].value
+  const interval = wpn.custom[5].value[3].value + 1
+  wpn.shots = shots
+  wpn.duration = shots * interval
+  if(wpn.duration < 10) {
+    delete wpn.duration
+  }
+}
+
+function FlameBullet02(wpn) {
+  wpn.piercing = true
+  if(wpn.custom[3].value) { // Continous damage type flame
+    wpn.duration = wpn.range
+    wpn.continous = true
+  }
+}
+
+function GrenadeBullet01(wpn) {
+  if(wpn.custom[0].value === 1) {
+    wpn.fuse = wpn.range
+  }
+}
+
+function NapalmBullet01(wpn) {
+  wpn.duration = wpn.custom[4].value[2].value * 3
+}
+
+function SentryGunBullet01(wpn) {
+  wpn.shots = wpn.custom[10].value
+  wpn.shotInterval = wpn.custom[11].value
+}
+
+const subWeaponProps = {
+  type: 'AmmoClass',
+  ammo: 'AmmoCount',
+  weapon: 'xgs_scene_object_class',
+  damage: 'AmmoDamage',
+  speed: 'AmmoSpeed',
+  accuracy: 'FireAccuracy',
+  range: 'AmmoAlive',
+  radius: 'AmmoExplosion',
+  gravity: 'AmmoGravityFactor',
+  piercing: 'AmmoIsPenetration',
+  burst: 'FireBurstCount',
+  burstRate: 'FireBurstInterval',
+  count: 'FireCount',
+  interval: 'FireInterval',
+  lockRange: 'LockonRange',
+  lockTime: 'LockonTime',
+  lockType: 'LockonType',
+}
+
+async function ShieldBashBullet01(wpn) {
+  wpn.damage = wpn.wCustom[0].value
+  wpn.range = Math.round(wpn.wCustom[1].value * 360 / Math.PI)
+  wpn.energy = +(wpn.wCustom[2].value * 100).toFixed(1)
+  delete wpn.speed
+}
+
+async function SmokeCandleBullet01(wpn) {
+  if(wpn.category === 'raid') return
+  delete wpn.damage
+  delete wpn.radius
+  delete wpn.accuracy
+  delete wpn.speed
+  delete wpn.range
+  const strengthParameters = wpn.custom[4].value[3].value[0].value
+  const hpFactor = strengthParameters[0].value
+  const dmgFactor = strengthParameters[1].value
+
+  const vehicle = await loadLinked(wpn.custom[4].value[2].value)
+
+  const hp = getNode(vehicle, 'game_object_durability').value
+  wpn.hp = Math.floor(hp * hpFactor + 0.001)
+
+  const setup = wpn
+    .custom[4]
+    .value[3]
+    .value[2]
+    .value
+    .map(v => v.value[0])
+    .map(v => v?.value)
+    .filter(v => v)
+
+  const setupVegalta = wpn
+    .custom[4]
+    .value[3]
+    .value[4]
+    ?.value
+    .map(v => v.value[0])
+    .map(v => v?.value)
+    .filter(v => v)
+
+  const weapons = await Promise.all([
+    ...setup,
+    ...(setupVegalta || []),
+  ].map(loadLinked))
+  wpn.weapons = weapons.map(template => {
+    const subWpn = {
+      name: getNode(template, 'name').value[1].value,
+    }
+    for(const [prop, node] of Object.entries(subWeaponProps)) {
+      const v = getNode(template, node).value
+      if(v) {
+        subWpn[prop] = v
+      }
+    }
+
+    subWpn.damage *= dmgFactor
+    subWpn.range *= subWpn.speed
+    subWpn.accuracy = +(1 - (subWpn.accuracy || 0)).toFixed(4)
+    if(subWpn.type === 'FlameBullet02') {
+      subWpn.piercing = true
+    }
+    for(const prop of [
+      'damage',
+      'speed',
+      'range',
+    ]) {
+      if(subWpn[prop]) {
+        subWpn[prop] = +subWpn[prop].toFixed(1)
+      }
+    }
+    return subWpn
+  })
+}
+
+function SupportUnitBullet01(wpn) {
+  wpn.supportType = [
+    'life',
+    'plasma',
+    'guard',
+    'power',
+  ][wpn.custom[0].value]
+}
+
+const bullets = {
+  undefined: BlankBullet,
+  BombBullet01,
+  BombBullet02: BombBullet01,
+  ClusterBullet01,
+  FlameBullet02,
+  GrenadeBullet01,
+  NapalmBullet01,
+  SentryGunBullet01,
+  ShieldBashBullet01,
+  SmokeCandleBullet01,
+  SupportUnitBullet01,
+}
+
+const groups = {
+  guide: wpn => {
+    wpn.guideSpeed = +wpn.custom[0].value.toFixed(1)
+    wpn.guideRange = +wpn.custom[1].value.toFixed(1)
+  },
+  support: wpn => {
+    wpn.duration = wpn.range
+  },
+  raid: wpn => {
+    let type = strikes[wpn.custom[3].value]
+    if(wpn.name === 'Rule of God') {
+      type = 'rog'
+      delete wpn.radius
+      wpn.count = 2
+    }
+    if(wpn.name === 'Laguna Blaster') {
+      delete wpn.radius
+    }
+
+    wpn.strikeType = type
+
+    const strike = wpn.custom[4].value
+    switch(type) {
+    case 'rog':
+      break
+    case 'bomber':
+      wpn.units = strike[1].value
+      wpn.shots = strike[10].value[2].value
+      break
+    default: // Shelling
+      wpn.shots = strike[2].value
+    }
+  },
+}
+
+async function extractCalcdata() {
+  const table = await loadJson('weapon/_WEAPONTABLE')
+  return Promise.all(table.variables[0].value.map(processWeapon))
+}
+
+extractCalcdata()
+  .then(data => {
+    console.log(JSON.stringify(data, null, 2))
+  })
+  .catch(console.error)
+  .then(() => {
+    process.exit(0)
+  })

@@ -1,3 +1,8 @@
+import decompileSgo from './sgo/to-json.js'
+import decompileRmp from './rmp/to-json.js'
+import compileSgo from './sgo/from-json.js'
+import compileRmp from './rmp/from-json.js'
+
 const recognized = {
   'SGO\0': 'sgo',
   '\0OGS': 'sgo',
@@ -9,7 +14,7 @@ const recognized = {
   '\0MVB': 'bvm',
 }
 
-function identifyBuffer(buffer) {
+export function identifyBuffer(buffer) {
   const leader = buffer.slice(0, 4).toString().toUpperCase()
   const match = recognized[leader]
   if(match) return match
@@ -21,19 +26,19 @@ const supported = [
   'rmp',
 ]
 
-function decompileBuffer(buffer, size) {
+export function decompileBuffer(buffer, size) {
   const type = identifyBuffer(buffer)
   if(size) buffer = buffer.slice(0, size)
   if(supported.includes(type)) {
     return ({
-      sgo: require('./sgo/to-json'),
-      rmp: require('./rmp/to-json'),
+      sgo: decompileSgo,
+      rmp: decompileRmp,
     })(buffer)
   }
   return buffer.toString('base64')
 }
 
-function identifyData(obj) {
+export function identifyData(obj) {
   if(typeof obj === 'string') return
   if(/^sgo$/i.test(obj.format)) return 'sgo'
   if(obj.variables) return 'sgo'
@@ -44,18 +49,18 @@ function identifyData(obj) {
   if(obj.spawns) return 'rmp'
 }
 
-function compileData(obj) {
+export function compileData(obj) {
   const type = identifyData(obj)
   if(supported.includes(type))  {
     return ({
-      sgo: require('./sgo/from-json'),
-      rmp: require('./rmp/from-json'),
+      sgo: compileSgo,
+      rmp: compileRmp,
     })[type](obj)
   }
   return Buffer.from(obj, 'base64')
 }
 
-module.exports = {
+export default {
   identifyBuffer,
   decompileBuffer,
   identifyData,

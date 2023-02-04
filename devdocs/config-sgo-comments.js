@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ModeList: [
     [
       'GameMode_Scenario', // Title translation key

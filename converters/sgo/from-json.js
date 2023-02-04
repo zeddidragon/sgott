@@ -1,5 +1,5 @@
-const compiler = require('../compiler')
-const { compileData } = require('../infer')
+import compiler from '../compiler.js'
+import { compileData } from '../infer.js'
 
 function compileSgo(obj) {
   const { compile, types } = compiler(obj)
@@ -103,4 +103,4 @@ function compileSgo(obj) {
 compileSgo.compile = compileSgo
 compileSgo.compiler = () => obj => compileSgo(obj)
 
-module.exports = compileSgo
+export default compileSgo

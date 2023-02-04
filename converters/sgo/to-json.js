@@ -1,4 +1,4 @@
-const decompiler = require('../decompiler')
+import decompiler from '../decompiler.js'
 
 function decompileSgo(buffer, config) {
   const { decompile, types } = decompiler('SGO', buffer, config)
@@ -116,4 +116,4 @@ function decompileSgo(buffer, config) {
 decompileSgo.decompile = decompileSgo
 decompileSgo.decompiler = opts => buffer => decompileSgo(buffer, opts)
 
-module.exports = decompileSgo
+export default decompileSgo

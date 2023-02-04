@@ -1,4 +1,4 @@
-const kleur = require('kleur')
+import kleur from 'kleur'
 const { underline, dim } = kleur
 kleur.enabled = process.stdout.isTTY
 
@@ -27,4 +27,4 @@ function hexview(buffer, cfg={}) {
   )
 }
 
-module.exports = hexview
+export default hexview

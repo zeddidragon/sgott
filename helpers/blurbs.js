@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   smokeGrenade: '\n\n' +
     'Press and hold the attack button to wind up your throw, then release to ' +
     'let the smoke grenade fly. ' +

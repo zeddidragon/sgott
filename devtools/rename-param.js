@@ -1,7 +1,9 @@
-const fs = require('fs')
-const allWeapons = require('./all-weapons')
-const getNode = require('../helpers/get-node')
-const meta = require('../converters/sgo/meta').names.ammoClasses.SentryGunBullet01
+import fs from 'fs'
+import allWeapons from 'all-weapons'
+import getNode from '../helpers/get-node'
+import meta from '../converters/sgo/meta'
+  
+const sentryMeta = meta.names.ammoClasses.SentryGunBullet01
 
 for(const [ weapon, id ] of allWeapons()) {
   const type = getNode(weapon, 'AmmoClass').value
@@ -10,9 +12,9 @@ for(const [ weapon, id ] of allWeapons()) {
   if(!custom.value) {
     console.log(getNode(weapon, 'name'))
   }
-  for(var i = 0; i < meta.length; i++) {
+  for(var i = 0; i < sentryMeta.length; i++) {
     const node = custom.value[i]
-    const label = meta[i]
+    const label = sentryMeta[i]
     if(node.options) delete node.options
     if(label) {
       node.name = label

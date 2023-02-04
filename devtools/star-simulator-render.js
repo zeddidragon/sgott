@@ -141,4 +141,4 @@ function render(weapons, maxes) {
 `)
 }
 
-module.exports = render
+export default render

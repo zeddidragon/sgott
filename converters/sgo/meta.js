@@ -388,4 +388,4 @@ const values = {
   }
 }
 
-module.exports = {names, values}
+export default {names, values}

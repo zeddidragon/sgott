@@ -1,11 +1,11 @@
-const fs = require('fs')
+import fs from 'fs'
+
 function allWeapons() {
   return Array.from(eachWeapon())
 }
 
 function eachWeapon() {
   const table = require('../data/5/weapons/weapontable.json').variables[0].value
-  var index = 0
 
   const weaponIterator = {
     *[Symbol.iterator]() {
@@ -21,4 +21,4 @@ function eachWeapon() {
 
 allWeapons.each = eachWeapon
 
-module.exports = allWeapons
+export default allWeapons

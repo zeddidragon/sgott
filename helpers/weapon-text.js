@@ -1,4 +1,4 @@
-const blurbs = require('./blurbs')
+import blurbs from './blurbs.js'
 
 function format(pair) {
   if(!pair) return ''
@@ -32,11 +32,11 @@ function weaponText(template, text) {
     const reloadType = findVar('ReloadType').value
     if(reloadType) {
       entries.push([
-        'Reload', (+findVar('ReloadTime').value) + 'pt'
+        'Reload', (+findVar('ReloadTime').value) + 'pt',
       ])
     } else {
       entries.push([
-        'Reload Time', (+findVar('ReloadTime').value / 60).toFixed(1) + 'sec'
+        'Reload Time', (+findVar('ReloadTime').value / 60).toFixed(1) + 'sec',
       ])
     }
     if(zoom) entries.push(['Zoom', `${+zoom}x`])
@@ -121,7 +121,7 @@ function weaponText(template, text) {
         attacks.push(['Defense', `${Math.round(params[2].value * 100)}%`])
       }
       return attacks
-    }
+    },
   }
 
   function semiStats() {
@@ -136,12 +136,12 @@ function weaponText(template, text) {
   }
 
   return text
-      .replace('$AUTOSTATS$', autoStats())
-      .replace('$SEMISTATS$', semiStats())
-      .replace('$SMOKEGRENADE$', blurbs.smokeGrenade)
-      .replace('$CREDITS$', blurbs.credits)
-      .replace('$DASH$', blurbs.dash)
-      .replace('$JUMP$', blurbs.jump)
+    .replace('$AUTOSTATS$', autoStats())
+    .replace('$SEMISTATS$', semiStats())
+    .replace('$SMOKEGRENADE$', blurbs.smokeGrenade)
+    .replace('$CREDITS$', blurbs.credits)
+    .replace('$DASH$', blurbs.dash)
+    .replace('$JUMP$', blurbs.jump)
 }
 
-module.exports = weaponText
+export default weaponText

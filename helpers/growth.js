@@ -11,4 +11,4 @@ function growth({ base, zero, exp, lvMin, lvMax, type, algo }) {
   return ret
 }
 
-module.exports = growth
+export default growth

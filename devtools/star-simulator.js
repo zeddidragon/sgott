@@ -1,6 +1,6 @@
-const allWeapons = require('./all-weapons')
-const getNode = require('../helpers/get-node')
-const render = require('./star-simulator-render')
+import allWeapons from './all-weapons'
+import getNode from '../helpers/get-node'
+import render from './star-simulator-render'
 
 const maxDmg = {}
 const processed = []
@@ -9,12 +9,12 @@ for(const [ weapon, meta ] of allWeapons.each()) {
   const name = getNode(weapon, 'name.en')
   const category = meta[2].value
 
-  if(!dmg) return
+  if(!dmg) continue
   const wpn = { name: name.value, category }
   if(Array.isArray(dmg.value)) {
     const [
       base,
-      _,
+      ,
       minLevel,
       maxLevel,
       zeroFactor,
@@ -41,5 +41,4 @@ for(const [ weapon, meta ] of allWeapons.each()) {
 }
 
 
-//console.log(processed)
 render(processed, maxDmg)
