@@ -228,6 +228,36 @@ function GrenadeBullet01(wpn) {
   }
 }
 
+function PileBunkerBullet01(wpn) {
+  if(!Array.isArray(wpn.wCustom[0].value)) return
+  const attacks = wpn.wCustom[0].value.map(({ value: atk }, i) => {
+    const obj = {
+      name: 'Combo',
+      damage: Math.round(atk[3].value * wpn.damage),
+      range: Math.round(atk[5].value * wpn.range * wpn.speed),
+    }
+    if(wpn.piercing) {
+      obj.piercing = wpn.piercing
+    }
+    if(wpn.burst > 1) {
+      obj.count = wpn.burst
+    }
+    return obj
+  })
+  wpn.attacks = attacks
+  const low = attacks.shift()
+  wpn.damage = low.damage
+  wpn.range = low.range
+  wpn.radius = low.radius
+  if(wpn.burst > 1) {
+    wpn.count = wpn.burst
+    delete wpn.burst
+  }
+  if(attacks.length) {
+    delete wpn.interval
+  }
+}
+
 function NapalmBullet01(wpn) {
   wpn.duration = wpn.custom[4].value[2].value * 3
 }
@@ -369,6 +399,7 @@ const bullets = {
   ClusterBullet01,
   FlameBullet02,
   GrenadeBullet01,
+  PileBunkerBullet01,
   NapalmBullet01,
   SentryGunBullet01,
   ShieldBashBullet01,
