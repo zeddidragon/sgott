@@ -443,9 +443,73 @@ const groups = {
   },
 }
 
-async function extractCalcdata() {
+async function extractWeaponData() {
   const table = await loadJson('weapon/_WEAPONTABLE')
   return Promise.all(table.variables[0].value.map(processWeapon))
+}
+
+const modes = {
+  GameMode_Scenario: {
+    name: 'Offline',
+    missions: 89,
+  },
+  GameMode_OnlineScenario: {
+    name: 'Online',
+    missions: 98,
+  },
+  GameMode_Versus: {
+    name: 'Versus',
+  },
+}
+const difficulties = [
+  'Easy',
+  'Normal',
+  'Hard',
+  'Hardest',
+  'Inferno',
+]
+async function processMode({ value: mode }) {
+  const key = mode[0].value
+  const obj = {
+    ...modes[key],
+    difficulties: mode[6].value.map(({ value: d }, i) => {
+      return {
+        name: difficulties[i],
+        progressScaling: d[0].value.map(v => v.value),
+        playerScaling: d[1].value.map(v => +v.value.toFixed(2)),
+        drops: d[2].value.slice(0, 2).map(v => +(v.value * 25).toFixed(2)),
+        dropSpread: +(d[2].value[2].value * 25).toFixed(2),
+        weaponLimits: d[6].value ? d[6].value.map(v => {
+          if(v.value >= 0) {
+            return +(v.value * 25).toFixed(2)
+          } else {
+            return -1
+          }
+        }) : -1,
+        armorLimits: d[7].value ? d[7].value.map(v => v.value) : -1,
+      }
+    }),
+  }
+  return obj
+}
+ 
+async function extractModesData() {
+  const table = await loadJson('CONFIG')
+  return Promise.all(table.variables[0].value.slice(0, 2).map(processMode))
+}
+
+async function extractCalcdata() {
+  const [
+    weapons,
+    modes,
+  ] = await Promise.all([
+    extractWeaponData(),
+    extractModesData(),
+  ])
+  return {
+    weapons,
+    modes,
+  }
 }
 
 extractCalcdata()
