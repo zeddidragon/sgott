@@ -1,6 +1,9 @@
 import syncFs from 'fs'
 import process from 'process'
+import bullets, { assignGame } from './bullets.js'
 const fs = syncFs.promises
+
+assignGame(5)
 
 function getNode(template, name) {
   return template.variables.find(n => n.name === name)
@@ -158,6 +161,7 @@ async function processWeapon({ value: node }) {
   ret.credits = ret.credits === 1
   ret.zoom = ret.zoom || 0
   ret.underground = !!ret.underground
+  await bullets[ret.type]?.(ret)
 
   return ret
 }
