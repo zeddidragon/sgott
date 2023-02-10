@@ -1,4 +1,5 @@
 import syncFs from 'fs'
+import process from 'process'
 const fs = syncFs.promises
 
 function getNode(template, name) {
@@ -483,32 +484,41 @@ async function processMode({ value: mode }) {
           if(v.value >= 0) {
             return +(v.value * 25).toFixed(2)
           } else {
-            return -1
+            return null
           }
         }) : -1,
-        armorLimits: d[7].value ? d[7].value.map(v => v.value) : -1,
+        armorLimits: d[7].value ? d[7].value.map(v => v.value) : null,
       }
     }),
   }
   return obj
 }
  
-async function extractModesData() {
-  const table = await loadJson('CONFIG')
-  return Promise.all(table.variables[0].value.slice(0, 2).map(processMode))
+async function extractModesData(config) {
+  const table = await loadJson(config)
+  const modeList = table.variables.find(v => v.name === 'ModeList').value
+  return Promise.all(modeList.slice(0, 2).map(processMode))
 }
 
 async function extractCalcdata() {
   const [
     weapons,
     modes,
+    dlc1,
+    dlc2,
   ] = await Promise.all([
     extractWeaponData(),
-    extractModesData(),
+    extractModesData('CONFIG'),
+    extractModesData('PACKAGE1'),
+    extractModesData('PACKAGE2'),
   ])
   return {
     weapons,
-    modes,
+    modes: {
+      main: modes,
+      dlc1,
+      dlc2,
+    },
   }
 }
 
