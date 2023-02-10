@@ -180,9 +180,6 @@ async function processWeapon({ value: node }) {
   if(wpn.energy < 0) {
     delete wpn.energy
   }
-  if(wpn.odds === 100) {
-    delete wpn.odds
-  }
 
   delete wpn.custom
   delete wpn.wCustom
