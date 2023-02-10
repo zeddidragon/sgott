@@ -461,6 +461,22 @@ const modes = {
   GameMode_Versus: {
     name: 'Versus',
   },
+  MissionPack01_ScenarioMode: {
+    name: 'DLC1',
+    missions: 26,
+  },
+  MissionPack01_OnlineScenarioMode: {
+    name: 'DLC1',
+    missions: 26,
+  },
+  MissionPack02_ScenarioMode: {
+    name: 'DLC2',
+    missions: 23,
+  },
+  MissionPack02_OnlineScenarioMode: {
+    name: 'DLC2',
+    missions: 23,
+  },
 }
 const difficulties = [
   'Easy',
@@ -514,11 +530,11 @@ async function extractCalcdata() {
   ])
   return {
     weapons,
-    modes: {
-      main: modes,
-      dlc1,
-      dlc2,
-    },
+    modes: [
+      ...modes,
+      dlc1[1],
+      dlc2[1],
+    ],
   }
 }
 
