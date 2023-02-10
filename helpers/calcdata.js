@@ -139,7 +139,7 @@ async function processWeapon({ value: node }) {
     }
   }
 
-  wpn.accuracy = +(1 - (wpn.accuracy || 0)).toFixed(4)
+  wpn.accuracy = +(wpn.accuracy || 0).toFixed(4)
   await bullets[wpn.type]?.(wpn)
   groups[group]?.(wpn)
   if(wpn.range && wpn.speed) {
