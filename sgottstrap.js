@@ -1,18 +1,18 @@
 #!/usr/bin/env node
-const fs = require('fs')
-const deepEqual = require('fast-deep-equal')
-const CSON = require('cson')
-const sgoToJson = require('./converters/sgo/to-json')
-const jsonToSgo = require('./converters/sgo/from-json')
-const generateWeaponText = require('./helpers/weapon-text')
+import fs from 'fs'
+import deepEqual from 'fast-deep-equal'
+import CSON from 'cson'
+import sgoToJson from './converters/sgo/to-json.js'
+import jsonToSgo from './converters/sgo/from-json.js'
+import generateWeaponText from './helpers/weapon-text.js'
 
-const config41 = require('./data/41/config.json')
-const weaponTable41 = require('./data/41/weapons/_WEAPONTABLE.json')
-const weaponText41 = require('./data/41/weapons/_WEAPONTEXT.json')
+import config41 from './data/41/CONFIG.json' assert { type: 'json' }
+import weaponTable41 from './data/41/weapon/_WEAPONTABLE.json' assert { type: 'json' }
+import weaponText41 from './data/41/weapon/_WEAPONTEXT.json' assert { type: 'json' }
 
-const config5 = require('./data/5/config.json')
-const weaponTable5 = require('./data/5/weapons/WEAPONTABLE.json')
-const weaponText5 = require('./data/5/weapons/WEAPONTEXT.json')
+import config5 from './data/5/CONFIG.json' assert { type: 'json' }
+import weaponTable5 from './data/5/weapon/WEAPONTABLE.json' assert { type: 'json' }
+import weaponText5 from './data/5/weapon/WEAPONTEXT.json' assert { type: 'json' }
 
 const edfVersion = fs.existsSync('EDF5.exe') ? 5 : 41
 const edfName = edfVersion === 5 ? 'EDF5' : 'EDF4.1'
