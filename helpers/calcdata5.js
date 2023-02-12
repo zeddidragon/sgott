@@ -1,13 +1,10 @@
 import syncFs from 'fs'
 import process from 'process'
+import getNode from './get-node.js'
 import bullets, { assignGame } from './bullets.js'
 const fs = syncFs.promises
 
 assignGame(5)
-
-function getNode(template, name) {
-  return template.variables.find(n => n.name === name)
-}
 
 function loadJson(path) {
   return fs.readFile(`data/5/${path}.json`).then(data => JSON.parse(data))
@@ -89,26 +86,32 @@ const unlockStates = [
 ]
 
 const autoProps = {
+  type: 'AmmoClass',
   ammo: 'AmmoCount',
   weapon: 'xgs_scene_object_class',
   damage: 'AmmoDamage',
   speed: 'AmmoSpeed',
   accuracy: 'FireAccuracy',
-  life: 'AmmoAlive',
   radius: 'AmmoExplosion',
   gravity: 'AmmoGravityFactor',
   piercing: 'AmmoIsPenetration',
   energy: 'EnergyChargeRequire',
+  life: 'AmmoAlive',
   burst: 'FireBurstCount',
   burstRate: 'FireBurstInterval',
   count: 'FireCount',
   interval: 'FireInterval',
+  lockRange: 'LockonRange',
+  lockTime: 'LockonTime',
+  lockType: 'LockonType',
+  lockDist: 'Lockon_DistributionType',
   reload: 'ReloadTime',
-  reloadInit: 'ReloadInit',
   credits: 'ReloadType',
   secondary: 'SecondaryFire_Type',
   zoom: 'SecondaryFire_Parameter',
   underground: 'use_underground',
+  custom: 'Ammo_CustomParameter',
+  wCustom: 'custom_parameter',
 }
 
 async function processWeapon({ value: node }) {
@@ -119,7 +122,7 @@ async function processWeapon({ value: node }) {
   const group = categories[character][category % 100]
 
   const template = await loadJson(`weapon/${id.toUpperCase()}`)
-  const ret = {
+  const wpn = {
     id: id,
     name: getNode(template, 'name.en').value,
     level: level,
@@ -133,9 +136,13 @@ async function processWeapon({ value: node }) {
     const value = getNode(template, node).value
     const isArray = Array.isArray(value)
     const isSubArray = isArray && Array.isArray(value[0]?.value)
-    if(isSubArray && value[0].value.length || isArray && value.length === 6) {
+    if(['custom', 'wCustom'].includes(prop)) {
+      wpn[prop] = value
+    } else if(isSubArray && value[0].value.length
+      || isArray && value.length === 6
+    ) {
       const arr = isSubArray ? value[0].value : value
-      ret[prop] = {
+      wpn[prop] = {
         base:  +arr[0].value.toFixed(2),
         algo:  +arr[1].value.toFixed(2),
         lvMin: +arr[2].value.toFixed(2),
@@ -145,25 +152,66 @@ async function processWeapon({ value: node }) {
         type: arr[0].type,
       }
     } else if (isArray && value.length === 1){
-      ret[prop] = value[0].value
+      wpn[prop] = value[0].value
     } else if (isArray) {
-      ret[prop] = value.map(v => v.value)
+      wpn[prop] = value.map(v => v.value)
     } else if(typeof value === 'number' && !isNaN(value)) {
-      ret[prop] = +value.toFixed(2)
+      wpn[prop] = +value.toFixed(2)
     } else {
-      ret[prop] = value
+      wpn[prop] = value
     }
   }
 
-  if(ret.energy[0] === -1) ret.energy = -1
-  ret.accuracy
-  ret.piercing = !!ret.piercing
-  ret.credits = ret.credits === 1
-  ret.zoom = ret.zoom || 0
-  ret.underground = !!ret.underground
-  await bullets[ret.type]?.(ret)
+  if(wpn.energy[0] === -1) wpn.energy = -1
+  await bullets[wpn.type]?.(wpn)
+  for(const prop of [
+    'piercing',
+    'credits',
+  ]) {
+    if(wpn[prop]) {
+      wpn[prop] = true
+    } else {
+      delete wpn[prop]
+    }
+  }
+  for(const prop of [
+    'burst',
+    'count',
+  ]) {
+    if(wpn[prop] === 1) {
+      delete wpn[prop]
+    }
+  }
+  for(const prop of [
+    'damage',
+    'speed',
+    'range',
+    'reloadInit',
+  ]) {
+    if(wpn[prop]?.base) {
+      wpn[prop].base = +wpn[prop].base.toFixed(1)
+    } else if(wpn[prop]) {
+      wpn[prop] = +wpn[prop].toFixed(1)
+    }
+  }
+  if(!wpn.underground) {
+    wpn.underground = 'blocked'
+  } else {
+    delete wpn.underground
+  }
+  if(wpn.energy < 0) {
+    delete wpn.energy
+  }
 
-  return ret
+  delete wpn.custom
+  delete wpn.wCustom
+  if(!wpn.range) {
+    delete wpn.range
+  }
+  delete wpn.custom
+  delete wpn.wCustom
+
+  return wpn
 }
 
 async function extractWeaponData() {

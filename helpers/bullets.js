@@ -1,4 +1,5 @@
 import syncFs from 'fs'
+import getNode from './get-node.js'
 const fs = syncFs.promises
 
 let game
@@ -47,9 +48,13 @@ function ClusterBullet01(wpn) {
 
 function FlameBullet02(wpn) {
   wpn.piercing = true
-  if(wpn.custom[3].value) { // Continous damage type flame
-    wpn.duration = wpn.range
+  const isContinous = wpn.custom[0].value || wpn.custom[3].value
+  if(isContinous) { // Continous damage type flame
+    wpn.duration = wpn.life
     wpn.continous = true
+  }
+  if(!wpn.interval) {
+    wpn.interval = 1
   }
 }
 
@@ -146,8 +151,17 @@ async function ShockWaveBullet01(wpn) {
   wpn.radius = low.radius
 }
 
+const raidCategories = [
+  'raid',
+  'artillery',
+  'gunship',
+  'bomber',
+  'missile',
+  'satellite',
+]
 async function SmokeCandleBullet01(wpn) {
-  if(wpn.category === 'raid') return
+  if(raidCategories.includes(wpn.category)) return
+  return
   delete wpn.damage
   delete wpn.radius
   delete wpn.accuracy
@@ -167,7 +181,7 @@ async function SmokeCandleBullet01(wpn) {
     .value[3]
     .value[2]
     .value
-    .map(v => v.value[0])
+    ?.map(v => v.value[0])
     .map(v => v?.value)
     .filter(v => v)
 

@@ -1,13 +1,10 @@
 import syncFs from 'fs'
 import process from 'process'
+import getNode from './get-node.js'
 import bullets, { assignGame } from './bullets.js'
 const fs = syncFs.promises
 
 assignGame(41)
-
-function getNode(template, name) {
-  return template.variables.find(n => n.name === name)
-}
 
 function loadJson(path) {
   return fs.readFile(`data/41/${path}.json`).then(data => JSON.parse(data))
@@ -77,11 +74,11 @@ const autoProps = {
   damage: 'AmmoDamage',
   speed: 'AmmoSpeed',
   accuracy: 'FireAccuracy',
-  range: 'AmmoAlive',
   radius: 'AmmoExplosion',
   gravity: 'AmmoGravityFactor',
   piercing: 'AmmoIsPenetration',
   energy: 'EnergyChargeRequire',
+  life: 'AmmoAlive',
   burst: 'FireBurstCount',
   burstRate: 'FireBurstInterval',
   count: 'FireCount',
@@ -91,7 +88,6 @@ const autoProps = {
   lockType: 'LockonType',
   lockDist: 'Lockon_DistributionType',
   reload: 'ReloadTime',
-  reloadInit: 'ReloadInit',
   credits: 'ReloadType',
   secondary: 'SecondaryFire_Type',
   zoom: 'SecondaryFire_Parameter',
@@ -143,6 +139,8 @@ async function processWeapon({ value: node }) {
   ]) {
     if(wpn[prop]) {
       wpn[prop] = true
+    } else {
+      delete wpn[prop]
     }
   }
   for(const prop of [
