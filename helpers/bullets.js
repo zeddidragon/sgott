@@ -25,6 +25,9 @@ function loadLinked(path) {
 }
 
 function BlankBullet(wpn) {
+  if(raidCategories.includes(wpn.category)) {
+    return AirRaids(wpn)
+  }
   // Laser guide kit
   delete wpn.ammo
 }
@@ -140,6 +143,7 @@ function ShockWaveBullet01(wpn) {
 
 const raidCategories = [
   'raid',
+  'planes',
   'artillery',
   'gunship',
   'bomber',
@@ -147,7 +151,40 @@ const raidCategories = [
   'satellite',
 ]
 
+const strikes = [
+  'shelling',
+  'satellite',
+  'bomber',
+]
 async function AirRaids(wpn) {
+  let type = strikes[wpn.custom[3].value]
+  if(wpn.name === 'Rule of God') {
+    type = 'rog'
+    delete wpn.radius
+    wpn.count = 2
+  }
+  if(wpn.name === 'Laguna Blaster') {
+    delete wpn.radius
+  }
+
+  wpn.strikeType = type
+  let strike = wpn.custom[4]?.value
+
+  if(wpn.weapon === 'Weapon_RadioContact') {
+    type = 'bomber'
+    strike = wpn.custom[2].value
+  }
+
+  switch(type) {
+  case 'rog':
+    break
+  case 'bomber':
+    wpn.units = strike[1].value
+    wpn.shots = strike[10].value[2].value
+    break
+  default: // Shelling
+    wpn.shots = strike[2].value
+  }
 }
 
 async function SmokeCandleBullet01(wpn) {
@@ -244,6 +281,10 @@ async function SmokeCandleBullet01(wpn) {
   }
 }
 
+async function SmokeCandleBullet02(wpn) {
+  return AirRaids(wpn)
+}
+
 function SupportUnitBullet01(wpn) {
   wpn.supportType = [
     'life',
@@ -254,6 +295,7 @@ function SupportUnitBullet01(wpn) {
 }
 
 export default {
+  '': BlankBullet,
   undefined: BlankBullet,
   BombBullet01,
   BombBullet02: BombBullet01,
@@ -266,5 +308,6 @@ export default {
   ShieldBashBullet01,
   ShockWaveBullet01,
   SmokeCandleBullet01,
+  SmokeCandleBullet02,
   SupportUnitBullet01,
 }

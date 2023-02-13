@@ -180,31 +180,6 @@ const groups = {
   support: wpn => {
     wpn.duration = wpn.life
   },
-  raid: wpn => {
-    let type = strikes[wpn.custom[3].value]
-    if(wpn.name === 'Rule of God') {
-      type = 'rog'
-      delete wpn.radius
-      wpn.count = 2
-    }
-    if(wpn.name === 'Laguna Blaster') {
-      delete wpn.radius
-    }
-
-    wpn.strikeType = type
-
-    const strike = wpn.custom[4].value
-    switch(type) {
-    case 'rog':
-      break
-    case 'bomber':
-      wpn.units = strike[1].value
-      wpn.shots = strike[10].value[2].value
-      break
-    default: // Shelling
-      wpn.shots = strike[2].value
-    }
-  },
 }
 
 async function extractWeaponData() {
