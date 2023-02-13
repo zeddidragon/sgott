@@ -161,7 +161,6 @@ const raidCategories = [
 ]
 async function SmokeCandleBullet01(wpn) {
   if(raidCategories.includes(wpn.category)) return
-  return
   delete wpn.damage
   delete wpn.radius
   delete wpn.accuracy
@@ -195,12 +194,15 @@ async function SmokeCandleBullet01(wpn) {
     .filter(v => v)
 
   const weapons = await Promise.all([
-    ...setup,
+    ...(setup || []),
     ...(setupVegalta || []),
   ].map(loadLinked))
   wpn.weapons = weapons.map(template => {
-    const subWpn = {
-      name: getNode(template, 'name').value[1].value,
+    let subWpn
+    const nameNode = getNode(template, 'name.en')
+      || getNode(template, 'name').value[1]
+    subWpn = {
+      name: nameNode.value,
     }
     for(const [prop, node] of Object.entries(subWeaponProps)) {
       const v = getNode(template, node).value
