@@ -66,7 +66,7 @@ const categories = {
     'mech',
     'artillery',
     'gunship',
-    'bomber',
+    'planes',
     'missile',
     'satellite',
     null,
@@ -74,7 +74,7 @@ const categories = {
     null,
     null,
     null,
-    'robo',
+    'super',
   ],
 }
 
