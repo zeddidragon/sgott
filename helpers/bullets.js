@@ -69,14 +69,9 @@ function PileBunkerBullet01(wpn) {
   const attacks = wpn.wCustom[0].value.map(({ value: atk }) => {
     const obj = {
       name: 'Combo',
-      damage: +atk[1].value.toFixed(2),
+      damage: +atk[2].value.toFixed(2),
       speed: +atk[4].value.toFixed(2),
-    }
-    if(wpn.piercing) {
-      obj.piercing = wpn.piercing
-    }
-    if(wpn.burst > 1) {
-      obj.count = wpn.burst
+      swing: +atk[1].value.toFixed(2),
     }
     return obj
   })
