@@ -110,7 +110,7 @@ const subWeaponProps = {
   damage: 'AmmoDamage',
   speed: 'AmmoSpeed',
   accuracy: 'FireAccuracy',
-  range: 'AmmoAlive',
+  life: 'AmmoAlive',
   radius: 'AmmoExplosion',
   gravity: 'AmmoGravityFactor',
   piercing: 'AmmoIsPenetration',
@@ -184,6 +184,15 @@ async function SmokeCandleBullet01(wpn) {
     .map(v => v?.value)
     .filter(v => v)
 
+  const setupBikes = wpn
+    .custom[4]
+    .value[3]
+    .value[3]
+    ?.value
+    .map(v => v.value[0])
+    .map(v => v?.value)
+    .filter(v => typeof v === 'string' && v.endsWith('.sgo'))
+
   const setupVegalta = wpn
     .custom[4]
     .value[3]
@@ -195,6 +204,7 @@ async function SmokeCandleBullet01(wpn) {
 
   const weapons = await Promise.all([
     ...(setup || []),
+    ...(setupBikes || []),
     ...(setupVegalta || []),
   ].map(loadLinked))
   wpn.weapons = weapons.map(template => {
@@ -212,22 +222,34 @@ async function SmokeCandleBullet01(wpn) {
     }
 
     subWpn.damage *= dmgFactor
-    subWpn.range *= subWpn.speed
-    subWpn.accuracy = +(1 - (subWpn.accuracy || 0)).toFixed(4)
+    subWpn.accuracy = +(subWpn.accuracy || 0).toFixed(2)
     if(subWpn.type === 'FlameBullet02') {
       subWpn.piercing = true
     }
     for(const prop of [
       'damage',
       'speed',
-      'range',
+      'accuracy',
     ]) {
       if(subWpn[prop]) {
-        subWpn[prop] = +subWpn[prop].toFixed(1)
+        subWpn[prop] = +subWpn[prop].toFixed(2)
       }
     }
     return subWpn
   })
+
+  if(wpn.weapons[wpn.weapons.length - 1]?.name === 'FUEL') {
+    const [fuel, usage] = wpn.custom
+      .find(n => n.type === 'ptr')
+      .value
+      .find(n => n.type === 'ptr')
+      .value[2]
+      .value
+      .map(v => v.value)
+    wpn.fuel = fuel
+    wpn.fuelUsage = +usage.toFixed(2)
+    wpn.weapons.pop()
+  }
 }
 
 function SupportUnitBullet01(wpn) {
