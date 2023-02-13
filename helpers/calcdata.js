@@ -129,9 +129,6 @@ async function processWeapon({ value: node }) {
   wpn.accuracy = +(wpn.accuracy || 0).toFixed(4)
   await bullets[wpn.type]?.(wpn)
   groups[group]?.(wpn)
-  if(wpn.range && wpn.speed) {
-    wpn.range *= wpn.speed
-  }
 
   for(const prop of [
     'piercing',
@@ -154,7 +151,6 @@ async function processWeapon({ value: node }) {
   for(const prop of [
     'damage',
     'speed',
-    'range',
     'reloadInit',
   ]) {
     if(wpn[prop]) {
@@ -172,9 +168,6 @@ async function processWeapon({ value: node }) {
 
   delete wpn.custom
   delete wpn.wCustom
-  if(!wpn.range) {
-    delete wpn.range
-  }
 
   return wpn
 }
@@ -185,7 +178,7 @@ const groups = {
     wpn.guideRange = +wpn.custom[1].value.toFixed(1)
   },
   support: wpn => {
-    wpn.duration = wpn.range
+    wpn.duration = wpn.life
   },
   raid: wpn => {
     let type = strikes[wpn.custom[3].value]

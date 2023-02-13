@@ -185,7 +185,6 @@ async function processWeapon({ value: node }) {
   for(const prop of [
     'damage',
     'speed',
-    'range',
     'reloadInit',
   ]) {
     if(wpn[prop]?.base) {
@@ -205,9 +204,6 @@ async function processWeapon({ value: node }) {
 
   delete wpn.custom
   delete wpn.wCustom
-  if(!wpn.range) {
-    delete wpn.range
-  }
   delete wpn.custom
   delete wpn.wCustom
 

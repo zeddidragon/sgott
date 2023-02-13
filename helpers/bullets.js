@@ -66,11 +66,11 @@ function GrenadeBullet01(wpn) {
 
 function PileBunkerBullet01(wpn) {
   if(!Array.isArray(wpn.wCustom[0].value)) return
-  const attacks = wpn.wCustom[0].value.map(({ value: atk }, i) => {
+  const attacks = wpn.wCustom[0].value.map(({ value: atk }) => {
     const obj = {
       name: 'Combo',
-      damage: Math.round(atk[3].value * wpn.damage),
-      range: Math.round(atk[5].value * wpn.range * wpn.speed),
+      damage: +atk[1].value.toFixed(2),
+      speed: +atk[4].value.toFixed(2),
     }
     if(wpn.piercing) {
       obj.piercing = wpn.piercing
@@ -81,15 +81,11 @@ function PileBunkerBullet01(wpn) {
     return obj
   })
   wpn.attacks = attacks
-  const low = attacks.shift()
-  wpn.damage = low.damage
-  wpn.range = low.range
-  wpn.radius = low.radius
   if(wpn.burst > 1) {
     wpn.count = wpn.burst
     delete wpn.burst
   }
-  if(attacks.length) {
+  if(attacks.length > 1) {
     delete wpn.interval
   }
 }
@@ -123,7 +119,7 @@ const subWeaponProps = {
   lockType: 'LockonType',
 }
 
-async function ShieldBashBullet01(wpn) {
+function ShieldBashBullet01(wpn) {
   wpn.defense = Math.round(wpn.wCustom[0].value * 100)
   wpn.range = Math.round(wpn.wCustom[1].value * 360 / Math.PI)
   wpn.energy = +(wpn.wCustom[2].value * 100).toFixed(1)
@@ -132,23 +128,19 @@ async function ShieldBashBullet01(wpn) {
 }
 
 // Hammers and Blades
-async function ShockWaveBullet01(wpn) {
+function ShockWaveBullet01(wpn) {
   wpn.defense = Math.round(wpn.wCustom[2].value * 100) // Defense
   const attacks = wpn.wCustom[3].value.map(({ value: atk }, i) => {
     return {
       name: ['Low', 'Mid', 'Max'][i],
       charge: atk[0].value,
       type: atk[6].value || wpn.type,
-      damage: Math.round(atk[3].value * wpn.damage),
-      range: Math.round(atk[5].value * wpn.range * wpn.speed),
+      damage: +atk[3].value.toFixed(2),
+      speed: +atk[5].value.toFixed(2),
       radius: Math.round(atk[4].value * 2),
     }
   })
   wpn.attacks = attacks
-  const low = attacks.shift()
-  wpn.damage = low.damage
-  wpn.range = low.range
-  wpn.radius = low.radius
 }
 
 const raidCategories = [
@@ -159,13 +151,18 @@ const raidCategories = [
   'missile',
   'satellite',
 ]
+
+async function AirRaids(wpn) {
+}
+
 async function SmokeCandleBullet01(wpn) {
-  if(raidCategories.includes(wpn.category)) return
+  if(raidCategories.includes(wpn.category)) {
+    return AirRaids(wpn)
+  }
   delete wpn.damage
   delete wpn.radius
   delete wpn.accuracy
   delete wpn.speed
-  delete wpn.range
   const strengthParameters = wpn.custom[4].value[3].value[0].value
   const hpFactor = strengthParameters[0].value
   const dmgFactor = strengthParameters[1].value
