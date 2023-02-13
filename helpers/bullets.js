@@ -60,7 +60,7 @@ function FlameBullet02(wpn) {
 
 function GrenadeBullet01(wpn) {
   if(wpn.custom[0].value === 1) {
-    wpn.fuse = wpn.range
+    wpn.fuse = wpn.life
   }
 }
 
