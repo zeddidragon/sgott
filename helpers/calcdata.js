@@ -174,8 +174,8 @@ async function processWeapon({ value: node }) {
 
 const groups = {
   guide: wpn => {
-    wpn.guideSpeed = +wpn.custom[0].value.toFixed(1)
-    wpn.guideRange = +wpn.custom[1].value.toFixed(1)
+    wpn.lockTime = +wpn.custom[0].value.toFixed(1)
+    wpn.lockRange = +wpn.custom[1].value.toFixed(1)
   },
   support: wpn => {
     wpn.duration = wpn.life
