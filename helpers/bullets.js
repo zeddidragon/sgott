@@ -208,19 +208,19 @@ const SupportProps = {
   // Wing Diver
   200: (wpn, v) => {
     const [side, forward, rear] = v.map(sv => +sv.value.toFixed(2))
-    wpn.thrustForward = forward
-    wpn.thrustSide = side
-    wpn.thrustRear = rear
+    wpn.boostForward = forward
+    wpn.boostSide = side
+    wpn.boostRear = rear
   },
   201: (wpn, v) => { wpn.boostConsumption = +v.toFixed(2) },
-  202: (wpn, v) => { wpn.flightSpeed = +v.toFixed(2) },
+  202: (wpn, v) => { wpn.flightSpeedUp = +v.toFixed(2) },
+  205: (wpn, v) => { wpn.flightConsumption = +v.toFixed(2) },
   206: (wpn, v) => { wpn.weaponReload = +v.toFixed(2) },
   208: (wpn, v) => { wpn.chargeSpeed = +v.toFixed(2) },
   209: (wpn, v) => { wpn.emergencyChargeSpeed = +v.toFixed(2) },
   203: (wpn, v) => { wpn.prop203 = +v.toFixed(2) },
   204: (wpn, v) => { wpn.prop204 = +v.toFixed(2) },
-  205: (wpn, v) => { wpn.prop205 = +v.toFixed(2) },
-  210: (wpn, v) => { wpn.prop210 = +v.toFixed(2) },
+  210: (wpn, v) => { wpn.maxAltitude = +v.toFixed(2) },
   // Fencer
   8: (wpn, v) => { wpn.isBarricade = !!v },
   9: (wpn, v) => { wpn.equipRecoil = +v.toFixed(2) },
