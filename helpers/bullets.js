@@ -28,6 +28,9 @@ function BlankBullet(wpn) {
   if(raidCategories.includes(wpn.category)) {
     return AirRaids(wpn)
   }
+  if(wpn.weapon === 'Weapon_Accessory') {
+    return Support(wpn)
+  }
   // Laser guide kit
   delete wpn.ammo
 }
@@ -184,6 +187,75 @@ async function AirRaids(wpn) {
     break
   default: // Shelling
     wpn.shots = strike[2].value
+  }
+}
+
+const SupportProps = {
+  // Ranger
+  0: (wpn, v) => { wpn.allyRecovery = +v.toFixed(2) },
+  1: (wpn, v) => { wpn.itemRange = +v.toFixed(2) },
+  2: (wpn, v) => { wpn.hitSlowdown = +v.toFixed(2) },
+  15: (wpn, v) => { wpn.walkSpeed = +v.toFixed(2) },
+  14: (wpn, v) => { wpn.isKnockImmune = !!v },
+  100: (wpn, v) => { wpn.sprintSpeed = +v.toFixed(2) },
+  101: (wpn, v) => { wpn.sprintSwirl = +v.toFixed(2) },
+  102: (wpn, v) => { wpn.sprintAcceleration = +v.toFixed(2) },
+  103: (wpn, v) => { wpn.sprintDestruction = !!v },
+  104: (wpn, v) => { wpn.sprintHitSlowdown = +v.toFixed(2) },
+  12: (wpn, v) => { wpn.isMultiLock = !!v },
+  13: (wpn, v) => { wpn.lockTime = +v.toFixed(2) },
+  16: (wpn, v) => { wpn.lockRange = +v.toFixed(2) },
+  // Wing Diver
+  200: (wpn, v) => {
+    const [side, forward, rear] = v.map(sv => +sv.value.toFixed(2))
+    wpn.thrustForward = forward
+    wpn.thrustSide = side
+    wpn.thrustRear = rear
+  },
+  201: (wpn, v) => { wpn.boostConsumption = +v.toFixed(2) },
+  202: (wpn, v) => { wpn.flightSpeed = +v.toFixed(2) },
+  206: (wpn, v) => { wpn.weaponReload = +v.toFixed(2) },
+  208: (wpn, v) => { wpn.chargeSpeed = +v.toFixed(2) },
+  209: (wpn, v) => { wpn.emergencyChargeSpeed = +v.toFixed(2) },
+  203: (wpn, v) => { wpn.prop203 = +v.toFixed(2) },
+  204: (wpn, v) => { wpn.prop204 = +v.toFixed(2) },
+  205: (wpn, v) => { wpn.prop205 = +v.toFixed(2) },
+  210: (wpn, v) => { wpn.prop210 = +v.toFixed(2) },
+  // Fencer
+  8: (wpn, v) => { wpn.isBarricade = !!v },
+  9: (wpn, v) => { wpn.equipRecoil = +v.toFixed(2) },
+  10: (wpn, v) => { wpn.equipWeightTurnReduction = +v.toFixed(2) },
+  11: (wpn, v) => { wpn.equipWeightMoveReduction = +v.toFixed(2) },
+  300: (wpn, v) => { wpn.dashCount = v },
+  301: (wpn, v) => { wpn.dashInterval = +v.toFixed(2) },
+  302: (wpn, v) => { wpn.boostCount = v },
+  305: (wpn, v) => { wpn.boostSpeed = +v.toFixed(2) },
+  3: (wpn, v) => { wpn.shieldDurability = +v.toFixed(2) },
+  4: (wpn, v) => { wpn.shieldConsumption = +v.toFixed(2) },
+  5: (wpn, v) => { wpn.shieldDeflectConsumption = +v.toFixed(2) },
+  6: (wpn, v) => { wpn.shieldDamageReduction = +v.toFixed(2) },
+  7: (wpn, v) => { wpn.shieldKnockback = +v.toFixed(2) },
+  17: (wpn, v) => { wpn.shieldAngle = Math.round(v * 360 / Math.PI) },
+  500: (wpn, v) => { wpn.walkSpeed = +v.toFixed(2) },
+}
+
+function Support(wpn) {
+  if(!wpn.wCustom) {
+    return
+  }
+  for(const { value: props } of wpn.wCustom[0].value) {
+    const [{ value: propId }, { value }] = props
+    const propFunc = SupportProps[propId]
+    if(propFunc) {
+      propFunc(wpn, value)
+    } else {
+      console.log('missing prop', {
+        id: wpn.id,
+        name: wpn.name,
+        propId,
+        value,
+      })
+    }
   }
 }
 
