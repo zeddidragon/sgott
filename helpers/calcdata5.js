@@ -86,6 +86,7 @@ const unlockStates = [
 ]
 
 const autoProps = {
+  falloff: 'AmmoDamageReduce',
   type: 'AmmoClass',
   ammo: 'AmmoCount',
   weapon: 'xgs_scene_object_class',
@@ -165,6 +166,9 @@ async function processWeapon({ value: node }) {
   if(wpn.energy[0] === -1) wpn.energy = -1
   if(Array.isArray(wpn.energy)) {
     wpn.energy = wpn.energy[0]
+  }
+  if(wpn.falloff?.[0] === 1 && wpn.falloff?.[1] === 1) {
+    delete wpn.falloff
   }
 
   await bullets[wpn.type]?.(wpn)
