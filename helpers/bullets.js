@@ -213,14 +213,14 @@ const SupportProps = {
     wpn.boostRear = rear
   },
   201: (wpn, v) => { wpn.boostConsumption = +v.toFixed(2) },
-  202: (wpn, v) => { wpn.flightSpeedUp = +v.toFixed(2) },
+  202: (wpn, v) => { wpn.flightSpeedHorizontal = +v.toFixed(2) },
+  203: (wpn, v) => { wpn.airControl = +v.toFixed(2) },
+  204: (wpn, v) => { wpn.flightSpeedVertical = +v.toFixed(2) },
   205: (wpn, v) => { wpn.flightConsumption = +v.toFixed(2) },
   206: (wpn, v) => { wpn.weaponReload = +v.toFixed(2) },
   208: (wpn, v) => { wpn.chargeSpeed = +v.toFixed(2) },
   209: (wpn, v) => { wpn.emergencyChargeSpeed = +v.toFixed(2) },
-  203: (wpn, v) => { wpn.prop203 = +v.toFixed(2) },
-  204: (wpn, v) => { wpn.prop204 = +v.toFixed(2) },
-  210: (wpn, v) => { wpn.maxAltitude = +v.toFixed(2) },
+  210: (wpn, v) => { wpn.dragFactor = +v.toFixed(2) },
   // Fencer
   9: (wpn, v) => { wpn.equipRecoil = +v.toFixed(2) },
   10: (wpn, v) => { wpn.equipWeightTurnReduction = +v.toFixed(2) },
