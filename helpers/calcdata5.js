@@ -163,6 +163,10 @@ async function processWeapon({ value: node }) {
   }
 
   if(wpn.energy[0] === -1) wpn.energy = -1
+  if(Array.isArray(wpn.energy)) {
+    wpn.energy = wpn.energy[0]
+  }
+
   await bullets[wpn.type]?.(wpn)
   for(const prop of [
     'piercing',
