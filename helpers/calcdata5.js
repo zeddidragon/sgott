@@ -218,11 +218,11 @@ async function extractWeaponData() {
 const modes = {
   GameMode_Scenario: {
     name: 'Offline',
-    missions: 111,
+    missions: 110,
   },
   GameMode_OnlineScenario: {
     name: 'Online',
-    missions: 110,
+    missions: 111,
   },
   GameMode_Offline_MissionPack01: {
     name: 'DLC1',

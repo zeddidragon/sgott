@@ -222,7 +222,6 @@ const SupportProps = {
   204: (wpn, v) => { wpn.prop204 = +v.toFixed(2) },
   210: (wpn, v) => { wpn.maxAltitude = +v.toFixed(2) },
   // Fencer
-  8: (wpn, v) => { wpn.isBarricade = !!v },
   9: (wpn, v) => { wpn.equipRecoil = +v.toFixed(2) },
   10: (wpn, v) => { wpn.equipWeightTurnReduction = +v.toFixed(2) },
   11: (wpn, v) => { wpn.equipWeightMoveReduction = +v.toFixed(2) },
@@ -235,6 +234,7 @@ const SupportProps = {
   5: (wpn, v) => { wpn.shieldDeflectConsumption = +v.toFixed(2) },
   6: (wpn, v) => { wpn.shieldDamageReduction = +v.toFixed(2) },
   7: (wpn, v) => { wpn.shieldKnockback = +v.toFixed(2) },
+  8: (wpn, v) => { wpn.isBarricade = !!v },
   17: (wpn, v) => { wpn.shieldAngle = Math.round(v * 360 / Math.PI) },
   500: (wpn, v) => { wpn.walkSpeed = +v.toFixed(2) },
 }
