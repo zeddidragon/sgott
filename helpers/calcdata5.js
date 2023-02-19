@@ -131,6 +131,10 @@ async function processWeapon({ value: node }) {
     category: group,
     raw: category,
     odds: unlockStates[node[5].value] || (Math.floor(node[3].value * 100)),
+    dlc: node[7].value,
+  }
+  if(!wpn.dlc) {
+    delete wpn.dlc
   }
 
   for(const [prop, node] of Object.entries(autoProps)) {
