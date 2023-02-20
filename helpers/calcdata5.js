@@ -125,7 +125,9 @@ async function processWeapon({ value: node }) {
   const template = await loadJson(`weapon/${id.toUpperCase()}`)
   const wpn = {
     id: id,
-    name: getNode(template, 'name.en').value,
+    names: Object.fromEntries(['en', 'ja'].map(lang => {
+      return [lang, getNode(template, `name.${lang}`).value]
+    })),
     level: level,
     character: character,
     category: group,

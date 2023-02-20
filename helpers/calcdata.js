@@ -96,12 +96,6 @@ const autoProps = {
   wCustom: 'custom_parameter',
 }
 
-const strikes = [
-  'shelling',
-  'satellite',
-  'bomber',
-]
-
 async function processWeapon({ value: node }) {
   const id = node[0].value
   const level = Math.max(0, Math.floor(node[4].value * 25 + 0.0001))
@@ -110,9 +104,11 @@ async function processWeapon({ value: node }) {
   const group = categories[category]
 
   const template = await loadJson(`weapon/${id.toUpperCase()}`)
+  const names = getNode(template, 'name').value
+  const [jp, en] = names.map(v => v.value)
   const wpn = {
     id: id,
-    name: getNode(template, 'name').value[1].value,
+    names: { jp, en },
     level: level,
     character: character,
     category: group,

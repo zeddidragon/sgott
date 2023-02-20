@@ -161,12 +161,12 @@ const strikes = [
 ]
 async function AirRaids(wpn) {
   let type = strikes[wpn.custom[3].value]
-  if(wpn.name === 'Rule of God') {
+  if(wpn.names?.en === 'Rule of God') {
     type = 'rog'
     delete wpn.radius
     wpn.count = 2
   }
-  if(wpn.name === 'Laguna Blaster') {
+  if(wpn.names?.en === 'Laguna Blaster') {
     delete wpn.radius
   }
 
