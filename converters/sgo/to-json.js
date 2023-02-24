@@ -56,6 +56,10 @@ function decompileSgo(buffer, config) {
       [0x00]: ['type', () => 'extra'],
       [0x04]: ['value', Ref(Extra)],
     }, 0x0C),
+    Struct({
+      [0x00]: ['type', () => 'extra5'],
+      [0x04]: ['value', Ref(Extra)],
+    }, 0x0C),
   ], 0x0C)
 
   const SgoIndex = Struct({

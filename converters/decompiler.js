@@ -199,7 +199,11 @@ Contact the developers of this tool and tell them which file this happened in!
 
   function Union(Types, size) {
     function UnionDef(cursor, offset = 0x00) {
-      return Types[UInt(cursor, offset)](cursor, offset)
+      const type = UInt(cursor, offset)
+      if(!Types[type]) {
+        throw new Error(`Type definition missing: ${type}`)
+      }
+      return Types[type](cursor, offset)
     }
     UnionDef.size = size
     return UnionDef
