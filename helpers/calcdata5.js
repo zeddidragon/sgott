@@ -151,9 +151,9 @@ async function processWeapon({ value: node }) {
       const arr = isSubArray ? value[0].value : value
       wpn[prop] = {
         base:  +arr[0].value.toFixed(2),
-        algo:  +arr[1].value.toFixed(2),
-        lvMin: +arr[2].value.toFixed(2),
-        lvMax: +arr[3].value.toFixed(2),
+        algo:  +arr[1].value,
+        lvMin: +arr[2].value,
+        lvMax: Math.max(5, +arr[3].value),
         zero:  +arr[4].value.toFixed(2),
         exp:   +arr[5].value.toFixed(2),
         type: arr[0].type,
