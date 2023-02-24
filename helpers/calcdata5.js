@@ -117,7 +117,7 @@ const autoProps = {
 
 async function processWeapon({ value: node }) {
   const id = node[0].value
-  const level = Math.floor(node[4].value * 25)
+  const level = Math.max(0, Math.floor(node[4].value * 25 + 0.0001))
   const category = node[2].value
   const character = classes[Math.floor(category / 100)]
   const group = categories[character][category % 100]
