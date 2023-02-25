@@ -1,4 +1,4 @@
-import fs from 'fs'
+const fs = require('fs')
 
 function allWeapons() {
   return Array.from(eachWeapon())
@@ -21,4 +21,4 @@ function eachWeapon() {
 
 allWeapons.each = eachWeapon
 
-export default allWeapons
+module.exports = allWeapons

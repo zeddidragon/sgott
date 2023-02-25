@@ -1,4 +1,4 @@
-import { decompileBuffer } from './infer.js'
+const { decompileBuffer } = require('./infer.js')
 
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
@@ -257,4 +257,4 @@ Contact the developers of this tool and tell them which file this happened in!
   return decompile
 }
 
-export default decompiler
+module.exports = decompiler

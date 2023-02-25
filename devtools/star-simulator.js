@@ -1,6 +1,6 @@
-import allWeapons from './all-weapons'
-import getNode from '../helpers/get-node'
-import render from './star-simulator-render'
+const allWeapons = require('./all-weapons')
+const getNode = require('../helpers/get-node')
+const render = require('./star-simulator-render')
 
 const maxDmg = {}
 const processed = []

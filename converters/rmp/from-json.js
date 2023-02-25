@@ -1,5 +1,5 @@
-import compiler from '../compiler.js'
-import sgo from '../sgo/from-json.js'
+const compiler = require('../compiler.js')
+const sgo = require('../sgo/from-json.js')
 
 function compileRmp(obj) {
   const { compile, types } = compiler(obj)
@@ -158,4 +158,4 @@ function compileRmp(obj) {
 compileRmp.compile = compileRmp
 compileRmp.compiler = opts => obj => compileRmp(obj, opts)
 
-export default compileRmp
+module.exports = compileRmp

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-import fs from 'fs'
-import path from 'path'
-import json from 'json-stringify-pretty-compact'
-import config from './package.json' assert { type: 'json' }
-import sgoToJson from './converters/sgo/to-json.js'
-import jsonToSgo from './converters/sgo/from-json.js'
-import rmpToJson from './converters/rmp/to-json.js'
-import jsonToRmp from './converters/rmp/from-json.js'
+const fs = require('fs')
+const path = require('path')
+const json = require('json-stringify-pretty-compact')
+const config = require('./package.json')
+const sgoToJson = require('./converters/sgo/to-json.js')
+const jsonToSgo = require('./converters/sgo/from-json.js')
+const rmpToJson = require('./converters/rmp/to-json.js')
+const jsonToRmp = require('./converters/rmp/from-json.js')
 
 function isSgo(obj) {
   if(/^sgo$/i.test(obj.format)) return true

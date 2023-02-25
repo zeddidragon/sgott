@@ -11,4 +11,4 @@ function sgoJsonToSimple(data) {
   return data
 }
 
-export default sgoJsonToSimple
+module.exports = sgoJsonToSimple

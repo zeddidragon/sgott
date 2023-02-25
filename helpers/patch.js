@@ -1,4 +1,4 @@
-import getNode from './get-node.js'
+const getNode = require('./get-node.js')
 
 function patch(template, name, value) {
   const node = getNode(template, name)
@@ -6,4 +6,4 @@ function patch(template, name, value) {
   node.value = v
 }
 
-export default patch
+module.exports = patch

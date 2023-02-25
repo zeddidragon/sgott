@@ -1,4 +1,4 @@
-import blurbs from './blurbs.js'
+const blurbs = require('./blurbs.js')
 
 function format(pair) {
   if(!pair) return ''
@@ -144,4 +144,4 @@ function weaponText(template, text) {
     .replace('$JUMP$', blurbs.jump)
 }
 
-export default weaponText
+module.exports = weaponText

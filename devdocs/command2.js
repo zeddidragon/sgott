@@ -1,6 +1,6 @@
 // where 0 is 2C, 1 is 2D, 2 is 2E
 
-export default [
+module.exports = [
   {
     representations: [0x0],
     group: 0,

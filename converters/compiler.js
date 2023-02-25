@@ -263,4 +263,4 @@ function compile(obj) {
 compile.compile = compile
 compile.compiler = opts => obj => compile(obj, opts)
 
-export default compile
+module.exports = compile

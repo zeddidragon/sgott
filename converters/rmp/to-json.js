@@ -1,5 +1,5 @@
-import decompiler from '../decompiler.js'
-import sgo from '../sgo/to-json.js'
+const decompiler = require('../decompiler.js')
+const sgo = require('../sgo/to-json.js')
 
 function decompile(buffer, config) {
   const { decompile, types } = decompiler('RMP', buffer, config)
@@ -142,4 +142,4 @@ function decompile(buffer, config) {
   return decompile(RmpHeader)
 }
 
-export default decompile
+module.exports = decompile

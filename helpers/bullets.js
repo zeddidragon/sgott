@@ -1,10 +1,9 @@
-import syncFs from 'fs'
-import getNode from './get-node.js'
+const syncFs = require('fs')
+const getNode = require('./get-node.js')
 const fs = syncFs.promises
 
 let game
-
-export function assignGame(g) {
+function assignGame(g) {
   game = g
 }
 
@@ -366,7 +365,8 @@ function SupportUnitBullet01(wpn) {
   ][wpn.custom[0].value]
 }
 
-export default {
+module.exports = {
+  assignGame,
   '': BlankBullet,
   undefined: BlankBullet,
   BombBullet01,

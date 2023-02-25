@@ -1,10 +1,10 @@
-import syncFs from 'fs'
-import process from 'process'
-import getNode from './get-node.js'
-import bullets, { assignGame } from './bullets.js'
+const syncFs = require('fs')
+const process = require('process')
+const getNode = require('./get-node.js')
+const bullets = require('./bullets.js')
 const fs = syncFs.promises
 
-assignGame(41)
+bullets.assignGame(41)
 
 function loadJson(path) {
   return fs.readFile(`data/41/${path}.json`).then(data => JSON.parse(data))

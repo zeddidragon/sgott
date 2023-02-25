@@ -1,7 +1,7 @@
-import fs from 'fs'
-import allWeapons from 'all-weapons'
-import getNode from '../helpers/get-node'
-import meta from '../converters/sgo/meta'
+const fs = require('fs')
+const allWeapons = require('all-weapons')
+const getNode = require('../helpers/get-node')
+const meta = require('../converters/sgo/meta')
   
 const sentryMeta = meta.names.ammoClasses.SentryGunBullet01
 
