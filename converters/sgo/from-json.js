@@ -53,6 +53,11 @@ function compileSgo(obj) {
       [0x04, ExtraSize, obj => obj.value],
       [0x08, Defer, (obj, cursor, tmp) => tmp.buffer],
     ], 0x0C),
+    'extra5': Struct([
+      [0x00, UInt, () => 4],
+      [0x04, ExtraSize, obj => obj.value],
+      [0x08, Defer, (obj, cursor, tmp) => tmp.buffer],
+    ], 0x0C),
   }, 0x0C)
 
   const SgoHeader = (() => {
