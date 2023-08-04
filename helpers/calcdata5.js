@@ -152,7 +152,6 @@ async function processWeapon({ value: node }) {
       wpn[prop] = {
         base:  +arr[0].value.toFixed(4),
         algo:  +arr[1].value,
-        lvMin: +arr[2].value,
         lvMax: Math.max(5, +arr[3].value),
         zero:  +arr[4].value.toFixed(2),
         exp:   +arr[5].value.toFixed(2),
