@@ -92,10 +92,13 @@ function PileBunkerBullet01(wpn) {
 
 function LaserBullet01(wpn) {
   if(wpn.weapon === 'Weapon_PreChargeShoot') {
-    const curve = wpn.wCustom[4]?.value
     const curveId = wpn.wCustom[6]?.value
-    if((curveId | 2) && curve && curve !== 1) {
+    const curve = wpn.wCustom[4]?.value
+    if((curveId & 2) && curve) {
       wpn.ammoDamageCurve = curve
+    }
+    if((curveId & 16) && curve) {
+      wpn.ammoCountCurve = curve
     }
   }
 }
