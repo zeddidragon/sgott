@@ -214,6 +214,10 @@ async function processWeapon({ value: node }) {
   if(wpn.energy < 0) {
     delete wpn.energy
   }
+  if(!wpn.zoom && !wpn.secondary) {
+    delete wpn.zoom
+    delete wpn.secondary
+  }
 
   delete wpn.custom
   delete wpn.wCustom
