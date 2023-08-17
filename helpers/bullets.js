@@ -91,7 +91,10 @@ function PileBunkerBullet01(wpn) {
 }
 
 function LaserBullet01(wpn) {
-  if(wpn.weapon === 'Weapon_PreChargeShoot') {
+  if([
+    'Weapon_ChargeShoot',
+    'Weapon_PreChargeShoot',
+  ].includes(wpn.weapon)) {
     const curveId = wpn.wCustom[6]?.value
     const curve = wpn.wCustom[4]?.value
     if((curveId & 2) && curve) {
@@ -99,6 +102,12 @@ function LaserBullet01(wpn) {
     }
     if((curveId & 16) && curve) {
       wpn.ammoCountCurve = curve
+    }
+
+    const curveId2 = wpn.wCustom[8]?.value
+    const curve2 = wpn.wCustom[7]?.value
+    if(curveId2 & 2 && curve2) {
+      wpn.ammoDamageCurve = curve2
     }
   }
 }
