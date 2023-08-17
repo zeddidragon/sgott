@@ -90,6 +90,16 @@ function PileBunkerBullet01(wpn) {
   }
 }
 
+function LaserBullet01(wpn) {
+  if(wpn.weapon === 'Weapon_PreChargeShoot') {
+    const curve = wpn.wCustom[4]?.value
+    const curveId = wpn.wCustom[6]?.value
+    if((curveId | 2) && curve && curve !== 1) {
+      wpn.ammoDamageCurve = curve
+    }
+  }
+}
+
 function NapalmBullet01(wpn) {
   wpn.duration = wpn.custom[4].value[2].value * 3
 }
@@ -375,6 +385,8 @@ module.exports = {
   FlameBullet02,
   GrenadeBullet01,
   PileBunkerBullet01,
+  LaserBullet01,
+  LaserBullet03: LaserBullet01,
   NapalmBullet01,
   SentryGunBullet01,
   ShieldBashBullet01,
