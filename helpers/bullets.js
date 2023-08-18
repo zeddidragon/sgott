@@ -194,6 +194,10 @@ async function AirRaids(wpn) {
   wpn.strikeType = type
   let strike = wpn.custom[4]?.value
 
+  if(type === 'satellite' && strike[4]?.value === 'MissileBullet01') {
+    type = 'missile'
+  }
+
   if(wpn.weapon === 'Weapon_RadioContact') {
     type = 'bomber'
     strike = wpn.custom[2].value
@@ -201,6 +205,10 @@ async function AirRaids(wpn) {
 
   switch(type) {
   case 'rog':
+    break
+  case 'missile':
+    wpn.shots = strike[2].value
+    wpn.radius = strike[9].value
     break
   case 'bomber':
     wpn.units = strike[1].value
