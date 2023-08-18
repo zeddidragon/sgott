@@ -179,13 +179,17 @@ async function processWeapon({ value: node }) {
   await bullets[wpn.type]?.(wpn)
   for(const prop of [
     'piercing',
-    'credits',
   ]) {
     if(wpn[prop]) {
       wpn[prop] = true
     } else {
       delete wpn[prop]
     }
+  }
+  if(wpn.credits === 2) {
+    wpn.credits = true
+  } else {
+    delete wpn.credits
   }
   for(const prop of [
     'burst',
