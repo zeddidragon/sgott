@@ -98,7 +98,9 @@ const autoProps = {
 
 async function processWeapon({ value: node }) {
   const id = node[0].value
-  const level = Math.max(0, Math.floor(node[4].value * 25 + 0.0001))
+  const lvBuffer = new Buffer(4)
+  lvBuffer.writeFloatLE(node[4].value * 25)
+  const level = Math.floor(lvBuffer.readFloatLE())
   const category = node[2].value
   const character = classes[Math.floor(category / 10)]
   const group = categories[category]
