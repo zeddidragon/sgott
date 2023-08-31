@@ -382,8 +382,14 @@ async function SmokeCandleBullet01(wpn) {
   }
 }
 
-async function SmokeCandleBullet02(wpn) {
+function SmokeCandleBullet02(wpn) {
   return AirRaids(wpn)
+}
+
+function SolidPelletBullet01(wpn) {
+  if(wpn.piercing) {
+    wpn.piercingLife = wpn.custom[0].value
+  }
 }
 
 function SupportUnitBullet01(wpn) {
@@ -413,5 +419,6 @@ module.exports = {
   ShockWaveBullet01,
   SmokeCandleBullet01,
   SmokeCandleBullet02,
+  SolidPelletBullet01,
   SupportUnitBullet01,
 }
