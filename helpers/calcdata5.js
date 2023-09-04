@@ -117,7 +117,7 @@ const autoProps = {
 
 async function processWeapon({ value: node }) {
   const id = node[0].value
-  const lvBuffer = new Buffer(4)
+  const lvBuffer = Buffer.alloc(4)
   lvBuffer.writeFloatLE(node[4].value * 25)
   const level = Math.floor(lvBuffer.readFloatLE())
   const category = node[2].value
@@ -273,15 +273,33 @@ const difficulties = [
 ]
 async function processMode({ value: mode }) {
   const key = mode[0].value
+  const lvBuffer = Buffer.alloc(4)
   const obj = {
     ...modes[key],
     difficulties: mode[6].value.map(({ value: d }, i) => {
+      const { missions } = modes[key]
+      const dropsLow = Array(missions)
+      const dropsHigh = Array(missions)
+      const [start, end] = d[2].value.slice(0, 2).map(v => v.value)
+      const spread = d[2].value[2].value
+      const range = end - start
+      for(let i = 0; i < missions; i++) {
+        const pivot = start + (range / (missions - 1)) * i
+        lvBuffer.writeFloatLE(pivot - spread)
+        lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
+        dropsLow[i] = Math.floor(lvBuffer.readFloatLE())
+        lvBuffer.writeFloatLE(pivot)
+        lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
+        dropsHigh[i] = Math.ceil(lvBuffer.readFloatLE())
+      }
       return {
         name: difficulties[i],
         progressScaling: d[0].value.map(v => v.value),
         playerScaling: d[1].value.map(v => +v.value.toFixed(2)),
         drops: d[2].value.slice(0, 2).map(v => +(v.value * 25).toFixed(2)),
         dropSpread: +(d[2].value[2].value * 25).toFixed(2),
+        dropsLow,
+        dropsHigh,
         weaponLimits: d[6].value ? d[6].value.map(v => {
           if(v.value >= 0) {
             return +(v.value * 25).toFixed(2)
