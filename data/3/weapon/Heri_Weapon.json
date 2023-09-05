@@ -1,0 +1,39 @@
+{
+  "format": "SGO",
+  "endian": "LE",
+  "variables": [
+    {"type": "string", "value": "Heri_Weapon", "name": "class"},
+    {
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "HeriGun_L.Sgo"},
+        {"type": "string", "value": "HeriGun_R.Sgo"}
+      ],
+      "name": "Weapon_FilePath"
+    },
+    {
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 4.099999904632568},
+            {"type": "float", "value": -1.399999976158142},
+            {"type": "float", "value": 2.5}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": -4.099999904632568},
+            {"type": "float", "value": -1.399999976158142},
+            {"type": "float", "value": 2.5}
+          ]
+        }
+      ],
+      "name": "Weapon_Offset"
+    },
+    {"type": "int", "value": 0, "name": "Weapon_Flag"}
+  ],
+  "version": 249503767
+}

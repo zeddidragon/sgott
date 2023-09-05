@@ -116,9 +116,21 @@ function NapalmBullet01(wpn) {
   wpn.duration = wpn.custom[4].value[2].value * 3
 }
 
+function CentryGun01(wpn) {
+  wpn.searchRange = wpn.custom[6].value
+  wpn.shots = wpn.custom[12].value
+  wpn.shotInterval = wpn.custom[13].value
+  wpn.speed = wpn.custom[15].value
+  wpn.life = wpn.custom[14].value
+  wpn.turnRate = wpn.custom[15].value
+}
+
 function SentryGunBullet01(wpn) {
   wpn.shots = wpn.custom[10].value
   wpn.shotInterval = wpn.custom[11].value
+  wpn.searchRange = wpn.custom[4].value
+  wpn.life = wpn.custom[12].value
+  wpn.speed = wpn.custom[13].value
 }
 
 const subWeaponProps = {
@@ -392,6 +404,10 @@ function SolidPelletBullet01(wpn) {
   }
 }
 
+function StunAmmo01(wpn) {
+  wpn.duration = wpn.custom[2].value
+}
+
 function SupportUnitBullet01(wpn) {
   wpn.supportType = [
     'life',
@@ -407,8 +423,11 @@ module.exports = {
   undefined: BlankBullet,
   BombBullet01,
   BombBullet02: BombBullet01,
+  CentryGun01,
   ClusterBullet01,
+  FireAmmo01: FlameBullet02,
   FlameBullet02,
+  GrenadeAmmo01: GrenadeBullet01,
   GrenadeBullet01,
   PileBunkerBullet01,
   LaserBullet01,
@@ -420,5 +439,6 @@ module.exports = {
   SmokeCandleBullet01,
   SmokeCandleBullet02,
   SolidPelletBullet01,
+  StunAmmo01: StunAmmo01,
   SupportUnitBullet01,
 }

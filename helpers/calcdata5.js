@@ -332,6 +332,14 @@ async function extractCalcdata() {
     extractModesData('CONFIG'),
   ])
   return {
+    langs: ['en', 'ja'],
+    classes,
+    charLabels: [
+      'Ranger',
+      'Wing Diver',
+      'Fencer',
+      'Air Raider',
+    ],
     weapons,
     modes,
   }

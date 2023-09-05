@@ -1,0 +1,48 @@
+{
+  "format": "SGO",
+  "endian": "LE",
+  "variables": [
+    {"type": "string", "value": "WeaponBike", "name": "class"},
+    {
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "PowerLoader_LG.sgo"},
+        {"type": "string", "value": "PowerLoader_RL.sgo"},
+        {"type": "string", "value": "PowerLoader_F.sgo"}
+      ],
+      "name": "Weapon_FilePah"
+    },
+    {
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 0}
+          ]
+        }
+      ],
+      "name": "Weapon_Offset"
+    },
+    {"type": "int", "value": 1, "name": "Weapon_Flag"}
+  ],
+  "version": 249503767
+}

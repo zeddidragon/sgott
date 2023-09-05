@@ -1,0 +1,28 @@
+{
+  "format": "SGO",
+  "endian": "LE",
+  "variables": [
+    {"type": "string", "value": "Tank_Weapon", "name": "class"},
+    {
+      "type": "ptr",
+      "value": [{"type": "string", "value": "Tank_MainAmament.Sgo"}],
+      "name": "Weapon_FilePath"
+    },
+    {
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0.05000000074505806},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 0}
+          ]
+        }
+      ],
+      "name": "Weapon_Offset"
+    },
+    {"type": "int", "value": 0, "name": "Weapon_Flag"}
+  ],
+  "version": 249503767
+}
