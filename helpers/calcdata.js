@@ -126,6 +126,7 @@ async function processWeapon({ value: node }) {
 
   wpn.accuracy = +(wpn.accuracy || 0).toFixed(4)
   await bullets[wpn.type]?.(wpn)
+  await bullets[wpn.weapon]?.(wpn)
   groups[group]?.(wpn)
 
   for(const prop of [

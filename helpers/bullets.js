@@ -417,6 +417,16 @@ function SupportUnitBullet01(wpn) {
   ][wpn.custom[0].value]
 }
 
+function Weapon_Gatling(wpn) {
+  wpn.windup = wpn.wCustom[7].value
+  if(wpn.xParams) {
+    wpn.windup = {
+      ...wpn.xParams,
+      base: wpn.windup,
+    }
+  }
+}
+
 module.exports = {
   assignGame,
   '': BlankBullet,
@@ -441,4 +451,5 @@ module.exports = {
   SolidPelletBullet01,
   StunAmmo01: StunAmmo01,
   SupportUnitBullet01,
+  Weapon_Gatling,
 }

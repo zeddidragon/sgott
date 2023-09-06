@@ -113,6 +113,7 @@ const autoProps = {
   underground: 'use_underground',
   custom: 'Ammo_CustomParameter',
   wCustom: 'custom_parameter',
+  xParams: 'ExtPrams',
 }
 
 async function processWeapon({ value: node }) {
@@ -179,6 +180,8 @@ async function processWeapon({ value: node }) {
   }
 
   await bullets[wpn.type]?.(wpn)
+  await bullets[wpn.weapon]?.(wpn)
+
   for(const prop of [
     'piercing',
   ]) {
@@ -229,6 +232,7 @@ async function processWeapon({ value: node }) {
   delete wpn.wCustom
   delete wpn.custom
   delete wpn.wCustom
+  delete wpn.xParams
 
   return wpn
 }
