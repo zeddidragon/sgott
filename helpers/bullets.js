@@ -228,6 +228,7 @@ async function AirRaids(wpn) {
     break
   default: // Shelling
     wpn.shots = strike[2].value
+    wpn.shotInterval = strike[3].value
   }
 }
 
