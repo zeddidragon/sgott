@@ -150,6 +150,7 @@ const headers = {
       en: 'Missile Launchers',
       ja: 'ミサイルランチャー',
     },
+    appendix: '*With 0 lock time',
     headers: [
       'checkbox',
       'level',
@@ -500,6 +501,156 @@ const headers = {
       'total',
     ],
   }],
+  fencer: [{
+    category: 'hammer',
+    names: {
+      en: 'CC Strikers',
+      ja: '近接-打',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'defense',
+      'chargeTime',
+      'damage',
+      'radius',
+      'reload',
+      'range',
+    ],
+  }, {
+    category: 'spear',
+    names: {
+      en: 'CC Piercers',
+      ja: 'ブレード系',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'range',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'shield',
+    names: {
+      en: 'Shields',
+      ja: '盾',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'defense',
+      'reload',
+      'energy',
+      'range',
+    ],
+  }, {
+    category: 'light',
+    names: {
+      en: 'Automatic Artillery',
+      ja: '機関砲',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'interval',
+      'windup',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'heavy',
+    names: {
+      en: 'Artillery',
+      ja: '火砲',
+    },
+    tables: [{
+      subCategory: 'piercing',
+      names: {
+        en: 'Piercing',
+        ja: '重キャノン砲',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'reload',
+        'accuracy',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'explosive',
+      names: {
+        en: 'Explosives',
+        ja: '迫撃砲',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'accuracy',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'tdps2',
+        'total',
+      ],
+    }],
+  }, {
+    category: 'missile',
+    names: {
+      en: 'Missile Launchers',
+      ja: 'ミサイルランチャー',
+    },
+    appendix: '*With 0 lock time',
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'lockTime',
+      'reload',
+      'lockRange',
+      'tdps',
+      'tdps2',
+      'total',
+    ],
+  }],
 }
 
 const unlockStates = [
@@ -609,8 +760,11 @@ async function processWeapon({ value: node }) {
 
   if(wpn.character === 'ranger') {
     if(wpn.category === 'grenade') {
-      wpn.subCategory = wpn.weapon === 'Weapon_Throw'
-        ? 'hg' : 'gl'
+      if(wpn.weapon === 'Weapon_Throw') {
+        wpn.subCategory = 'hg'
+      } else {
+        wpn.subCategory = 'gl'
+      }
     } else if(wpn.category === 'special') {
       if(wpn.type === 'DecoyBullet01') {
         wpn.subCategory = 'decoy'
@@ -625,6 +779,12 @@ async function processWeapon({ value: node }) {
       } else {
         wpn.subCategory = 'reverser'
       }
+    }
+  } else if(wpn.character === 'fencer') {
+    if(wpn.radius) {
+      wpn.subCategory = 'explosive'
+    } else {
+      wpn.subCategory = 'piercing'
     }
   }
 
