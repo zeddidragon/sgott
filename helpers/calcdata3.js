@@ -54,51 +54,46 @@ const autoProps = {
 const modes = [{
   name: 'ON',
   missions: 60,
-  difficulties: [
-    {
-      name: 'Normal',
-      weaponLimits: [
-        1,
-        25
-      ],
-      armorLimits: [
-        400,
-        1500,
-      ]
-    },
-    {
-      name: 'Hard',
-      weaponLimits: [
-        25,
-        50,
-      ],
-      armorLimits: [
-        1500,
-        3000,
-      ]
-    },
-    {
-      name: 'Hardest',
-      weaponLimits: [
-        50,
-        75,
-      ],
-      armorLimits: [
-        3000,
-        4000,
-      ]
-    },
-    {
-      name: 'Inferno',
-      weaponLimits: [
-        75,
-        100,
-        null,
-        null
-      ],
-      armorLimits: null
-    }
-  ],
+  difficulties: [{
+    name: 'Normal',
+    weaponLimits: [
+      1,
+      25
+    ],
+    armorLimits: [
+      400,
+      1500,
+    ]
+  }, {
+    name: 'Hard',
+    weaponLimits: [
+      25,
+      50,
+    ],
+    armorLimits: [
+      1500,
+      3000,
+    ]
+  }, {
+    name: 'Hardest',
+    weaponLimits: [
+      50,
+      75,
+    ],
+    armorLimits: [
+      3000,
+      4000,
+    ]
+  }, {
+    name: 'Inferno',
+    weaponLimits: [
+      75,
+      100,
+      null,
+      null
+    ],
+    armorLimits: null
+  }],
 }]
 
 
