@@ -51,6 +51,12 @@ function ClusterBullet01(wpn) {
   }
 }
 
+function DecoyBullet01(wpn) {
+  wpn.hp = wpn.damage
+  wpn.duration = wpn.life
+  delete wpn.damage
+}
+
 function FlameBullet02(wpn) {
   wpn.piercing = true
   const isContinous = wpn.custom[0].value || wpn.custom[3].value
@@ -436,6 +442,7 @@ module.exports = {
   BombBullet02: BombBullet01,
   CentryGun01,
   ClusterBullet01,
+  DecoyBullet01,
   FireAmmo01: FlameBullet02,
   FlameBullet02,
   GrenadeAmmo01: GrenadeBullet01,
