@@ -23,6 +23,12 @@ function loadLinked(path) {
   return cache[path]
 }
 
+function BarrierBullet01(wpn) {
+  wpn.hp = wpn.damage
+  delete wpn.damage
+}
+
+
 function BlankBullet(wpn) {
   if(raidCategories.includes(wpn.category)) {
     return AirRaids(wpn)
@@ -195,8 +201,9 @@ const raidCategories = [
 
 const strikes = [
   'shelling',
-  'satellite',
+  'missile',
   'bomber',
+  'satellite',
 ]
 async function AirRaids(wpn) {
   let type = strikes[wpn.custom[3].value]
@@ -222,19 +229,25 @@ async function AirRaids(wpn) {
   }
 
   switch(type) {
-  case 'rog':
-    break
-  case 'missile':
-    wpn.shots = strike[2].value
-    wpn.radius = strike[9].value
-    break
-  case 'bomber':
-    wpn.units = strike[1].value
-    wpn.shots = strike[10].value[2].value
-    break
-  default: // Shelling
-    wpn.shots = strike[2].value
-    wpn.shotInterval = strike[3].value
+    case 'rog': {
+      break
+    }
+    case 'missile': {
+      wpn.shots = strike[2].value
+      wpn.radius = strike[9].value
+      break
+    }
+    case 'bomber': {
+      wpn.units = strike[1].value
+      wpn.shots = strike[10].value[2].value
+      wpn.subRadius = wpn.custom[4].value[10].value[9].value
+      break
+    }
+    default: { // Shelling
+      wpn.shots = strike[2].value
+      wpn.shotInterval = strike[3].value
+      wpn.subRadius = strike[9].value
+    }
   }
 }
 
@@ -438,6 +451,7 @@ module.exports = {
   assignGame,
   '': BlankBullet,
   undefined: BlankBullet,
+  BarrierBullet01,
   BombBullet01,
   BombBullet02: BombBullet01,
   CentryGun01,

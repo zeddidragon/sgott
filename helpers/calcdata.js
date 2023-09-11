@@ -93,6 +93,7 @@ const headers = {
       'level',
       'name',
       'ammo',
+      'piercing',
       'damage',
       'interval',
       'reload',
@@ -114,6 +115,7 @@ const headers = {
       'level',
       'name',
       'ammo',
+      'piercing',
       'damage',
       'interval',
       'reload',
@@ -651,6 +653,347 @@ const headers = {
       'total',
     ],
   }],
+  bomber: [{
+    category: 'guide',
+    names: {
+      en: 'Guidance Equipment',
+      ja: '誘導装置',
+    },
+    tables: [{
+      subCategory: 'laser',
+      names: {
+        en: 'Laser Guide Kits',
+        ja: 'レーザー誘導装置',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'accuracy',
+        'range',
+        'lockSpeedBoost',
+        'lockRangeBoost',
+      ],
+    }, {
+      subCategory: 'beacon',
+      names: {
+        en: 'Guide Beacon Guns',
+        ja: '誘導ビーコンガン',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'interval',
+        'accuracy',
+        'range',
+        'speed',
+        'lockSpeedBoost',
+        'lockRangeBoost',
+      ],
+    }],
+  }, {
+    category: 'raid',
+    names: {
+      en: 'Calling For Support',
+      ja: '支援要請',
+    },
+    tables: [{
+      subCategory: 'artillery',
+      names: {
+        en: 'Artillery Squad',
+        ja: '砲兵隊',
+      },
+      appendix: '*Area for each blast',
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'subRadius',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'whale',
+      names: {
+        en: 'Attack Whale',
+        ja: '攻撃機ホエール',
+      },
+      appendix: '*Area for each blast',
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'subRadius',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'planes',
+      names: {
+        en: 'Air Raids',
+        ja: '爆撃機カロン＆ミッドナイト',
+      },
+      appendix: '*Area for each blast',
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'subRadius',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'missile',
+      names: {
+        en: 'Missile Strikes',
+        ja: 'ミサイル',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'laser',
+      names: {
+        en: 'Orbital Lasers',
+        ja: '攻撃機ホエール',
+      },
+      appendix: '*Area for each blast',
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'subRadius',
+        'reload',
+        'total',
+      ],
+    }],
+  }, {
+    category: 'support',
+    names: {
+      en: 'Support Equipment',
+      ja: 'サポート装置',
+    },
+    tables: [{
+      subCategory: 'life',
+      names: {
+        en: 'Life Vendors',
+        ja: 'ライフベンダー',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'interval',
+        'accuracy',
+        'dps',
+        'total',
+      ],
+    }, {
+      subCategory: 'plasma',
+      names: {
+        en: 'Plasma Chargers',
+        ja: 'プラズマチャージャー',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'accuracy',
+        'dps',
+        'total',
+      ],
+    }, {
+      subCategory: 'power',
+      names: {
+        en: 'Power Assists',
+        ja: 'パワーポスト',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'accuracy',
+      ],
+    }, {
+      subCategory: 'guard',
+      names: {
+        en: 'Guard Assists',
+        ja: 'ガードポスト',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'accuracy',
+      ],
+    }],
+  }, {
+    category: 'limpet',
+    names: {
+      en: 'Limpet Guns',
+      ja: 'リムペットガン',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'deploy',
+    names: {
+      en: 'Stationary Weapons',
+      ja: '設置兵器',
+    },
+    tables: [{
+      subCategory: 'bomb',
+      names: {
+        en: 'Bombs',
+        ja: 'ローラーボムシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'speed',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'mine',
+      names: {
+        en: 'Land Mines',
+        ja: 'インパルスシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'reload',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'turret',
+      names: {
+        en: 'Automatic Turrets',
+        ja: 'ZE-GUNシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'shots',
+        'radius',
+        'interval',
+        'reload',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }],
+  }, {
+    category: 'special',
+    names: {
+      en: 'Special Weapons',
+      ja: '特殊',
+    },
+    tables: [{
+      subCategory: 'defensive',
+      names: {
+        en: 'Defensive',
+        ja: 'トーチカ',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'hp',
+        'duration',
+        'reload',
+      ],
+    }, {
+      subCategory: 'wire',
+      names: {
+        en: 'Wire Guns',
+        ja: 'ワイヤー',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'reload',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }],
+  }],
 }
 
 const unlockStates = [
@@ -781,10 +1124,49 @@ async function processWeapon({ value: node }) {
       }
     }
   } else if(wpn.character === 'fencer') {
-    if(wpn.radius) {
-      wpn.subCategory = 'explosive'
-    } else {
-      wpn.subCategory = 'piercing'
+    if(wpn.category === 'heavy') {
+      if(wpn.radius) {
+        wpn.subCategory = 'explosive'
+      } else {
+        wpn.subCategory = 'piercing'
+      }
+    }
+  } else if(wpn.character === 'bomber') {
+    if(wpn.category === 'guide') {
+      if(wpn.weapon === 'Weapon_LaserMarker') {
+        wpn.subCategory = 'laser'
+      } else {
+        wpn.subCategory = 'beacon'
+      }
+    } else if(wpn.category === 'raid') {
+      if(wpn.names.en.endsWith('(Artillery Squad)')) {
+        wpn.subCategory = 'artillery'
+      } else if(wpn.names.en.endsWith('(Attack Whale)')) {
+        wpn.subCategory = 'whale'
+      } else if(wpn.names.en.endsWith(')')) {
+        wpn.subCategory = 'planes'
+      } else if(wpn.strikeType === 'missile') {
+        wpn.subCategory = 'missile'
+      } else {
+        wpn.subCategory = 'laser'
+      }
+      delete wpn.strikeType
+    } else if(wpn.category === 'support') {
+      wpn.subCategory = wpn.supportType
+    } else if(wpn.category === 'deploy') {
+      if(wpn.names.en.endsWith('Impulse')) {
+        wpn.subCategory = 'mine'
+      } else if(wpn.type === 'BombBullet01') {
+        wpn.subCategory = 'bomb'
+      } else {
+        wpn.subCategory = 'turret'
+      }
+    } else if(wpn.category === 'special') {
+      if(wpn.type === 'SpiderStringBullet02') {
+        wpn.subCategory = 'wire'
+      } else {
+        wpn.subCategory = 'defensive'
+      }
     }
   }
 
