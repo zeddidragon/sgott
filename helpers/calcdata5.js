@@ -116,6 +116,996 @@ const autoProps = {
   xParams: 'ExtPrams',
 }
 
+const headers = {
+  ranger: [{
+    category: 'assault',
+    names: {
+      en: 'Assault Rifle',
+      ja: 'アサルトライフル',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'piercingRange',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'shotgun',
+    names: {
+      en: 'Shotguns',
+      ja: 'ショットガン',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'piercingRange',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'sniper',
+    names: {
+      en: 'Sniper Rifles',
+      ja: 'スナイパーライフル',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'rocket',
+    names: {
+      en: 'Rocket Launchers',
+      ja: 'ロケットランチャー',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'accuracy',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'missile',
+    names: {
+      en: 'Missile Launchers',
+      ja: 'ミサイルランチャー',
+    },
+    appendix: '*With 0 lock time',
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'lockTime',
+      'reload',
+      'lockRange',
+      'tdps',
+      'tdps2',
+      'total',
+    ],
+  }, {
+    category: 'grenade',
+    names: {
+      en: 'Grenades',
+      ja: 'グレネード',
+    },
+    tables: [{
+      subCategory: 'hg',
+      names: {
+        en: 'Hand Grenades',
+        ja: 'ハンドグレネード',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'damage',
+        'radius',
+        'duration',
+        'interval',
+        'tdps',
+      ],
+    }, {
+      subCategory: 'gl',
+      names: {
+        en: 'Grenade Launchers',
+        ja: 'グレネードランチャー',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'interval',
+        'reload',
+        'accuracy',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }],
+  }, {
+    category: 'special',
+    names: {
+      en: 'Special Weapons',
+      ja: '特殊',
+    },
+    tables: [{
+      subCategory: 'decoy',
+      names: {
+        en: 'Decoys',
+        ja: 'ピュアデコイ・ランチャー',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'hp',
+        'duration',
+        'reload',
+      ],
+    }, {
+      subCategory: 'acid',
+      names: {
+        en: 'Acid Guns',
+        ja: 'アシッドガン・シリーズ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'reload',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }, {
+      names: {
+        en: 'Flamethrowers',
+        ja: '火炎放射器シリーズ',
+      },
+      subCategory: 'flame',
+      appendix: '*Assuming flame hits every frame of duration.',
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'damage2',
+        'duration',
+        'interval',
+        'reload',
+        'range',
+        'speed',
+        'dps',
+        'dps2',
+        'tdps',
+        'tdps2',
+        'total',
+        'total2',
+      ],
+    }, {
+      names: {
+        en: 'Firecrackers',
+        ja: 'かんしゃく玉シリーズ',
+      },
+      subCategory: 'firecracker',
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'range',
+        'speed',
+        'tdps',
+        'total',
+      ],
+    }, {
+      names: {
+        en: 'Bound Guns',
+        ja: 'バウンドガン・シリーズ',
+      },
+      subCategory: 'bound',
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'reload',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'bomb',
+      names: {
+        en: 'Bombs',
+        ja: 'ローラーボムシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'speed',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'mine',
+      names: {
+        en: 'Land Mines',
+        ja: 'インパルスシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'reload',
+        'tdps',
+        'total',
+      ],
+    }, {
+      names: {
+        en: 'Reversers',
+        ja: 'リバーサー',
+      },
+      subCategory: 'reverser',
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'interval',
+        'range',
+        'speed',
+        'dps',
+        'total',
+      ],
+    }],
+  }],
+  winger: [{
+    category: 'short',
+    names: {
+      en: 'Short-Range',
+      ja: '近距離',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'laser',
+    names: {
+      en: 'Mid-Rg Lasers',
+      ja: '中距離-レーザー',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'electro',
+    names: {
+      en: 'Mid-Rg Electroshock',
+      ja: '中距離-電撃',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'particle',
+    names: {
+      en: 'Particle Cannons',
+      ja: '中距離-粒子砲',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'sniper',
+    names: {
+      en: 'Sniper Weapons',
+      ja: '狙撃兵器',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'plasma',
+    names: {
+      en: 'Ranged Attacks',
+      ja: '範囲攻撃',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'missile',
+    names: {
+      en: 'Homing Weapons',
+      ja: 'ホーミング兵器',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'radius',
+      'lockTime',
+      'reload',
+      'energy',
+      'range',
+      'speed',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'special',
+    names: {
+      en: 'Special Weapons',
+      ja: '特殊',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'duration',
+      'reload',
+      'energy',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }],
+  fencer: [{
+    category: 'hammer',
+    names: {
+      en: 'CC Strikers',
+      ja: '近接-打',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'defense',
+      'chargeTime',
+      'damage',
+      'radius',
+      'reload',
+      'range',
+    ],
+  }, {
+    category: 'spear',
+    names: {
+      en: 'CC Piercers',
+      ja: 'ブレード系',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'range',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'shield',
+    names: {
+      en: 'Shields',
+      ja: '盾',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'defense',
+      'reload',
+      'energy',
+      'range',
+    ],
+  }, {
+    category: 'light',
+    names: {
+      en: 'Automatic Artillery',
+      ja: '機関砲',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'interval',
+      'windup',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'heavy',
+    names: {
+      en: 'Artillery',
+      ja: '火砲',
+    },
+    tables: [{
+      subCategory: 'piercing',
+      names: {
+        en: 'Piercing',
+        ja: '重キャノン砲',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'piercing',
+        'damage',
+        'interval',
+        'reload',
+        'accuracy',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'explosive',
+      names: {
+        en: 'Explosives',
+        ja: '迫撃砲',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'accuracy',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }],
+  }, {
+    category: 'missile',
+    names: {
+      en: 'Missile Launchers',
+      ja: 'ミサイルランチャー',
+    },
+    appendix: '*With 0 lock time',
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'lockTime',
+      'reload',
+      'lockRange',
+      'tdps',
+      'tdps2',
+      'total',
+    ],
+  }],
+  bomber: [{
+    category: 'artillery',
+    names: {
+      en: 'Request Artillery Units',
+      ja: '砲兵隊',
+    },
+    appendix: '*Area for each blast',
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'shots',
+      'radius',
+      'subRadius',
+      'reload',
+      'total',
+    ],
+  }, {
+    category: 'gunship',
+    names: {
+      en: 'Request Gunships',
+      ja: '攻撃機ホエール',
+    },
+    appendix: '*Area for each blast',
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'shots',
+      'radius',
+      'subRadius',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'planes',
+    names: {
+      en: 'Request Bombers',
+      ja: '爆撃機カロン＆ミッドナイト',
+    },
+    appendix: '*Area for each blast',
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'shots',
+      'radius',
+      'subRadius',
+      'duration',
+      'reload',
+      'total',
+    ],
+  }, {
+    category: 'missile',
+    names: {
+      en: 'Request Missiles',
+      ja: 'ミサイル',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'shots',
+      'radius',
+      'credits',
+      'reload',
+      'range',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'satellite',
+    names: {
+      en: 'Request Satellites',
+      ja: '攻撃機ホエール',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'shots',
+      'radius',
+      'credits',
+      'reload',
+      'range',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'support',
+    names: {
+      en: 'Support Equipment',
+      ja: 'サポート装置',
+    },
+    tables: [{
+      subCategory: 'laser',
+      names: {
+        en: 'Laser Guide Kits',
+        ja: 'レーザー誘導装置',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'range',
+        'lockSpeedBoost',
+        'lockRangeBoost',
+      ],
+    }, {
+      subCategory: 'beacon',
+      names: {
+        en: 'Guide Beacon Guns',
+        ja: '誘導ビーコンガン',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'interval',
+        'range',
+        'speed',
+        'lockSpeedBoost',
+        'lockRangeBoost',
+      ],
+    }, {
+      subCategory: 'life',
+      names: {
+        en: 'Life Vendors',
+        ja: 'ライフベンダー',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'interval',
+        'dps',
+        'total',
+      ],
+    }, {
+      subCategory: 'power',
+      names: {
+        en: 'Power Assists',
+        ja: 'パワーポスト',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'interval',
+        'reload',
+      ],
+    }, {
+      subCategory: 'guard',
+      names: {
+        en: 'Guard Assists',
+        ja: 'ガードポスト',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'interval',
+        'reload',
+      ],
+    }],
+  }, {
+    category: 'limpet',
+    names: {
+      en: 'Limpet Guns',
+      ja: 'リムペットガン',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'deploy',
+    names: {
+      en: 'Stationary Weapons',
+      ja: '設置兵器',
+    },
+    tables: [{
+      subCategory: 'bomb',
+      names: {
+        en: 'Bombs',
+        ja: 'ローラーボムシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'interval',
+        'reload',
+        'speed',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'turret',
+      names: {
+        en: 'Automatic Turrets',
+        ja: 'ZE-GUNシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'shots',
+        'radius',
+        'interval',
+        'reload',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }],
+  }, {
+    category: 'special',
+    names: {
+      en: 'Special Weapons',
+      ja: '特殊',
+    },
+    tables: [{
+      subCategory: 'defensive',
+      names: {
+        en: 'Defensive',
+        ja: 'トーチカ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'hp',
+        'duration',
+        'reload',
+      ],
+    }, {
+      subCategory: 'wire',
+      names: {
+        en: 'Wire Guns',
+        ja: 'ワイヤー',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'reload',
+        'range',
+        'speed',
+        'dps',
+        'tdps',
+        'total',
+      ],
+    }],
+  }],
+}
+
 async function processWeapon({ value: node }) {
   const id = node[0].value
   const lvBuffer = Buffer.alloc(4)
@@ -226,6 +1216,66 @@ async function processWeapon({ value: node }) {
   if(!wpn.zoom && !wpn.secondary) {
     delete wpn.zoom
     delete wpn.secondary
+  }
+
+  if(wpn.character === 'ranger') {
+    if(wpn.category === 'grenade') {
+      if(wpn.weapon === 'Weapon_Throw') {
+        wpn.subCategory = 'hg'
+      } else {
+        wpn.subCategory = 'gl'
+      }
+    } else if(wpn.category === 'special') {
+      const damage = wpn.damage?.base || wpn.damage
+      if(wpn.type === 'DecoyBullet01') {
+        wpn.subCategory = 'decoy'
+      } else if(wpn.type === 'AcidBullet01' && damage > 0) {
+        wpn.subCategory = 'acid'
+      } else if(wpn.type === 'FlameBullet02' && damage > 0) {
+        wpn.subCategory = 'flame'
+      } else if(wpn.type === 'GrenadeBullet01') {
+        wpn.subCategory = 'firecracker'
+      } else if(wpn.type === 'SolidBullet01') {
+        wpn.subCategory = 'bound'
+      } else if(wpn.names.en.includes('Impulse')) {
+        wpn.subCategory = 'mine'
+      } else if(wpn.type === 'BombBullet01') {
+        wpn.subCategory = 'bomb'
+      } else {
+        wpn.subCategory = 'reverser'
+      }
+    }
+  } else if(wpn.character === 'fencer') {
+    if(wpn.category === 'heavy') {
+      if(wpn.radius) {
+        wpn.subCategory = 'explosive'
+      } else {
+        wpn.subCategory = 'piercing'
+      }
+    }
+  } else if(wpn.character === 'bomber') {
+    if(wpn.category === 'guide') {
+    } else if(wpn.category === 'support') {
+      if(wpn.weapon === 'Weapon_LaserMarker') {
+        wpn.subCategory = 'laser'
+      } else if(wpn.type === 'TargetMarkerBullet01') {
+        wpn.subCategory = 'beacon'
+      } else {
+        wpn.subCategory = wpn.supportType
+      }
+    } else if(wpn.category === 'deploy') {
+      if(wpn.type === 'BombBullet01') {
+        wpn.subCategory = 'bomb'
+      } else {
+        wpn.subCategory = 'turret'
+      }
+    } else if(wpn.category === 'special') {
+      if(wpn.type === 'SpiderStringBullet02') {
+        wpn.subCategory = 'wire'
+      } else {
+        wpn.subCategory = 'defensive'
+      }
+    }
   }
 
   delete wpn.custom
@@ -344,6 +1394,7 @@ async function extractCalcdata() {
       'Fencer',
       'Air Raider',
     ],
+    headers,
     weapons,
     modes,
   }

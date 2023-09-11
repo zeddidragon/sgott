@@ -37,7 +37,9 @@ function BlankBullet(wpn) {
     return Support(wpn)
   }
   // Laser guide kit
-  delete wpn.ammo
+  if(wpn.weapon === 'Weapon_LaserMarker' && wpn.category === 'support') {
+    TargetMarkerBullet01(wpn)
+  }
 }
 
 function BombBullet01(wpn) {
@@ -125,7 +127,8 @@ function LaserBullet01(wpn) {
 }
 
 function NapalmBullet01(wpn) {
-  wpn.duration = wpn.custom[4].value[2].value * 3
+  const fireCfg = wpn.custom[4].value
+  wpn.duration = fireCfg[2].value * fireCfg[3].value
 }
 
 function CentryGun01(wpn) {
@@ -238,9 +241,20 @@ async function AirRaids(wpn) {
       break
     }
     case 'bomber': {
+      let subMunitions
+      if(game === 41) {
+        subMunitions = wpn.custom[4].value[10].value
+      } else {
+        subMunitions = wpn.custom[2].value[10].value
+      }
+      const ammoType = subMunitions[4].value
       wpn.units = strike[1].value
       wpn.shots = strike[10].value[2].value
-      wpn.subRadius = wpn.custom[4].value[10].value[9].value
+      wpn.subRadius = subMunitions[9].value
+      if(ammoType === 'NapalmBullet01') {
+        const fireCfg = subMunitions[13].value[4].value
+        wpn.duration = fireCfg[2].value * fireCfg[3].value
+      }
       break
     }
     default: { // Shelling
@@ -435,6 +449,15 @@ function SupportUnitBullet01(wpn) {
     'guard',
     'power',
   ][wpn.custom[0].value]
+  wpn.duration = wpn.life
+}
+
+function TargetMarkerBullet01(wpn) {
+  wpn.lockTime = +wpn.custom[0].value.toFixed(1)
+  wpn.lockRange = +wpn.custom[1].value.toFixed(1)
+  if(!wpn.ammo) {
+    delete wpn.ammo
+  }
 }
 
 function Weapon_Gatling(wpn) {
@@ -473,5 +496,6 @@ module.exports = {
   SolidPelletBullet01,
   StunAmmo01: StunAmmo01,
   SupportUnitBullet01,
+  TargetMarkerBullet01,
   Weapon_Gatling,
 }
