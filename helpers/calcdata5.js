@@ -1082,10 +1082,10 @@ const headers = {
         'reload',
       ],
     }, {
-      subCategory: 'wire',
+      subCategory: 'shotgun',
       names: {
-        en: 'Wire Guns',
-        ja: 'ワイヤー',
+        en: 'Suppress Gun',
+        ja: 'サプレスガン',
       },
       headers: [
         'checkbox',
@@ -1093,10 +1093,12 @@ const headers = {
         'level',
         'name',
         'ammo',
+        'piercing',
         'damage',
         'interval',
         'reload',
         'range',
+        'piercingRange',
         'speed',
         'dps',
         'tdps',
@@ -1270,8 +1272,8 @@ async function processWeapon({ value: node }) {
         wpn.subCategory = 'turret'
       }
     } else if(wpn.category === 'special') {
-      if(wpn.type === 'SpiderStringBullet02') {
-        wpn.subCategory = 'wire'
+      if(wpn.type === 'SolidPelletBullet01') {
+        wpn.subCategory = 'shotgun'
       } else {
         wpn.subCategory = 'defensive'
       }
