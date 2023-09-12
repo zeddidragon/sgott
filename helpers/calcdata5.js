@@ -944,6 +944,66 @@ const headers = {
       'tdps2',
       'total',
     ],
+  }, {
+    category: 'booster',
+    names: {
+      en: 'Enhanced Boosters',
+      ja: '補助装備',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'dashCount',
+      'boostCount',
+      'dashCooldown',
+      'boostSpeed',
+    ],
+  }, {
+    category: 'protector',
+    names: {
+      en: 'Enhanced Shields',
+      ja: 'シールド強化',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'defense',
+      'range',
+      'shieldUse',
+      'shieldReflectUse',
+      'shieldKnockback',
+    ],
+  }, {
+    category: 'muzzle',
+    names: {
+      en: 'Enhanced Cannons',
+      ja: '砲撃強化',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'recoil',
+    ],
+  }, {
+    category: 'exo',
+    names: {
+      en: 'Enhanced Exoskeleton',
+      ja: 'スケルトン強化',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'speed',
+      'dashCount',
+      'equipWalkReduction',
+      'equipTurnReduction',
+      'recoil',
+    ],
   }],
   bomber: [{
     category: 'artillery',
