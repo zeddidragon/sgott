@@ -347,6 +347,7 @@ async function SmokeCandleBullet01(wpn) {
   const dmgFactor = strengthParameters[1].value
 
   const vehicle = await loadLinked(wpn.custom[4].value[2].value)
+  const vehicleType = getNode(vehicle, 'xgs_scene_object_class').value
 
   const hp = getNode(vehicle, 'game_object_durability').value
   wpn.hp = Math.floor(hp * hpFactor + 0.001)
@@ -384,11 +385,16 @@ async function SmokeCandleBullet01(wpn) {
     ...(setupVegalta || []),
   ].map(loadLinked))
   wpn.weapons = weapons.map(template => {
-    let subWpn
-    const nameNode = getNode(template, 'name.en')
-      || getNode(template, 'name').value[1]
-    subWpn = {
-      name: nameNode.value,
+    const subWpn = { names: { ja: null, en: null } }
+    let name
+    const namesNode = getNode(template, 'name')
+    if(namesNode) {
+      const [ja, en] = namesNode.value.map(v => v.value)
+      subWpn.names = { ja, en }
+    } else {
+      const ja = getNode(template, 'name.ja').value
+      const en = getNode(template, 'name.en').value
+      subWpn.names = { ja, en }
     }
     for(const [prop, node] of Object.entries(subWeaponProps)) {
       const v = getNode(template, node).value
@@ -425,6 +431,26 @@ async function SmokeCandleBullet01(wpn) {
     wpn.fuel = fuel
     wpn.fuelUsage = +usage.toFixed(2)
     wpn.weapons.pop()
+  }
+
+  if(vehicleType === 'VehicleRescueTank') {
+    const [heal, total] = wpn
+      .custom[4]
+      .value[3]
+      .value[2]
+      .value
+      .map(v => v.value)
+    const buffer = Buffer.alloc(4)
+    buffer.writeFloatLE(heal)
+    wpn.weapons = [{
+      names: {
+        ja: '医療機器',
+        en: 'Medicinal Equipment',
+      },
+      total,
+      damage: buffer.readFloatLE(),
+      interval: 1,
+    }]
   }
 }
 
