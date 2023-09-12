@@ -747,9 +747,7 @@ async function processWeapon({ value: node }, character) {
         wpn.subCategory = 'gl'
       }
     } else if(wpn.category === 'special') {
-      if(wpn.type === 'DecoyBullet01') {
-        wpn.subCategory = 'decoy'
-      } else if(wpn.type === 'AcidAmmo01' && wpn.damage > 0) {
+      if(wpn.type === 'AcidAmmo01' && wpn.damage > 0) {
         wpn.subCategory = 'acid'
       } else if(wpn.type === 'FireAmmo01' && wpn.damage > 0) {
         wpn.subCategory = 'flame'
