@@ -49,6 +49,16 @@ function BombBullet01(wpn) {
   }
 }
 
+function ClusterBeamAmmo(wpn) {
+  const shots = wpn.custom[0].value
+  const interval = wpn.custom[4].value || 1
+  wpn.shots = shots
+  wpn.duration = shots * interval
+  if(wpn.duration < 10) {
+    delete wpn.duration
+  }
+}
+
 function ClusterBullet01(wpn) {
   const shots = wpn.custom[5].value[2].value
   const interval = wpn.custom[5].value[3].value + 1
@@ -546,6 +556,10 @@ module.exports = {
   BombBullet01,
   BombBullet02: BombBullet01,
   CentryGun01,
+  ClusterBeamAmmo,
+  ClusterLaserAmmo: ClusterBeamAmmo,
+  ClusterLightningAmmo: ClusterBeamAmmo,
+  ClusterGenocideAmmo: ClusterBeamAmmo,
   ClusterBullet01,
   DecoyBullet01,
   FireAmmo01: FlameBullet02,
