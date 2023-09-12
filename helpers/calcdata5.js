@@ -453,7 +453,7 @@ const headers = {
     category: 'equipment',
     names: {
       en: 'Support Equipment',
-      ja: 'レンジャー > 補助装備',
+      ja: '補助装備',
     },
     tables: [{
       subCategory: 'armor',
@@ -762,6 +762,30 @@ const headers = {
       'dps',
       'tdps',
       'total',
+    ],
+  }, {
+    category: 'core',
+    names: {
+      en: 'Cores',
+      ja: 'プラズマコア',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'energy',
+      'chargeRate',
+      'chargeEmergencyRate',
+      'energyUse',
+      'boostUse',
+      'speed',
+      'flightBoost',
+      'dashForwardBoost',
+      'dashBackwardBoost',
+      'dashSideBoost',
+      'airControl',
+      'reloadBoost',
     ],
   }],
   fencer: [{
