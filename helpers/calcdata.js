@@ -324,6 +324,7 @@ const headers = {
         ja: 'リバーサー',
       },
       subCategory: 'reverser',
+      appendix: '*Assuming mist hits every frame of duration.',
       headers: [
         'checkbox',
         'level',
@@ -336,7 +337,9 @@ const headers = {
         'range',
         'speed',
         'dps',
+        'dps2',
         'total',
+        'total2',
       ],
     }],
   }],

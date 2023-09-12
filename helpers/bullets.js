@@ -78,8 +78,25 @@ function FlameBullet02(wpn) {
 }
 
 function GrenadeBullet01(wpn) {
-  if(wpn.custom[0].value === 1) {
-    wpn.fuse = wpn.life
+  const grenadeType = wpn.custom[0].value
+  switch(grenadeType) {
+    case 1: { // Timed grenade
+      wpn.fuse = wpn.life
+      break
+    }
+    case 6: { // Temp Shield
+      wpn.supportType = 'shield'
+      wpn.duration = wpn.damage * 60
+      wpn.defense = Math.round(wpn.custom[6].value * 100)
+      delete wpn.damage
+      break
+    }
+    case 9: { // Limit booster
+      wpn.supportType = 'booster'
+      wpn.duration = wpn.damage * 60
+      wpn.damage = Math.round(wpn.custom[6].value * 100) / 100
+      break
+    }
   }
 }
 
@@ -122,6 +139,22 @@ function LaserBullet01(wpn) {
     const curve2 = wpn.wCustom[7]?.value
     if(curveId2 & 2 && curve2) {
       wpn.ammoDamageCurve = curve2
+    }
+  }
+}
+
+function MissileAmmo01(wpn) {
+  const missileType = wpn.custom[0]?.value
+  switch(missileType) {
+    case 4: { // Rescue drone
+      wpn.revive = Math.round(wpn.damage * 100)
+      wpn.supportType = 'rescue'
+      delete wpn.damage
+      break
+    }
+    case 2: { // Reverse / Killer drone
+      wpn.supportType = 'drone'
+      break
     }
   }
 }
@@ -458,6 +491,15 @@ function SmokeCandleBullet02(wpn) {
   return AirRaids(wpn)
 }
 
+function SolidAmmo01(wpn) {
+  const custom = wpn.custom?.[0]?.value
+  // 1: Bounces
+  // 2: Pierces
+  if(custom === 2) {
+    wpn.piercing = true
+  }
+}
+
 function SolidPelletBullet01(wpn) {
   if(wpn.piercing) {
     wpn.piercingLife = wpn.custom[0].value
@@ -513,12 +555,15 @@ module.exports = {
   PileBunkerBullet01,
   LaserBullet01,
   LaserBullet03: LaserBullet01,
+  MissileAmmo01,
   NapalmBullet01,
+  RepairAmmo01: FlameBullet02,
   SentryGunBullet01,
   ShieldBashBullet01,
   ShockWaveBullet01,
   SmokeCandleBullet01,
   SmokeCandleBullet02,
+  SolidAmmo01,
   SolidPelletBullet01,
   StunAmmo01: StunAmmo01,
   SupportUnitBullet01,
