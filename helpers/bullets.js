@@ -420,7 +420,7 @@ async function SmokeCandleBullet01(wpn) {
     return subWpn
   })
 
-  if(wpn.weapons[wpn.weapons.length - 1]?.name === 'FUEL') {
+  if(wpn.weapons[wpn.weapons.length - 1]?.names?.en === 'FUEL') {
     const [fuel, usage] = wpn.custom
       .find(n => n.type === 'ptr')
       .value
