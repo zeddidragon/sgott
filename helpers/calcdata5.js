@@ -449,6 +449,137 @@ const headers = {
         'total',
       ],
     }],
+  }, {
+    category: 'equipment',
+    names: {
+      en: 'Support Equipment',
+      ja: 'レンジャー > 補助装備',
+    },
+    tables: [{
+      subCategory: 'armor',
+      names: {
+        en: 'Armor',
+        ja: 'プロテクター',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'knockdownImmunity',
+        'speed',
+        'hitSlowdown',
+        'sprintBreakObstacles',
+        'sprintSpeedBoost',
+        'sprintTurnBoost',
+        'sprintAccelerationBoost',
+        'sprintHitSlowdown',
+      ],
+    }, {
+      subCategory: 'lock',
+      names: {
+        en: 'Lock-On Devices',
+        ja: 'レーダー支援システム',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'lockSpeedBoost',
+        'lockRangeBoost',
+        'lockMulti',
+      ],
+    }, {
+      subCategory: 'probe',
+      names: {
+        en: 'Probe / Relief Assistance',
+        ja: '救護支援装備',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'healAllyBoost',
+        'probeRadius',
+      ],
+    }],
+  }, {
+    category: 'tank',
+    names: {
+      en: 'Tanks',
+      ja: '戦闘車両',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'reload',
+      'hp',
+      'ammo',
+      'piercing',
+      'damage',
+      'radius',
+      'interval',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'total',
+    ],
+  }, {
+    category: 'bike',
+    names: {
+      en: 'Bikes',
+      ja: 'バイク',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'reload',
+      'hp',
+      'fuel',
+      'fuelUse',
+      'ammo',
+      'piercing',
+      'damage',
+      'radius',
+      'interval',
+      'accuracy',
+      'lockTime',
+      'range',
+      'speed',
+      'dps',
+      'total',
+    ],
+  }, {
+    category: 'heli',
+    names: {
+      en: 'Helicopters',
+      ja: 'ヘリ',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'reload',
+      'hp',
+      'fuel',
+      'fuelUse',
+      'ammo',
+      'piercing',
+      'damage',
+      'radius',
+      'interval',
+      'accuracy',
+      'lockTime',
+      'range',
+      'speed',
+      'dps',
+      'total',
+    ],
   }],
   winger: [{
     category: 'short',
@@ -1371,6 +1502,14 @@ async function processWeapon({ value: node }) {
         wpn.subCategory = 'bomb'
       } else {
         wpn.subCategory = 'reverser'
+      }
+    } else if(wpn.category === 'equipment') {
+      if(wpn.itemRange || wpn.allyRecovery) {
+        wpn.subCategory = 'probe'
+      } else if(wpn.isMultiLock || wpn.lockRange || wpn.lockSpeed) {
+        wpn.subCategory = 'lock'
+      } else {
+        wpn.subCategory = 'armor'
       }
     }
   } else if(wpn.character === 'fencer') {
