@@ -56,6 +56,16 @@ const modes = [{
   name: 'ON',
   missions: 60,
   difficulties: [{
+    name: 'Easy',
+    weaponLimits: [
+      1,
+      25
+    ],
+    armorLimits: [
+      400,
+      1500,
+    ]
+   }, {
     name: 'Normal',
     weaponLimits: [
       1,
