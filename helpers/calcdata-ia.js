@@ -283,7 +283,7 @@ const headers = {
 }
 
 async function extractCalcdata() {
-  const file = await fs.readFile('tmp/ia.csv', 'utf8')
+  const file = await fs.readFile('data/ia/weapons.csv', 'utf8')
   const [, ...rows] = file.split('\n').map(row => row.split(';'))
   rows.pop()
   const weapons = rows.map((row, i) => {
