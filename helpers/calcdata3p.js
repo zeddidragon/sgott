@@ -858,7 +858,7 @@ async function extractCalcdata() {
     extractWeaponData('winger'),
   ])
   return {
-    langs: ['en', 'ja'],
+    langs: ['en'],
     classes,
     charLabels: [
       'Storm',
