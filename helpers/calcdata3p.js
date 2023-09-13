@@ -433,7 +433,7 @@ const headers = {
   }, {
     category: 'repair',
     names: {
-      en: 'Asssist Tools',
+      en: 'Tools',
       ja: '武器データ/アシストツール',
     },
     tables: [{
