@@ -579,7 +579,6 @@ const headers = {
         'name',
         'ammo',
         'damage',
-        'radius',
         'reload',
         'total',
       ],
