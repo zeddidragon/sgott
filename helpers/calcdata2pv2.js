@@ -757,7 +757,6 @@ const headers = {
         'checkbox',
         'level',
         'name',
-        'accuracy',
         'range',
       ],
     }, {
@@ -771,10 +770,7 @@ const headers = {
         'level',
         'name',
         'ammo',
-        'interval',
-        'accuracy',
         'range',
-        'speed',
       ],
     }],
   }],
@@ -1114,6 +1110,11 @@ async function extractWeaponData() {
               'decoy',
               'defensive',
             ][headerIdx] || 'defensive'
+          } else if(category === 'guide') {
+            wpn.subCategory = [
+              'laser',
+              'beacon',
+            ][headerIdx] || 'beacon'
           }
         }
 
