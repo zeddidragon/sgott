@@ -384,7 +384,6 @@ const headers = {
         'checkbox',
         'level',
         'name',
-        'ammo',
         'damage',
         'radius',
         'interval',
@@ -848,12 +847,6 @@ async function processMode({ value: mode }) {
   return obj
 }
  
-async function extractModesData(config) {
-  const table = await loadJson(config)
-  const modeList = table.variables.find(v => v.name === 'ModeList').value
-  return Promise.all(modeList.slice(0, 2).map(processMode))
-}
-
 async function extractCalcdata() {
   const [
     weapons,

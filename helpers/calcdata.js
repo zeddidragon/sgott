@@ -289,7 +289,6 @@ const headers = {
         'checkbox',
         'level',
         'name',
-        'ammo',
         'damage',
         'radius',
         'interval',
