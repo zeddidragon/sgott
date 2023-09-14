@@ -525,6 +525,82 @@ const headers = {
       'total',
     ],
   }, {
+    category: 'limpet',
+    names: {
+      en: 'Limpet Guns',
+      ja: 'リムペットガン',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'deploy',
+    names: {
+      en: 'Umanned Weapons',
+      ja: '設置兵器',
+    },
+    tables: [{
+      subCategory: 'roomba',
+      names: {
+        en: 'Roller Bombs',
+        ja: 'ローラーボム',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'patroller',
+      names: {
+        en: 'Patrollers',
+        ja: 'パトローラー',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'turret',
+      names: {
+        en: 'Automatic Turrets',
+        ja: 'ZE-GUNシリーズ',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'shots',
+        'reload',
+        'total',
+      ],
+    }],
+  }, {
     category: 'support',
     names: {
       en: 'Support Equipment',
@@ -581,66 +657,6 @@ const headers = {
         'radius',
         'duration',
         'reload',
-      ],
-    }],
-  }, {
-    category: 'limpet',
-    names: {
-      en: 'Limpet Guns',
-      ja: 'リムペットガン',
-    },
-    headers: [
-      'checkbox',
-      'level',
-      'name',
-      'ammo',
-      'damage',
-      'radius',
-      'interval',
-      'reload',
-      'accuracy',
-      'range',
-      'dps',
-      'tdps',
-      'total',
-    ],
-  }, {
-    category: 'deploy',
-    names: {
-      en: 'Stationary Weapons',
-      ja: '設置兵器',
-    },
-    tables: [{
-      subCategory: 'bomb',
-      names: {
-        en: 'Bombs',
-        ja: 'ローラーボムシリーズ',
-      },
-      headers: [
-        'checkbox',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'radius',
-        'reload',
-        'total',
-      ],
-    }, {
-      subCategory: 'turret',
-      names: {
-        en: 'Automatic Turrets',
-        ja: 'ZE-GUNシリーズ',
-      },
-      headers: [
-        'checkbox',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'shots',
-        'reload',
-        'total',
       ],
     }],
   }, {
@@ -1055,8 +1071,8 @@ async function extractWeaponData() {
             ][headerIdx] || 'guard'
           } else if(category === 'deploy') {
             wpn.subCategory = [
-              'bomb',
-              'bomb',
+              'roomba',
+              'patroller',
               'turret',
               'bomb',
             ][headerIdx] || 'guard'
