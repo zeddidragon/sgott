@@ -598,6 +598,23 @@ const headers = {
         'reload',
         'total',
       ],
+    }, {
+      subCategory: 'beetle',
+      names: {
+        en: 'Assault Beetles',
+        ja: 'アサルトビートル',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'reload',
+        'total',
+      ],
+
     }],
   }, {
     category: 'support',
@@ -1073,7 +1090,7 @@ async function extractWeaponData() {
               'roomba',
               'patroller',
               'turret',
-              'bomb',
+              'beetle',
             ][headerIdx] || 'guard'
           } else if(category === 'special') {
             wpn.subCategory = [
