@@ -619,7 +619,7 @@ const headers = {
   }, {
     category: 'support',
     names: {
-      en: 'Support Equipment',
+      en: 'Support Gear',
       ja: 'サポート装置',
     },
     tables: [{
@@ -641,6 +641,22 @@ const headers = {
         'dps2',
         'total',
         'total2',
+      ],
+    }, {
+      subCategory: 'plasma',
+      names: {
+        en: 'Plasma Chargers',
+        ja: 'プラズマチャージャー',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'reload',
       ],
     }, {
       subCategory: 'power',
