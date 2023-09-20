@@ -221,6 +221,7 @@ const headers = {
         'ammo',
         'damage',
         'zoom',
+        'total',
       ],
     }, {
       subCategory: 'acid',
@@ -956,6 +957,16 @@ const specialProps = {
       }
     } else {
       wpn.damage = +prop
+    }
+  },
+  remarks: (wpn, prop) => {
+    if(wpn.character === 'ranger' && wpn.category === 'special') {
+      if(wpn.idx >= 26 && wpn.idx <= 30) {
+        wpn.total = `~${prop.split('約').pop()}`
+      } else if(wpn.idx >= 31 && wpn.idx <= 36) {
+        specialProps.damage(wpn, prop.split('：').pop())
+        delete wpn.damageRank
+      }
     }
   },
   shots: (wpn, prop) => {
