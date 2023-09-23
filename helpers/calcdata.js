@@ -76,6 +76,7 @@ const headers = {
       'interval',
       'reload',
       'accuracy',
+      'zoom',
       'range',
       'speed',
       'dps',
@@ -120,6 +121,7 @@ const headers = {
       'interval',
       'reload',
       'accuracy',
+      'zoom',
       'range',
       'speed',
       'dps',
@@ -142,6 +144,7 @@ const headers = {
       'interval',
       'reload',
       'accuracy',
+      'zoom',
       'dps',
       'tdps',
       'total',
@@ -163,6 +166,7 @@ const headers = {
       'interval',
       'lockTime',
       'reload',
+      'zoom',
       'lockRange',
       'tdps',
       'tdps2',
@@ -231,6 +235,7 @@ const headers = {
         'ammo',
         'hp',
         'duration',
+        'zoom',
         'reload',
       ],
     }, {
@@ -333,6 +338,7 @@ const headers = {
         'radius',
         'duration',
         'interval',
+        'zoom',
         'range',
         'speed',
         'dps',
@@ -440,6 +446,7 @@ const headers = {
       'damage',
       'reload',
       'accuracy',
+      'zoom',
       'energy',
       'range',
       'speed',
@@ -603,6 +610,7 @@ const headers = {
         'interval',
         'reload',
         'accuracy',
+        'zoom',
         'range',
         'speed',
         'dps',
@@ -625,6 +633,7 @@ const headers = {
         'interval',
         'reload',
         'accuracy',
+        'zoom',
         'range',
         'speed',
         'dps',
@@ -768,6 +777,7 @@ const headers = {
         'damage',
         'shots',
         'radius',
+        'zoom',
         'reload',
         'total',
       ],
@@ -786,6 +796,7 @@ const headers = {
         'shots',
         'radius',
         'subRadius',
+        'zoom',
         'reload',
         'total',
       ],
@@ -811,6 +822,7 @@ const headers = {
         'radius',
         'duration',
         'interval',
+        'zoom',
         'dps',
         'total',
       ],
@@ -829,6 +841,7 @@ const headers = {
         'radius',
         'duration',
         'interval',
+        'zoom',
         'reload',
         'dps',
         'total',
@@ -848,6 +861,7 @@ const headers = {
         'radius',
         'duration',
         'interval',
+        'zoom',
         'reload',
       ],
     }, {
@@ -865,6 +879,7 @@ const headers = {
         'radius',
         'duration',
         'interval',
+        'zoom',
         'reload',
       ],
     }],
@@ -910,6 +925,7 @@ const headers = {
         'damage',
         'radius',
         'interval',
+        'zoom',
         'reload',
         'speed',
         'tdps',
@@ -972,6 +988,7 @@ const headers = {
         'ammo',
         'hp',
         'duration',
+        'zoom',
         'reload',
       ],
     }, {
@@ -1265,6 +1282,10 @@ async function processWeapon({ value: node }) {
         wpn.subCategory = 'defensive'
       }
     }
+  }
+
+  if(isNaN(wpn.zoom)) {
+    delete wpn.zoom
   }
 
   delete wpn.custom
