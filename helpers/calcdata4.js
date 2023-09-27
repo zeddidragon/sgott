@@ -1298,35 +1298,6 @@ async function extractWeaponData() {
   return Promise.all(table.variables[0].value.map(processWeapon))
 }
 
-const modes = {
-  GameMode_Scenario: {
-    name: 'OFF',
-    missions: 89,
-  },
-  GameMode_OnlineScenario: {
-    name: 'ON',
-    missions: 98,
-  },
-  GameMode_Versus: {
-    name: 'Versus',
-  },
-  MissionPack01_ScenarioMode: {
-    name: 'DLC1',
-    missions: 26,
-  },
-  MissionPack01_OnlineScenarioMode: {
-    name: 'DLC1',
-    missions: 26,
-  },
-  MissionPack02_ScenarioMode: {
-    name: 'DLC2',
-    missions: 23,
-  },
-  MissionPack02_OnlineScenarioMode: {
-    name: 'DLC2',
-    missions: 23,
-  },
-}
 const difficulties = [
   'Easy',
   'Normal',
@@ -1337,10 +1308,17 @@ const difficulties = [
 async function processMode({ value: mode }) {
   const key = mode[0].value
   const lvBuffer = Buffer.alloc(4)
+  const missionListPath = mode[5].value[0].value
+    .replace('app:/', '')
+    .replace('.sgo', '')
+  const missionList = (await loadJson(missionListPath))
+    .variables[0]
+    .value
+  const missions = missionList.length
   const obj = {
-    ...modes[key],
+    name: mode[0].value,
+    missions,
     difficulties: mode[6].value.map(({ value: d }, i) => {
-      const { missions } = modes[key]
       const dropsLow = Array(missions)
       const dropsHigh = Array(missions)
       const [start, end] = d[2].value.slice(0, 2).map(v => v.value)
