@@ -1,0 +1,296 @@
+{
+  "format": "SGO",
+  "endian": "BE",
+  "version": 258,
+  "variables": [
+    {"name": "AimAnimation", "type": "string", "value": "aim_no_ik"},
+    {"name": "AmmoAlive", "type": "int", "value": 5400},
+    {"name": "AmmoClass", "type": "string", "value": "DecoyBullet01"},
+    {
+      "name": "AmmoColor",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 0},
+        {"type": "float", "value": 1}
+      ]
+    },
+    {"name": "AmmoCount", "type": "int", "value": 3},
+    {"name": "AmmoDamage", "type": "float", "value": 120},
+    {"name": "AmmoExplosion", "type": "float", "value": 0},
+    {"name": "AmmoGravityFactor", "type": "float", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "float", "value": 1},
+    {"name": "AmmoHitSe", "type": "ptr", "value": null},
+    {"name": "AmmoHitSizeAdjust", "type": "float", "value": 1},
+    {"name": "AmmoIsPenetration", "type": "int", "value": 0},
+    {"name": "AmmoModel", "type": "int", "value": 0},
+    {"name": "AmmoOwnerMove", "type": "float", "value": 1},
+    {"name": "AmmoSize", "type": "float", "value": 1},
+    {"name": "AmmoSpeed", "type": "float", "value": 0},
+    {
+      "name": "Ammo_CustomParameter",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 60},
+        {"type": "int", "value": 32},
+        {"type": "int", "value": 0},
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "app:/Weapon/e_throw_decoyscreen01.rab"
+                },
+                {"type": "string", "value": "e_throw_decoyscreen01.mb"}
+              ]
+            },
+            {
+              "type": "string",
+              "value": "app:/Weapon/e_throw_decoyscreen01.cas"
+            },
+            {
+              "type": "extra",
+              "value": "TUFCAA8AAAADAAAAAwADAAEAWgAkAAAAXAAAANAAAAA4AgAAAAAAADwAAAABAAEAPAAAAAIAAABcAAAAfAIAADgCAAAAAAAA0AAAAM3MzD3/////AAAAAOAAAACMAAAAzAAAAFICAAACAAAArAAAAMwAAABiAgAAAQAAALwAAADMAAAAQgIAAAEAAABMAgAAAAAAAAAAAABMAQAATAIAAAAAIEEAAAAA6AEAAEwCAAAAAAAAAAAAAJgBAABMAgAAAAAAAAAAAAAAAQAAurq6ugAAAAAzM3M/AAAAAAAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAUAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAxzCzMKQwNHjKWAAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAFAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAMcwszCkMIuVTzAAAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAABwAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAADHMLMwpDCGMIkwhjCJMAAAAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAIAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAAMcwszCkMHeNTTAKTkwwijAAAGIAbwBkAHkAAABoAGkAZABlAAAAcwBlAAAAcwB0AGEAbgBkAGIAeQAAAHMAdABhAG4AZABiAHkAXwBsAG8AbwBwAAAAvzD8MLIwwzDIMAAAEDPAAAAAAIAjAA=="
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/weapon/e_throw_decoyscreen01.shkt"
+            },
+            {
+              "type": "extra",
+              "value": {
+                "format": "SGO",
+                "endian": "BE",
+                "version": 258,
+                "variables": [
+                  {
+                    "name": "animation_from_ragdoll",
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {
+                                "type": "string",
+                                "value": "e_throw_decoyscreen01.body"
+                              },
+                              {"type": "string", "value": "body"}
+                            ]
+                          },
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0}
+                            ]
+                          },
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 1}
+                            ]
+                          },
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {"type": "float", "value": 1},
+                              {"type": "float", "value": 1},
+                              {"type": "float", "value": 1}
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "ragdoll_from_animation",
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {"type": "string", "value": "body"},
+                              {
+                                "type": "string",
+                                "value": "e_throw_decoyscreen01.body"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0}
+                            ]
+                          },
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 0},
+                              {"type": "float", "value": 1}
+                            ]
+                          },
+                          {
+                            "type": "ptr",
+                            "value": [
+                              {"type": "float", "value": 1},
+                              {"type": "float", "value": 1},
+                              {"type": "float", "value": 1}
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": null},
+    {"name": "AngleAdjust", "type": "float", "value": 0},
+    {"name": "BaseAnimation", "type": "string", "value": "throw"},
+    {"name": "ChangeAnimation", "type": "string", "value": "throw_change1"},
+    {"name": "EnergyChargeRequire", "type": "float", "value": -1},
+    {"name": "FireAccuracy", "type": "float", "value": 0.004999999888241291},
+    {"name": "FireBurstCount", "type": "int", "value": 1},
+    {"name": "FireBurstInterval", "type": "int", "value": 0},
+    {"name": "FireCondition", "type": "int", "value": 0},
+    {"name": "FireCount", "type": "int", "value": 1},
+    {"name": "FireInterval", "type": "int", "value": 30},
+    {"name": "FireLoadSe", "type": "ptr", "value": null},
+    {"name": "FireRecoil", "type": "float", "value": 0},
+    {
+      "name": "FireSe",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 0},
+        {"type": "string", "value": "weapon_Engineer_EX_spcDecoySet"},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 2},
+        {"type": "float", "value": 20}
+      ]
+    },
+    {"name": "FireSpreadType", "type": "int", "value": 0},
+    {"name": "FireSpreadWidth", "type": "float", "value": 0},
+    {"name": "FireType", "type": "int", "value": 0},
+    {"name": "FireVector", "type": "ptr", "value": null},
+    {
+      "name": "LockonAngle",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0.30000001192092896},
+        {"type": "float", "value": 0.30000001192092896}
+      ]
+    },
+    {"name": "LockonFailedTime", "type": "int", "value": 0},
+    {"name": "LockonHoldTime", "type": "int", "value": 0},
+    {"name": "LockonRange", "type": "float", "value": 0},
+    {"name": "LockonTargetType", "type": "int", "value": 0},
+    {"name": "LockonTime", "type": "int", "value": 0},
+    {"name": "LockonType", "type": "int", "value": 0},
+    {"name": "Lockon_AutoTimeOut", "type": "int", "value": 1},
+    {"name": "Lockon_DistributionType", "type": "int", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "int", "value": 1},
+    {
+      "name": "ModelConstraint",
+      "type": "ptr",
+      "value": [{"type": "string", "value": "arms_r"}]
+    },
+    {"name": "MuzzleFlash", "type": "string", "value": ""},
+    {"name": "MuzzleFlash_CustomParameter", "type": "ptr", "value": null},
+    {"name": "Range", "type": "float", "value": 0},
+    {"name": "ReloadAnimation", "type": "string", "value": "throw_reload1"},
+    {"name": "ReloadInit", "type": "float", "value": 1},
+    {"name": "ReloadTime", "type": "int", "value": 1200},
+    {"name": "ReloadType", "type": "int", "value": 0},
+    {"name": "SecondaryFire_Parameter", "type": "ptr", "value": null},
+    {"name": "SecondaryFire_Type", "type": "int", "value": 2},
+    {
+      "name": "ShellCase",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "int", "value": 0}
+      ]
+    },
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": null},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": null},
+    {"name": "Sight_SWF", "type": "string", "value": ""},
+    {
+      "name": "WeaponIcon",
+      "type": "string",
+      "value": "app:/weapon/icon/throw_decoy.dds"
+    },
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "app:/Weapon/e_throw_decoycore01.rab"},
+            {"type": "string", "value": "e_throw_decoycore01.mb"}
+          ]
+        },
+        {"type": "string", "value": "app:/Weapon/e_throw_decoycore01.cas"},
+        {
+          "type": "extra",
+          "value": "TUFCAA8AAAADAAAAAwACAAIASAAkAAAAXAAAAIAAAADAAAAAAAABADwAAAABAAAAXAAAAAIAAABcAAAAwAAAAMYAAAACAAAAgAAAAJAAAACAAAAAAAAAAKAAAAB8AAAAfAAAAPgAAAAAAAAAfAAAAHwAAADuAAAAAAAAALq6uroAAAAAAAAAAAAAAAAAAIA/AACgQAAAoEAAAKBAAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAMAAxAAAAZQBfAHQAaAByAG8AdwBfAGQAZQBjAG8AeQBjAG8AcgBlADAAMQAAAGgAaQBkAGUAAABzAHQAYQBuAGQAYgB5AAAA"
+        }
+      ]
+    },
+    {
+      "name": "custom_parameter",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "throw_whole_decoy"},
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 2},
+        {"type": "float", "value": 1.5}
+      ]
+    },
+    {"name": "name", "type": "string", "value": "Decoy [Red]"},
+    {
+      "name": "resource",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "app:/Weapon/e_throw_decoyscreen01.rab"},
+        {"type": "string", "value": "app:/Weapon/e_throw_decoyscreen01.cas"},
+        {"type": "string", "value": "app:/weapon/e_throw_decoyscreen01.shkt"}
+      ]
+    },
+    {
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "Weapon_BasicShoot"
+    }
+  ]
+}

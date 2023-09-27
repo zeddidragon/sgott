@@ -253,12 +253,13 @@ const strikes = [
 ]
 async function AirRaids(wpn) {
   let type = strikes[wpn.custom[3].value]
-  if(wpn.names?.en === 'Rule of God') {
+  const name = wpn.name || wpn.names?.en
+  if(name === 'Rule of God') {
     type = 'rog'
     delete wpn.radius
     wpn.count = 2
   }
-  if(wpn.names?.en === 'Laguna Blaster') {
+  if(name === 'Laguna Blaster') {
     delete wpn.radius
   }
 
@@ -285,15 +286,17 @@ async function AirRaids(wpn) {
     }
     case 'bomber': {
       let subMunitions
-      if(game === 41) {
+      if(game === 4) {
+        subMunitions = wpn.custom[4].value[10].value
+      } else if(game === 41) {
         subMunitions = wpn.custom[4].value[10].value
       } else {
         subMunitions = wpn.custom[2].value[10].value
       }
-      const ammoType = subMunitions[4].value
+      const ammoType = subMunitions[4]?.value
       wpn.units = strike[1].value
       wpn.shots = strike[10].value[2].value
-      wpn.subRadius = subMunitions[9].value
+      wpn.subRadius = subMunitions[9]?.value
       if(ammoType === 'NapalmBullet01') {
         const fireCfg = subMunitions[13].value[4].value
         wpn.duration = fireCfg[2].value * fireCfg[3].value
@@ -429,11 +432,12 @@ async function SmokeCandleBullet01(wpn) {
   ].map(loadLinked))
   wpn.weapons = weapons.map(template => {
     const subWpn = { names: { ja: null, en: null } }
-    let name
     const namesNode = getNode(template, 'name')
-    if(namesNode) {
+    if(Array.isArray(namesNode?.value)) {
       const [ja, en] = namesNode.value.map(v => v.value)
       subWpn.names = { ja, en }
+    } else if(namesNode?.value) {
+      subWpn.name = namesNode.value
     } else {
       const ja = getNode(template, 'name.ja').value
       const en = getNode(template, 'name.en').value

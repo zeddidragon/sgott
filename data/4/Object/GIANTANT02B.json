@@ -1,0 +1,2535 @@
+{
+  "format": "SGO",
+  "endian": "BE",
+  "version": 258,
+  "variables": [
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "app:/Object/GiantAnt.mrab"},
+                {"type": "string", "value": "GiantAnt_Red.mb"},
+                {
+                  "type": "ptr",
+                  "value": [
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "GiantAnt_Red_Lod1.mb"},
+                        {"type": "float", "value": 75}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "GiantAnt_Red_Lod2.mb"},
+                        {"type": "float", "value": 150}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "app:/Object/GiantAnt_light.mrab"},
+                {"type": "string", "value": "GiantAnt_Red_light.mb"},
+                {
+                  "type": "ptr",
+                  "value": [
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {
+                          "type": "string",
+                          "value": "GiantAnt_Red_Lod1_light.mb"
+                        },
+                        {"type": "float", "value": 75}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {
+                          "type": "string",
+                          "value": "GiantAnt_Red_Lod2_light.mb"
+                        },
+                        {"type": "float", "value": 150}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {"type": "string", "value": "app:/object/GiantAnt02.cas"},
+        {
+          "type": "extra",
+          "value": "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ZABkAF8AYQBuAGcAcgB5AAAAYQBkAGQAXwBiAG8AZAB5AF8AcwB3AGkAbgBnAAAAYQBkAGQAXwBmAGEAYwBlAF8AdQBwAAAAYQBkAGQAXwBmAGEAYwBlAF8AdwBhAHMAaAAAAGEAZABkAF8AbABvAG8AawBfAGYAbwByAAAAYQBkAGQAXwBsAG8AbwBrAF8AbwB1AHQAAABhAGQAZABfAHIAZQBmAHIAZQBzAGgAAABiAGwAbwB3AF8AZABhAG0AYQBnAGUAXwBiAAAAYgBsAG8AdwBfAGQAYQBtAGEAZwBlAF8AYgBfAHMAdABhAHIAdAAAAGIAbABvAHcAXwBkAGEAbQBhAGcAZQBfAGYAAABiAGwAbwB3AF8AZABhAG0AYQBnAGUAXwBmAF8AcwB0AGEAcgB0AAAAYgBsAG8AdwBfAGQAYQBtAGEAZwBlAF8AbAAAAGIAbABvAHcAXwBkAGEAbQBhAGcAZQBfAGwAXwBzAHQAYQByAHQAAABiAGwAbwB3AF8AZABhAG0AYQBnAGUAXwByAAAAYgBsAG8AdwBfAGQAYQBtAGEAZwBlAF8AcgBfAHMAdABhAHIAdAAAAGMAYQBwAHQAdQByAGUAAABjAGEAcAB0AHUAcgBlAF8AYgBpAHQAZQAAAGMAYQBwAHQAdQByAGUAXwBpAG0AcABhAGMAdAAAAGMAYQBwAHQAdQByAGUAXwBzAHcAaQBuAGcAAABjAGEAcAB0AHUAcgBlAF8AdABoAHIAbwB3AAAAYwBhAHAAdAB1AHIAZQBfAHQAaAByAG8AdwBfAG8AdgBlAHIAAABkAGEAbQBhAGcAZQAxAAAAZABhAG0AYQBnAGUAMgAAAGQAYQBtAGEAZwBlADMAAABkAGEAbQBhAGcAZQA0AF8AbABhAHIAZwBlAAAAZABlAGEAdABoAAAAZgBhAGwAbAAAAGYAYQBsAGwAXwBkAGEAbQBhAGcAZQAAAGYAYQBsAGwAXwBlAG4AZAAAAGcAaQBzAGEAbgAAAGcAcgBvAHUAbgBkAF8AbwB1AHQAAABrAGEAbwAAAGsAbwBzAGkAAAByAHUAbgBfAHQAdQByAG4AXwBhAG4AZwBsAGUAAABzAGUAAABzAGkAZABlAHcAYQBsAGsAXwBhAG4AZwBsAGUAAABzAGkAcgBpAAAAcwB0AGEAbgBkAAAAdAB1AHIAbgBfAEwAAAB0AHUAcgBuAF8ATABfAHMAdABhAHIAdAAAAHQAdQByAG4AXwBSAAAAdAB1AHIAbgBfAFIAXwBzAHQAYQByAHQAAAB0AHUAcgBuAF8AYQBuAGcAbABlAAAAdwBhAGwAawBfAEIAAAB3AGEAbABrAF8AQgBfAHMAdABhAHIAdAAAAHcAYQBsAGsAXwBCAF8AdAB1AHIAbgAAAHcAYQBsAGsAXwBGAAAAdwBhAGwAawBfAEYAXwBzAHQAYQByAHQAAAB3AGEAbABrAF8ATAAAAHcAYQBsAGsAXwBSAAAAvzD8MLIwwzDIMAAAAABzAHQAYQByAPuHeJEAAGsAXwB6dgRcAADDMMgwVWPfmMAw4TD8MLgwAABzAHQAYQByAHQAAABVY9+Yi5U+ZQAAAAAAAHMAdABVY9+Y+laaW01Pbn8AAHMAdABhAHIAdAAAAFVj35jYYl9nAAAAAAAAcwB0AFVj35gkUppbAABufwAAcwB0AFVj35gkUppbi5XLWQAAcwB0AGEAcgB0AAAAVWPfmCRSmltCfYZOAABzAHQAYQByAHQAAAA="
+        }
+      ]
+    },
+    {
+      "name": "ant_AiSetting",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 1},
+        {"type": "float", "value": 10},
+        {"type": "float", "value": 30}
+      ]
+    },
+    {"name": "ant_BloodScale", "type": "float", "value": 0.5},
+    {"name": "ant_BloodSe", "type": "string", "value": "敵共通血しぶき小"},
+    {"name": "ant_CaptureSe", "type": "string", "value": "巨大蟻キャプチャ"},
+    {"name": "ant_DamageEffectSe", "type": "string", "value": "赤蟻ヒットエフェクト"},
+    {"name": "ant_DamageSe", "type": "string", "value": "巨大蟻ダメージ"},
+    {"name": "ant_DeadSe", "type": "string", "value": "巨大蟻死亡"},
+    {"name": "ant_DeathBloodScale", "type": "float", "value": 0.75},
+    {
+      "name": "ant_DeathReaction",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0.30000001192092896},
+        {"type": "float", "value": 0.05000000074505806},
+        {"type": "float", "value": 0.05000000074505806}
+      ]
+    },
+    {"name": "ant_MoveSpeedUp", "type": "float", "value": 0.20000000298023224},
+    {
+      "name": "ant_RandomReactionTable",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 1},
+                    {"type": "float", "value": 3}
+                  ]
+                },
+                {"type": "int", "value": 0},
+                {
+                  "type": "ptr",
+                  "value": [
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "face_wash"},
+                        {"type": "float", "value": 1}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "lookout"},
+                        {"type": "float", "value": 1}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "body_swing"},
+                        {"type": "float", "value": 1}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0},
+                    {"type": "float", "value": 0}
+                  ]
+                },
+                {"type": "int", "value": 1},
+                {
+                  "type": "ptr",
+                  "value": [
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "face_wash"},
+                        {"type": "float", "value": 1}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "lookout"},
+                        {"type": "float", "value": 1}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "string", "value": "body_swing"},
+                        {"type": "float", "value": 1}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {"name": "ant_WalkVoice", "type": "string", "value": "巨大蟻歩行声"},
+    {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 2},
+            {"type": "float", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 2},
+            {"type": "float", "value": -20}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "game_object_drop_item",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 0},
+        {"type": "float", "value": 0},
+        {"type": "float", "value": 0.28999999165534973}
+      ]
+    },
+    {"name": "game_object_durability", "type": "float", "value": 180},
+    {
+      "name": "game_object_encount",
+      "type": "ptr",
+      "value": [{"type": "float", "value": 50}, {"type": "float", "value": 150}]
+    },
+    {
+      "name": "game_object_kill_counter",
+      "type": "string",
+      "value": "GiantAntKillCount"
+    },
+    {
+      "name": "game_sound",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "app:/sound/xbox/tikyuu4_en_GiantAnt.xsb"},
+        {"type": "string", "value": "app:/sound/xbox/tikyuu4_en_GiantAnt.xwb"}
+      ]
+    },
+    {
+      "name": "insectbase_CollisionSetting",
+      "type": "ptr",
+      "value": [{"type": "float", "value": 3}, {"type": "float", "value": 1.5}]
+    },
+    {
+      "name": "insectbase_DamageReaction",
+      "type": "float",
+      "value": 0.10000000149011612
+    },
+    {
+      "name": "insectbase_MoveSpeed",
+      "type": "float",
+      "value": 0.30000001192092896
+    },
+    {"name": "insectbase_MoveSpeedScale", "type": "float", "value": 1},
+    {"name": "insectbase_Type", "type": "int", "value": 0},
+    {
+      "name": "ps3_game_sound",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "app:/sound/ps3/tikyuu4_en_GiantAnt.acb"}
+      ]
+    },
+    {
+      "name": "ragdoll",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "app:/object/Giantant_Red_has_hka.shkt"},
+        {
+          "type": "extra",
+          "value": {
+            "format": "SGO",
+            "endian": "BE",
+            "version": 258,
+            "variables": [
+              {
+                "name": "animation_from_ragdoll",
+                "type": "ptr",
+                "value": [
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.kosi"},
+                          {"type": "string", "value": "kosi"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.hara"},
+                          {"type": "string", "value": "hara"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.kao"},
+                          {"type": "string", "value": "kao"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -0.310153990983963},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.950685977935791}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.maeasi1_l"
+                          },
+                          {"type": "string", "value": "maeasi1_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.maeasi1_r"
+                          },
+                          {"type": "string", "value": "maeasi1_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi1_l"
+                          },
+                          {"type": "string", "value": "nakaasi1_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi1_r"
+                          },
+                          {"type": "string", "value": "nakaasi1_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi1_l"
+                          },
+                          {"type": "string", "value": "usiroasi1_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi1_r"
+                          },
+                          {"type": "string", "value": "usiroasi1_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.maeasi2_l"
+                          },
+                          {"type": "string", "value": "maeasi2_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.ago_l"},
+                          {"type": "string", "value": "ago_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.maeasi2_r"
+                          },
+                          {"type": "string", "value": "maeasi2_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.ago_r"},
+                          {"type": "string", "value": "ago_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_l"
+                          },
+                          {"type": "string", "value": "nakaasi2_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku1_l"
+                          },
+                          {"type": "string", "value": "syokaku1_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_r"
+                          },
+                          {"type": "string", "value": "nakaasi2_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku1_r"
+                          },
+                          {"type": "string", "value": "syokaku1_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_l"
+                          },
+                          {"type": "string", "value": "usiroasi2_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.siri"},
+                          {"type": "string", "value": "siri"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_r"
+                          },
+                          {"type": "string", "value": "usiroasi2_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku2_l"
+                          },
+                          {"type": "string", "value": "syokaku2_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku2_r"
+                          },
+                          {"type": "string", "value": "syokaku2_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.kosi"},
+                          {"type": "string", "value": "globalSRT"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -3.9000000953674316},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.maeasi2_l"
+                          },
+                          {"type": "string", "value": "maeasi3_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 6.07835578918457},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.maeasi2_r"
+                          },
+                          {"type": "string", "value": "maeasi3_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 6.078361988067627},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_l"
+                          },
+                          {"type": "string", "value": "nakaasi3_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 6.260313987731934},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_r"
+                          },
+                          {"type": "string", "value": "nakaasi3_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 6.260317802429199},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_l"
+                          },
+                          {"type": "string", "value": "usiroasi3_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 7.3473801612854},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_r"
+                          },
+                          {"type": "string", "value": "usiroasi3_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 7.347379207611084},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "ragdoll_from_animation",
+                "type": "ptr",
+                "value": [
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "kosi"},
+                          {"type": "string", "value": "RagDollProxys.kosi"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "hara"},
+                          {"type": "string", "value": "RagDollProxys.hara"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "kao"},
+                          {"type": "string", "value": "RagDollProxys.kao"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.310153990983963},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.950685977935791}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "maeasi1_l"},
+                          {"type": "string", "value": "RagDollProxys.maeasi1_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "maeasi1_r"},
+                          {"type": "string", "value": "RagDollProxys.maeasi1_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "nakaasi1_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi1_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "nakaasi1_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi1_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "usiroasi1_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi1_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "usiroasi1_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi1_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "maeasi2_l"},
+                          {"type": "string", "value": "RagDollProxys.maeasi2_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "ago_l"},
+                          {"type": "string", "value": "RagDollProxys.ago_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "maeasi2_r"},
+                          {"type": "string", "value": "RagDollProxys.maeasi2_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "ago_r"},
+                          {"type": "string", "value": "RagDollProxys.ago_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "nakaasi2_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "syokaku1_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku1_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "nakaasi2_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "syokaku1_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku1_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "usiroasi2_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "siri"},
+                          {"type": "string", "value": "RagDollProxys.siri"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "usiroasi2_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "syokaku2_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku2_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "syokaku2_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.syokaku2_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "maeasi3_l"},
+                          {"type": "string", "value": "RagDollProxys.maeasi2_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -6.078352928161621},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "maeasi3_r"},
+                          {"type": "string", "value": "RagDollProxys.maeasi2_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -6.0783610343933105},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "nakaasi3_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -6.260312080383301},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "nakaasi3_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.nakaasi2_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -6.260321140289307},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "usiroasi3_l"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_l"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -7.3473801612854},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "usiroasi3_r"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.usiroasi2_r"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -7.3473801612854},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ragdoll_contact",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "巨大蟻衝突"},
+        {"type": "float", "value": 4000},
+        {"type": "float", "value": 0.10000000149011612},
+        {"type": "float", "value": 10},
+        {"type": "int", "value": 60}
+      ]
+    },
+    {"name": "xgs_scene_object_class", "type": "string", "value": "GiantAnt"}
+  ]
+}

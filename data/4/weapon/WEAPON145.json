@@ -1,0 +1,159 @@
+{
+  "format": "SGO",
+  "endian": "BE",
+  "version": 258,
+  "variables": [
+    {"name": "AimAnimation", "type": "string", "value": "aim"},
+    {"name": "AmmoAlive", "type": "int", "value": 180},
+    {"name": "AmmoClass", "type": "string", "value": "AcidBullet01"},
+    {
+      "name": "AmmoColor",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 0.125},
+        {"type": "float", "value": 1}
+      ]
+    },
+    {"name": "AmmoCount", "type": "int", "value": 20},
+    {"name": "AmmoDamage", "type": "float", "value": 10},
+    {"name": "AmmoExplosion", "type": "float", "value": 0},
+    {"name": "AmmoGravityFactor", "type": "float", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "float", "value": 1},
+    {
+      "name": "AmmoHitSe",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 0},
+        {"type": "string", "value": "weapon_Common_impactAcidgunS"},
+        {"type": "float", "value": 0.25},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 20}
+      ]
+    },
+    {"name": "AmmoHitSizeAdjust", "type": "float", "value": 1},
+    {"name": "AmmoIsPenetration", "type": "int", "value": 0},
+    {"name": "AmmoModel", "type": "int", "value": 0},
+    {"name": "AmmoOwnerMove", "type": "float", "value": 1},
+    {"name": "AmmoSize", "type": "float", "value": 0.05999999865889549},
+    {"name": "AmmoSpeed", "type": "float", "value": 0.30000001192092896},
+    {
+      "name": "Ammo_CustomParameter",
+      "type": "ptr",
+      "value": [{"type": "float", "value": -0.004000000189989805}]
+    },
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": null},
+    {"name": "AngleAdjust", "type": "float", "value": 0},
+    {"name": "BaseAnimation", "type": "string", "value": "assault"},
+    {"name": "ChangeAnimation", "type": "string", "value": "assault_change1"},
+    {"name": "EnergyChargeRequire", "type": "float", "value": -1},
+    {"name": "FireAccuracy", "type": "float", "value": 0.10000000149011612},
+    {"name": "FireBurstCount", "type": "int", "value": 1},
+    {"name": "FireBurstInterval", "type": "int", "value": 0},
+    {"name": "FireCondition", "type": "int", "value": 0},
+    {"name": "FireCount", "type": "int", "value": 6},
+    {"name": "FireInterval", "type": "int", "value": 30},
+    {"name": "FireLoadSe", "type": "ptr", "value": null},
+    {"name": "FireRecoil", "type": "float", "value": 0.07500000298023224},
+    {
+      "name": "FireSe",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 0},
+        {"type": "string", "value": "weapon_Ranger_SP_acidGun_prototype"},
+        {"type": "float", "value": 0.5},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 2},
+        {"type": "float", "value": 25}
+      ]
+    },
+    {"name": "FireSpreadType", "type": "int", "value": 0},
+    {"name": "FireSpreadWidth", "type": "float", "value": 0},
+    {"name": "FireType", "type": "int", "value": 0},
+    {"name": "FireVector", "type": "ptr", "value": null},
+    {
+      "name": "LockonAngle",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0.30000001192092896},
+        {"type": "float", "value": 0.30000001192092896}
+      ]
+    },
+    {"name": "LockonFailedTime", "type": "int", "value": 0},
+    {"name": "LockonHoldTime", "type": "int", "value": 0},
+    {"name": "LockonRange", "type": "float", "value": 0},
+    {"name": "LockonTargetType", "type": "int", "value": 0},
+    {"name": "LockonTime", "type": "int", "value": 0},
+    {"name": "LockonType", "type": "int", "value": 0},
+    {"name": "Lockon_AutoTimeOut", "type": "int", "value": 1},
+    {"name": "Lockon_DistributionType", "type": "int", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "int", "value": 1},
+    {
+      "name": "ModelConstraint",
+      "type": "ptr",
+      "value": [{"type": "string", "value": "arms_r"}]
+    },
+    {"name": "MuzzleFlash", "type": "string", "value": ""},
+    {"name": "MuzzleFlash_CustomParameter", "type": "ptr", "value": null},
+    {"name": "Range", "type": "float", "value": 54},
+    {"name": "ReloadAnimation", "type": "string", "value": "assault_reload1"},
+    {"name": "ReloadInit", "type": "float", "value": 1},
+    {"name": "ReloadTime", "type": "int", "value": 180},
+    {"name": "ReloadType", "type": "int", "value": 0},
+    {"name": "SecondaryFire_Parameter", "type": "ptr", "value": null},
+    {"name": "SecondaryFire_Type", "type": "int", "value": 0},
+    {
+      "name": "ShellCase",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "int", "value": 0}
+      ]
+    },
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": null},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": null},
+    {"name": "Sight_SWF", "type": "string", "value": "app:/HUD/sight06.swf"},
+    {
+      "name": "WeaponIcon",
+      "type": "string",
+      "value": "app:/weapon/icon/spray.dds"
+    },
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "app:/Weapon/s_spray_spray01.rab"},
+            {"type": "string", "value": "s_spray_spray01.mb"}
+          ]
+        },
+        {"type": "string", "value": "app:/Weapon/s_spray_spray01.cas"},
+        {
+          "type": "extra",
+          "value": "TUFCAA8AAAADAAAAAwAEAAUAdAAkAAAAfAAAABABAACcAwAAAAABADwAAAABAAEAXAAAAAIAAAB8AAAAnAMAAKgDAAACAAAAIAEAADABAAAQAQAAAAAAAGABAACiAwAAqAMAAAIAAABAAQAAMAEAAFABAAAAAAAAYAEAALwAAAAMAQAAAAQAAAAAAAC8AAAADAEAAOADAAACAAAA3AAAAAwBAADIAwAAAAAAANwAAAAMAQAAsgMAAAMAAAD6AwAAAAAAAAAAAADYAQAA+gMAAAAAwEAAAAAAiAIAAPoDAAAAAAAAAAAAAOQCAAD6AwAAAABIQgAAAAAwAgAA+gMAAAAAyEIAAAAAgAEAALq6uroAAAAAAAAAAAAAAAAAAIA/AAAAAIcWWT3NzMw9AACAP4/C9TyPwvU8j8L1PAAAgD9GtvM9PQrXvSPbeT0AAIA/+n+cP6xQd76tHkJAAACAP1NHTwACAQAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAACwAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAAAz/zD/M/8w/zL/If85/xD/Ef/LaUgwAAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAwAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAM/8w/zP/MP8y/yH/Of8Q/xH/SjCNMFkwAABTR08AAgEAAAEAAAAgAAAAAQAAACwAAAAAAAAANAAAAAMAAAAMAAAAHgAAAAgAAAAAAAAAbgBhAG0AZQAAADP/MP8z/zD/Mv8h/zn/EP8R/7swwzDIMAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAADQAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAAAz/zD/M/8w/zL/If85/xD/Ef/qMOow/DC5MAAAAABTR08AAgEAAAMAAAAgAAAAAwAAAEQAAAAAAAAAXAAAAAEAAAAEAAAAAQAAAAMAAAANAAAAbgAAAAMAAAAGAAAAJAAAACYAAAAAAAAAOgAAAAEAAAA8AAAAAgAAAGIAbwB0AHQAbABlAAAAaQBzAF8AdAByAGEAYwBlAF8AbgBvAGQAZQAAAG4AYQBtAGUAAABuAG8AZABlAAAAM/8w/zP/MP8y/yH/Of8Q/xH/1lOKMPpRVzAAAAAAMAAxAAAASQBLAAAAYgBvAGQAeQAAAHIAZQBsAG8AYQBkAF8AZQBuAGQAAAByAGUAbABvAGEAZABfAGwAbwBvAHAAAAByAGUAbABvAGEAZABfAHMAdABhAHIAdAAAAHMAZQAAAHMAdABhAG4AZABiAHkAAAA="
+        }
+      ]
+    },
+    {
+      "name": "custom_parameter",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "waist_recoil3"},
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 0},
+        {"type": "float", "value": 1}
+      ]
+    },
+    {"name": "name", "type": "string", "value": "Acid Shot Prototype"},
+    {
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "Weapon_BasicShoot"
+    }
+  ]
+}
