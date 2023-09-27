@@ -1341,14 +1341,14 @@ async function processMode({ value: mode }) {
         dropSpread: +(d[2].value[2].value * 25).toFixed(2),
         dropsLow,
         dropsHigh,
-        weaponLimits: d[6].value ? d[6].value.map(v => {
+        weaponLimits: d[5].value ? d[5].value.map(v => {
           if(v.value >= 0) {
             return +(v.value * 25).toFixed(2)
           } else {
             return null
           }
         }) : -1,
-        armorLimits: d[7]?.value ? d[7].value.map(v => v.value) : null,
+        armorLimits: d[6].value ? d[6].value.map(v => v.value) : null,
       }
     }),
   }
