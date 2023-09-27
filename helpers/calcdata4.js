@@ -1298,6 +1298,11 @@ async function extractWeaponData() {
   return Promise.all(table.variables[0].value.map(processWeapon))
 }
 
+const modes = {
+  GameMode_Scenario: 'OFF',
+  GameMode_OnlineScenario: 'ON',
+}
+
 const difficulties = [
   'Easy',
   'Normal',
@@ -1316,7 +1321,7 @@ async function processMode({ value: mode }) {
     .value
   const missions = missionList.length
   const obj = {
-    name: mode[0].value,
+    name: modes[mode[0].value],
     missions,
     difficulties: mode[6].value.map(({ value: d }, i) => {
       const dropsLow = Array(missions)
