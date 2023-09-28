@@ -932,7 +932,7 @@ const dictionary = {
   '中＋': 'Middle+',
   '大': 'High',
   '大＋': 'High+',
-  'ムズムズする？': 'Negligible',
+  'ムズムズする？': 'Itchy?',
   TTFP: 'dps',
   PTFP: 'tdps',
 }

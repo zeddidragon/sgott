@@ -1666,27 +1666,21 @@ async function extractWeaponData() {
 const modes = {
   GameMode_Scenario: {
     name: 'OFF',
-    missions: 110,
   },
   GameMode_OnlineScenario: {
     name: 'ON',
-    missions: 111,
   },
   GameMode_Offline_MissionPack01: {
     name: 'DLC1',
-    missions: 15,
   },
   GameMode_Online_MissionPack01: {
     name: 'DLC1',
-    missions: 15,
   },
   GameMode_Offline_MissionPack02: {
     name: 'DLC2',
-    missions: 14,
   },
   GameMode_Online_MissionPack02: {
     name: 'DLC2',
-    missions: 14,
   },
 }
 const difficulties = [
@@ -1699,17 +1693,25 @@ const difficulties = [
 async function processMode({ value: mode }) {
   const key = mode[0].value
   const lvBuffer = Buffer.alloc(4)
+  const missionListPath = mode[5].value[0].value
+    .replace('app:/', '')
+    .replace('.sgo', '')
+  const missionList = (await loadJson(missionListPath))
+    .variables[0]
+    .value
+  const missions = missionList.length
   const obj = {
     ...modes[key],
+    missions,
     difficulties: mode[6].value.map(({ value: d }, i) => {
-      const { missions } = modes[key]
       const dropsLow = Array(missions)
       const dropsHigh = Array(missions)
       const [start, end] = d[2].value.slice(0, 2).map(v => v.value)
       const spread = d[2].value[2].value
       const range = end - start
       for(let i = 0; i < missions; i++) {
-        const pivot = start + (range / (missions - 1)) * i
+        const mission = missionList[i].value
+        const pivot = start + range * mission[3].value
         lvBuffer.writeFloatLE(pivot - spread)
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
         dropsLow[i] = Math.floor(lvBuffer.readFloatLE())
