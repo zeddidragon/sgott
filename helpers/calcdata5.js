@@ -612,6 +612,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'laser',
@@ -636,6 +638,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'electro',
@@ -659,6 +663,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'particle',
@@ -682,6 +688,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'sniper',
@@ -707,6 +715,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'plasma',
@@ -731,6 +741,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'missile',
@@ -752,6 +764,8 @@ const headers = {
       'speed',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'special',
@@ -771,6 +785,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'core',
@@ -785,9 +801,13 @@ const headers = {
       'name',
       'energy',
       'chargeRate',
+      'chargeRatio',
       'chargeEmergencyRate',
+      'chargeEmergencyRatio',
       'energyUse',
+      'energyUseRatio',
       'boostUse',
+      'boostUseRatio',
       'speed',
       'flightBoost',
       'dashForwardBoost',
