@@ -306,6 +306,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'laser',
@@ -328,6 +330,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'electro',
@@ -349,6 +353,8 @@ const headers = {
       'dps',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'particle',
@@ -366,6 +372,8 @@ const headers = {
       'energy',
       'range',
       'dps',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'sniper',
@@ -384,6 +392,8 @@ const headers = {
       'energy',
       'range',
       'dps',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'plasma',
@@ -404,6 +414,8 @@ const headers = {
       'range',
       'dps',
       'tdps',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'missile',
@@ -420,6 +432,8 @@ const headers = {
       'interval',
       'energy',
       'dps',
+      'eps',
+      'dpe',
     ],
   }, {
     category: 'special',
@@ -437,6 +451,8 @@ const headers = {
       'energy',
       'tdps',
       'total',
+      'eps',
+      'dpe',
     ],
   }],
   bomber: [{
