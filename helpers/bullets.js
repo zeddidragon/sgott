@@ -306,6 +306,10 @@ async function AirRaids(wpn) {
     default: { // Shelling
       wpn.shots = strike[2].value
       wpn.shotInterval = strike[3].value
+      const isSimultaneousShot = strike[19]?.value
+      if(isSimultaneousShot) {
+        delete wpn.shotInterval
+      }
       wpn.subRadius = strike[9].value
     }
   }
