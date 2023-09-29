@@ -317,16 +317,16 @@ async function extractCalcdata() {
   return {
     langs: ['en'],
     classes: [
-      'ranger',
-      'winger',
       'fencer',
+      'winger',
       'bomber',
+      'ranger',
     ],
     charLabels: [
-      'Trooper',
-      'Jet',
       'Battle',
+      'Jet',
       'Tactical',
+      'Trooper',
     ],
     headers,
     weapons: [...weapons, ...tacticalItems],

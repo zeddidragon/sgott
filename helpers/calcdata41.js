@@ -1420,12 +1420,17 @@ async function extractCalcdata() {
   ])
   return {
     langs: ['en', 'ja'],
-    classes,
+    classes: [
+      'ranger',
+      'winger',
+      'bomber',
+      'fencer',
+    ],
     charLabels: [
       'Ranger',
       'Wing Diver',
-      'Fencer',
       'Air Raider',
+      'Fencer',
     ],
     weapons,
     headers,
