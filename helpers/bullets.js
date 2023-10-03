@@ -138,6 +138,9 @@ function LaserBullet01(wpn) {
   ].includes(wpn.weapon)) {
     const curveId = wpn.wCustom[6]?.value
     const curve = wpn.wCustom[4]?.value
+    if(curveId & 128) { // Phalanx
+      return
+    }
     if((curveId & 2) && curve) {
       wpn.ammoDamageCurve = curve
     }
