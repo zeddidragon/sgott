@@ -1,8 +1,6 @@
-const syncFs = require('fs')
-const process = require('process')
+const fs = require('fs/promises')
 const getNode = require('./get-node.js')
 const bullets = require('./bullets.js')
-const fs = syncFs.promises
 
 bullets.assignGame(4)
 
@@ -1416,11 +1414,4 @@ async function extractCalcdata() {
   }
 }
 
-extractCalcdata()
-  .then(data => {
-    console.log(JSON.stringify(data, null, 2))
-  })
-  .catch(console.error)
-  .then(() => {
-    process.exit(0)
-  })
+module.exports = extractCalcdata

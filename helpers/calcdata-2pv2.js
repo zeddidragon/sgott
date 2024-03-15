@@ -1,6 +1,4 @@
-const syncFs = require('fs')
-const process = require('process')
-const fs = syncFs.promises
+const fs = require('fs/promises')
 
 const classes = [
   'ranger',
@@ -1186,11 +1184,4 @@ async function extractCalcdata() {
   }
 }
 
-extractCalcdata()
-  .then(data => {
-    console.log(JSON.stringify(data, null, 2))
-  })
-  .catch(console.error)
-  .then(() => {
-    process.exit(0)
-  })
+module.exports = extractCalcdata
