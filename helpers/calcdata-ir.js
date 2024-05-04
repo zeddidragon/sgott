@@ -93,13 +93,25 @@ const damageTypes = {
 }
 
 const rexPrecision = /Precision: (\w+)( \(Equipped with scope\))?/
+const rexGunType = /Type: (.+)/
 const tagSearches = [
-  ['delay', /Delayed trigger response/],
   ['bouncing', /Bouncing bullets/],
-  ['growth_range', /Range increases the longer your fire/],
+  ['sticky', /Bonding\/Timed/],
+  ['no_move', /Cannot move while firing/],
+  ['no_move_aim', /Cannot move\/aim speed down while firing/],
+  ['reload_none', /Cannot reload/],
+  ['slow_aim', /Decreased aim speed while firing/],
+  ['delay_burst', /Delayed burst/],
+  ['delay', /Delayed trigger response/],
+  ['scatter_down', /Downward scattering/],
+  ['growth_range', /Range increases the longer you fire/],
+  ['growth_range', /Distance increases the longer you fire/],
+  ['pushback', /Pushes enemies back/],
+  ['reload_auto', /Auto Reload/],
 ]
 
 
+let lines = new Set()
 async function extractGunStats(category) {
   const data = JSON.parse(await readFile(`data/ir/${category}.json`))
   const textEn = JSON.parse(await readFile('data/ir/en-Text_Name.json'))
@@ -114,6 +126,7 @@ async function extractGunStats(category) {
     let { text: en } = textEn[nameKey] || {}
     const { text: stats } = textEn[`WPN_13${key}`] || {}
     const [, accuracyRank, scope] = rexPrecision.exec(stats) || []
+    const [, gunType] = rexGunType.exec(stats) || []
     if(!en) {
       return
     }
@@ -130,8 +143,8 @@ async function extractGunStats(category) {
     const rank = processRank(obj.m_eRank)
     let category = obj.m_enWeaponType.split('::').pop()
     category = weaponTypes[category] || category
-    if(category !== 'assault') {
-      return null
+    for(const line of (stats?.split('\n').slice(1) || [])) {
+      lines.add(line)
     }
     let dmgType = obj.m_eDamageAttribute?.split('::')?.pop()
     dmgType = damageTypes[dmgType] || 'none'
@@ -143,6 +156,7 @@ async function extractGunStats(category) {
       id: `weapon-${id}`,
       names: name && { en, ja },
       character: 'weapons',
+      gunType,
       rank,
       category,
       damage: dmg.fDamageAmount,
