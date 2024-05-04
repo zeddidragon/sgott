@@ -20,15 +20,16 @@ const gunStats = [
   'checkbox',
   'rank',
   'name',
+  'remarks',
   'ammo',
   'piercing',
   'damage',
   'interval',
   'reload',
+  'reloadQuick',
   'accuracy',
   'zoom',
   'range',
-  'speed',
   'dps',
   'tdps',
   'total',
@@ -48,22 +49,7 @@ const headers = {
       en: 'Shotgun',
       ja: 'ショットガン',
     },
-    headers: [
-      'checkbox',
-      'rank',
-      'name',
-      'remarks',
-      'ammo',
-      'damage',
-      'interval',
-      'reload',
-      'reloadQuick',
-      'accuracy',
-      'range',
-      'dps',
-      'tdps',
-      'total',
-    ],
+    headers: gunStats,
   }],
 }
 
@@ -95,6 +81,10 @@ const weaponTypes = {
   Sword: 'sword',
   Submachinegun: 'special',
   Gatling: 'gatling',
+  EnergyThrower: 'thrower',
+  RailGun: 'railgun',
+  RequestSupport: 'satellite',
+  LaserCannon: 'cannon',
 }
 
 const damageTypes = {
@@ -102,36 +92,56 @@ const damageTypes = {
   Optics: 'optics',
 }
 
+const rexPrecision = /Precision: (\w+)( \(Equipped with scope\))?/
+const tagSearches = [
+  ['delay', /Delayed trigger response/],
+  ['bouncing', /Bouncing bullets/],
+  ['growth_range', /Range increases the longer your fire/],
+]
+
+
 async function extractGunStats(category) {
   const data = JSON.parse(await readFile(`data/ir/${category}.json`))
   const textEn = JSON.parse(await readFile('data/ir/en-Text_Name.json'))
   const textJa = JSON.parse(await readFile('data/ir/ja-Text_Name.json'))
   const dmgs = JSON.parse(await readFile('data/ir/DamageParam.json'))
   return Object.entries(data).map(([id, wpn]) => {
-    const ja = textJa[`WPN_1000${id}`]
-    const en = textEn[`WPN_1000${id}`]
+
+    const key =  id.padStart(6, 0)
+    let isDLC = false
+    const nameKey = `WPN_10${key}`
+    let { text: ja } = textJa[nameKey] || {}
+    let { text: en } = textEn[nameKey] || {}
+    const { text: stats } = textEn[`WPN_13${key}`] || {}
+    const [, accuracyRank, scope] = rexPrecision.exec(stats) || []
     if(!en) {
       return
     }
     const {
       m_Name: name,
       m_stCommon: obj,
+      m_stCase: obj2,
     } = wpn
     const dmg = dmgs[obj.m_sShot_BulletID]
+    const dmg2 = dmgs[obj.m_sShot_BulletID + 1]
     if(!dmg) {
       return
     }
     const rank = processRank(obj.m_eRank)
     let category = obj.m_enWeaponType.split('::').pop()
     category = weaponTypes[category] || category
+    if(category !== 'assault') {
+      return null
+    }
     let dmgType = obj.m_eDamageAttribute?.split('::')?.pop()
     dmgType = damageTypes[dmgType] || 'none'
-    return {
+    const crit = obj2.m_sLuckyBulletProbability
+    const tags = tagSearches
+      .filter(([tag, search]) => search.exec(stats))
+      .map(([tag]) => tag)
+    const ret = {
       id: `weapon-${id}`,
-      names: name && {
-        ja: ja.text,
-        en: en.text,
-      },
+      names: name && { en, ja },
       character: 'weapons',
       rank,
       category,
@@ -140,11 +150,22 @@ async function extractGunStats(category) {
       ammo: obj.m_sLoadingNum,
       count: voidif(obj.m_sNumShot, 1),
       range: obj.m_fShotRange / 100,
-      intervalSeconds: obj.m_fWaitingTime,
+      rof: 1 / obj.m_fWaitingTime,
       intervalOverdrive: obj.m_fOverdrive_MagWaitingTime,
       reloadSeconds: obj.m_fReloadTime,
       reloadOverdrive: obj.m_fOverdrive_MagReloadTime,
+      accuracyRank,
+      zoom: !!scope || void 0,
     }
+    if(crit > 0) {
+      tags.push('roulette')
+      ret.critOver = crit
+      ret.critDamage = dmg2.fDamageAmount
+    }
+    if(tags.length) {
+      ret.tags = tags
+    }
+    return ret
   }).filter(wpn => wpn)
 }
 
