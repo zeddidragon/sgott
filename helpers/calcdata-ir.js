@@ -195,7 +195,7 @@ async function extractGunStats(category) {
       effect,
       range: obj.m_fShotRange / 100,
       speed: obj.m_fShotDistance / 100,
-      rof: 1 / obj.m_fWaitingTime,
+      rof: 1 / Math.max(obj.m_fWaitingTime, 0.05), // 20/sec max for Unreal
       intervalOverdrive: obj.m_fOverdrive_MagWaitingTime,
       reloadSeconds: obj.m_fReloadTime,
       reloadOverdrive: obj.m_fOverdrive_MagReloadTime,
@@ -224,6 +224,16 @@ async function extractGunStats(category) {
     }
     if(category === 'shotgun' && !ret.accuracyRank) {
       ret.accuracyRank = 'circle'
+    }
+    if(wpn.m_stTimePowerUpArray.length) {
+      ret.growth = wpn.m_stTimePowerUpArray.map(step => {
+        const sDmg = dmgs[step.sStrikeId] || dmg
+        return {
+          n: step.sPowerUpNum,
+          range: step.fShotRange / 100,
+          damage: sDmg.fDamageAmount,
+        }
+      })
     }
     if(tags.length) {
       ret.tags = tags
