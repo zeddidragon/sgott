@@ -60,6 +60,13 @@ const headers = {
       'radius',
       ...gunStats.slice(gunStats.indexOf('damage') + 1),
     ],
+  }, {
+    category: 'sniper',
+    names: {
+      en: 'Sniper Rifle',
+      ja: 'スナイパーライフル',
+    },
+    headers: gunStats,
   }],
 }
 
@@ -97,7 +104,7 @@ const weaponTypes = {
   LaserCannon: 'cannon',
 }
 
-const rexPrecision = /Precision: (\w+)( \(Equipped with scope\))?/i
+const rexPrecision = /Precision:? (\w+\+?→?\w*\+?)( \(Equipped with scope\))?/i
 const rexScattering = /(\w+) scattering/i
 const rexGunType = /Type: (.+)/i
 const rexBlastRadius = /Blast Radius: (\d+) meters/i
@@ -107,7 +114,6 @@ const tagSearches = [
   ['sticky', /Bonding\/Timed/i],
   ['no_move', /Cannot move while firing/i],
   ['no_move_aim', /Cannot move\/aim speed down while firing/i],
-  ['reload_none', /Cannot reload/i],
   ['slow_aim', /Decreased aim speed while firing/i],
   ['delay_burst', /Delayed burst/i],
   ['delay', /Delayed trigger response/i],
@@ -116,6 +122,7 @@ const tagSearches = [
   ['growth_damage', /Power increases the longer you fire/i],
   ['pushback', /Pushes enemies back/i],
   ['reload_auto', /Auto Reload/i],
+  ['reload_charge', /Recharge ability/i],
   ['recoil', /Recoil/i],
   ['tracer', /Tracer bullets/i],
 ]
@@ -159,7 +166,7 @@ async function extractGunStats(category) {
     const rank = processRank(obj.m_eRank)
     let category = obj.m_enWeaponType.split('::').pop()
     category = weaponTypes[category] || category
-    if(category === 'shotgun') {
+    if(category === 'sniper') {
       for(const line of (stats?.split('\n').slice(1) || [])) {
         lines.add(line)
       }
