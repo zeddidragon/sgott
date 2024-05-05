@@ -40,6 +40,30 @@ const gunStats = [
   'total',
 ]
 
+const bombStats = [
+  'checkbox',
+  'rank',
+  'name',
+  'remarks',
+  'ammo',
+  'piercing',
+  'damage',
+  'radius',
+  'damageType',
+  'interval',
+  'intervalOD',
+  'reload',
+  'reloadQuick',
+  'reloadOD',
+  'accuracy',
+  'range',
+  'speed2',
+  'dps',
+  'tdps',
+  'qrdps',
+  'total',
+]
+
 const headers = {
   weapons: [{
     category: 'assault',
@@ -67,6 +91,13 @@ const headers = {
       ja: 'スナイパーライフル',
     },
     headers: gunStats,
+  }, {
+    category: 'rocket',
+    names: {
+      en: 'Rocket Launcher',
+      ja: 'ロケットランチャー',
+    },
+    headers: bombStats,
   }],
 }
 
@@ -107,7 +138,7 @@ const weaponTypes = {
 const rexPrecision = /Precision:? (\w+\+?→?\w*\+?)( \(Equipped with scope\))?/i
 const rexScattering = /(\w+) scattering/i
 const rexGunType = /Type: (.+)/i
-const rexBlastRadius = /Blast Radius: (\d+) meters/i
+const rexBlastRadius = /Blast Radius: (\d+\.?\d*) meters/i
 const rexPiercing = /Penetrates through enemies/i
 const tagSearches = [
   ['bouncing', /Bouncing bullets/i],
@@ -216,14 +247,27 @@ async function extractGunStats(category) {
       const mDamage = wpn.fMenuDamageAmount
       const count = Math.round(mDamage / ret.damage)
       const count2 = Math.round(mDamage / ret.damage2)
-      if(count >= 3 && count <= 20) {
+      if(count >= 3 && count <= 30) {
         ret.count = count
-      } else if(count2 >= 3 && count2 <= 20) {
+      } else if(count2 >= 3 && count2 <= 30) {
         ret.count = count2
       }
     }
     if(category === 'shotgun' && !ret.accuracyRank) {
       ret.accuracyRank = 'circle'
+    }
+    if(category === 'rocket' && !ret.damage) {
+      ret.damage = ret.damage2
+      delete ret.damage2
+    }
+    if(category === 'rocket' && !ret.damage) { // Gennai DLC Launcher
+      const dmg3 = dmgs[obj.m_sShot_BulletID + 2]
+      ret.damage = dmg3.fDamageAmount || 0
+      ret.count = 40
+    }
+    if(category === 'rocket' && tags.includes('delay_burst')) {
+      const idx = tags.indexOf('delay_burst')
+      tags[idx] = 'delay_blast'
     }
     if(wpn.m_stTimePowerUpArray.length) {
       ret.growth = wpn.m_stTimePowerUpArray.map(step => {
