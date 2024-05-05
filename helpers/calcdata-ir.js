@@ -24,6 +24,7 @@ const gunStats = [
   'ammo',
   'piercing',
   'damage',
+  'damageType',
   'interval',
   'intervalOD',
   'reload',
@@ -32,6 +33,7 @@ const gunStats = [
   'accuracy',
   'zoom',
   'range',
+  'speed2',
   'dps',
   'tdps',
   'qrdps',
@@ -48,11 +50,16 @@ const headers = {
     headers: gunStats,
   }, {
     category: 'shotgun',
+    appendix: '*Most projectile counts in-game are inflated.',
     names: {
       en: 'Shotgun',
       ja: 'ショットガン',
     },
-    headers: gunStats,
+    headers: [
+      ...gunStats.slice(0, gunStats.indexOf('damage') + 1),
+      'radius',
+      ...gunStats.slice(gunStats.indexOf('damage') + 1),
+    ],
   }],
 }
 
@@ -90,13 +97,11 @@ const weaponTypes = {
   LaserCannon: 'cannon',
 }
 
-const damageTypes = {
-  Physical: 'physical',
-  Optics: 'optics',
-}
-
-const rexPrecision = /Precision: (\w+)( \(Equipped with scope\))?/
-const rexGunType = /Type: (.+)/
+const rexPrecision = /Precision: (\w+)( \(Equipped with scope\))?/i
+const rexScattering = /(\w+) scattering/i
+const rexGunType = /Type: (.+)/i
+const rexBlastRadius = /Blast Radius: (\d+) meters/i
+const rexPiercing = /Penetrates through enemies/i
 const tagSearches = [
   ['bouncing', /Bouncing bullets/i],
   ['sticky', /Bonding\/Timed/i],
@@ -106,13 +111,18 @@ const tagSearches = [
   ['slow_aim', /Decreased aim speed while firing/i],
   ['delay_burst', /Delayed burst/i],
   ['delay', /Delayed trigger response/i],
-  ['scatter_down', /Downward scattering/i],
   ['growth_range', /Range increases the longer you fire/i],
   ['growth_range', /Distance increases the longer you fire/i],
+  ['growth_damage', /Power increases the longer you fire/i],
   ['pushback', /Pushes enemies back/i],
   ['reload_auto', /Auto Reload/i],
+  ['recoil', /Recoil/i],
+  ['tracer', /Tracer bullets/i],
 ]
 
+function getEnum(str) {
+  return str?.split('::')?.pop()?.toLowerCase()
+}
 
 let lines = new Set()
 async function extractGunStats(category) {
@@ -129,7 +139,10 @@ async function extractGunStats(category) {
     let { text: en } = textEn[nameKey] || {}
     const { text: stats } = textEn[`WPN_13${key}`] || {}
     const [, accuracyRank, scope] = rexPrecision.exec(stats) || []
+    const [, scattering] = rexScattering.exec(stats) || []
     const [, gunType] = rexGunType.exec(stats) || []
+    const [, radius] = rexBlastRadius.exec(stats) || []
+    const [piercing] = rexPiercing.exec(stats) || []
     if(!en) {
       return
     }
@@ -151,8 +164,8 @@ async function extractGunStats(category) {
         lines.add(line)
       }
     }
-    let dmgType = obj.m_eDamageAttribute?.split('::')?.pop()
-    dmgType = damageTypes[dmgType] || 'none'
+    const damageType = voidif(getEnum((dmg2 || dmg).eDamageAttribute), 'none')
+    const effect = voidif(getEnum((dmg2 || dmg).eDamageEffect), 'none')
     const crit = obj2.m_sLuckyBulletProbability
     const tags = tagSearches
       .filter(([tag, search]) => search.exec(stats))
@@ -164,25 +177,46 @@ async function extractGunStats(category) {
       gunType,
       rank,
       category,
+      piercing: voidif(+!!piercing, 0),
       damage: dmg.fDamageAmount,
-      damageType: dmgType,
+      damage2: dmg2?.fDamageAmount,
+      damageType,
+      radius: +radius || void 0,
       ammo: obj.m_sLoadingNum,
       burst: voidif(obj.m_sRapidFire, 1),
-      count: voidif(obj.m_sNumShot, 1),
+      count: voidif(obj.m_sNumShot || 1, 1),
+      effect,
       range: obj.m_fShotRange / 100,
+      speed: obj.m_fShotDistance / 100,
       rof: 1 / obj.m_fWaitingTime,
       intervalOverdrive: obj.m_fOverdrive_MagWaitingTime,
       reloadSeconds: obj.m_fReloadTime,
       reloadOverdrive: obj.m_fOverdrive_MagReloadTime,
       reloadQuick: voidif(obj.m_fEmergencyRechargeStartRate, 0),
       reloadQuickWindow: voidif(obj.m_fEmergencyRechargeTime, 0),
-      accuracyRank,
+      accuracyRank: accuracyRank || scattering?.toLowerCase(),
       zoom: !!scope || void 0,
     }
     if(crit > 0) {
       tags.push('roulette')
       ret.critOver = crit
-      ret.critDamage = dmg2.fDamageAmount
+    }
+    const isDamage = dmg.bEnableDamageEnemy
+    if(!isDamage && category === 'shotgun') { // Puncher line
+      tags.push('puncher')
+    }
+    if(category === 'shotgun') { // Shotgun stats simply lie
+      const mDamage = wpn.fMenuDamageAmount
+      const count = Math.round(mDamage / ret.damage)
+      const count2 = Math.round(mDamage / ret.damage2)
+      if(count >= 3 && count <= 20) {
+        ret.count = count
+      } else if(count2 >= 3 && count2 <= 20) {
+        ret.count = count2
+      }
+    }
+    if(category === 'shotgun' && !ret.accuracyRank) {
+      ret.accuracyRank = 'circle'
     }
     if(tags.length) {
       ret.tags = tags
@@ -193,7 +227,7 @@ async function extractGunStats(category) {
 
 async function extractCalcdata() {
   const weapons = await extractGunStats('WeaponParam')
-  // return Array.from(lines).sort()
+  // return console.log(Array.from(lines).sort().join('\n'))
   return {
     langs: ['en', 'ja'],
     classes: [
