@@ -25,13 +25,16 @@ const gunStats = [
   'piercing',
   'damage',
   'interval',
+  'intervalOD',
   'reload',
   'reloadQuick',
+  'reloadOD',
   'accuracy',
   'zoom',
   'range',
   'dps',
   'tdps',
+  'qrdps',
   'total',
 ]
 
@@ -95,19 +98,19 @@ const damageTypes = {
 const rexPrecision = /Precision: (\w+)( \(Equipped with scope\))?/
 const rexGunType = /Type: (.+)/
 const tagSearches = [
-  ['bouncing', /Bouncing bullets/],
-  ['sticky', /Bonding\/Timed/],
-  ['no_move', /Cannot move while firing/],
-  ['no_move_aim', /Cannot move\/aim speed down while firing/],
-  ['reload_none', /Cannot reload/],
-  ['slow_aim', /Decreased aim speed while firing/],
-  ['delay_burst', /Delayed burst/],
-  ['delay', /Delayed trigger response/],
-  ['scatter_down', /Downward scattering/],
-  ['growth_range', /Range increases the longer you fire/],
-  ['growth_range', /Distance increases the longer you fire/],
-  ['pushback', /Pushes enemies back/],
-  ['reload_auto', /Auto Reload/],
+  ['bouncing', /Bouncing bullets/i],
+  ['sticky', /Bonding\/Timed/i],
+  ['no_move', /Cannot move while firing/i],
+  ['no_move_aim', /Cannot move\/aim speed down while firing/i],
+  ['reload_none', /Cannot reload/i],
+  ['slow_aim', /Decreased aim speed while firing/i],
+  ['delay_burst', /Delayed burst/i],
+  ['delay', /Delayed trigger response/i],
+  ['scatter_down', /Downward scattering/i],
+  ['growth_range', /Range increases the longer you fire/i],
+  ['growth_range', /Distance increases the longer you fire/i],
+  ['pushback', /Pushes enemies back/i],
+  ['reload_auto', /Auto Reload/i],
 ]
 
 
@@ -143,8 +146,10 @@ async function extractGunStats(category) {
     const rank = processRank(obj.m_eRank)
     let category = obj.m_enWeaponType.split('::').pop()
     category = weaponTypes[category] || category
-    for(const line of (stats?.split('\n').slice(1) || [])) {
-      lines.add(line)
+    if(category === 'shotgun') {
+      for(const line of (stats?.split('\n').slice(1) || [])) {
+        lines.add(line)
+      }
     }
     let dmgType = obj.m_eDamageAttribute?.split('::')?.pop()
     dmgType = damageTypes[dmgType] || 'none'
@@ -162,12 +167,15 @@ async function extractGunStats(category) {
       damage: dmg.fDamageAmount,
       damageType: dmgType,
       ammo: obj.m_sLoadingNum,
+      burst: voidif(obj.m_sRapidFire, 1),
       count: voidif(obj.m_sNumShot, 1),
       range: obj.m_fShotRange / 100,
       rof: 1 / obj.m_fWaitingTime,
       intervalOverdrive: obj.m_fOverdrive_MagWaitingTime,
       reloadSeconds: obj.m_fReloadTime,
       reloadOverdrive: obj.m_fOverdrive_MagReloadTime,
+      reloadQuick: voidif(obj.m_fEmergencyRechargeStartRate, 0),
+      reloadQuickWindow: voidif(obj.m_fEmergencyRechargeTime, 0),
       accuracyRank,
       zoom: !!scope || void 0,
     }
@@ -185,6 +193,7 @@ async function extractGunStats(category) {
 
 async function extractCalcdata() {
   const weapons = await extractGunStats('WeaponParam')
+  // return Array.from(lines).sort()
   return {
     langs: ['en', 'ja'],
     classes: [
