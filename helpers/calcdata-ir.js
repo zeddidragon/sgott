@@ -259,6 +259,13 @@ const headers = {
       ja: '衛星兵器',
     },
     headers: satelliteStats,
+  }, {
+    category: 'cannon',
+    names: {
+      en: 'Laser Cannon',
+      ja: 'レーザーカノン',
+    },
+    headers: gunStatsNoQr,
   }],
 }
 
@@ -429,6 +436,7 @@ async function extractGunStats(category) {
       'special',
       'thrower',
       'satellite',
+      'cannon',
     ].includes(category)
     if(isBomb && !ret.damage) {
       ret.damage = ret.damage2
@@ -438,7 +446,10 @@ async function extractGunStats(category) {
       const dmg3 = dmgs[(+id) + 2]
       ret.damage = dmg3?.fDamageAmount || 0
     }
-    if(mDamage > ret.damage && !ret.count) { // Other multishot weapons
+    const isLaserCannon = [
+      'cannon',
+    ].includes(category)
+    if(!isLaserCannon && mDamage > ret.damage && !ret.count) { // Other multishot weapons
       ret.count = Math.round(mDamage / ret.damage)
     }
     if(category === 'rocket' && tags.includes('delay_burst')) {
@@ -455,8 +466,10 @@ async function extractGunStats(category) {
       ret.lockRange = obj2.m_fLockOnLength
     }
     if(wpn.m_stTimePowerUpArray.length) {
+      let lastDmg = dmg
       ret.growth = wpn.m_stTimePowerUpArray.map(step => {
-        const sDmg = dmgs[step.sStrikeId] || dmg
+        let sDmg = dmgs[step.sStrikeId] || lastDmg
+        lastDmg = sDmg
         return {
           n: step.sPowerUpNum,
           range: step.fShotRange / 100,
