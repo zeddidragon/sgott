@@ -64,6 +64,30 @@ const bombStats = [
   'total',
 ]
 
+const missileStats = [
+  'checkbox',
+  'rank',
+  'name',
+  'remarks',
+  'ammo',
+  'piercing',
+  'damage',
+  'radius',
+  'damageType',
+  'lockRange',
+  'lockTime',
+  'interval',
+  'intervalOD',
+  'reload',
+  'reloadQuick',
+  'reloadOD',
+  'range',
+  'speed2',
+  'dps',
+  'tdps',
+  'total',
+]
+
 const headers = {
   weapons: [{
     category: 'assault',
@@ -98,6 +122,13 @@ const headers = {
       ja: 'ロケットランチャー',
     },
     headers: bombStats,
+  }, {
+    category: 'missile',
+    names: {
+      en: 'Missile Launcher',
+      ja: 'ミサイルランチャー',
+    },
+    headers: missileStats,
   }],
 }
 
@@ -189,8 +220,8 @@ async function extractGunStats(category) {
       m_stCommon: obj,
       m_stCase: obj2,
     } = wpn
-    const dmg = dmgs[obj.m_sShot_BulletID]
-    const dmg2 = dmgs[obj.m_sShot_BulletID + 1]
+    const dmg = dmgs[id]
+    const dmg2 = dmgs[(+id) + 1]
     if(!dmg) {
       return
     }
@@ -243,6 +274,7 @@ async function extractGunStats(category) {
     if(!isDamage && category === 'shotgun') { // Puncher line
       tags.push('puncher')
     }
+    const mDamage = wpn.fMenuDamageAmount
     if(category === 'shotgun') { // Shotgun stats simply lie
       const mDamage = wpn.fMenuDamageAmount
       const count = Math.round(mDamage / ret.damage)
@@ -256,18 +288,33 @@ async function extractGunStats(category) {
     if(category === 'shotgun' && !ret.accuracyRank) {
       ret.accuracyRank = 'circle'
     }
-    if(category === 'rocket' && !ret.damage) {
+    const isRocket = [
+      'rocket',
+      'missile',
+    ].includes(category)
+    if(isRocket && !ret.damage) {
       ret.damage = ret.damage2
       delete ret.damage2
     }
-    if(category === 'rocket' && !ret.damage) { // Gennai DLC Launcher
-      const dmg3 = dmgs[obj.m_sShot_BulletID + 2]
+    if(isRocket && !ret.damage) { // Gennai DLC Launcher, Sky Rhumba
+      const dmg3 = dmgs[(+id) + 2]
       ret.damage = dmg3.fDamageAmount || 0
-      ret.count = 40
+    }
+    if(mDamage > ret.damage && !ret.count) { // Other multishot weapons
+      ret.count = Math.round(mDamage / ret.damage)
     }
     if(category === 'rocket' && tags.includes('delay_burst')) {
       const idx = tags.indexOf('delay_burst')
       tags[idx] = 'delay_blast'
+    }
+    if(category === 'missile') {
+      ret.lockTimeSeconds = Math.max(
+        obj2.m_fFirstLockElapsedTime,
+        obj2.m_fLockElapsedTime,
+      )
+      ret.burst = obj2.m_fLockCount
+      ret.lockArea = [obj2.m_fScreenRateX, obj2.m_fScreenRateY]
+      ret.lockRange = obj2.m_fLockOnLength
     }
     if(wpn.m_stTimePowerUpArray.length) {
       ret.growth = wpn.m_stTimePowerUpArray.map(step => {
