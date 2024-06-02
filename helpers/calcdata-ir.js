@@ -174,6 +174,13 @@ const headers = {
     },
     headers: swordStats,
     appendix: '*Sword stats are not thoroughly investigated yet.',
+  }, {
+    category: 'special',
+    names: {
+      en: 'Special Weapon',
+      ja: '特殊兵器',
+    },
+    headers: gunStatsNoZoom,
   }],
 }
 
@@ -341,6 +348,7 @@ async function extractGunStats(category) {
       'missile',
       'laser',
       'grenade',
+      'special',
     ].includes(category)
     if(isBomb && !ret.damage) {
       ret.damage = ret.damage2
@@ -348,7 +356,7 @@ async function extractGunStats(category) {
     }
     if(isBomb && !ret.damage) { // Gennai DLC Launcher, Sky Rhumba
       const dmg3 = dmgs[(+id) + 2]
-      ret.damage = dmg3.fDamageAmount || 0
+      ret.damage = dmg3?.fDamageAmount || 0
     }
     if(mDamage > ret.damage && !ret.count) { // Other multishot weapons
       ret.count = Math.round(mDamage / ret.damage)
