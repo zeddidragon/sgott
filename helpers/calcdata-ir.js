@@ -491,7 +491,7 @@ async function extractCalcdata() {
     langs: ['en', 'ja'],
     classes: [
       'weapons',
-      'items',
+      // 'items',
     ],
     charLabels: [
       'Weapons',
