@@ -223,6 +223,13 @@ const headers = {
       ja: 'エナジースロウワー',
     },
     headers: effectStats,
+  }, {
+    category: 'railgun',
+    names: {
+      en: 'Railgun',
+      ja: 'レールガン',
+    },
+    headers: effectStats,
   }],
 }
 
