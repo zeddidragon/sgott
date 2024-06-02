@@ -39,6 +39,11 @@ const gunStats = [
   'qrdps',
   'total',
 ]
+const zoomIdx = gunStats.indexOf('zoom')
+const gunStatsNoZoom = [
+  ...gunStats.slice(0, zoomIdx),
+  ...gunStats.slice(zoomIdx + 1),
+]
 
 const bombStats = [
   'checkbox',
@@ -129,6 +134,13 @@ const headers = {
       ja: 'ミサイルランチャー',
     },
     headers: missileStats,
+  }, {
+    category: 'laser',
+    names: {
+      en: 'Laser Rifle',
+      ja: 'レーザーライフル',
+    },
+    headers: gunStatsNoZoom,
   }],
 }
 
@@ -288,9 +300,13 @@ async function extractGunStats(category) {
     if(category === 'shotgun' && !ret.accuracyRank) {
       ret.accuracyRank = 'circle'
     }
+    if(ret.accuracyRank === 'round') {
+      ret.accuracyRank = 'circle'
+    }
     const isRocket = [
       'rocket',
       'missile',
+      'laser',
     ].includes(category)
     if(isRocket && !ret.damage) {
       ret.damage = ret.damage2
