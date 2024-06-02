@@ -141,6 +141,13 @@ const headers = {
       ja: 'レーザーライフル',
     },
     headers: gunStatsNoZoom,
+  }, {
+    category: 'grenade',
+    names: {
+      en: 'Grenade Launcher',
+      ja: 'グレネードランチャー',
+    },
+    headers: bombStats,
   }],
 }
 
@@ -303,16 +310,17 @@ async function extractGunStats(category) {
     if(ret.accuracyRank === 'round') {
       ret.accuracyRank = 'circle'
     }
-    const isRocket = [
+    const isBomb = [
       'rocket',
       'missile',
       'laser',
+      'grenade',
     ].includes(category)
-    if(isRocket && !ret.damage) {
+    if(isBomb && !ret.damage) {
       ret.damage = ret.damage2
       delete ret.damage2
     }
-    if(isRocket && !ret.damage) { // Gennai DLC Launcher, Sky Rhumba
+    if(isBomb && !ret.damage) { // Gennai DLC Launcher, Sky Rhumba
       const dmg3 = dmgs[(+id) + 2]
       ret.damage = dmg3.fDamageAmount || 0
     }
