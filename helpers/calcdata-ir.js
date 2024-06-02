@@ -139,6 +139,28 @@ const swordStats = [
   'total',
 ]
 
+const satelliteStats = [
+  'checkbox',
+  'rank',
+  'name',
+  'remarks',
+  'ammo',
+  'piercing',
+  'damage',
+  'radius',
+  'damageType',
+  'interval',
+  'intervalOD',
+  'reload',
+  'reloadQuick',
+  'reloadOD',
+  'accuracy',
+  'range',
+  'dps',
+  'tdps',
+  'total',
+]
+
 const headers = {
   weapons: [{
     category: 'assault',
@@ -230,6 +252,13 @@ const headers = {
       ja: 'レールガン',
     },
     headers: effectStats,
+  }, {
+    category: 'satellite',
+    names: {
+      en: 'Satellite Weapons',
+      ja: '衛星兵器',
+    },
+    headers: satelliteStats,
   }],
 }
 
@@ -399,6 +428,7 @@ async function extractGunStats(category) {
       'grenade',
       'special',
       'thrower',
+      'satellite',
     ].includes(category)
     if(isBomb && !ret.damage) {
       ret.damage = ret.damage2
