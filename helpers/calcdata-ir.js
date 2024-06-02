@@ -93,6 +93,24 @@ const missileStats = [
   'total',
 ]
 
+// TODO: Check swords more closely
+const swordStats = [
+  'checkbox',
+  'rank',
+  'name',
+  'remarks',
+  'ammo',
+  'piercing',
+  'damage',
+  'damageType',
+  'reload',
+  'reloadQuick',
+  'reloadOD',
+  'range',
+  'speed2',
+  'total',
+]
+
 const headers = {
   weapons: [{
     category: 'assault',
@@ -148,6 +166,14 @@ const headers = {
       ja: 'グレネードランチャー',
     },
     headers: bombStats,
+  }, {
+    category: 'sword',
+    names: {
+      en: 'Sword',
+      ja: 'ソード',
+    },
+    headers: swordStats,
+    appendix: '*Sword stats are not thoroughly investigated yet.',
   }],
 }
 
