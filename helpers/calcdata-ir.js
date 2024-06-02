@@ -50,6 +50,29 @@ const gunStats = [
 const gunStatsNoZoom = omit(gunStats, 'zoom')
 const gunStatsNoQr = omit(gunStatsNoZoom, 'qrdps')
 
+const effectStats = [
+  'checkbox',
+  'rank',
+  'name',
+  'remarks',
+  'ammo',
+  'piercing',
+  'damage',
+  'damageType',
+  'effect',
+  'interval',
+  'intervalOD',
+  'reload',
+  'reloadQuick',
+  'reloadOD',
+  'accuracy',
+  'range',
+  'speed2',
+  'dps',
+  'tdps',
+  'total',
+]
+
 const bombStats = [
   'checkbox',
   'rank',
@@ -103,11 +126,11 @@ const swordStats = [
   'checkbox',
   'rank',
   'name',
-  'remarks',
   'ammo',
   'piercing',
   'damage',
   'damageType',
+  'effect',
   'reload',
   'reloadQuick',
   'reloadOD',
@@ -193,6 +216,13 @@ const headers = {
       ja: 'ミニガン',
     },
     headers: gunStatsNoQr,
+  }, {
+    category: 'thrower',
+    names: {
+      en: 'Energy Thrower',
+      ja: 'エナジースロウワー',
+    },
+    headers: effectStats,
   }],
 }
 
@@ -361,6 +391,7 @@ async function extractGunStats(category) {
       'laser',
       'grenade',
       'special',
+      'thrower',
     ].includes(category)
     if(isBomb && !ret.damage) {
       ret.damage = ret.damage2
