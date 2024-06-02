@@ -16,6 +16,14 @@ const modes = [{
   }],
 }]
 
+function omit(arr, item) {
+  const idx = arr.indexOf(item)
+  return [
+    ...arr.slice(0, idx),
+    ...arr.slice(idx + 1),
+  ]
+}
+
 const gunStats = [
   'checkbox',
   'rank',
@@ -39,11 +47,8 @@ const gunStats = [
   'qrdps',
   'total',
 ]
-const zoomIdx = gunStats.indexOf('zoom')
-const gunStatsNoZoom = [
-  ...gunStats.slice(0, zoomIdx),
-  ...gunStats.slice(zoomIdx + 1),
-]
+const gunStatsNoZoom = omit(gunStats, 'zoom')
+const gunStatsNoQr = omit(gunStatsNoZoom, 'qrdps')
 
 const bombStats = [
   'checkbox',
@@ -181,6 +186,13 @@ const headers = {
       ja: '特殊兵器',
     },
     headers: gunStatsNoZoom,
+  }, {
+    category: 'gatling',
+    names: {
+      en: 'Gatling',
+      ja: 'ミニガン',
+    },
+    headers: gunStatsNoQr,
   }],
 }
 
