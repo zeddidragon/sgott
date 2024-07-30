@@ -1,3 +1,5 @@
+const util = require('util')
+const kleur = require('kleur')
 const { decompileBuffer } = require('./infer.js')
 
 function padCeil(value, divisor = 0x10) {
@@ -74,6 +76,23 @@ function decompiler(format, fullBuffer, config = {}) {
   }
   HexInt.size = 0x04
 
+  function HexView(buffer) {
+    let bufferView = []
+    for(let i = startAt; i < endAt; i += 0x2) {
+      if(!(i % 0x10)) {
+        bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])
+      }
+      let str = this.buffer.readUInt16BE(i).toString(16).padStart(4, 0)
+      if(this.pos === i) {
+        str = kleur.yellow(str)
+      }
+      bufferView[bufferView.length - 1].push(str)
+    }
+    return `Cursor 0x${this.pos.toString(16)} (${this.endian})
+${bufferView.map(r => r.join(' ')).join('\n')}`
+  }
+  HexInt.size = 0x04
+
   function Ref(Type, opts = {}) {
     function Deref(cursor, offset = 0x00) {
       const count = UInt(cursor, offset)
@@ -128,6 +147,24 @@ Contact the developers of this tool and tell them which file this happened in!
         this.pos = pos
         this.endian = 'LE'
       }
+    }
+
+    [util.inspect.custom]() {
+      const startAt = Math.max(0, Math.floor((this.pos / 0x10) - 1) * 0x10)
+      const endAt = Math.min(startAt + 0x40, this.buffer.length)
+      let bufferView = []
+      for(let i = startAt; i < endAt; i += 0x2) {
+        if(!(i % 0x10)) {
+          bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])
+        }
+        let str = this.buffer.readUInt16BE(i).toString(16).padStart(4, 0)
+        if(this.pos === i) {
+          str = kleur.yellow(str)
+        }
+        bufferView[bufferView.length - 1].push(str)
+      }
+      return `Cursor 0x${this.pos.toString(16)} (${this.endian})
+${bufferView.map(r => r.join(' ')).join('\n')}`
     }
 
     at(offset = 0x00) {

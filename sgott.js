@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const json = require('json-stringify-pretty-compact')
 const config = require('./package.json')
+const dsgoToJson = require('./converters/dsgo/to-json.js')
 const sgoToJson = require('./converters/sgo/to-json.js')
 const jsonToSgo = require('./converters/sgo/from-json.js')
 const rmpToJson = require('./converters/rmp/to-json.js')
@@ -24,6 +25,7 @@ function isRmp(obj) {
 }
 
 const transforms = {
+  dsgo: (...args) => json(dsgoToJson(...args)),
   sgo: (...args) => json(sgoToJson(...args)),
   rmp: (...args) => json(rmpToJson(...args)),
   json(buffer, opts) {
@@ -154,6 +156,7 @@ function parseCli(cb) {
 
     const leader = buffer.slice(0, 4).toString()
     if(leader === 'SGO\0' || leader === '\0OGS') return 'sgo'
+    if(leader === 'DSGO' || leader === 'OGSD') return 'dsgo'
     if(leader === 'RMP\0' || leader === '\0PMR') return 'rmp'
     if(leader.replace(/\u0000/g, '').trim()[0] === '{') return 'json'
 
