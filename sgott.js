@@ -4,10 +4,17 @@ const path = require('path')
 const json = require('json-stringify-pretty-compact')
 const config = require('./package.json')
 const dsgoToJson = require('./converters/dsgo/to-json.js')
+const jsonToDsgo = require('./converters/dsgo/from-json.js')
 const sgoToJson = require('./converters/sgo/to-json.js')
 const jsonToSgo = require('./converters/sgo/from-json.js')
 const rmpToJson = require('./converters/rmp/to-json.js')
 const jsonToRmp = require('./converters/rmp/from-json.js')
+
+function isDsgo(obj) {
+  if(/^dsgo$/i.test(obj.format)) return true
+  if(obj.variables) return true
+  return false
+}
 
 function isSgo(obj) {
   if(/^sgo$/i.test(obj.format)) return true
@@ -30,6 +37,7 @@ const transforms = {
   rmp: (...args) => json(rmpToJson(...args)),
   json(buffer, opts) {
     const parsed = JSON.parse(buffer.toString())
+    if(isDsgo(parsed)) return jsonToDsgo(parsed, opts)
     if(isSgo(parsed)) return jsonToSgo(parsed, opts)
     if(isRmp(parsed)) return jsonToRmp(parsed, opts)
     throw new Error('Unable to recognize JSON format')
@@ -147,7 +155,6 @@ function parseCli(cb) {
 
   function inferType(buffer) {
     const ext4 = readFile && readFile.slice(-4)
-    if(ext4 === '.sgo') return 'sgo'
     if(ext4 === '.rmp') return 'rmp'
 
     const ext5 = readFile && readFile.slice(-5)

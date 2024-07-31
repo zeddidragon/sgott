@@ -2,28 +2,45 @@ function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
 
+const Long = BigInt
+
 function compile(obj) {
   const endian = obj.endian || 'LE'
-  function Str({ buffer, index }, value, offset = 0x00) {
+  function Str({ buffer, index = 0x00 }, value, offset = 0x00) {
     return buffer.write(value, index + offset)
   }
 
-  function UInt({ buffer, index }, value, offset = 0x00) {
+  function UInt({ buffer, index = 0x00 }, value, offset = 0x00) {
     return buffer[`writeUInt32${endian}`](value, index + offset)
   }
   UInt.size = 0x04
 
-  function Int({ buffer, index }, value, offset = 0x00) {
+  function BigUInt({ buffer, index = 0x00 }, value, offset = 0x00) {
+    return buffer[`writeBigUInt64${endian}`](Long(value), index + offset)
+  }
+  BigUInt.size = 0x08
+
+  function Int({ buffer, index = 0x00 }, value, offset = 0x00) {
     return buffer[`writeInt32${endian}`](value, index + offset)
   }
   Int.size = 0x04
 
-  function Float({ buffer, index }, value, offset = 0x00) {
+  function BigInt({ buffer, index = 0x00 }, value, offset = 0x00) {
+    return buffer[`writeBigInt64${endian}`](Long(value), index + offset)
+  }
+  BigInt.size = 0x08
+
+  function Float({ buffer, index = 0x00 }, value, offset = 0x00) {
     return buffer[`writeFloat${endian}`](value, index + offset)
   }
   Float.size = 0x04
+
+  function Double({ buffer, index = 0x00 }, value, offset = 0x00) {
+    return buffer[`writeDouble${endian}`](value, index + offset)
+  }
+  Double.size = 0x08
   
-  function Hex({ buffer, index }, value, offset = 0x00) {
+  function Hex({ buffer, index = 0x00 }, value, offset = 0x00) {
     return buffer.write(value.padStart(8, '0'), index + offset, 'hex')
   }
 
@@ -212,7 +229,12 @@ function compile(obj) {
 
   function Union(prop, Types, size) {
     function UnionDef(cursor, data) {
-      return Types[data[prop]](cursor, data)
+      const type = data[prop]
+      const cb = Types[type]
+      if(!cb) {
+        throw new Error(`Type not found: "${type}"`)
+      }
+      return cb(cursor, data)
     }
     UnionDef.size = size
     return UnionDef
@@ -242,8 +264,11 @@ function compile(obj) {
   compile.types = {
     Str,
     UInt,
+    BigUInt,
     Int,
+    BigInt,
     Float,
+    Double,
     Hex,
     Tuple,
     Defer,

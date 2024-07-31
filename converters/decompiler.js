@@ -39,15 +39,29 @@ function decompiler(format, fullBuffer, config = {}) {
   }
   UInt.size = 0x04
 
+  function BigUInt(cursor, offset = 0x00) {
+    return cursor.at(offset)[`readBigUInt64${cursor.endian}`]() }
+  BigUInt.size = 0x08
+
   function Int(cursor, offset = 0x00) {
     return cursor.at(offset)[`readInt32${cursor.endian}`]()
   }
   Int.size = 0x04
 
+  function BigInt(cursor, offset = 0x00) {
+    return cursor.at(offset)[`readBigInt64${cursor.endian}`]()
+  }
+  BigInt.size = 0x08
+
   function Float(cursor, offset = 0x00) {
     return cursor.at(offset)[`readFloat${cursor.endian}`]()
   }
   Float.size = 0x04
+
+  function Double(cursor, offset = 0x00) {
+    return +(cursor.at(offset)[`readDouble${cursor.endian}`]()).toFixed(4)
+  }
+  Double.size = 0x08
 
   function Tuple(Type, size) {
     const block = Type.size || 0x04
@@ -274,8 +288,11 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     Ptr,
     Str,
     UInt,
+    BigUInt,
     Int,
+    BigInt,
     Float,
+    Double,
     Hex,
     HexKey,
     HexInt,

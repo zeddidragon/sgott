@@ -5,26 +5,14 @@ function decompileDsgo(buffer, config) {
   const {
     Str,
     UInt,
+    BigUInt,
+    Double,
     Ref,
     Ptr,
     Leader,
     Struct,
     Collection,
   } = types
-
-  function BigUInt(cursor, offset = 0x00) {
-    return cursor.at(offset)[`readBigUInt64${cursor.endian}`]() }
-  BigUInt.size = 0x08
-
-  function BigInt(cursor, offset = 0x00) {
-    return cursor.at(offset)[`readBigInt64${cursor.endian}`]()
-  }
-  BigInt.size = 0x08
-
-  function Double(cursor, offset = 0x00) {
-    return +(cursor.at(offset)[`readDouble${cursor.endian}`]()).toFixed(4)
-  }
-  Double.size = 0x08
 
   function Extra(cursor, offset) {
     const size = UInt(cursor, offset)
@@ -33,6 +21,7 @@ function decompileDsgo(buffer, config) {
     return data.toString('hex')
   }
 
+  // DSGO doesn't include size in pointer, pointing to a single header always
   function DRef(Type) {
     function Deref(cursor, offset = 0x00) {
       cursor = Ptr(cursor, offset)
@@ -133,12 +122,12 @@ function decompileDsgo(buffer, config) {
       }
     } else {
       for(const [key, idx] of Object.entries(obj)) {
-        obj[key] = decompiled.nodes[idx].value
+        const node = decompiled.nodes[idx]
+        obj[key] = node.value
       }
     }
   }
   delete decompiled.nodes
-  console.log(decompiled)
   return decompiled
 }
 

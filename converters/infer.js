@@ -22,6 +22,7 @@ function identifyBuffer(buffer) {
 }
 
 const supported = [
+  'dsgo',
   'sgo',
   'rmp',
 ]
@@ -40,6 +41,7 @@ function decompileBuffer(buffer, size) {
 
 function identifyData(obj) {
   if(typeof obj === 'string') return
+  if(obj.format === 'dsgo') return 'dsgo'
   if(/^sgo$/i.test(obj.format)) return 'sgo'
   if(obj.variables) return 'sgo'
   if(/^rmp/i.test(obj.format)) return 'rmp'
