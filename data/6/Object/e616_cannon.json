@@ -1,0 +1,123 @@
+{
+  "format": "DSGO",
+  "endian": "LE",
+  "data": {
+    "xgs_scene_object_class": "EDF6_MartianWeapon_Basic",
+    "base_pose": "basic",
+    "animation_model": {
+      "null": ["app:/Object/e616_venus.mrab", "e616_ring01.mdb"],
+      "undefined": 0,
+      "effect": {"path": "app:/object/e616_venus_shield_hit.efarc"}
+    },
+    "ragdoll": [
+      "app:/object/Ragdoll_e616_ring01.shkt",
+      {
+        "$SGOTT_EMBED": true,
+        "format": "hex",
+        "data": "53474f0002010000020000002000000002000000d001000000000000e00100000000000001000000180000000000000001000000d800000000000000040000000c00000000000000020000003000000000000000030000003c00000000000000040000005400000000000000030000007800000003000000080000009a01000003000000080000008e01000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f00000000040000000c00000000000000020000003000000000000000030000003c0000000000000004000000540000000000000003000000780000000300000008000000ce0000000300000008000000c200000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f1000000000000000480000000100000061006e0069006d006100740069006f006e005f00660072006f006d005f0072006100670064006f006c006c00000070006f006c0079006d00650073006800000072006100670064006f006c006c005f00660072006f006d005f0061006e0069006d006100740069006f006e000000"
+      }
+    ],
+    "soft_body_basic_weapon_settings": {
+      "aim": {
+        "area": {
+          "x": {"min": -75, "max": 75},
+          "y": {"min": 25, "max": 100},
+          "z": {"min": 50, "max": 50},
+          "side_shift": 25
+        },
+        "angular_speed": 0.05000000074505806,
+        "fire_angular_speed": 0.05000000074505806
+      },
+      "charge": {
+        "time": {"min": 300, "max": 420},
+        "esb": "cannon_charge.esb",
+        "esb_color": [
+          1.2000000476837158,
+          2.299999952316284,
+          1.2000000476837158
+        ],
+        "esb_loop": 1,
+        "esb_time": 0,
+        "se": {"key": "金星人キャノンチャージ", "is_loop": 0}
+      },
+      "fire": {
+        "esb": "cannon_fire.esb",
+        "esb_loop": 1,
+        "esb_color": [1.2000000476837158, 2.299999952316284, 1.2000000476837158]
+      }
+    },
+    "bullet_setting": {"factory": "EfsBullet"},
+    "fire_setting": [1, null, 2, null, 30, null, 0.25, null, 480, null],
+    "flicker_setting": [
+      0.009999999776482582,
+      null,
+      0.0010000000474974513,
+      null,
+      0.019999999552965164,
+      null,
+      0.8999999761581421,
+      null,
+      0.009999999776482582,
+      null,
+      1,
+      null
+    ]
+  },
+  "strings": [
+    "金星人キャノン命中",
+    "xgs_scene_object_class",
+    "animation_model",
+    "soft_body_basic_weapon_settings",
+    "base_pose",
+    "ragdoll",
+    "key",
+    "bullet_setting",
+    "y",
+    "app:/object/e616_venus_shield_hit.efarc",
+    "fire_setting",
+    "time",
+    "flicker_setting",
+    "EDF6_MartianWeapon_Basic",
+    "angular_speed",
+    "charge",
+    "basic",
+    "esb_loop",
+    "effect",
+    "factory",
+    "app:/Object/e616_venus.mrab",
+    "fire_angular_speed",
+    "aim",
+    "e616_ring01.mdb",
+    "path",
+    "side_shift",
+    "app:/object/Ragdoll_e616_ring01.shkt",
+    "fire",
+    "area",
+    "金星人キャノン発射",
+    "x",
+    "金星人キャノンチャージ",
+    "z",
+    "max",
+    "cannon_bullet_hit.esb",
+    "min",
+    "esb",
+    "se",
+    "esb_color",
+    "esb_time",
+    "cannon_charge.esb",
+    "is_loop",
+    "EfsBullet",
+    "cannon_fire.esb",
+    "auto_direction_adjust",
+    "bullet",
+    "efarc",
+    "hit",
+    "is_explosion_blow",
+    "special_effect_data",
+    "color",
+    "scale",
+    "cannon_bullet.esb",
+    "mark_type",
+    "type"
+  ]
+}

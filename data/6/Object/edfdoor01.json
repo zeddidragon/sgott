@@ -1,0 +1,169 @@
+{
+  "format": "SGO",
+  "endian": "LE",
+  "version": 258,
+  "variables": [
+    {
+      "name": "action",
+      "type": "ptr",
+      "value": [
+        {"type": "ptr", "value": [{"type": "string", "value": "open"}]},
+        {"type": "ptr", "value": [{"type": "string", "value": "close"}]}
+      ]
+    },
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "app:/Object/EDFDoor01.mrab"},
+            {"type": "string", "value": "EDFDoor01.mdb"}
+          ]
+        },
+        {"type": "string", "value": "app:/object/EDFDoor01.cas"},
+        {
+          "type": "extra",
+          "value": "TUFCAA8AAACDAAAABAADAAAALAAkAAAARAAAAKAAAABEAQAAAAAAACAAAAABAAAAGAAAAAIAAAAQAAAAAwAAAAgAAAAwAAAAUAAAAAwBAAAAAAAAIAAAAEAAAAAMAQAAAgAAADAAAAAwAAAA4AAAAAAAAAD2AAAAAAAAAAAAAAB8AAAA5gAAAJqZK0IAAAAAHAAAALq6urq6urq6urq6ulNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAwAAAAgAAAAeAAAACAAAAAAAAABuAGEAbQBlAAAAMFcLTskwojCqMPww1zDzMAAAU0dPAAIBAAABAAAAIAAAAAEAAAAsAAAAAAAAADQAAAADAAAACQAAAB4AAAAIAAAAAAAAAG4AYQBtAGUAAAAwVwtOyTCiMO0wwzCvMOOJZJYAAAAAYwBsAG8AcwBlAAAAZABlAGYAYQB1AGwAdAAAAG8AcABlAG4AAABzAGUAAAA="
+        }
+      ]
+    },
+    {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 2},
+            {"type": "float", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 2},
+            {"type": "float", "value": -3.5}
+          ]
+        }
+      ]
+    },
+    {"name": "game_object_durability", "type": "float", "value": 200},
+    {
+      "name": "game_object_encount",
+      "type": "ptr",
+      "value": [{"type": "float", "value": 0}, {"type": "float", "value": 0}]
+    },
+    {
+      "name": "ragdoll",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "app:/object/EDFDoor01.shkt"},
+        {
+          "type": "extra",
+          "value": {
+            "format": "SGO",
+            "endian": "LE",
+            "version": 258,
+            "variables": [
+              {
+                "name": "animation_from_ragdoll",
+                "type": "ptr",
+                "value": [
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "EDFDoor01.Door_Root"},
+                          {"type": "string", "value": "Door_Root"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "ragdoll_from_animation",
+                "type": "ptr",
+                "value": [
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "Door_Root"},
+                          {"type": "string", "value": "EDFDoor01.Door_Root"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "EventAnimationObject"
+    }
+  ]
+}

@@ -1,0 +1,2243 @@
+{
+  "format": "SGO",
+  "endian": "LE",
+  "version": 258,
+  "variables": [
+    {"name": "ai_character_radius", "type": "float", "value": 1.25},
+    {
+      "name": "ai_character_radius_multiplier",
+      "type": "float",
+      "value": 1.100000023841858
+    },
+    {
+      "name": "ai_character_sensor",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": -40},
+            {"type": "float", "value": -2},
+            {"type": "float", "value": -40}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 40},
+            {"type": "float", "value": 2},
+            {"type": "float", "value": 40}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ai_obstacle",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "ai障害物_body0"},
+        {"type": "string", "value": "ai障害物_body1"},
+        {"type": "string", "value": "ai障害物_body2"},
+        {"type": "string", "value": "ai障害物_body3"},
+        {"type": "string", "value": "ai障害物_body4"}
+      ]
+    },
+    {"name": "ai_turn_radius", "type": "float", "value": 2.0999999046325684},
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "app:/Object/Vehicle401_STRIKER.mrab"},
+            {"type": "string", "value": "Vehicle401_STRIKER.mdb"}
+          ]
+        },
+        {"type": "int", "value": 0},
+        {
+          "type": "extra",
+          "value": "TUFCAA8AAACDAAAABAAAABwAFAIkAAAABAMAABADAADABgAAAAARACAAAAABAAEAOAIAAAIABABQAgAAAwAAAMgCAABsCAAAAgcAAAAAAAA8BAAAAADAP/////8AAAAAjAQAAF4IAADiBgAAAAAAALwCAAAAAMA//////wAAAABsBAAAPAcAADwGAAACAAAAbAMAAKwDAACMAwAAAAAAAGAFAAAuBwAAHAYAAAAAAADMAgAAzczMPf////8AAAAALAQAAN4HAACCBgAAAgAAAHwCAABsAwAATAIAAAAAAAAsBAAAVgcAAGIGAAACAAAAbAMAADwDAAAcAwAAAAAAAOwDAABQBwAAQgYAAAIAAACcAwAAHAMAANwCAAAAAAAAzAMAAEoHAAAiBgAAAgAAABwDAAD8AgAA3AIAAAAAAACsAwAARAcAAAIGAAACAAAATAMAANwCAACcAgAAAAAAAIwDAACeBgAA4gUAAAIAAAD8AQAAvAIAAJwCAAAAAAAA3AMAAIwGAADCBQAAAgAAANwBAACcAgAAXAIAAAAAAAC8AwAAegYAAKIFAAACAAAArAEAAHwCAABcAgAAAAAAAJwDAABoBgAAggUAAAIAAACMAQAAXAIAABwCAAAAAAAAfAMAAOoEAABiBQAAAAAAAKwBAADNzMw//////wAAAADsAgAA6AQAAEIFAAAAAAAAfAEAAM3MzD//////AAAAAMwCAADmBAAAIgUAAAAAAAB8AQAAzczMP/////8AAAAArAIAAOQEAAACBQAAAAAAAGwBAADNzMw//////wAAAACMAgAAiAUAAOIEAAAAAAAAXAEAAAAAgD//////AAAAAGwCAADUBAAAwgQAAAIAAAAsAgAA3AEAADwCAAAAAAAATAIAAMwEAACiBAAAAgAAAMwBAAC8AQAAHAIAAAAAAAAsAgAAxAQAAIIEAAACAAAAbAAAAJwBAAD8AQAAAAAAAAwCAADCBAAAYgQAAAIAAADsAAAAfAEAANwBAAAAAAAA7AEAALq6urq6urq6urq6ugAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAJqZacAAAIA/AAAAAPYo3D4zMxPAAACAPwAAAABmZuY+AAAAAAAAgD8AAAAA6SYRP8uhRb8AAIA/AAAAAOkmET+4HuW/AACAPwAAAACamVk/zcwMPwAAgD8AAAAAAACAPwAAgD8AAIA/AAAAAAAAgD8AACBAAACAPwAAAAAAAIA/AAAAvwAAgD8AAAAAAACAPwAAAMAAAIA/AAAAAAAAoD8AAAAAAACAPwAAAAAzM7M/MzMzQAAAgD8AAAAA2w/JPwAAAAAAAIA/AAAAAAAA4D8AALDAAACAPwAAAADbD8m/AAAAAAAAgD/DuLI9AAAAAAAAAAAAAIA/zczMPc3MzD3NzMw9AACAP83MzD3NzMw9mpmZPgAAgD+PwvU9ZmbGP8uhRb8AAIA/j8L1PWZmxj+4HuW/AACAP83MTD7NzEw+mpmZPgAAgD/NzEw/MzPzPwAAgL8AAIA/zcwMQAAAAACamRlAAACAP4/C9b1mZsY/y6FFvwAAgD+PwvW9ZmbGP7ge5b8AAIA/mpkZvzMz8z9mZmY/AACAP9sPyb8AAAAAAAAAAAAAgD9TR08AAgEAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAFNHTwACAQAAAQAAACAAAAABAAAALAAAAAAAAAA0AAAAAQAAAAQAAAAAAAAACAAAAAAAAABEAGkAcwBwAEMAaABhAHIAYQBjAHQAZQByAAAAU0dPAAIBAAACAAAAIAAAAAIAAAA4AAAAAAAAAEgAAAADAAAAFAAAAFgAAAABAAAABAAAAAEAAAAQAAAAAAAAABwAAAABAAAAQQBuAGkAbQBhAHQAaQBvAG4AAABEAGkAcwBwAEMAaABhAHIAYQBjAHQAZQByAAAAdgBlAGgAaQBjAGwAZQBfAHMAdAByAGkAawBlAHIAXwByAGUAYQByAAAAAABTR08AAgEAAAQAAAAgAAAABAAAAGgAAAAAAAAAiAAAAAMAAAAGAAAArgAAAAAAAAACAAAAJAAAAAEAAAAEAAAAAQAAAAIAAAAEAAAAmplZPwIAAAAEAAAAzczMPQIAAAAEAAAAAACAPyAAAAAAAAAALgAAAAEAAAAyAAAAAgAAADQAAAADAAAATABvAG8AawBUAGEAcgBnAGUAdAAAAFAAYQByAGEAbQAAAFQAeQBwAGUAAABYAEEAbgBnAGwAZQBBAGQAagB1AHMAdAAAAKsw4TDpMBH/6GzudgAAQgBhAHIAcgBlAGwAAABhAGkAnJazW2lyXwBiAG8AZAB5ADAAAAAAAAAAAABhAGkAnJazW2lyXwBiAG8AZAB5ADEAAAAAAAAAAABhAGkAnJazW2lyXwBiAG8AZAB5ADIAAAAAAAAAAABhAGkAnJazW2lyXwBiAG8AZAB5ADMAAAAAAAAAAABtAGEAaQBuAEIAbwBkAHkAAACoMNUwpzCvMMgwMQAAAAAAAAAAAAAAAACoMNUwpzCvMMgwMgAAAAAAAAAAAAAAAACoMNUwpzCvMMgwjF/okAAAAAAAAAAAAAAAAAAAAACoMNUwpzCvMMgwTVIAAAAAAAAAAAAAAAAAAKsw4TDpMBH/AAAAAAAAAAAAAKsw4TDpMBH/6GzudgAAAAAAAAAAAAAAAAAAvzD8MLIwwzDIMAAAAAAAAAAAAAAAAKdeLV4R/wAAAAAAAAAAp14tXhL/AAAAAAAAAACnXi1eE/8AAAAAAAAAAKdeLV4U/wAAAAAAAAAAp14tXqsw4TDpMBH/AAAAAAAAAAAAAAAAAACnXi1eqzDhMOkwEv8AAAAAAAAAAAAAAAAAAKdeLV6rMOEw6TAT/wAAAAAAAAAAAAAAAAAAp14tXqsw4TDpMBT/AAAAAAAAAAAAAAAAAADNZCZ+LV4AAAAAAAAAAC1kV07jUxH/AAAAAAAAAAAAAC1kV07jUxL/AAAAAAAAAAAAAA=="
+        }
+      ]
+    },
+    {
+      "name": "car_aim_node",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "mainBody"},
+        {"type": "string", "value": "Battery"},
+        {"type": "string", "value": "Barrel"}
+      ]
+    },
+    {
+      "name": "car_base_all_rigid_body",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 17000},
+        {"type": "float", "value": 0.009999999776482582},
+        {"type": "float", "value": 0.10000000149011612},
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": -0.0024999999441206455},
+            {"type": "float", "value": 0.0010000000474974513}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 1},
+            {"type": "float", "value": 1},
+            {"type": "float", "value": 1}
+          ]
+        }
+      ]
+    },
+    {"name": "car_base_body_name", "type": "string", "value": "mainBody"},
+    {
+      "name": "car_base_brake_and_friction",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0.41999998688697815},
+        {"type": "float", "value": 0.699999988079071},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 0.30000001192092896},
+        {"type": "float", "value": 0.6000000238418579}
+      ]
+    },
+    {
+      "name": "car_base_breaking_effect",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 1}]},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {"type": "float", "value": 0.15000000596046448}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 0},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [{"type": "float", "value": 0.42500001192092896}]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0},
+                    {"type": "float", "value": 0},
+                    {"type": "float", "value": 0}
+                  ]
+                },
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0.699999988079071},
+                    {"type": "float", "value": 0.699999988079071},
+                    {"type": "float", "value": 0.699999988079071}
+                  ]
+                },
+                {
+                  "type": "ptr",
+                  "value": [{"type": "string", "value": "mainBody"}]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {"type": "float", "value": 4},
+                {"type": "float", "value": 7}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {"type": "float", "value": 0.20000000298023224},
+                {"type": "float", "value": 0.25}
+              ]
+            },
+            {"type": "ptr", "value": [{"type": "int", "value": 1}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {
+              "type": "ptr",
+              "value": [{"type": "float", "value": 0.15000000596046448}]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 1}]},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {"type": "float", "value": 0.46000000834465027}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {"type": "float", "value": 50}
+              ]
+            },
+            {"type": "ptr", "value": [{"type": "float", "value": 0.5}]},
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0},
+                    {"type": "float", "value": -0.5},
+                    {"type": "float", "value": 0}
+                  ]
+                },
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0.25},
+                    {"type": "float", "value": 0},
+                    {"type": "float", "value": 0.25}
+                  ]
+                },
+                {
+                  "type": "ptr",
+                  "value": [{"type": "string", "value": "mainBody"}]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {"type": "float", "value": 11},
+                {"type": "float", "value": 13}
+              ]
+            },
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+            {"type": "ptr", "value": [{"type": "int", "value": 0}]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "car_base_breaking_parts",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 60},
+            {"type": "float", "value": 2.5},
+            {"type": "float", "value": 50},
+            {"type": "float", "value": 2.5}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "Battery"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "Barrel"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire1_l"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire1_r"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire2_l"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire2_r"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire3_l"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire3_r"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire4_l"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "tire4_r"},
+                {"type": "int", "value": 1},
+                {"type": "int", "value": 2}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "car_base_cast_mode",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 1},
+        {"type": "int", "value": 1},
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 0},
+        {"type": "int", "value": 1},
+        {"type": "int", "value": 1}
+      ]
+    },
+    {
+      "name": "car_base_character_control",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 50},
+        {"type": "float", "value": 0.20000000298023224},
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 1},
+            {"type": "float", "value": 0.4000000059604645},
+            {"type": "float", "value": 0.4000000059604645}
+          ]
+        },
+        {"type": "float", "value": 15},
+        {"type": "float", "value": 0.25}
+      ]
+    },
+    {
+      "name": "car_base_constraint_data",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "Battery"},
+            {"type": "string", "value": "mainBody"},
+            {"type": "int", "value": 2},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0},
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "int", "value": 1},
+                        {"type": "float", "value": -115},
+                        {"type": "float", "value": 115}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "int", "value": 1},
+                        {"type": "float", "value": 47100},
+                        {"type": "float", "value": 1}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "Barrel"},
+            {"type": "string", "value": "Battery"},
+            {"type": "int", "value": 2},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 0},
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0},
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "int", "value": 1},
+                        {"type": "float", "value": -40},
+                        {"type": "float", "value": 5}
+                      ]
+                    },
+                    {
+                      "type": "ptr",
+                      "value": [
+                        {"type": "int", "value": 2},
+                        {"type": "float", "value": 47100},
+                        {"type": "float", "value": 1},
+                        {"type": "float", "value": 1},
+                        {"type": "float", "value": 3.140000104904175},
+                        {"type": "float", "value": 0.20000000298023224}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "car_base_contact_map",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 1},
+        {"type": "int", "value": 1},
+        {"type": "float", "value": 18},
+        {"type": "int", "value": 0}
+      ]
+    },
+    {"name": "car_base_disable_contact_lisner", "type": "ptr", "value": null},
+    {
+      "name": "car_base_draw_wheel_info",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 0},
+                {"type": "string", "value": "tire1_l"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 1}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 1},
+                {"type": "string", "value": "tire1_r"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 1}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 2},
+                {"type": "string", "value": "tire2_l"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 1}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 3},
+                {"type": "string", "value": "tire2_r"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 1}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 4},
+                {"type": "string", "value": "tire3_l"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 0}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 5},
+                {"type": "string", "value": "tire3_r"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 0}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 6},
+                {"type": "string", "value": "tire4_l"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 0}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": 7},
+                {"type": "string", "value": "tire4_r"}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "int", "value": -1},
+                {"type": "float", "value": 0},
+                {"type": "int", "value": 0}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "car_base_engine_gear",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0.1826999932527542},
+                {"type": "float", "value": 1},
+                {"type": "float", "value": 0.125},
+                {"type": "float", "value": 0.75}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0.23659999668598175},
+                {"type": "float", "value": 0.5476599931716919},
+                {"type": "float", "value": 0.5},
+                {"type": "float", "value": 0.75}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0.35260000824928284},
+                {"type": "float", "value": 0.45423999428749084},
+                {"type": "float", "value": 0.5},
+                {"type": "float", "value": 0.75}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0.4699999988079071},
+                {"type": "float", "value": 0.16515199840068817},
+                {"type": "float", "value": 0.5},
+                {"type": "float", "value": 0.75}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0.7026000022888184},
+                {"type": "float", "value": 0.091730996966362},
+                {"type": "float", "value": 0.5},
+                {"type": "float", "value": 0.75}
+              ]
+            },
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 1},
+                {"type": "float", "value": 0.039000000804662704},
+                {"type": "float", "value": 0.5},
+                {"type": "float", "value": 1}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": -0.2924000024795532},
+                {"type": "float", "value": 0.3790999948978424},
+                {"type": "float", "value": 1},
+                {"type": "float", "value": 0.125}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [{"type": "float", "value": 0.029999999329447746}]
+        }
+      ]
+    },
+    {
+      "name": "car_base_neutral_brake",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0.03999999910593033},
+        {"type": "float", "value": 0.019999999552965164}
+      ]
+    },
+    {
+      "name": "car_base_ragdoll_contact",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "ストライカー衝撃"},
+        {"type": "float", "value": 4000},
+        {"type": "float", "value": 0.10000000149011612},
+        {"type": "float", "value": 3},
+        {"type": "int", "value": 8}
+      ]
+    },
+    {
+      "name": "car_base_rigid_body",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "mainBody"},
+            {"type": "float", "value": 1},
+            {"type": "float", "value": -1},
+            {"type": "float", "value": -1},
+            {"type": "float", "value": -1},
+            {"type": "ptr", "value": null},
+            {"type": "ptr", "value": null}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "Battery"},
+            {"type": "float", "value": 0.014999999664723873},
+            {"type": "float", "value": -1},
+            {"type": "float", "value": -1},
+            {"type": "float", "value": -1},
+            {"type": "ptr", "value": null},
+            {"type": "ptr", "value": null}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "Barrel"},
+            {"type": "float", "value": 0.014999999664723873},
+            {"type": "float", "value": -1},
+            {"type": "float", "value": -1},
+            {"type": "float", "value": -1},
+            {"type": "ptr", "value": null},
+            {"type": "ptr", "value": null}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "car_base_se_table",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "ストライカーアイドリング"},
+        {"type": "string", "value": "ストライカー走行"},
+        {"type": "string", "value": "ストライカーブレーキング"},
+        {"type": "string", "value": "ストライカーダメージ"},
+        {"type": "string", "value": "ストライカー衝撃"},
+        {"type": "string", "value": "ストライカー爆発小"},
+        {"type": "string", "value": "ストライカー爆発極小"},
+        {"type": "string", "value": "ストライカー爆発大"},
+        {"type": "string", "value": "ストライカー搭乗"},
+        {"type": "string", "value": "ストライカー降車"},
+        {"type": "string", "value": "ビークル水中移動"},
+        {"type": "string", "value": "ビークル水中移動停止"},
+        {"type": "string", "value": "ビークル水中落ちる"},
+        {"type": "string", "value": "ストライカー砲身"},
+        {"type": "string", "value": "ストライカー砲身止め"},
+        {"type": "string", "value": "ストライカークラクション"},
+        {"type": "string", "value": "ストライカークラクション停止"}
+      ]
+    },
+    {
+      "name": "car_base_simulation_node",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire1_l"},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire1_r"},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire2_l"},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire2_r"},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire3_l"},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire3_r"},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire4_l"},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire4_r"},
+            {"type": "int", "value": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "car_base_steering",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 30},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": 0.10000000149011612}
+      ]
+    },
+    {
+      "name": "car_base_submerge_height",
+      "type": "float",
+      "value": 1.649999976158142
+    },
+    {
+      "name": "car_base_wheel",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire1_l"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": 1}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire1_r"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": 1}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire2_l"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": 1}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire2_r"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": 1}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire3_l"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": -1},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire3_r"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": -1},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire4_l"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": -1},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "tire4_r"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "float", "value": 0},
+                {"type": "float", "value": -1},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "float", "value": -0.30000001192092896},
+            {"type": "float", "value": 0.9110000133514404},
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 3.450000047683716},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.10999999940395355},
+            {"type": "float", "value": 0.49399998784065247},
+            {"type": "float", "value": 0.15000000596046448},
+            {"type": "int", "value": 1},
+            {"type": "int", "value": -1},
+            {"type": "int", "value": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "car_base_wheel_effect",
+      "type": "ptr",
+      "value": [
+        {"type": "ptr", "value": [{"type": "int", "value": 0}]},
+        {"type": "ptr", "value": [{"type": "int", "value": 1}]},
+        {"type": "ptr", "value": [{"type": "int", "value": 6}]},
+        {"type": "ptr", "value": [{"type": "int", "value": 7}]}
+      ]
+    },
+    {
+      "name": "car_base_wheel_effect_setting",
+      "type": "ptr",
+      "value": [
+        {"type": "int", "value": 2},
+        {"type": "float", "value": 0.30000001192092896},
+        {"type": "float", "value": 2.799999952316284},
+        {"type": "float", "value": 1},
+        {"type": "float", "value": -1},
+        {"type": "float", "value": -1},
+        {"type": "int", "value": 1},
+        {"type": "int", "value": 2},
+        {"type": "float", "value": 15},
+        {"type": "float", "value": -15},
+        {"type": "float", "value": 0.00800000037997961}
+      ]
+    },
+    {"name": "car_base_wheel_effect_slip_adjust", "type": "float", "value": 1},
+    {
+      "name": "car_base_wheel_ex",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0.20000000298023224},
+        {"type": "float", "value": 2}
+      ]
+    },
+    {"name": "car_enable_horn", "type": "int", "value": 1},
+    {
+      "name": "car_override_friction_hand_brake",
+      "type": "float",
+      "value": 0.1875
+    },
+    {
+      "name": "car_steering",
+      "type": "ptr",
+      "value": [
+        {"type": "float", "value": 0.05000000074505806},
+        {"type": "float", "value": 3.200000047683716}
+      ]
+    },
+    {
+      "name": "game_object_ai_route_update_distance",
+      "type": "float",
+      "value": 8
+    },
+    {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 4},
+            {"type": "float", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0},
+            {"type": "float", "value": 4},
+            {"type": "float", "value": -10.5}
+          ]
+        },
+        {"type": "int", "value": 1},
+        {"type": "float", "value": 0.10000000149011612}
+      ]
+    },
+    {"name": "game_object_durability", "type": "float", "value": 650},
+    {
+      "name": "game_object_formation",
+      "type": "ptr",
+      "value": [{"type": "float", "value": 20}]
+    },
+    {
+      "name": "game_sound",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "string",
+          "value": "app:/sound/adx/tikyuu4_vehicle_striker401.acb"
+        }
+      ]
+    },
+    {
+      "name": "ragdoll",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "string",
+          "value": "app:/object/Ragdoll_Vehicle401_STRIKER_has_hka.shkt"
+        },
+        {
+          "type": "extra",
+          "value": {
+            "format": "SGO",
+            "endian": "LE",
+            "version": 258,
+            "variables": [
+              {
+                "name": "animation_from_ragdoll",
+                "type": "ptr",
+                "value": [
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.mainTurret"
+                          },
+                          {"type": "string", "value": "Battery"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -9.999999974752427e-7},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire1l"},
+                          {"type": "string", "value": "tire1_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0.000045000000682193786},
+                          {"type": "float", "value": 0.00002499999936844688}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire1r"},
+                          {"type": "string", "value": "tire1_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.000058000001445179805}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire2l"},
+                          {"type": "string", "value": "tire2_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0.000045000000682193786},
+                          {"type": "float", "value": 0.000037000001611886546}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire2r"},
+                          {"type": "string", "value": "tire2_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.000037000001611886546}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire3l"},
+                          {"type": "string", "value": "tire3_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0.000045000000682193786},
+                          {"type": "float", "value": 0.00004999999873689376}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire3r"},
+                          {"type": "string", "value": "tire3_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.00004999999873689376}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire4l"},
+                          {"type": "string", "value": "tire4_l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0.000045000000682193786},
+                          {"type": "float", "value": -0.000037000001611886546}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.Tire4r"},
+                          {"type": "string", "value": "tire4_r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.000037000001611886546}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.mainBarrel"
+                          },
+                          {"type": "string", "value": "Barrel"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "RagDollProxys.mainBody"},
+                          {"type": "string", "value": "mainBody"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "ragdoll_from_animation",
+                "type": "ptr",
+                "value": [
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "Battery"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.mainTurret"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 9.999999974752427e-7},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire1_l"},
+                          {"type": "string", "value": "RagDollProxys.Tire1l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -0.000045000000682193786},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": -0.00002499999936844688}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire1_r"},
+                          {"type": "string", "value": "RagDollProxys.Tire1r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0.000058000001445179805}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire2_l"},
+                          {"type": "string", "value": "RagDollProxys.Tire2l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -0.000045000000682193786},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": -0.000037000001611886546}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire2_r"},
+                          {"type": "string", "value": "RagDollProxys.Tire2r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": -0.000037000001611886546}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire3_l"},
+                          {"type": "string", "value": "RagDollProxys.Tire3l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -0.000045000000682193786},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": -0.00004999999873689376}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire3_r"},
+                          {"type": "string", "value": "RagDollProxys.Tire3r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": -0.00004999999873689376}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire4_l"},
+                          {"type": "string", "value": "RagDollProxys.Tire4l"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": -0.000045000000682193786},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0.000037999998312443495}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "tire4_r"},
+                          {"type": "string", "value": "RagDollProxys.Tire4r"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0.00004199999966658652},
+                          {"type": "float", "value": 0.000037999998312443495}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": -0.7071070075035095},
+                          {"type": "float", "value": 0.7071070075035095}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "Barrel"},
+                          {
+                            "type": "string",
+                            "value": "RagDollProxys.mainBarrel"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ptr",
+                    "value": [
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "string", "value": "mainBody"},
+                          {"type": "string", "value": "RagDollProxys.mainBody"}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 0},
+                          {"type": "float", "value": 1}
+                        ]
+                      },
+                      {
+                        "type": "ptr",
+                        "value": [
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1},
+                          {"type": "float", "value": 1}
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "vehicle_damage_effect",
+      "type": "ptr",
+      "value": [{"type": "float", "value": 0.5}]
+    },
+    {
+      "name": "vehicle_riding_position",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "搭乗口１"},
+            {"type": "string", "value": "操縦席"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "カメラ１"},
+                {"type": "float", "value": 0},
+                {"type": "float", "value": 0}
+              ]
+            },
+            {"type": "string", "value": "401_STRIKER_DRIVER"},
+            {"type": "int", "value": 9},
+            {"type": "float", "value": 8},
+            {"type": "int", "value": 0}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "搭乗口２"},
+            {"type": "string", "value": "座席１"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "座席カメラ１"},
+                {"type": "float", "value": 1},
+                {"type": "float", "value": 1.7999999523162842}
+              ]
+            },
+            {"type": "string", "value": "401_STRIKER_SHEET1"},
+            {"type": "int", "value": 15},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 6}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "搭乗口２"},
+            {"type": "string", "value": "座席２"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "座席カメラ２"},
+                {"type": "float", "value": 1},
+                {"type": "float", "value": 1.7999999523162842}
+              ]
+            },
+            {"type": "string", "value": "401_STRIKER_SHEET2"},
+            {"type": "int", "value": 15},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 6}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "搭乗口２"},
+            {"type": "string", "value": "座席３"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "座席カメラ３"},
+                {"type": "float", "value": 1},
+                {"type": "float", "value": 1.7999999523162842}
+              ]
+            },
+            {"type": "string", "value": "401_STRIKER_SHEET3"},
+            {"type": "int", "value": 15},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 6}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "搭乗口２"},
+            {"type": "string", "value": "座席４"},
+            {
+              "type": "ptr",
+              "value": [
+                {"type": "string", "value": "座席カメラ４"},
+                {"type": "float", "value": 1},
+                {"type": "float", "value": 1.7999999523162842}
+              ]
+            },
+            {"type": "string", "value": "401_STRIKER_SHEET4"},
+            {"type": "int", "value": 15},
+            {"type": "int", "value": 0},
+            {"type": "int", "value": 6}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vehicle_setup",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 1},
+            {"type": "float", "value": 1}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "float", "value": 0.75},
+            {"type": "float", "value": 27},
+            {"type": "float", "value": 0.09698300063610077},
+            {"type": "float", "value": 1},
+            {"type": "float", "value": 0.07500000298023224},
+            {"type": "float", "value": 0.30000001192092896},
+            {"type": "float", "value": 0.6000000238418579}
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "ptr",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "app:/weapon/v_401striker_cannon.sgo"
+                },
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 0.30000001192092896},
+                    {"type": "float", "value": 5.5}
+                  ]
+                },
+                {
+                  "type": "ptr",
+                  "value": [
+                    {"type": "float", "value": 90},
+                    {"type": "float", "value": 0.004999999888241291},
+                    {"type": "float", "value": 0.05000000074505806}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vehicle_weapon_setting",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "Barrel"},
+            {"type": "int", "value": 0}
+          ]
+        }
+      ]
+    },
+    {"name": "xgs_scene_object_class", "type": "string", "value": "Vehicle_Car"}
+  ]
+}
