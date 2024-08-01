@@ -1,6 +1,7 @@
 const decompiler = require('../decompiler.js')
 
 function decompileSgo(buffer, config) {
+  const decompiler = require('../decompiler.js')
   const { decompile, types } = decompiler('SGO', buffer, config)
   const {
     Str,

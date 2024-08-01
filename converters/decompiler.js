@@ -281,11 +281,16 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
 
   function decompile(Entry) {
     const data = Entry(new Cursor(fullBuffer), 0x00)
-    return {
+    const ret = {
       format: format,
       ...data,
-      strings: Object.keys(strOrder).sort((a, b) => strOrder[a] - strOrder[b])
     }
+    if(format === 'DSGO') {
+      ret.strings = Object
+        .keys(strOrder)
+        .sort((a, b) => strOrder[a] - strOrder[b])
+    }
+    return ret
   }
 
   decompile.types = {
