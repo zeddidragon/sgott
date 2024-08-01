@@ -47,6 +47,7 @@ function decompileDsgo(buffer, config) {
   }
 
   const deferred = []
+  const keyTables = new Map()
   function DsgoStructure(cursor, offset) {
     const strCursor = Ptr(cursor, offset + 0x00)
     const strCount = UInt(cursor, offset + 0x04)
@@ -56,10 +57,12 @@ function decompileDsgo(buffer, config) {
       return null
     }
     const strings = Array(strCount).fill(null)
+    const keyTable = Array(strCount).fill(null)
     for(let i = 0; i < strCount; i++) {
       const str = Str(strCursor, 0x00)
       const strIdx = UInt(strCursor, 0x04)
       strings[strIdx] = str
+      keyTable[i] = str
       strCursor.move(0x08)
     }
     const vars = Array(varCount).fill(null)
@@ -77,6 +80,7 @@ function decompileDsgo(buffer, config) {
         obj[strings[i]] = vars[i]
       }
       deferred.push(obj)
+      keyTables.set(obj, keyTable)
       return obj
     }
   }
@@ -124,6 +128,9 @@ function decompileDsgo(buffer, config) {
       for(const [key, idx] of Object.entries(obj)) {
         const node = decompiled.nodes[idx]
         obj[key] = node.value
+      }
+      if(config.debug) {
+        obj['$KEY_TABLE$'] = keyTables.get(obj)
       }
     }
   }

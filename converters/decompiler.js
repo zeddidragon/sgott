@@ -22,16 +22,19 @@ function decompiler(format, fullBuffer, config = {}) {
     return cursor.copy().move(Int(cursor, offset))
   }
 
+  const strOrder = {}
   function Str(cursor, offset = 0x00, length = 0) {
     cursor = Ptr(cursor, offset)
     const terminator = length * 2 || Math.min(
       cursor.buffer.indexOf('\0', cursor.pos, 'utf16le'),
       cursor.buffer.length)
     const buffer = cursor.buffer.slice(cursor.pos, terminator) 
-    return (cursor.endian === 'LE'
+    const string = (cursor.endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
     ).trim()
+    strOrder[string] = cursor.pos
+    return string
   }
 
   function UInt(cursor, offset = 0x00) {
@@ -59,7 +62,7 @@ function decompiler(format, fullBuffer, config = {}) {
   Float.size = 0x04
 
   function Double(cursor, offset = 0x00) {
-    return +(cursor.at(offset)[`readDouble${cursor.endian}`]()).toFixed(4)
+    return cursor.at(offset)[`readDouble${cursor.endian}`]()
   }
   Double.size = 0x08
 
@@ -280,7 +283,8 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     const data = Entry(new Cursor(fullBuffer), 0x00)
     return {
       format: format,
-      ...data
+      ...data,
+      strings: Object.keys(strOrder).sort((a, b) => strOrder[a] - strOrder[b])
     }
   }
 

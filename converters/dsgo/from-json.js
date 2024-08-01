@@ -16,7 +16,7 @@ function compileDsgo(obj) {
 
   const nodes = []
   const heap = []
-  const stringSet = new Set()
+  const stringSet = new Set(obj.strings || [])
 
   function unrollData(data) {
     const idx = nodes.length
@@ -151,7 +151,7 @@ function compileDsgo(obj) {
   const header = compile(DsgoHeader)
 
   const stringRegister = {}
-  const strings = Array.from(stringSet).sort()
+  const strings = Array.from(stringSet) //.sort()
   function stringBytes(string) {
     return Buffer.byteLength(string + '\x00', 'utf16le')
   }
@@ -203,17 +203,26 @@ function compileDsgo(obj) {
       UInt({ buffer, index }, stringIndex, 0x00)
       UInt({ buffer, index }, stringCount, 0x04)
       // Index table pointer, count
-      UInt({ buffer, index }, headerSize, 0x08)
+      const valIndex = data.indices.length ? headerSize : 0
+      UInt({ buffer, index }, valIndex, 0x08)
       UInt({ buffer, index }, data.indices.length, 0x0c)
       index += headerSize
       for(const nodeIndex of data.indices) {
         UInt({ buffer, index }, nodeIndex, 0x00)
         index += 0x04
       }
+      const stringMap = {}
       for(let i = 0; i < stringCount; i++) {
-        const string = data.strings[i]
+        stringMap[data.strings[i]] = i
+      }
+      // DSGO usually sort keys. It's unclear wether this is important
+      // but the more identical the output can be to the original file
+      // the easier it is to debug
+      const sorted = (data.strings || []).slice().sort()
+      for(let i = 0; i < stringCount; i++) {
+        const string = sorted[i]
         UInt({ buffer, index }, buffer.length - index + stringRegister[string], 0x00)
-        UInt({ buffer, index }, i, 0x04)
+        UInt({ buffer, index }, stringMap[string], 0x04)
         index += 0x08
       }
     } else if(data.type === 'extra') {
