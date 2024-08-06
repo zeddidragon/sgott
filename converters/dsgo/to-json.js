@@ -56,13 +56,11 @@ function decompileDsgo(buffer, config) {
     if(!varCount) {
       return null
     }
-    const strings = Array(strCount).fill(null)
-    const keyTable = Array(strCount).fill(null)
+    const strings = {}
     for(let i = 0; i < strCount; i++) {
       const str = Str(strCursor, 0x00)
       const strIdx = UInt(strCursor, 0x04)
       strings[strIdx] = str
-      keyTable[i] = str
       strCursor.move(0x08)
     }
     const vars = Array(varCount).fill(null)
@@ -71,20 +69,15 @@ function decompileDsgo(buffer, config) {
       vars[i] = nodeIdx
       varCursor.move(0x04)
     }
-    if(!strCount) {
-      deferred.push(vars)
-      return vars
-    } else {
-      const obj = {}
-      for(let i = 0; i < strings.length; i++) {
-        obj[strings[i]] = vars[i]
-      }
-      deferred.push(obj)
-      keyTables.set(obj, keyTable)
-      return obj
+    deferred.push(vars)
+    for(let i = 0; i < strings.length; i++) {
+      vars[i].name = strings[i]
     }
-  }
-  DsgoStructure.size = 0x10
+    if(strCount) {
+      keyTables.set(vars, strings)
+    }
+    return vars
+  } DsgoStructure.size = 0x10
 
   const DsgoNode = DUnion({
     [0x00]: Struct({
@@ -99,7 +92,6 @@ function decompileDsgo(buffer, config) {
       [0x00]: ['value', (cursor, offset) => {
         cursor = Ptr(cursor, offset)
         return {
-          '$SGOTT_EMBED': true,
           format: 'hex',
           data: Extra(cursor, 0x00),
         }
@@ -112,26 +104,24 @@ function decompileDsgo(buffer, config) {
     }, 0x10),
   }, 0x10)
 
+  DsgoNode.prototype.toJson = (...args) => {
+    console.log(args)
+    return ''
+  }
+
   const DsgoHeader = Struct({
     [0x00]: ['endian', Leader('DSGO')],
-    [0x04]: ['data', DRef(DRef(DsgoStructure))],
+    [0x04]: ['variables', DRef(DRef(DsgoStructure))],
     [0x08]: ['nodes', Ref(Collection(DsgoNode))],
   }, 0x10)
 
   const decompiled = decompile(DsgoHeader)
-  for(const obj of deferred) {
-    if(Array.isArray(obj)) {
-      for(let i = 0; i < obj.length; i++) {
-        obj[i] = decompiled.nodes[obj[i]].value
-      }
-    } else {
-      for(const [key, idx] of Object.entries(obj)) {
-        const node = decompiled.nodes[idx]
-        obj[key] = node.value
-      }
-      if(config.debug) {
-        obj['$KEY_TABLE$'] = keyTables.get(obj)
-      }
+  for(const arr of deferred) {
+    const strings = keyTables.get(arr)
+    for(let i = 0; i < arr.length; i++) {
+      const node = decompiled.nodes[arr[i]]
+      node.name = strings?.[i]
+      arr[i] = node
     }
   }
   delete decompiled.nodes

@@ -1,3 +1,6 @@
+const util = require('util')
+const kleur = require('kleur')
+
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
@@ -69,18 +72,21 @@ function compile(obj) {
     }
   }
 
-  const deferredStrings = new Set()
+  const deferredStrings = new Set(obj.strings || [])
   const stringDefers = []
   function DeferStr(cursor, str, offset = 0x00) {
-    str = str.trim() + '\0'
+    str = str.trim()
     deferredStrings.add(str)
     stringDefers.push({ str, cursor: cursor.clone(), offset })
   }
   DeferStr.size = 0x04
 
   function unrollStrings() {
-    const nullString = '\x00'
-    const strings = Array.from(deferredStrings).sort()
+    const nullString = '\0'
+    const strings = Array.from(deferredStrings)
+    if(!obj.strings) { // Sort unless order defined manually
+      strings.sort()
+    }
     // SGO sorts this nullstring at the end, js wants it first
     // For consistency, perform that manually
     if(strings[0] === nullString) {
@@ -88,9 +94,10 @@ function compile(obj) {
       strings.push(nullString)
     }
     const stringCursors = {}
-    for(const str of strings) {
-      const cursor = malloc(stringBytes(str))
-      cursor.buffer.write(str, 'utf16le')
+    for(let str of strings) {
+      const written = str + '\0'
+      const cursor = malloc(stringBytes(written))
+      cursor.buffer.write(written, 'utf16le')
       if(endian !== 'LE') cursor.buffer.swap16()
       stringCursors[str] = cursor
     }
@@ -104,13 +111,10 @@ function compile(obj) {
     return Buffer.byteLength(string, 'utf16le')
   }
 
-  function Unknowns(cursor, obj, offset = 0x00) {
-    for(const key of Object.keys(obj)) {
-      if(!key.startsWith('0x')) continue
-      const pos = parseInt(key.slice(2), 16)
-      const value = obj[key]
-      Hex(cursor, value, offset + pos)
-    }
+  // Like Ref, but null values are written as 0 instead of a pointer to nowhere
+  function DRef(cursor, value, offset) {
+    if(!value) return Int(cursor, 0, offset)
+    return Ref(cursor, value, offset)
   }
 
   function Ref(cursor, value, offset) {
@@ -147,6 +151,24 @@ function compile(obj) {
       }
     }
 
+    [util.inspect.custom]() {
+      const startAt = Math.max(0, Math.floor((this.pos / 0x10) - 1) * 0x10)
+      const endAt = Math.min(startAt + 0x40, this.buffer.length)
+      let bufferView = []
+      for(let i = startAt; i < endAt; i += 0x2) {
+        if(!(i % 0x10)) {
+          bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])
+        }
+        let str = this.buffer.readUInt16BE(i).toString(16).padStart(4, 0)
+        if(this.pos === i) {
+          str = kleur.yellow(str)
+        }
+        bufferView[bufferView.length - 1].push(str)
+      }
+      return `Cursor 0x${this.pos.toString(16)} (${this.endian})
+${bufferView.map(r => r.join(' ')).join('\n')}`
+    }
+
     write(Type, value, off, tmp, opts = {}) {
       if(this.index > this.buffer.length - Type.size) {
         throw new Error('End of buffer exceeded')
@@ -170,7 +192,7 @@ function compile(obj) {
   }
 
   const heap = []
-  var heapIdx = 0x00
+  let heapIdx = 0x00
   function malloc(size, opts = {}) {
     if(size == null) throw new Error('No size provided to allocate (0 is valid)')
     if(opts.padding) {
@@ -195,7 +217,7 @@ function compile(obj) {
       const value = cb(data, cursor, tmp)
       if(!value) return null
       const writeOpts = {}
-      var size = Type.size
+      let size = Type.size
       if(Buffer.isBuffer(value)) {
         size = value.length
         writeOpts.size = size
@@ -207,6 +229,15 @@ function compile(obj) {
     }
     AllocateDef.size = 0x04
     return AllocateDef
+  }
+
+  function Unknowns(cursor, obj, offset = 0x00) {
+    for(const key of Object.keys(obj)) {
+      if(!key.startsWith('0x')) continue
+      const pos = parseInt(key.slice(2), 16)
+      const value = obj[key]
+      Hex(cursor, value, offset + pos)
+    }
   }
 
   function Struct(definitions, size) {
@@ -246,7 +277,7 @@ function compile(obj) {
       const entries = cb ? cb(data) : data
       if(!(entries && entries.length)) return null
 
-      var size = entries.length * (opts.size || Type.size)
+      const size = entries.length * (opts.size || Type.size)
       const cursor = malloc(size, opts)
       entries.forEach(entry => cursor.write(Type, entry, 0x00, {}, opts))
       return cursor
@@ -274,6 +305,7 @@ function compile(obj) {
     Defer,
     DeferStr,
     Ref,
+    DRef,
     Null,
     Copy,
     Allocate,

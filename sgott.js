@@ -12,7 +12,6 @@ const jsonToRmp = require('./converters/rmp/from-json.js')
 
 function isDsgo(obj) {
   if(/^dsgo$/i.test(obj.format)) return true
-  if(obj.variables) return true
   return false
 }
 

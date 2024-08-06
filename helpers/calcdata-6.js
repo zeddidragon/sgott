@@ -2,10 +2,10 @@ const fs = require('fs/promises')
 const getNode = require('./get-node.js')
 const bullets = require('./bullets.js')
 
-bullets.assignGame(5)
+bullets.assignGame(6)
 
 function loadJson(path) {
-  return fs.readFile(`data/5/${path}.json`).then(data => JSON.parse(data))
+  return fs.readFile(`data/6/${path}.json`).then(data => JSON.parse(data))
 }
 
 const classes = [
@@ -1492,54 +1492,63 @@ const headers = {
   }],
 }
 
-async function processWeapon({ value: node }) {
-  const id = node[0].value
+async function processWeapon(node) {
+  const [
+    id,
+    path,
+    category,
+    odds,
+    rawLevel,
+    classId,
+    unlockState,
+    dlc,
+  ] = node
   const lvBuffer = Buffer.alloc(4)
-  lvBuffer.writeFloatLE(node[4].value * 25)
+  lvBuffer.writeFloatLE(rawLevel * 25)
   const level = Math.floor(lvBuffer.readFloatLE())
-  const category = node[2].value
   const character = classes[Math.floor(category / 100)]
   const group = categories[character][category % 100]
 
-  const template = await loadJson(`weapon/${id.toUpperCase()}`)
+  const template = await loadJson(`Weapon/${id.toLowerCase()}`)
   const wpn = {
     id: id,
-    names: Object.fromEntries(['en', 'ja'].map(lang => {
-      return [lang, getNode(template, `name.${lang}`).value]
+    names: Object.fromEntries(['ja', 'en', 'cn', 'kr', 'sc'].map(lang => {
+      return [lang, getNode(template, `name.${lang}`)]
     })),
     level: level,
     character: character,
     category: group,
     raw: category,
-    odds: unlockStates[node[5].value] || (Math.floor(node[3].value * 100)),
-    dlc: node[7].value,
+    odds: unlockStates[unlockState] || (Math.floor(odds * 100)),
+    dlc: dlc,
   }
   if(!wpn.dlc) {
     delete wpn.dlc
   }
 
   for(const [prop, node] of Object.entries(autoProps)) {
-    const value = getNode(template, node).value
+    const value = getNode(template, node)
     const isArray = Array.isArray(value)
-    const isSubArray = isArray && Array.isArray(value[0]?.value)
+    const isSubArray = isArray && Array.isArray(value[0])
+    console.log({ isSubArray, value })
     if(['custom', 'wCustom'].includes(prop)) {
       wpn[prop] = value
-    } else if(isSubArray && value[0].value.length
+    } else if(isSubArray && value[0].length
       || isArray && value.length === 6
     ) {
-      const arr = isSubArray ? value[0].value : value
+      const arr = isSubArray ? value[0] : value
       wpn[prop] = {
-        base:  +arr[0].value.toFixed(4),
-        algo:  +arr[1].value,
+        base:  +arr[0].toFixed(4),
+        algo:  +arr[1],
         lvMax: Math.max(5, +arr[3].value),
-        zero:  +arr[4].value.toFixed(2),
-        exp:   +arr[5].value.toFixed(2),
+        zero:  +arr[4].toFixed(2),
+        exp:   +arr[5].toFixed(2),
         type: arr[0].type,
       }
     } else if (isArray && value.length === 1){
-      wpn[prop] = value[0].value
+      wpn[prop] = value[0]
     } else if (isArray) {
-      wpn[prop] = value.map(v => v.value)
+      wpn[prop] = value
     } else if(typeof value === 'number' && !isNaN(value)) {
       wpn[prop] = +value.toFixed(2)
     } else {
@@ -1585,6 +1594,7 @@ async function processWeapon({ value: node }) {
     'speed',
     'reloadInit',
   ]) {
+    console.log(wpn[prop])
     if(wpn[prop]?.base) {
       wpn[prop].base = +wpn[prop].base.toFixed(1)
     } else if(wpn[prop]) {
@@ -1682,8 +1692,10 @@ async function processWeapon({ value: node }) {
 }
 
 async function extractWeaponData() {
-  const table = await loadJson('weapon/WEAPONTABLE')
-  return Promise.all(table.variables[0].value.map(processWeapon))
+  const data = await loadJson('Weapon/weapontable')
+  const table = getNode(data, 'table')
+  console.log(table)
+  return Promise.all(table.map(processWeapon))
 }
 
 const modes = {
@@ -1716,9 +1728,11 @@ const difficulties = [
 async function processMode({ value: mode }) {
   const key = mode[0].value
   const lvBuffer = Buffer.alloc(4)
-  const missionListPath = mode[5].value[0].value
+  console.log(mode)
+  const missionListPath = mode[6].value[0].value
     .replace('app:/', '')
     .replace('.sgo', '')
+    .toLowerCase()
   const missionList = (await loadJson(missionListPath))
     .variables[0]
     .value
@@ -1779,7 +1793,7 @@ async function extractCalcdata() {
     modes,
   ] = await Promise.all([
     extractWeaponData(),
-    extractModesData('CONFIG'),
+    extractModesData('config'),
   ])
   return {
     langs: ['en', 'ja'],
