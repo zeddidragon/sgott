@@ -1,128 +1,399 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Drone_Area",
-    "custom_parameter": {
-      "drone": {
-        "object": "app:/object/pd605_Drone_grenade.sgo",
-        "formation": [{"offset": [1, 2, 1]}],
-        "movement": {
-          "linear": {
-            "max": 30,
-            "accele": 0.10000000149011612,
-            "lerp": 0.05000000074505806
-          },
-          "angular": {"ratio": 0.10000000149011612, "mix": 0.949999988079071}
-        },
-        "aim": {"speed": 0.10000000149011612},
-        "equipment": 1,
-        "aim_target": 4,
-        "color": {
-          "color1": [
-            0.4699999988079071,
-            0.23999999463558197,
-            0.05999999865889549
+  "variables": [
+    {
+      "value": "Weapon_Drone_Area",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": "app:/object/pd605_Drone_grenade.sgo",
+              "type": "str",
+              "name": "object"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 1, "type": "double"},
+                        {"value": 2, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr",
+              "name": "formation"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": 30, "type": "double", "name": "max"},
+                    {
+                      "value": 0.10000000149011612,
+                      "type": "double",
+                      "name": "accele"
+                    },
+                    {
+                      "value": 0.05000000074505806,
+                      "type": "double",
+                      "name": "lerp"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "linear"
+                },
+                {
+                  "value": [
+                    {
+                      "value": 0.10000000149011612,
+                      "type": "double",
+                      "name": "ratio"
+                    },
+                    {
+                      "value": 0.949999988079071,
+                      "type": "double",
+                      "name": "mix"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "angular"
+                }
+              ],
+              "type": "ptr",
+              "name": "movement"
+            },
+            {
+              "value": [
+                {
+                  "value": 0.10000000149011612,
+                  "type": "double",
+                  "name": "speed"
+                }
+              ],
+              "type": "ptr",
+              "name": "aim"
+            },
+            {"value": 1, "type": "double", "name": "equipment"},
+            {"value": 4, "type": "double", "name": "aim_target"},
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": 0.4699999988079071, "type": "double"},
+                    {"value": 0.23999999463558197, "type": "double"},
+                    {"value": 0.05999999865889549, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color1"
+                },
+                {
+                  "value": [
+                    {"value": 0.7799999713897705, "type": "double"},
+                    {"value": 0.05999999865889549, "type": "double"},
+                    {"value": 0, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color2"
+                }
+              ],
+              "type": "ptr",
+              "name": "color"
+            }
           ],
-          "color2": [0.7799999713897705, 0.05999999865889549, 0]
+          "type": "ptr",
+          "name": "drone"
+        },
+        {
+          "value": [
+            {"value": 4, "type": "double", "name": "type"},
+            {"value": 1, "type": "double", "name": "trigger"},
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": 18, "type": "double"},
+                {"value": -9, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "offset"
+            },
+            {"value": 5, "type": "double", "name": "radius"},
+            {
+              "value": [
+                {"value": 0, "type": "double", "name": "min"},
+                {"value": 60, "type": "double", "name": "max"}
+              ],
+              "type": "ptr",
+              "name": "delay"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 0, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": 0, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 200, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr",
+              "name": "area"
+            },
+            {"value": 0, "type": "double", "name": "is_end_to_suicide"}
+          ],
+          "type": "ptr",
+          "name": "order"
         }
-      },
-      "order": {
-        "type": 4,
-        "trigger": 1,
-        "offset": [0, 18, -9],
-        "radius": 5,
-        "delay": {"min": 0, "max": 60},
-        "area": [{"offset": [0, 0, 0], "angle": 0, "distance": 200}],
-        "is_end_to_suicide": 0
-      }
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "Ｂ１αポータブル爆撃機〔爆撃〕",
-    "name.en": "B1α Portable Bomber (Bomber)",
-    "name.cn": "Ｂ１α攜帶型轟炸機〔轟炸〕",
-    "name.kr": "B1α 포터블 폭격기〔폭격〕",
-    "name.sc": "Ｂ１α携带型轰炸机〔轰炸〕",
-    "WeaponIcon": "app:/weapon/icon/pd605_Drone_grenade.DDS",
-    "animation_model": [
-      ["app:/Weapon/e_throw_transceiver.rab", "e_throw_transceiver.mdb"],
-      "app:/Weapon/e_throw_transceiver.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f007400720061006e0073006300650069007600650072000000680069006400650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 26,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": 240,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 15,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": [0, "weapon_AR_droneBakugeki_Bakugeki_B1alpha", 1, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "RocketBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": 2,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 20,
-    "AmmoDamage": [400, 8, 0, 8, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [8, 32, 1, 8, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0.10000000149011612,
-    "AmmoHitSizeAdjust": 5,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 0, 0, 0.5],
-    "Ammo_CustomParameter": [1, 40, 0, 0],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_impactKanshakudama", 1, 1, 1, 200],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": {
-      "efarc": "app:/weapon/effect/engineer_drone.efarc",
-      "esb": "fire01.esb",
-      "color": [1, 1, 1, 1],
-      "scale": 0.30000001192092896,
-      "is_loop": 0
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "Ｂ１αポータブル爆撃機〔爆撃〕", "type": "str", "name": "name.ja"},
+    {"value": "B1α Portable Bomber (Bomber)", "type": "str", "name": "name.en"},
+    {"value": "Ｂ１α攜帶型轟炸機〔轟炸〕", "type": "str", "name": "name.cn"},
+    {"value": "B1α 포터블 폭격기〔폭격〕", "type": "str", "name": "name.kr"},
+    {"value": "Ｂ１α携带型轰炸机〔轰炸〕", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/pd605_Drone_grenade.DDS",
+      "type": "str",
+      "name": "WeaponIcon"
     },
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/object/pd605_Drone_grenade.sgo",
-      "app:/weapon/effect/engineer_drone.efarc"
-    ]
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_throw_transceiver.rab", "type": "str"},
+            {"value": "e_throw_transceiver.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_throw_transceiver.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f007400720061006e0073006300650069007600650072000000680069006400650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 26, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": 240, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 15, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_AR_droneBakugeki_Bakugeki_B1alpha", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "RocketBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"value": 2, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 20, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 400, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 8, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.10000000149011612, "type": "double", "name": "AmmoSize"},
+    {"value": 5, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 40, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_impactKanshakudama", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {
+          "value": "app:/weapon/effect/engineer_drone.efarc",
+          "type": "str",
+          "name": "efarc"
+        },
+        {"value": "fire01.esb", "type": "str", "name": "esb"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr",
+          "name": "color"
+        },
+        {"value": 0.30000001192092896, "type": "double", "name": "scale"},
+        {"value": 0, "type": "double", "name": "is_loop"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/object/pd605_Drone_grenade.sgo", "type": "str"},
+        {"value": "app:/weapon/effect/engineer_drone.efarc", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

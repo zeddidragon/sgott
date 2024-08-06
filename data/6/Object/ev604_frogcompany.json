@@ -1,20 +1,79 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "FarEventObject",
-    "game_object_camera_setting": [[0, 2, 0], [0, 2, -20]],
-    "animation_model": [
-      ["app:/Object/ev604_FrogCompany.mrab", "ev604_FrogCompany.mdb"],
-      0,
-      0,
-      [
-        [8, 8, 8],
-        [-5909.63037109375, -58.248714447021484, -9967.7470703125],
-        [7561.6015625, 358.743896484375, 7266.71142578125]
-      ]
-    ]
-  },
+  "variables": [
+    {
+      "value": "FarEventObject",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": -20, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/ev604_FrogCompany.mrab", "type": "str"},
+            {"value": "ev604_FrogCompany.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 8, "type": "double"},
+                {"value": 8, "type": "double"},
+                {"value": 8, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": -5909.63037109375, "type": "double"},
+                {"value": -58.248714447021484, "type": "double"},
+                {"value": -9967.7470703125, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 7561.6015625, "type": "double"},
+                {"value": 358.743896484375, "type": "double"},
+                {"value": 7266.71142578125, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    }
+  ],
   "strings": [
     "xgs_scene_object_class",
     "animation_model",

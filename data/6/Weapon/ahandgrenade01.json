@@ -1,101 +1,293 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": "throwL_swing",
-      "whole_body": 0,
-      "animation_speed": 1,
-      "is_manual_reload": 0,
-      "show_throw_guide": {"always_show": 0},
-      "long_press_count": 216000
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {"value": "throwL_swing", "type": "str", "name": "animation"},
+        {"value": 0, "type": "double", "name": "whole_body"},
+        {"value": 1, "type": "double", "name": "animation_speed"},
+        {"value": 0, "type": "double", "name": "is_manual_reload"},
+        {
+          "value": [{"value": 0, "type": "double", "name": "always_show"}],
+          "type": "ptr",
+          "name": "show_throw_guide"
+        },
+        {"value": 216000, "type": "double", "name": "long_press_count"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ＭＧ１１",
-    "name.en": "MG11",
-    "name.cn": "ＭＧ１１",
-    "name.kr": "MG11",
-    "name.sc": "ＭＧ１１",
-    "WeaponIcon": "app:/weapon/icon/grenade.dds",
-    "animation_model": [
-      ["app:/Weapon/s_grenade_mg10.rab", "s_grenade_mg10.mdb"],
-      "app:/Weapon/s_grenade_mg10.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002003e00240000005c00000080000000c000000000000100180000000100000030000000020000002800000084000000940000000200000044000000540000004400000000000000640000002000000020000000920000000000000010000000100000005a00000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f00020100000000000020000000000000002000000000000000200000003000310000006800690064006500000073005f006700720065006e006100640065005f006d0067003100300000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_l"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 3,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": [400, 21, 2, 8, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 2,
-    "FireSpreadWidth": 0.20000000298023224,
-    "FireCount": 1,
-    "FireInterval": 0,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": [0, 0.125, 1],
-    "FireSe": [0, "weapon_Ranger_GL_throw", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "EfsBullet",
-    "AmmoModel": "app:/WEAPON/s_grenade_mg10.rab",
-    "AmmoSpeed": [0.6000000238418579, 16, 3, 10, 0.25, 2, 1],
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 600,
-    "AmmoDamage": [200, 8, 0, 10, 0.5, 0.5, 1],
-    "AmmoDamageAttribute": {"shield": 2},
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [5, 32, 1, 10, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 0, 0, 1],
-    "Ammo_CustomParameter": {
-      "efarc": "app:/weapon/effect/ranger_hand_grenade.efarc",
-      "bullet": {"esb": "bullet.esb", "scale": 0.125, "color": [1, 1, 1, 1]},
-      "hit": {"use_default_effect": 1}
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ＭＧ１１", "type": "str", "name": "name.ja"},
+    {"value": "MG11", "type": "str", "name": "name.en"},
+    {"value": "ＭＧ１１", "type": "str", "name": "name.cn"},
+    {"value": "MG11", "type": "str", "name": "name.kr"},
+    {"value": "ＭＧ１１", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/grenade.dds",
+      "type": "str",
+      "name": "WeaponIcon"
     },
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_explode_S", 1, 1, 1, 200],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/WEAPON/s_grenade_mg10.rab",
-      "app:/weapon/effect/ranger_hand_grenade.efarc"
-    ]
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/s_grenade_mg10.rab", "type": "str"},
+            {"value": "s_grenade_mg10.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/s_grenade_mg10.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002003e00240000005c00000080000000c000000000000100180000000100000030000000020000002800000084000000940000000200000044000000540000004400000000000000640000002000000020000000920000000000000010000000100000005a00000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f00020100000000000020000000000000002000000000000000200000003000310000006800690064006500000073005f006700720065006e006100640065005f006d0067003100300000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_l", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 3, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 400, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 2, "type": "double", "name": "FireSpreadType"},
+    {"value": 0.20000000298023224, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 0, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0.125, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireVector"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Ranger_GL_throw", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "EfsBullet", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/s_grenade_mg10.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {
+      "value": [
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.25, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 600, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 200, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 2, "type": "double", "name": "shield"}],
+      "type": "ptr",
+      "name": "AmmoDamageAttribute"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 5, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {
+          "value": "app:/weapon/effect/ranger_hand_grenade.efarc",
+          "type": "str",
+          "name": "efarc"
+        },
+        {
+          "value": [
+            {"value": "bullet.esb", "type": "str", "name": "esb"},
+            {"value": 0.125, "type": "double", "name": "scale"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "color"
+            }
+          ],
+          "type": "ptr",
+          "name": "bullet"
+        },
+        {
+          "value": [
+            {"value": 1, "type": "double", "name": "use_default_effect"}
+          ],
+          "type": "ptr",
+          "name": "hit"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_explode_S", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/WEAPON/s_grenade_mg10.rab", "type": "str"},
+        {"value": "app:/weapon/effect/ranger_hand_grenade.efarc", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "LockonTargetType",
     "BaseAnimation",

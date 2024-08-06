@@ -1,21 +1,119 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "FarEventObject",
-    "game_object_camera_setting": [[0, 2, 0], [0, 2, -20]],
-    "game_sound": ["app:/sound/adx/tikyuu6_ev_ICBM_landing.acb"],
-    "animation_model": {
-      "null": ["app:/Object/ev608_icbm.mrab", "ev608_icbm_missile.mdb"],
-      "undefined": [
-        [8, 8, 8],
-        [-20.742660522460938, -1, -20.742660522460938],
-        [20.742660522460938, 148.42086791992188, 20.742660522460938]
-      ],
-      "effect": {"path": "app:/object/ev608_icbm.efarc"}
+  "variables": [
+    {
+      "value": "FarEventObject",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "setting": {"scale": [1, 1, 1], "default_animation": "missile_attack"}
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": -20, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {
+      "value": [
+        {"value": "app:/sound/adx/tikyuu6_ev_ICBM_landing.acb", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "game_sound"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/ev608_icbm.mrab", "type": "str"},
+            {"value": "ev608_icbm_missile.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/object/ev608_icbm_landing.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f00000083000000040001000000320024000000440000009000000060020000000000002000000001000000180000000200000010000000030000000800000010000000400000002a020000030000000c02000000000000000000003c0000002802000000000000000000003c01000018020000008009440000000070000000babababababababababababa53474f00020100000100000020000000010000002c0000000000000034000000030000000b0000001c000000080000000000000065007300620000006c0061006e00640069006e0067002e00650073006200000053474f000201000003000000200000000300000044000000000000005c000000010000000400000000000000030000000a00000030000000030000000c000000560000002e000000000000005c000000010000005e0000000200000045004400460036004900430042004d0040773e5f0000690073005f00740072006100630065005f006e006f006400650000006d0069007300730069006c0065005f006d00610069006e0000006e0061006d00650000006e006f0064006500000053474f000201000003000000200000000300000044000000000000005c000000010000000400000001000000030000000c00000030000000030000000c0000005a00000032000000000000006000000001000000620000000200000045004400460036004900430042004d0040773e5fdb9865670000690073005f00740072006100630065005f006e006f006400650000006d0069007300730069006c0065005f006d00610069006e0000006e0061006d00650000006e006f0064006500000065006600660065006300740000006d0069007300730069006c0065005f00610074007400610063006b000000730065000000"
+          },
+          "type": "extra"
+        },
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 8, "type": "double"},
+                {"value": 8, "type": "double"},
+                {"value": 8, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": -20.742660522460938, "type": "double"},
+                {"value": -1, "type": "double"},
+                {"value": -20.742660522460938, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 20.742660522460938, "type": "double"},
+                {"value": 148.42086791992188, "type": "double"},
+                {"value": 20.742660522460938, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {
+              "value": "app:/object/ev608_icbm.efarc",
+              "type": "str",
+              "name": "path"
+            }
+          ],
+          "type": "ptr",
+          "name": "effect"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr",
+          "name": "scale"
+        },
+        {"value": "missile_attack", "type": "str", "name": "default_animation"}
+      ],
+      "type": "ptr",
+      "name": "setting"
+    }
+  ],
   "strings": [
     "xgs_scene_object_class",
     "animation_model",

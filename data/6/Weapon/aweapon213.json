@@ -1,93 +1,242 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_BasicShoot",
-    "custom_parameter": ["assault_recoil3", 0, 0, 1, [1]],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "リバースシューターＴ１",
-    "name.en": "Reverse Shooter T1",
-    "name.cn": "回復者Ｔ１",
-    "name.kr": "리버스 슈터 T1",
-    "name.sc": "回复者Ｔ１",
-    "WeaponIcon": "app:/weapon/icon/s_rebirther_aerial01.dds",
-    "Sight_animation_model": [["app:/HUD/sight01.rab", "sight01.mdb"], 0, 0],
-    "animation_model": [
-      ["app:/Weapon/s_rebirther_aerial01.rab", "s_rebirther_aerial01.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000005003600240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000074000000540000004400000000000000940000009a000000a0000000020000004400000034000000640000000000000074000000babababa0000000000000000000000000000803fcdcccc3dcdcccc3dcdcccc3d0000803f65e2f63dac8bdb3cc8b4763e0000803f000000805c8fc23d13f2413f0000803f101e0bbf55b284bf045823400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000073005f007200650062006900720074006800650072005f00610065007200690061006c00300031000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "assault",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "assault_change1",
-    "ReloadAnimation": "assault_reload1",
-    "AmmoCount": [5, 0, 0, 8, 0.5, 0.5, 0],
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": -1,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 60,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0.0010000000474974513,
-    "FireRecoil": 0.009999999776482582,
-    "FireVector": null,
-    "FireSe": [0, "weapon_SPnew_reverseShooterT1", 1, 1, 1, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 1,
-    "SecondaryFire_Parameter": 8,
-    "AmmoClass": "PlasmaBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": 10,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0.03700000047683716,
-    "AmmoAlive": 1200,
-    "AmmoDamage": [-1000, 8, 1, 10, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [15, 32, 2, 10, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0.5,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [0.30000001192092896, 1, 0.6000000238418579, 0.5],
-    "Ammo_CustomParameter": [1, 30],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [
-      0,
-      "common_damages_impactEngineerPlasma_M",
-      1,
-      1.2400000095367432,
-      3,
-      100
-    ],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1]
-  },
+  "variables": [
+    {
+      "value": "Weapon_BasicShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "assault_recoil3", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": [{"value": 1, "type": "double"}], "type": "ptr"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "リバースシューターＴ１", "type": "str", "name": "name.ja"},
+    {"value": "Reverse Shooter T1", "type": "str", "name": "name.en"},
+    {"value": "回復者Ｔ１", "type": "str", "name": "name.cn"},
+    {"value": "리버스 슈터 T1", "type": "str", "name": "name.kr"},
+    {"value": "回复者Ｔ１", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/s_rebirther_aerial01.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight01.rab", "type": "str"},
+            {"value": "sight01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/s_rebirther_aerial01.rab", "type": "str"},
+            {"value": "s_rebirther_aerial01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000005003600240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000074000000540000004400000000000000940000009a000000a0000000020000004400000034000000640000000000000074000000babababa0000000000000000000000000000803fcdcccc3dcdcccc3dcdcccc3d0000803f65e2f63dac8bdb3cc8b4763e0000803f000000805c8fc23d13f2413f0000803f101e0bbf55b284bf045823400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000073005f007200650062006900720074006800650072005f00610065007200690061006c00300031000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "assault", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "assault_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "assault_reload1", "type": "str", "name": "ReloadAnimation"},
+    {
+      "value": [
+        {"value": 5, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoCount"
+    },
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": -1, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 60, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0.0010000000474974513, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.009999999776482582, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_SPnew_reverseShooterT1", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 1, "type": "double", "name": "SecondaryFire_Type"},
+    {"value": 8, "type": "double", "name": "SecondaryFire_Parameter"},
+    {"value": "PlasmaBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"value": 10, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {
+      "value": 0.03700000047683716,
+      "type": "double",
+      "name": "AmmoGravityFactor"
+    },
+    {"value": 1200, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": -1000, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 15, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.5, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 30, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_impactEngineerPlasma_M", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1.2400000095367432, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 100, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

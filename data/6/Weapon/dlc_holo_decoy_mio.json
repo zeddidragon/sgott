@@ -1,95 +1,189 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": "vehicle_call",
-      "whole_body": 1,
-      "animation_speed": 1,
-      "is_manual_reload": 1
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {"value": "vehicle_call", "type": "str", "name": "animation"},
+        {"value": 1, "type": "double", "name": "whole_body"},
+        {"value": 1, "type": "double", "name": "animation_speed"},
+        {"value": 1, "type": "double", "name": "is_manual_reload"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "リクルーター〔大神ミオ〕",
-    "name.en": "Recruiter (Mio Ookami)",
-    "name.cn": "募兵大使〔大神澪〕",
-    "name.kr": "리크루터〔Mio Ookami〕",
-    "name.sc": "募兵大使〔大神澪〕",
-    "WeaponIcon": "app:/weapon/icon/throw_decoy.dds",
-    "animation_model": [
-      ["app:/Weapon/e_throw_decoycore01.rab", "e_throw_decoycore01.mdb"],
-      "app:/Weapon/e_throw_decoycore01.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f006400650063006f00790063006f0072006500300031000000680069006400650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": 2400,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 30,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0.004999999888241291,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": [0, "weapon_Engineer_EX_spcDecoySet", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "DecoyBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": 0.5,
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 36000,
-    "AmmoDamage": 360,
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [0, 1, 0, 1],
-    "Ammo_CustomParameter": {
-      "null": 1,
-      "undefined": 0,
-      "decoy_sgo": "app:/object/e_throw_decoyscreen_mio.sgo"
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "リクルーター〔大神ミオ〕", "type": "str", "name": "name.ja"},
+    {"value": "Recruiter (Mio Ookami)", "type": "str", "name": "name.en"},
+    {"value": "募兵大使〔大神澪〕", "type": "str", "name": "name.cn"},
+    {"value": "리크루터〔Mio Ookami〕", "type": "str", "name": "name.kr"},
+    {"value": "募兵大使〔大神澪〕", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/throw_decoy.dds",
+      "type": "str",
+      "name": "WeaponIcon"
     },
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/object/e_throw_decoyscreen_mio.sgo"]
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_throw_decoycore01.rab", "type": "str"},
+            {"value": "e_throw_decoycore01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_throw_decoycore01.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f006400650063006f00790063006f0072006500300031000000680069006400650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": 2400, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 30, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0.004999999888241291, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Engineer_EX_spcDecoySet", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "DecoyBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"value": 0.5, "type": "double", "name": "AmmoSpeed"},
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 36000, "type": "double", "name": "AmmoAlive"},
+    {"value": 360, "type": "double", "name": "AmmoDamage"},
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 60, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": "app:/object/e_throw_decoyscreen_mio.sgo",
+          "type": "str",
+          "name": "decoy_sgo"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/object/e_throw_decoyscreen_mio.sgo", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "app:/Weapon/e_throw_decoycore01.cas",

@@ -1,75 +1,136 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Accessory",
-    "custom_parameter": [[[1, 3]]],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "探知機２型",
-    "name.en": "Probe Type 2",
-    "name.cn": "探測器２型",
-    "name.kr": "탐지기 2형",
-    "name.sc": "探测器２型",
-    "WeaponIcon": "app:/weapon/icon/none",
-    "BaseAnimation": "none",
-    "AimAnimation": "",
-    "ChangeAnimation": "",
-    "ReloadAnimation": "",
-    "AmmoCount": 0,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": -1,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0, 0],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 1,
-    "FireBurstCount": 0,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": null,
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "",
-    "AmmoModel": 0,
-    "AmmoSpeed": 0,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 0,
-    "AmmoDamage": 0,
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 1, 1, 1],
-    "Ammo_CustomParameter": null,
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1]
-  },
+  "variables": [
+    {
+      "value": "Weapon_Accessory",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 3, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "探知機２型", "type": "str", "name": "name.ja"},
+    {"value": "Probe Type 2", "type": "str", "name": "name.en"},
+    {"value": "探測器２型", "type": "str", "name": "name.cn"},
+    {"value": "탐지기 2형", "type": "str", "name": "name.kr"},
+    {"value": "探测器２型", "type": "str", "name": "name.sc"},
+    {"value": "app:/weapon/icon/none", "type": "str", "name": "WeaponIcon"},
+    {"value": "none", "type": "str", "name": "BaseAnimation"},
+    {"value": "", "type": "str", "name": "AimAnimation"},
+    {"value": "", "type": "str", "name": "ChangeAnimation"},
+    {"value": "", "type": "str", "name": "ReloadAnimation"},
+    {"value": 0, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": -1, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [{"value": 0, "type": "double"}, {"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 1, "type": "double", "name": "FireInterval"},
+    {"value": 0, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {"value": null, "type": "ptr", "name": "FireSe"},
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"value": 0, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 0, "type": "double", "name": "AmmoAlive"},
+    {"value": 0, "type": "double", "name": "AmmoDamage"},
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_CustomParameter"},
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    }
+  ],
   "strings": [
     "探知機２型",
     "AmmoExplosion",

@@ -1,24 +1,102 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "EDF6_SpiderEggSacNet",
-    "game_object_camera_setting": [[0, 2, 0], [0, 2, -20]],
-    "game_object_durability": 2000,
-    "animation_model": {
-      "null": [
-        "app:/Object/e663_spider_egg_sac.mrab",
-        "e663_spider_egg_sac_string.mdb"
-      ],
-      "undefined": [
-        [8, 8, 16],
-        [-5.139102935791016, -5.138086795806885, -0.9985460042953491],
-        [5.139102935791016, 5.140079021453857, 38.38901138305664]
-      ],
-      "effect": {"path": "app:/object/e663_spider_egg_sac.efarc"}
+  "variables": [
+    {
+      "value": "EDF6_SpiderEggSacNet",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "BasicAnimationCharacterSettings": {"Type": 0}
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": -20, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {"value": 2000, "type": "double", "name": "game_object_durability"},
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/e663_spider_egg_sac.mrab", "type": "str"},
+            {"value": "e663_spider_egg_sac_string.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000400000001004800240000006400000070000000a00000000000010020000000010000003800000002000000300000000300000028000000920000005c000000000000002c0000000000803fffffffff000000003c000000babababababababababababa0000000000000000000000000000803f53474f000201000000000000200000000000000020000000000000002000000065003600360033005f007300700069006400650072005f006500670067005f007300610063005f0073007400720069006e00670000003b658364ee76196a00000000000000000000"
+          },
+          "type": "extra"
+        },
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 8, "type": "double"},
+                {"value": 8, "type": "double"},
+                {"value": 16, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": -5.139102935791016, "type": "double"},
+                {"value": -5.138086795806885, "type": "double"},
+                {"value": -0.9985460042953491, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 5.139102935791016, "type": "double"},
+                {"value": 5.140079021453857, "type": "double"},
+                {"value": 38.38901138305664, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {
+              "value": "app:/object/e663_spider_egg_sac.efarc",
+              "type": "str",
+              "name": "path"
+            }
+          ],
+          "type": "ptr",
+          "name": "effect"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": 0, "type": "double", "name": "Type"}],
+      "type": "ptr",
+      "name": "BasicAnimationCharacterSettings"
+    }
+  ],
   "strings": [
     "BasicAnimationCharacterSettings",
     "app:/Object/e663_spider_egg_sac.mrab",

@@ -1,103 +1,282 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_ChargeShoot",
-    "custom_parameter": ["waist_recoil2", 0, 0, 1, 1, 1, 103],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "プラズマ・ビッグキャノン",
-    "name.en": "Plasma Big Cannon",
-    "name.cn": "電漿巨型加農砲",
-    "name.kr": "플라스마 빅 캐넌",
-    "name.sc": "电浆巨型加农炮",
-    "WeaponIcon": "app:/weapon/icon/plasma_launcer.dds",
-    "Sight_animation_model": [["app:/HUD/sight11.rab", "sight11.mdb"], 0, 0],
-    "animation_model": [
-      [
-        "app:/Weapon/p_launcher_plasmalauncher01.rab",
-        "p_launcher_plasmalauncher01.mdb"
+  "variables": [
+    {
+      "value": "Weapon_ChargeShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "waist_recoil2", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 103, "type": "double"}
       ],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000005004400240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f00000000b81e053e295c0f3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fe7fba93d7f6a3c3d1904563e0000803fce85bfbfc352c1be6ca908c00000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f006c00610075006e0063006800650072005f0070006c00610073006d0061006c00610075006e006300680065007200300031000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "waist",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "waist_change1",
-    "ReloadAnimation": "waist_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [[24.846357345581055, 45, 5, 8, 0.5, 0.5, 1], 24],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [120, 21, 2, 7, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 0,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": [0.02500000037252903, 13, 1, 6, 2, 0.5, 1],
-    "FireRecoil": 0.4000000059604645,
-    "FireVector": null,
-    "FireSe": [
-      0,
-      "e5w_WDnew_range_plasmaBigCannon",
-      0.8999999761581421,
-      1,
-      2,
-      25
-    ],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "PlasmaBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": [2, 16, 3, 8, 0.800000011920929, 1.5, 1],
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 0.25,
-    "AmmoAlive": 300,
-    "AmmoDamage": [180, 8, 0, 8, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [16, 32, 4, 10, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1.5,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 0.23000000417232513, 0.23000000417232513, 0.5],
-    "Ammo_CustomParameter": [0, 30],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [
-      0,
-      "common_damages_impactPlasma_S",
-      1,
-      0.8909000158309937,
-      1,
-      200
-    ],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1]
-  },
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "プラズマ・ビッグキャノン", "type": "str", "name": "name.ja"},
+    {"value": "Plasma Big Cannon", "type": "str", "name": "name.en"},
+    {"value": "電漿巨型加農砲", "type": "str", "name": "name.cn"},
+    {"value": "플라스마 빅 캐넌", "type": "str", "name": "name.kr"},
+    {"value": "电浆巨型加农炮", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/plasma_launcer.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight11.rab", "type": "str"},
+            {"value": "sight11.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": "app:/Weapon/p_launcher_plasmalauncher01.rab",
+              "type": "str"
+            },
+            {"value": "p_launcher_plasmalauncher01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000005004400240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f00000000b81e053e295c0f3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fe7fba93d7f6a3c3d1904563e0000803fce85bfbfc352c1be6ca908c00000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f006c00610075006e0063006800650072005f0070006c00610073006d0061006c00610075006e006300680065007200300031000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "waist", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "waist_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "waist_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 24.846357345581055, "type": "double"},
+            {"value": 45, "type": "double"},
+            {"value": 5, "type": "double"},
+            {"value": 8, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 24, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 120, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 7, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 0, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {
+      "value": [
+        {"value": 0.02500000037252903, "type": "double"},
+        {"value": 13, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 6, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireAccuracy"
+    },
+    {"value": 0.4000000059604645, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "e5w_WDnew_range_plasmaBigCannon", "type": "str"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "PlasmaBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {
+      "value": [
+        {"value": 2, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.800000011920929, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0.25, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 300, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 180, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 16, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1.5, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0.23000000417232513, "type": "double"},
+        {"value": 0.23000000417232513, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 30, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_impactPlasma_S", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 0.8909000158309937, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

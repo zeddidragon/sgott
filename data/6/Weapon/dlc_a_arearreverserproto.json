@@ -1,138 +1,345 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": "throwL_swing",
-      "whole_body": 0,
-      "animation_speed": 1,
-      "is_manual_reload": 0,
-      "show_throw_guide": {"always_show": 0, "radius": 5},
-      "long_press_count": 216000
-    },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "エリアルリバーサーＭ０",
-    "name.en": "Aerial Reverser M0",
-    "name.cn": "區域回復鎗Ｍ０",
-    "name.kr": "에어리얼 리버서 M0",
-    "name.sc": "区域回复弹Ｍ０",
-    "WeaponIcon": "app:/weapon/icon/grenade.dds",
-    "animation_model": [
-      ["app:/Weapon/s_grenade_mg10.rab", "s_grenade_mg10.mdb"],
-      "app:/Weapon/s_grenade_mg10.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002003e00240000005c00000080000000c000000000000100180000000100000030000000020000002800000084000000940000000200000044000000540000004400000000000000640000002000000020000000920000000000000010000000100000005a00000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f00020100000000000020000000000000002000000000000000200000003000310000006800690064006500000073005f006700720065006e006100640065005f006d0067003100300000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_l"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 3,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": -1,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 2,
-    "FireSpreadWidth": 0.20000000298023224,
-    "FireCount": 1,
-    "FireInterval": 0,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": [0, 0.125, 1],
-    "FireSe": [0, "weapon_Ranger_GL_throw", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "NapalmBullet01",
-    "AmmoModel": "app:/WEAPON/s_grenade_mg10.rab",
-    "AmmoSpeed": 0.6000000238418579,
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 600,
-    "AmmoDamage": -400,
-    "AmmoDamageReduce": [0.009999999776482582, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 1, 1.5, 0.5],
-    "Ammo_CustomParameter": [
-      0,
-      [0, 1.2999999523162842],
-      0.05000000074505806,
-      60,
-      [
-        [0, 0],
-        [0, 0],
-        60,
-        60,
-        "EfsBullet",
-        0.1850000023841858,
-        0.10000000149011612,
-        1.25,
-        1,
-        0,
-        240,
-        1,
-        [0.5, 1, 0.5, 1],
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {"value": "throwL_swing", "type": "str", "name": "animation"},
+        {"value": 0, "type": "double", "name": "whole_body"},
+        {"value": 1, "type": "double", "name": "animation_speed"},
+        {"value": 0, "type": "double", "name": "is_manual_reload"},
         {
-          "efarc": "app:/weapon/effect/ranger_aerial_reverser.efarc",
-          "bullet": {
-            "esb": "bullet.esb",
-            "scale": 1,
-            "color": [1, 1, 1, 1],
-            "ext": {
-              "reflection": {"type": 1, "restitution": 0.25},
-              "size_control": {"add": 0.30000001192092896},
-              "always_area_damage": 1,
-              "hit_stop": 1,
-              "air_resist": 0.8999999761581421,
-              "is_guard_enable": 0
-            }
-          }
+          "value": [
+            {"value": 0, "type": "double", "name": "always_show"},
+            {"value": 5, "type": "double", "name": "radius"}
+          ],
+          "type": "ptr",
+          "name": "show_throw_guide"
         },
-        0,
-        0,
-        0,
-        0,
-        0
+        {"value": 216000, "type": "double", "name": "long_press_count"}
       ],
-      [1, "weapon_Ranger_ArielReverserM0", 1, 1, 2, 25]
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/WEAPON/s_grenade_mg10.rab",
-      "app:/weapon/effect/ranger_aerial_reverser.efarc"
-    ]
-  },
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "エリアルリバーサーＭ０", "type": "str", "name": "name.ja"},
+    {"value": "Aerial Reverser M0", "type": "str", "name": "name.en"},
+    {"value": "區域回復鎗Ｍ０", "type": "str", "name": "name.cn"},
+    {"value": "에어리얼 리버서 M0", "type": "str", "name": "name.kr"},
+    {"value": "区域回复弹Ｍ０", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/grenade.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/s_grenade_mg10.rab", "type": "str"},
+            {"value": "s_grenade_mg10.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/s_grenade_mg10.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002003e00240000005c00000080000000c000000000000100180000000100000030000000020000002800000084000000940000000200000044000000540000004400000000000000640000002000000020000000920000000000000010000000100000005a00000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f00020100000000000020000000000000002000000000000000200000003000310000006800690064006500000073005f006700720065006e006100640065005f006d0067003100300000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_l", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 3, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": -1, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 2, "type": "double", "name": "FireSpreadType"},
+    {"value": 0.20000000298023224, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 0, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0.125, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireVector"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Ranger_GL_throw", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "NapalmBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/s_grenade_mg10.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 0.6000000238418579, "type": "double", "name": "AmmoSpeed"},
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 600, "type": "double", "name": "AmmoAlive"},
+    {"value": -400, "type": "double", "name": "AmmoDamage"},
+    {
+      "value": [
+        {"value": 0.009999999776482582, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 1.2999999523162842, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.05000000074505806, "type": "double"},
+        {"value": 60, "type": "double"},
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": 60, "type": "double"},
+            {"value": 60, "type": "double"},
+            {"value": "EfsBullet", "type": "str"},
+            {"value": 0.1850000023841858, "type": "double"},
+            {"value": 0.10000000149011612, "type": "double"},
+            {"value": 1.25, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 240, "type": "double"},
+            {"value": 1, "type": "double"},
+            {
+              "value": [
+                {"value": 0.5, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 0.5, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/weapon/effect/ranger_aerial_reverser.efarc",
+                  "type": "str",
+                  "name": "efarc"
+                },
+                {
+                  "value": [
+                    {"value": "bullet.esb", "type": "str", "name": "esb"},
+                    {"value": 1, "type": "double", "name": "scale"},
+                    {
+                      "value": [
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "color"
+                    },
+                    {
+                      "value": [
+                        {
+                          "value": [
+                            {"value": 1, "type": "double", "name": "type"},
+                            {
+                              "value": 0.25,
+                              "type": "double",
+                              "name": "restitution"
+                            }
+                          ],
+                          "type": "ptr",
+                          "name": "reflection"
+                        },
+                        {
+                          "value": [
+                            {
+                              "value": 0.30000001192092896,
+                              "type": "double",
+                              "name": "add"
+                            }
+                          ],
+                          "type": "ptr",
+                          "name": "size_control"
+                        },
+                        {
+                          "value": 1,
+                          "type": "double",
+                          "name": "always_area_damage"
+                        },
+                        {"value": 1, "type": "double", "name": "hit_stop"},
+                        {
+                          "value": 0.8999999761581421,
+                          "type": "double",
+                          "name": "air_resist"
+                        },
+                        {
+                          "value": 0,
+                          "type": "double",
+                          "name": "is_guard_enable"
+                        }
+                      ],
+                      "type": "ptr",
+                      "name": "ext"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "bullet"
+                }
+              ],
+              "type": "ptr"
+            },
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": "weapon_Ranger_ArielReverserM0", "type": "str"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 25, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/WEAPON/s_grenade_mg10.rab", "type": "str"},
+        {
+          "value": "app:/weapon/effect/ranger_aerial_reverser.efarc",
+          "type": "str"
+        }
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

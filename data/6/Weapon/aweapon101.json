@@ -1,114 +1,302 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_BasicSemiAuto",
-    "custom_parameter": ["sniper_recoil4", 0, 0, 1, [1]],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ターミガンＨＡ２",
-    "name.en": "Ptarmigan HA2",
-    "name.cn": "岩雷鳥ＨＡ２",
-    "name.kr": "타미건 HA2",
-    "name.sc": "岩雷鸟ＨＡ２",
-    "WeaponIcon": "app:/weapon/icon/s_sniper_SVU01.dds",
-    "Sight_animation_model": [["app:/HUD/sight05.rab", "sight05.mdb"], 0, 0],
-    "animation_model": [
-      ["app:/Weapon/s_sniper_SVU01.rab", "s_sniper_SVU01.mdb"],
-      "app:/Weapon/s_sniper_SVU01.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300050007009c00240000009c000000a0010000ac050000000001001800000001000100300000000200010048000000700500007c0500000200000074010000940100006401000000000000d4010000560500005c050000020000008401000064010000a401000000000000b4010000c20500003c0500000200000074010000440100002401000000000000c803000050000000000100007e0500000000000040000000f0000000160500000400000070000000e00000003e0500000100000070000000d0000000160500000200000080000000c0000000f0040000040000003e0500006666ba410000000024010000180500006666ba41000000008801000028050000cdcc06420000000004010000f804000000001c420000000014010000e8040000000000000000000060020000d80400000000000000000000ac020000c804000000002842000000009c020000b80400000000000000000000d4010000a80400000000f841000000006c010000980400000000584200000000080100009e0400009a9983420000000084000000babababa0000000000000000000000000000803f000000002506813d39b4483f0000803f0ad7a33c0ad7a33c0ad7a33c0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f99a0a63d7ee4d6bbf0bf753e0000803f8fc275bcc1caa13da69bc4bd0000803ff5ea63bf9c6483bfb36c1c400000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ff9263a2830000000053474f00020100000100000020000000010000002c0000000000000034000000030000000a0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffec30d030fc30000053474f00020100000100000020000000010000002c0000000000000034000000030000000c0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffde30b030bb30c330c830000053474f00020100000100000020000000010000002c0000000000000034000000030000000d0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffde30b030d6538a30fa5157300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000d0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffde30b030ea30ea30fc30b9300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000e0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffea30ed30fc30c730a330f330b030000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000049004b00000062006f0064007900000066006900720065000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000c5886b580000000000009263a283000000000000ac85a283000000000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "sniper",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "sniper_change1",
-    "ReloadAnimation": "sniper_reload1",
-    "AmmoCount": [11, 0, 0, 6, 0.5, 0.5, 0],
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [130, 21, 4, 5, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": [30, 25, 5, 7, 0.5, 0.5, 0],
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": [
-      0.0010000000474974513,
-      13,
-      2,
-      8,
-      20,
-      0.10000000149011612,
-      1
-    ],
-    "FireRecoil": 0.4000000059604645,
-    "FireVector": null,
-    "FireSe": [0, "e5w_SRnew_SEMI-SNR210", 1, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 1,
-    "SecondaryFire_Parameter": 4,
-    "AmmoClass": "SolidBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": [35, 16, 3, 10, 0.5, 1, 1],
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 40,
-    "AmmoDamage": [900, 8, 1, 8, 0.5, 0.5, 1],
-    "AmmoDamageAttribute": {"shield": 1.5},
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0.4000000059604645,
-    "AmmoHitSizeAdjust": 0.5,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [14, 10, 1, 1],
-    "Ammo_CustomParameter": null,
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "MuzzleFlash01",
-    "MuzzleFlash_CustomParameter": [
-      "マズルフラッシュ01.dds",
-      3.200000047683716,
-      0.6000000238418579,
-      0,
-      6,
-      1.399999976158142,
-      0.09000000357627869,
-      4,
-      [1.399999976158142, 0.4000000059604645, 0.30000001192092896, 1],
-      -0.10000000149011612
-    ],
-    "ShellCase": [
-      "ShellCase_RB",
-      "app:/Weapon/ShellCase401.rab",
-      [0, "weapon_Common_shell_srifle", 0.2199999988079071, 1, 1, 5]
-    ],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/Weapon/ShellCase401.rab",
-      "app:/Weapon/ShellCase401.shkt"
-    ]
-  },
+  "variables": [
+    {
+      "value": "Weapon_BasicSemiAuto",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "sniper_recoil4", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": [{"value": 1, "type": "double"}], "type": "ptr"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ターミガンＨＡ２", "type": "str", "name": "name.ja"},
+    {"value": "Ptarmigan HA2", "type": "str", "name": "name.en"},
+    {"value": "岩雷鳥ＨＡ２", "type": "str", "name": "name.cn"},
+    {"value": "타미건 HA2", "type": "str", "name": "name.kr"},
+    {"value": "岩雷鸟ＨＡ２", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/s_sniper_SVU01.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight05.rab", "type": "str"},
+            {"value": "sight05.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/s_sniper_SVU01.rab", "type": "str"},
+            {"value": "s_sniper_SVU01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/s_sniper_SVU01.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300050007009c00240000009c000000a0010000ac050000000001001800000001000100300000000200010048000000700500007c0500000200000074010000940100006401000000000000d4010000560500005c050000020000008401000064010000a401000000000000b4010000c20500003c0500000200000074010000440100002401000000000000c803000050000000000100007e0500000000000040000000f0000000160500000400000070000000e00000003e0500000100000070000000d0000000160500000200000080000000c0000000f0040000040000003e0500006666ba410000000024010000180500006666ba41000000008801000028050000cdcc06420000000004010000f804000000001c420000000014010000e8040000000000000000000060020000d80400000000000000000000ac020000c804000000002842000000009c020000b80400000000000000000000d4010000a80400000000f841000000006c010000980400000000584200000000080100009e0400009a9983420000000084000000babababa0000000000000000000000000000803f000000002506813d39b4483f0000803f0ad7a33c0ad7a33c0ad7a33c0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f99a0a63d7ee4d6bbf0bf753e0000803f8fc275bcc1caa13da69bc4bd0000803ff5ea63bf9c6483bfb36c1c400000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ff9263a2830000000053474f00020100000100000020000000010000002c0000000000000034000000030000000a0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffec30d030fc30000053474f00020100000100000020000000010000002c0000000000000034000000030000000c0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffde30b030bb30c330c830000053474f00020100000100000020000000010000002c0000000000000034000000030000000d0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffde30b030d6538a30fa5157300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000d0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffde30b030ea30ea30fc30b9300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000e0000001e00000008000000000000006e0061006d006500000033ff32ff33ff36ff35ff10ff11ffea30ed30fc30c730a330f330b030000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000049004b00000062006f0064007900000066006900720065000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000c5886b580000000000009263a283000000000000ac85a283000000000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "sniper", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "sniper_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "sniper_reload1", "type": "str", "name": "ReloadAnimation"},
+    {
+      "value": [
+        {"value": 11, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 6, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoCount"
+    },
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 130, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {
+      "value": [
+        {"value": 30, "type": "double"},
+        {"value": 25, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 7, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireInterval"
+    },
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {
+      "value": [
+        {"value": 0.0010000000474974513, "type": "double"},
+        {"value": 13, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 20, "type": "double"},
+        {"value": 0.10000000149011612, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireAccuracy"
+    },
+    {"value": 0.4000000059604645, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "e5w_SRnew_SEMI-SNR210", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 1, "type": "double", "name": "SecondaryFire_Type"},
+    {"value": 4, "type": "double", "name": "SecondaryFire_Parameter"},
+    {"value": "SolidBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {
+      "value": [
+        {"value": 35, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 40, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 900, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1.5, "type": "double", "name": "shield"}],
+      "type": "ptr",
+      "name": "AmmoDamageAttribute"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.4000000059604645, "type": "double", "name": "AmmoSize"},
+    {"value": 0.5, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 14, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_CustomParameter"},
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "MuzzleFlash01", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": "マズルフラッシュ01.dds", "type": "str"},
+        {"value": 3.200000047683716, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 6, "type": "double"},
+        {"value": 1.399999976158142, "type": "double"},
+        {"value": 0.09000000357627869, "type": "double"},
+        {"value": 4, "type": "double"},
+        {
+          "value": [
+            {"value": 1.399999976158142, "type": "double"},
+            {"value": 0.4000000059604645, "type": "double"},
+            {"value": 0.30000001192092896, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": -0.10000000149011612, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "ShellCase_RB", "type": "str"},
+        {"value": "app:/Weapon/ShellCase401.rab", "type": "str"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": "weapon_Common_shell_srifle", "type": "str"},
+            {"value": 0.2199999988079071, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 5, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/Weapon/ShellCase401.rab", "type": "str"},
+        {"value": "app:/Weapon/ShellCase401.shkt", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "LockonTargetType",
     "BaseAnimation",

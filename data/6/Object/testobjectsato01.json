@@ -1,15 +1,50 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "TestObjectSato01",
-    "game_object_camera_setting": [[0, 2, 0], [0, 2, -4]],
-    "animation_model": [
-      ["app:/Object/p605_ranger.mrab", "p605_ranger.mdb"],
-      "app:/Object/TestObjectSato01.cas",
-      0
-    ]
-  },
+  "variables": [
+    {
+      "value": "TestObjectSato01",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": -4, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/p605_ranger.mrab", "type": "str"},
+            {"value": "p605_ranger.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Object/TestObjectSato01.cas", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    }
+  ],
   "strings": [
     "xgs_scene_object_class",
     "animation_model",

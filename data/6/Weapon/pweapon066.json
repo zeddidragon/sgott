@@ -1,113 +1,320 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_PreChargeShoot",
-    "custom_parameter": [
-      "waist_recoil1",
-      1,
-      0,
-      1,
-      2,
-      0.0005000000237487257,
-      7,
-      0
-    ],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "マグ・ブラスターＷ",
-    "name.en": "Mag Blaster W",
-    "name.cn": "強襲光束鎗Ｗ",
-    "name.kr": "매그 블래스터 W",
-    "name.sc": "强袭光束枪Ｗ",
-    "WeaponIcon": "app:/weapon/icon/lazer_inferno.dds",
-    "Sight_animation_model": [["app:/HUD/sight11.rab", "sight11.mdb"], 0, 0],
-    "animation_model": [
-      ["app:/Weapon/p_lazer_inferno01.rab", "p_lazer_inferno01.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000005003000240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f000000001b2fdd3ccdcccc3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f3fa7803d1b85a43c1bda903e0000803fb837dabfb6e9f2be2abcbbbf0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f006c0061007a00650072005f0069006e006600650072006e006f00300031000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "waist",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "waist_change1",
-    "ReloadAnimation": "waist_reload1",
-    "AmmoCount": [900, 0, 0, 8, 0.5, 0.5, 0],
-    "EnergyChargeRequire": [[289.4870300292969, 45, 5, 8, 0.5, 0.5, 1], 56],
-    "ReloadType": 3,
-    "ReloadInit": 1,
-    "ReloadTime": [270, 21, 4, 5, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 2,
-    "FireSpreadWidth": 0.20000000298023224,
-    "FireCount": [3, 4, 1, 3, 0.5, 0.5, 0],
-    "FireInterval": 1,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0.10999999940395355,
-    "FireVector": null,
-    "FireSe": [1, "e5w_WDnew_med_magBlasterW", 0.8500000238418579, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "LaserBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": [42, 16, 3, 5, 0.5, 0.5, 1],
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 4,
-    "AmmoDamage": [30, 8, 2, 8, 0.5, 0.5, 1],
-    "AmmoDamageAttribute": {"shield": 2},
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 0.05000000074505806,
-    "AmmoColor": [0.6000000238418579, 0.25, 0.25, 0.5],
-    "Ammo_CustomParameter": [
-      [1, 1, 1, 1],
-      [1, 1, 1, 1],
-      5,
-      6,
-      10,
-      5,
-      0,
-      1.5,
-      1.600000023841858,
-      0.5,
-      10
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "LaserMuzzleFlash01",
-    "MuzzleFlash_CustomParameter": [
-      "Particle3_k.dds",
-      0.25,
-      [1, 0.3499999940395355, 0.3499999940395355, 0.5],
-      2
-    ],
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1]
-  },
+  "variables": [
+    {
+      "value": "Weapon_PreChargeShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "waist_recoil1", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0.0005000000237487257, "type": "double"},
+        {"value": 7, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "マグ・ブラスターＷ", "type": "str", "name": "name.ja"},
+    {"value": "Mag Blaster W", "type": "str", "name": "name.en"},
+    {"value": "強襲光束鎗Ｗ", "type": "str", "name": "name.cn"},
+    {"value": "매그 블래스터 W", "type": "str", "name": "name.kr"},
+    {"value": "强袭光束枪Ｗ", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/lazer_inferno.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight11.rab", "type": "str"},
+            {"value": "sight11.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/p_lazer_inferno01.rab", "type": "str"},
+            {"value": "p_lazer_inferno01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000005003000240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f000000001b2fdd3ccdcccc3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f3fa7803d1b85a43c1bda903e0000803fb837dabfb6e9f2be2abcbbbf0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f006c0061007a00650072005f0069006e006600650072006e006f00300031000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "waist", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "waist_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "waist_reload1", "type": "str", "name": "ReloadAnimation"},
+    {
+      "value": [
+        {"value": 900, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoCount"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 289.4870300292969, "type": "double"},
+            {"value": 45, "type": "double"},
+            {"value": 5, "type": "double"},
+            {"value": 8, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 56, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 3, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 270, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 2, "type": "double", "name": "FireSpreadType"},
+    {"value": 0.20000000298023224, "type": "double", "name": "FireSpreadWidth"},
+    {
+      "value": [
+        {"value": 3, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireCount"
+    },
+    {"value": 1, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.10999999940395355, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "e5w_WDnew_med_magBlasterW", "type": "str"},
+        {"value": 0.8500000238418579, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "LaserBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {
+      "value": [
+        {"value": 42, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 4, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 30, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 2, "type": "double", "name": "shield"}],
+      "type": "ptr",
+      "name": "AmmoDamageAttribute"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {
+      "value": 0.05000000074505806,
+      "type": "double",
+      "name": "AmmoHitImpulseAdjust"
+    },
+    {
+      "value": [
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 0.25, "type": "double"},
+        {"value": 0.25, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 5, "type": "double"},
+        {"value": 6, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 1.600000023841858, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 10, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "LaserMuzzleFlash01", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": "Particle3_k.dds", "type": "str"},
+        {"value": 0.25, "type": "double"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 0.3499999940395355, "type": "double"},
+            {"value": 0.3499999940395355, "type": "double"},
+            {"value": 0.5, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 2, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    }
+  ],
   "strings": [
     "LockonTargetType",
     "BaseAnimation",

@@ -1,113 +1,304 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_ChargeShoot",
-    "custom_parameter": [
-      "sniper_recoil1",
-      1,
-      0,
-      1,
-      1.100000023841858,
-      0.0010000000474974513,
-      8
-    ],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "クローズレーザー・デルタ",
-    "name.en": "Closed Laser Delta",
-    "name.cn": "神射型雷射鎗三角洲",
-    "name.kr": "클로즈 레이저 델타",
-    "name.sc": "神射型激光枪三角洲",
-    "WeaponIcon": "app:/weapon/icon/LRSL_inf.dds",
-    "Sight_animation_model": [["app:/HUD/sight10.rab", "sight10.mdb"], 0, 0],
-    "animation_model": [
-      ["app:/Weapon/p_sniper_LRSLinferno02.rab", "p_sniper_LRSLinferno02.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000005003600240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f00000000295c8f3d52b8be3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f321f903dd0b359bde602f73d0000803f5aa3b5bf0c0d4bbf624c18c00000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f0073006e0069007000650072005f004c00520053004c0069006e006600650072006e006f000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "sniper",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "sniper_change1",
-    "ReloadAnimation": "sniper_reload1",
-    "AmmoCount": [900, 0, 0, 8, 0.5, 0.5, 0],
-    "EnergyChargeRequire": [[960, 45, 3, 8, 0.5, 0.5, 1], 60],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [180, 21, 4, 7, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 1,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0.10000000149011612,
-    "FireVector": null,
-    "FireSe": [1, "e5w_WDnew_snipe_closeLaserF", 0.8500000238418579, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 1,
-    "SecondaryFire_Parameter": 5,
-    "AmmoClass": "LaserBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": [135, 16, 2, 8, 0.5, 0.8999999761581421, 1],
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 10,
-    "AmmoDamage": [32, 8, 1, 8, 0.5, 0.5, 1],
-    "AmmoDamageAttribute": {"shield": 2},
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 1,
-    "AmmoSize": 0.15000000596046448,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 0.004999999888241291,
-    "AmmoColor": [2, 0.5, 3, 0.5],
-    "Ammo_CustomParameter": [
-      [1, 1, 1, 1],
-      [1, 1, 1, 1],
-      15,
-      24,
-      6,
-      3,
-      0,
-      1.5,
-      6,
-      0.5,
-      20,
-      10
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "LaserMuzzleFlash01",
-    "MuzzleFlash_CustomParameter": [
-      "Particle3_k.dds",
-      0.20000000298023224,
-      [0, 2, 0, 0.5],
-      2
-    ],
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1]
-  },
+  "variables": [
+    {
+      "value": "Weapon_ChargeShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "sniper_recoil1", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1.100000023841858, "type": "double"},
+        {"value": 0.0010000000474974513, "type": "double"},
+        {"value": 8, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "クローズレーザー・デルタ", "type": "str", "name": "name.ja"},
+    {"value": "Closed Laser Delta", "type": "str", "name": "name.en"},
+    {"value": "神射型雷射鎗三角洲", "type": "str", "name": "name.cn"},
+    {"value": "클로즈 레이저 델타", "type": "str", "name": "name.kr"},
+    {"value": "神射型激光枪三角洲", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/LRSL_inf.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight10.rab", "type": "str"},
+            {"value": "sight10.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/p_sniper_LRSLinferno02.rab", "type": "str"},
+            {"value": "p_sniper_LRSLinferno02.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000005003600240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f00000000295c8f3d52b8be3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f321f903dd0b359bde602f73d0000803f5aa3b5bf0c0d4bbf624c18c00000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f0073006e0069007000650072005f004c00520053004c0069006e006600650072006e006f000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "sniper", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "sniper_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "sniper_reload1", "type": "str", "name": "ReloadAnimation"},
+    {
+      "value": [
+        {"value": 900, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoCount"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 960, "type": "double"},
+            {"value": 45, "type": "double"},
+            {"value": 3, "type": "double"},
+            {"value": 8, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 60, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 180, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 7, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 1, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.10000000149011612, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "e5w_WDnew_snipe_closeLaserF", "type": "str"},
+        {"value": 0.8500000238418579, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 1, "type": "double", "name": "SecondaryFire_Type"},
+    {"value": 5, "type": "double", "name": "SecondaryFire_Parameter"},
+    {"value": "LaserBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {
+      "value": [
+        {"value": 135, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 10, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 32, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 2, "type": "double", "name": "shield"}],
+      "type": "ptr",
+      "name": "AmmoDamageAttribute"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.15000000596046448, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {
+      "value": 0.004999999888241291,
+      "type": "double",
+      "name": "AmmoHitImpulseAdjust"
+    },
+    {
+      "value": [
+        {"value": 2, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 15, "type": "double"},
+        {"value": 24, "type": "double"},
+        {"value": 6, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 6, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 20, "type": "double"},
+        {"value": 10, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "LaserMuzzleFlash01", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": "Particle3_k.dds", "type": "str"},
+        {"value": 0.20000000298023224, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 0.5, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 2, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    }
+  ],
   "strings": [
     "LockonTargetType",
     "BaseAnimation",

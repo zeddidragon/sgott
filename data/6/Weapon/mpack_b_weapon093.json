@@ -1,185 +1,775 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Drone_Area",
-    "custom_parameter": {
-      "drone": {
-        "object": "app:/object/pd601_Drone_Basic.sgo",
-        "formation": [
-          {"offset": [-3, 1, -1]},
-          {"offset": [-2.4000000953674316, 1, 0]},
-          {"offset": [-1.7999999523162842, 1, 1]},
-          {"offset": [-1.2000000476837158, 1, 2]},
-          {"offset": [-0.6000000238418579, 1, 2.5]},
-          {"offset": [0.6000000238418579, 1, 2.5]},
-          {"offset": [1.2000000476837158, 1, 2]},
-          {"offset": [1.7999999523162842, 1, 1]},
-          {"offset": [2.4000000953674316, 1, 0]},
-          {"offset": [3, 1, -1]}
-        ],
-        "movement": {
-          "linear": {
-            "max": 40,
-            "accele": 0.10000000149011612,
-            "lerp": 0.05000000074505806
-          },
-          "angular": {"ratio": 0.10000000149011612, "mix": 0.949999988079071}
-        },
-        "aim": {"speed": 0.10000000149011612},
-        "equipment": 1,
-        "equipment_ex": {"is_ignore_friend": 1},
-        "aim_target": 4,
-        "color": {
-          "color1": [
-            0.44999998807907104,
-            0.12999999523162842,
-            0.1599999964237213
+  "variables": [
+    {
+      "value": "Weapon_Drone_Area",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": "app:/object/pd601_Drone_Basic.sgo",
+              "type": "str",
+              "name": "object"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -3, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": -1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -2.4000000953674316, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 0, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -1.7999999523162842, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -1.2000000476837158, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 2, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -0.6000000238418579, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 2.5, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 0.6000000238418579, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 2.5, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 1.2000000476837158, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 2, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 1.7999999523162842, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 2.4000000953674316, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 0, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 3, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": -1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    }
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr",
+              "name": "formation"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": 40, "type": "double", "name": "max"},
+                    {
+                      "value": 0.10000000149011612,
+                      "type": "double",
+                      "name": "accele"
+                    },
+                    {
+                      "value": 0.05000000074505806,
+                      "type": "double",
+                      "name": "lerp"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "linear"
+                },
+                {
+                  "value": [
+                    {
+                      "value": 0.10000000149011612,
+                      "type": "double",
+                      "name": "ratio"
+                    },
+                    {
+                      "value": 0.949999988079071,
+                      "type": "double",
+                      "name": "mix"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "angular"
+                }
+              ],
+              "type": "ptr",
+              "name": "movement"
+            },
+            {
+              "value": [
+                {
+                  "value": 0.10000000149011612,
+                  "type": "double",
+                  "name": "speed"
+                }
+              ],
+              "type": "ptr",
+              "name": "aim"
+            },
+            {"value": 1, "type": "double", "name": "equipment"},
+            {
+              "value": [
+                {"value": 1, "type": "double", "name": "is_ignore_friend"}
+              ],
+              "type": "ptr",
+              "name": "equipment_ex"
+            },
+            {"value": 4, "type": "double", "name": "aim_target"},
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": 0.44999998807907104, "type": "double"},
+                    {"value": 0.12999999523162842, "type": "double"},
+                    {"value": 0.1599999964237213, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color1"
+                },
+                {
+                  "value": [
+                    {"value": 0.3499999940395355, "type": "double"},
+                    {"value": 0.3199999928474426, "type": "double"},
+                    {"value": 0.550000011920929, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color2"
+                }
+              ],
+              "type": "ptr",
+              "name": "color"
+            }
           ],
-          "color2": [0.3499999940395355, 0.3199999928474426, 0.550000011920929]
+          "type": "ptr",
+          "name": "drone"
+        },
+        {
+          "value": [
+            {"value": 4, "type": "double", "name": "type"},
+            {"value": 1, "type": "double", "name": "trigger"},
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": 24, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "offset"
+            },
+            {"value": 0, "type": "double", "name": "radius"},
+            {
+              "value": [
+                {"value": 0, "type": "double", "name": "min"},
+                {"value": 15, "type": "double", "name": "max"}
+              ],
+              "type": "ptr",
+              "name": "delay"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -36, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": -8, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -28, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": -8, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -20, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": 0, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -12, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": 8, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": -4, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": 16, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 4, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": 16, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 12, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": 8, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 20, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": 0, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 28, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": -8, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 36, "type": "double"},
+                        {"value": 0, "type": "double"},
+                        {"value": -8, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "offset"
+                    },
+                    {"value": 0, "type": "double", "name": "angle"},
+                    {"value": 60, "type": "double", "name": "distance"}
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr",
+              "name": "area"
+            },
+            {"value": 0, "type": "double", "name": "is_end_to_suicide"}
+          ],
+          "type": "ptr",
+          "name": "order"
         }
-      },
-      "order": {
-        "type": 4,
-        "trigger": 1,
-        "offset": [0, 24, 0],
-        "radius": 0,
-        "delay": {"min": 0, "max": 15},
-        "area": [
-          {"offset": [-36, 0, -8], "angle": 0, "distance": 60},
-          {"offset": [-28, 0, -8], "angle": 0, "distance": 60},
-          {"offset": [-20, 0, 0], "angle": 0, "distance": 60},
-          {"offset": [-12, 0, 8], "angle": 0, "distance": 60},
-          {"offset": [-4, 0, 16], "angle": 0, "distance": 60},
-          {"offset": [4, 0, 16], "angle": 0, "distance": 60},
-          {"offset": [12, 0, 8], "angle": 0, "distance": 60},
-          {"offset": [20, 0, 0], "angle": 0, "distance": 60},
-          {"offset": [28, 0, -8], "angle": 0, "distance": 60},
-          {"offset": [36, 0, -8], "angle": 0, "distance": 60}
-        ],
-        "is_end_to_suicide": 0
-      }
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ＬＧ１０Ｕポータブル低速掃射編隊〔レーザー銃〕",
-    "name.en": "LG10U Portable Low-Speed Strafer (Laser Gun)",
-    "name.cn": "ＬＧ１０Ｕ攜帶型低速掃射編隊〔雷射鎗〕",
-    "name.kr": "LG10U 포터블 저속 소사 편대〔레이저 총〕",
-    "name.sc": "ＬＧ１０Ｕ携带型低速扫射编队〔激光枪〕",
-    "WeaponIcon": "app:/weapon/icon/pd601_Drone.DDS",
-    "animation_model": [
-      ["app:/Weapon/e_throw_transceiver.rab", "e_throw_transceiver.mdb"],
-      "app:/Weapon/e_throw_transceiver.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f007400720061006e0073006300650069007600650072000000680069006400650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 1200,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": 240,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 1,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": [
-      1,
-      "weapon_AR_droneLaser_LG10_shot",
-      0.20000000298023224,
-      1,
-      1,
-      25
-    ],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "EfsExposureBullet",
-    "AmmoModel": 0,
-    "AmmoSpeed": 10,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 10,
-    "AmmoDamage": [160, 8, 0, 10, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 1,
-    "AmmoSize": 0.5,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [10, 0.4000000059604645, 10, 1],
-    "Ammo_CustomParameter": {
-      "efarc": "app:/weapon/effect/engineer_drone_laser01.efarc",
-      "bullet": {
-        "esb": "engineer_drone_laser01.esb",
-        "esb_scale": 1,
-        "esb_color": [1, 1, 1, 1],
-        "scroll": [
-          {
-            "image": "火炎UVスクロール_02.dds",
-            "speed": 0.20000000298023224,
-            "scale": 1,
-            "color": [1, 1, 1, 1]
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ＬＧ１０Ｕポータブル低速掃射編隊〔レーザー銃〕", "type": "str", "name": "name.ja"},
+    {
+      "value": "LG10U Portable Low-Speed Strafer (Laser Gun)",
+      "type": "str",
+      "name": "name.en"
+    },
+    {"value": "ＬＧ１０Ｕ攜帶型低速掃射編隊〔雷射鎗〕", "type": "str", "name": "name.cn"},
+    {"value": "LG10U 포터블 저속 소사 편대〔레이저 총〕", "type": "str", "name": "name.kr"},
+    {"value": "ＬＧ１０Ｕ携带型低速扫射编队〔激光枪〕", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/pd601_Drone.DDS",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_throw_transceiver.rab", "type": "str"},
+            {"value": "e_throw_transceiver.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_throw_transceiver.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f007400720061006e0073006300650069007600650072000000680069006400650000007300740061006e006400620079000000"
           },
-          {
-            "image": "火炎UVスクロール_02.dds",
-            "speed": 0.800000011920929,
-            "scale": 0.5,
-            "color": [5, 5, 5, 1]
-          }
-        ]
-      },
-      "hit": {
-        "esb": "engineer_drone_laser01_hit.esb",
-        "esb_scale": 1,
-        "esb_color": [1, 1, 1, 1]
-      }
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
     },
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_impactBeam_SS", 1, 1, 1, 20],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": {
-      "efarc": "app:/weapon/effect/engineer_drone.efarc",
-      "esb": "fire01.esb",
-      "color": [1, 1, 1, 1],
-      "scale": 0.30000001192092896,
-      "is_loop": 0
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
     },
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/object/pd601_Drone_Basic.sgo",
-      "app:/weapon/effect/engineer_drone_laser01.efarc",
-      "app:/weapon/effect/engineer_drone.efarc"
-    ]
-  },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1200, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": 240, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 1, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "weapon_AR_droneLaser_LG10_shot", "type": "str"},
+        {"value": 0.20000000298023224, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "EfsExposureBullet", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"value": 10, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 10, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 160, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.5, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 10, "type": "double"},
+        {"value": 0.4000000059604645, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {
+          "value": "app:/weapon/effect/engineer_drone_laser01.efarc",
+          "type": "str",
+          "name": "efarc"
+        },
+        {
+          "value": [
+            {
+              "value": "engineer_drone_laser01.esb",
+              "type": "str",
+              "name": "esb"
+            },
+            {"value": 1, "type": "double", "name": "esb_scale"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "esb_color"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {
+                      "value": "火炎UVスクロール_02.dds",
+                      "type": "str",
+                      "name": "image"
+                    },
+                    {
+                      "value": 0.20000000298023224,
+                      "type": "double",
+                      "name": "speed"
+                    },
+                    {"value": 1, "type": "double", "name": "scale"},
+                    {
+                      "value": [
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "color"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": "火炎UVスクロール_02.dds",
+                      "type": "str",
+                      "name": "image"
+                    },
+                    {
+                      "value": 0.800000011920929,
+                      "type": "double",
+                      "name": "speed"
+                    },
+                    {"value": 0.5, "type": "double", "name": "scale"},
+                    {
+                      "value": [
+                        {"value": 5, "type": "double"},
+                        {"value": 5, "type": "double"},
+                        {"value": 5, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "color"
+                    }
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr",
+              "name": "scroll"
+            }
+          ],
+          "type": "ptr",
+          "name": "bullet"
+        },
+        {
+          "value": [
+            {
+              "value": "engineer_drone_laser01_hit.esb",
+              "type": "str",
+              "name": "esb"
+            },
+            {"value": 1, "type": "double", "name": "esb_scale"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "esb_color"
+            }
+          ],
+          "type": "ptr",
+          "name": "hit"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_impactBeam_SS", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {
+          "value": "app:/weapon/effect/engineer_drone.efarc",
+          "type": "str",
+          "name": "efarc"
+        },
+        {"value": "fire01.esb", "type": "str", "name": "esb"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr",
+          "name": "color"
+        },
+        {"value": 0.30000001192092896, "type": "double", "name": "scale"},
+        {"value": 0, "type": "double", "name": "is_loop"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/object/pd601_Drone_Basic.sgo", "type": "str"},
+        {
+          "value": "app:/weapon/effect/engineer_drone_laser01.efarc",
+          "type": "str"
+        },
+        {"value": "app:/weapon/effect/engineer_drone.efarc", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

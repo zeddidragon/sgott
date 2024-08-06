@@ -1,103 +1,317 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_ChargeShoot",
-    "custom_parameter": ["hand_recoil1", 1, 0, 1, 1.25, 0, 170],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ファランクスＵ１",
-    "name.en": "Phalanx U1",
-    "name.cn": "方陣長矛Ｕ１",
-    "name.kr": "팔랑크스 U1",
-    "name.sc": "方阵长矛Ｕ１",
-    "WeaponIcon": "app:/weapon/icon/rapier_chargehard.dds",
-    "Sight_animation_model": [["app:/HUD/sight09.rab", "sight09.mdb"], 0, 0],
-    "animation_model": [
-      ["app:/Weapon/p_rapier_chargehard.rab", "p_rapier_chargehard.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000005003400240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f0000000068916d3d51f8a23f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f73b8563d392ba2bb2ec9a1bd0000803f41abf6bf5ffd9bbf8e31adbf0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f007200610070006900650072005f0063006800610072006700650068006100720064000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "hand",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "hand_change1",
-    "ReloadAnimation": "hand_reload1",
-    "AmmoCount": [180, 0, 0, 8, 0.5, 1.100000023841858, 0],
-    "EnergyChargeRequire": [[36.17423629760742, 45, 5, 8, 0.5, 0.5, 1], 15],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [120, 21, 4, 5, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 3,
-    "FireSpreadWidth": 0.20000000298023224,
-    "FireCount": [6, 4, 1, 4, 0.5, 0.5, 0],
-    "FireInterval": 1,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0.019999999552965164,
-    "FireRecoil": 0.23999999463558197,
-    "FireVector": null,
-    "FireSe": [1, "e5w_WDnew_short_phalanxU1", 0.8999999761581421, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "LaserBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": [32, 16, 3, 5, 0.5, 0.5, 1],
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 3,
-    "AmmoDamage": [15, 8, 2, 8, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [0.009999999776482582, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0.07000000029802322,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 0.05000000074505806,
-    "AmmoColor": [0.4000000059604645, 2, 0.4000000059604645, 0.5],
-    "Ammo_CustomParameter": [
-      [1, 1, 1, 1],
-      [2, 2, 2, 2],
-      6,
-      3,
-      4,
-      0,
-      0,
-      1.5,
-      1.600000023841858,
-      0.5,
-      5
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "LaserMuzzleFlash01",
-    "MuzzleFlash_CustomParameter": [
-      "Particle3_k.dds",
-      0.25,
-      [0.4000000059604645, 2, 0.4000000059604645, 0.5],
-      3
-    ],
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1]
-  },
+  "variables": [
+    {
+      "value": "Weapon_ChargeShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "hand_recoil1", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1.25, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 170, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ファランクスＵ１", "type": "str", "name": "name.ja"},
+    {"value": "Phalanx U1", "type": "str", "name": "name.en"},
+    {"value": "方陣長矛Ｕ１", "type": "str", "name": "name.cn"},
+    {"value": "팔랑크스 U1", "type": "str", "name": "name.kr"},
+    {"value": "方阵长矛Ｕ１", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/rapier_chargehard.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight09.rab", "type": "str"},
+            {"value": "sight09.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/p_rapier_chargehard.rab", "type": "str"},
+            {"value": "p_rapier_chargehard.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000005003400240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f0000000068916d3d51f8a23f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f73b8563d392ba2bb2ec9a1bd0000803f41abf6bf5ffd9bbf8e31adbf0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f007200610070006900650072005f0063006800610072006700650068006100720064000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "hand", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "hand_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "hand_reload1", "type": "str", "name": "ReloadAnimation"},
+    {
+      "value": [
+        {"value": 180, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1.100000023841858, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoCount"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 36.17423629760742, "type": "double"},
+            {"value": 45, "type": "double"},
+            {"value": 5, "type": "double"},
+            {"value": 8, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 15, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 120, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 3, "type": "double", "name": "FireSpreadType"},
+    {"value": 0.20000000298023224, "type": "double", "name": "FireSpreadWidth"},
+    {
+      "value": [
+        {"value": 6, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireCount"
+    },
+    {"value": 1, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0.019999999552965164, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.23999999463558197, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "e5w_WDnew_short_phalanxU1", "type": "str"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "LaserBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {
+      "value": [
+        {"value": 32, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 3, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 15, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [
+        {"value": 0.009999999776482582, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.07000000029802322, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {
+      "value": 0.05000000074505806,
+      "type": "double",
+      "name": "AmmoHitImpulseAdjust"
+    },
+    {
+      "value": [
+        {"value": 0.4000000059604645, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0.4000000059604645, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 2, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 2, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 6, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 1.600000023841858, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "LaserMuzzleFlash01", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": "Particle3_k.dds", "type": "str"},
+        {"value": 0.25, "type": "double"},
+        {
+          "value": [
+            {"value": 0.4000000059604645, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0.4000000059604645, "type": "double"},
+            {"value": 0.5, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 3, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

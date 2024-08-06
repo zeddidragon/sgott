@@ -1,109 +1,212 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_VehicleShoot",
-    "custom_parameter": [60, 1, 1],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ＨＶ高射機関砲（左）",
-    "name.en": "HV Anti-Aircraft Machine Gun (Left)",
-    "name.cn": "ＨＶ高射機砲（左）",
-    "name.kr": "HV 고사 기관포(좌)",
-    "name.sc": "ＨＶ高射机炮（左）",
-    "WeaponIcon": "app:/weapon/icon/none",
-    "animation_model": [
-      ["app:/Weapon/v_null.rab", "v_null.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000004001400240000007c00000080000000480200000000010018000000010000003000000002000100280000000c02000012020000020000005400000064000000440000000000000084000000ec010000f20100000000000054000000cdcccc3dffffffff0000000084000000babababa0000000000000000000000000000803f00000000000000004c3739400000803fcdcc4c3dcdcc4c3dcdcccc3c0000803fa4703d3e2fdda43e5ebab9bf0000803f53474f000201000000000000200000000000000020000000000000002000000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000006666464002000000040000006666e63f0200000004000000cdcccc3e02000000040000009a99d93f02000000040000000000c03f0200000004000000cdccccbd200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000076005f004e0075006c006c000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "none",
-    "AimAnimation": "",
-    "ChangeAnimation": "",
-    "ReloadAnimation": "",
-    "AmmoCount": 1500,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": -1,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 3,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0.012500000186264515,
-    "FireRecoil": 0.30000001192092896,
-    "FireVector": null,
-    "FireSe": [1, "weapon_VHC_heli302_gatling", 1, 0, 1, 40],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "SolidBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": 16,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 30,
-    "AmmoDamage": 3,
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 1,
-    "AmmoSize": 0.6000000238418579,
-    "AmmoHitSizeAdjust": 0.5,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [
-      0.8999999761581421,
-      2.4000000953674316,
-      2.4000000953674316,
-      1
-    ],
-    "Ammo_CustomParameter": null,
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "MuzzleFlash02",
-    "MuzzleFlash_CustomParameter": [
-      "マズルフラッシュパターン.dds",
-      2,
-      0.3199999928474426,
-      0.25,
-      4,
-      4,
-      0.6000000238418579,
-      1,
-      [2.4000000953674316, 1.2000000476837158, 1.2000000476837158, 1],
-      -0.20000000298023224
-    ],
-    "ShellCase": [
-      "ShellCase_RB",
-      "app:/Weapon/ShellCase401l.rab",
-      [0, "weapon_Common_shell_srifle", 0.20000000298023224, 0.5, 1, 5]
-    ],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/Weapon/ShellCase401l.rab",
-      "app:/Weapon/ShellCase401l.shkt"
-    ]
-  },
+  "variables": [
+    {
+      "value": "Weapon_VehicleShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": 60, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ＨＶ高射機関砲（左）", "type": "str", "name": "name.ja"},
+    {
+      "value": "HV Anti-Aircraft Machine Gun (Left)",
+      "type": "str",
+      "name": "name.en"
+    },
+    {"value": "ＨＶ高射機砲（左）", "type": "str", "name": "name.cn"},
+    {"value": "HV 고사 기관포(좌)", "type": "str", "name": "name.kr"},
+    {"value": "ＨＶ高射机炮（左）", "type": "str", "name": "name.sc"},
+    {"value": "app:/weapon/icon/none", "type": "str", "name": "WeaponIcon"},
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/v_null.rab", "type": "str"},
+            {"value": "v_null.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000004001400240000007c00000080000000480200000000010018000000010000003000000002000100280000000c02000012020000020000005400000064000000440000000000000084000000ec010000f20100000000000054000000cdcccc3dffffffff0000000084000000babababa0000000000000000000000000000803f00000000000000004c3739400000803fcdcc4c3dcdcc4c3dcdcccc3c0000803fa4703d3e2fdda43e5ebab9bf0000803f53474f000201000000000000200000000000000020000000000000002000000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000006666464002000000040000006666e63f0200000004000000cdcccc3e02000000040000009a99d93f02000000040000000000c03f0200000004000000cdccccbd200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000076005f004e0075006c006c000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "none", "type": "str", "name": "BaseAnimation"},
+    {"value": "", "type": "str", "name": "AimAnimation"},
+    {"value": "", "type": "str", "name": "ChangeAnimation"},
+    {"value": "", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1500, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": -1, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 3, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0.012500000186264515, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.30000001192092896, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "weapon_VHC_heli302_gatling", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 40, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "SolidBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"value": 16, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 30, "type": "double", "name": "AmmoAlive"},
+    {"value": 3, "type": "double", "name": "AmmoDamage"},
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.6000000238418579, "type": "double", "name": "AmmoSize"},
+    {"value": 0.5, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 2.4000000953674316, "type": "double"},
+        {"value": 2.4000000953674316, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_CustomParameter"},
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "MuzzleFlash02", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": "マズルフラッシュパターン.dds", "type": "str"},
+        {"value": 2, "type": "double"},
+        {"value": 0.3199999928474426, "type": "double"},
+        {"value": 0.25, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 1, "type": "double"},
+        {
+          "value": [
+            {"value": 2.4000000953674316, "type": "double"},
+            {"value": 1.2000000476837158, "type": "double"},
+            {"value": 1.2000000476837158, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": -0.20000000298023224, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "ShellCase_RB", "type": "str"},
+        {"value": "app:/Weapon/ShellCase401l.rab", "type": "str"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": "weapon_Common_shell_srifle", "type": "str"},
+            {"value": 0.20000000298023224, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 5, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/Weapon/ShellCase401l.rab", "type": "str"},
+        {"value": "app:/Weapon/ShellCase401l.shkt", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "MuzzleFlash02",
     "AmmoExplosion",

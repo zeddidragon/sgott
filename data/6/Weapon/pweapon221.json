@@ -1,126 +1,368 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": ["recoil_sword_a", "recoil_sword_b", "recoil_sword_c"],
-      "whole_body": 1,
-      "animation_speed": 0.800000011920929,
-      "is_manual_reload": 1,
-      "long_press_count": 60
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "recoil_sword_a", "type": "str"},
+            {"value": "recoil_sword_b", "type": "str"},
+            {"value": "recoil_sword_c", "type": "str"}
+          ],
+          "type": "ptr",
+          "name": "animation"
+        },
+        {"value": 1, "type": "double", "name": "whole_body"},
+        {
+          "value": 0.800000011920929,
+          "type": "double",
+          "name": "animation_speed"
+        },
+        {"value": 1, "type": "double", "name": "is_manual_reload"},
+        {"value": 60, "type": "double", "name": "long_press_count"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "パワーセイバー",
-    "name.en": "Power Saber",
-    "name.cn": "威力軍刀",
-    "name.kr": "파워 세이버",
-    "name.sc": "威力军刀",
-    "WeaponIcon": "app:/weapon/icon/laserblade.dds",
-    "animation_model": [
-      ["app:/Weapon/p_saber_normal01.rab", "p_saber_normal01.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000003002800240000005c00000060000000f0000000000001001800000001000000300000000200000028000000b4000000ba000000020000002400000034000000440000000000000054000000babababa000000006891ed3d000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fdb0fc9bf00000000000000000000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000030003100000070005f00730061006200650072005f006e006f0072006d0061006c00300031000000"
-      }
-    ],
-    "ModelConstraint": ["arms_l"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "",
-    "ReloadAnimation": "",
-    "AmmoCount": 400,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": [720, 21, 1, 8, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 1,
-    "FireCount": 1,
-    "FireInterval": 0,
-    "FireBurstCount": 30,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": [1, "weapon_WD_Saber_Power", 1, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "EfsExposureBullet",
-    "AmmoModel": 0,
-    "AmmoSpeed": [6, 16, 2, 5, 0.5, 0.5, 1],
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 7,
-    "AmmoDamage": [2000, 8, 0, 10, 0.800000011920929, 1, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 1,
-    "AmmoSize": 0.10000000149011612,
-    "AmmoHitSizeAdjust": 20,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [2, 0.6000000238418579, 1, 1],
-    "Ammo_CustomParameter": {
-      "efarc": "app:/weapon/effect/pale_trap_laser01.efarc",
-      "bullet": {
-        "esb": "bullet01.esb",
-        "esb_scale": 1,
-        "esb_color": [1, 1, 1, 1],
-        "scroll": [
-          {
-            "image": "EnergyScroll01.dds",
-            "speed": 0.1648000031709671,
-            "scale": 1,
-            "v_scale": 0.07000000029802322,
-            "color": [4, 4, 4, 1]
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "パワーセイバー", "type": "str", "name": "name.ja"},
+    {"value": "Power Saber", "type": "str", "name": "name.en"},
+    {"value": "威力軍刀", "type": "str", "name": "name.cn"},
+    {"value": "파워 세이버", "type": "str", "name": "name.kr"},
+    {"value": "威力军刀", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/laserblade.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/p_saber_normal01.rab", "type": "str"},
+            {"value": "p_saber_normal01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000003002800240000005c00000060000000f0000000000001001800000001000000300000000200000028000000b4000000ba000000020000002400000034000000440000000000000054000000babababa000000006891ed3d000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fdb0fc9bf00000000000000000000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000030003100000070005f00730061006200650072005f006e006f0072006d0061006c00300031000000"
           },
-          {
-            "image": "EnergyScroll02.dds",
-            "speed": 0.24779999256134033,
-            "scale": 1,
-            "v_scale": 0.10000000149011612,
-            "color": [1, 1, 1, 0.20000000298023224]
-          }
-        ],
-        "lighting": {
-          "bar_color": [4, 4, 4, 1],
-          "bar_radius": 50,
-          "mul_base_color": 1
+          "type": "extra"
         }
-      },
-      "hit": {
-        "esb": "bullet01_hit.esb",
-        "esb_scale": 1,
-        "esb_color": [1, 1, 1, 1]
-      },
-      "is_continue_damage": 0
+      ],
+      "type": "ptr",
+      "name": "animation_model"
     },
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "weapon_Common_hitSound_saber", 1, 1, 1, 50],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/weapon/effect/pale_trap_laser01.efarc"]
-  },
+    {
+      "value": [{"value": "arms_l", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "", "type": "str", "name": "ChangeAnimation"},
+    {"value": "", "type": "str", "name": "ReloadAnimation"},
+    {"value": 400, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 720, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 1, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 0, "type": "double", "name": "FireInterval"},
+    {"value": 30, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "weapon_WD_Saber_Power", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "EfsExposureBullet", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {
+      "value": [
+        {"value": 6, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 7, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 2000, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.800000011920929, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.10000000149011612, "type": "double", "name": "AmmoSize"},
+    {"value": 20, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 2, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {
+          "value": "app:/weapon/effect/pale_trap_laser01.efarc",
+          "type": "str",
+          "name": "efarc"
+        },
+        {
+          "value": [
+            {"value": "bullet01.esb", "type": "str", "name": "esb"},
+            {"value": 1, "type": "double", "name": "esb_scale"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "esb_color"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {
+                      "value": "EnergyScroll01.dds",
+                      "type": "str",
+                      "name": "image"
+                    },
+                    {
+                      "value": 0.1648000031709671,
+                      "type": "double",
+                      "name": "speed"
+                    },
+                    {"value": 1, "type": "double", "name": "scale"},
+                    {
+                      "value": 0.07000000029802322,
+                      "type": "double",
+                      "name": "v_scale"
+                    },
+                    {
+                      "value": [
+                        {"value": 4, "type": "double"},
+                        {"value": 4, "type": "double"},
+                        {"value": 4, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "color"
+                    }
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": "EnergyScroll02.dds",
+                      "type": "str",
+                      "name": "image"
+                    },
+                    {
+                      "value": 0.24779999256134033,
+                      "type": "double",
+                      "name": "speed"
+                    },
+                    {"value": 1, "type": "double", "name": "scale"},
+                    {
+                      "value": 0.10000000149011612,
+                      "type": "double",
+                      "name": "v_scale"
+                    },
+                    {
+                      "value": [
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 0.20000000298023224, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "color"
+                    }
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr",
+              "name": "scroll"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": 4, "type": "double"},
+                    {"value": 4, "type": "double"},
+                    {"value": 4, "type": "double"},
+                    {"value": 1, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "bar_color"
+                },
+                {"value": 50, "type": "double", "name": "bar_radius"},
+                {"value": 1, "type": "double", "name": "mul_base_color"}
+              ],
+              "type": "ptr",
+              "name": "lighting"
+            }
+          ],
+          "type": "ptr",
+          "name": "bullet"
+        },
+        {
+          "value": [
+            {"value": "bullet01_hit.esb", "type": "str", "name": "esb"},
+            {"value": 1, "type": "double", "name": "esb_scale"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "esb_color"
+            }
+          ],
+          "type": "ptr",
+          "name": "hit"
+        },
+        {"value": 0, "type": "double", "name": "is_continue_damage"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Common_hitSound_saber", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 50, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/weapon/effect/pale_trap_laser01.efarc", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

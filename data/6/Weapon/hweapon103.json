@@ -1,145 +1,400 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_HeavyShoot",
-    "custom_parameter": [
-      "pile_recoilS2",
-      0,
-      0,
-      0.6000000238418579,
-      1,
-      [1, 0.800000011920929, 0.75],
-      [1, 0.800000011920929, 0.75],
-      0.949999988079071,
-      [-0.0017500000540167093, 0, 0],
-      0.8999999761581421
-    ],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ガリオン徹甲機関砲",
-    "name.en": "Galleon Armor-Piercing Cannon",
-    "name.cn": "加利恩穿甲機砲",
-    "name.kr": "갤리온 철갑 기관포",
-    "name.sc": "加利恩穿甲机炮",
-    "WeaponIcon": "app:/weapon/icon/h_cannon_titaniainferno01.dds",
-    "Sight_animation_model": [["app:/HUD/sight17.rab", "sight17.mdb"], 0, 0],
-    "animation_model": [
-      [
-        "app:/Weapon/h_cannon_titaniainferno01.rab",
-        "h_cannon_titaniainferno01.mdb"
-      ],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000004001a00240000007c00000080000000480200000000010018000000010000003000000002000100280000000c02000012020000020000005400000064000000440000000000000084000000fc010000f2010000020000005400000044000000240000000000000084000000babababa0000000000000000000000000000803f00000000cff753beb15003400000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f5839b4bdaaf152bea8c64bbe0000803f53474f000201000000000000200000000000000020000000000000002000000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000062006f00640079000000ac85a283000000000000"
-      }
-    ],
-    "ModelConstraint": ["arms", ["backWeapon", "attach"]],
-    "BaseAnimation": "base",
-    "AimAnimation": "aim_waist",
-    "ChangeAnimation": "waist_change1",
-    "ReloadAnimation": "waist_reload1",
-    "AmmoCount": [36, 0, 0, 5, 0.5, 0.5, 0],
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [240, 21, 4, 5, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": [27, 25, 5, 5, 0.5, 0.5, 0],
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": [0.014999999664723873, 13, 2, 8, 2, 0.5, 1],
-    "FireRecoil": 0.30000001192092896,
-    "FireVector": null,
-    "FireSe": [
-      0,
-      "weapon_Fencer_MG_liteCannon41",
-      0.8999999761581421,
-      1,
-      1,
-      25
-    ],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": [
-      0,
-      "weapon_gimmick_Fencer_cannonHaikyou",
-      0.5600000023841858,
-      0,
-      1,
-      20
-    ],
-    "SecondaryFire_Type": 4,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "EfsBullet",
-    "AmmoModel": 0,
-    "AmmoSpeed": [50, 16, 3, 5, 0.5, 0.5, 1],
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 4,
-    "AmmoAlive": 12,
-    "AmmoDamage": [1000, 8, 1, 8, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [0.5, 2],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0.25,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 3, 1, 1],
-    "Ammo_CustomParameter": {
-      "efarc": "app:/weapon/effect/fencer_light_cannon.efarc",
-      "bullet": {"esb": "bullet01.esb", "use_far_render": 1, "scale": 1},
-      "hit": {"use_default_effect": 1, "scale": 4}
+  "variables": [
+    {
+      "value": "Weapon_HeavyShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [
-      0,
-      "common_damages_impactLiteCannon",
-      0.7943000197410583,
-      1,
-      1,
-      25
-    ],
-    "MuzzleFlash": "MuzzleFlash02",
-    "MuzzleFlash_CustomParameter": [
-      "マズルフラッシュパターン.dds",
-      4,
-      0.5,
-      0.75,
-      4,
-      2,
-      0.30000001192092896,
-      4,
-      [1.2000000476837158, 2.4000000953674316, 1.7999999523162842, 1],
-      0
-    ],
-    "ShellCase": [
-      "ShellCase_RB",
-      "app:/Weapon/ShellCase401.rab",
-      [0, "weapon_Common_shell_FencerLiteCannon", 0.20000000298023224, 1, 1, 5]
-    ],
-    "ShellCase_CustomParameter": {"scale": 2},
-    "ExtPrams": [1],
-    "resource": [
-      "app:/Weapon/ShellCase401.rab",
-      "app:/Weapon/ShellCase401.shkt",
-      "app:/weapon/effect/fencer_light_cannon.efarc"
-    ]
-  },
+    {
+      "value": [
+        {"value": "pile_recoilS2", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 1, "type": "double"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 0.800000011920929, "type": "double"},
+            {"value": 0.75, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 0.800000011920929, "type": "double"},
+            {"value": 0.75, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.949999988079071, "type": "double"},
+        {
+          "value": [
+            {"value": -0.0017500000540167093, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.8999999761581421, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ガリオン徹甲機関砲", "type": "str", "name": "name.ja"},
+    {
+      "value": "Galleon Armor-Piercing Cannon",
+      "type": "str",
+      "name": "name.en"
+    },
+    {"value": "加利恩穿甲機砲", "type": "str", "name": "name.cn"},
+    {"value": "갤리온 철갑 기관포", "type": "str", "name": "name.kr"},
+    {"value": "加利恩穿甲机炮", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/h_cannon_titaniainferno01.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight17.rab", "type": "str"},
+            {"value": "sight17.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": "app:/Weapon/h_cannon_titaniainferno01.rab",
+              "type": "str"
+            },
+            {"value": "h_cannon_titaniainferno01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000004001a00240000007c00000080000000480200000000010018000000010000003000000002000100280000000c02000012020000020000005400000064000000440000000000000084000000fc010000f2010000020000005400000044000000240000000000000084000000babababa0000000000000000000000000000803f00000000cff753beb15003400000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f5839b4bdaaf152bea8c64bbe0000803f53474f000201000000000000200000000000000020000000000000002000000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000062006f00640079000000ac85a283000000000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [
+        {"value": "arms", "type": "str"},
+        {
+          "value": [
+            {"value": "backWeapon", "type": "str"},
+            {"value": "attach", "type": "str"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "base", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_waist", "type": "str", "name": "AimAnimation"},
+    {"value": "waist_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "waist_reload1", "type": "str", "name": "ReloadAnimation"},
+    {
+      "value": [
+        {"value": 36, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoCount"
+    },
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 240, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {
+      "value": [
+        {"value": 27, "type": "double"},
+        {"value": 25, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireInterval"
+    },
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {
+      "value": [
+        {"value": 0.014999999664723873, "type": "double"},
+        {"value": 13, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireAccuracy"
+    },
+    {"value": 0.30000001192092896, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Fencer_MG_liteCannon41", "type": "str"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_gimmick_Fencer_cannonHaikyou", "type": "str"},
+        {"value": 0.5600000023841858, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCaseDischargeSe"
+    },
+    {"value": 4, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "EfsBullet", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {
+      "value": [
+        {"value": 50, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 4, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 12, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 1000, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [
+        {"value": 0.5, "type": "double"},
+        {"value": 2, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.25, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {
+          "value": "app:/weapon/effect/fencer_light_cannon.efarc",
+          "type": "str",
+          "name": "efarc"
+        },
+        {
+          "value": [
+            {"value": "bullet01.esb", "type": "str", "name": "esb"},
+            {"value": 1, "type": "double", "name": "use_far_render"},
+            {"value": 1, "type": "double", "name": "scale"}
+          ],
+          "type": "ptr",
+          "name": "bullet"
+        },
+        {
+          "value": [
+            {"value": 1, "type": "double", "name": "use_default_effect"},
+            {"value": 4, "type": "double", "name": "scale"}
+          ],
+          "type": "ptr",
+          "name": "hit"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_impactLiteCannon", "type": "str"},
+        {"value": 0.7943000197410583, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "MuzzleFlash02", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": "マズルフラッシュパターン.dds", "type": "str"},
+        {"value": 4, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.75, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 4, "type": "double"},
+        {
+          "value": [
+            {"value": 1.2000000476837158, "type": "double"},
+            {"value": 2.4000000953674316, "type": "double"},
+            {"value": 1.7999999523162842, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "ShellCase_RB", "type": "str"},
+        {"value": "app:/Weapon/ShellCase401.rab", "type": "str"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": "weapon_Common_shell_FencerLiteCannon", "type": "str"},
+            {"value": 0.20000000298023224, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 5, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {
+      "value": [{"value": 2, "type": "double", "name": "scale"}],
+      "type": "ptr",
+      "name": "ShellCase_CustomParameter"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/Weapon/ShellCase401.rab", "type": "str"},
+        {"value": "app:/Weapon/ShellCase401.shkt", "type": "str"},
+        {"value": "app:/weapon/effect/fencer_light_cannon.efarc", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "MuzzleFlash02",
     "AmmoExplosion",

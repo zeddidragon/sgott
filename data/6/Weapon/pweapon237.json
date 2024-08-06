@@ -1,158 +1,407 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": "throwL_swing_short",
-      "whole_body": 0,
-      "animation_speed": 1,
-      "is_manual_reload": 1,
-      "is_ignore_friend": 1
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {"value": "throwL_swing_short", "type": "str", "name": "animation"},
+        {"value": 0, "type": "double", "name": "whole_body"},
+        {"value": 1, "type": "double", "name": "animation_speed"},
+        {"value": 1, "type": "double", "name": "is_manual_reload"},
+        {"value": 1, "type": "double", "name": "is_ignore_friend"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "電磁シャフト４＋〔×〕",
-    "name.en": "Electromagnetic Shaft 4 + (x)",
-    "name.cn": "電磁軸心４＋〔×〕",
-    "name.kr": "전자 샤프트 4+〔×〕",
-    "name.sc": "电磁轴心４＋〔×〕",
-    "WeaponIcon": "app:/weapon/icon/lasertrapwire.dds",
-    "animation_model": [
-      ["app:/Weapon/p_grenade_unknown.rab", "p_grenade_unknown.mdb"],
-      "app:/Weapon/p_grenade_unknown.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020003002a00240000005c00000080000000d0000000000001001800000001000000300000000200000028000000940000009a00000002000000540000006400000044000000000000007400000020000000200000008e0000000000000010000000100000007400000000000000babababa0000000000000000000000000000803f000000008fc2753d000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_l"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": [900, 21, 1, 5, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 2,
-    "FireSpreadWidth": 2.3499999046325684,
-    "FireCount": 4,
-    "FireInterval": 0,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": [
-      0,
-      "e5w_WDnew_special_throwSpecial",
-      0.7078999876976013,
-      1,
-      2,
-      25
-    ],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "ClusterBullet01",
-    "AmmoModel": "app:/WEAPON/p_grenade_unknown.rab",
-    "AmmoSpeed": 1,
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 30,
-    "AmmoDamage": [8, 8, 0, 10, 0.800000011920929, 1, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 1,
-    "AmmoSize": 0.20000000298023224,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1.600000023841858, 0.6000000238418579, 2, 1],
-    "Ammo_CustomParameter": [
-      0.5,
-      0,
-      0,
-      3,
-      0,
-      [
-        [0, 0],
-        [0, 0],
-        5400,
-        0,
-        "EfsExposureBullet",
-        15,
-        0,
-        0.10000000149011612,
-        1,
-        0,
-        20,
-        1,
-        [0.6000000238418579, 1, 2, 1],
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "電磁シャフト４＋〔×〕", "type": "str", "name": "name.ja"},
+    {
+      "value": "Electromagnetic Shaft 4 + (x)",
+      "type": "str",
+      "name": "name.en"
+    },
+    {"value": "電磁軸心４＋〔×〕", "type": "str", "name": "name.cn"},
+    {"value": "전자 샤프트 4+〔×〕", "type": "str", "name": "name.kr"},
+    {"value": "电磁轴心４＋〔×〕", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/lasertrapwire.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
         {
-          "efarc": "app:/weapon/effect/pale_trap_laser01.efarc",
-          "bullet": {
-            "esb": "bullet01.esb",
-            "esb_scale": 1,
-            "esb_color": [1, 1, 1, 1],
-            "scroll": [
-              {
-                "image": "EnergyScroll01.dds",
-                "speed": 0.1648000031709671,
-                "scale": 0.20000000298023224,
-                "v_scale": 0.07000000029802322,
-                "color": [4, 4, 4, 1]
-              },
-              {
-                "image": "EnergyScroll02.dds",
-                "speed": 0.24779999256134033,
-                "scale": 1,
-                "v_scale": 0.10000000149011612,
-                "color": [1, 1, 1, 0.20000000298023224]
-              }
-            ],
-            "lighting": {"bar_color": [2, 2, 8, 1], "bar_radius": 10}
-          },
-          "hit": {
-            "esb": "bullet01_hit.esb",
-            "esb_scale": 1,
-            "esb_color": [1, 1, 1, 1]
-          }
+          "value": [
+            {"value": "app:/Weapon/p_grenade_unknown.rab", "type": "str"},
+            {"value": "p_grenade_unknown.mdb", "type": "str"}
+          ],
+          "type": "ptr"
         },
-        0,
-        0,
-        1,
-        [1, "e5w_WDnew_special_EOE", 1, 1, 2, 25],
-        0
-      ]
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": null,
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/WEAPON/p_grenade_unknown.rab",
-      "app:/weapon/effect/pale_trap_laser01.efarc"
-    ]
-  },
+        {"value": "app:/Weapon/p_grenade_unknown.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020003002a00240000005c00000080000000d0000000000001001800000001000000300000000200000028000000940000009a00000002000000540000006400000044000000000000007400000020000000200000008e0000000000000010000000100000007400000000000000babababa0000000000000000000000000000803f000000008fc2753d000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_l", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 900, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 2, "type": "double", "name": "FireSpreadType"},
+    {"value": 2.3499999046325684, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 4, "type": "double", "name": "FireCount"},
+    {"value": 0, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "e5w_WDnew_special_throwSpecial", "type": "str"},
+        {"value": 0.7078999876976013, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "ClusterBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/p_grenade_unknown.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 1, "type": "double", "name": "AmmoSpeed"},
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 30, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 8, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.800000011920929, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.20000000298023224, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1.600000023841858, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": 5400, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": "EfsExposureBullet", "type": "str"},
+            {"value": 15, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 0.10000000149011612, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 20, "type": "double"},
+            {"value": 1, "type": "double"},
+            {
+              "value": [
+                {"value": 0.6000000238418579, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 2, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/weapon/effect/pale_trap_laser01.efarc",
+                  "type": "str",
+                  "name": "efarc"
+                },
+                {
+                  "value": [
+                    {"value": "bullet01.esb", "type": "str", "name": "esb"},
+                    {"value": 1, "type": "double", "name": "esb_scale"},
+                    {
+                      "value": [
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "esb_color"
+                    },
+                    {
+                      "value": [
+                        {
+                          "value": [
+                            {
+                              "value": "EnergyScroll01.dds",
+                              "type": "str",
+                              "name": "image"
+                            },
+                            {
+                              "value": 0.1648000031709671,
+                              "type": "double",
+                              "name": "speed"
+                            },
+                            {
+                              "value": 0.20000000298023224,
+                              "type": "double",
+                              "name": "scale"
+                            },
+                            {
+                              "value": 0.07000000029802322,
+                              "type": "double",
+                              "name": "v_scale"
+                            },
+                            {
+                              "value": [
+                                {"value": 4, "type": "double"},
+                                {"value": 4, "type": "double"},
+                                {"value": 4, "type": "double"},
+                                {"value": 1, "type": "double"}
+                              ],
+                              "type": "ptr",
+                              "name": "color"
+                            }
+                          ],
+                          "type": "ptr"
+                        },
+                        {
+                          "value": [
+                            {
+                              "value": "EnergyScroll02.dds",
+                              "type": "str",
+                              "name": "image"
+                            },
+                            {
+                              "value": 0.24779999256134033,
+                              "type": "double",
+                              "name": "speed"
+                            },
+                            {"value": 1, "type": "double", "name": "scale"},
+                            {
+                              "value": 0.10000000149011612,
+                              "type": "double",
+                              "name": "v_scale"
+                            },
+                            {
+                              "value": [
+                                {"value": 1, "type": "double"},
+                                {"value": 1, "type": "double"},
+                                {"value": 1, "type": "double"},
+                                {"value": 0.20000000298023224, "type": "double"}
+                              ],
+                              "type": "ptr",
+                              "name": "color"
+                            }
+                          ],
+                          "type": "ptr"
+                        }
+                      ],
+                      "type": "ptr",
+                      "name": "scroll"
+                    },
+                    {
+                      "value": [
+                        {
+                          "value": [
+                            {"value": 2, "type": "double"},
+                            {"value": 2, "type": "double"},
+                            {"value": 8, "type": "double"},
+                            {"value": 1, "type": "double"}
+                          ],
+                          "type": "ptr",
+                          "name": "bar_color"
+                        },
+                        {"value": 10, "type": "double", "name": "bar_radius"}
+                      ],
+                      "type": "ptr",
+                      "name": "lighting"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "bullet"
+                },
+                {
+                  "value": [
+                    {"value": "bullet01_hit.esb", "type": "str", "name": "esb"},
+                    {"value": 1, "type": "double", "name": "esb_scale"},
+                    {
+                      "value": [
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"},
+                        {"value": 1, "type": "double"}
+                      ],
+                      "type": "ptr",
+                      "name": "esb_color"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "hit"
+                }
+              ],
+              "type": "ptr"
+            },
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 1, "type": "double"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": "e5w_WDnew_special_EOE", "type": "str"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 2, "type": "double"},
+                {"value": 25, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/WEAPON/p_grenade_unknown.rab", "type": "str"},
+        {"value": "app:/weapon/effect/pale_trap_laser01.efarc", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

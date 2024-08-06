@@ -1,115 +1,264 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_VehicleShoot",
-    "custom_parameter": [4, 100, 1],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ラピッドバズーカ砲（左）",
-    "name.en": "Rapid Bazooka (Left)",
-    "name.cn": "速射火箭筒（左）",
-    "name.kr": "래피드 바주카포(좌)",
-    "name.sc": "速射火箭筒（左）",
-    "WeaponIcon": "app:/weapon/icon/none",
-    "animation_model": [
-      [
-        "app:/Weapon/v_502_groundrobo_launcher_l.rab",
-        "v_502_groundrobo_launcher_l.mdb"
+  "variables": [
+    {
+      "value": "Weapon_VehicleShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": 4, "type": "double"},
+        {"value": 100, "type": "double"},
+        {"value": 1, "type": "double"}
       ],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000003001200240000005c00000060000000f0000000000001001800000001000000300000000200000028000000b4000000ba000000020000004400000034000000240000000000000054000000babababa0000000000000000000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f6f1283bb7d3ff53e60e520400000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e00000000003000310000006a006f0069006e0074000000"
-      }
-    ],
-    "ModelConstraint": ["weapon_node_l", ["weapon_joint_l", "joint"]],
-    "BaseAnimation": "none",
-    "AimAnimation": "",
-    "ChangeAnimation": "",
-    "ReloadAnimation": "",
-    "AmmoCount": 320,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": -1,
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 300,
-    "LockonAngle": [0.4000000059604645, 0.30000001192092896],
-    "LockonTime": 4,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 120,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 10,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0.07500000298023224,
-    "FireVector": null,
-    "FireSe": [
-      0,
-      "weapon_VHC_begaruta406_missile",
-      0.6309999823570251,
-      1,
-      1,
-      40
-    ],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "MissileBullet01",
-    "AmmoModel": "app:/WEAPON/bullet_missile.rab",
-    "AmmoSpeed": 0.10000000149011612,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0.75,
-    "AmmoAlive": 480,
-    "AmmoDamage": 10,
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 4,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1.2000000476837158,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 1, 1, 0.5],
-    "Ammo_CustomParameter": [
-      0,
-      0,
-      60,
-      [0, 0, -0.05000000074505806],
-      0.07999999821186066,
-      0.20000000298023224,
-      1.5,
-      [0, 0.9800000190734863],
-      8,
-      0,
-      null,
-      [0, "weapon_VHC_begaruta406_missileGo", 0.6499999761581421, 1, 3, 50]
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_explode_S", 1, 1, 1, 200],
-    "MuzzleFlash": "MuzzleSmoke01",
-    "MuzzleFlash_CustomParameter": [
-      0,
-      0.4000000059604645,
-      [1, 1, 1, 1],
-      0.05000000074505806,
-      [0, 0, -1.600000023841858]
-    ],
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/WEAPON/bullet_missile.rab"]
-  },
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ラピッドバズーカ砲（左）", "type": "str", "name": "name.ja"},
+    {"value": "Rapid Bazooka (Left)", "type": "str", "name": "name.en"},
+    {"value": "速射火箭筒（左）", "type": "str", "name": "name.cn"},
+    {"value": "래피드 바주카포(좌)", "type": "str", "name": "name.kr"},
+    {"value": "速射火箭筒（左）", "type": "str", "name": "name.sc"},
+    {"value": "app:/weapon/icon/none", "type": "str", "name": "WeaponIcon"},
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": "app:/Weapon/v_502_groundrobo_launcher_l.rab",
+              "type": "str"
+            },
+            {"value": "v_502_groundrobo_launcher_l.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000003001200240000005c00000060000000f0000000000001001800000001000000300000000200000028000000b4000000ba000000020000004400000034000000240000000000000054000000babababa0000000000000000000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f6f1283bb7d3ff53e60e520400000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e00000000003000310000006a006f0069006e0074000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [
+        {"value": "weapon_node_l", "type": "str"},
+        {
+          "value": [
+            {"value": "weapon_joint_l", "type": "str"},
+            {"value": "joint", "type": "str"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "none", "type": "str", "name": "BaseAnimation"},
+    {"value": "", "type": "str", "name": "AimAnimation"},
+    {"value": "", "type": "str", "name": "ChangeAnimation"},
+    {"value": "", "type": "str", "name": "ReloadAnimation"},
+    {"value": 320, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"value": -1, "type": "double", "name": "ReloadTime"},
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 300, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.4000000059604645, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 4, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 120, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 10, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.07500000298023224, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_VHC_begaruta406_missile", "type": "str"},
+        {"value": 0.6309999823570251, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 40, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "MissileBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/bullet_missile.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 0.10000000149011612, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0.75, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 480, "type": "double", "name": "AmmoAlive"},
+    {"value": 10, "type": "double", "name": "AmmoDamage"},
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 4, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1.2000000476837158, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 60, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": -0.05000000074505806, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.07999999821186066, "type": "double"},
+        {"value": 0.20000000298023224, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0.9800000190734863, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": "weapon_VHC_begaruta406_missileGo", "type": "str"},
+            {"value": 0.6499999761581421, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 3, "type": "double"},
+            {"value": 50, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_explode_S", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "MuzzleSmoke01", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0.4000000059604645, "type": "double"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.05000000074505806, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": -1.600000023841858, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [{"value": "app:/WEAPON/bullet_missile.rab", "type": "str"}],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "速射火箭筒（左）",

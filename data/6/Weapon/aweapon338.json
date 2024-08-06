@@ -1,126 +1,339 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": "vehicle_call",
-      "whole_body": 1,
-      "animation_speed": 1
-    },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "フリージャー１",
-    "name.en": "Freed 1",
-    "name.cn": "奔馳裝甲機車１",
-    "name.kr": "프리저 1",
-    "name.sc": "奔驰装甲机车１",
-    "WeaponIcon": "app:/weapon/icon/car02.dds",
-    "animation_model": [
-      ["app:/Weapon/e_throw_marker01.rab", "e_throw_marker01.mdb"],
-      "app:/Weapon/e_throw_marker01.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002002a00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000007e0000000000000010000000100000006400000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 2,
-    "ReloadInit": 1,
-    "ReloadTime": [3500, 21, 0, 8, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 120,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": [0, 0.25, 1.100000023841858],
-    "FireSe": [0, "weapon_Engineer_Vehicle_throw", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "SmokeCandleBullet01",
-    "AmmoModel": "app:/WEAPON/e_throw_marker01.rab",
-    "AmmoSpeed": 0.4000000059604645,
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 1800,
-    "AmmoDamage": 150,
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 40,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 0, 0, 0.5],
-    "Ammo_CustomParameter": [
-      0.05000000074505806,
-      180,
-      120,
-      1,
-      [
-        "app:/Object/v508_transport.sgo",
-        "app:/object/v509_transportbox.sgo",
-        "app:/Object/v503_bike.sgo",
-        [
-          [2.200000047683716, 1.100000023841858],
-          [
-            [0.6499999761581421, 0.6000000238418579, 0.800000011920929],
-            30,
-            0.05999999865889549,
-            2,
-            0.05999999865889549
-          ],
-          [20000, 1.6660000085830688],
-          [
-            ["app:/weapon/v_503_bike_gun_l.sgo", ["BodyRecoil", [0, 0]]],
-            ["app:/weapon/v_503_bike_gun_r.sgo", ["BodyRecoil", [0, 0]]],
-            ["app:/weapon/v_fuel01.sgo"]
-          ]
-        ]
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {"value": "vehicle_call", "type": "str", "name": "animation"},
+        {"value": 1, "type": "double", "name": "whole_body"},
+        {"value": 1, "type": "double", "name": "animation_speed"}
       ],
-      ["輸送部隊目標確認", "輸送部隊発射", "輸送部隊攻撃後レンジャー"],
-      1
-    ],
-    "Ammo_EquipVoice": ["輸送部隊出撃直後レンジャー", "輸送部隊支援不能"],
-    "AmmoHitSe": [0, "weapon_Engineer_Vehicle_smoke", 0.5, 1, 1, 20],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/WEAPON/e_throw_marker01.rab",
-      "app:/Object/v508_transport.sgo",
-      "app:/object/v509_transportbox.sgo",
-      "app:/Object/v503_bike.sgo",
-      "app:/weapon/v_503_bike_gun_l.sgo",
-      "app:/weapon/v_503_bike_gun_r.sgo",
-      "app:/weapon/v_fuel01.sgo"
-    ]
-  },
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "フリージャー１", "type": "str", "name": "name.ja"},
+    {"value": "Freed 1", "type": "str", "name": "name.en"},
+    {"value": "奔馳裝甲機車１", "type": "str", "name": "name.cn"},
+    {"value": "프리저 1", "type": "str", "name": "name.kr"},
+    {"value": "奔驰装甲机车１", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/car02.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_throw_marker01.rab", "type": "str"},
+            {"value": "e_throw_marker01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_throw_marker01.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002002a00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000007e0000000000000010000000100000006400000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 2, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 3500, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 120, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0.25, "type": "double"},
+        {"value": 1.100000023841858, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireVector"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Engineer_Vehicle_throw", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "SmokeCandleBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/e_throw_marker01.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 0.4000000059604645, "type": "double", "name": "AmmoSpeed"},
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 1800, "type": "double", "name": "AmmoAlive"},
+    {"value": 150, "type": "double", "name": "AmmoDamage"},
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 40, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 0.05000000074505806, "type": "double"},
+        {"value": 180, "type": "double"},
+        {"value": 120, "type": "double"},
+        {"value": 1, "type": "double"},
+        {
+          "value": [
+            {"value": "app:/Object/v508_transport.sgo", "type": "str"},
+            {"value": "app:/object/v509_transportbox.sgo", "type": "str"},
+            {"value": "app:/Object/v503_bike.sgo", "type": "str"},
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": 2.200000047683716, "type": "double"},
+                    {"value": 1.100000023841858, "type": "double"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {"value": 0.6499999761581421, "type": "double"},
+                        {"value": 0.6000000238418579, "type": "double"},
+                        {"value": 0.800000011920929, "type": "double"}
+                      ],
+                      "type": "ptr"
+                    },
+                    {"value": 30, "type": "double"},
+                    {"value": 0.05999999865889549, "type": "double"},
+                    {"value": 2, "type": "double"},
+                    {"value": 0.05999999865889549, "type": "double"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {"value": 20000, "type": "double"},
+                    {"value": 1.6660000085830688, "type": "double"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {
+                      "value": [
+                        {
+                          "value": "app:/weapon/v_503_bike_gun_l.sgo",
+                          "type": "str"
+                        },
+                        {
+                          "value": [
+                            {"value": "BodyRecoil", "type": "str"},
+                            {
+                              "value": [
+                                {"value": 0, "type": "double"},
+                                {"value": 0, "type": "double"}
+                              ],
+                              "type": "ptr"
+                            }
+                          ],
+                          "type": "ptr"
+                        }
+                      ],
+                      "type": "ptr"
+                    },
+                    {
+                      "value": [
+                        {
+                          "value": "app:/weapon/v_503_bike_gun_r.sgo",
+                          "type": "str"
+                        },
+                        {
+                          "value": [
+                            {"value": "BodyRecoil", "type": "str"},
+                            {
+                              "value": [
+                                {"value": 0, "type": "double"},
+                                {"value": 0, "type": "double"}
+                              ],
+                              "type": "ptr"
+                            }
+                          ],
+                          "type": "ptr"
+                        }
+                      ],
+                      "type": "ptr"
+                    },
+                    {
+                      "value": [
+                        {"value": "app:/weapon/v_fuel01.sgo", "type": "str"}
+                      ],
+                      "type": "ptr"
+                    }
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": "輸送部隊目標確認", "type": "str"},
+            {"value": "輸送部隊発射", "type": "str"},
+            {"value": "輸送部隊攻撃後レンジャー", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "輸送部隊出撃直後レンジャー", "type": "str"},
+        {"value": "輸送部隊支援不能", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_EquipVoice"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Engineer_Vehicle_smoke", "type": "str"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/WEAPON/e_throw_marker01.rab", "type": "str"},
+        {"value": "app:/Object/v508_transport.sgo", "type": "str"},
+        {"value": "app:/object/v509_transportbox.sgo", "type": "str"},
+        {"value": "app:/Object/v503_bike.sgo", "type": "str"},
+        {"value": "app:/weapon/v_503_bike_gun_l.sgo", "type": "str"},
+        {"value": "app:/weapon/v_503_bike_gun_r.sgo", "type": "str"},
+        {"value": "app:/weapon/v_fuel01.sgo", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

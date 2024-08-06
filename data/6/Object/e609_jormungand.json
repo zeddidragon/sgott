@@ -1,145 +1,368 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "EDF6_Jormungand",
-    "game_object_durability": 480,
-    "resource": [
-      "app:/object/e609_jormungand_body.sgo",
-      "app:/object/e609_jormungand_head.sgo",
-      "app:/object/e609_jormungand_face.sgo",
-      "app:/object/e609_jormungand_tail_middle.sgo",
-      "app:/object/e609_jormungand_tail_term.sgo",
-      "app:/object/e609_jormungand_Meteor_small.sgo",
-      "app:/object/e609_jormungand_Meteor_middle.sgo",
-      "app:/object/e609_jormungand_Meteor_large.sgo",
-      "app:/object/e609_jormungand_generator.sgo",
-      "app:/object/e609_Jormungand_guard.sgo",
-      "app:/object/e609_jormungand_gunbatteryL01.sgo",
-      "app:/object/e609_jormungand_gunbatteryL02.sgo",
-      "app:/object/e609_jormungand_gunbatteryS01.sgo"
-    ],
-    "game_object_camera_setting": [[0, 300, 0], [0, 300, -600]],
-    "game_sound": ["app:/sound/adx/tikyuu6_en_Jormungandr.acb"],
-    "game_object_ai_route_update_distance": 300,
-    "jormungand_config": {
-      "se": {"fly": "e609駆動音"},
-      "parts": [
+  "variables": [
+    {
+      "value": "EDF6_Jormungand",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {"value": 480, "type": "double", "name": "game_object_durability"},
+    {
+      "value": [
+        {"value": "app:/object/e609_jormungand_body.sgo", "type": "str"},
+        {"value": "app:/object/e609_jormungand_head.sgo", "type": "str"},
+        {"value": "app:/object/e609_jormungand_face.sgo", "type": "str"},
+        {"value": "app:/object/e609_jormungand_tail_middle.sgo", "type": "str"},
+        {"value": "app:/object/e609_jormungand_tail_term.sgo", "type": "str"},
         {
-          "path": "app:/object/e609_jormungand_head.sgo",
-          "group": 0,
-          "count": 1,
-          "is_core": 1
+          "value": "app:/object/e609_jormungand_Meteor_small.sgo",
+          "type": "str"
         },
         {
-          "path": "app:/object/e609_jormungand_body_L01.sgo",
-          "group": 0,
-          "count": 2
+          "value": "app:/object/e609_jormungand_Meteor_middle.sgo",
+          "type": "str"
         },
         {
-          "path": "app:/object/e609_jormungand_body_Gen.sgo",
-          "group": 0,
-          "count": 1
+          "value": "app:/object/e609_jormungand_Meteor_large.sgo",
+          "type": "str"
+        },
+        {"value": "app:/object/e609_jormungand_generator.sgo", "type": "str"},
+        {"value": "app:/object/e609_Jormungand_guard.sgo", "type": "str"},
+        {
+          "value": "app:/object/e609_jormungand_gunbatteryL01.sgo",
+          "type": "str"
         },
         {
-          "path": "app:/object/e609_jormungand_body_L01.sgo",
-          "group": 0,
-          "count": 2
+          "value": "app:/object/e609_jormungand_gunbatteryL02.sgo",
+          "type": "str"
         },
         {
-          "path": "app:/object/e609_jormungand_face.sgo",
-          "group": 1000,
-          "count": 1,
-          "is_core": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body.sgo",
-          "group": 1,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_L02.sgo",
-          "group": 2,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_Gen.sgo",
-          "group": 1,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_L02.sgo",
-          "group": 2,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_Gen.sgo",
-          "group": 1,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_L02.sgo",
-          "group": 2,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_Gen.sgo",
-          "group": 1,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_L02.sgo",
-          "group": 2,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_Gen.sgo",
-          "group": 1,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_L02.sgo",
-          "group": 2,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body.sgo",
-          "group": 0,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_L02.sgo",
-          "group": 2,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body.sgo",
-          "group": 0,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body_L02.sgo",
-          "group": 2,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_body.sgo",
-          "group": 0,
-          "count": 1
-        },
-        {
-          "path": "app:/object/e609_jormungand_tail_middle.sgo",
-          "group": 0,
-          "count": 4
-        },
-        {
-          "path": "app:/object/e609_jormungand_tail_term.sgo",
-          "group": 0,
-          "count": 1
+          "value": "app:/object/e609_jormungand_gunbatteryS01.sgo",
+          "type": "str"
         }
-      ]
+      ],
+      "type": "ptr",
+      "name": "resource"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 300, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 300, "type": "double"},
+            {"value": -600, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {
+      "value": [
+        {"value": "app:/sound/adx/tikyuu6_en_Jormungandr.acb", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "game_sound"
+    },
+    {
+      "value": 300,
+      "type": "double",
+      "name": "game_object_ai_route_update_distance"
+    },
+    {
+      "value": [
+        {
+          "value": [{"value": "e609駆動音", "type": "str", "name": "fly"}],
+          "type": "ptr",
+          "name": "se"
+        },
+        {
+          "value": [
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_head.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"},
+                {"value": 1, "type": "double", "name": "is_core"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L01.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 2, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_Gen.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L01.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 2, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_face.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 1000, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"},
+                {"value": 1, "type": "double", "name": "is_core"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 1, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L02.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 2, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_Gen.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 1, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L02.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 2, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_Gen.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 1, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L02.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 2, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_Gen.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 1, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L02.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 2, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_Gen.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 1, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L02.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 2, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L02.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 2, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body_L02.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 2, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_body.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_tail_middle.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 4, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": "app:/object/e609_jormungand_tail_term.sgo",
+                  "type": "str",
+                  "name": "path"
+                },
+                {"value": 0, "type": "double", "name": "group"},
+                {"value": 1, "type": "double", "name": "count"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr",
+          "name": "parts"
+        }
+      ],
+      "type": "ptr",
+      "name": "jormungand_config"
     }
-  },
+  ],
   "strings": [
     "group",
     "app:/object/e609_jormungand_gunbatteryS01.sgo",

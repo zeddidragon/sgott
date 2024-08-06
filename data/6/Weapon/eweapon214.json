@@ -1,96 +1,274 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": "throwL_robot_swing",
-      "whole_body": 0,
-      "animation_speed": 1,
-      "is_manual_reload": 1,
-      "is_auto_lockon": 1
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {"value": "throwL_robot_swing", "type": "str", "name": "animation"},
+        {"value": 0, "type": "double", "name": "whole_body"},
+        {"value": 1, "type": "double", "name": "animation_speed"},
+        {"value": 1, "type": "double", "name": "is_manual_reload"},
+        {"value": 1, "type": "double", "name": "is_auto_lockon"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "Ｄ型ロボットボム",
-    "name.en": "Type D Robot Bomb",
-    "name.cn": "Ｄ型機器人炸彈",
-    "name.kr": "D형 로봇 봄",
-    "name.sc": "Ｄ型机器人炸弹",
-    "WeaponIcon": "app:/weapon/icon/roomba.dds",
-    "animation_model": [
-      ["app:/Weapon/e_throw_roomba.rab", "e_throw_roomba.mdb"],
-      "app:/Weapon/e_throw_roomba.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002003e00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a0000000200000044000000540000004400000000000000640000002000000020000000920000000000000010000000100000007800000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f0072006f006f006d00620061000000680069006400650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_l"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": [440, 21, 2, 8, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 5,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 1,
-    "Lockon_FireEndToClear": 0,
-    "Lockon_AutoTimeOut": 0,
-    "LockonRange": 200,
-    "LockonAngle": [0.10000000149011612, 0.10000000149011612],
-    "LockonTime": 4,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 1,
-    "FireType": 0,
-    "FireSpreadType": 2,
-    "FireSpreadWidth": 0.699999988079071,
-    "FireCount": [6, 4, 0, 7, 0.5, 0.5, 0],
-    "FireInterval": 20,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": [0, "weapon_Ranger_GL_throwHeavyNoEquip", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "BombBullet01",
-    "AmmoModel": "app:/WEAPON/e_throw_roomba.rab",
-    "AmmoSpeed": 0.25,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 2400,
-    "AmmoDamage": [380, 8, 1, 8, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [6, 32, 3, 8, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1.5,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 0, 0, 0.5],
-    "Ammo_CustomParameter": {
-      "null": 3,
-      "undefined": ["ルン爆弾ＧＯ", "武器起動可能", 0, "ルン爆弾反射"],
-      "speed_adjust": [0.800000011920929, 1.100000023841858]
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "Ｄ型ロボットボム", "type": "str", "name": "name.ja"},
+    {"value": "Type D Robot Bomb", "type": "str", "name": "name.en"},
+    {"value": "Ｄ型機器人炸彈", "type": "str", "name": "name.cn"},
+    {"value": "D형 로봇 봄", "type": "str", "name": "name.kr"},
+    {"value": "Ｄ型机器人炸弹", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/roomba.dds",
+      "type": "str",
+      "name": "WeaponIcon"
     },
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_explode_S", 1, 1, 1, 200],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/WEAPON/e_throw_roomba.rab"]
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_throw_roomba.rab", "type": "str"},
+            {"value": "e_throw_roomba.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_throw_roomba.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002003e00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a0000000200000044000000540000004400000000000000640000002000000020000000920000000000000010000000100000007800000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f0072006f006f006d00620061000000680069006400650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_l", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 440, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 5, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 1, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 0, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 0, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 200, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.10000000149011612, "type": "double"},
+        {"value": 0.10000000149011612, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 4, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 1, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 2, "type": "double", "name": "FireSpreadType"},
+    {"value": 0.699999988079071, "type": "double", "name": "FireSpreadWidth"},
+    {
+      "value": [
+        {"value": 6, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 7, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireCount"
+    },
+    {"value": 20, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Ranger_GL_throwHeavyNoEquip", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "BombBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/e_throw_roomba.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 0.25, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 2400, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 380, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 6, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1.5, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 3, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 60, "type": "double"},
+        {"value": 8, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0.10000000149011612, "type": "double"},
+            {"value": 0.20000000298023224, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {
+          "value": [
+            {"value": "ルン爆弾ＧＯ", "type": "str"},
+            {"value": "武器起動可能", "type": "str"},
+            {"value": 0, "type": "double"},
+            {"value": "ルン爆弾反射", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0.800000011920929, "type": "double"},
+            {"value": 1.100000023841858, "type": "double"}
+          ],
+          "type": "ptr",
+          "name": "speed_adjust"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_explode_S", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [{"value": "app:/WEAPON/e_throw_roomba.rab", "type": "str"}],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

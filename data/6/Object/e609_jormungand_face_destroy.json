@@ -1,23 +1,87 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "EDF6_Jormungand_Parts_AlienHead_Destroy",
-    "game_object_camera_setting": [[0, 4, 0], [0, 4, -15]],
-    "game_sound": ["app:/sound/adx/tikyuu6_en_Jormungandr.acb"],
-    "animation_model": {
-      "null": [
-        "app:/Object/e609_jormungand.mrab",
-        "e609_jormungand_face_break.mdb"
-      ],
-      "undefined": 0,
-      "effect": {"path": "app:/object/e609_jormungand.efarc"}
+  "variables": [
+    {
+      "value": "EDF6_Jormungand_Parts_AlienHead_Destroy",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "BasicAnimationCharacterSettings": {
-      "Type": 0,
-      "RenderOptions": {"FarRender": 1}
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 4, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 4, "type": "double"},
+            {"value": -15, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {
+      "value": [
+        {"value": "app:/sound/adx/tikyuu6_en_Jormungandr.acb", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "game_sound"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/e609_jormungand.mrab", "type": "str"},
+            {"value": "e609_jormungand_face_break.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000400000001004000240000006400000070000000a00000000000010020000000010000003800000002000000300000000300000028000000820000005c000000000000002c0000000000a042ffffffff000000003c000000babababababababababababa00000000000048420000c8c30000803f53474f0002010000000000002000000000000000200000000000000020000000730069006c007600650072005f0066006100630065005f0062007200650061006b00310000003057625fa563e68924529a5b0000000000000000000000000000"
+          },
+          "type": "extra"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": "app:/object/e609_jormungand.efarc",
+              "type": "str",
+              "name": "path"
+            }
+          ],
+          "type": "ptr",
+          "name": "effect"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double", "name": "Type"},
+        {
+          "value": [{"value": 1, "type": "double", "name": "FarRender"}],
+          "type": "ptr",
+          "name": "RenderOptions"
+        }
+      ],
+      "type": "ptr",
+      "name": "BasicAnimationCharacterSettings"
     }
-  },
+  ],
   "strings": [
     "BasicAnimationCharacterSettings",
     "xgs_scene_object_class",

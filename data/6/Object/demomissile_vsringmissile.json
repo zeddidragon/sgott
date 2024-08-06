@@ -1,23 +1,191 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "DemoIndirectFire",
-    "resource": ["app:/sound/adx/tikyuu6_ev_submarine.acb"],
-    "game_sound": [
-      "app:/sound/adx/tikyuu6_ev_submarine.acb",
-      "app:/sound/adx/tikyuu6_en_Radon.acb"
-    ],
-    "indirect_fire_param": {
-      "null": [0, 0.10000000149011612],
-      "undefined": 0,
-      "se": {
-        "fire": {"key": "EDF6翼竜パワーダウンミサイル発射", "is_loop": 0},
-        "hit": {"key": "EDF6翼竜パワーダウンミサイル着弾"}
-      }
+  "variables": [
+    {
+      "value": "DemoIndirectFire",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "indirect_fire_damage": 3000
-  },
+    {
+      "value": [
+        {"value": "app:/sound/adx/tikyuu6_ev_submarine.acb", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    },
+    {
+      "value": [
+        {"value": "app:/sound/adx/tikyuu6_ev_submarine.acb", "type": "str"},
+        {"value": "app:/sound/adx/tikyuu6_en_Radon.acb", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "game_sound"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0.10000000149011612, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 4000, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 12, "type": "double"},
+        {"value": 80, "type": "double"},
+        {"value": "EfsBullet", "type": "str"},
+        {"value": 10, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 7.5, "type": "double"},
+        {"value": 0.20000000298023224, "type": "double"},
+        {"value": 40, "type": "double"},
+        {"value": 10000, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {"value": 3, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {
+              "value": "app:/object/DemoMissile_vsRing.efarc",
+              "type": "str",
+              "name": "efarc"
+            },
+            {
+              "value": [
+                {
+                  "value": "DemoVsRingMissile_bullet.esb",
+                  "type": "str",
+                  "name": "esb"
+                },
+                {"value": 10, "type": "double", "name": "scale"},
+                {
+                  "value": [
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color"
+                },
+                {"value": 1, "type": "double", "name": "use_far_render"}
+              ],
+              "type": "ptr",
+              "name": "bullet"
+            },
+            {
+              "value": [
+                {
+                  "value": "DemoVsRingMissile_hit.esb",
+                  "type": "str",
+                  "name": "esb"
+                },
+                {"value": 1, "type": "double", "name": "scale"},
+                {
+                  "value": [
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color"
+                },
+                {"value": 1, "type": "double", "name": "use_far_render"}
+              ],
+              "type": "ptr",
+              "name": "hit"
+            },
+            {
+              "value": [
+                {
+                  "value": 0,
+                  "type": "double",
+                  "name": "before_ignition_accele"
+                },
+                {
+                  "value": [
+                    {"value": 1, "type": "double", "name": "linear"},
+                    {"value": 0, "type": "double", "name": "random"},
+                    {"value": 0, "type": "double", "name": "to_target"},
+                    {"value": 0, "type": "double", "name": "create_dir"}
+                  ],
+                  "type": "ptr",
+                  "name": "ignition_velocity"
+                },
+                {"value": 120, "type": "double", "name": "ignition_time"},
+                {"value": 1000, "type": "double", "name": "time"},
+                {
+                  "value": 0.009999999776482582,
+                  "type": "double",
+                  "name": "linear_velocity_accele"
+                },
+                {"value": 10, "type": "double", "name": "max_linear_velocity"},
+                {
+                  "value": 0.019999999552965164,
+                  "type": "double",
+                  "name": "turn_velocity_accele"
+                },
+                {
+                  "value": 0.019999999552965164,
+                  "type": "double",
+                  "name": "max_turn_velocity"
+                },
+                {"value": 0, "type": "double", "name": "turn_velocity_resist"}
+              ],
+              "type": "ptr",
+              "name": "homing_data"
+            }
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": [
+                {"value": "EDF6翼竜パワーダウンミサイル発射", "type": "str", "name": "key"},
+                {"value": 0, "type": "double", "name": "is_loop"}
+              ],
+              "type": "ptr",
+              "name": "fire"
+            },
+            {
+              "value": [
+                {"value": "EDF6翼竜パワーダウンミサイル着弾", "type": "str", "name": "key"}
+              ],
+              "type": "ptr",
+              "name": "hit"
+            }
+          ],
+          "type": "ptr",
+          "name": "se"
+        }
+      ],
+      "type": "ptr",
+      "name": "indirect_fire_param"
+    },
+    {"value": 3000, "type": "double", "name": "indirect_fire_damage"}
+  ],
   "strings": [
     "resource",
     "game_sound",

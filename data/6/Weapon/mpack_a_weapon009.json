@@ -1,118 +1,338 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_BasicShoot",
-    "custom_parameter": ["shoulder_recoil1", 0, 0, 1],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "デッド・ボルケーノ",
-    "name.en": "Dead Volcano",
-    "name.cn": "死亡火山",
-    "name.kr": "데드 볼케이노",
-    "name.sc": "死亡火山",
-    "WeaponIcon": "app:/weapon/icon/cascade2.dds",
-    "Sight_animation_model": [["app:/HUD/sight02.rab", "sight02.mdb"], 0, 0],
-    "animation_model": [
-      ["app:/Weapon/s_rocket_cascade2.rab", "s_rocket_cascade2.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f00000083000000030000000e006600240000009c010000a0010000a002000000000a00180000000100010050010000020000006801000064020000a602000002000000a4010000b40100006401000000000000440200004a02000086020000020000000402000094010000440100000000000024020000300200006602000002000000a40100007401000024010000000000000402000016020000460200000200000034010000540100000401000000000000e4010000fc01000026020000020000009401000034010000e400000000000000c4010000e201000006020000020000003401000014010000c400000000000000a4010000c8010000e601000002000000c4000000f4000000a40000000000000084010000ae010000c60100000200000024010000d400000084000000000000006401000094010000a601000002000000c4000000b40000006400000000000000440100007a01000086010000020000005400000094000000440000000000000024010000600100006601000002000000b400000074000000f40000000000000004010000babababa0000000000000000000000000000803f000000000e2db23dbe9f1a3f0000803f000000002b87163ebe9f1a3f0000803f00000000aaf1523ebe9f1a3f0000803f0000000014ae873e77be1f3f0000803f0ad7a33c0ad7a33c0ad7a33c0000803f4260653d8b6ce73dbe9f1a3f0000803f4260653d0e2d323ebe9f1a3f0000803f4260653db29d6f3ebe9f1a3f0000803fbb25d93df2ea9c3c85072d3e0000803fd57869bd8b6ce73dbe9f1a3f0000803fd57869bd0e2d323ebe9f1a3f0000803fd57869bdb29d6f3ebe9f1a3f0000803fd365b3bf29964bbfd3ac43c00000803f53474f000201000000000000200000000000000020000000000000002000000030003100000030003200000030003300000030003400000030003500000030003600000030003700000030003800000030003900000031003000000049004b00000073005f0072006f0063006b00650074005f00630061007300630061006400650032000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "shoulder",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "shoulder_change1",
-    "ReloadAnimation": "shoulder_reload1",
-    "AmmoCount": 20,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [480, 21, 2, 5, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": [60, 25, 3, 5, 0.5, 0.5, 0],
-    "FireBurstCount": 20,
-    "FireBurstInterval": 4,
-    "FireAccuracy": [0.009999999776482582, 13, 1, 5, 2, 0.5, 1],
-    "FireRecoil": 0.30000001192092896,
-    "FireVector": null,
-    "FireSe": [0, "e5w_RL_VolcanoH30W", 1, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "MissileBullet01",
-    "AmmoModel": "app:/WEAPON/bullet_rocket.rab",
-    "AmmoSpeed": 0.10000000149011612,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0.5,
-    "AmmoAlive": 600,
-    "AmmoDamage": [2000, 8, 0, 10, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [16, 32, 4, 10, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1.5,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [
-      0.44999998807907104,
-      0.44999998807907104,
-      0.44999998807907104,
-      0.25
-    ],
-    "Ammo_CustomParameter": [
-      0,
-      1,
-      100,
-      [0, 0, -0.05000000074505806],
-      0.019999999552965164,
-      0,
-      15,
-      [30, 0.8999999761581421],
-      0,
-      0,
-      [0.10000000149011612, 1],
-      [
-        0,
-        "weapon_Ranger_ML_go_Medium",
-        0.4000000059604645,
-        0.6674200296401978,
-        1,
-        100
-      ]
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_explode_M", 1, 1, 1, 200],
-    "MuzzleFlash": "MuzzleSmoke01",
-    "MuzzleFlash_CustomParameter": [
-      1,
-      0.25,
-      [1, 1, 1, 0.20000000298023224],
-      0.10000000149011612,
-      [0, 0, -1.600000023841858]
-    ],
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/WEAPON/bullet_rocket.rab"]
-  },
+  "variables": [
+    {
+      "value": "Weapon_BasicShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "shoulder_recoil1", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "デッド・ボルケーノ", "type": "str", "name": "name.ja"},
+    {"value": "Dead Volcano", "type": "str", "name": "name.en"},
+    {"value": "死亡火山", "type": "str", "name": "name.cn"},
+    {"value": "데드 볼케이노", "type": "str", "name": "name.kr"},
+    {"value": "死亡火山", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/cascade2.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight02.rab", "type": "str"},
+            {"value": "sight02.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/s_rocket_cascade2.rab", "type": "str"},
+            {"value": "s_rocket_cascade2.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f00000083000000030000000e006600240000009c010000a0010000a002000000000a00180000000100010050010000020000006801000064020000a602000002000000a4010000b40100006401000000000000440200004a02000086020000020000000402000094010000440100000000000024020000300200006602000002000000a40100007401000024010000000000000402000016020000460200000200000034010000540100000401000000000000e4010000fc01000026020000020000009401000034010000e400000000000000c4010000e201000006020000020000003401000014010000c400000000000000a4010000c8010000e601000002000000c4000000f4000000a40000000000000084010000ae010000c60100000200000024010000d400000084000000000000006401000094010000a601000002000000c4000000b40000006400000000000000440100007a01000086010000020000005400000094000000440000000000000024010000600100006601000002000000b400000074000000f40000000000000004010000babababa0000000000000000000000000000803f000000000e2db23dbe9f1a3f0000803f000000002b87163ebe9f1a3f0000803f00000000aaf1523ebe9f1a3f0000803f0000000014ae873e77be1f3f0000803f0ad7a33c0ad7a33c0ad7a33c0000803f4260653d8b6ce73dbe9f1a3f0000803f4260653d0e2d323ebe9f1a3f0000803f4260653db29d6f3ebe9f1a3f0000803fbb25d93df2ea9c3c85072d3e0000803fd57869bd8b6ce73dbe9f1a3f0000803fd57869bd0e2d323ebe9f1a3f0000803fd57869bdb29d6f3ebe9f1a3f0000803fd365b3bf29964bbfd3ac43c00000803f53474f000201000000000000200000000000000020000000000000002000000030003100000030003200000030003300000030003400000030003500000030003600000030003700000030003800000030003900000031003000000049004b00000073005f0072006f0063006b00650074005f00630061007300630061006400650032000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "shoulder", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "shoulder_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "shoulder_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 20, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 480, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {
+      "value": [
+        {"value": 60, "type": "double"},
+        {"value": 25, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireInterval"
+    },
+    {"value": 20, "type": "double", "name": "FireBurstCount"},
+    {"value": 4, "type": "double", "name": "FireBurstInterval"},
+    {
+      "value": [
+        {"value": 0.009999999776482582, "type": "double"},
+        {"value": 13, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireAccuracy"
+    },
+    {"value": 0.30000001192092896, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "e5w_RL_VolcanoH30W", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "MissileBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/bullet_rocket.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 0.10000000149011612, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0.5, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 600, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 2000, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 16, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1.5, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 0.44999998807907104, "type": "double"},
+        {"value": 0.44999998807907104, "type": "double"},
+        {"value": 0.44999998807907104, "type": "double"},
+        {"value": 0.25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 100, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": -0.05000000074505806, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.019999999552965164, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 15, "type": "double"},
+        {
+          "value": [
+            {"value": 30, "type": "double"},
+            {"value": 0.8999999761581421, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {"value": 0.10000000149011612, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": "weapon_Ranger_ML_go_Medium", "type": "str"},
+            {"value": 0.4000000059604645, "type": "double"},
+            {"value": 0.6674200296401978, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 100, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_explode_M", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "MuzzleSmoke01", "type": "str", "name": "MuzzleFlash"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0.25, "type": "double"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 0.20000000298023224, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.10000000149011612, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": -1.600000023841858, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "MuzzleFlash_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [{"value": "app:/WEAPON/bullet_rocket.rab", "type": "str"}],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

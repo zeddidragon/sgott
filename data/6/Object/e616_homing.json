@@ -1,79 +1,386 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "EDF6_MartianWeapon_Basic",
-    "base_pose": "basic",
-    "animation_model": {
-      "null": ["app:/Object/e616_venus.mrab", "e616_ring01.mdb"],
-      "undefined": 0,
-      "effect": {"path": "app:/object/e616_venus_shield_hit.efarc"}
+  "variables": [
+    {
+      "value": "EDF6_MartianWeapon_Basic",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "ragdoll": [
-      "app:/object/Ragdoll_e616_ring01.shkt",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "53474f0002010000020000002000000002000000d001000000000000e00100000000000001000000180000000000000001000000d800000000000000040000000c00000000000000020000003000000000000000030000003c00000000000000040000005400000000000000030000007800000003000000080000009a01000003000000080000008e01000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f00000000040000000c00000000000000020000003000000000000000030000003c0000000000000004000000540000000000000003000000780000000300000008000000ce0000000300000008000000c200000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f1000000000000000480000000100000061006e0069006d006100740069006f006e005f00660072006f006d005f0072006100670064006f006c006c00000070006f006c0079006d00650073006800000072006100670064006f006c006c005f00660072006f006d005f0061006e0069006d006100740069006f006e000000"
-      }
-    ],
-    "soft_body_basic_weapon_settings": {
-      "aim": {
-        "area": {
-          "x": {"min": -75, "max": 75},
-          "y": {"min": 25, "max": 100},
-          "z": {"min": 50, "max": 50},
-          "side_shift": 25
+    {"value": "basic", "type": "str", "name": "base_pose"},
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/e616_venus.mrab", "type": "str"},
+            {"value": "e616_ring01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
         },
-        "angular_speed": 0.004999999888241291,
-        "fire_angular_speed": 0.004999999888241291
-      },
-      "charge": {
-        "time": {"min": 60, "max": 90},
-        "esb": "homing_charge.esb",
-        "esb_color": [0.5, 0.5, 2],
-        "esb_time": 60,
-        "se": {"key": "金星人ホーミング弾チャージ", "is_loop": 0}
-      },
-      "fire": {
-        "esb": "homing_fire.esb",
-        "esb_loop": 1,
-        "esb_color": [0.5, 0.5, 2]
-      }
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000002002600240000005c00000060000000a00000000000010018000000010000003000000002000000280000007c00000064000000010000002400000034000000ffffffff0000000044000000babababa0000000000000000000088410000803f0000003f0000003f0000003f0000803f53474f000201000000000000200000000000000020000000000000002000000065003600310036005f00720069006e0067003000310000000d54217157300000000000000000"
+          },
+          "type": "extra"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": "app:/object/e616_venus_shield_hit.efarc",
+              "type": "str",
+              "name": "path"
+            }
+          ],
+          "type": "ptr",
+          "name": "effect"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
     },
-    "bullet_setting": {
-      "factory": "EfsBullet",
-      "null": [4, 2.6666667461395264],
-      "undefined": "金星人ホーミング弾命中",
-      "override": {"alive_time": 900}
+    {
+      "value": [
+        {"value": "app:/object/Ragdoll_e616_ring01.shkt", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "53474f0002010000020000002000000002000000d001000000000000e00100000000000001000000180000000000000001000000d800000000000000040000000c00000000000000020000003000000000000000030000003c00000000000000040000005400000000000000030000007800000003000000080000009a01000003000000080000008e01000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f00000000040000000c00000000000000020000003000000000000000030000003c0000000000000004000000540000000000000003000000780000000300000008000000ce0000000300000008000000c200000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f1000000000000000480000000100000061006e0069006d006100740069006f006e005f00660072006f006d005f0072006100670064006f006c006c00000070006f006c0079006d00650073006800000072006100670064006f006c006c005f00660072006f006d005f0061006e0069006d006100740069006f006e000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "ragdoll"
     },
-    "fire_setting": [
-      1,
-      null,
-      14,
-      null,
-      4,
-      null,
-      1.899999976158142,
-      null,
-      480,
-      null
-    ],
-    "flicker_setting": [
-      0.009999999776482582,
-      null,
-      0.0010000000474974513,
-      null,
-      0.019999999552965164,
-      null,
-      0.8999999761581421,
-      null,
-      0.009999999776482582,
-      null,
-      1,
-      null
-    ]
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": -75, "type": "double", "name": "min"},
+                    {"value": 75, "type": "double", "name": "max"}
+                  ],
+                  "type": "ptr",
+                  "name": "x"
+                },
+                {
+                  "value": [
+                    {"value": 25, "type": "double", "name": "min"},
+                    {"value": 100, "type": "double", "name": "max"}
+                  ],
+                  "type": "ptr",
+                  "name": "y"
+                },
+                {
+                  "value": [
+                    {"value": 50, "type": "double", "name": "min"},
+                    {"value": 50, "type": "double", "name": "max"}
+                  ],
+                  "type": "ptr",
+                  "name": "z"
+                },
+                {"value": 25, "type": "double", "name": "side_shift"}
+              ],
+              "type": "ptr",
+              "name": "area"
+            },
+            {
+              "value": 0.004999999888241291,
+              "type": "double",
+              "name": "angular_speed"
+            },
+            {
+              "value": 0.004999999888241291,
+              "type": "double",
+              "name": "fire_angular_speed"
+            }
+          ],
+          "type": "ptr",
+          "name": "aim"
+        },
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 60, "type": "double", "name": "min"},
+                {"value": 90, "type": "double", "name": "max"}
+              ],
+              "type": "ptr",
+              "name": "time"
+            },
+            {"value": "homing_charge.esb", "type": "str", "name": "esb"},
+            {
+              "value": [
+                {"value": 0.5, "type": "double"},
+                {"value": 0.5, "type": "double"},
+                {"value": 2, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "esb_color"
+            },
+            {"value": 60, "type": "double", "name": "esb_time"},
+            {
+              "value": [
+                {"value": "金星人ホーミング弾チャージ", "type": "str", "name": "key"},
+                {"value": 0, "type": "double", "name": "is_loop"}
+              ],
+              "type": "ptr",
+              "name": "se"
+            }
+          ],
+          "type": "ptr",
+          "name": "charge"
+        },
+        {
+          "value": [
+            {"value": "homing_fire.esb", "type": "str", "name": "esb"},
+            {"value": 1, "type": "double", "name": "esb_loop"},
+            {
+              "value": [
+                {"value": 0.5, "type": "double"},
+                {"value": 0.5, "type": "double"},
+                {"value": 2, "type": "double"}
+              ],
+              "type": "ptr",
+              "name": "esb_color"
+            }
+          ],
+          "type": "ptr",
+          "name": "fire"
+        }
+      ],
+      "type": "ptr",
+      "name": "soft_body_basic_weapon_settings"
+    },
+    {
+      "value": [
+        {"value": "EfsBullet", "type": "str", "name": "factory"},
+        {
+          "value": [
+            {"value": 4, "type": "double"},
+            {"value": 2.6666667461395264, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": [{"value": 1, "type": "double"}], "type": "ptr"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.75, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 0.22499999403953552, "type": "double"},
+        {"value": 0.05000000074505806, "type": "double"},
+        {"value": 1, "type": "double"},
+        {
+          "value": [
+            {"value": 0.03999999910593033, "type": "double"},
+            {"value": 1.7999999523162842, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 1.600000023841858, "type": "double"},
+        {
+          "value": [
+            {"value": 0.12999999523162842, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 0.25, "type": "double"},
+            {"value": 0.5, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0.20000000298023224, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 480, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {
+          "value": [
+            {
+              "value": "app:/object/e616_venus_shield_hit.efarc",
+              "type": "str",
+              "name": "efarc"
+            },
+            {"value": 1, "type": "double", "name": "auto_direction_adjust"},
+            {"value": 0, "type": "double", "name": "is_explosion_blow"},
+            {
+              "value": [
+                {"value": "homing_bullet.esb", "type": "str", "name": "esb"},
+                {"value": 1, "type": "double", "name": "scale"},
+                {
+                  "value": [
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color"
+                }
+              ],
+              "type": "ptr",
+              "name": "bullet"
+            },
+            {
+              "value": [
+                {
+                  "value": "homing_bullet_hit.esb",
+                  "type": "str",
+                  "name": "esb"
+                },
+                {
+                  "value": [
+                    {"value": 1, "type": "double"},
+                    {"value": 0.25, "type": "double"},
+                    {"value": 0.5, "type": "double"},
+                    {"value": 1, "type": "double"}
+                  ],
+                  "type": "ptr",
+                  "name": "color"
+                },
+                {"value": 1, "type": "double", "name": "scale"},
+                {"value": 1, "type": "double", "name": "mark_type"}
+              ],
+              "type": "ptr",
+              "name": "hit"
+            },
+            {
+              "value": [
+                {
+                  "value": -0.03999999910593033,
+                  "type": "double",
+                  "name": "before_ignition_accele"
+                },
+                {
+                  "value": [
+                    {"value": 1, "type": "double", "name": "linear"},
+                    {
+                      "value": 0.10000000149011612,
+                      "type": "double",
+                      "name": "random"
+                    },
+                    {
+                      "value": 0.15000000596046448,
+                      "type": "double",
+                      "name": "to_target"
+                    },
+                    {
+                      "value": 0.009999999776482582,
+                      "type": "double",
+                      "name": "create_dir"
+                    }
+                  ],
+                  "type": "ptr",
+                  "name": "ignition_velocity"
+                },
+                {"value": 120, "type": "double", "name": "ignition_time"},
+                {"value": 1000, "type": "double", "name": "time"},
+                {
+                  "value": 0.014999999664723873,
+                  "type": "double",
+                  "name": "linear_velocity_accele"
+                },
+                {
+                  "value": 0.75,
+                  "type": "double",
+                  "name": "max_linear_velocity"
+                },
+                {
+                  "value": 0.0006249999860301614,
+                  "type": "double",
+                  "name": "turn_velocity_accele"
+                },
+                {
+                  "value": 0.17499999701976776,
+                  "type": "double",
+                  "name": "max_turn_velocity"
+                },
+                {
+                  "value": 0.9750000238418579,
+                  "type": "double",
+                  "name": "turn_velocity_resist"
+                },
+                {
+                  "value": [
+                    {"value": "金星人ホーミング弾ホーミング開始", "type": "str", "name": "key"}
+                  ],
+                  "type": "ptr",
+                  "name": "begin_se"
+                }
+              ],
+              "type": "ptr",
+              "name": "homing_data"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": "金星人ホーミング弾発射", "type": "str"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "金星人ホーミング弾命中", "type": "str"},
+        {
+          "value": [{"value": 900, "type": "double", "name": "alive_time"}],
+          "type": "ptr",
+          "name": "override"
+        }
+      ],
+      "type": "ptr",
+      "name": "bullet_setting"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 14, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 4, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 1.899999976158142, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 480, "type": "double"},
+        {"value": null, "type": "ptr"}
+      ],
+      "type": "ptr",
+      "name": "fire_setting"
+    },
+    {
+      "value": [
+        {"value": 0.009999999776482582, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 0.0010000000474974513, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 0.019999999552965164, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 0.009999999776482582, "type": "double"},
+        {"value": null, "type": "ptr"},
+        {"value": 1, "type": "double"},
+        {"value": null, "type": "ptr"}
+      ],
+      "type": "ptr",
+      "name": "flicker_setting"
+    }
+  ],
   "strings": [
     "max_turn_velocity",
     "xgs_scene_object_class",

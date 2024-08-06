@@ -1,97 +1,321 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_Sub",
-    "custom_parameter": {
-      "animation": "throwL_bag_swing",
-      "whole_body": 0,
-      "animation_speed": 1,
-      "is_manual_reload": 1,
-      "show_throw_guide": {"always_show": 1, "radius": 1}
+  "variables": [
+    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {
+      "value": [
+        {"value": "throwL_bag_swing", "type": "str", "name": "animation"},
+        {"value": 0, "type": "double", "name": "whole_body"},
+        {"value": 1, "type": "double", "name": "animation_speed"},
+        {"value": 1, "type": "double", "name": "is_manual_reload"},
+        {
+          "value": [
+            {"value": 1, "type": "double", "name": "always_show"},
+            {"value": 1, "type": "double", "name": "radius"}
+          ],
+          "type": "ptr",
+          "name": "show_throw_guide"
+        }
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
     },
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ＺＥＸランチャー",
-    "name.en": "ZEX Launcher",
-    "name.cn": "ＺＥＸ發射器",
-    "name.kr": "ZEX 런처",
-    "name.sc": "ＺＥＸ发射器",
-    "WeaponIcon": "app:/weapon/icon/e_sentrygun_Canon01.dds",
-    "animation_model": [
-      ["app:/Weapon/e_sentrygun_Canon01.rab", "e_sentrygun_Canon01.mdb"],
-      "app:/Weapon/e_sentrygun_Canon01.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300030003005400240000005c000000a000000090020000000001001800000001000000300000000200000028000000540200005a0200000200000074000000840000006400000000000000ec000000300000004000000078020000010000003000000030000000580200000000000020000000200000003e0200000000000028020000000000000000000044000000babababa0000000000000000000000000000803f0000000000000000cdcccc3e0000803fcdcccc3dcdcccc3dcdcccc3d0000803f53474f00020100000100000020000000010000002c0000000000000034000000030000000c0000001e00000008000000000000006e0061006d0065000000bb30f330c830ea30fc30ac30f330ab30ce30f330555c8b95000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e0000003000310000006700610074006c0069006e0067005f00620061007200720065006c000000730065000000730068006f00740000007300740061006e006400620079000000770061006b0065005f00750070000000"
-      }
-    ],
-    "ModelConstraint": ["arms_l"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "",
-    "ReloadAnimation": "",
-    "AmmoCount": [2, 0, 0, 2, 0.5, 0.5, 0],
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": [3600, 21, 2, 8, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 2,
-    "FireSpreadWidth": 1,
-    "FireCount": 1,
-    "FireInterval": 10,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": null,
-    "FireSe": [0, "weapon_Ranger_GL_throwHeavyBig", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "SentryGunBullet01",
-    "AmmoModel": "app:/WEAPON/e_sentrygun_Canon01.rab",
-    "AmmoSpeed": 0.4000000059604645,
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 1800,
-    "AmmoDamage": [900, 8, 1, 8, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [15, 32, 3, 8, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 0.20000000298023224, 0.20000000298023224, 0.5],
-    "Ammo_CustomParameter": {
-      "null": "",
-      "undefined": [1, 0.25, [1, 1, 1, 1], 0.10000000149011612, [0, 0, -1.25]],
-      "wait_signal": 0,
-      "wake_interval": 16
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ＺＥＸランチャー", "type": "str", "name": "name.ja"},
+    {"value": "ZEX Launcher", "type": "str", "name": "name.en"},
+    {"value": "ＺＥＸ發射器", "type": "str", "name": "name.cn"},
+    {"value": "ZEX 런처", "type": "str", "name": "name.kr"},
+    {"value": "ＺＥＸ发射器", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/e_sentrygun_Canon01.dds",
+      "type": "str",
+      "name": "WeaponIcon"
     },
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_explode_L", 1, 1, 1, 200],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/WEAPON/e_sentrygun_Canon01.rab"]
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_sentrygun_Canon01.rab", "type": "str"},
+            {"value": "e_sentrygun_Canon01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_sentrygun_Canon01.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300030003005400240000005c000000a000000090020000000001001800000001000000300000000200000028000000540200005a0200000200000074000000840000006400000000000000ec000000300000004000000078020000010000003000000030000000580200000000000020000000200000003e0200000000000028020000000000000000000044000000babababa0000000000000000000000000000803f0000000000000000cdcccc3e0000803fcdcccc3dcdcccc3dcdcccc3d0000803f53474f00020100000100000020000000010000002c0000000000000034000000030000000c0000001e00000008000000000000006e0061006d0065000000bb30f330c830ea30fc30ac30f330ab30ce30f330555c8b95000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e0000003000310000006700610074006c0069006e0067005f00620061007200720065006c000000730065000000730068006f00740000007300740061006e006400620079000000770061006b0065005f00750070000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_l", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "", "type": "str", "name": "ChangeAnimation"},
+    {"value": "", "type": "str", "name": "ReloadAnimation"},
+    {
+      "value": [
+        {"value": 2, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoCount"
+    },
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 3600, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 2, "type": "double", "name": "FireSpreadType"},
+    {"value": 1, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 10, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Ranger_GL_throwHeavyBig", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "SentryGunBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/e_sentrygun_Canon01.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 0.4000000059604645, "type": "double", "name": "AmmoSpeed"},
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 1800, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 900, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 15, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0.20000000298023224, "type": "double"},
+        {"value": 0.20000000298023224, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 600, "type": "double"},
+        {"value": 0.05000000074505806, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": "spine", "type": "str"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0.25, "type": "double"},
+            {"value": 1.25, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "RocketBullet01", "type": "str"},
+        {"value": 40, "type": "double"},
+        {"value": 60, "type": "double"},
+        {"value": 80, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.800000011920929, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 40, "type": "double"},
+            {"value": 100, "type": "double"},
+            {"value": 0.10000000149011612, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": "weapon_Engineer_ZE_ZEX-Launcher", "type": "str"},
+            {"value": 0.8913000226020813, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 25, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "MuzzleSmoke01", "type": "str"},
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 0.25, "type": "double"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": 0.10000000149011612, "type": "double"},
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": 0, "type": "double"},
+                {"value": -1.25, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double", "name": "wait_signal"},
+        {"value": 16, "type": "double", "name": "wake_interval"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_explode_L", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/WEAPON/e_sentrygun_Canon01.rab", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

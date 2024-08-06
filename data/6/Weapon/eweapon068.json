@@ -1,133 +1,335 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_RadioContact",
-    "custom_parameter": ["common_call_loop", "common_call_end"],
-    "use_underground": 0,
-    "FireCondition": 0,
-    "name.ja": "高速爆撃機ＫＭ６Ｆ２",
-    "name.en": "High-Speed Bomber KM6 F2",
-    "name.cn": "高速爆擊機ＫＭ６Ｆ２",
-    "name.kr": "고속 폭격기 KM6 F2",
-    "name.sc": "高速爆击机ＫＭ６Ｆ２",
-    "WeaponIcon": "app:/weapon/icon/transceiver.dds",
-    "animation_model": [
-      ["app:/Weapon/e_throw_transceiver.rab", "e_throw_transceiver.mdb"],
-      "app:/Weapon/e_throw_transceiver.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f007400720061006e0073006300650069007600650072000000680069006400650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "throw",
-    "AimAnimation": "aim_no_ik",
-    "ChangeAnimation": "throw_change1",
-    "ReloadAnimation": "throw_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 2,
-    "ReloadInit": 1,
-    "ReloadTime": [800, 21, 1, 10, 1, 0.30000001192092896, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 120,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": [0, 0.5, 1.100000023841858],
-    "FireSe": [0, "weapon_Engineer_Kuubaku_throw", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "",
-    "AmmoModel": "app:/WEAPON/e_throw_marker04.rab",
-    "AmmoSpeed": 1.2000000476837158,
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 1800,
-    "AmmoDamage": [900, 8, 0, 10, 0.800000011920929, 0.699999988079071, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 8,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [1, 0, 0, 0.5],
-    "Ammo_CustomParameter": [
-      30,
-      1,
-      [
-        "app:/object/Bomber501_2.sgo",
-        1,
-        30,
-        150,
-        6,
-        0,
-        200,
-        0,
-        1,
-        [0.4000000059604645],
-        [
-          [0, 0],
-          [0, 0],
-          150,
-          0,
-          "SolidBullet01",
-          8,
-          0,
-          1,
-          1,
-          0,
-          600,
-          1,
-          [0.20000000298023224, 0.20000000298023224, 3, 1],
-          [0],
-          0,
-          0,
-          0,
-          [0, "weapon_KUBAKU_bakugekiPanzer_shot", 0.5, 1, 20, 500],
-          [0, "common_damages_kuubaku_whalePanzer20", 1, 1, 3, 100]
-        ]
+  "variables": [
+    {
+      "value": "Weapon_RadioContact",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "common_call_loop", "type": "str"},
+        {"value": "common_call_end", "type": "str"}
       ],
-      ["カロン目標確認", "カロン発射機銃掃射", "カロン機銃掃射後"]
-    ],
-    "Ammo_EquipVoice": ["カロン出撃直後", "カロン支援不能"],
-    "AmmoHitSe": [
-      0,
-      "common_damages_explodeFrechette_M",
-      0.8913000226020813,
-      1,
-      1,
-      200
-    ],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": [
-      "app:/WEAPON/e_throw_marker04.rab",
-      "app:/object/Bomber501_2.sgo"
-    ]
-  },
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 0, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "高速爆撃機ＫＭ６Ｆ２", "type": "str", "name": "name.ja"},
+    {"value": "High-Speed Bomber KM6 F2", "type": "str", "name": "name.en"},
+    {"value": "高速爆擊機ＫＭ６Ｆ２", "type": "str", "name": "name.cn"},
+    {"value": "고속 폭격기 KM6 F2", "type": "str", "name": "name.kr"},
+    {"value": "高速爆击机ＫＭ６Ｆ２", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/transceiver.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_throw_transceiver.rab", "type": "str"},
+            {"value": "e_throw_transceiver.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_throw_transceiver.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300020002004800240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000009c0000000000000010000000100000008200000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000065005f007400680072006f0077005f007400720061006e0073006300650069007600650072000000680069006400650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "throw", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
+    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 2, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 800, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 120, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1.100000023841858, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireVector"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Engineer_Kuubaku_throw", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/e_throw_marker04.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 1.2000000476837158, "type": "double", "name": "AmmoSpeed"},
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 1800, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 900, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.800000011920929, "type": "double"},
+        {"value": 0.699999988079071, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 8, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 30, "type": "double"},
+        {"value": 1, "type": "double"},
+        {
+          "value": [
+            {"value": "app:/object/Bomber501_2.sgo", "type": "str"},
+            {"value": 1, "type": "double"},
+            {"value": 30, "type": "double"},
+            {"value": 150, "type": "double"},
+            {"value": 6, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 200, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 1, "type": "double"},
+            {
+              "value": [{"value": 0.4000000059604645, "type": "double"}],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {
+                  "value": [
+                    {"value": 0, "type": "double"},
+                    {"value": 0, "type": "double"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {"value": 0, "type": "double"},
+                    {"value": 0, "type": "double"}
+                  ],
+                  "type": "ptr"
+                },
+                {"value": 150, "type": "double"},
+                {"value": 0, "type": "double"},
+                {"value": "SolidBullet01", "type": "str"},
+                {"value": 8, "type": "double"},
+                {"value": 0, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 0, "type": "double"},
+                {"value": 600, "type": "double"},
+                {"value": 1, "type": "double"},
+                {
+                  "value": [
+                    {"value": 0.20000000298023224, "type": "double"},
+                    {"value": 0.20000000298023224, "type": "double"},
+                    {"value": 3, "type": "double"},
+                    {"value": 1, "type": "double"}
+                  ],
+                  "type": "ptr"
+                },
+                {"value": [{"value": 0, "type": "double"}], "type": "ptr"},
+                {"value": 0, "type": "double"},
+                {"value": 0, "type": "double"},
+                {"value": 0, "type": "double"},
+                {
+                  "value": [
+                    {"value": 0, "type": "double"},
+                    {
+                      "value": "weapon_KUBAKU_bakugekiPanzer_shot",
+                      "type": "str"
+                    },
+                    {"value": 0.5, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 20, "type": "double"},
+                    {"value": 500, "type": "double"}
+                  ],
+                  "type": "ptr"
+                },
+                {
+                  "value": [
+                    {"value": 0, "type": "double"},
+                    {
+                      "value": "common_damages_kuubaku_whalePanzer20",
+                      "type": "str"
+                    },
+                    {"value": 1, "type": "double"},
+                    {"value": 1, "type": "double"},
+                    {"value": 3, "type": "double"},
+                    {"value": 100, "type": "double"}
+                  ],
+                  "type": "ptr"
+                }
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": "カロン目標確認", "type": "str"},
+            {"value": "カロン発射機銃掃射", "type": "str"},
+            {"value": "カロン機銃掃射後", "type": "str"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "カロン出撃直後", "type": "str"},
+        {"value": "カロン支援不能", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_EquipVoice"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_explodeFrechette_M", "type": "str"},
+        {"value": 0.8913000226020813, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/WEAPON/e_throw_marker04.rab", "type": "str"},
+        {"value": "app:/object/Bomber501_2.sgo", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

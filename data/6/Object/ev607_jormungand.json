@@ -1,21 +1,119 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "FarEventObject",
-    "setting": {"scale": [1, 1, 1], "default_animation": "summon_action"},
-    "game_object_camera_setting": [[0, 2, 0], [0, 2, -20]],
-    "game_sound": ["app:/sound/adx/tikyuu6_ev_Jormungandr.acb"],
-    "animation_model": {
-      "null": ["app:/Object/ev607_jormungand.mrab", "ev607_jormungand.mdb"],
-      "undefined": [
-        [1, 1, 1],
-        [-416.5440673828125, -230.10964965820312, -8835.0126953125],
-        [416.5440673828125, 230.10997009277344, 459.7164611816406]
+  "variables": [
+    {
+      "value": "FarEventObject",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr",
+          "name": "scale"
+        },
+        {"value": "summon_action", "type": "str", "name": "default_animation"}
       ],
-      "effect": {"path": "app:/object/ev607_jormungand.efarc"}
+      "type": "ptr",
+      "name": "setting"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": -20, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {
+      "value": [
+        {"value": "app:/sound/adx/tikyuu6_ev_Jormungandr.acb", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "game_sound"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/ev607_jormungand.mrab", "type": "str"},
+            {"value": "ev607_jormungand.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/object/ev607_jormungand.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f0000008300000004000200010070002400000064000000c00000003c02000000000100200000000100000038000000020000003000000003000000280000000602000018020000000000007c0000000000a040ffffffff000000008c0000002000000050000000200200000000000010000000400000001c02000003000000b8010000000000000000000034010000ea01000000007042000000005c000000da0100000000614400000000ac000000babababababababababababa0000000000000000000000000000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c0000000000000034000000030000000f0000001400000028000000000000004500440046003600e930b930dc30b9307b763458ea30f330b030fa51fe7300006e0061006d0065000000000053474f00020100000100000020000000010000002c000000000000003400000003000000130000001400000030000000000000004500440046003600e930b930dc30b9307b763458e830eb30e030f330ac30f330c930fa51fe7300006e0061006d0065000000000053474f0002010000020000002000000002000000380000000000000048000000030000000a000000280000000300000008000000320000003800000000000000380000000100000041006400760065006e0074002e00650073006200000065006600660065006300740030003100000065007300620000006e006f0064006500000000006500660066006500630074000000650066006600650063007400300031000000650076003600300037005f006a006f0072006d0075006e00670061006e006400000073006500000073006c006500650070000000730075006d006d006f006e005f0061006300740069006f006e000000"
+          },
+          "type": "extra"
+        },
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": -416.5440673828125, "type": "double"},
+                {"value": -230.10964965820312, "type": "double"},
+                {"value": -8835.0126953125, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 416.5440673828125, "type": "double"},
+                {"value": 230.10997009277344, "type": "double"},
+                {"value": 459.7164611816406, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {
+              "value": "app:/object/ev607_jormungand.efarc",
+              "type": "str",
+              "name": "path"
+            }
+          ],
+          "type": "ptr",
+          "name": "effect"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
     }
-  },
+  ],
   "strings": [
     "xgs_scene_object_class",
     "animation_model",

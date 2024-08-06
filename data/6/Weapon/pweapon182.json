@@ -1,104 +1,276 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_HomingShoot",
-    "custom_parameter": ["hand_recoil3", 0, 0, 1],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ガイスト２",
-    "name.en": "Geist 2",
-    "name.cn": "靈魄２",
-    "name.kr": "가이스트 2",
-    "name.sc": "灵魄２",
-    "WeaponIcon": "app:/weapon/icon/geist.dds",
-    "animation_model": [
-      ["app:/Weapon/p_homing_geist01.rab", "p_homing_geist01.mdb"],
-      0,
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300000005002e00240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f00000000f4fdd43d713d9a3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f15aa5b3d0bb691bc5edb9bbd0000803f95512ac06674a7bf44f23bbf0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f0068006f006d0069006e0067005f0067006500690073007400300031000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "hand",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "hand_change1",
-    "ReloadAnimation": "hand_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [[10.248600006103516, 45, 5, 8, 0.5, 0.5, 1], 7],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [72, 21, 1, 8, 1, 0.5, 0],
-    "AngleAdjust": 0,
-    "LockonType": 3,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 1,
-    "Lockon_FireEndToClear": 0,
-    "Lockon_AutoTimeOut": 0,
-    "LockonRange": [300, 36, 3, 5, 0.6000000238418579, 0.8999999761581421, 1],
-    "LockonAngle": [0.4000000059604645, 0.3499999940395355],
-    "LockonTime": [4, 41, 4, 7, 0.8999999761581421, 1.5, 0],
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 1,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 0,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0.05000000074505806,
-    "FireRecoil": 0.6000000238418579,
-    "FireVector": null,
-    "FireSe": [0, "e5w_WDnew_homing_geist2", 0.949999988079071, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "HomingLaserBullet01",
-    "AmmoModel": 0,
-    "AmmoSpeed": 0.18000000715255737,
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 2777,
-    "AmmoDamage": [200, 8, 0, 8, 0.5, 0.5, 1],
-    "AmmoDamageAttribute": {"shield": 0.20000000298023224},
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [12, 32, 2, 5, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0.6000000238418579,
-    "AmmoHitSizeAdjust": 0.5,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [2, 0.699999988079071, 1, 0.5],
-    "Ammo_CustomParameter": [
-      2,
-      0,
-      30,
-      0.009999999776482582,
-      1,
-      0.36000001430511475,
-      60,
-      0,
-      1,
-      null
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [
-      0,
-      "common_damages_impactWD_homingGeist",
-      0.8999999761581421,
-      1,
-      1,
-      100
-    ],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1]
-  },
+  "variables": [
+    {
+      "value": "Weapon_HomingShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "hand_recoil3", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ガイスト２", "type": "str", "name": "name.ja"},
+    {"value": "Geist 2", "type": "str", "name": "name.en"},
+    {"value": "靈魄２", "type": "str", "name": "name.cn"},
+    {"value": "가이스트 2", "type": "str", "name": "name.kr"},
+    {"value": "灵魄２", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/geist.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/p_homing_geist01.rab", "type": "str"},
+            {"value": "p_homing_geist01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300000005002e00240000007c00000080000000f0000000000001001800000001000100300000000200000048000000b4000000c00000000200000054000000640000004400000000000000940000009a000000a0000000020000005400000044000000640000000000000074000000babababa0000000000000000000000000000803f00000000f4fdd43d713d9a3f0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f15aa5b3d0bb691bc5edb9bbd0000803f95512ac06674a7bf44f23bbf0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000049004b00000070005f0068006f006d0069006e0067005f0067006500690073007400300031000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "hand", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "hand_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "hand_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 10.248600006103516, "type": "double"},
+            {"value": 45, "type": "double"},
+            {"value": 5, "type": "double"},
+            {"value": 8, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 0.5, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 7, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 72, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 3, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 1, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 0, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 0, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {
+      "value": [
+        {"value": 300, "type": "double"},
+        {"value": 36, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonRange"
+    },
+    {
+      "value": [
+        {"value": 0.4000000059604645, "type": "double"},
+        {"value": 0.3499999940395355, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {
+      "value": [
+        {"value": 4, "type": "double"},
+        {"value": 41, "type": "double"},
+        {"value": 4, "type": "double"},
+        {"value": 7, "type": "double"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonTime"
+    },
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 1, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 0, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0.05000000074505806, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.6000000238418579, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "e5w_WDnew_homing_geist2", "type": "str"},
+        {"value": 0.949999988079071, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "HomingLaserBullet01", "type": "str", "name": "AmmoClass"},
+    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"value": 0.18000000715255737, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 2777, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 200, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [
+        {"value": 0.20000000298023224, "type": "double", "name": "shield"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamageAttribute"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 12, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.6000000238418579, "type": "double", "name": "AmmoSize"},
+    {"value": 0.5, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 2, "type": "double"},
+        {"value": 0.699999988079071, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 2, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 30, "type": "double"},
+        {"value": 0.009999999776482582, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.36000001430511475, "type": "double"},
+        {"value": 60, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": null, "type": "ptr"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_impactWD_homingGeist", "type": "str"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 100, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    }
+  ],
   "strings": [
     "LockonTargetType",
     "BaseAnimation",

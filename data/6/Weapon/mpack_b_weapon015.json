@@ -1,102 +1,285 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_HomingShoot",
-    "custom_parameter": ["shoulder_recoil1", 0, 0, 1],
-    "use_underground": 1,
-    "FireCondition": 0,
-    "name.ja": "ＦＯＲＫ－Ｚ２０",
-    "name.en": "FORK-Z20",
-    "name.cn": "ＦＯＲＫ－Ｚ２０",
-    "name.kr": "FORK-Z20",
-    "name.sc": "ＦＯＲＫ－Ｚ２０",
-    "WeaponIcon": "app:/weapon/icon/FORK.dds",
-    "animation_model": [
-      [
-        "app:/Weapon/s_missile_verticalmissile01.rab",
-        "s_missile_verticalmissile01.mdb"
+  "variables": [
+    {
+      "value": "Weapon_HomingShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "shoulder_recoil1", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"}
       ],
-      "app:/Weapon/s_missile_verticalmissile01.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f00000083000000030004000a00780024000000fc000000600100003c030000000005001800000001000100b000000002000000c80000000003000024030000020000006401000074010000b401000000000000e4010000e6020000040300000200000034010000540100009401000000000000c4010000cc020000e40200000200000004010000340100007401000000000000a4010000b2020000c402000002000000c40000001401000054010000000000008401000098020000a402000002000000b4000000f40000003401000000000000640100007e0200008402000002000000f4000000e40000000401000000000000240100004000000060000000920200000100000040000000500000005e0200000100000040000000400000007c0200000000000030000000300000004a020000000000007202000000000000000000004401000062020000000000000000000090010000babababa0000000017d98e3ea69b443b0000803f0000000017d98e3e2506013e0000803f0000000017d98e3e46b6f3bd0000803f0000000017d98e3eb4c876be0000803f0000000017d98e3e23dbb9be0000803f0ad7233d0ad7233d0ad7233d0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fff95d53d90c0bfbd9030ec3d0000803f8234353f813abebebe8b04400000803fdb0fc9bf00000000000000000000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000053474f00020100000100000020000000010000002c0000000000000034000000030000000e0000001e00000008000000000000006e0061006d00650000002dff2cff36ff2dff29ff33ff33ff29ff2cff25ff10ff11ff8b954f30000053474f00020100000100000020000000010000002c0000000000000034000000030000000f0000001e00000008000000000000006e0061006d00650000002dff2cff36ff2dff29ff33ff33ff29ff2cff25ff10ff11ff899558308b300000000030003100000030003200000030003300000030003400000030003500000049004b00000062006f0064007900000063006c006f0073006500000063006c006f00730065005f007300740061007400650000006f00700065006e0000006f00700065006e005f00730074006100740065000000730065000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "shoulder",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "shoulder_change1",
-    "ReloadAnimation": "shoulder_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 0,
-    "ReloadInit": 1,
-    "ReloadTime": [120, 21, 1, 5, 1, 0.5, 0],
-    "AngleAdjust": -0.15000000596046448,
-    "LockonType": 1,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": [1000, 36, 3, 8, 0.6000000238418579, 0.8999999761581421, 1],
-    "LockonAngle": [0.10000000149011612, 0.10000000149011612],
-    "LockonTime": 1,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 60,
-    "FireType": 0,
-    "FireSpreadType": 2,
-    "FireSpreadWidth": 0.8999999761581421,
-    "FireCount": 20,
-    "FireInterval": 0,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0.6000000238418579,
-    "FireVector": null,
-    "FireSe": [0, "e5w_MLnew_FORK-X20", 1, 1, 2, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 0,
-    "SecondaryFire_Parameter": [0],
-    "AmmoClass": "MissileBullet01",
-    "AmmoModel": "app:/WEAPON/bullet_missile.rab",
-    "AmmoSpeed": 1,
-    "AmmoOwnerMove": 0.75,
-    "AmmoGravityFactor": 0.75,
-    "AmmoAlive": 600,
-    "AmmoDamage": [300, 8, 0, 8, 0.5, 0.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": [5, 32, 2, 5, 0.5, 0.5, 1],
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0.800000011920929,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 1,
-    "AmmoColor": [5, 5, 5, 0.05000000074505806],
-    "Ammo_CustomParameter": [
-      1,
-      1,
-      30,
-      [0, 0, -0.05000000074505806],
-      0.10000000149011612,
-      0.4000000059604645,
-      16,
-      [50, 1],
-      60,
-      0,
-      [0.25, 0.25],
-      [0, "weapon_Ranger_ML_go_Haretsu_forFORK", 0.10000000149011612, 1, 10, 50]
-    ],
-    "Ammo_EquipVoice": null,
-    "AmmoHitSe": [0, "common_damages_impactMissle_FORK", 1, 1, 1, 200],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/WEAPON/bullet_missile.rab"]
-  },
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 1, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "ＦＯＲＫ－Ｚ２０", "type": "str", "name": "name.ja"},
+    {"value": "FORK-Z20", "type": "str", "name": "name.en"},
+    {"value": "ＦＯＲＫ－Ｚ２０", "type": "str", "name": "name.cn"},
+    {"value": "FORK-Z20", "type": "str", "name": "name.kr"},
+    {"value": "ＦＯＲＫ－Ｚ２０", "type": "str", "name": "name.sc"},
+    {"value": "app:/weapon/icon/FORK.dds", "type": "str", "name": "WeaponIcon"},
+    {
+      "value": [
+        {
+          "value": [
+            {
+              "value": "app:/Weapon/s_missile_verticalmissile01.rab",
+              "type": "str"
+            },
+            {"value": "s_missile_verticalmissile01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/s_missile_verticalmissile01.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f00000083000000030004000a00780024000000fc000000600100003c030000000005001800000001000100b000000002000000c80000000003000024030000020000006401000074010000b401000000000000e4010000e6020000040300000200000034010000540100009401000000000000c4010000cc020000e40200000200000004010000340100007401000000000000a4010000b2020000c402000002000000c40000001401000054010000000000008401000098020000a402000002000000b4000000f40000003401000000000000640100007e0200008402000002000000f4000000e40000000401000000000000240100004000000060000000920200000100000040000000500000005e0200000100000040000000400000007c0200000000000030000000300000004a020000000000007202000000000000000000004401000062020000000000000000000090010000babababa0000000017d98e3ea69b443b0000803f0000000017d98e3e2506013e0000803f0000000017d98e3e46b6f3bd0000803f0000000017d98e3eb4c876be0000803f0000000017d98e3e23dbb9be0000803f0ad7233d0ad7233d0ad7233d0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fff95d53d90c0bfbd9030ec3d0000803f8234353f813abebebe8b04400000803fdb0fc9bf00000000000000000000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000053474f00020100000100000020000000010000002c0000000000000034000000030000000e0000001e00000008000000000000006e0061006d00650000002dff2cff36ff2dff29ff33ff33ff29ff2cff25ff10ff11ff8b954f30000053474f00020100000100000020000000010000002c0000000000000034000000030000000f0000001e00000008000000000000006e0061006d00650000002dff2cff36ff2dff29ff33ff33ff29ff2cff25ff10ff11ff899558308b300000000030003100000030003200000030003300000030003400000030003500000049004b00000062006f0064007900000063006c006f0073006500000063006c006f00730065005f007300740061007400650000006f00700065006e0000006f00700065006e005f00730074006100740065000000730065000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "shoulder", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "shoulder_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "shoulder_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 0, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 120, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": -0.15000000596046448, "type": "double", "name": "AngleAdjust"},
+    {"value": 1, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {
+      "value": [
+        {"value": 1000, "type": "double"},
+        {"value": 36, "type": "double"},
+        {"value": 3, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.6000000238418579, "type": "double"},
+        {"value": 0.8999999761581421, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonRange"
+    },
+    {
+      "value": [
+        {"value": 0.10000000149011612, "type": "double"},
+        {"value": 0.10000000149011612, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 1, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 60, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 2, "type": "double", "name": "FireSpreadType"},
+    {"value": 0.8999999761581421, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 20, "type": "double", "name": "FireCount"},
+    {"value": 0, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.6000000238418579, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "e5w_MLnew_FORK-X20", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {
+      "value": [{"value": 0, "type": "double"}],
+      "type": "ptr",
+      "name": "SecondaryFire_Parameter"
+    },
+    {"value": "MissileBullet01", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/bullet_missile.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {"value": 1, "type": "double", "name": "AmmoSpeed"},
+    {"value": 0.75, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0.75, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 600, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 300, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {
+      "value": [
+        {"value": 5, "type": "double"},
+        {"value": 32, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoExplosion"
+    },
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0.800000011920929, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {
+      "value": [
+        {"value": 5, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 5, "type": "double"},
+        {"value": 0.05000000074505806, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 30, "type": "double"},
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": -0.05000000074505806, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0.10000000149011612, "type": "double"},
+        {"value": 0.4000000059604645, "type": "double"},
+        {"value": 16, "type": "double"},
+        {
+          "value": [
+            {"value": 50, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 60, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {"value": 0.25, "type": "double"},
+            {"value": 0.25, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": "weapon_Ranger_ML_go_Haretsu_forFORK", "type": "str"},
+            {"value": 0.10000000149011612, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 10, "type": "double"},
+            {"value": 50, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "common_damages_impactMissle_FORK", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [{"value": "app:/WEAPON/bullet_missile.rab", "type": "str"}],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

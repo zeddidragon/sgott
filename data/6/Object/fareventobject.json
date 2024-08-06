@@ -1,19 +1,70 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "FarEventObject",
-    "setting": {
-      "scale": [100, 100, 100],
-      "default_animation": "random_run_normal_back"
+  "variables": [
+    {
+      "value": "FarEventObject",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "game_object_camera_setting": [[0, 2, 0], [0, 2, -20]],
-    "animation_model": [
-      ["app:/Object/WOMAN02.mrab", "woman02.mdb"],
-      "app:/Object/FAREVENTOBJECT.cas",
-      0
-    ]
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 100, "type": "double"},
+            {"value": 100, "type": "double"},
+            {"value": 100, "type": "double"}
+          ],
+          "type": "ptr",
+          "name": "scale"
+        },
+        {
+          "value": "random_run_normal_back",
+          "type": "str",
+          "name": "default_animation"
+        }
+      ],
+      "type": "ptr",
+      "name": "setting"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": -20, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/WOMAN02.mrab", "type": "str"},
+            {"value": "woman02.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Object/FAREVENTOBJECT.cas", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    }
+  ],
   "strings": [
     "xgs_scene_object_class",
     "animation_model",

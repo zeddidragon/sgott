@@ -1,126 +1,347 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_BasicShoot",
-    "custom_parameter": ["assault_recoil1", 0, 0, 1, [1]],
-    "use_underground": 0,
-    "FireCondition": 0,
-    "name.ja": "１０５ミリ連式破砕速射砲",
-    "name.en": "105mm Consecutive Destruction Rapid-fire Cannon",
-    "name.cn": "１０５毫米連續破碎速射砲",
-    "name.kr": "105mm 연식 파쇄 속사포",
-    "name.sc": "１０５毫米连续破碎速射炮",
-    "WeaponIcon": "app:/weapon/icon/marker_gun.dds",
-    "Sight_animation_model": [["app:/HUD/sight13.rab", "sight13.mdb"], 0, 0],
-    "animation_model": [
-      ["app:/Weapon/e_targetmarker_gan01.rab", "e_targetmarker_gan01.mdb"],
-      "app:/Weapon/e_targetmarker_gan01.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300040005007400240000007c00000000010000dc020000000001001800000001000100300000000200000048000000a0020000ac02000002000000f4000000d4000000c40000000000000014010000860200008c02000002000000c4000000b4000000e400000000000000f40000004000000080000000c4020000000000003000000070000000940200000100000030000000600000006c02000001000000300000005000000046020000020000007e0200000000204100000000640100006e0200000000000000000000a40000005e0200000000204100000000e80000004e020000000048420000000090010000babababa0000000000000000000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f0839cf3de04820bd82c6ec3d0000803f000000807b14ae3dae47013f0000803fbf7b71bfccda8fbfab4930400000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000025ff2effea30ed30fc30c930d330fc30d7300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000d0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30ac30f330555c8b950000000053474f00020100000100000020000000010000002c0000000000000034000000030000000e0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30ac30f330899558308b30000053474f00020100000100000020000000010000002c000000000000003400000003000000100000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30ac30f330555c8b95d130cd30eb30000030003100000049004b00000062006f00640079000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "assault",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "assault_change1",
-    "ReloadAnimation": "assault_reload2",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": [1200, 21, 1, 10, 1, 0.30000001192092896, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 120,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0.4000000059604645,
-    "FireVector": null,
-    "FireSe": [0, "weapon_Engineer_BOM_remoteBombSnipeD_shot", 1, 1, 1, 25],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 1,
-    "SecondaryFire_Parameter": 4,
-    "AmmoClass": "SmokeCandleBullet02",
-    "AmmoModel": "app:/WEAPON/bullet_marker_gun.rab",
-    "AmmoSpeed": [10, 16, 2, 10, 0.5, 1.5, 1],
-    "AmmoOwnerMove": 0,
-    "AmmoGravityFactor": 0,
-    "AmmoAlive": 40,
-    "AmmoDamage": [480, 8, 0, 10, 0.20000000298023224, 1.5, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 20,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 1,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 0.10000000149011612,
-    "AmmoColor": [0, 0, 1, 0.5],
-    "Ammo_CustomParameter": [
-      0.05000000074505806,
-      120,
-      60,
-      0,
-      [
-        [1, 0],
-        [400, 0],
-        45,
-        7,
-        "SolidBullet02D",
-        9,
-        1,
-        2,
-        3,
-        0,
-        180,
-        1,
-        [1, 2, 2, 1],
-        [
-          0.6000000238418579,
-          0.699999988079071,
-          0.800000011920929,
-          0.23499999940395355
-        ],
-        0,
-        0,
-        0,
-        [0, "weapon_KUBAKU_whale120Cannon_shot", 0.5, 1, 100, 500],
-        [0, "common_damages_kuubaku_whale120Cannon02", 1, 1, 3, 200]
+  "variables": [
+    {
+      "value": "Weapon_BasicShoot",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [
+        {"value": "assault_recoil1", "type": "str"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": [{"value": 1, "type": "double"}], "type": "ptr"}
       ],
-      ["ホエール発射１０５ミリ砲", "", "ホエール攻撃後"]
-    ],
-    "Ammo_EquipVoice": ["ホエール出撃直後", "ホエール支援不能"],
-    "AmmoHitSe": [
-      0,
-      "weapon_Common_impactBOM_frechette",
-      0.800000011920929,
-      1,
-      1,
-      200
-    ],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/WEAPON/bullet_marker_gun.rab"]
-  },
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 0, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "１０５ミリ連式破砕速射砲", "type": "str", "name": "name.ja"},
+    {
+      "value": "105mm Consecutive Destruction Rapid-fire Cannon",
+      "type": "str",
+      "name": "name.en"
+    },
+    {"value": "１０５毫米連續破碎速射砲", "type": "str", "name": "name.cn"},
+    {"value": "105mm 연식 파쇄 속사포", "type": "str", "name": "name.kr"},
+    {"value": "１０５毫米连续破碎速射炮", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/marker_gun.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/HUD/sight13.rab", "type": "str"},
+            {"value": "sight13.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "Sight_animation_model"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_targetmarker_gan01.rab", "type": "str"},
+            {"value": "e_targetmarker_gan01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_targetmarker_gan01.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300040005007400240000007c00000000010000dc020000000001001800000001000100300000000200000048000000a0020000ac02000002000000f4000000d4000000c40000000000000014010000860200008c02000002000000c4000000b4000000e400000000000000f40000004000000080000000c4020000000000003000000070000000940200000100000030000000600000006c02000001000000300000005000000046020000020000007e0200000000204100000000640100006e0200000000000000000000a40000005e0200000000204100000000e80000004e020000000048420000000090010000babababa0000000000000000000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f0839cf3de04820bd82c6ec3d0000803f000000807b14ae3dae47013f0000803fbf7b71bfccda8fbfab4930400000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000025ff2effea30ed30fc30c930d330fc30d7300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000d0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30ac30f330555c8b950000000053474f00020100000100000020000000010000002c0000000000000034000000030000000e0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30ac30f330899558308b30000053474f00020100000100000020000000010000002c000000000000003400000003000000100000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30ac30f330555c8b95d130cd30eb30000030003100000049004b00000062006f00640079000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "assault", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "assault_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "assault_reload2", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 1200, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 120, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0.4000000059604645, "type": "double", "name": "FireRecoil"},
+    {"value": null, "type": "ptr", "name": "FireVector"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Engineer_BOM_remoteBombSnipeD_shot", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 25, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 1, "type": "double", "name": "SecondaryFire_Type"},
+    {"value": 4, "type": "double", "name": "SecondaryFire_Parameter"},
+    {"value": "SmokeCandleBullet02", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/bullet_marker_gun.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {
+      "value": [
+        {"value": 10, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 40, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 480, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.20000000298023224, "type": "double"},
+        {"value": 1.5, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 20, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 1, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {
+      "value": 0.10000000149011612,
+      "type": "double",
+      "name": "AmmoHitImpulseAdjust"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 0.05000000074505806, "type": "double"},
+        {"value": 120, "type": "double"},
+        {"value": 60, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 400, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": 45, "type": "double"},
+            {"value": 7, "type": "double"},
+            {"value": "SolidBullet02D", "type": "str"},
+            {"value": 9, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 3, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 180, "type": "double"},
+            {"value": 1, "type": "double"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": 2, "type": "double"},
+                {"value": 2, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 0.6000000238418579, "type": "double"},
+                {"value": 0.699999988079071, "type": "double"},
+                {"value": 0.800000011920929, "type": "double"},
+                {"value": 0.23499999940395355, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {"value": "weapon_KUBAKU_whale120Cannon_shot", "type": "str"},
+                {"value": 0.5, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 100, "type": "double"},
+                {"value": 500, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {
+                  "value": "common_damages_kuubaku_whale120Cannon02",
+                  "type": "str"
+                },
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 3, "type": "double"},
+                {"value": 200, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": "ホエール発射１０５ミリ砲", "type": "str"},
+            {"value": "", "type": "str"},
+            {"value": "ホエール攻撃後", "type": "str"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "ホエール出撃直後", "type": "str"},
+        {"value": "ホエール支援不能", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_EquipVoice"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Common_impactBOM_frechette", "type": "str"},
+        {"value": 0.800000011920929, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 200, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [{"value": "app:/WEAPON/bullet_marker_gun.rab", "type": "str"}],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

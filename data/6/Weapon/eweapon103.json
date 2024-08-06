@@ -1,130 +1,330 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "Weapon_LaserMarkerCallFire",
-    "custom_parameter": [60],
-    "use_underground": 0,
-    "FireCondition": 0,
-    "name.ja": "バルジレーザーＤ",
-    "name.en": "Bulge Laser D",
-    "name.cn": "核球雷射Ｄ",
-    "name.kr": "벌지 레이저 D",
-    "name.sc": "核球激光Ｄ",
-    "WeaponIcon": "app:/weapon/icon/targetmarker.dds",
-    "animation_model": [
-      [
-        "app:/Weapon/e_targetmarker_normal01.rab",
-        "e_targetmarker_normal01.mdb"
+  "variables": [
+    {
+      "value": "Weapon_LaserMarkerCallFire",
+      "type": "str",
+      "name": "xgs_scene_object_class"
+    },
+    {
+      "value": [{"value": 60, "type": "double"}],
+      "type": "ptr",
+      "name": "custom_parameter"
+    },
+    {"value": 0, "type": "double", "name": "use_underground"},
+    {"value": 0, "type": "double", "name": "FireCondition"},
+    {"value": "バルジレーザーＤ", "type": "str", "name": "name.ja"},
+    {"value": "Bulge Laser D", "type": "str", "name": "name.en"},
+    {"value": "核球雷射Ｄ", "type": "str", "name": "name.cn"},
+    {"value": "벌지 레이저 D", "type": "str", "name": "name.kr"},
+    {"value": "核球激光Ｄ", "type": "str", "name": "name.sc"},
+    {
+      "value": "app:/weapon/icon/targetmarker.dds",
+      "type": "str",
+      "name": "WeaponIcon"
+    },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Weapon/e_targetmarker_normal01.rab", "type": "str"},
+            {"value": "e_targetmarker_normal01.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": "app:/Weapon/e_targetmarker_normal01.cas", "type": "str"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000300040006007400240000007c000000f000000074020000000001001800000001000100300000000200000048000000380200004402000002000000c4000000d4000000b400000000000000140100001e0200002402000002000000d4000000c4000000e400000000000000f400000040000000700000005c0200000000000030000000600000002c02000001000000300000005000000004020000010000003000000040000000de0100000100000016020000000000000000000060010000060200000000000000000000a4000000f60100000000000000000000e8000000babababa0000000000000000000000000000803f00000000355eba3dc520303e0000803f0ad7a33c0ad7a33c0ad7a33c0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fde55af3d4ce397bd2ac88fbd0000803fa5915bbd320288bf945305400000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000025ff2effea30ed30fc30c930d330fc30d7300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000b0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30555c8b950000000053474f00020100000100000020000000010000002c0000000000000034000000030000000c0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30899558308b30000030003100000049004b00000062006f00640079000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000"
+          },
+          "type": "extra"
+        }
       ],
-      "app:/Weapon/e_targetmarker_normal01.cas",
-      {
-        "$SGOTT_EMBED": true,
-        "format": "hex",
-        "data": "4d4142000f000000830000000300040006007400240000007c000000f000000074020000000001001800000001000100300000000200000048000000380200004402000002000000c4000000d4000000b400000000000000140100001e0200002402000002000000d4000000c4000000e400000000000000f400000040000000700000005c0200000000000030000000600000002c02000001000000300000005000000004020000010000003000000040000000de0100000100000016020000000000000000000060010000060200000000000000000000a4000000f60100000000000000000000e8000000babababa0000000000000000000000000000803f00000000355eba3dc520303e0000803f0ad7a33c0ad7a33c0ad7a33c0000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fde55af3d4ce397bd2ac88fbd0000803fa5915bbd320288bf945305400000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000025ff2effea30ed30fc30c930d330fc30d7300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000b0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30555c8b950000000053474f00020100000100000020000000010000002c0000000000000034000000030000000c0000001e00000008000000000000006e0061006d0065000000bf30fc30b230c330c830de30fc30ab30fc30899558308b30000030003100000049004b00000062006f00640079000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000"
-      }
-    ],
-    "ModelConstraint": ["arms_r"],
-    "BaseAnimation": "hand",
-    "AimAnimation": "aim",
-    "ChangeAnimation": "hand_change1",
-    "ReloadAnimation": "hand_reload1",
-    "AmmoCount": 1,
-    "EnergyChargeRequire": [-1, -1],
-    "ReloadType": 1,
-    "ReloadInit": 1,
-    "ReloadTime": [6000, 21, 1, 10, 1, 0.30000001192092896, 0],
-    "AngleAdjust": 0,
-    "LockonType": 0,
-    "LockonTargetType": 0,
-    "Lockon_DistributionType": 0,
-    "Lockon_FireEndToClear": 1,
-    "Lockon_AutoTimeOut": 1,
-    "LockonRange": 0,
-    "LockonAngle": [0.30000001192092896, 0.30000001192092896],
-    "LockonTime": 0,
-    "LockonFailedTime": 0,
-    "LockonHoldTime": 0,
-    "FireType": 0,
-    "FireSpreadType": 0,
-    "FireSpreadWidth": 0,
-    "FireCount": 1,
-    "FireInterval": 120,
-    "FireBurstCount": 1,
-    "FireBurstInterval": 0,
-    "FireAccuracy": 0,
-    "FireRecoil": 0,
-    "FireVector": [0, 0.5, 1.100000023841858],
-    "FireSe": [1, "weapon_Engineer_Kuubaku_guideBeam", 1, 1, 2, 20],
-    "FireLoadSe": null,
-    "ShellCaseDischargeSe": null,
-    "SecondaryFire_Type": 1,
-    "SecondaryFire_Parameter": 4,
-    "AmmoClass": "",
-    "AmmoModel": "app:/WEAPON/airtortoise_missile.rab",
-    "AmmoSpeed": [1, 16, 2, 10, 0.800000011920929, 1, 1],
-    "AmmoOwnerMove": 1,
-    "AmmoGravityFactor": 1,
-    "AmmoAlive": 700,
-    "AmmoDamage": [21.75, 8, 0, 10, 0.800000011920929, 0.699999988079071, 1],
-    "AmmoDamageReduce": [1, 1],
-    "AmmoExplosion": 0,
-    "AmmoIsPenetration": 0,
-    "AmmoSize": 0,
-    "AmmoHitSizeAdjust": 1,
-    "AmmoHitImpulseAdjust": 0.0010000000474974513,
-    "AmmoColor": [1, 0.25, 1, 0.5],
-    "Ammo_CustomParameter": [
-      60,
-      1,
-      [0.800000011920929, 0.05000000074505806],
-      0,
-      [
-        [1.399999976158142, 0],
-        [1000, 0],
-        600,
-        2,
-        "LaserBullet02",
-        1000,
-        0,
-        3,
-        1,
-        0,
-        30,
-        1,
-        [0.20000000298023224, 0.20000000298023224, 0.4000000059604645, 1],
-        [0],
-        0,
-        0,
-        1,
-        [1, "weapon_KUBAKU_satelliteAlpha2_shot", 1, 1, 20, 2000],
-        [
-          0,
-          "common_damages_kuubaku_satelliteAlpha1",
-          0.8999999761581421,
-          1,
-          2,
-          100
-        ]
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": "arms_r", "type": "str"}],
+      "type": "ptr",
+      "name": "ModelConstraint"
+    },
+    {"value": "hand", "type": "str", "name": "BaseAnimation"},
+    {"value": "aim", "type": "str", "name": "AimAnimation"},
+    {"value": "hand_change1", "type": "str", "name": "ChangeAnimation"},
+    {"value": "hand_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {
+      "value": [
+        {"value": -1, "type": "double"},
+        {"value": -1, "type": "double"}
       ],
-      ["バルジレーザー発射", "", "バルジレーザー攻撃後"]
-    ],
-    "Ammo_EquipVoice": ["バルジレーザー出撃直後", "バルジレーザー支援不能"],
-    "AmmoHitSe": [
-      0,
-      "weapon_Engineer_Kuubaku_guideBeamLocked",
-      0.5600000023841858,
-      1,
-      2,
-      20
-    ],
-    "MuzzleFlash": "",
-    "MuzzleFlash_CustomParameter": null,
-    "ShellCase": ["", "", 0],
-    "ShellCase_CustomParameter": null,
-    "ExtPrams": [1],
-    "resource": ["app:/WEAPON/airtortoise_missile.rab"]
-  },
+      "type": "ptr",
+      "name": "EnergyChargeRequire"
+    },
+    {"value": 1, "type": "double", "name": "ReloadType"},
+    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {
+      "value": [
+        {"value": 6000, "type": "double"},
+        {"value": 21, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ReloadTime"
+    },
+    {"value": 0, "type": "double", "name": "AngleAdjust"},
+    {"value": 0, "type": "double", "name": "LockonType"},
+    {"value": 0, "type": "double", "name": "LockonTargetType"},
+    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
+    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
+    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
+    {"value": 0, "type": "double", "name": "LockonRange"},
+    {
+      "value": [
+        {"value": 0.30000001192092896, "type": "double"},
+        {"value": 0.30000001192092896, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "LockonAngle"
+    },
+    {"value": 0, "type": "double", "name": "LockonTime"},
+    {"value": 0, "type": "double", "name": "LockonFailedTime"},
+    {"value": 0, "type": "double", "name": "LockonHoldTime"},
+    {"value": 0, "type": "double", "name": "FireType"},
+    {"value": 0, "type": "double", "name": "FireSpreadType"},
+    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
+    {"value": 1, "type": "double", "name": "FireCount"},
+    {"value": 120, "type": "double", "name": "FireInterval"},
+    {"value": 1, "type": "double", "name": "FireBurstCount"},
+    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"value": 0, "type": "double", "name": "FireAccuracy"},
+    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": 0.5, "type": "double"},
+        {"value": 1.100000023841858, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireVector"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": "weapon_Engineer_Kuubaku_guideBeam", "type": "str"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "FireSe"
+    },
+    {"value": null, "type": "ptr", "name": "FireLoadSe"},
+    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
+    {"value": 1, "type": "double", "name": "SecondaryFire_Type"},
+    {"value": 4, "type": "double", "name": "SecondaryFire_Parameter"},
+    {"value": "", "type": "str", "name": "AmmoClass"},
+    {
+      "value": "app:/WEAPON/airtortoise_missile.rab",
+      "type": "str",
+      "name": "AmmoModel"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 16, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.800000011920929, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoSpeed"
+    },
+    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
+    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
+    {"value": 700, "type": "double", "name": "AmmoAlive"},
+    {
+      "value": [
+        {"value": 21.75, "type": "double"},
+        {"value": 8, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 10, "type": "double"},
+        {"value": 0.800000011920929, "type": "double"},
+        {"value": 0.699999988079071, "type": "double"},
+        {"value": 1, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoDamage"
+    },
+    {
+      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "AmmoDamageReduce"
+    },
+    {"value": 0, "type": "double", "name": "AmmoExplosion"},
+    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
+    {"value": 0, "type": "double", "name": "AmmoSize"},
+    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
+    {
+      "value": 0.0010000000474974513,
+      "type": "double",
+      "name": "AmmoHitImpulseAdjust"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double"},
+        {"value": 0.25, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0.5, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoColor"
+    },
+    {
+      "value": [
+        {"value": 60, "type": "double"},
+        {"value": 1, "type": "double"},
+        {
+          "value": [
+            {"value": 0.800000011920929, "type": "double"},
+            {"value": 0.05000000074505806, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 1.399999976158142, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 1000, "type": "double"},
+                {"value": 0, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": 600, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": "LaserBullet02", "type": "str"},
+            {"value": 1000, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 3, "type": "double"},
+            {"value": 1, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 30, "type": "double"},
+            {"value": 1, "type": "double"},
+            {
+              "value": [
+                {"value": 0.20000000298023224, "type": "double"},
+                {"value": 0.20000000298023224, "type": "double"},
+                {"value": 0.4000000059604645, "type": "double"},
+                {"value": 1, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {"value": [{"value": 0, "type": "double"}], "type": "ptr"},
+            {"value": 0, "type": "double"},
+            {"value": 0, "type": "double"},
+            {"value": 1, "type": "double"},
+            {
+              "value": [
+                {"value": 1, "type": "double"},
+                {"value": "weapon_KUBAKU_satelliteAlpha2_shot", "type": "str"},
+                {"value": 1, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 20, "type": "double"},
+                {"value": 2000, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 0, "type": "double"},
+                {
+                  "value": "common_damages_kuubaku_satelliteAlpha1",
+                  "type": "str"
+                },
+                {"value": 0.8999999761581421, "type": "double"},
+                {"value": 1, "type": "double"},
+                {"value": 2, "type": "double"},
+                {"value": 100, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": "バルジレーザー発射", "type": "str"},
+            {"value": "", "type": "str"},
+            {"value": "バルジレーザー攻撃後", "type": "str"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "Ammo_CustomParameter"
+    },
+    {
+      "value": [
+        {"value": "バルジレーザー出撃直後", "type": "str"},
+        {"value": "バルジレーザー支援不能", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "Ammo_EquipVoice"
+    },
+    {
+      "value": [
+        {"value": 0, "type": "double"},
+        {"value": "weapon_Engineer_Kuubaku_guideBeamLocked", "type": "str"},
+        {"value": 0.5600000023841858, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": 20, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "AmmoHitSe"
+    },
+    {"value": "", "type": "str", "name": "MuzzleFlash"},
+    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {
+      "value": [
+        {"value": "", "type": "str"},
+        {"value": "", "type": "str"},
+        {"value": 0, "type": "double"}
+      ],
+      "type": "ptr",
+      "name": "ShellCase"
+    },
+    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {
+      "value": [{"value": 1, "type": "double"}],
+      "type": "ptr",
+      "name": "ExtPrams"
+    },
+    {
+      "value": [
+        {"value": "app:/WEAPON/airtortoise_missile.rab", "type": "str"}
+      ],
+      "type": "ptr",
+      "name": "resource"
+    }
+  ],
   "strings": [
     "AmmoExplosion",
     "LockonTargetType",

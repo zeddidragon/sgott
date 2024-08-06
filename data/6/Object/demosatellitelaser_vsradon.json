@@ -1,15 +1,74 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "DemoIndirectFire",
-    "indirect_fire_param": {
-      "null": [1.5, 0],
-      "undefined": 0,
-      "se": {"fire": {"key": "EDF6翼竜パワーアップビーム照射", "is_loop": 1}}
+  "variables": [
+    {
+      "value": "DemoIndirectFire",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "indirect_fire_damage": 3000
-  },
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 1.5, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 1000, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 300, "type": "double"},
+        {"value": 2, "type": "double"},
+        {"value": "LaserBullet02", "type": "str"},
+        {"value": 1000, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 48, "type": "double"},
+        {"value": 1, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 30, "type": "double"},
+        {"value": 1, "type": "double"},
+        {
+          "value": [
+            {"value": 3, "type": "double"},
+            {"value": 0.20000000298023224, "type": "double"},
+            {"value": 3, "type": "double"},
+            {"value": 1, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {"value": [{"value": 0, "type": "double"}], "type": "ptr"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {"value": 0, "type": "double"},
+        {
+          "value": [
+            {
+              "value": [
+                {"value": "EDF6翼竜パワーアップビーム照射", "type": "str", "name": "key"},
+                {"value": 1, "type": "double", "name": "is_loop"}
+              ],
+              "type": "ptr",
+              "name": "fire"
+            }
+          ],
+          "type": "ptr",
+          "name": "se"
+        }
+      ],
+      "type": "ptr",
+      "name": "indirect_fire_param"
+    },
+    {"value": 3000, "type": "double", "name": "indirect_fire_damage"}
+  ],
   "strings": [
     "is_loop",
     "DemoIndirectFire",

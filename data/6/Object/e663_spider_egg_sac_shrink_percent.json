@@ -1,31 +1,123 @@
 {
   "format": "DSGO",
   "endian": "LE",
-  "data": {
-    "xgs_scene_object_class": "EDF6_SpiderEggSac",
-    "game_object_camera_setting": [[0, 2, 0], [0, 2, -20]],
-    "game_object_durability": 1000,
-    "animation_model": {
-      "null": [
-        "app:/Object/e663_spider_egg_sac.mrab",
-        "e663_spider_egg_sac.mdb"
-      ],
-      "undefined": [
-        [8, 8, 16],
-        [-24.19898223876953, -29.362590789794922, -23.591815948486328],
-        [24.320398330688477, 24.41360855102539, 24.52693748474121]
-      ],
-      "effect": {"path": "app:/object/e663_spider_egg_sac.efarc"}
+  "variables": [
+    {
+      "value": "EDF6_SpiderEggSac",
+      "type": "str",
+      "name": "xgs_scene_object_class"
     },
-    "BasicAnimationCharacterSettings": {"Type": 0},
-    "havok": {"shape": "app:/object/e663_spider_egg_sac.shkt"},
-    "EDF6_SpiderEggSac": {
-      "scale": 1,
-      "is_large": 0,
-      "search_length": 150,
-      "break_hook_step_num": 5
+    {
+      "value": [
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": 0, "type": "double"}
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {"value": 0, "type": "double"},
+            {"value": 2, "type": "double"},
+            {"value": -20, "type": "double"}
+          ],
+          "type": "ptr"
+        }
+      ],
+      "type": "ptr",
+      "name": "game_object_camera_setting"
+    },
+    {"value": 1000, "type": "double", "name": "game_object_durability"},
+    {
+      "value": [
+        {
+          "value": [
+            {"value": "app:/Object/e663_spider_egg_sac.mrab", "type": "str"},
+            {"value": "e663_spider_egg_sac.mdb", "type": "str"}
+          ],
+          "type": "ptr"
+        },
+        {"value": 0, "type": "double"},
+        {
+          "value": {
+            "format": "hex",
+            "data": "4d4142000f000000830000000400000001003a00240000008400000090000000c00000000000010020000000010001003800000002000000500000000300000048000000860000007c000000000000004c0000000000a040ffffffff000000005c000000840000005c000000000000002c0000000000a040ffffffff000000003c000000babababababababababababa0000000000000000000000000000803f53474f000201000000000000200000000000000020000000000000002000000062006f00640079000000b830a730cd30ec30fc30bf30fc30000000000000000000000000000000003b658364ee76196a00000000000000000000"
+          },
+          "type": "extra"
+        },
+        {
+          "value": [
+            {
+              "value": [
+                {"value": 8, "type": "double"},
+                {"value": 8, "type": "double"},
+                {"value": 16, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": -24.19898223876953, "type": "double"},
+                {"value": -29.362590789794922, "type": "double"},
+                {"value": -23.591815948486328, "type": "double"}
+              ],
+              "type": "ptr"
+            },
+            {
+              "value": [
+                {"value": 24.320398330688477, "type": "double"},
+                {"value": 24.41360855102539, "type": "double"},
+                {"value": 24.52693748474121, "type": "double"}
+              ],
+              "type": "ptr"
+            }
+          ],
+          "type": "ptr"
+        },
+        {
+          "value": [
+            {
+              "value": "app:/object/e663_spider_egg_sac.efarc",
+              "type": "str",
+              "name": "path"
+            }
+          ],
+          "type": "ptr",
+          "name": "effect"
+        }
+      ],
+      "type": "ptr",
+      "name": "animation_model"
+    },
+    {
+      "value": [{"value": 0, "type": "double", "name": "Type"}],
+      "type": "ptr",
+      "name": "BasicAnimationCharacterSettings"
+    },
+    {
+      "value": [
+        {
+          "value": "app:/object/e663_spider_egg_sac.shkt",
+          "type": "str",
+          "name": "shape"
+        }
+      ],
+      "type": "ptr",
+      "name": "havok"
+    },
+    {
+      "value": [
+        {"value": 1, "type": "double", "name": "scale"},
+        {"value": 0, "type": "double", "name": "is_large"},
+        {"value": 150, "type": "double", "name": "search_length"},
+        {"value": 5, "type": "double", "name": "break_hook_step_num"}
+      ],
+      "type": "ptr",
+      "name": "EDF6_SpiderEggSac"
     }
-  },
+  ],
   "strings": [
     "app:/Object/e663_spider_egg_sac.mrab",
     "BasicAnimationCharacterSettings",
