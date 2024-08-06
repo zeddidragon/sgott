@@ -1732,7 +1732,6 @@ async function processMode({ value: mode }) {
   const missionListPath = mode[6].value[0].value
     .replace('app:/', '')
     .replace('.sgo', '')
-    .toLowerCase()
   const missionList = (await loadJson(missionListPath))
     .variables[0]
     .value
