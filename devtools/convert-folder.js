@@ -4,8 +4,8 @@ const { exec } = require('child_process')
 //const from = './sgos/data5/WEAPON'
 //const to = './data/5/weapons'
 
-const from = './sgos/data6/OBJECT'
-const to = './data/6/Object'
+const from = './sgos/data6/WEAPON'
+const to = './data/6/weapon'
 const files = fs.readdirSync(from)
 
 const sgoRegex = /\.SGO$/
@@ -15,7 +15,7 @@ async function convert() {
     if(!sgoRegex.test(file)) continue
     console.log('pass')
     const fromFile = `${from}/${file}`
-    const toFile = `${to}/${file.replace(sgoRegex, '.json').toLowerCase()}`
+    const toFile = `${to}/${file.replace(sgoRegex, '.json')}`
     await exec(`node sgott.js ${fromFile} ${toFile}`)
   }
 }

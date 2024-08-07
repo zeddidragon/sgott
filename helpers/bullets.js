@@ -30,6 +30,9 @@ function BarrierBullet01(wpn) {
 
 
 function BlankBullet(wpn) {
+  if(wpn.weapon === 'Weapon_Drone_LaserMarker') {
+    return Drones(wpn)
+  }
   if(raidCategories.includes(wpn.category)) {
     return AirRaids(wpn)
   }
@@ -38,7 +41,7 @@ function BlankBullet(wpn) {
   }
   // Laser guide kit
   if(wpn.weapon === 'Weapon_LaserMarker' && wpn.category === 'support') {
-    TargetMarkerBullet01(wpn)
+    return TargetMarkerBullet01(wpn)
   }
 }
 
@@ -316,6 +319,9 @@ async function AirRaids(wpn) {
       wpn.subRadius = strike[9].value
     }
   }
+}
+
+function Drones(wpn) {
 }
 
 const SupportProps = {

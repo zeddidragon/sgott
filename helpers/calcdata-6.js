@@ -1492,63 +1492,54 @@ const headers = {
   }],
 }
 
-async function processWeapon(node) {
-  const [
-    id,
-    path,
-    category,
-    odds,
-    rawLevel,
-    classId,
-    unlockState,
-    dlc,
-  ] = node
+async function processWeapon({ value: node }) {
+  const id = node[0].value
   const lvBuffer = Buffer.alloc(4)
-  lvBuffer.writeFloatLE(rawLevel * 25)
+  lvBuffer.writeFloatLE(node[4].value * 25)
   const level = Math.floor(lvBuffer.readFloatLE())
+  const category = node[2].value
   const character = classes[Math.floor(category / 100)]
   const group = categories[character][category % 100]
 
-  const template = await loadJson(`Weapon/${id.toLowerCase()}`)
+  const template = await loadJson(`weapon/${id.toUpperCase()}`)
   const wpn = {
     id: id,
-    names: Object.fromEntries(['ja', 'en', 'cn', 'kr', 'sc'].map(lang => {
-      return [lang, getNode(template, `name.${lang}`)]
+    names: Object.fromEntries(['en', 'ja'].map(lang => {
+      return [lang, getNode(template, `name.${lang}`).value]
     })),
     level: level,
     character: character,
     category: group,
     raw: category,
-    odds: unlockStates[unlockState] || (Math.floor(odds * 100)),
-    dlc: dlc,
+    odds: unlockStates[node[5].value] || (Math.floor(node[3].value * 100)),
+    dlc: node[7].value,
   }
   if(!wpn.dlc) {
     delete wpn.dlc
   }
 
   for(const [prop, node] of Object.entries(autoProps)) {
-    const value = getNode(template, node)
+    const value = getNode(template, node).value
     const isArray = Array.isArray(value)
-    const isSubArray = isArray && Array.isArray(value[0])
-    console.log({ isSubArray, value })
+    const isSubArray = Array.isArray(value?.[0]?.value)
     if(['custom', 'wCustom'].includes(prop)) {
       wpn[prop] = value
-    } else if(isSubArray && value[0].length
+    } else if(isSubArray && value[0].value.length
       || isArray && value.length === 6
     ) {
-      const arr = isSubArray ? value[0] : value
+      const arr = isSubArray ? value[0].value : value
       wpn[prop] = {
-        base:  +arr[0].toFixed(4),
-        algo:  +arr[1],
+        base:  +arr[0].value.toFixed(4),
+        algo:  +arr[1].value,
         lvMax: Math.max(5, +arr[3].value),
-        zero:  +arr[4].toFixed(2),
-        exp:   +arr[5].toFixed(2),
+        zero:  +arr[4].value.toFixed(2),
+        exp:   +arr[5].value.toFixed(2),
         type: arr[0].type,
       }
     } else if (isArray && value.length === 1){
-      wpn[prop] = value[0]
+      wpn[prop] = value[0].value
     } else if (isArray) {
-      wpn[prop] = value
+      wpn[prop] = value.map(v => v.value)
     } else if(typeof value === 'number' && !isNaN(value)) {
       wpn[prop] = +value.toFixed(2)
     } else {
@@ -1594,8 +1585,9 @@ async function processWeapon(node) {
     'speed',
     'reloadInit',
   ]) {
-    console.log(wpn[prop])
-    if(wpn[prop]?.base) {
+    if(Array.isArray(wpn[prop])) {
+      wpn[prop][0] = +wpn[prop][0].toFixed(1)
+    } else if(wpn[prop]?.base) {
       wpn[prop].base = +wpn[prop].base.toFixed(1)
     } else if(wpn[prop]) {
       wpn[prop] = +wpn[prop].toFixed(1)
@@ -1692,10 +1684,12 @@ async function processWeapon(node) {
 }
 
 async function extractWeaponData() {
-  const data = await loadJson('Weapon/weapontable')
-  const table = getNode(data, 'table')
-  console.log(table)
-  return Promise.all(table.map(processWeapon))
+  const table = await loadJson('weapon/WEAPONTABLE')
+  const arr = []
+  for(const v of table.variables[0].value) {
+    arr.push(processWeapon(v))
+  }
+  return Promise.all(arr)
 }
 
 const modes = {
@@ -1728,10 +1722,10 @@ const difficulties = [
 async function processMode({ value: mode }) {
   const key = mode[0].value
   const lvBuffer = Buffer.alloc(4)
-  console.log(mode)
   const missionListPath = mode[6].value[0].value
     .replace('app:/', '')
     .replace('.sgo', '')
+    .toUpperCase()
   const missionList = (await loadJson(missionListPath))
     .variables[0]
     .value
@@ -1792,7 +1786,7 @@ async function extractCalcdata() {
     modes,
   ] = await Promise.all([
     extractWeaponData(),
-    extractModesData('config'),
+    // extractModesData('config'),
   ])
   return {
     langs: ['en', 'ja'],
