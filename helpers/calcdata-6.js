@@ -1525,7 +1525,7 @@ async function processWeapon({ value: node }) {
     if(['custom', 'wCustom'].includes(prop)) {
       wpn[prop] = value
     } else if(isSubArray && value[0].value.length
-      || isArray && value.length === 6
+      || isArray && value.length === 7
     ) {
       const arr = isSubArray ? value[0].value : value
       wpn[prop] = {
@@ -1534,7 +1534,7 @@ async function processWeapon({ value: node }) {
         lvMax: Math.max(5, +arr[3].value),
         zero:  +arr[4].value.toFixed(2),
         exp:   +arr[5].value.toFixed(2),
-        type: arr[0].type,
+        type: arr[6].value === 0 ? 'int' : 'float',
       }
     } else if (isArray && value.length === 1){
       wpn[prop] = value[0].value
@@ -1742,7 +1742,7 @@ async function processMode({ value: mode }) {
       const range = end - start
       for(let i = 0; i < missions; i++) {
         const mission = missionList[i].value
-        const pivot = start + range * mission[9].value
+        const pivot = start + range * mission[0].value / missions
         lvBuffer.writeFloatLE(pivot - spread)
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
         dropsLow[i] = Math.floor(lvBuffer.readFloatLE())
