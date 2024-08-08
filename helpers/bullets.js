@@ -11,6 +11,23 @@ function loadJson(path) {
   return fs.readFile(`data/${game}/${path}.json`).then(data => JSON.parse(data))
 }
 
+function digValue(node, path) {
+  for(let i = 0; i < path.length; i++) {
+    const key = path[i]
+    if(typeof key === 'number') {
+      node = node[key]
+    } else {
+      node = node.find(n => n.name === key)
+    }
+    if(node) {
+      node = node.value
+    } else {
+      return
+    }
+  }
+  return node
+}
+
 const cache = {}
 function loadLinked(path) {
   const parts = path.split('/').slice(1)
@@ -76,6 +93,17 @@ function DecoyBullet01(wpn) {
   wpn.hp = wpn.damage
   wpn.duration = wpn.life
   delete wpn.damage
+}
+
+function EfsBullet(wpn) {
+  const isFuse = digValue(wpn.custom, [
+    'bullet',
+    'ext',
+    'is_vanish_explosion',
+  ])
+  if(isFuse) {
+    wpn.fuse = wpn.life
+  }
 }
 
 function FlameBullet02(wpn) {
@@ -363,6 +391,8 @@ const SupportProps = {
   301: (wpn, v) => { wpn.dashInterval = +v.toFixed(2) },
   302: (wpn, v) => { wpn.boostCount = v },
   305: (wpn, v) => { wpn.boostSpeed = +v.toFixed(2) },
+  306: (wpn, v) => { wpn.boostToDash = !!v },
+  307: (wpn, v) => { wpn.dashToBoost = !!v },
   3: (wpn, v) => { wpn.shieldDurability = +v.toFixed(2) },
   4: (wpn, v) => { wpn.shieldConsumption = +v.toFixed(2) },
   5: (wpn, v) => { wpn.shieldDeflectConsumption = +v.toFixed(2) },
@@ -579,6 +609,7 @@ module.exports = {
   ClusterGenocideAmmo: ClusterBeamAmmo,
   ClusterBullet01,
   DecoyBullet01,
+  EfsBullet,
   FireAmmo01: FlameBullet02,
   FlameBullet02,
   GrenadeAmmo01: GrenadeBullet01,

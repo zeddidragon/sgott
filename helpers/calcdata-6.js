@@ -16,65 +16,62 @@ const classes = [
 ]
 
 const categories = {
-  ranger: [
-    'assault',
-    'shotgun',
-    'sniper',
-    'rocket',
-    'missile',
-    'grenade',
-    'special',
-    'equipment',
-    'tank',
-    'heli',
-    'bike',
-  ],
-  winger: [
-    'short',
-    'laser',
-    'electro',
-    'particle',
-    'sniper',
-    'plasma',
-    'missile',
-    'special',
-    'core',
-  ],
-  fencer: [
-    'hammer',
-    'spear',
-    'shield',
-    'light',
-    'heavy',
-    'missile',
-    'booster',
-    'protector',
-    'muzzle',
-    'exo',
-  ],
-  bomber: [
-    null, // Formerly laser guides
-    null, // Formerly air strikes
-    'support',
-    'limpet',
-    'deploy',
-    'special',
-    'tank',
-    'ground',
-    'heli',
-    'mech',
-    'artillery',
-    'gunship',
-    'planes',
-    'missile',
-    'satellite',
-    null,
-    null,
-    null,
-    null,
-    null,
-    'super',
-  ],
+  ranger: {
+    0: 'assault',
+    1: 'shotgun',
+    2: 'sniper',
+    3: 'rocket',
+    4: 'missile',
+    5: 'grenade',
+    6: 'special',
+    7: 'equipment',
+    8: 'tank',
+    9: 'heli',
+    10: 'bike',
+    20: 'handgrenade',
+    23: 'specialgrenade',
+    21: 'bomb',
+    22: 'deploy',
+  },
+  winger: {
+    100: 'short',
+    101: 'laser',
+    102: 'electro',
+    103: 'particle',
+    104: 'sniper',
+    105: 'plasma',
+    106: 'missile',
+    108: 'core',
+    110: 'special',
+  },
+  fencer: {
+    200: 'hammer',
+    201: 'spear',
+    202: 'shield',
+    203: 'light',
+    204: 'heavy',
+    205: 'missile',
+    206: 'booster',
+    207: 'protector',
+    208: 'muzzle',
+    209: 'exo',
+  },
+  bomber: {
+    302: 'support',
+    303: 'limpet',
+    304: 'deploy',
+    305: 'special',
+    306: 'tank',
+    307: 'ground',
+    308: 'heli',
+    309: 'mech',
+    310: 'artillery',
+    311: 'gunship',
+    312: 'planes',
+    313: 'missile',
+    314: 'satellite',
+    320: 'super',
+  },
 }
 
 const unlockStates = [
@@ -242,46 +239,22 @@ const headers = {
       en: 'Grenades',
       ja: 'グレネード',
     },
-    tables: [{
-      subCategory: 'hg',
-      names: {
-        en: 'Hand Grenades',
-        ja: 'ハンドグレネード',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'damage',
-        'radius',
-        'duration',
-        'interval',
-        'tdps',
-      ],
-    }, {
-      subCategory: 'gl',
-      names: {
-        en: 'Grenade Launchers',
-        ja: 'グレネードランチャー',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'radius',
-        'duration',
-        'interval',
-        'reload',
-        'accuracy',
-        'dps',
-        'tdps',
-        'total',
-      ],
-    }],
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'duration',
+      'interval',
+      'reload',
+      'accuracy',
+      'dps',
+      'tdps',
+      'total',
+    ],
   }, {
     category: 'special',
     names: {
@@ -289,23 +262,6 @@ const headers = {
       ja: '特殊',
     },
     tables: [{
-      subCategory: 'decoy',
-      names: {
-        en: 'Decoys',
-        ja: 'ピュアデコイ・ランチャー',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'hp',
-        'duration',
-        'zoom',
-        'reload',
-      ],
-    }, {
       subCategory: 'acid',
       names: {
         en: 'Acid Guns',
@@ -355,25 +311,6 @@ const headers = {
       ],
     }, {
       names: {
-        en: 'Firecrackers',
-        ja: 'かんしゃく玉シリーズ',
-      },
-      subCategory: 'firecracker',
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'damage',
-        'radius',
-        'interval',
-        'range',
-        'speed',
-        'tdps',
-        'total',
-      ],
-    }, {
-      names: {
         en: 'Bound Guns',
         ja: 'バウンドガン・シリーズ',
       },
@@ -390,44 +327,6 @@ const headers = {
         'range',
         'speed',
         'dps',
-        'tdps',
-        'total',
-      ],
-    }, {
-      subCategory: 'bomb',
-      names: {
-        en: 'Bombs',
-        ja: 'ローラーボムシリーズ',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'radius',
-        'interval',
-        'reload',
-        'speed',
-        'tdps',
-        'total',
-      ],
-    }, {
-      subCategory: 'mine',
-      names: {
-        en: 'Land Mines',
-        ja: 'インパルスシリーズ',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'interval',
-        'reload',
         'tdps',
         'total',
       ],
@@ -454,6 +353,111 @@ const headers = {
         'dps2',
         'total',
         'total2',
+      ],
+    }],
+  }, {
+    category: 'handgrenade',
+    names: {
+      en: 'Hand Grenades',
+      ja: '手榴弾',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'duration',
+      'reload',
+      'range',
+      'speed',
+      'tdps',
+    ],
+  }, {
+    category: 'specialgrenade',
+    names: {
+      en: 'Special Throwing Grenades',
+      ja: '特殊投擲弾',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'duration',
+      'reload',
+      'range',
+      'speed',
+      'tdps',
+    ],
+  }, {
+    category: 'bomb',
+    names: {
+      en: 'Bombs and Traps',
+      ja: '爆弾・トラップ',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'speed',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'deploy',
+    names: {
+      en: 'Automatic Gun Placements',
+      ja: '自動砲座',
+    },
+    tables: [{
+      subCategory: 'decoy',
+      names: {
+        en: 'Decoys',
+        ja: 'ピュアデコイ・ランチャー',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'hp',
+        'duration',
+        'reload',
+      ],
+    }, {
+      subCategory: 'turret',
+      names: {
+        en: 'Automatic Turrets',
+        ja: 'ZE-GUNシリーズ',
+      },
+      appendix: '*For a single turret',
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'shots',
+        'radius',
+        'interval',
+        'reload',
+        'dps',
+        'dps2',
+        'tdps',
+        'total',
       ],
     }],
   }, {
@@ -1499,7 +1503,13 @@ async function processWeapon({ value: node }) {
   const level = Math.floor(lvBuffer.readFloatLE())
   const category = node[2].value
   const character = classes[Math.floor(category / 100)]
-  const group = categories[character][category % 100]
+  const group = categories[character][category]
+  if(character !== 'ranger') {
+    return
+  }
+  if(!group) {
+    throw new Error(`Category not found: ${category} (${node[1].value})`)
+  }
 
   const template = await loadJson(`weapon/${id.toUpperCase()}`)
   const wpn = {
@@ -1613,22 +1623,20 @@ async function processWeapon({ value: node }) {
       } else {
         wpn.subCategory = 'gl'
       }
-    } else if(wpn.category === 'special') {
-      const damage = wpn.damage?.base || wpn.damage
+    } else if(wpn.category === 'deploy') {
       if(wpn.type === 'DecoyBullet01') {
         wpn.subCategory = 'decoy'
-      } else if(wpn.type === 'AcidBullet01' && damage > 0) {
+      } else {
+        wpn.subCategory = 'turret'
+      }
+    } else if(wpn.category === 'special') {
+      const damage = wpn.damage?.base || wpn.damage
+      if(wpn.type === 'AcidBullet01' && damage > 0) {
         wpn.subCategory = 'acid'
       } else if(wpn.type === 'FlameBullet02' && damage > 0) {
         wpn.subCategory = 'flame'
-      } else if(wpn.type === 'GrenadeBullet01') {
-        wpn.subCategory = 'firecracker'
       } else if(wpn.type === 'SolidBullet01') {
         wpn.subCategory = 'bound'
-      } else if(wpn.names.en.includes('Impulse')) {
-        wpn.subCategory = 'mine'
-      } else if(wpn.type === 'BombBullet01') {
-        wpn.subCategory = 'bomb'
       } else {
         wpn.subCategory = 'reverser'
       }
@@ -1689,7 +1697,7 @@ async function extractWeaponData() {
   for(const v of table.variables[0].value) {
     arr.push(processWeapon(v))
   }
-  return Promise.all(arr)
+  return Promise.all(arr).then(arr => arr.filter(w => w))
 }
 
 const modes = {
