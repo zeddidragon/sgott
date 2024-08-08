@@ -4,8 +4,8 @@ const { exec } = require('child_process')
 //const from = './sgos/data5/WEAPON'
 //const to = './data/5/weapons'
 
-const from = './sgos/data6/WEAPON'
-const to = './data/6/weapon'
+const from = './sgos/data6/MISSION'
+const to = './data/6/Mission'
 const files = fs.readdirSync(from)
 
 const sgoRegex = /\.SGO$/

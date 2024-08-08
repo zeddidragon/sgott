@@ -1726,6 +1726,7 @@ async function processMode({ value: mode }) {
     .replace('app:/', '')
     .replace('.sgo', '')
     .toUpperCase()
+    .replace('MISSION/', 'Mission/')
   const missionList = (await loadJson(missionListPath))
     .variables[0]
     .value
@@ -1733,7 +1734,7 @@ async function processMode({ value: mode }) {
   const obj = {
     ...modes[key],
     missions,
-    difficulties: mode[6].value.map(({ value: d }, i) => {
+    difficulties: mode[7].value.map(({ value: d }, i) => {
       const dropsLow = Array(missions)
       const dropsHigh = Array(missions)
       const [start, end] = d[2].value.slice(0, 2).map(v => v.value)
@@ -1741,7 +1742,7 @@ async function processMode({ value: mode }) {
       const range = end - start
       for(let i = 0; i < missions; i++) {
         const mission = missionList[i].value
-        const pivot = start + range * mission[3].value
+        const pivot = start + range * mission[9].value
         lvBuffer.writeFloatLE(pivot - spread)
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
         dropsLow[i] = Math.floor(lvBuffer.readFloatLE())
@@ -1749,6 +1750,7 @@ async function processMode({ value: mode }) {
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
         dropsHigh[i] = Math.ceil(lvBuffer.readFloatLE())
       }
+
       return {
         name: difficulties[i],
         progressScaling: d[0].value.map(v => v.value),
@@ -1786,7 +1788,7 @@ async function extractCalcdata() {
     modes,
   ] = await Promise.all([
     extractWeaponData(),
-    // extractModesData('config'),
+    extractModesData('config'),
   ])
   return {
     langs: ['en', 'ja'],
