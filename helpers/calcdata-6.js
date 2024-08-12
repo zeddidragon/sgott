@@ -43,6 +43,8 @@ const categories = {
     106: 'missile',
     108: 'core',
     110: 'special',
+    111: 'saber',
+    113: 'shield',
   },
   fencer: {
     200: 'hammer',
@@ -781,15 +783,31 @@ const headers = {
       'stars',
       'level',
       'name',
+      'ammo',
       'damage',
       'duration',
       'reload',
-      'energy',
       'dps',
       'tdps',
       'total',
-      'eps',
-      'dpe',
+    ],
+  }, {
+    category: 'saber',
+    names: {
+      en: 'Saber',
+      ja: 'セイバー',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'reload',
+      'dps',
+      'tdps',
+      'total',
     ],
   }, {
     category: 'core',
@@ -1504,7 +1522,7 @@ async function processWeapon({ value: node }) {
   const category = node[2].value
   const character = classes[Math.floor(category / 100)]
   const group = categories[character][category]
-  if(character !== 'ranger') {
+  if(!['ranger', 'winger'].includes(character)) {
     return
   }
   if(!group) {
