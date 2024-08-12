@@ -95,6 +95,7 @@ function DecoyBullet01(wpn) {
   delete wpn.damage
 }
 
+// Hand grenade?
 function EfsBullet(wpn) {
   const isFuse = digValue(wpn.custom, [
     'bullet',
@@ -104,6 +105,16 @@ function EfsBullet(wpn) {
   if(isFuse) {
     wpn.fuse = wpn.life
   }
+}
+
+// Sabers
+function EfsExposureBullet(wpn) {
+  wpn.drain = wpn.burst
+  delete wpn.burst
+}
+
+function EfsShieldBullet01(wpn) {
+  wpn.duration = wpn.life
 }
 
 function FlameBullet02(wpn) {
@@ -610,6 +621,8 @@ module.exports = {
   ClusterBullet01,
   DecoyBullet01,
   EfsBullet,
+  EfsExposureBullet,
+  EfsShieldBullet01,
   FireAmmo01: FlameBullet02,
   FlameBullet02,
   GrenadeAmmo01: GrenadeBullet01,

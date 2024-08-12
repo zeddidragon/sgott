@@ -1,4 +1,5 @@
 const json = require('json-stringify-pretty-compact')
+const isDebug = process.argv[3] === 'dbg'
 
 function extractCalcdata() {
   const game = process.argv[2]
@@ -7,7 +8,9 @@ function extractCalcdata() {
 
 extractCalcdata()
   .then(data => {
-    console.log(json(data, null, 2))
+    if(!isDebug) {
+      console.log(json(data, null, 2))
+    }
   })
   .catch(console.error)
   .then(() => {

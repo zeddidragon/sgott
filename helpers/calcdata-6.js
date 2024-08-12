@@ -41,10 +41,14 @@ const categories = {
     104: 'sniper',
     105: 'plasma',
     106: 'missile',
-    108: 'core',
     110: 'special',
     111: 'saber',
+    112: 'trap',
     113: 'shield',
+    115: 'submissile',
+    116: 'cannon',
+    114: 'super',
+    120: 'core',
   },
   fencer: {
     200: 'hammer',
@@ -776,7 +780,7 @@ const headers = {
     category: 'special',
     names: {
       en: 'Special Weapons',
-      ja: '特殊',
+      ja: 'パワーグレネード',
     },
     headers: [
       'checkbox',
@@ -785,16 +789,14 @@ const headers = {
       'name',
       'ammo',
       'damage',
-      'duration',
       'reload',
-      'dps',
       'tdps',
       'total',
     ],
   }, {
     category: 'saber',
     names: {
-      en: 'Saber',
+      en: 'Sabers',
       ja: 'セイバー',
     },
     headers: [
@@ -803,10 +805,93 @@ const headers = {
       'level',
       'name',
       'ammo',
+      'drain',
       'damage',
+      'reload',
+      'total',
+    ],
+  }, {
+    category: 'shield',
+    names: {
+      en: 'Shields',
+      ja: 'シールド',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'duration',
+      'reload',
+    ],
+  }, {
+    category: 'trap',
+    names: {
+      en: 'Traps',
+      ja: 'トラップ',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'duration',
       'reload',
       'dps',
       'tdps',
+      'total',
+    ],
+  }, {
+    category: 'cannon',
+    names: {
+      en: 'Cannons',
+      ja: 'キャノン',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'duration',
+      'reload',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'submissile',
+    names: {
+      en: 'Guided Missiles',
+      ja: '誘導兵器',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'reload',
+      'lockRange',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'super',
+    names: {
+      en: 'Super Weapons',
+      ja: 'スーパーウエポン',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'damage',
+      'duration',
+      'reload',
+      'dps',
       'total',
     ],
   }, {
@@ -1632,6 +1717,22 @@ async function processWeapon({ value: node }) {
   if(!wpn.zoom && !wpn.secondary) {
     delete wpn.zoom
     delete wpn.secondary
+  }
+
+  for(const prop of [
+    'accuracy',
+    'radius',
+    'gravity',
+    'burstRate',
+    'interval',
+    'lockRange',
+    'lockTime',
+    'lockType',
+    'lockDist',
+  ]) {
+    if(!wpn[prop]) {
+      delete wpn[prop]
+    }
   }
 
   if(wpn.character === 'ranger') {
