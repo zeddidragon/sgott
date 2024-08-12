@@ -57,7 +57,8 @@ function BlankBullet(wpn) {
     return Support(wpn)
   }
   // Laser guide kit
-  if(wpn.weapon === 'Weapon_LaserMarker' && wpn.category === 'support') {
+  if(wpn.weapon === 'Weapon_LaserMarker'
+    && (wpn.category === 'support' || wpn.category === 'special')) {
     return TargetMarkerBullet01(wpn)
   }
 }
@@ -618,6 +619,12 @@ function Weapon_Gatling(wpn) {
   }
 }
 
+function Weapon_SubDrone(wpn) {
+  const formation = digValue(wpn.wCustom, [ 'drone', 'formation'])
+  const traceCount = digValue(wpn.wCustom, ['drone', 'trace', 'count'])
+  wpn.units = traceCount || formation?.length
+}
+
 module.exports = {
   assignGame,
   '': BlankBullet,
@@ -656,4 +663,6 @@ module.exports = {
   SupportUnitBullet01,
   TargetMarkerBullet01,
   Weapon_Gatling,
+  Weapon_SubDrone,
+
 }

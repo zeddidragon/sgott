@@ -76,6 +76,11 @@ const categories = {
     312: 'planes',
     313: 'missile',
     314: 'satellite',
+    330: 'droneguard',
+    332: 'dronechaser',
+    333: 'droneshooter',
+    334: 'droneauto',
+    331: 'bomb',
     320: 'super',
   },
 }
@@ -1259,104 +1264,6 @@ const headers = {
       'total',
     ],
   }, {
-    category: 'support',
-    names: {
-      en: 'Support Equipment',
-      ja: 'サポート装置',
-    },
-    tables: [{
-      subCategory: 'laser',
-      names: {
-        en: 'Laser Guide Kits',
-        ja: 'レーザー誘導装置',
-      },
-      headers: [
-        'checkbox',
-        'level',
-        'name',
-        'zoom',
-        'range',
-        'lockSpeedBoost',
-        'lockRangeBoost',
-      ],
-    }, {
-      subCategory: 'beacon',
-      names: {
-        en: 'Guide Beacon Guns',
-        ja: '誘導ビーコンガン',
-      },
-      headers: [
-        'checkbox',
-        'level',
-        'name',
-        'ammo',
-        'interval',
-        'zoom',
-        'range',
-        'speed',
-        'lockSpeedBoost',
-        'lockRangeBoost',
-      ],
-    }, {
-      subCategory: 'life',
-      names: {
-        en: 'Life Vendors',
-        ja: 'ライフベンダー',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'radius',
-        'duration',
-        'interval',
-        'zoom',
-        'dps',
-        'total',
-      ],
-    }, {
-      subCategory: 'power',
-      names: {
-        en: 'Power Assists',
-        ja: 'パワーポスト',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'radius',
-        'duration',
-        'interval',
-        'zoom',
-        'reload',
-      ],
-    }, {
-      subCategory: 'guard',
-      names: {
-        en: 'Guard Assists',
-        ja: 'ガードポスト',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'radius',
-        'duration',
-        'interval',
-        'zoom',
-        'reload',
-      ],
-    }],
-  }, {
     category: 'limpet',
     names: {
       en: 'Limpet Guns',
@@ -1380,67 +1287,32 @@ const headers = {
       'total',
     ],
   }, {
-    category: 'deploy',
-    names: {
-      en: 'Stationary Weapons',
-      ja: '設置兵器',
-    },
-    tables: [{
-      subCategory: 'bomb',
-      names: {
-        en: 'Bombs',
-        ja: 'ローラーボムシリーズ',
-      },
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'radius',
-        'interval',
-        'reload',
-        'zoom',
-        'speed',
-        'tdps',
-        'total',
-      ],
-    }, {
-      subCategory: 'turret',
-      names: {
-        en: 'Automatic Turrets',
-        ja: 'ZE-GUNシリーズ',
-      },
-      appendix: '*For a single turret',
-      headers: [
-        'checkbox',
-        'stars',
-        'level',
-        'name',
-        'ammo',
-        'damage',
-        'shots',
-        'radius',
-        'interval',
-        'reload',
-        'dps',
-        'dps2',
-        'tdps',
-        'total',
-      ],
-    }],
-  }, {
     category: 'special',
     names: {
       en: 'Special Weapons',
       ja: '特殊',
     },
     tables: [{
-      subCategory: 'defensive',
+      subCategory: 'laser',
       names: {
-        en: 'Defensive',
-        ja: 'トーチカ',
+        en: 'Laser Guide Kits',
+        ja: 'レーザー誘導装置',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'zoom',
+        'range',
+        'lockSpeedBoost',
+        'lockRangeBoost',
+      ],
+    }, {
+      subCategory: 'beacon',
+      names: {
+        en: 'Guide Beacon Guns',
+        ja: '誘導ビーコンガン',
       },
       headers: [
         'checkbox',
@@ -1448,10 +1320,12 @@ const headers = {
         'level',
         'name',
         'ammo',
-        'hp',
-        'duration',
+        'interval',
         'zoom',
-        'reload',
+        'range',
+        'speed',
+        'lockSpeedBoost',
+        'lockRangeBoost',
       ],
     }, {
       subCategory: 'shotgun',
@@ -1499,6 +1373,197 @@ const headers = {
       'range',
       'speed',
       'dps',
+      'total',
+    ],
+  }, {
+    category: 'support',
+    names: {
+      en: 'Support Equipment',
+      ja: 'サポート装置',
+    },
+    tables: [{
+      subCategory: 'life',
+      names: {
+        en: 'Life Vendors',
+        ja: 'ライフベンダー',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'radius',
+        'duration',
+        'dps',
+        'total',
+      ],
+    }, {
+      subCategory: 'power',
+      names: {
+        en: 'Power Assists',
+        ja: 'パワーポスト',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'boost',
+        'radius',
+        'duration',
+        'reload',
+      ],
+    }, {
+      subCategory: 'guard',
+      names: {
+        en: 'Guard Assists',
+        ja: 'ガードポスト',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'defense',
+        'radius',
+        'duration',
+        'reload',
+      ],
+    }, {
+      subCategory: 'defensive',
+      names: {
+        en: 'Defensive',
+        ja: 'トーチカ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'hp',
+        'duration',
+        'reload',
+      ],
+    }],
+  }, {
+    category: 'droneguard',
+    names: {
+      en: 'Guard Drones',
+      ja: '警護型カプセル兵士',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'units',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'dronechaser',
+    names: {
+      en: 'Chaser Drones',
+      ja: '追走型カプセル兵士',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'units',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'droneshooter',
+    names: {
+      en: 'Shooter Drones',
+      ja: '射撃型カプセル兵士',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'units',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'droneauto',
+    names: {
+      en: 'Autonomous Aircraft',
+      ja: '自律型エアクラフト',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'units',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'range',
+      'speed',
+      'dps',
+      'tdps',
+      'total',
+    ],
+  }, {
+    category: 'bomb',
+    names: {
+      en: 'Mechanized Bombs',
+      ja: '機械化爆弾',
+    },
+    headers: [
+      'checkbox',
+      'stars',
+      'level',
+      'name',
+      'ammo',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'zoom',
+      'speed',
+      'tdps',
       'total',
     ],
   }, {
@@ -1627,7 +1692,6 @@ async function processWeapon({ value: node }) {
     level: level,
     character: character,
     category: group,
-    raw: category,
     odds: unlockStates[node[5].value] || (Math.floor(node[3].value * 100)),
     dlc: node[8].value,
   }
@@ -1786,13 +1850,7 @@ async function processWeapon({ value: node }) {
   } else if(wpn.character === 'bomber') {
     if(wpn.category === 'guide') {
     } else if(wpn.category === 'support') {
-      if(wpn.weapon === 'Weapon_LaserMarker') {
-        wpn.subCategory = 'laser'
-      } else if(wpn.type === 'TargetMarkerBullet01') {
-        wpn.subCategory = 'beacon'
-      } else {
-        wpn.subCategory = wpn.supportType
-      }
+      wpn.subCategory = wpn.supportType || 'defensive'
     } else if(wpn.category === 'deploy') {
       if(wpn.type === 'BombBullet01') {
         wpn.subCategory = 'bomb'
@@ -1800,10 +1858,12 @@ async function processWeapon({ value: node }) {
         wpn.subCategory = 'turret'
       }
     } else if(wpn.category === 'special') {
-      if(wpn.type === 'SolidPelletBullet01') {
-        wpn.subCategory = 'shotgun'
+      if(wpn.weapon === 'Weapon_LaserMarker') {
+        wpn.subCategory = 'laser'
+      } else if(wpn.type === 'TargetMarkerBullet01') {
+        wpn.subCategory = 'beacon'
       } else {
-        wpn.subCategory = 'defensive'
+        wpn.subCategory = 'shotgun'
       }
     }
   }
