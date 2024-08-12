@@ -97,6 +97,18 @@ function DecoyBullet01(wpn) {
 
 // Hand grenade?
 function EfsBullet(wpn) {
+  if(wpn.weapon === 'Weapon_Swing') { // Power Blade
+    delete wpn.interval
+    wpn.attacks = wpn.wCustom[0].value.map(({ value: atk }, i) => {
+      const obj = {
+        name: `Blade ${i + 1}`,
+        damage: +atk[2].value.toFixed(2),
+        speed: +atk[4].value.toFixed(2),
+        swing: +atk[1].value.toFixed(2),
+      }
+      return obj
+    })
+  }
   const isFuse = digValue(wpn.custom, [
     'bullet',
     'ext',

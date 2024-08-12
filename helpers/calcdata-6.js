@@ -1095,6 +1095,7 @@ const headers = {
       'boostCount',
       'dashCooldown',
       'boostSpeed',
+      'convertible',
     ],
   }, {
     category: 'protector',
@@ -1140,6 +1141,12 @@ const headers = {
       'equipWalkReduction',
       'equipTurnReduction',
       'recoil',
+      'knockdownImmunity',
+      'hitSlowdown',
+      'lockSpeedBoost',
+      'lockRangeBoost',
+      'healAllyBoost',
+      'probeRadius',
     ],
   }],
   bomber: [{
@@ -1607,9 +1614,6 @@ async function processWeapon({ value: node }) {
   const category = node[2].value
   const character = classes[Math.floor(category / 100)]
   const group = categories[character][category]
-  if(!['ranger', 'winger'].includes(character)) {
-    return
-  }
   if(!group) {
     throw new Error(`Category not found: ${category} (${node[1].value})`)
   }
@@ -1713,6 +1717,9 @@ async function processWeapon({ value: node }) {
   }
   if(wpn.energy < 0) {
     delete wpn.energy
+  }
+  if(wpn.reload < 0) {
+    delete wpn.reload
   }
   if(!wpn.zoom && !wpn.secondary) {
     delete wpn.zoom
