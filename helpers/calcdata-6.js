@@ -1160,19 +1160,44 @@ const headers = {
       en: 'Request Artillery Units',
       ja: '砲兵隊',
     },
-    appendix: '*Area for each blast',
-    headers: [
-      'checkbox',
-      'stars',
-      'level',
-      'name',
-      'damage',
-      'shots',
-      'radius',
-      'subRadius',
-      'reload',
-      'total',
-    ],
+    tables: [{
+      subCategory: 'artillery',
+      names: {
+        en: 'Artillery Crew',
+        ja: '砲兵隊',
+      },
+      appendix: '*Area for each blast',
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'subRadius',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'drone',
+      names: {
+        en: 'Drone-Based',
+        ja: 'ピックアップ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'radius',
+        'dps',
+        'total',
+      ],
+    }],
   }, {
     category: 'gunship',
     names: {
@@ -1180,89 +1205,187 @@ const headers = {
       ja: '攻撃機ホエール',
     },
     appendix: '*For barrage shots',
-    headers: [
-      'checkbox',
-      'stars',
-      'level',
-      'name',
-      'ammo',
-      'damage',
-      'shots',
-      'radius',
-      'subRadius',
-      'interval',
-      'interval2',
-      'reload',
-      'zoom',
-      'range',
-      'speed',
-      'dps',
-      'dps2',
-      'tdps',
-      'total',
-    ],
+    tables: [{
+      subCategory: 'gunship',
+      names: {
+        en: 'Request Gunships',
+        ja: '攻撃機ホエール',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'shots',
+        'radius',
+        'subRadius',
+        'interval',
+        'interval2',
+        'reload',
+        'zoom',
+        'range',
+        'speed',
+        'dps',
+        'dps2',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'drone',
+      names: {
+        en: 'Drone-Based',
+        ja: 'ピックアップ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'units',
+        'damage',
+        'interval',
+        'dps',
+        'total',
+      ],
+    }]
   }, {
     category: 'planes',
     names: {
       en: 'Request Bombers',
       ja: '爆撃機カロン＆ミッドナイト',
     },
-    appendix: '*Area for each blast',
-    headers: [
-      'checkbox',
-      'stars',
-      'level',
-      'name',
-      'damage',
-      'shots',
-      'radius',
-      'subRadius',
-      'duration',
-      'reload',
-      'total',
-    ],
+    tables: [{
+      subCategory: 'planes',
+      names: {
+        en: 'Request Bombers',
+        ja: '爆撃機カロン＆ミッドナイト',
+      },
+      appendix: '*Area for each blast',
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'subRadius',
+        'duration',
+        'reload',
+        'total',
+      ],
+    }, {
+      subCategory: 'drone',
+      names: {
+        en: 'Drone-Based',
+        ja: 'ピックアップ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'units',
+        'damage',
+        'radius',
+        'interval',
+        'dps',
+        'total',
+      ],
+    }]
   }, {
     category: 'missile',
     names: {
       en: 'Request Missiles',
       ja: 'ミサイル',
     },
-    headers: [
-      'checkbox',
-      'stars',
-      'level',
-      'name',
-      'damage',
-      'shots',
-      'radius',
-      'credits',
-      'reload',
-      'zoom',
-      'range',
-      'tdps',
-      'total',
-    ],
+    tables: [{
+      subCategory: 'missile',
+      names: {
+        en: 'Request Missiles',
+        ja: 'ミサイル',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'credits',
+        'reload',
+        'zoom',
+        'range',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'drone',
+      names: {
+        en: 'Drone-Based',
+        ja: 'ピックアップ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'units',
+        'damage',
+        'radius',
+        'total',
+      ],
+    }]
   }, {
     category: 'satellite',
     names: {
       en: 'Request Satellites',
       ja: '攻撃機ホエール',
     },
-    headers: [
-      'checkbox',
-      'stars',
-      'level',
-      'name',
-      'damage',
-      'shots',
-      'radius',
-      'credits',
-      'reload',
-      'zoom',
-      'range',
-      'tdps',
-      'total',
-    ],
+    tables: [{
+      subCategory: 'satellite',
+      names: {
+        en: 'Request Satellites',
+        ja: '攻撃機ホエール',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'damage',
+        'shots',
+        'radius',
+        'credits',
+        'reload',
+        'zoom',
+        'range',
+        'tdps',
+        'total',
+      ],
+    }, {
+      subCategory: 'drone',
+      names: {
+        en: 'Drone-Based',
+        ja: 'ピックアップ',
+      },
+      headers: [
+        'checkbox',
+        'stars',
+        'level',
+        'name',
+        'ammo',
+        'damage',
+        'interval',
+        'dps',
+        'total',
+      ],
+    }]
   }, {
     category: 'limpet',
     names: {
@@ -1848,7 +1971,18 @@ async function processWeapon({ value: node }) {
       }
     }
   } else if(wpn.character === 'bomber') {
-    if(wpn.category === 'guide') {
+    if([
+      'artillery',
+      'gunship',
+      'planes',
+      'missile',
+      'satellite',
+    ].includes(wpn.category)) {
+      if(wpn.weapon.includes('_Drone_')) {
+        wpn.subCategory = 'drone'
+      } else {
+        wpn.subCategory = wpn.category
+      }
     } else if(wpn.category === 'support') {
       wpn.subCategory = wpn.supportType || 'defensive'
     } else if(wpn.category === 'deploy') {

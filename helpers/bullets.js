@@ -48,7 +48,7 @@ function BarrierBullet01(wpn) {
 
 function BlankBullet(wpn) {
   if(wpn.weapon === 'Weapon_Drone_LaserMarker') {
-    return Drones(wpn)
+    return
   }
   if(raidCategories.includes(wpn.category)) {
     return AirRaids(wpn)
@@ -373,9 +373,6 @@ async function AirRaids(wpn) {
   }
 }
 
-function Drones(wpn) {
-}
-
 const SupportProps = {
   // Ranger
   0: (wpn, v) => { wpn.allyRecovery = +v.toFixed(2) },
@@ -609,6 +606,11 @@ function TargetMarkerBullet01(wpn) {
   }
 }
 
+function Weapon_Drone_MarkerShoot(wpn) {
+  const formation = digValue(wpn.wCustom, [ 'drone', 'formation'])
+  wpn.units = formation?.length
+}
+
 function Weapon_Gatling(wpn) {
   wpn.windup = wpn.wCustom[7].value
   if(wpn.xParams) {
@@ -619,7 +621,7 @@ function Weapon_Gatling(wpn) {
   }
 }
 
-function Weapon_SubDrone(wpn) {
+function Weapon_Drone(wpn) {
   const formation = digValue(wpn.wCustom, [ 'drone', 'formation'])
   const traceCount = digValue(wpn.wCustom, ['drone', 'trace', 'count'])
   wpn.units = traceCount || formation?.length
@@ -662,7 +664,10 @@ module.exports = {
   StunAmmo01: StunAmmo01,
   SupportUnitBullet01,
   TargetMarkerBullet01,
+  Weapon_Drone_Area: Weapon_Drone,
+  Weapon_Drone_MarkerShoot: Weapon_Drone,
+  Weapon_Drone_LaserMarker: Weapon_Drone,
   Weapon_Gatling,
-  Weapon_SubDrone,
+  Weapon_SubDrone: Weapon_Drone,
 
 }
