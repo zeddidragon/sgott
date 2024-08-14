@@ -56,7 +56,6 @@ function compileDsgo(obj) {
         function Padding() {
         }
         Padding.size = padding
-        console.log({ padding })
         Allocate(Padding, () => Buffer.alloc(padding))(obj, cursor)
       }
 
