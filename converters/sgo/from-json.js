@@ -27,12 +27,7 @@ function compileSgo(obj) {
     UInt(cursor, buffer.length, offset)
   }
 
-  const SgoNode = Union('type', {
-    'ptr': Struct([
-      [0x00, UInt, () => 0],
-      [0x04, UInt, obj => (obj.value && obj.value.length) || 0x00],
-      [0x08, Ref, Collection(SgoNode, obj => obj.value)]
-    ], 0x0C),
+  const SgoNodeTypes = {
     'int': Struct([
       [0x00, UInt, () => 1],
       [0x04, UInt, () => 0x04],
@@ -58,7 +53,13 @@ function compileSgo(obj) {
       [0x04, ExtraSize, obj => obj.value],
       [0x08, Defer, (obj, cursor, tmp) => tmp.buffer],
     ], 0x0C),
-  }, 0x0C)
+  }
+  const SgoNode = Union('type', SgoNodeTypes, 0x0C)
+  SgoNodeTypes.ptr = Struct([
+    [0x00, UInt, () => 0],
+    [0x04, UInt, obj => (obj.value && obj.value.length) || 0x00],
+    [0x08, Ref, Collection(SgoNode, obj => obj.value)]
+  ], 0x0C)
 
   const SgoHeader = (() => {
     if(obj.version === 0xEDF2017) {
