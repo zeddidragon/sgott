@@ -1,7 +1,6 @@
-const compiler = require('../compiler.js')
 const infer = require('../infer.js')
 
-function compileSgo(obj) {
+function compileSgo(compiler, obj, opts) {
   const { compile, types } = compiler(obj)
   const {
     Str,
@@ -18,7 +17,7 @@ function compileSgo(obj) {
   } = types
 
   function ExtraSize(cursor, value, offset, tmp) {
-    const buffer = infer.compileData(value.data || value)
+    const buffer = infer.compileData(compiler, value.data || value, opts)
     tmp.buffer = buffer
     if(/sgo/i.test(value.format || value.type)) {
       const variables = value.data ? value.data.variables : value.variables

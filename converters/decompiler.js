@@ -1,6 +1,5 @@
 const util = require('util')
 const kleur = require('kleur')
-const { decompileBuffer } = require('./infer.js')
 
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
@@ -263,11 +262,6 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     return UnionDef
   }
 
-  function Attachment(cursor, offset = 0x00, size = null) {
-    if(offset) cursor = cursor.clone().move(offset)
-    return decompileBuffer(cursor.buffer, size)
-  }
-
   function Collection(Type, typeSize) {
     function CollectionDef(cursor, offset = 0x00, count = 0) {
       if(!count) return null
@@ -313,7 +307,6 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     Struct,
     Union,
     Collection,
-    Attachment,
   }
   decompile.decompile = decompile
 

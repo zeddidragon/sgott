@@ -3,6 +3,8 @@ const fs = require('fs')
 const path = require('path')
 const json = require('json-stringify-pretty-compact')
 const config = require('./package.json')
+const compiler = require('./converters/compiler.js')
+const decompiler = require('./converters/decompiler.js')
 const dsgoToJson = require('./converters/dsgo/to-json.js')
 const jsonToDsgo = require('./converters/dsgo/from-json.js')
 const sgoToJson = require('./converters/sgo/to-json.js')
@@ -31,14 +33,14 @@ function isRmp(obj) {
 }
 
 const transforms = {
-  dsgo: (...args) => json(dsgoToJson(...args)),
-  sgo: (...args) => json(sgoToJson(...args)),
-  rmp: (...args) => json(rmpToJson(...args)),
+  dsgo: (...args) => json(dsgoToJson(decompiler, ...args)),
+  sgo: (...args) => json(sgoToJson(decompiler, ...args)),
+  rmp: (...args) => json(rmpToJson(decompiler, ...args)),
   json(buffer, opts) {
     const parsed = JSON.parse(buffer.toString())
-    if(isDsgo(parsed)) return jsonToDsgo(parsed, opts)
-    if(isSgo(parsed)) return jsonToSgo(parsed, opts)
-    if(isRmp(parsed)) return jsonToRmp(parsed, opts)
+    if(isDsgo(parsed)) return jsonToDsgo(compiler, parsed, opts)
+    if(isSgo(parsed)) return jsonToSgo(compiler, parsed, opts)
+    if(isRmp(parsed)) return jsonToRmp(compiler, parsed, opts)
     throw new Error('Unable to recognize JSON format')
   },
 }

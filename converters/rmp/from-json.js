@@ -1,7 +1,7 @@
 const compiler = require('../compiler.js')
 const sgo = require('../sgo/from-json.js')
 
-function compileRmp(obj) {
+function compileRmp(compiler, obj) {
   const { compile, types } = compiler(obj)
   const {
     Str,

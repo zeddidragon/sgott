@@ -1,7 +1,4 @@
-const compiler = require('../compiler.js')
-  const infer = require('../infer.js')
-
-function compileDsgo(obj) {
+function compileDsgo(compiler, obj) {
   const { compile, types } = compiler(obj)
   const {
     Str,

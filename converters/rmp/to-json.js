@@ -1,7 +1,6 @@
-const decompiler = require('../decompiler.js')
 const sgo = require('../sgo/to-json.js')
 
-function decompile(buffer, config) {
+function decompile(decompiler, buffer, config) {
   const { decompile, types } = decompiler('RMP', buffer, config)
   const {
     Str,

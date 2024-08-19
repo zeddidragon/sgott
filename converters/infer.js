@@ -27,14 +27,14 @@ const supported = [
   'rmp',
 ]
 
-function decompileBuffer(buffer, size) {
+function decompileBuffer(buffer, size, compiler) {
   const type = identifyBuffer(buffer)
   if(size) buffer = buffer.slice(0, size)
   if(supported.includes(type)) {
     return ({
       sgo: decompileSgo,
       rmp: decompileRmp,
-    })(buffer)
+    })(compiler, buffer)
   }
   return buffer.toString('base64')
 }
@@ -51,13 +51,13 @@ function identifyData(obj) {
   if(obj.spawns) return 'rmp'
 }
 
-function compileData(obj) {
+function compileData(obj, compiler) {
   const type = identifyData(obj)
   if(supported.includes(type))  {
     return ({
       sgo: compileSgo,
       rmp: compileRmp,
-    })[type](obj)
+    })[type](compiler, obj)
   }
   return Buffer.from(obj, 'base64')
 }
