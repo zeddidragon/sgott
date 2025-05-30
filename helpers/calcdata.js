@@ -1,15 +1,15 @@
 const json = require('json-stringify-pretty-compact')
 const isDebug = process.argv[3] === 'dbg'
 
+const game = process.argv[2]
 function extractCalcdata() {
-  const game = process.argv[2]
   return require(`./calcdata-${game}.js`)()
 }
 
 extractCalcdata()
   .then(data => {
     if(!isDebug) {
-      console.log(json(data, null, 2))
+        require('fs').writeFileSync(`weapons-${game}.json`, json(data))
     }
   })
   .catch(console.error)
