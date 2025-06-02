@@ -35,7 +35,6 @@ const headers = {
       'checkbox',
       'name',
       'ammo',
-      'piercing',
       'damage',
       'interval',
       'reload',

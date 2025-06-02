@@ -435,9 +435,6 @@ const headers = {
       'range',
       'speed',
       'tdps',
-      'total',
-      'eps',
-      'dpe',
     ],
   }, {
     category: 'sniper',
