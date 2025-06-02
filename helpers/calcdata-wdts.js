@@ -43,6 +43,7 @@ const headers = {
       en: 'Homing',
       ja: 'ホーミング兵器',
     },
+    appendix: 'Stats are missing for some weapons. Please contact me if you know them.',
     headers: [
       'checkbox',
       'name',
@@ -61,6 +62,7 @@ const headers = {
       en: 'Electroshock',
       ja: '中距離-電撃',
     },
+    appendix: 'Stats are missing for some weapons. Please contact me if you know them.',
     headers: [
       'checkbox',
       'name',
@@ -95,6 +97,7 @@ const headers = {
       en: 'Ranged',
       ja: '範囲攻撃',
     },
+    appendix: 'Stats are missing for some weapons. Please contact me if you know them.',
     headers: [
       'checkbox',
       'name',
