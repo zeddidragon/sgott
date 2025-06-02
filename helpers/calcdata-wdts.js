@@ -13,6 +13,7 @@ const headers = {
     },
     headers: [
       'checkbox',
+      'level',
       'name',
       'damage',
       'interval',
@@ -28,6 +29,7 @@ const headers = {
     },
     headers: [
       'checkbox',
+      'level',
       'name',
       'damage',
       'interval',
@@ -46,6 +48,7 @@ const headers = {
     appendix: 'Stats are missing for some weapons. Please contact me if you know them.',
     headers: [
       'checkbox',
+      'level',
       'name',
       'damage',
       'radius',
@@ -65,8 +68,8 @@ const headers = {
     appendix: 'Stats are missing for some weapons. Please contact me if you know them.',
     headers: [
       'checkbox',
+      'level',
       'name',
-      'ammo',
       'damage',
       'interval',
       'energy',
@@ -82,6 +85,7 @@ const headers = {
     },
     headers: [
       'checkbox',
+      'level',
       'name',
       'damage',
       'interval',
@@ -100,6 +104,7 @@ const headers = {
     appendix: 'Stats are missing for some weapons. Please contact me if you know them.',
     headers: [
       'checkbox',
+      'level',
       'name',
       'damage',
       'radius',
@@ -109,6 +114,17 @@ const headers = {
       'dps',
       'eps',
       'dpe',
+    ],
+  }, {
+    category: 'special',
+    names: {
+      en: 'Original',
+      ja: '特殊',
+    },
+    headers: [
+      'checkbox',
+      'level',
+      'name',
     ],
   }],
 }
