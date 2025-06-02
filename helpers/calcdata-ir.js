@@ -437,6 +437,7 @@ async function extractGunStats(category) {
       'thrower',
       'satellite',
       'cannon',
+      'railgun',
     ].includes(category)
     if(isBomb && !ret.damage) {
       ret.damage = ret.damage2
