@@ -2,6 +2,7 @@ const fs = require('fs/promises')
 
 const classes = [
   'ranger',
+  'winger',
 ]
 
 const headers = {
@@ -182,13 +183,202 @@ const headers = {
         'reload',
         'range',
       ],
+    }, {
+      names: {
+        en: 'Reversers',
+        ja: 'リバーサー',
+      },
+      subCategory: 'reverser',
+      headers: [
+        'checkbox',
+        'name',
+        'ammo',
+        'damage',
+        'zoom',
+        'total',
+      ],
+    }, {
+      subCategory: 'firecracker',
+      names: {
+        en: 'Firecrackers',
+        ja: 'かんしゃく玉シリーズ',
+      },
+      headers: [
+        'checkbox',
+        'level',
+        'name',
+        'damage',
+        'radius',
+      ],
     }],
+  }],
+  winger: [{
+    category: 'short',
+    names: {
+      en: 'Short-Range',
+      ja: '近距離',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'dps',
+      'tdps',
+      'total',
+      'eps',
+      'dpe',
+    ],
+  }, {
+    category: 'laser',
+    names: {
+      en: 'Mid-Rg Lasers',
+      ja: '中距離-レーザー',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'ammo',
+      'piercing',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'dps',
+      'tdps',
+      'total',
+      'eps',
+      'dpe',
+    ],
+  }, {
+    category: 'electro',
+    names: {
+      en: 'Mid-Rg Electroshock',
+      ja: '中距離-電撃',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'ammo',
+      'damage',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'dps',
+      'tdps',
+      'total',
+      'eps',
+      'dpe',
+    ],
+  }, {
+    category: 'particle',
+    names: {
+      en: 'Particle Cannons',
+      ja: '中距離-粒子砲',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'damage',
+      'interval',
+      'accuracy',
+      'energy',
+      'range',
+      'dps',
+      'eps',
+      'dpe',
+    ],
+  }, {
+    category: 'sniper',
+    names: {
+      en: 'Sniper Weapons',
+      ja: '狙撃兵器',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'piercing',
+      'damage',
+      'interval',
+      'accuracy',
+      'energy',
+      'range',
+      'dps',
+      'eps',
+      'dpe',
+    ],
+  }, {
+    category: 'plasma',
+    names: {
+      en: 'Ranged Attacks',
+      ja: '範囲攻撃',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'damage',
+      'radius',
+      'interval',
+      'reload',
+      'accuracy',
+      'energy',
+      'range',
+      'dps',
+      'tdps',
+      'eps',
+      'dpe',
+    ],
+  }, {
+    category: 'missile',
+    names: {
+      en: 'Homing Weapons',
+      ja: 'ホーミング兵器',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'damage',
+      'radius',
+      'interval',
+      'energy',
+      'dps',
+      'eps',
+      'dpe',
+    ],
+  }, {
+    category: 'special',
+    names: {
+      en: 'Special Weapons',
+      ja: '特殊',
+    },
+    headers: [
+      'checkbox',
+      'name',
+      'damage',
+      'shots',
+      'reload',
+      'energy',
+      'tdps',
+      'total',
+      'eps',
+      'dpe',
+    ],
   }],
 }
 
 const modes = [{
   name: 'OFF',
-  missions: 17,
+  missions: 71,
 }]
 const difficulties = [
   'Easy',
@@ -201,6 +391,7 @@ const difficulties = [
 const dictionary = {
   '接触': 'contact',
   '時間': 'timed',
+  'ﾑｽﾞﾑｽﾞ？': 'Itchy?',
 }
 
 const specialProps = {
@@ -209,19 +400,39 @@ const specialProps = {
       return
     } else if(!prop) {
       return
-    } else if(prop.includes('X')) {
-      const [damage, count] = prop.split('X')
+    } else if(prop.includes('*')) {
+      const [damage, count] = prop.split('*')
       wpn.damage = +damage
       wpn.count = +count
     } else if(!isNaN(prop)) {
       wpn.damage = +prop
     }
   },
+  damageRank: (wpn, prop) => {
+    wpn.damageRank = {
+      ja: prop,
+    }
+    const en = dictionary[prop]
+    if(en) {
+      wpn.damageRank.en = en
+    }
+  },
+
   zoom: (wpn, prop) => {
     wpn.zoom = +prop.replace('倍', '')
   },
+  shots: (wpn, prop) => {
+    if(prop.includes('*')) {
+      const [shots, count] = prop.split('*')
+      wpn.shots = +shots
+      wpn.count = +count
+    } else {
+      return wpn.shots = +prop
+    }
+  },
   dps: () => {},
   tdps: () => {},
+  remark: () => {},
   fuseType: (wpn, prop) => {
     wpn.fuseType = {
       ja: prop,
@@ -247,9 +458,9 @@ async function extractWeaponData() {
       character,
       category,
     } = c
-    const path = `data/1/${character}-${category}.tsv`
+    const path = `data/2/${character}-${category}.tsv`
     const text = await fs.readFile(path, 'utf8')
-    const enPath = `data/1/${character}-${category}-en.tsv`
+    const enPath = `data/2/${character}-${category}-en.tsv`
     const enText = await fs.readFile(enPath, 'utf8')
 
     return {
@@ -261,6 +472,7 @@ async function extractWeaponData() {
   }))
   return data.flatMap(({ character, category, text, enText }) => {
     const rows = text
+        .trim()
         .split('\n')
         .map(row => row.split('\t').map(cell => cell.trim()))
     const enRows = enText
@@ -292,6 +504,9 @@ async function extractWeaponData() {
           if(prop === '-') {
             continue
           }
+          if(prop.startsWith('--')) {
+            continue
+          }
           if(specialProps[h]) {
             specialProps[h](wpn, prop)
             continue
@@ -303,19 +518,25 @@ async function extractWeaponData() {
           }
         }
 
-        if(category === 'grenade') {
-          if(!wpn.reloadSeconds) {
-            wpn.subCategory = 'hg'
-          } else {
-            wpn.subCategory = 'gl'
+        if(character === 'ranger') {
+          if(category === 'grenade') {
+            if(!wpn.reloadSeconds) {
+              wpn.subCategory = 'hg'
+            } else {
+              wpn.subCategory = 'gl'
+            }
+          } else if(category === 'special') {
+            wpn.subCategory = (() => {
+              if(enName.startsWith('Bound')) return 'bound'
+              if(enName.startsWith('Repair')) return 'reverser'
+              if(enName.startsWith('Insecticide')) return 'reverser'
+              if(enName.includes('Firecracker')) return 'firecracker'
+              return 'flame'
+            })()
           }
-        }
-
-        if(category === 'special') {
-          if(enName.startsWith('Bound')) {
-            wpn.subCategory = 'bound'
-          } else {
-            wpn.subCategory = 'flame'
+        } else if(character === 'winger') {
+          if(wpn.name == 'グングニル') {
+            delete wpn.rof
           }
         }
 
@@ -347,6 +568,7 @@ async function extractCalcdata() {
     classes,
     charLabels: [
       'Trooper',
+      'Palewing',
     ],
     headers,
     weapons,

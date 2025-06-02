@@ -1,3 +1,4 @@
+const fs = require('fs')
 const json = require('json-stringify-pretty-compact')
 const isDebug = process.argv[3] === 'dbg'
 
@@ -8,8 +9,10 @@ function extractCalcdata() {
 
 extractCalcdata()
   .then(data => {
-    if(!isDebug) {
-        require('fs').writeFileSync(`weapons-${game}.json`, json(data))
+    if(isDebug) {
+      console.log(data)
+    } else {
+      fs.writeFileSync(`weapons-${game}.json`, json(data))
     }
   })
   .catch(console.error)
