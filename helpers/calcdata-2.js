@@ -204,7 +204,6 @@ const headers = {
       },
       headers: [
         'checkbox',
-        'level',
         'name',
         'damage',
         'radius',
