@@ -20,7 +20,7 @@ function decompileSgo(decompiler, buffer, config) {
     switch(leader) {
       case 'SGO\0':
       case '\0OGS': {
-        return decompileSgo(cursor, {
+        return decompileSgo(decompiler, cursor, {
           offset,
         })
       }

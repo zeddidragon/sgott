@@ -1,6 +1,32 @@
-const infer = require('../infer.js')
+function identifyData(obj) {
+  if(typeof obj === 'string') return
+  if(obj.format === 'dsgo') return 'dsgo'
+  if(/^sgo$/i.test(obj.format)) return 'sgo'
+  if(obj.variables) return 'sgo'
+  if(/^rmp/i.test(obj.format)) return 'rmp'
+  if(obj.routes) return 'rmp'
+  if(obj.shapes) return 'rmp'
+  if(obj.cameras) return 'rmp'
+  if(obj.spawns) return 'rmp'
+}
 
-function compileSgo(compiler, obj, opts) {
+const supported = [
+  'dsgo',
+  'sgo',
+  'rmp',
+]
+
+function inferAndCompile(compiler, obj, opts, globals) {
+  const type = identifyData(obj)
+  if(supported.includes(type))  {
+    return globals.compilers[type](compiler, obj, opts, globals)
+  }
+  return Buffer.from(obj, 'base64')
+}
+
+function compileSgo(compiler, obj, opts, globals) {
+  if(!globals)
+    throw new Error('globals must be supplied')
   const { compile, types } = compiler(obj)
   const {
     Str,
@@ -17,7 +43,7 @@ function compileSgo(compiler, obj, opts) {
   } = types
 
   function ExtraSize(cursor, value, offset, tmp) {
-    const buffer = infer.compileData(compiler, value.data || value, opts)
+    const buffer = inferAndCompile(compiler, value.data || value, opts, globals)
     tmp.buffer = buffer
     if(/sgo/i.test(value.format || value.type)) {
       const variables = value.data ? value.data.variables : value.variables

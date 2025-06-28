@@ -1,8 +1,11 @@
-const compiler = require('../compiler.js')
-const sgo = require('../sgo/from-json.js')
-
-function compileRmp(compiler, obj) {
+function compileRmp(compiler, obj, opts, globals) {
+  if(!globals)
+    throw new Error('globals must be supplied')
   const { compile, types } = compiler(obj)
+  const { sgo } = opts.globals.compilers
+  if(!sgo)
+    throw new Error('SGO compiler MUST be supplied in RMP compiler')
+
   const {
     Str,
     UInt,

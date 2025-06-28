@@ -2,15 +2,10 @@
 const fs = require('fs')
 const path = require('path')
 const json = require('json-stringify-pretty-compact')
+const globals = require('./globals.js')
 const config = require('./package.json')
 const compiler = require('./converters/compiler.js')
 const decompiler = require('./converters/decompiler.js')
-const dsgoToJson = require('./converters/dsgo/to-json.js')
-const jsonToDsgo = require('./converters/dsgo/from-json.js')
-const sgoToJson = require('./converters/sgo/to-json.js')
-const jsonToSgo = require('./converters/sgo/from-json.js')
-const rmpToJson = require('./converters/rmp/to-json.js')
-const jsonToRmp = require('./converters/rmp/from-json.js')
 
 function isDsgo(obj) {
   if(/^dsgo$/i.test(obj.format)) return true
@@ -32,15 +27,16 @@ function isRmp(obj) {
   return false
 }
 
+const { compilers, decompilers } = globals
 const transforms = {
-  dsgo: (...args) => json(dsgoToJson(decompiler, ...args)),
-  sgo: (...args) => json(sgoToJson(decompiler, ...args)),
-  rmp: (...args) => json(rmpToJson(decompiler, ...args)),
+  dsgo: (...args) => json(decompilers.dsgo(decompiler, ...args)),
+  sgo: (...args) => json(decompilers.sgo(decompiler, ...args)),
+  rmp: (...args) => json(decompilers.rmp(decompiler, ...args)),
   json(buffer, opts) {
     const parsed = JSON.parse(buffer.toString())
-    if(isDsgo(parsed)) return jsonToDsgo(compiler, parsed, opts)
-    if(isSgo(parsed)) return jsonToSgo(compiler, parsed, opts)
-    if(isRmp(parsed)) return jsonToRmp(compiler, parsed, opts)
+    if(isDsgo(parsed)) return compilers.dsgo(compiler, parsed, opts, globals)
+    if(isSgo(parsed)) return compilers.sgo(compiler, parsed, opts, globals)
+    if(isRmp(parsed)) return compilers.rmp(compiler, parsed, opts, globals)
     throw new Error('Unable to recognize JSON format')
   },
 }
@@ -191,7 +187,7 @@ function parseCli(cb) {
 }
 
 function handle(buffer, type, opts, write) {
-  write(transforms[type](buffer, opts), type)
+  write(transforms[type](buffer, opts, globals), type)
 }
 
 parseCli(handle)
