@@ -69,7 +69,9 @@ function decompileDsgo(decompiler, buffer, config) {
     }
     deferred.push(vars)
     for(let i = 0; i < strings.length; i++) {
-      vars[i].name = strings[i]
+      const name = strings[i]
+      const node = vars[i]
+      vars[i] = { name, type: node.type, ...node }
     }
     if(strCount) {
       keyTables.set(vars, strings)
@@ -118,8 +120,8 @@ function decompileDsgo(decompiler, buffer, config) {
     const strings = keyTables.get(arr)
     for(let i = 0; i < arr.length; i++) {
       const node = decompiled.nodes[arr[i]]
-      node.name = strings?.[i]
-      arr[i] = node
+      const name = strings?.[i]
+      arr[i] = { name, type: node.type, ...node }
     }
   }
   delete decompiled.nodes
