@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
+const root = '../..'
 const fs = require('fs')
 const json = require('json-stringify-pretty-compact')
-const table = require('../data/41/weapon/_WEAPONTABLE.json')
-const textTable = require('../data/41/weapon/_WEAPONTEXT.json')
-const blurbs = require('../helpers/blurbs')
-const getId = require('../helpers/get-id')
-const getNode = require('../helpers/get-node')
-const patch = require('../helpers/patch')
+const table = require(root + '/data/41/weapon/_WEAPONTABLE.json')
+const textTable = require(root + '/data/41/weapon/_WEAPONTEXT.json')
+const blurbs = require(root + '/helpers/blurbs')
+const getId = require(root + '/helpers/get-id')
+const getNode = require(root + '/helpers/get-node')
+const patch = require(root + '/helpers/patch')
 
 const rawSgos = new Map()
 const seconds = 60
@@ -35,7 +36,7 @@ function rebalance(query, cb) {
       return true
     })
     .forEach((node, i) => {
-      const path = `../data/41/weapon/${getId(node).toUpperCase()}.json`
+      const path = root + `/data/41/weapon/${getId(node).toUpperCase()}.json`
       const template = require(path)
       const text = textTable.variables[0].value[table.variables[0].value.indexOf(node)]
       modded.add(node)
@@ -571,7 +572,7 @@ rebalance({category: 36, name: /Titan/}, (template, i, meta, text) => {
 
     const path = './SgottMods/weapon/v_404bigtank_mainCannon'
     mainCannonConfig.value = path + '.SGO'
-    const mainCannonTemplate = require('../data/41/weapon/V_404BIGTANK_MAINCANNON')
+    const mainCannonTemplate = require(root + '/data/41/weapon/V_404BIGTANK_MAINCANNON')
     patch(mainCannonTemplate, 'AmmoAlive', 240)
     patch(mainCannonTemplate, 'AmmoSpeed', 20)
     rawSgos.set(path.split(/\//).pop(), mainCannonTemplate)
@@ -658,10 +659,11 @@ rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
   )
 })
 
+/* Grape missing from weapons folder? TODO: Investigate this
 rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
   // Add full rotation to grape's cannon
   const path = './SgottMods/weapon/vehicle401_striker'
-  const vehicleTemplate = require('../data/41/weapon/VEHICLE401_STRIKER.json')
+  const vehicleTemplate = require(root + '/data/41/weapon/VEHICLE401_STRIKER.json')
   const cannonControl = getNode(vehicleTemplate, 'striker_cannon_ctrl')
   cannonControl.value[2].value = 60
   rawSgos.set(path.split(/\//).pop(), vehicleTemplate)
@@ -679,6 +681,7 @@ rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
     original.value = path + '.SGO'
   })
 })
+*/
 
 rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
   // Increase durability of all Grape models
@@ -801,7 +804,7 @@ for(const [path, template] of rawSgos) {
 
 for(const node of modded) {
   const id = getId(node)
-  const path = `../data/41/weapon/${id.toUpperCase()}`
+  const path = root + `/data/41/weapon/${id.toUpperCase()}.json`
   const template = require(path)
   const text = textTable.variables[0].value[table.variables[0].value.indexOf(node)]
   template.meta = {
