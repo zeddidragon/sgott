@@ -1,16 +1,13 @@
-// Run this file from roto of the project where package.json is
+// Run this file from root of the project where package.json is
 // The path for this file should. relatively, be ./mods/6-wd-chargeless/6-wd-chargeless.js
 
 // Find all WD weapons that needs charging up, then change them to standard background reload like in EDF2-4
 // While this makes the weapons more powerful and more flexible, some players find the new Wing Diver status quo have ruined enjoyment of the class and comfort of the game.
 
-// I dedicate this mod to my friend, Palewing, who requested it.
-
 const root = '../..'
 const { readFile, writeFile, mkdir } = require('fs').promises
 const getNode = require(root + '/helpers/get-node')
-const { compilers } = require(root + '/globals')
-const compiler = require(root + '/converters/compiler')
+const compileDsgo = require(root + '/helpers/compile-dsgo')
 
 async function readWeapon(path) {
   const text = await readFile(`data/6/weapon/${path.toUpperCase()}.json`)
@@ -56,8 +53,9 @@ async function main() {
       return true
     })
     .map(({ id, config }) => {
-      const compiled = compilers.dsgo(compiler, config)
+      const compiled = compileDsgo(config)
       const path = `${outDir}/${id}.sgo`
+
       console.log('writing ' + path + '...')
       return writeFile(path, compiled)
     })
@@ -65,7 +63,6 @@ async function main() {
 }
 
 main()
-  .then(console.log)
   .then(() => {
     console.log('Done')
     process.exit(0)

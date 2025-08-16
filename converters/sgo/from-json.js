@@ -25,8 +25,8 @@ function inferAndCompile(compiler, obj, opts, globals) {
 }
 
 function compileSgo(compiler, obj, opts, globals) {
-  if(!globals)
-    throw new Error('globals must be supplied')
+  // if(!globals)
+  //   throw new Error('globals must be supplied')
   const { compile, types } = compiler(obj)
   const {
     Str,
@@ -79,6 +79,7 @@ function compileSgo(compiler, obj, opts, globals) {
       [0x08, Defer, (obj, cursor, tmp) => tmp.buffer],
     ], 0x0C),
   }
+
   const SgoNode = Union('type', SgoNodeTypes, 0x0C)
   SgoNodeTypes.ptr = Struct([
     [0x00, UInt, () => 0],
