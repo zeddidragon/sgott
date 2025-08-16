@@ -123,12 +123,12 @@ async function main() {
     // Increase weapon limits by 12.5
     splatMap(access(diff, 6), v => v + 0.5)
 
-    // Double armor limits by 12.5
+    // Triple armor limits
     splatMap(access(diff, 7), v => v * 2.0)
   }
   writeValues(online, 'Online (After)')
 
-  const outDir = `./release/6-easy-mode`
+  const outDir = `./release/6-easy-mode/defaultpackage`
   await mkdir(outDir, { recursive: true })
 
   const compiled = compileSgo(config)
