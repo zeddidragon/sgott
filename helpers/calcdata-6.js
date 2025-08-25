@@ -126,7 +126,6 @@ const autoProps = {
 const headers = {
   ranger: [{
     category: 'assault',
-    sorting: 'level',
     names: {
       en: 'Assault Rifle',
       ja: 'アサルトライフル',
@@ -152,7 +151,6 @@ const headers = {
     ],
   }, {
     category: 'shotgun',
-    sorting: 'level',
     names: {
       en: 'Shotguns',
       ja: 'ショットガン',
@@ -177,7 +175,6 @@ const headers = {
     ],
   }, {
     category: 'sniper',
-    sorting: 'level',
     names: {
       en: 'Sniper Rifles',
       ja: 'スナイパーライフル',
@@ -203,7 +200,6 @@ const headers = {
     ],
   }, {
     category: 'rocket',
-    sorting: 'level',
     names: {
       en: 'Rocket Launchers',
       ja: 'ロケットランチャー',
@@ -226,7 +222,6 @@ const headers = {
     ],
   }, {
     category: 'missile',
-    sorting: 'level',
     names: {
       en: 'Missile Launchers',
       ja: 'ミサイルランチャー',
@@ -251,7 +246,6 @@ const headers = {
     ],
   }, {
     category: 'grenade',
-    sorting: 'level',
     names: {
       en: 'Grenades',
       ja: 'グレネード',
@@ -374,7 +368,6 @@ const headers = {
     }],
   }, {
     category: 'handgrenade',
-    sorting: 'level',
     names: {
       en: 'Hand Grenades',
       ja: '手榴弾',
@@ -533,7 +526,6 @@ const headers = {
     }],
   }, {
     category: 'tank',
-    sorting: 'level',
     names: {
       en: 'Tanks',
       ja: '戦闘車両',
@@ -558,7 +550,6 @@ const headers = {
     ],
   }, {
     category: 'bike',
-    sorting: 'level',
     names: {
       en: 'Bikes',
       ja: 'バイク',
@@ -586,7 +577,6 @@ const headers = {
     ],
   }, {
     category: 'heli',
-    sorting: 'level',
     names: {
       en: 'Helicopters',
       ja: 'ヘリ',
@@ -641,7 +631,6 @@ const headers = {
     ],
   }, {
     category: 'laser',
-    sorting: 'level',
     names: {
       en: 'Mid-Rg Lasers',
       ja: '中距離-レーザー',
@@ -811,7 +800,6 @@ const headers = {
     ],
   }, {
     category: 'saber',
-    sorting: 'level',
     names: {
       en: 'Sabers',
       ja: 'セイバー',
@@ -913,7 +901,6 @@ const headers = {
     ],
   }, {
     category: 'core',
-    sorting: 'level',
     names: {
       en: 'Cores',
       ja: 'プラズマコア',
@@ -943,7 +930,6 @@ const headers = {
   }],
   fencer: [{
     category: 'hammer',
-    sorting: 'level',
     names: {
       en: 'CC Strikers',
       ja: '近接-打',
@@ -963,7 +949,6 @@ const headers = {
     ],
   }, {
     category: 'spear',
-    sorting: 'level',
     names: {
       en: 'CC Piercers',
       ja: 'ブレード系',
@@ -985,7 +970,6 @@ const headers = {
     ],
   }, {
     category: 'shield',
-    sorting: 'level',
     names: {
       en: 'Shields',
       ja: '盾',
@@ -1149,7 +1133,6 @@ const headers = {
     ],
   }, {
     category: 'exo',
-    sorting: 'level',
     names: {
       en: 'Enhanced Exoskeleton',
       ja: 'スケルトン強化',
@@ -1714,7 +1697,6 @@ const headers = {
     ],
   }, {
     category: 'ground',
-    sorting: 'level',
     names: {
       en: 'Ground Vehicles',
       ja: '車両',
@@ -1740,7 +1722,6 @@ const headers = {
     ],
   }, {
     category: 'heli',
-    sorting: 'level',
     names: {
       en: 'Helicopters',
       ja: 'ヘリ',
@@ -1768,7 +1749,6 @@ const headers = {
     ],
   }, {
     category: 'mech',
-    sorting: 'level',
     names: {
       en: 'Powered Exoskeletons',
       ja: 'バトルマシン',
@@ -1794,7 +1774,6 @@ const headers = {
     ],
   }, {
     category: 'super',
-    sorting: 'level',
     names: {
       en: 'Special Vehicles',
       ja: '特殊兵器',
@@ -1825,7 +1804,8 @@ async function processWeapon({ value: node }) {
   const id = node[0].value
   const lvBuffer = Buffer.alloc(4)
   lvBuffer.writeFloatLE(node[4].value * 25)
-  const level = Math.floor(lvBuffer.readFloatLE())
+  const rawLevel = lvBuffer.readFloatLE()
+  const level = Math.floor(rawLevel)
   const category = node[2].value
   const character = classes[Math.floor(category / 100)]
   const group = categories[character][category]
@@ -1844,6 +1824,8 @@ async function processWeapon({ value: node }) {
     category: group,
     odds: unlockStates[node[5].value] || (Math.floor(node[3].value * 100)),
     dlc: node[8].value,
+    rawCategory: category,
+    rawLevel,
   }
   if(!wpn.dlc) {
     delete wpn.dlc
@@ -2044,7 +2026,7 @@ async function extractWeaponData() {
   for(const v of table.variables[0].value) {
     arr.push(processWeapon(v))
   }
-  return Promise.all(arr).then(arr => arr.filter(w => w))
+  return Promise.all(arr).then(arr => arr.filter(Boolean))
 }
 
 const modes = {
@@ -2145,6 +2127,15 @@ async function extractCalcdata() {
     extractWeaponData(),
     extractModesData('config'),
   ])
+  weapons.sort((a, b) => (
+    (a.rawCategory - b.rawCategory)
+    || (a.rawLevel - b.rawLevel)
+    || a.id.localeCompare(b.id)
+  ))
+  for(const wpn of weapons) {
+    delete wpn.rawLevel
+    delete wpn.rawCategory
+  }
   return {
     langs: ['en', 'ja'],
     classes: [
