@@ -447,11 +447,14 @@ async function extractGunStats(category) {
       const dmg3 = dmgs[(+id) + 2]
       ret.damage = dmg3?.fDamageAmount || 0
     }
-    const isLaserCannon = [
-      'cannon',
-    ].includes(category)
-    if(!isLaserCannon && mDamage > ret.damage && !ret.count) { // Other multishot weapons
+    const isLaserCannon = category === 'cannon'
+    const isLaser = obj.m_enControlType === 'yEnWeaponControlType::ExtendLaser'
+    if(!(isLaserCannon && isLaser) && mDamage > ret.damage && !ret.count) { // Other multishot weapons
       ret.count = Math.round(mDamage / ret.damage)
+    }
+    if(isLaserCannon && ret.count > 60) {
+      ret.shots = Math.floor(ret.count / 60)
+      ret.count /= ret.shots
     }
     if(category === 'rocket' && tags.includes('delay_burst')) {
       const idx = tags.indexOf('delay_burst')
