@@ -127,8 +127,8 @@ async function main() {
       // Remove enemy scaling entirely. Remains as if offline.
       splat(access(diff, 3), [1.0, 1.0, 1.0])
 
-      // Increase weapon limits by 12.5, but leave -1 limits untouched
-      splatMap(access(diff, 6), v => v > 0 ? v + 0.5 : v)
+      // Increase weapon limits by 5, but leave -1 limits untouched
+      splatMap(access(diff, 6), v => v > 0 ? v + 0.2 : v)
 
       // Triple armor limits
       splatMap(access(diff, 7), v => v * 2.0)
