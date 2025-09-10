@@ -1741,7 +1741,7 @@ async function processMode({ value: mode }) {
       const range = end - start
       for(let i = 0; i < missions; i++) {
         const mission = missionList[i].value
-        const pivot = start + range * mission[3].value
+        const pivot = start + range * (mission[3].value + 1)
         lvBuffer.writeFloatLE(pivot - spread)
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
         dropsLow[i] = Math.floor(lvBuffer.readFloatLE())

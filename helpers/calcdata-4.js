@@ -1346,7 +1346,7 @@ async function processMode({ value: mode }) {
       const spread = d[2].value[2].value
       const range = end - start
       for(let i = 0; i < missions; i++) {
-        const pivot = start + (range / (missions - 1)) * i
+        const pivot = start + (range / missions) * (i + 1)
         lvBuffer.writeFloatLE(pivot - spread)
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
         dropsLow[i] = Math.floor(lvBuffer.readFloatLE())
