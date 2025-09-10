@@ -143,7 +143,9 @@ async function main() {
 
   const compiled = compileSgo(config)
 
-  return writeFile(`${outDir}/config.sgo`, compiled)
+  const path = `${outDir}/config.sgo`
+  console.log(path)
+  return writeFile(path, compiled)
 }
 
 main()
