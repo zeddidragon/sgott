@@ -2088,9 +2088,9 @@ async function processMode({ value: mode }) {
         lvBuffer.writeFloatLE(pivot - spread)
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
         dropsLow[i] = Math.floor(lvBuffer.readFloatLE())
-        lvBuffer.writeFloatLE(pivot)
+        lvBuffer.writeFloatLE(pivot + Math.max(spread * 0.05, 0.05))
         lvBuffer.writeFloatLE(lvBuffer.readFloatLE() * 25)
-        dropsHigh[i] = Math.ceil(lvBuffer.readFloatLE())
+        dropsHigh[i] = Math.floor(lvBuffer.readFloatLE())
       }
 
       return {
