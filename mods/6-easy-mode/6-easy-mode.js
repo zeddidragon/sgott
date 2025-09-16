@@ -19,6 +19,10 @@ const difficulties = [ // Debug text
   'Inferno',
 ]
 
+function findMode({ value: nodes }, name) {
+  return nodes.find(n => access(n, 0) === name).value
+}
+
 function processDefault(row) {
   return accessMap(row, v => v.toFixed(2)).join(' - ')
 }
@@ -106,34 +110,42 @@ async function main() {
   const config  = JSON.parse(await readFile(`data/6/config.json`))
   const modes = config.variables[0]
   const offline = access(modes, 0)
-  const online = access(modes, 1)
+  const online = findMode(modes, 'GameMode_OnlineScenario')
+  const dlc1 = findMode(modes, 'GameMode_Online_MissionPack01')
+  const dlc2 = findMode(modes, 'GameMode_Online_MissionPack02')
 
-  writeValues(offline, 'Offline')
-  writeValues(online, 'Online (Before)')
+  // writeValues(offline, 'Offline')
+  // writeValues(online, 'Online (Before)')
 
-  for(const diff of access(online, 7)) {
-    // Slight changes to player scaling
-    // Two players remains as if playing split screen
-    // 3-4 players enemies get a bit harder
-    splat(access(diff, 1), [1.0, 1.0, 1.2, 1.2])
+  for(const mode of [online, dlc1, dlc2]) {
+    for(const diff of access(mode, 7)) {
+      // Slight changes to player scaling
+      // Two players remains as if playing split screen
+      // 3-4 players enemies get a bit harder
+      splat(access(diff, 1), [1.0, 1.0, 1.2, 1.2])
 
-    // Remove enemy scaling entirely. Remains as if offline.
-    splat(access(diff, 3), [1.0, 1.0, 1.0])
+      // Remove enemy scaling entirely. Remains as if offline.
+      splat(access(diff, 3), [1.0, 1.0, 1.0])
 
-    // Increase weapon limits by 12.5
-    splatMap(access(diff, 6), v => v + 0.5)
+      // Increase weapon limits by 5, but leave -1 limits untouched
+      splatMap(access(diff, 6), v => v > 0 ? v + 0.2 : v)
 
-    // Triple armor limits
-    splatMap(access(diff, 7), v => v * 2.0)
+      // Triple armor limits
+      splatMap(access(diff, 7), v => v * 2.0)
+    }
   }
   writeValues(online, 'Online (After)')
+  writeValues(dlc1, 'DLC1 Online (After)')
+  writeValues(dlc2, 'DLC2 Online (After)')
 
   const outDir = `./release/6-easy-mode/defaultpackage`
   await mkdir(outDir, { recursive: true })
 
   const compiled = compileSgo(config)
 
-  return writeFile(`${outDir}/config.sgo`, compiled)
+  const path = `${outDir}/config.sgo`
+  console.log(path)
+  return writeFile(path, compiled)
 }
 
 main()
