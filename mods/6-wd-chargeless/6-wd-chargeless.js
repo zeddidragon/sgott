@@ -48,6 +48,17 @@ async function main() {
       const wpnClass = getNode(config, 'xgs_scene_object_class')
       if(wpnClass.value !== wpnClassFrom) return false
 
+      const custom = getNode(config, 'custom_parameter')
+      const name = getNode(config, 'name.en')
+
+      if(custom.value.length > 7) { // Lightninb Bow and Monster have their step only described charging, clobber it with data from the second node
+        custom.value.pop(); // [9] Unknown parameter. It's blank.
+        custom.value[6] = custom.value.pop(); // [8] Flag Mask
+        custom.value[4] = custom.value.pop(); // [7] Curve parameter
+
+        console.log(name.value.padEnd(24), custom.value.slice(3).map(v => +v.value.toFixed(2)).join(' '));
+      }
+
       wpnClass.value = wpnClassTo
       config.strings.splice(wpnClassFrom, 1, wpnClassTo)
       return true
@@ -56,7 +67,7 @@ async function main() {
       const compiled = compileDsgo(config)
       const path = `${outDir}/${id}.sgo`
 
-      console.log('writing ' + path + '...')
+      console.log(`writing ${path}...`);
       return writeFile(path, compiled)
     })
   return Promise.all(writes)
