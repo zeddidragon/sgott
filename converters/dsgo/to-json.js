@@ -1,3 +1,5 @@
+const Type4Data = require('./type-4')
+
 function decompileDsgo(decompiler, buffer, config) {
   const { decompile, types } = decompiler('DSGO', buffer, config)
   const {
@@ -101,6 +103,18 @@ function decompileDsgo(decompiler, buffer, config) {
     [0x03]: Struct({
       [0x00]: ['value', DRef(DsgoStructure)],
       [0x08]: ['type', () => 'ptr'],
+    }, 0x10),
+    [0x04]: Struct({
+      [0x00]: ['value', DRef((cursor, offset) => {
+        const data = new Type4Data()
+        const parsed = data.parse(cursor, types)
+        console.log(parsed)
+        return {
+          format: 'calc',
+          data: parsed,
+        }
+      })],
+      [0x08]: ['type', () => 'calc'],
     }, 0x10),
   }, 0x10)
 
