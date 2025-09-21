@@ -1,5 +1,3 @@
-const Type4Data = require('./type-4')
-
 function decompileDsgo(decompiler, buffer, config) {
   const { decompile, types } = decompiler('DSGO', buffer, config)
   const {
@@ -13,6 +11,76 @@ function decompileDsgo(decompiler, buffer, config) {
     Struct,
     Collection,
   } = types
+
+  // Signature different from other decompilers!!
+  function Type4(cursor) {
+    function int() {
+      const val = UInt(cursor)
+      cursor.move(0x04)
+      return val
+    }
+    function double() {
+      const val = Double(cursor)
+      cursor.move(0x08)
+      return val
+    }
+    // Write out math equation, push to stack
+    function math(token) {
+      push({ cmd: token, values: pop(2) })
+    }
+    function pop(amount = 1) {
+      if(stack.length < amount) {
+        throw new Error(`Calc error: ${amount} values were expected, but were ${stack.length}`)
+      }
+      return stack.splice(-amount)
+    }
+    function push(value) {
+      stack.push(value)
+    }
+
+    const size = int()
+    const offset = int()
+    const end = cursor.pos + size;
+    const stack = [];
+
+    type4:
+    while(cursor.pos < end) {
+      let type = int();
+      switch(type) {
+        // End of data
+        case 0: break type4;
+
+        // Read values
+        case 1: push({ cmd: 'value', value: double() }); break; // Literal
+        case 3: push({ cmd: `ref`, value: int() }); break; // Index
+
+        case 4: { // Function
+          const command = int();
+          switch(command) {
+            case 0x80000005: push({ cmd: 'f:limit', value: [pop()] }); break; // Limit
+            case 0x80000006: push({ cmd: 'f:lerp', values: pop(3) }); break;
+            default: push(`f:[${command.toString(16)}/${command}]`); break;
+          }
+          break;
+        }
+        
+        // Math operations
+        case 5: math('+'); break;
+        case 6: math('-'); break;
+        case 7: math('*'); break;
+        case 8: math('/'); break;
+
+        default: throw new Error(`Calc error: Unknown operator "${type}"`); break;
+      }
+    }
+
+    if(!stack.length) throw new Error('Calc error: No output')
+    if(stack.length > 1) {
+      throw new Error(`Calc error: Stack unresolved | ${stack.join(', ')}`)
+    }
+
+    return stack[0]
+  }
 
   function Extra(cursor, offset) {
     const size = UInt(cursor, offset)
@@ -105,15 +173,7 @@ function decompileDsgo(decompiler, buffer, config) {
       [0x08]: ['type', () => 'ptr'],
     }, 0x10),
     [0x04]: Struct({
-      [0x00]: ['value', DRef((cursor, offset) => {
-        const data = new Type4Data()
-        const parsed = data.parse(cursor, types)
-        console.log(parsed)
-        return {
-          format: 'calc',
-          data: parsed,
-        }
-      })],
+      [0x00]: ['value', DRef(Type4)],
       [0x08]: ['type', () => 'calc'],
     }, 0x10),
   }, 0x10)

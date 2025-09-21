@@ -20,6 +20,11 @@ function compileDsgo(compiler, obj) {
   const heap = []
   const stringSet = new Set(obj.strings || [])
 
+  function Type4(...args) {
+    console.log({ args });
+    return Buffer.alloc(0);
+  }
+
   function ExtraSize({ data, format }) {
     return Buffer.byteLength(data, format)
   }
@@ -94,6 +99,10 @@ function compileDsgo(compiler, obj) {
         }
       })],
       [0x08, BigUInt, () => 3],
+    ], 0x10),
+    'calc': Struct([
+      [0x00, Ref, Allocate(Type4, ({ value }) => value)],
+      [0x08, BigUInt, () => 4],
     ], 0x10),
   }, 0x10)
 
