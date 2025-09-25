@@ -12,7 +12,6 @@ function decompileDsgo(decompiler, buffer, config) {
     Collection,
   } = types
 
-  // Signature different from other decompilers!!
   function Type4(cursor) {
     function int() {
       const val = UInt(cursor)
@@ -57,7 +56,7 @@ function decompileDsgo(decompiler, buffer, config) {
         case 4: { // Function
           const command = int();
           switch(command) {
-            case 0x80000005: push({ cmd: 'f:limit', value: [pop()] }); break; // Limit
+            case 0x80000005: push({ cmd: 'f:limit', values: pop(1) }); break;
             case 0x80000006: push({ cmd: 'f:lerp', values: pop(3) }); break;
             default: push(`f:[${command.toString(16)}/${command}]`); break;
           }

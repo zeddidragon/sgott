@@ -135,7 +135,7 @@ function compile(obj) {
   }
 
   class Cursor {
-    constructor(buffer, pos, index = 0x00) {
+    constructor(buffer, pos = 0, index = 0x00) {
       if(buffer instanceof Cursor) {
         this.buffer = buffer.buffer
         this.pos = buffer.pos
@@ -312,6 +312,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     Struct,
     Union,
     Collection,
+    Cursor,
   }
 
   return compile
