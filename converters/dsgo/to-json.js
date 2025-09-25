@@ -1,3 +1,5 @@
+const PARENT = Symbol('PARENT')
+
 function decompileDsgo(decompiler, buffer, config) {
   const { decompile, types } = decompiler('DSGO', buffer, config)
   const {
@@ -11,8 +13,10 @@ function decompileDsgo(decompiler, buffer, config) {
     Struct,
     Collection,
   } = types
+  const type4References = []
 
   function Type4(cursor) {
+
     function int() {
       const val = UInt(cursor)
       cursor.move(0x04)
@@ -51,7 +55,12 @@ function decompileDsgo(decompiler, buffer, config) {
 
         // Read values
         case 1: push({ cmd: 'value', value: double() }); break; // Literal
-        case 3: push({ cmd: `ref`, value: int() }); break; // Index
+        case 3: { // Index reference
+          const node = { cmd: `ref`, value: int() }
+          type4References.push(node) // Resolve node name later
+          push(node)
+          break
+        }
 
         case 4: { // Function
           const command = int();
@@ -188,15 +197,48 @@ function decompileDsgo(decompiler, buffer, config) {
     [0x08]: ['nodes', Ref(Collection(DsgoNode))],
   }, 0x10)
 
+  const nodeNames = {}
   const decompiled = decompile(DsgoHeader)
+  const INDEX = Symbol('INDEX')
   for(const arr of deferred) {
     const strings = keyTables.get(arr)
     for(let i = 0; i < arr.length; i++) {
       const node = decompiled.nodes[arr[i]]
       const name = strings?.[i]
-      arr[i] = { name, type: node.type, ...node }
+      nodeNames[arr[i]] = name
+      arr[i] = {
+        name,
+        [INDEX]: arr[i],
+        type: node.type,
+        ...node,
+      }
     }
   }
+
+  const nodePaths = {}
+  // Straight up perform a full tree scan of every node to find their paths.
+  // Node names are preferred over indices when available.
+  // Some example paths:
+  // ["ShellFishSettings", "gun_battery", "_l"]
+  // ["ShellFishSettings", "weak_point", "body", 0, "normal", 1]
+  function mapPathToNode(node, index, path = []) {
+    path = [...path, node.name || index]
+    nodePaths[node[INDEX]] = path
+    if(Array.isArray(node.value)) {
+      node.value.forEach((n, i) => mapPathToNode(n, i, path))
+    }
+    if(config['include-index']) {
+      node['#index'] = node[INDEX]
+    }
+  }
+  decompiled.variables.forEach((v, i) => mapPathToNode(v, i))
+
+  // Type 4 nodes can refer to DSGO variables by index
+  // For modder convenience, attach path of the referred variable
+  for(const node of type4References) {
+    node.refPath = nodePaths[node.value] || '<Failed to find node path>'
+  }
+
   delete decompiled.nodes
   return decompiled
 }
