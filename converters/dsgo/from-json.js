@@ -12,7 +12,6 @@ function compileDsgo(compiler, obj) {
     Allocate,
     Collection,
     Tuple,
-    Defer,
     DeferStr,
     Cursor,
   } = types
@@ -108,6 +107,7 @@ function compileDsgo(compiler, obj) {
     [0x04, UInt, ([index]) => index],
   ], 0x08)
 
+  function Padding() {}
   const DsgoTable = Struct([
     [0x08, Ref, Collection(UInt, obj => obj.indices)],
     [0x0c, UInt, obj => obj.indices?.length || 0],
@@ -120,8 +120,6 @@ function compileDsgo(compiler, obj) {
       //
       if(obj.indices.length % 2) {
         const padding = 0x04
-        function Padding() {
-        }
         Padding.size = padding
         Allocate(Padding, () => Buffer.alloc(padding))(obj, cursor)
       }

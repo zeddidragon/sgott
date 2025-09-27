@@ -1,6 +1,18 @@
 const util = require('util')
 const kleur = require('kleur')
 
+class WriteTally {
+  constructor() {
+    this.count = new Map();
+    this.size = new Map();
+  }
+
+  add(Type) {
+    this.count.set(Type, (this.count.get(Type) || 0) + 1)
+    this.size.set(Type, (this.size.get(Type) || 0) + Type.size)
+  }
+}
+
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
@@ -134,6 +146,7 @@ function compile(obj) {
     buffer.copy(cursor.buffer)
   }
 
+  let tally = new WriteTally()
   class Cursor {
     constructor(buffer, pos = 0, index = 0x00) {
       if(buffer instanceof Cursor) {
@@ -170,6 +183,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     }
 
     write(Type, value, off, tmp, opts = {}) {
+      tally.add(Type)
       if(this.index > this.buffer.length - Type.size) {
         throw new Error('End of buffer exceeded')
       }
@@ -288,6 +302,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     malloc(Entry.size).write(Entry, obj)
     unrollDeferred()
     unrollStrings()
+    console.log(tally)
     return Buffer.concat(heap)
   }
 
