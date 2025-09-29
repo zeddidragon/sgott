@@ -133,40 +133,40 @@ function decompileDsgo(decompiler, buffer, config) {
     return DUnionDef
   }
 
-  function DsgoTable(headerCursor, Type, offset, size, name) {
-    const cursor = Ptr(headerCursor, offset + 0x00)
-    const count = UInt(headerCursor, offset + 0x04)
-    DsgoTable.size = size * (count || 1)
-    tally.add(DsgoTable, cursor, 0x00, name)
-    if(!count) return null
-
-    const data = Array(count).fill(null)
-    for(const i = 0; i < count i++) {
-      const value = Type(cursor, 0x00)
-      const index = UInt(cursor, 0x04)
-      cursor.move(size)
-    }
-
-    return data
-  }
+  function DsgoTable(){}
 
   const deferred = []
   const keyTables = new Map()
   function DsgoStructure(cursor, offset) {
     tally.add(DsgoStructure, cursor, offset)
-    const strings = DsgoTable(cursor, Str, 0x00, 0x08, 'DsgoTable(Str)')
-    const values = DsgoTable(cursor, Uint, 0x08, 0x04, 'DsgoTable(Idx)')
-    if(!values) {
+    const strCursor = Ptr(cursor, offset + 0x00)
+    const strCount = UInt(cursor, offset + 0x04)
+    const varCursor = Ptr(cursor, offset + 0x08)
+    const varCount = UInt(cursor, offset + 0x0c)
+    if(!varCount) {
       return null
     }
-    deferred.push(values)
+    const strings = {}
+    for(let i = 0; i < strCount; i++) {
+      const str = Str(strCursor, 0x00)
+      const strIdx = UInt(strCursor, 0x04)
+      strings[strIdx] = str
+      strCursor.move(0x08)
+    }
+    const vars = Array(varCount).fill(null)
+    for(let i = 0; i < varCount; i++) {
+      const nodeIdx = UInt(varCursor)
+      vars[i] = nodeIdx
+      varCursor.move(0x04)
+    }
+    deferred.push(vars)
     for(let i = 0; i < strings.length; i++) {
       const name = strings[i]
-      const node = values[i]
-      values[i] = { name, type: node.type, ...node }
+      const node = vars[i]
+      vars[i] = { name, type: node.type, ...node }
     }
-    if(strings.length) {
-      keyTables.set(values, strings)
+    if(strCount) {
+      keyTables.set(vars, strings)
     }
     return vars
   }
