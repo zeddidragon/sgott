@@ -13,59 +13,53 @@ class ReadTally {
     this.tally = []
   }
 
-  add(Type, cursor, offset = 0x00) {
+  add(Type, cursor, offset = 0x00, name) {
     const pos = cursor.pos + offset
     this.tally.push({
       type: Type,
       pos,
       size: Type.size,
+      name,
     })
   }
 
   summary() {
-    const skipped = []
-    const duplicates = []
     let skippedTotal = 0
     let dupedTotal = 0
 
-    this.tally.sort((a, b) => a.pos - b.pos)
+    this.tally.sort((a, b) => (a.pos - b.pos) || (b.size - a.size))
     let total = 0
     let idx = 0
-    for(let i = 0; i < this.tally.length; i++) {
-      const { pos, size } = this.tally[i]
+    const tally = []
+    for(const t of this.tally) {
+      const { pos, size, type, name } = t
       if(pos > idx) {
-        const skipSize = pos - idx
-        skipped.push({
-          from: idx,
-          to: pos,
-          size: skipSize,
-        })
-        skippedTotal += skipSize
-      } else if (pos < idx) {
-        const dupeSize = idx - pos
-        duplicates.push({
+        tally.push({
           from: pos,
           to: idx,
-          size: dupeSize,
+          type: '[GAP]',
         })
-        if(pos < 100)
-          console.log(this.tally.slice(i - 2, i + 2), duplicates.slice(-2))
-        dupedTotal += dupeSize
-        total += Math.max(0, pos + size - idx)
-      } else {
-        total += size
+        idx = pos
+      } else if(pos < idx && pos + size <= idx) {
+        continue
       }
-      idx = pos + size
-    }
 
+      const to = pos + size
+      total += Math.min((pos - idx) + size)
+      tally.push({
+        from: pos,
+        to,
+        type: name || type.name,
+        overlap: idx > pos ? '[OVERLAP]' : void 0,
+      })
+      idx = to
+    }
     return {
-      count: this.tally.length,
-      skipped,
-      duplicates,
-      size: HexKey(total),
-      skippedSize: HexKey(skippedTotal),
-      dupedSize: HexKey(dupedTotal),
-      bufferSize: HexKey(this.size),
+      tally,
+      size: total,
+      skippedSize: skippedTotal,
+      dupedSize: dupedTotal,
+      bufferSize: this.size,
     }
   }
 }
@@ -98,15 +92,15 @@ function decompiler(format, fullBuffer, config = {}) {
   function Str(cursor, offset = 0x00, length = 0) {
     cursor = Ptr(cursor, offset)
     const terminator = length * 2 || Math.min(
-      cursor.buffer.indexOf('\0', cursor.pos, 'utf16le'),
+      cursor.buffer.indexOf('\0', cursor.pos, 'utf16le') + 0x02,
       cursor.buffer.length)
-    const buffer = cursor.buffer.slice(cursor.pos, terminator) 
-    StrType.size = buffer.length
+    const buffer = cursor.buffer.slice(cursor.pos, terminator - 0x02) 
+    StrType.size = buffer.length + 0x02
     tally.add(StrType, cursor)
     const string = (cursor.endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
-    ).trim()
+    ).trim().replace(/\u0000$/, '')
     strOrder[string] = cursor.pos
     return string
   }
@@ -291,9 +285,10 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
   function NoDef() {} // For tallying
   NoDef.size = 0x04
 
-  function Struct(definitions, size) {
+  function Struct(definitions, size, name) {
     if(!size) throw new Error('Size is not provided!')
     function StructDef(cursor, offset = 0x00) {
+      tally.add(StructDef, cursor, offset, name)
       if(offset) {
         cursor = cursor.copy().move(offset)
       }
@@ -347,11 +342,13 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     return UnionDef
   }
 
-  function Collection(Type, typeSize) {
+  function Collection(Type, typeSize, name) {
     function CollectionDef(cursor, offset = 0x00, count = 0) {
       if(!count) return null
       cursor = cursor.copy().move(offset)
       const size = typeSize || Type.size || 0x04
+      CollectionDef.size = count * size
+      tally.add(CollectionDef, cursor, offset, name || `Collection(${Type.name})`)
       return Array(count).fill(null).map((v, i) => Type(cursor, i * size))
     }
 
@@ -369,7 +366,9 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
         .keys(strOrder)
         .sort((a, b) => strOrder[a] - strOrder[b])
     }
-    tally.summary()
+    if(config.debug) {
+      ret.tally = tally.summary()
+    }
     return ret
   }
 
