@@ -1,6 +1,7 @@
 const PARENT = Symbol('PARENT')
 
 function decompileDsgo(decompiler, buffer, config) {
+  console.log('size', buffer.length)
   const { decompile, types } = decompiler('DSGO', buffer, config)
   const {
     Str,
@@ -12,6 +13,7 @@ function decompileDsgo(decompiler, buffer, config) {
     Leader,
     Struct,
     Collection,
+    tally,
   } = types
   const type4References = []
 
@@ -93,6 +95,8 @@ function decompileDsgo(decompiler, buffer, config) {
   function Extra(cursor, offset) {
     const size = UInt(cursor, offset)
     cursor = Ptr(cursor, offset + 0x04)
+    Extra.size = size
+    tally.add(Extra, cursor, 0x00)
     const data = cursor.at(0x00).slice(0x00, size)
     return data.toString('hex')
   }
@@ -155,16 +159,37 @@ function decompileDsgo(decompiler, buffer, config) {
       keyTables.set(vars, strings)
     }
     return vars
-  } DsgoStructure.size = 0x10
+  }
+  DsgoStructure.size = 0x10
 
+  function DsgoType(typeNum, typeName) {
+    typeNum = BigInt(typeNum)
+    function DsgoTypeEnum(cursor, offset) {
+      return typeName
+      const value = BigUInt(cursor, offset)
+      if(value !== typeNum) {
+        throw new Error(`Expected type ${typeName} to be ${typeNum} but was ${value}`)
+      }
+      return typeName
+    }
+    DsgoTypeEnum.size = 0x08
+    return DsgoTypeEnum
+  }
+
+  // BLANK is Padding to fit Double in DsgoNodes for other union types,
+  // unecessary to include in JSON
+  // We still read them to keep a tally of all bytes,
+  // make sure they're accounted for (debugging)
+  const BLANK = Symbol('BLANK')
   const DsgoNode = DUnion({
     [0x00]: Struct({
       [0x00]: ['value', Double],
-      [0x08]: ['type', () => 'double'],
+      [0x08]: ['type', DsgoType(0, 'double')],
     }, 0x10),
     [0x01]: Struct({
       [0x00]: ['value', Str],
-      [0x08]: ['type', () => 'str'],
+      [0x04]: [BLANK, UInt],
+      [0x08]: ['type', DsgoType(1, 'str')],
     }, 0x10),
     [0x02]: Struct({
       [0x00]: ['value', (cursor, offset) => {
@@ -174,15 +199,18 @@ function decompileDsgo(decompiler, buffer, config) {
           data: Extra(cursor, 0x00),
         }
       }],
-      [0x08]: ['type', () => 'extra'],
+      [0x04]: [BLANK, UInt],
+      [0x08]: ['type', DsgoType(2, 'extra')],
     }, 0x10),
     [0x03]: Struct({
       [0x00]: ['value', DRef(DsgoStructure)],
-      [0x08]: ['type', () => 'ptr'],
+      [0x04]: [BLANK, UInt],
+      [0x08]: ['type', DsgoType(3, 'ptr')],
     }, 0x10),
     [0x04]: Struct({
       [0x00]: ['value', DRef(Type4)],
-      [0x08]: ['type', () => 'calc'],
+      [0x04]: [BLANK, UInt],
+      [0x08]: ['type', DsgoType(4, 'calc')],
     }, 0x10),
   }, 0x10)
 
@@ -191,19 +219,20 @@ function decompileDsgo(decompiler, buffer, config) {
     return ''
   }
 
+  const NODES = Symbol('NODES') // Doesn't get included in output json
   const DsgoHeader = Struct({
     [0x00]: ['endian', Leader('DSGO')],
     [0x04]: ['variables', DRef(DRef(DsgoStructure))],
-    [0x08]: ['nodes', Ref(Collection(DsgoNode))],
+    [0x08]: [NODES, Ref(Collection(DsgoNode))],
   }, 0x10)
 
   const nodeNames = {}
   const decompiled = decompile(DsgoHeader)
-  const INDEX = Symbol('INDEX')
+  const INDEX = Symbol('INDEX') // Doesn't get included in output json
   for(const arr of deferred) {
     const strings = keyTables.get(arr)
     for(let i = 0; i < arr.length; i++) {
-      const node = decompiled.nodes[arr[i]]
+      const node = decompiled[NODES][arr[i]]
       const name = strings?.[i]
       nodeNames[arr[i]] = name
       arr[i] = {
@@ -239,7 +268,6 @@ function decompileDsgo(decompiler, buffer, config) {
     node.refPath = nodePaths[node.value] || '<Failed to find node path>'
   }
 
-  delete decompiled.nodes
   return decompiled
 }
 

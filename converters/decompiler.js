@@ -1,6 +1,76 @@
 const util = require('util')
 const kleur = require('kleur')
 
+function HexKey(idx) {
+  return '0x' + idx.toString(16).padStart(2, '0')
+}
+
+// Used to track chunks of bytes read to track where differences
+// in input buffer and output buffer might occur
+class ReadTally {
+  constructor(buffer) {
+    this.size = buffer.length
+    this.tally = []
+  }
+
+  add(Type, cursor, offset = 0x00) {
+    const pos = cursor.pos + offset
+    this.tally.push({
+      type: Type,
+      pos,
+      size: Type.size,
+    })
+  }
+
+  summary() {
+    const skipped = []
+    const duplicates = []
+    let skippedTotal = 0
+    let dupedTotal = 0
+
+    this.tally.sort((a, b) => a.pos - b.pos)
+    let total = 0
+    let idx = 0
+    for(let i = 0; i < this.tally.length; i++) {
+      const { pos, size } = this.tally[i]
+      if(pos > idx) {
+        const skipSize = pos - idx
+        skipped.push({
+          from: idx,
+          to: pos,
+          size: skipSize,
+        })
+        skippedTotal += skipSize
+      } else if (pos < idx) {
+        const dupeSize = idx - pos
+        duplicates.push({
+          from: pos,
+          to: idx,
+          size: dupeSize,
+        })
+        if(pos < 100)
+          console.log(this.tally.slice(i - 2, i + 2), duplicates.slice(-2))
+        dupedTotal += dupeSize
+        total += Math.max(0, pos + size - idx)
+      } else {
+        total += size
+      }
+      idx = pos + size
+    }
+
+    return {
+      count: this.tally.length,
+      skipped,
+      duplicates,
+      size: HexKey(total),
+      skippedSize: HexKey(skippedTotal),
+      dupedSize: HexKey(dupedTotal),
+      bufferSize: HexKey(this.size),
+    }
+  }
+}
+
+
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
@@ -17,10 +87,13 @@ function decompiler(format, fullBuffer, config = {}) {
     }
   }
 
+  let tally = new ReadTally(fullBuffer)
   function Ptr(cursor, offset) {
     return cursor.copy().move(Int(cursor, offset))
   }
+  Ptr.size = 0x04
 
+  function StrType() {} // For tallying
   const strOrder = {}
   function Str(cursor, offset = 0x00, length = 0) {
     cursor = Ptr(cursor, offset)
@@ -28,6 +101,8 @@ function decompiler(format, fullBuffer, config = {}) {
       cursor.buffer.indexOf('\0', cursor.pos, 'utf16le'),
       cursor.buffer.length)
     const buffer = cursor.buffer.slice(cursor.pos, terminator) 
+    StrType.size = buffer.length
+    tally.add(StrType, cursor)
     const string = (cursor.endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
@@ -37,30 +112,36 @@ function decompiler(format, fullBuffer, config = {}) {
   }
 
   function UInt(cursor, offset = 0x00) {
+    tally.add(UInt, cursor, offset)
     return cursor.at(offset)[`readUInt32${cursor.endian}`]()
   }
   UInt.size = 0x04
 
   function BigUInt(cursor, offset = 0x00) {
+    tally.add(BigUInt, cursor, offset)
     return cursor.at(offset)[`readBigUInt64${cursor.endian}`]() }
   BigUInt.size = 0x08
 
   function Int(cursor, offset = 0x00) {
+    tally.add(Int, cursor, offset)
     return cursor.at(offset)[`readInt32${cursor.endian}`]()
   }
   Int.size = 0x04
 
   function BigInt(cursor, offset = 0x00) {
+    tally.add(BigInt, cursor, offset)
     return cursor.at(offset)[`readBigInt64${cursor.endian}`]()
   }
   BigInt.size = 0x08
 
   function Float(cursor, offset = 0x00) {
+    tally.add(Float, cursor, offset)
     return cursor.at(offset)[`readFloat${cursor.endian}`]()
   }
   Float.size = 0x04
 
   function Double(cursor, offset = 0x00) {
+    tally.add(Double, cursor, offset)
     return cursor.at(offset)[`readDouble${cursor.endian}`]()
   }
   Double.size = 0x08
@@ -82,10 +163,6 @@ function decompiler(format, fullBuffer, config = {}) {
     )
   }
   Hex.size = 0x04
-
-  function HexKey(idx) {
-    return '0x' + idx.toString(16).padStart(2, '0')
-  }
 
   function HexInt(cursor, offset = 0x00) {
     return `0x${UInt(cursor, offset).toString(16)}`
@@ -151,6 +228,7 @@ Contact the developers of this tool and tell them which file this happened in!
 
     return AssertNullPtr
   }
+  NullPtr.size = 0x04
 
   class Cursor {
     constructor(buffer, pos = 0x00) {
@@ -200,14 +278,18 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
 
   function Leader(lead) {
     lead = lead.trim().padEnd(0x04, '\0')
-    function LeaderDef(cursor) {
-      const leader = cursor.at(0x00).slice(0x00, 0x04).toString('ascii')
+    function LeaderDef(cursor, offset = 0x00) {
+      tally.add(LeaderDef, cursor, offset)
+      const leader = cursor.at(offset).slice(offset, offset + 0x04).toString('ascii')
       cursor.endian = leader === lead ? 'LE' : 'BE'
       return cursor.endian
     }
     LeaderDef.size = 0x04
     return LeaderDef
   }
+
+  function NoDef() {} // For tallying
+  NoDef.size = 0x04
 
   function Struct(definitions, size) {
     if(!size) throw new Error('Size is not provided!')
@@ -227,6 +309,9 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
         const [key, fn, opts = {}] = def || []
         const value = fn && fn(cursor, idx)
 
+        if(!def) {
+          tally.add(NoDef, cursor, offset)
+        }
         if(!def && hexVal != '00000000') {
           obj[hexKey] = hexVal
         } else if(def && !opts.ignore) {
@@ -284,6 +369,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
         .keys(strOrder)
         .sort((a, b) => strOrder[a] - strOrder[b])
     }
+    tally.summary()
     return ret
   }
 
@@ -307,6 +393,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     Struct,
     Union,
     Collection,
+    tally,
   }
   decompile.decompile = decompile
 

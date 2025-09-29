@@ -7,9 +7,25 @@ class WriteTally {
     this.size = new Map();
   }
 
-  add(Type) {
+  add(Type, buffer) {
     this.count.set(Type, (this.count.get(Type) || 0) + 1)
-    this.size.set(Type, (this.size.get(Type) || 0) + Type.size)
+    const size = Buffer.isBuffer(buffer) ? buffer.length : Type.size
+    this.size.set(Type, (this.size.get(Type) || 0) + size)
+  }
+
+  total() {
+    let totalCount = 0
+    let totalSize = 0
+    for(const count of this.count.values()) {
+      totalCount += count
+    }
+    for(const size of this.size.values()) {
+      totalSize += size
+    }
+    return {
+      totalCount,
+      totalSize,
+    }
   }
 }
 
@@ -183,7 +199,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     }
 
     write(Type, value, off, tmp, opts = {}) {
-      tally.add(Type)
+      tally.add(Type, value)
       if(this.index > this.buffer.length - Type.size) {
         throw new Error('End of buffer exceeded')
       }
@@ -303,7 +319,10 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     unrollDeferred()
     unrollStrings()
     console.log(tally)
-    return Buffer.concat(heap)
+    console.log('total', tally.total())
+    const buffer = Buffer.concat(heap)
+    console.log('size', buffer.length)
+    return buffer
   }
 
   compile.compile = compile
