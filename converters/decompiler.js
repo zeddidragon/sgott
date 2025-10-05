@@ -9,7 +9,7 @@ function HexKey(idx) {
 // in input buffer and output buffer might occur
 class ReadTally {
   constructor(buffer) {
-    this.size = buffer.length
+    this.buffer = buffer
     this.tally = []
   }
 
@@ -24,24 +24,33 @@ class ReadTally {
   }
 
   summary() {
-    let skippedTotal = 0
     let dupedTotal = 0
 
     this.tally.sort((a, b) => (a.pos - b.pos) || (b.size - a.size))
     let total = 0
     let idx = 0
     const tally = []
+    const buffer = this.buffer
+
+    function addGap(from, to) {
+      tally.push({
+        from, to, type: '[GAP]',
+        data: buffer.slice(from, to).toString('hex'),
+      })
+    }
+
     for(const t of this.tally) {
       const { pos, size, type, name } = t
+
       if(pos > idx) {
-        tally.push({
-          from: pos,
-          to: idx,
-          type: '[GAP]',
-        })
+        addGap(idx, pos)
         idx = pos
       } else if(pos < idx && pos + size <= idx) {
+        dupedTotal += size
         continue
+      }
+      if(pos < idx) {
+        dupedTotal += idx - pos
       }
 
       const to = pos + size
@@ -54,12 +63,29 @@ class ReadTally {
       })
       idx = to
     }
+    if(idx < buffer.length) {
+      addGap(idx, buffer.length)
+    }
+
+    const breakdown = {}
+    for(const { type, from, to } of tally) {
+      if(from > to) {
+        console.error('invalid tally:', tally)
+      }
+      if(!breakdown[type]) {
+        breakdown[type] = { count: 0, size: 0 }
+      }
+      const counter = breakdown[type]
+      counter.count++
+      counter.size += to - from
+    }
+
     return {
       tally,
       size: total,
-      skippedSize: skippedTotal,
       dupedSize: dupedTotal,
-      bufferSize: this.size,
+      bufferSize: buffer.length,
+      breakdown,
     }
   }
 }
@@ -354,6 +380,9 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
 
     return CollectionDef
   }
+
+  function FilePadding() {}
+  FilePadding.size = 0x04
 
   function decompile(Entry) {
     const data = Entry(new Cursor(fullBuffer), 0x00)

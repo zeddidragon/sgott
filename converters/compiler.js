@@ -109,6 +109,7 @@ function compile(obj) {
   }
   DeferStr.size = 0x04
 
+  function StrType() {} // Used for tallying
   function unrollStrings() {
     const nullString = '\0'
     const strings = Array.from(deferredStrings)
@@ -126,6 +127,7 @@ function compile(obj) {
       const written = str + '\0'
       const cursor = malloc(stringBytes(written))
       cursor.buffer.write(written, 'utf16le')
+      tally.add(StrType, cursor.buffer)
       if(endian !== 'LE') cursor.buffer.swap16()
       stringCursors[str] = cursor
     }
@@ -159,6 +161,7 @@ function compile(obj) {
   }
   
   function Copy(cursor, buffer) {
+    tally.add(Copy, buffer)
     buffer.copy(cursor.buffer)
   }
 
@@ -199,7 +202,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     }
 
     write(Type, value, off, tmp, opts = {}) {
-      tally.add(Type, value)
+      tally.add(Type, this, value)
       if(this.index > this.buffer.length - Type.size) {
         throw new Error('End of buffer exceeded')
       }
@@ -347,6 +350,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     Union,
     Collection,
     Cursor,
+    tally,
   }
 
   return compile

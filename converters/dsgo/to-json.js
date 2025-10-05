@@ -133,7 +133,13 @@ function decompileDsgo(decompiler, buffer, config) {
     return DUnionDef
   }
 
-  function DsgoTable(){}
+  function DsgoStrings(){}
+  function DsgoVars(){}
+  function DsgoBlank(){}
+  DsgoBlank.size = 0x04
+  function DsgoPadding(){}
+  DsgoPadding.size = 0x04
+  function DsgoTable() {}
 
   const deferred = []
   const keyTables = new Map()
@@ -143,9 +149,36 @@ function decompileDsgo(decompiler, buffer, config) {
     const strCount = UInt(cursor, offset + 0x04)
     const varCursor = Ptr(cursor, offset + 0x08)
     const varCount = UInt(cursor, offset + 0x0c)
+    
+    // Tally handling
     if(!varCount) {
+      tally.add(DsgoBlank, strCursor, 0x00)
+      tally.add(DsgoBlank, varCursor, 0x00)
       return null
     }
+    
+    DsgoTable.size = DsgoStructure.size
+    if(strCount) {
+      DsgoStrings.size = strCount * 0x08
+      tally.add(DsgoStrings, strCursor, 0x00)
+      DsgoTable.size += DsgoStrings.size
+    }
+    DsgoVars.size = varCount * 0x04
+    tally.add(DsgoVars, varCursor, 0x00)
+    DsgoTable.size += DsgoVars.size
+    if(varCount % 2 && strCount) {
+      tally.add(DsgoPadding, strCursor, strCount * 0x08)
+      DsgoTable.size += DsgoPadding.size
+    } else if(varCount % 2) {
+      tally.add(DsgoPadding, varCursor, varCount * 0x04)
+      DsgoTable.size += DsgoPadding.size
+    } else {
+      // Don't pad table size
+    }
+    tally.add(DsgoTable, cursor, 0x00)
+    // /Tally Handling
+
+
     const strings = {}
     for(let i = 0; i < strCount; i++) {
       const str = Str(strCursor, 0x00)
@@ -153,6 +186,7 @@ function decompileDsgo(decompiler, buffer, config) {
       strings[strIdx] = str
       strCursor.move(0x08)
     }
+
     const vars = Array(varCount).fill(null)
     for(let i = 0; i < varCount; i++) {
       const nodeIdx = UInt(varCursor)
