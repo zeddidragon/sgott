@@ -1,5 +1,3 @@
-const PARENT = Symbol('PARENT')
-
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }

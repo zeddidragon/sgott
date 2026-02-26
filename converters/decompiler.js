@@ -13,13 +13,14 @@ class ReadTally {
     this.tally = []
   }
 
-  add(Type, cursor, offset = 0x00, name) {
+  add(Type, cursor, offset = 0x00, name, data) {
     const pos = cursor.pos + offset
     this.tally.push({
       type: Type,
       pos,
       size: Type.size,
       name,
+      data,
     })
   }
 
@@ -40,7 +41,7 @@ class ReadTally {
     }
 
     for(const t of this.tally) {
-      const { pos, size, type, name } = t
+      const { pos, size, type, name, data } = t
 
       if(pos > idx) {
         addGap(idx, pos)
@@ -60,6 +61,7 @@ class ReadTally {
         to,
         type: name || type.name,
         overlap: idx > pos ? '[OVERLAP]' : void 0,
+        data,
       })
       idx = to
     }
@@ -121,13 +123,13 @@ function decompiler(format, fullBuffer, config = {}) {
       cursor.buffer.indexOf('\0', cursor.pos, 'utf16le') + 0x02,
       cursor.buffer.length)
     const buffer = cursor.buffer.slice(cursor.pos, terminator - 0x02) 
-    StrType.size = buffer.length + 0x02
-    tally.add(StrType, cursor)
     const string = (cursor.endian === 'LE'
       ? buffer.toString('utf16le')
       : Buffer.from(buffer).swap16().toString('utf16le')
     ).trim().replace(/\u0000$/, '')
     strOrder[string] = cursor.pos
+    StrType.size = buffer.length + 0x02
+    tally.add(StrType, cursor, 0, null, string)
     return string
   }
 
