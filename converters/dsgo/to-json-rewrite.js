@@ -20,7 +20,8 @@ const State = {
 
 function decompileDsgo(_, buffer, config) {
   function abort(msg) {
-    console.log(crawler)
+    console.log(data)
+    console.log(crawler, { state })
     throw new Error(msg)
   }
 
@@ -40,17 +41,15 @@ function decompileDsgo(_, buffer, config) {
   const data = {
     tally: crawler.tallyMarks,
     refs: refs.refs,
-    processed: refs.processed,
+    // processed: refs.processed,
     extra,
-    tables,
+    // tables,
     nodes,
   }
 
   loop: while(!crawler.isDone()) {
     if (prev === crawler.address) {
-      console.log(data)
-      console.log(crawler, { state })
-      throw new Error('Crawler has not advanced')
+      abort('Crawler has not advanced')
     }
 
     prev = crawler.address
@@ -62,9 +61,7 @@ function decompileDsgo(_, buffer, config) {
       crawler.skipTo(ref.address)
       continue
     } else if(state == null) {
-      console.log(data)
-      console.log(crawler, state)
-      throw new Error('Crawler orphaned')
+      abort('Crawler orphaned')
     }
 
     switch(state) {
@@ -147,7 +144,7 @@ function decompileDsgo(_, buffer, config) {
         const str = crawler.string(0x00)
 
         strings.push(str)
-        crawler.jump(str.length)
+        crawler.jump(str.length * 2)
         break
       }
 
@@ -203,7 +200,7 @@ function decompileDsgo(_, buffer, config) {
         const varCursor = crawler.ptr(0x08)
         const varCount = crawler.uint(0x0c)
         if (varCursor !== crawler.address + 0x10)
-          throw new Error(`Offset expected to be ${0x10} but was ${varCursor - 0x10}`)
+          abort(`Offset expected to be ${0x10} but was ${varCursor - 0x10}`)
 
         const indices = new Array(varCount)
         const stringIndices = new Array(strCount)
@@ -232,7 +229,7 @@ function decompileDsgo(_, buffer, config) {
         const size = crawler.uint(0x00)
         let offset = crawler.uint(0x04)
         if (offset !== 0x08)
-          throw new Error(`Offset expected to be ${0x08} but was ${offset}`)
+          abort(`Offset expected to be ${0x08} but was ${offset}`)
         crawler.jump(0x08) // Assumes data immediately follows header
 
         crawler.context = `${label}\t`
@@ -245,9 +242,7 @@ function decompileDsgo(_, buffer, config) {
 
       default:
         // break loop
-        console.log(data)
-        console.log(crawler)
-        throw new Error(`Unknown state ${state}`)
+        abort(`Unknown state ${state}`)
     }
 
     state = null
@@ -414,6 +409,10 @@ class ReferenceTracker {
   consume() {
     this.processed.push(this.refs.shift())
   }
+}
+
+BigInt.prototype.toJSON = function () {
+  return JSON.rawJSON(this.toString())
 }
 
 module.exports = decompileDsgo
