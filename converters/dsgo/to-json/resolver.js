@@ -34,7 +34,6 @@ function dsgoResolver({ header, tables, nodes, strings, extras, calcs }) {
           abort(`Table not found at ${ptr}`)
         stack.push(node)
         stack.push(table)
-        console.log({ table })
         const variables = table.map(resolve)
         stack.pop()
         stack.pop()
@@ -42,7 +41,6 @@ function dsgoResolver({ header, tables, nodes, strings, extras, calcs }) {
       }
 
       case DsgoType.CALC: {
-        return { type: 'calc', value: 'TODO' } // TODO
         const calc = calcs[ptr]
         if(calc == null)
           abort(`Calc equation not found at ${ptr}`)

@@ -11,7 +11,7 @@ const { dsgoResolver } = require('./resolver')
 
 function decompileDsgo(_, buffer, config) {
   function abort(msg) {
-    console.log(data)
+    // console.log(data)
     console.log(crawler, { state })
     throw new Error(msg)
   }
@@ -23,15 +23,14 @@ function decompileDsgo(_, buffer, config) {
   const refs = referenceTracker()
 
   const data = {
-    tally: crawler.tallyMarks,
-    refs: refs,
-    processed: refs.processed,
+    refs,
     abort,
     nodes: [],
     tables: {},
     strings: {},
     extras: {},
     calcs: {},
+    calcRefs: [],
   }
 
   // START Process all the data in the buffer
@@ -70,6 +69,7 @@ function decompileDsgo(_, buffer, config) {
   }
   // END all the data in the buffer
 
+  console.log(data.calcs)
   return {
     format: 'DSGO',
     endian: crawler.endian,
