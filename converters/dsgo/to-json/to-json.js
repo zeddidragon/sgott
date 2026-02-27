@@ -1,6 +1,6 @@
 const bufferCrawler = require('./buffer-crawler')
 const referenceTracker = require('./reference-tracker')
-const State = require('./dsgo-to-json-state')
+const State = require('./state')
 const { dsgoHeader } = require('./dsgo-header')
 const { dsgoNode } = require('./dsgo-node')
 const { dsgoString } = require('./dsgo-string')
@@ -27,10 +27,11 @@ function decompileDsgo(_, buffer, config) {
     refs: refs,
     processed: refs.processed,
     abort,
-    extra: {},
-    tables: {},
     nodes: [],
+    tables: {},
     strings: {},
+    extras: {},
+    calcs: {},
   }
 
   // START Process all the data in the buffer
@@ -73,7 +74,7 @@ function decompileDsgo(_, buffer, config) {
     format: 'DSGO',
     endian: crawler.endian,
     variables: dsgoResolver(data),
-    strings: Object.values(strings),
+    strings: Object.values(data.strings),
   }
 }
 
