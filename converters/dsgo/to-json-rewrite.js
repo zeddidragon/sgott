@@ -36,25 +36,35 @@ function decompileDsgo(_, buffer, config) {
   const nodes = []
   const tables = []
   const extra = []
-  const data = { tally: crawler.tallyMarks, refs: refs.refs, processed: refs.processed, extra, tables, nodes }
+  const strings = []
+  const data = {
+    tally: crawler.tallyMarks,
+    refs: refs.refs,
+    processed: refs.processed,
+    extra,
+    tables,
+    nodes,
+  }
 
   loop: while(!crawler.isDone()) {
-    if (prev === crawler.index) {
+    if (prev === crawler.address) {
       console.log(data)
-      throw new Error(`Crawler has not advanced at ${crawler.idx()} (State: ${state})`)
+      console.log(crawler, { state })
+      throw new Error('Crawler has not advanced')
     }
-    prev = crawler.index
 
+    prev = crawler.address
     const ref = refs.peek()
-    if(ref && ref.idx === crawler.index) {
+    if(ref && ref.address === crawler.address) {
       state = ref.state
       refs.consume()
     } else if(ref) {
-      crawler.skipTo(ref.idx)
+      crawler.skipTo(ref.address)
       continue
     } else if(state == null) {
       console.log(data)
-      throw new Error(`Crawler orphaned at ${crawler.idx()} (State: ${state})`)
+      console.log(crawler, state)
+      throw new Error('Crawler orphaned')
     }
 
     switch(state) {
@@ -75,9 +85,9 @@ function decompileDsgo(_, buffer, config) {
 
         for(let i = 0; i < nodesCount; i++) {
           refs.add({
-            idx: nodesPtr + i * 0x10,
+            address: nodesPtr + i * 0x10,
             state: State.NODE,
-            origin: crawler.index,
+            origin: crawler.address,
           })
         }
 
@@ -109,22 +119,35 @@ function decompileDsgo(_, buffer, config) {
 
         switch(type) {
           case DsgoType.DOUBLE: {
-            const node = { idx: crawler.index, type, double }
+            const node = { address: crawler.address, type, double }
             nodes.push(node)
             break
           }
 
           default:
-            const node = { idx: crawler.index, type, ptr }
+            const node = { address: crawler.address, type, ptr }
             nodes.push(node)
             refs.add({
-              idx: ptr,
+              address: ptr,
               state: type,
               origin: node,
             })
         }
         
         crawler.jump(0x10)
+        break
+      }
+
+      // # String
+      // str...\0
+      //
+      // String of arbitrary length, null-terminated
+      case State.STRING: {
+        crawler.context = count('String')
+        const str = crawler.string(0x00)
+
+        strings.push(str)
+        crawler.jump(str.length)
         break
       }
 
@@ -140,11 +163,15 @@ function decompileDsgo(_, buffer, config) {
       // The data is padded up to the nearest 8 bytes
       case State.EXTRA: {
         crawler.context = count('Extra')
-        const length = ceil(crawler.uint(0x00), 0x8)
+        const length = crawler.uint(0x00)
         const offset = crawler.uint(0x04)
-        const data = crawler.hex(offset, length)
+
+        if(offset > 0x08) 
+          crawler.padding(0x08, offset - 0x08)
+
+        const data = crawler.hex(offset, length) // Assumes data immediately follows header
         extra.push({
-          idx: crawler.index,
+          address: crawler.address,
           origin: ref.origin,
           data,
         })
@@ -165,9 +192,9 @@ function decompileDsgo(_, buffer, config) {
       // Ic: Points to table of DSGO node indices. May be 0, indicating an empty list.
       // Nc: The count of nodes being referenced. May be 0 for an empty list.
       //
-      // I1, I2... IN: Node indexes. Index refers to the order in the file's overall DSGO heap.
-      // L1, L2... LN: Node indexes. If L1 is 8, then the first string names the node mentioned in I8.
-      // S1, S2... SN: Pointer to the string being used. S1 corresponds to the index indexed by L1.
+      // I1, I2... IN: Node addresses. address refers to the order in the file's overall DSGO heap.
+      // L1, L2... LN: Node addresses. If L1 is 8, then the first string names the node mentioned in I8.
+      // S1, S2... SN: Pointer to the string being used. S1 corresponds to the address addressed by L1.
       case State.DSGO: {
         const label = count('DSGO Table')
         crawler.context = label
@@ -175,15 +202,17 @@ function decompileDsgo(_, buffer, config) {
         const strCount = crawler.uint(0x04)
         const varCursor = crawler.ptr(0x08)
         const varCount = crawler.uint(0x0c)
+        if (varCursor !== crawler.address + 0x10)
+          throw new Error(`Offset expected to be ${0x10} but was ${varCursor - 0x10}`)
 
         const indices = new Array(varCount)
         const stringIndices = new Array(strCount)
 
-        const table = { idx: crawler.index, strCursor, strCount, varCursor, varCount, strCount, varCount }
+        const table = { address: crawler.address, strCursor, strCount, varCursor, varCount, strCount, varCount }
         tables.push(table)
 
         crawler.jump(0x10)
-        crawler.context = `${label} Index`
+        crawler.context = `${label} address`
 
         for(let i = 0; i < varCount; i++) {
           indices[i] = crawler.uint(i + 0x04)
@@ -194,10 +223,31 @@ function decompileDsgo(_, buffer, config) {
         break;
       }
 
+      // # Calc
+      //
+      // 
+      case State.CALC: {
+        const label = count('Calc')
+        crawler.context = label
+        const size = crawler.uint(0x00)
+        let offset = crawler.uint(0x04)
+        if (offset !== 0x08)
+          throw new Error(`Offset expected to be ${0x08} but was ${offset}`)
+        crawler.jump(0x08) // Assumes data immediately follows header
+
+        crawler.context = `${label}\t`
+        const stack = []
+
+        // TODO
+
+        break
+      }
+
       default:
         // break loop
         console.log(data)
-        throw new Error(`Unknown state ${state} at ${crawler.idx()}`)
+        console.log(crawler)
+        throw new Error(`Unknown state ${state}`)
     }
 
     state = null
@@ -218,44 +268,44 @@ function ceil(v, x) {
 
 class BufferCrawler { // The intention is to crawl the buffer from start to end, keeping track of every single byte
   constructor(buffer) {
-    this.index = 0
+    this.address = 0
     this.endian = 'LE'
     this.buffer = buffer
     this.tallyMarks = []
   }
-
-  idx() {
-    return '0x' + this.index.toString(16)
-  }
   
   at(offset = 0x00) {
-    return this.buffer.slice(this.index + offset)
+    return this.buffer.slice(this.address + offset)
   }
 
   jump(length) {
     this.context = null
-    this.index += length
+    this.address += length
   }
 
-  skipTo(index) {
-    this.tally(0, 'SKIPPED', index - this.index)
-    this.index = index
+  skipTo(address) {
+    this.tally(0, 'SKIPPED', address - this.address)
+    this.address = address
+  }
+
+  padding(offset = 0x00, size = 0x04) {
+    this.tally(offset, 'padding', size)
   }
 
   isDone() {
-    return this.index >= this.buffer.length
+    return this.address >= this.buffer.length
   }
 
   tally(offset = 0x00, label, length) {
-    // for(let idx = this.index + offset; idx < this.index + offset + length; idx += 0x04) 
-    //   this.tallyMarks.push([this.context, label, idx]);
-    this.tallyMarks.push([this.context, label, this.index + offset, this.index + offset + length])
+    // for(let address = this.address + offset; address < this.address + offset + length; address += 0x04) 
+    //   this.tallyMarks.push([this.context, label, address]);
+    this.tallyMarks.push([this.context, label, this.address + offset, this.address + offset + length])
   }
 
   ascii(offset = 0x00, length = 0x04) {
     this.tally(offset, 'ascii', length)
     return this.buffer
-      .slice(this.index + offset, this.index + offset + length)
+      .slice(this.address + offset, this.address + offset + length)
       .toString('ascii')
   }
 
@@ -271,7 +321,7 @@ class BufferCrawler { // The intention is to crawl the buffer from start to end,
     const jump = (this.endian === 'LE')
       ? this.at(offset).readUInt32LE()
       : this.at(offset).readUInt32BE()
-    return this.index + jump
+    return this.address + jump
   }
 
   bigInt(offset = 0x00) {
@@ -288,6 +338,18 @@ class BufferCrawler { // The intention is to crawl the buffer from start to end,
       : this.at(offset).readDoubleBE()
   }
 
+  string(offset = 0x00, length = 0x00) {
+    let slice = this.at(offset)
+    length = length * 2 || Math.min(
+      slice.indexOf('\0', 0x00, 'utf16le') + 0x02,
+      slice.length)
+    this.tally(offset, 'string', length)
+    slice = slice.slice(0x00, length)
+    return (this.endian === 'LE')
+      ? slice.toString('utf16le')
+      : Buffer.from(slice).swap16().toString('utf16le')
+  }
+
   dsgo(offset = 0x00) { // Read several types. This is used to keep the tally in order.
     const type = (this.endian === 'LE')
       ? this.at(offset + 0x08).readBigInt64LE()
@@ -298,7 +360,7 @@ class BufferCrawler { // The intention is to crawl the buffer from start to end,
       double = this.double(offset + 0x00)
     else {
       ptr = this.ptr(offset + 0x00)
-      this.tally(offset + 0x04, 'blank', 0x04)
+      this.padding(offset + 0x04, 0x04)
     }
     this.tally(offset + 0x08, 'dsgoType', 0x08)
 
@@ -311,7 +373,7 @@ class BufferCrawler { // The intention is to crawl the buffer from start to end,
   }
 
   [util.inspect.custom]() {
-    const startAt = Math.max(0, Math.floor((this.index / 0x10) - 1) * 0x10)
+    const startAt = Math.max(0, Math.floor((this.address / 0x10) - 1) * 0x10)
     const endAt = Math.min(startAt + 0x80, this.buffer.length)
     let bufferView = []
     for(let i = startAt; i < endAt; i += 0x2) {
@@ -319,12 +381,12 @@ class BufferCrawler { // The intention is to crawl the buffer from start to end,
         bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])
       }
       let str = this.buffer.readUInt16BE(i).toString(16).padStart(4, 0)
-      if(this.index === i) {
+      if(this.address === i) {
         str = kleur.yellow(str)
       }
       bufferView[bufferView.length - 1].push(str)
     }
-    return `Cursor 0x${this.index.toString(16)} (${this.endian})
+    return `Cursor 0x${this.address.toString(16)} (${this.endian})
 ${bufferView.map(r => r.join(' ')).join('\n')}`
   }
 }
@@ -335,14 +397,14 @@ class ReferenceTracker {
     this.processed = []
   }
 
-  add({ idx, state, origin }) { // Adds the reference sorted
+  add({ address, state, origin }) { // Adds the reference sorted
     let i = 0
     for(; i < this.refs.length; i++) {
       const ref = this.refs[i]
-      if(idx < ref.idx)
+      if(address < ref.address)
         break
     }
-    this.refs.splice(i, 0, { idx, state, origin })
+    this.refs.splice(i, 0, { address, state, origin })
   }
 
   peek() {
