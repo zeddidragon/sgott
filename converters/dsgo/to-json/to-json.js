@@ -29,7 +29,6 @@ function decompileDsgo(_, buffer, config) {
     strings: {},
     extras: {},
     calcs: {},
-    calcRefs: [],
   }
 
   // START Process all the data in the buffer
@@ -68,12 +67,13 @@ function decompileDsgo(_, buffer, config) {
   }
   // END all the data in the buffer
 
-  return {
+  const ret = {
     format: 'DSGO',
     endian: crawler.endian,
-    variables: resolveDsgo(data),
     strings: Object.values(data.strings),
   }
+  resolveDsgo(data, ret)
+  return ret
 }
 
 BigInt.prototype.toJSON = function () {

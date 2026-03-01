@@ -13,7 +13,7 @@ const CalcCommand = {
 // # Calc
 //
 // 
-function dsgoCalc(crawler, { calcs, calcRefs, abort }) {
+function dsgoCalc(crawler, { calcs, abort }) {
   const address = crawler.address
   const label = crawler.setContext('Calc')
   const size = crawler.uint(0x00)
@@ -62,7 +62,6 @@ function dsgoCalc(crawler, { calcs, calcRefs, abort }) {
       case CalcCommand.READ_NODE:
         const node = { cmd: 'ref', value: int() }
         push(node)
-        calcRefs.push(node)
         break
 
       case CalcCommand.FUNCTION:
