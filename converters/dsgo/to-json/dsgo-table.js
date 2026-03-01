@@ -1,3 +1,5 @@
+const DsgoType = require('../dsgo-type')
+
 // # DSGO table
 //
 // SpSc IcNc
@@ -13,7 +15,7 @@
 // I1, I2... IN: Node indices. Index refers to the order in the file's overall DSGO heap.
 // S1, S2... SN: Pointer to the string being used. S1 corresponds to the node indexed by L1.
 // L1, L2... LN: Node indices. If L1 is 8, then the first string names the node mentioned in I8.
-function dsgoTable(crawler, { tables, nodes, abort }) {
+function dsgoTable(crawler, { refs, tables, nodes, abort }) {
   const label = crawler.setContext('DSGO Table')
   const namesCursor = crawler.ptr(0x00)
   const namesCount = crawler.uint(0x04)
@@ -28,22 +30,26 @@ function dsgoTable(crawler, { tables, nodes, abort }) {
 
   crawler.context = `${label} Nodes`
   for(let i = 0; i < varCount; i++) {
-    const nodeIndex = crawler.uint(i * 0x04)
+    const nodeIndex = crawler.uint(0x00)
     const node = nodes[nodeIndex]
     if(!node)
       abort(`Node not found: ${nodeIndex}`)
     table[i] = node
+    crawler.crawl(0x04)
   }
-  crawler.jump(varCount * 0x04)
 
   crawler.context = `${label} Names`
   for(let i = 0; i < namesCount; i++) {
-    const stringAddress = crawler.ptr(i * 0x08)
-    const nodeIndex = crawler.uint(i * 0x08 + 0x04)
+    const stringAddress = crawler.ptr(0x00)
+    const nodeIndex = crawler.uint(0x04)
     table[nodeIndex].nameAddress = stringAddress
+    refs.add({
+      address: stringAddress,
+      state: DsgoType.STRING,
+    })
+    crawler.crawl(0x08)
   }
 
-  crawler.jump(namesCount * 0x08)
 }
 
 function ceil(v, x) {

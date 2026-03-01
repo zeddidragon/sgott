@@ -19,7 +19,6 @@ function dsgoHeader(crawler, data) {
     data.refs.add({
       address: nodesPtr + i * 0x10,
       state: State.NODE,
-      origin: crawler.address,
     })
   }
 

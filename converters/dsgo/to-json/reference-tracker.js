@@ -4,14 +4,14 @@ class ReferenceTracker {
     this.processed = []
   }
 
-  add({ address, state, origin }) { // Adds the reference sorted
+  add({ address, state }) { // Adds the reference sorted
     let i = 0
     for(; i < this.refs.length; i++) {
       const ref = this.refs[i]
       if(address < ref.address)
         break
     }
-    this.refs.splice(i, 0, { address, state, origin })
+    this.refs.splice(i, 0, { address, state })
   }
 
   peek() {

@@ -7,11 +7,10 @@ const { dsgoString } = require('./dsgo-string')
 const { dsgoExtra } = require('./dsgo-extra')
 const { dsgoTable } = require('./dsgo-table')
 const { dsgoCalc } = require('./dsgo-calc')
-const { dsgoResolver } = require('./resolver')
+const { resolveDsgo } = require('./resolve-dsgo')
 
 function decompileDsgo(_, buffer, config) {
   function abort(msg) {
-    // console.log(data)
     console.log(crawler, { state })
     throw new Error(msg)
   }
@@ -69,11 +68,10 @@ function decompileDsgo(_, buffer, config) {
   }
   // END all the data in the buffer
 
-  console.log(data.calcs)
   return {
     format: 'DSGO',
     endian: crawler.endian,
-    variables: dsgoResolver(data),
+    variables: resolveDsgo(data),
     strings: Object.values(data.strings),
   }
 }

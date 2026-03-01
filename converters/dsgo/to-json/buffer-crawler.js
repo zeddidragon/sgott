@@ -20,6 +20,10 @@ class BufferCrawler {
     return this.buffer.slice(this.address + offset)
   }
 
+  crawl(length) { // Identical to `jump` but doesn't clear the context
+    this.address += length
+  }
+
   jump(length) {
     this.context = null
     this.address += length
