@@ -16,7 +16,6 @@ const DsgoType = require('../dsgo-type')
 // S1, S2... SN: Pointer to the string being used. S1 corresponds to the node indexed by L1.
 // L1, L2... LN: Node indices. If L1 is 8, then the first string names the node mentioned in I8.
 function dsgoTable(crawler) {
-  const address = crawler.address
   const namesCursor = crawler.ptr(0x00)
   const namesCount = crawler.uint(0x04)
   const varCursor = crawler.ptr(0x08)
@@ -42,9 +41,8 @@ function dsgoTable(crawler) {
   }
 
   return {
-    address,
     size: 0x10 + namesCount * 0x08 + varCount * 0x04,
-    type: 'DSGO Table',
+    type: 'Table',
     content: { table, names },
   }
 }

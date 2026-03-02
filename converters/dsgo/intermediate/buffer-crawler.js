@@ -50,6 +50,13 @@ class BufferCrawler {
     this.refs.splice(i, 0, { address, state })
   }
 
+  addBlock(address, { size, type, content }) {
+    this.blocks[hex(address)] = {
+      type,
+      content,
+    }
+  }
+
   go() {
     if (this.address !== 0)
       this.abort('Crawler is not fresh')
@@ -58,14 +65,14 @@ class BufferCrawler {
     while(this.address < this.buffer.length) {
       const address = this.address
       const ref = this.refs[0]
-      // console.log('ref:', { address: ref?.address.toString(16), state: ref?.state })
+      // console.log('ref:', { address: hex(ref?.address), state: ref?.state })
       if(!ref) {
         this.skipTo(this.buffer.length)
         break
       }
 
       if(ref.address < this.address) {
-        console.error('References out of order:', { pos: this.hexPos(), address: ref.address.toString(16), state: ref.state })
+        console.error('References out of order:', { pos: this.hexPos(), address: hex(ref.address), state: ref.state })
         this.refs.shift()
         continue
       }
@@ -84,9 +91,10 @@ class BufferCrawler {
         console.error(block)
         this.abort('Returned block has no size!')
       }
-      this.blocks[address] = block
+      this.addBlock(address, block)
       this.address = address + block.size
     }
+    this.addBlock(this.address, { type: 'END', size: 0 })
 
     return this.blocks
   }
@@ -100,8 +108,7 @@ class BufferCrawler {
   }
 
   skipTo(address) {
-    this.blocks.push({
-      address: this.address,
+    this.addBlock(this.address, {
       size: address - this.address,
       type: 'SKIPPED',
       content: this.buffer.slice(this.address, address).toString('hex')
@@ -176,6 +183,7 @@ class BufferCrawler {
       }
       bufferView[bufferView.length - 1].push(str)
     }
+
     return `Cursor 0x${this.hexPos()} (${this.endian})
 ${bufferView.map(r => r.join(' ')).join('\n')}`
   }
@@ -183,6 +191,12 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
 
 function bufferCrawler(buffer) {
   return new BufferCrawler(buffer)
+}
+
+function hex(value) {
+  if(value == null)
+    return value
+  return '0x' + value.toString(16)
 }
 
 module.exports = bufferCrawler

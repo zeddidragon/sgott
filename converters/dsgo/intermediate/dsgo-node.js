@@ -15,9 +15,8 @@ function dsgoNode(crawler) {
   if (type === DsgoType.DOUBLE) {
     const double = crawler.double(0x00)
     return {
-      address: crawler.address,
       size: 0x10,
-      type: `DSGO Node ${type}`,
+      type: `DSGO ${type}`,
       content: { type, double },
     }
 
@@ -25,9 +24,8 @@ function dsgoNode(crawler) {
     const ptr = crawler.ptr(0x00)
     crawler.register(ptr, type)
     return {
-      address: crawler.address,
       size: 0x10,
-      type: `DSGO Node ${type}`,
+      type: `DSGO ${type}`,
       content: { type, ptr },
     }
   }

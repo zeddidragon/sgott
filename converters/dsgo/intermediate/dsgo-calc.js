@@ -14,12 +14,12 @@ const CalcCommand = {
 //
 // 
 function dsgoCalc(crawler) {
-  const address = crawler.address
   const size = crawler.uint(0x00)
   let offset = crawler.uint(0x04)
 
   if (offset !== 0x08)
     abort(`Offset expected to be ${0x08} but was ${offset}`)
+  const headerSize = offset
   crawler.jump(offset) // Assumes data immediately follows header
 
   offset = 0x0
@@ -88,8 +88,7 @@ function dsgoCalc(crawler) {
   }
 
   return {
-    address,
-    size: offset,
+    size: headerSize + offset,
     type: 'Calc',
     content: stack[0],
   }

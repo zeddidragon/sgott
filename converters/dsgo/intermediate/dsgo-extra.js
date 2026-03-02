@@ -12,14 +12,10 @@ function dsgoExtra(crawler) {
   const length = crawler.uint(0x00)
   const offset = crawler.uint(0x04)
 
-  if(offset > 0x08) 
-    crawler.padding(0x08, offset - 0x08)
-
   const content = crawler.hex(offset, length) // Assumes data immediately follows header
   return {
-    address: crawler.address,
-    size: (offset - crawler.address) + length,
-    type: 'DSGO Extra (Hex)',
+    size: offset + length,
+    type: 'Extra (Hex)',
     content: content,
   }
 }
