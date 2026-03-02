@@ -11,7 +11,7 @@ const { count } = require('../../../helpers/count')
 class BufferCrawler {
   address = 0x00 // Cursor
   buffer = null // Input data cursor seeks over
-  blocks = [] // Output data, buffer chunked into human-readable objects
+  blocks = {} // Output data, buffer chunked into human-readable objects
   states = {}
   refs = []
   endian = 'LE'
@@ -56,6 +56,7 @@ class BufferCrawler {
 
     loop:
     while(this.address < this.buffer.length) {
+      const address = this.address
       const ref = this.refs[0]
       // console.log('ref:', { address: ref?.address.toString(16), state: ref?.state })
       if(!ref) {
@@ -83,8 +84,8 @@ class BufferCrawler {
         console.error(block)
         this.abort('Returned block has no size!')
       }
-      this.blocks.push(block)
-      this.address = block.address + block.size
+      this.blocks[address] = block
+      this.address = address + block.size
     }
 
     return this.blocks
