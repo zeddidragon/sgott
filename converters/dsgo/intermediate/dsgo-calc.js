@@ -1,7 +1,7 @@
 const CalcCommand = {
   END: 0,
   READ_VALUE: 1,
-  // 2 is unknown
+  // 2 is unknown / unused
   READ_NODE: 3,
   FUNCTION: 4,
   MATH_ADD: 5,
@@ -13,9 +13,8 @@ const CalcCommand = {
 // # Calc
 //
 // 
-function dsgoCalc(crawler, { calcs, abort }) {
+function dsgoCalc(crawler) {
   const address = crawler.address
-  const label = crawler.setContext('Calc')
   const size = crawler.uint(0x00)
   let offset = crawler.uint(0x04)
 
@@ -48,7 +47,6 @@ function dsgoCalc(crawler, { calcs, abort }) {
     stack.push(value)
   }
 
-  crawler.context = `${label} Node`
   const stack = []
   loop: while(offset < size) {
     const command = int()
@@ -89,8 +87,12 @@ function dsgoCalc(crawler, { calcs, abort }) {
     throw new Error(`Calc error: Stack unresolved | ${stack.join(', ')}`)
   }
 
-  calcs[address] = stack[0]
-  crawler.jump(offset)
+  return {
+    address,
+    size: offset,
+    type: 'Calc',
+    content: stack[0],
+  }
 }
 
 module.exports = {

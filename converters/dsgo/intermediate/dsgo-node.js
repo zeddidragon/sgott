@@ -10,35 +10,27 @@ const DsgoType = require('../dsgo-type')
 // 2: Dt points to an embedded file, Bg is 0
 // 3: Dt points to a DSGO list,      Bg is 0
 // 4: Dt points to a Calc node,      Bg is 0
-function dsgoNode(crawler, { nodes, refs }) {
-  crawler.setContext('DSGO Node')
-
-  crawler.skipTally = true
+function dsgoNode(crawler) {
   const type = crawler.bigInt(0x08)
-  crawler.skipTally = false
-
   if (type === DsgoType.DOUBLE) {
     const double = crawler.double(0x00)
-    crawler.bigInt(0x08) // Keep tally in order
-
-    const node = { address: crawler.address, type, double }
-    nodes.push(node)
+    return {
+      address: crawler.address,
+      size: 0x10,
+      type: `DSGO Node ${type}`,
+      content: { type, double },
+    }
 
   } else {
     const ptr = crawler.ptr(0x00)
-    crawler.padding(0x04, 0x04) // Keep tally in order
-    crawler.bigInt(0x08)
-
-    const node = { address: crawler.address, type, ptr }
-    nodes.push(node)
-    refs.add({
-      address: ptr,
-      state: type,
-      origin: node,
-    })
+    crawler.register(ptr, type)
+    return {
+      address: crawler.address,
+      size: 0x10,
+      type: `DSGO Node ${type}`,
+      content: { type, ptr },
+    }
   }
-  
-  crawler.jump(0x10)
 }
 
 module.exports = {
