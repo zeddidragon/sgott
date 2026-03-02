@@ -42,6 +42,8 @@ class BufferCrawler {
     let i = 0
     for(; i < this.refs.length; i++) {
       const ref = this.refs[i]
+      if(address === ref.address) // No need to add this register again
+        return                    // This commonly happens with strings, which can be references from multiple places
       if(address < ref.address)
         break
     }
@@ -55,13 +57,14 @@ class BufferCrawler {
     loop:
     while(this.address < this.buffer.length) {
       const ref = this.refs[0]
+      // console.log('ref:', { address: ref?.address.toString(16), state: ref?.state })
       if(!ref) {
-        this.skipTo(buffer.length)
+        this.skipTo(this.buffer.length)
         break
       }
 
       if(ref.address < this.address) {
-        console.error('References out of order:', this.address, ref)
+        console.error('References out of order:', { pos: this.hexPos(), address: ref.address.toString(16), state: ref.state })
         this.refs.shift()
         continue
       }
@@ -153,6 +156,10 @@ class BufferCrawler {
   hex(offset = 0x00, length = Infinity) {
     return this.buffer.slice(offset, offset + length).toString('hex')
   }
+  
+  hexPos() {
+    return this.address.toString(16)
+  }
 
   [util.inspect.custom]() {
     const startAt = Math.max(0, Math.floor((this.address / 0x10) - 1) * 0x10)
@@ -168,7 +175,7 @@ class BufferCrawler {
       }
       bufferView[bufferView.length - 1].push(str)
     }
-    return `Cursor 0x${this.address.toString(16)} (${this.endian})
+    return `Cursor 0x${this.hexPos()} (${this.endian})
 ${bufferView.map(r => r.join(' ')).join('\n')}`
   }
 }
