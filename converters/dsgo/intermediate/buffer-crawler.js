@@ -51,7 +51,7 @@ class BufferCrawler {
   }
 
   addBlock(address, { size, type, content }) {
-    this.blocks[hex(address)] = {
+    this.blocks[address] = {
       type,
       content,
     }

@@ -42,7 +42,7 @@ function dsgoTable(crawler) {
 
   return {
     size: 0x10 + namesCount * 0x08 + varCount * 0x04,
-    type: 'Table',
+    type: 'table',
     content: { table, names },
   }
 }

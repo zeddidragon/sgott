@@ -15,7 +15,7 @@ function dsgoExtra(crawler) {
   const content = crawler.hex(offset, length) // Assumes data immediately follows header
   return {
     size: offset + length,
-    type: 'Extra (Hex)',
+    type: 'extra',
     content: content,
   }
 }

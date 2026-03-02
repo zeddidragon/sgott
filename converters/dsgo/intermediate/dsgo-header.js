@@ -26,7 +26,7 @@ function dsgoHeader(crawler) {
   crawler.endian = leader === 'DSGO' ? 'LE' : 'BE'
   return {
     size: 0x10,
-    type: 'Header',
+    type: 'header',
     content: { leader, nodesCount, rootIndex },
   }
 }

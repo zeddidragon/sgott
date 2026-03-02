@@ -16,7 +16,7 @@ function dsgoNode(crawler) {
     const double = crawler.double(0x00)
     return {
       size: 0x10,
-      type: `DSGO ${type}`,
+      type: `dsgo${type}`,
       content: { type, double },
     }
 
@@ -25,7 +25,7 @@ function dsgoNode(crawler) {
     crawler.register(ptr, type)
     return {
       size: 0x10,
-      type: `DSGO ${type}`,
+      type: `dsgo${type}`,
       content: { type, ptr },
     }
   }

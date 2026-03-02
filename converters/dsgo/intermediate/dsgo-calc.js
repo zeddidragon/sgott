@@ -89,7 +89,7 @@ function dsgoCalc(crawler) {
 
   return {
     size: headerSize + offset,
-    type: 'Calc',
+    type: 'calc',
     content: stack[0],
   }
 }
