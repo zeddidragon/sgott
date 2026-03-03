@@ -7,6 +7,11 @@ const config = require('./package.json')
 const compiler = require('./converters/compiler.js')
 const decompiler = require('./converters/decompiler.js')
 
+function isBlocks(obj) {
+  if(obj[0]?.type === 'header') return true
+  return false
+}
+
 function isDsgo(obj) {
   if(/^dsgo$/i.test(obj.format)) return true
   return false
@@ -29,11 +34,16 @@ function isRmp(obj) {
 
 const { compilers, decompilers } = globals
 const transforms = {
-  dsgo: (...args) => json(decompilers.dsgo(decompiler, ...args)),
+  dsgo: (...args) => json(decompilers.dsgo(...args)),
   sgo: (...args) => json(decompilers.sgo(decompiler, ...args)),
   rmp: (...args) => json(decompilers.rmp(decompiler, ...args)),
   json(buffer, opts) {
     const parsed = JSON.parse(buffer.toString())
+    if(isBlocks(parsed)) {
+      console.log('is intermediate')
+      if(opts.compile) return compilers.dsgoBlocks(parsed)
+      throw new Error('Specify if this should be resolved with --resolve or recompiled with --compile')
+    }
     if(isDsgo(parsed)) return compilers.dsgo(compiler, parsed, opts, globals)
     if(isSgo(parsed)) return compilers.sgo(compiler, parsed, opts, globals)
     if(isRmp(parsed)) return compilers.rmp(compiler, parsed, opts, globals)
@@ -78,6 +88,9 @@ Options:
 
   -o --offset
       Byte to start reading from.
+
+  -i --intermediate
+      Parse into a lossless in-between format that describes chunks of data
     
   RMP to JSON:
 

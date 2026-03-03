@@ -8,7 +8,7 @@ const { dsgoTable } = require('./dsgo-table')
 const { dsgoCalc } = require('./dsgo-calc')
 const { resolveDsgo } = require('./resolve-dsgo')
 
-function decompileDsgo(_, buffer, config) {
+function decompileDsgo(buffer, config) {
   const crawler = bufferCrawler(buffer)
   crawler.addState(State.HEADER, dsgoHeader)
   crawler.addState(State.NODE, dsgoNode)

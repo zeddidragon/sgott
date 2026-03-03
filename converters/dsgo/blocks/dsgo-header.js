@@ -13,21 +13,17 @@ function dsgoHeader(crawler) {
   const nodesPtr = crawler.ptr(0x04)
   const nodesCount = crawler.uint(0x08)
   const rootPtr = crawler.ptr(0x0c)
+  const offset = Math.min(nodesPtr, rootPtr) // Unclear which is which
 
   for(let i = 0; i < nodesCount; i++) {
-    crawler.register(nodesPtr + i * 0x10, State.NODE)
+    crawler.register(offset + i * 0x10, State.NODE)
   }
-
-  // It's unclear which is nodesPtr and which is rootPtr from available files
-  // If we use abs, it doesn't matter
-  // In all known cases this index is 0
-  const rootIndex = Math.abs((nodesPtr - rootPtr) / 0x10)
 
   crawler.endian = leader === 'DSGO' ? 'LE' : 'BE'
   return {
     size: 0x10,
     type: 'header',
-    content: { leader, nodesCount, rootIndex },
+    content: { leader, nodesCount, nodesPtr, rootPtr },
   }
 }
 

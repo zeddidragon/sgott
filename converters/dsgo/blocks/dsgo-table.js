@@ -39,9 +39,9 @@ function dsgoTable(crawler) {
     crawler.register(nameAddress, DsgoType.STRING)
     crawler.jump(0x08)
   }
-
+  
   return {
-    size: 0x10 + namesCount * 0x08 + varCount * 0x04,
+    size: crawler.ceil(0x10 + namesCount * 0x08 + varCount * 0x04, 0x04),
     type: 'table',
     content: { table, names },
   }

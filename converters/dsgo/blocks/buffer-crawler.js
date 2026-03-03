@@ -169,6 +169,10 @@ class BufferCrawler {
     return this.address.toString(16)
   }
 
+  ceil(value, divisor = 0x10) {
+    return Math.ceil(value / divisor) * divisor
+  }
+
   [util.inspect.custom]() {
     const startAt = Math.max(0, Math.floor((this.address / 0x10) - 1) * 0x10)
     const endAt = Math.min(startAt + 0x80, this.buffer.length)
