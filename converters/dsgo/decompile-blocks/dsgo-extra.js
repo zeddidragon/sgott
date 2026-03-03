@@ -20,7 +20,7 @@ function dsgoExtra(crawler) {
   return {
     size: offset + length,
     type: 'extra',
-    content: { format: 'raw', content },
+    content: { format: 'hex', content },
   }
 }
 
