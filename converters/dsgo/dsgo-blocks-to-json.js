@@ -26,7 +26,7 @@ const CalcFunctions = {
   [0x80000006]: { name: 'f:lerp', args: 3 },
 }
 
-function blocksToJson(blocks, opts) {
+function dsgoBlocksToJson(blocks, opts) {
   const header = blocks[0]
   if(header.type !== 'header')
     throw new Error(`Expected block[0] to be header, but it's "${block.type}"`)
@@ -34,6 +34,8 @@ function blocksToJson(blocks, opts) {
   const endian = leader === 'DSGO' ? 'LE' : 'BE'
 
   function at(address) {
+    if(address == null)
+      throw new Error('Address not defined')
     return blocks[address].content
   }
 
@@ -47,7 +49,7 @@ function blocksToJson(blocks, opts) {
       throw new Error('Unknown node')
     }
 
-    if(n.type === DsgoType.DOUBLE) {
+    if(n.type == DsgoType.DOUBLE) { // == in case n.type is int and not BigInt
       node.value = n.double
       return node
     } else {
@@ -170,5 +172,5 @@ function blocksToJson(blocks, opts) {
 }
 
 module.exports = {
-  blocksToJson,
+  dsgoBlocksToJson,
 }

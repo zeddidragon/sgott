@@ -32,7 +32,7 @@ function isRmp(obj) {
   return false
 }
 
-const { compilers, decompilers } = globals
+const { compilers, decompilers, blocks } = globals
 const transforms = {
   dsgo: (...args) => json(decompilers.dsgo(...args)),
   sgo: (...args) => json(decompilers.sgo(decompiler, ...args)),
@@ -40,8 +40,8 @@ const transforms = {
   json(buffer, opts) {
     const parsed = JSON.parse(buffer.toString())
     if(isBlocks(parsed)) {
-      console.log('is intermediate')
-      if(opts.compile) return compilers.dsgoBlocks(parsed)
+      if(opts.compile) return blocks.toDsgo(parsed)
+      if(opts.resolve) return json(blocks.toJson(parsed))
       throw new Error('Specify if this should be resolved with --resolve or recompiled with --compile')
     }
     if(isDsgo(parsed)) return compilers.dsgo(compiler, parsed, opts, globals)
@@ -89,7 +89,7 @@ Options:
   -o --offset
       Byte to start reading from.
 
-  -i --intermediate
+  -b --blocks
       Parse into a lossless in-between format that describes chunks of data
     
   RMP to JSON:
@@ -128,16 +128,29 @@ function parseCli(cb) {
   const [readFile, writeFile] = plain
 
   function convertFileName(fileName, target) {
-    return [
-      path.dirname(fileName),
-      path.basename(fileName, path.extname(fileName)),
-    ].join(path.sep) + '.' + target
+    const dir = path.dirname(fileName)
+    const ext1 = path.extname(fileName)
+    fileName = path.basename(fileName, ext1)
+
+    // Remove the .blocks in .blocks.json
+    const ext2 = path.extname(fileName)
+    if(ext2 === '.blocks') {
+      fileName = path.basename(fileName, ext2)
+    }
+
+    return [dir, fileName].join(path.sep) + '.' + target
   }
 
   function write(data, type) {
-    const target = type === 'json'
-      ? (data.format || 'sgo').toUpperCase()
-      : 'json'
+    let target
+    if(opts.blocks)
+      target = 'blocks.json'
+    else if(opts.resolve)
+      target = 'json'
+    else if(type === 'json')
+      target = (data.format || 'sgo').toUpperCase()
+    else
+      target = 'json'
     if(writeFile && fs.existsSync(writeFile) && fs.lstatSync(writeFile).isDirectory()) {
       const path = writeFile + '/' + convertFileName(readFile.split('/').pop(), target)
       fs.writeFileSync(path, data)
