@@ -1,5 +1,5 @@
-const { decompileDsgo } = require('./decompile-blocks/decompile-dsgo')
+const { dsgoToBlocks } = require('./decompile-blocks/dsgo-to-blocks')
 
 module.exports = {
-  dsgoToBlocks: decompileDsgo,
+  dsgoToBlocks: dsgoToBlocks,
 }

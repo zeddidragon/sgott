@@ -1,4 +1,6 @@
 const DsgoType = require('./dsgo-type')
+const CalcType = require('./calc-type')
+
 const DsgoTypeNames = [
   'double',
   'string',
@@ -6,6 +8,23 @@ const DsgoTypeNames = [
   'ptr',
   'calc',
 ]
+
+const CalcCommandNames = [
+  'end',
+  'value',
+  null, // Not known / Not used
+  'nodeId',
+  'func',
+  '+',
+  '-',
+  '*',
+  '/',
+]
+
+const CalcFunctions = {
+  [0x80000005]: { name: 'f:limit', args: 1 },
+  [0x80000006]: { name: 'f:lerp', args: 3 },
+}
 
 function blocksToJson(blocks, opts) {
   const header = blocks[0]
@@ -21,7 +40,7 @@ function blocksToJson(blocks, opts) {
   // First resolve pass. Translate the type and embed ptr values from the block address
   const nodes = header.content.nodes.map(n => {
     const type = DsgoTypeNames[n.type]
-    const node = { name: void 0, type, value: void 0 } // ensure value is last in order because it can get massive
+    const node = { name: void 0, type, id: void 0, value: void 0 } // ensure value is last in order because it can get massive
 
     if(type == null) {
       console.error(n)
@@ -79,10 +98,71 @@ function blocksToJson(blocks, opts) {
 
     n.value = children
   }
-
   // END Resolve type 3 `ptr`
 
+  // BEGIN Resolve type 4 `calc`
+  // First pass to translate the commands into plaintext names
+  for(const n of nodes.filter(n => n.type === 'calc')) {
+    const stack = []
+
+    loop:
+    for(const { command, value } of n.value) {
+      const cmd = { command: CalcCommandNames[command], value }
+
+      switch(command) {
+        case CalcType.END:
+          break loop;
+
+        case CalcType.READ_VALUE:
+          stack.push(cmd)
+          break
+
+        case CalcType.READ_NODE: {
+          if(heapRefs[value]) { // Referenced node is in the heap
+            cmd.command = 'heapId'
+            cmd.value = heapRefs[value].value
+          } else { // Referenced node is in the main tree
+            const node = nodes[value]
+            if(!node.id)
+              node.id = `node${value}` // Assumed to be unique
+
+            cmd.value = node.id
+          }
+
+          stack.push(cmd)
+          break
+        }
+
+        case CalcType.FUNCTION: {
+          const func = CalcFunctions[value]
+
+          if(!func)
+            throw new Error(`Unknown calc function: ${value}`)
+
+          cmd.command = func.name
+          cmd.value = stack.splice(-func.args)
+          stack.push(cmd)
+          break
+        }
+
+        case CalcType.MATH_ADD:
+        case CalcType.MATH_SUB:
+        case CalcType.MATH_MUL:
+        case CalcType.MATH_DIV: {
+          cmd.value = stack.splice(-2)
+          stack.push(cmd)
+          break
+        }
+      }
+    }
+
+    n.value = stack[0]
+  }
+
+  // END Resolve type 4 `calc`
+
   return {
+    format: 'DSGO',
     endian,
     variables: nodes[rootIndex].value,
     heap,
