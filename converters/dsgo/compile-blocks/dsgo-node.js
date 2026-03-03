@@ -12,7 +12,7 @@ function dsgoNode(writer, { type, double, ptr }) {
   if(type === 0)
     writer.double(0x00, double)
   else
-    writer.uint(0x00, ptr)
+    writer.ptr(0x00, ptr)
   writer.bigInt(0x08, BigInt(type))
 }
 

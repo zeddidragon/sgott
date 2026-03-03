@@ -7,7 +7,7 @@ class BufferWriter {
   address = 0x00 // Cursor
   blocks = null // Input data
   buffer = null // Output data
-  types = {}
+  types = { SKIPPED: () => {}, END: () => {} }
   endian = 'LE'
 
   constructor(blocks) {
@@ -43,7 +43,11 @@ class BufferWriter {
     return this.buffer.slice(this.address + offset)
   }
 
-  ascii(offset = 0x00, value) {
+  jump(length) {
+    this.address += length
+  }
+
+  write(offset = 0x00, value) {
     return this.at(offset).write(value)
   }
 
@@ -73,8 +77,8 @@ class BufferWriter {
 
   string(offset = 0x00, value) {
     return (this.endian === 'LE')
-      ? this.at(offset).write(value, 'utf16le')
-      : this.at(offset).write(value, 'utf16be')
+      ? this.at(offset).write(value + '\0', 'utf16le')
+      : this.at(offset).write(value + '\0', 'utf16be')
   }
 }
 

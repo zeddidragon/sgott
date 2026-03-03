@@ -13,6 +13,7 @@ const CalcCommand = {
 // # Calc
 //
 // 
+/*
 function dsgoCalc(crawler) {
   const size = crawler.uint(0x00)
   let offset = crawler.uint(0x04)
@@ -91,6 +92,66 @@ function dsgoCalc(crawler) {
     size: headerSize + offset,
     type: 'calc',
     content: stack[0],
+  }
+}
+*/
+
+function dsgoCalc(crawler) {
+  const size = crawler.uint(0x00)
+  let offset = crawler.uint(0x04)
+
+  if (offset !== 0x08)
+    abort(`Offset expected to be ${0x08} but was ${offset}`)
+
+  // Helper functions that manipulates the stack and crawls the offset
+  function int() {
+    const val = crawler.uint(offset)
+    offset += 0x04
+    return val
+  }
+  function double() {
+    const val = crawler.double(offset)
+    offset += 0x08
+    return val
+  }
+  const headerSize = offset
+
+  crawler.jump(offset) // Assumes data immediately follows header
+  offset = 0x00
+
+  const content = []
+  loop:
+  while(offset < size) {
+    const command = int()
+    switch(command) {
+      case CalcCommand.END:
+        break loop;
+      
+      case CalcCommand.READ_VALUE:
+        content.push({ command: 'value', value: double() })
+        break
+      case CalcCommand.READ_NODE:
+        content.push({ command: 'ref', value: int() })
+        break
+
+      case CalcCommand.FUNCTION:
+        content
+        const func = int()
+        content.push({ command: 'func', func })
+        break
+
+      case CalcCommand.MATH_ADD: content.push({ command: '+' }); break;
+      case CalcCommand.MATH_SUB: content.push({ command: '-' }); break;
+      case CalcCommand.MATH_MUL: content.push({ command: '*' }); break;
+      case CalcCommand.MATH_DIV: content.push({ command: '/' }); break;
+
+    }
+  }
+
+  return {
+    size: headerSize + offset,
+    type: 'calc',
+    content,
   }
 }
 

@@ -34,8 +34,8 @@ function dsgoTable(crawler) {
   const names = new Array(namesCount)
   for(let i = 0; i < namesCount; i++) {
     const nameAddress = crawler.ptr(0x00)
-    const nodeIndex = crawler.uint(0x04)
-    names[i] = { nodeIndex, nameAddress }
+    const tableIndex = crawler.uint(0x04)
+    names[i] = { tableIndex, nameAddress }
     crawler.register(nameAddress, DsgoType.STRING)
     crawler.jump(0x08)
   }

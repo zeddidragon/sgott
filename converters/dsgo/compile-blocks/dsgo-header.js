@@ -8,7 +8,7 @@
 // Pt: Pointer to first DSGO node
 function dsgoHeader(writer, { leader, nodesCount, nodesPtr, rootPtr }) {
   writer.endian = leader === 'DSGO' ? 'LE' : 'BE'
-  writer.ascii(0x00, leader)
+  writer.write(0x00, leader)
   writer.ptr(0x04, nodesPtr)
   writer.uint(0x08, nodesCount)
   writer.ptr(0x0c, rootPtr)
