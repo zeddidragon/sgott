@@ -1167,7 +1167,7 @@ const autoProps = {
 
 async function processWeapon({ value: node }) {
   const id = node[0].value
-  const lvBuffer = new Buffer(4)
+  const lvBuffer = Buffer.alloc(4)
   lvBuffer.writeFloatLE(node[4].value * 25)
   const level = Math.floor(lvBuffer.readFloatLE())
   const category = node[2].value

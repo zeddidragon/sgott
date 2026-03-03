@@ -108,6 +108,7 @@ class BufferCrawler {
   }
 
   skipTo(address) {
+    // TODO: Error check for skipping non-zero data
     this.addBlock(this.address, {
       size: address - this.address,
       type: 'SKIPPED',
@@ -167,10 +168,6 @@ class BufferCrawler {
   
   hexPos() {
     return this.address.toString(16)
-  }
-
-  ceil(value, divisor = 0x10) {
-    return Math.ceil(value / divisor) * divisor
   }
 
   [util.inspect.custom]() {

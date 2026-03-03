@@ -41,7 +41,7 @@ function dsgoTable(crawler) {
   }
   
   return {
-    size: crawler.ceil(0x10 + namesCount * 0x08 + varCount * 0x04, 0x04),
+    size: 0x10 + namesCount * 0x08 + varCount * 0x04,
     type: 'table',
     content: { table, names },
   }

@@ -408,7 +408,7 @@ const headers = {
 
 async function processWeapon({ value: node }, character) {
   const id = node[0].value
-  const lvBuffer = new Buffer(4)
+  const lvBuffer = new Buffer.alloc(4)
   lvBuffer.writeFloatLE(node[3].value * 25)
   const level = Math.floor(lvBuffer.readFloatLE())
   const category = node[1].value

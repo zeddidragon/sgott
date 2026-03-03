@@ -12,12 +12,13 @@ const DsgoType = require('../dsgo-type')
 // 4: Dt points to a Calc node,      Bg is 0
 function dsgoNode(crawler) {
   const type = crawler.bigInt(0x08)
+  const index = count(crawler)
   if (type === DsgoType.DOUBLE) {
     const double = crawler.double(0x00)
     return {
       size: 0x10,
       type: `dsgo${type}`,
-      content: { type, double },
+      content: { '#': index, type, double },
     }
 
   } else {
@@ -26,9 +27,16 @@ function dsgoNode(crawler) {
     return {
       size: 0x10,
       type: `dsgo${type}`,
-      content: { type, ptr },
+      content: { '#': index, type, ptr },
     }
   }
+}
+
+const counter = new Map() // Start from 0 in case of a new crawler
+function count(obj) {
+  let value = counter.get(obj) || 0
+  counter.set(obj, value + 1)
+  return value
 }
 
 module.exports = {

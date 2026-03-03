@@ -1,4 +1,4 @@
-const { decompileDsgo } = require('./blocks/decompile-dsgo')
+const { decompileDsgo } = require('./decompile-blocks/decompile-dsgo')
 
 module.exports = {
   decompileDsgo,
