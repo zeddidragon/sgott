@@ -5,7 +5,6 @@ const State = {
   ...DsgoType,
 
   HEADER: 100n,
-  NODE: 101n,
 }
 
 module.exports = State
