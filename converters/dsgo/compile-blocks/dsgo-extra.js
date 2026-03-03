@@ -9,10 +9,14 @@
 // Contents of embedded files are independent from this file and will not reference our data
 // The data is padded up to the nearest 8 bytes
 function dsgoExtra(writer, { format, content }) {
+  // Extra data wants to be aligned at the next 0
+  let offset = Math.ceil((writer.address + 0x08) / 0x10) * 0x10 - writer.address
+
   // TODO: Handle formats other than `raw`
-  writer.uint(0x00, content.length)
-  writer.uint(0x04, 0x08) // Relative pointer to content body
-  writer.write(0x08, content)
+  writer.uint(0x00, content.length / 2) // A byte is 2 hex characters
+  writer.uint(0x04, offset) // Relative pointer to content body
+  writer.jump(offset)
+  writer.hex(0x00, content)
 }
 
 module.exports = {

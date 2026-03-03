@@ -21,7 +21,7 @@ function dsgoTable(crawler) {
   const varCursor = crawler.ptr(0x08)
   const varCount = crawler.uint(0x0c)
   if (varCursor !== crawler.address + 0x10)
-    crawler.abort(`Offset expected to be ${0x10} but was ${varCursor - 0x10}`)
+    crawler.abort(`Offset expected to be ${0x10} but was ${varCursor - crawler.address}`)
 
   const table = new Array(varCount)
   crawler.jump(0x10)

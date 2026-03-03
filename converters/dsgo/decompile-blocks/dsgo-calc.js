@@ -116,6 +116,10 @@ function dsgoCalc(crawler) {
   }
   const headerSize = offset
 
+  function push(command, value) {
+    content.push({ command, value })
+  }
+
   crawler.jump(offset) // Assumes data immediately follows header
   offset = 0x00
 
@@ -124,27 +128,25 @@ function dsgoCalc(crawler) {
   while(offset < size) {
     const command = int()
     switch(command) {
-      case CalcCommand.END:
-        break loop;
-      
       case CalcCommand.READ_VALUE:
-        content.push({ command: 'value', value: double() })
+        push(command, double())
         break
+
       case CalcCommand.READ_NODE:
-        content.push({ command: 'ref', value: int() })
-        break
-
       case CalcCommand.FUNCTION:
-        content
-        const func = int()
-        content.push({ command: 'func', func })
+        push(command, int())
         break
 
-      case CalcCommand.MATH_ADD: content.push({ command: '+' }); break;
-      case CalcCommand.MATH_SUB: content.push({ command: '-' }); break;
-      case CalcCommand.MATH_MUL: content.push({ command: '*' }); break;
-      case CalcCommand.MATH_DIV: content.push({ command: '/' }); break;
+      case CalcCommand.MATH_ADD:
+      case CalcCommand.MATH_SUB:
+      case CalcCommand.MATH_MUL:
+      case CalcCommand.MATH_DIV:
+        push(command)
+        break
 
+      case CalcCommand.END:
+        push(command)
+        break loop
     }
   }
 

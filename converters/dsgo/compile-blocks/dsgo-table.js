@@ -14,10 +14,11 @@
 // S1, S2... SN: Pointer to the string being used. S1 corresponds to the node indexed by L1.
 // L1, L2... LN: Node indices. If L1 is 8, then the first string names the node mentioned in I8.
 function dsgoTable(writer, { table, names }) {
-  writer.uint(0x00, 0x10 + table.length * 0x04) // namesCursor
-  writer.uint(0x04, names.length || 0)         // namesCount
+  if(names.length)
+    writer.uint(0x00, 0x10 + table.length * 0x04)
+  writer.uint(0x04, names.length || 0)          // namesCount
   writer.uint(0x08, 0x10)                       // varsCursor
-  writer.uint(0x0c, table)                      // varsCount
+  writer.uint(0x0c, table.length)               // varsCount
 
   writer.jump(0x10)
 

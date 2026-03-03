@@ -80,6 +80,10 @@ class BufferWriter {
       ? this.at(offset).write(value + '\0', 'utf16le')
       : this.at(offset).write(value + '\0', 'utf16be')
   }
+
+  hex(offset = 0x00, value) {
+    return this.at(offset).write(value, 'hex')
+  }
 }
 
 function bufferWriter(blocks) {

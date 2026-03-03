@@ -12,7 +12,11 @@ function dsgoExtra(crawler) {
   const length = crawler.uint(0x00)
   const offset = crawler.uint(0x04)
 
-  const content = crawler.hex(offset, length) // Assumes data immediately follows header
+  if (offset !== 0x08 && offset !== 0x10)
+    crawler.abort(`Offset expected to be ${0x08} or ${0x10} but was ${offset}`)
+
+  crawler.jump(offset)
+  const content = crawler.hex(0x00, length) // Assumes data immediately follows header
   return {
     size: offset + length,
     type: 'extra',

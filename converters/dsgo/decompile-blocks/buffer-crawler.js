@@ -121,8 +121,8 @@ class BufferCrawler {
   }
 
   ascii(offset = 0x00, length = 0x04) {
-    return this.buffer
-      .slice(this.address + offset, this.address + offset + length)
+    return this.at(offset)
+      .slice(0x00, length)
       .toString('ascii')
   }
 
@@ -163,7 +163,9 @@ class BufferCrawler {
   }
 
   hex(offset = 0x00, length = Infinity) {
-    return this.buffer.slice(offset, offset + length).toString('hex')
+    return this.at(offset)
+      .slice(0x00, length)
+      .toString('hex')
   }
   
   hexPos() {
