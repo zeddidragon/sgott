@@ -44,7 +44,7 @@ const transforms = {
       if(opts.resolve) return json(blocks.toJson(parsed))
       throw new Error('Specify if this should be resolved with --resolve or recompiled with --compile')
     }
-    if(isDsgo(parsed)) return compilers.dsgo(compiler, parsed, opts, globals)
+    if(isDsgo(parsed)) return compilers.dsgo(parsed, opts, globals)
     if(isSgo(parsed)) return compilers.sgo(compiler, parsed, opts, globals)
     if(isRmp(parsed)) return compilers.rmp(compiler, parsed, opts, globals)
     throw new Error('Unable to recognize JSON format')
