@@ -1,34 +1,6 @@
 const util = require('util')
 const kleur = require('kleur')
 
-class WriteTally {
-  constructor() {
-    this.count = new Map();
-    this.size = new Map();
-  }
-
-  add(Type, buffer) {
-    this.count.set(Type, (this.count.get(Type) || 0) + 1)
-    const size = Buffer.isBuffer(buffer) ? buffer.length : Type.size
-    this.size.set(Type, (this.size.get(Type) || 0) + size)
-  }
-
-  total() {
-    let totalCount = 0
-    let totalSize = 0
-    for(const count of this.count.values()) {
-      totalCount += count
-    }
-    for(const size of this.size.values()) {
-      totalSize += size
-    }
-    return {
-      totalCount,
-      totalSize,
-    }
-  }
-}
-
 function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
@@ -109,7 +81,6 @@ function compile(obj) {
   }
   DeferStr.size = 0x04
 
-  function StrType() {} // Used for tallying
   function unrollStrings() {
     const nullString = '\0'
     const strings = Array.from(deferredStrings)
@@ -127,7 +98,6 @@ function compile(obj) {
       const written = str + '\0'
       const cursor = malloc(stringBytes(written))
       cursor.buffer.write(written, 'utf16le')
-      tally.add(StrType, cursor.buffer)
       if(endian !== 'LE') cursor.buffer.swap16()
       stringCursors[str] = cursor
     }
@@ -161,13 +131,11 @@ function compile(obj) {
   }
   
   function Copy(cursor, buffer) {
-    tally.add(Copy, buffer)
     buffer.copy(cursor.buffer)
   }
 
-  let tally = new WriteTally()
   class Cursor {
-    constructor(buffer, pos = 0, index = 0x00) {
+    constructor(buffer, pos, index = 0x00) {
       if(buffer instanceof Cursor) {
         this.buffer = buffer.buffer
         this.pos = buffer.pos
@@ -202,7 +170,6 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     }
 
     write(Type, value, off, tmp, opts = {}) {
-      tally.add(Type, this, value)
       if(this.index > this.buffer.length - Type.size) {
         throw new Error('End of buffer exceeded')
       }
@@ -321,8 +288,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     malloc(Entry.size).write(Entry, obj)
     unrollDeferred()
     unrollStrings()
-    const buffer = Buffer.concat(heap)
-    return buffer
+    return Buffer.concat(heap)
   }
 
   compile.compile = compile
@@ -346,8 +312,6 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     Struct,
     Union,
     Collection,
-    Cursor,
-    tally,
   }
 
   return compile
