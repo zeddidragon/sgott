@@ -104,8 +104,8 @@ function compileSgo(compiler, obj, opts, globals) {
     }
 
     const SgoIndex = Struct([
-      [0x00, DeferStr, node => node.name],
-      [0x04, UInt, (node, cursor) => cursor.writeCount],
+      [0x00, DeferStr, ({ name }) => name],
+      [0x04, UInt, ({ idx }) => idx],
     ], 0x08)
 
     return Struct([
@@ -120,8 +120,17 @@ function compileSgo(compiler, obj, opts, globals) {
       [0x0C, Ref, Collection(SgoNode, obj => obj.variables)],
       // Also amount of top-level variables? Likely points at the amount of variable names.
       [0x10, UInt, obj => obj.variables.length],
-      // Pointer to string array of variable namese.
-      [0x14, Ref, Collection(SgoIndex, obj => obj.variables, {
+      // Pointer to string array of variable names.
+      // Should be sorted
+      [0x14, Ref, Collection(SgoIndex, obj => {
+        return obj.variables
+          .map(({ name }, idx) => ({ name, idx }))
+          .sort((a, b) => {
+            if(a.name < b.name) return -1
+            if(a.name > b.name) return 1
+            return 0
+          })
+      }, {
         padding: 0x10,
         dbg: 'vars',
       })],

@@ -321,10 +321,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     malloc(Entry.size).write(Entry, obj)
     unrollDeferred()
     unrollStrings()
-    console.log(tally)
-    console.log('total', tally.total())
     const buffer = Buffer.concat(heap)
-    console.log('size', buffer.length)
     return buffer
   }
 
