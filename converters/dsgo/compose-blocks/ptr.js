@@ -20,7 +20,6 @@ function ptr({ value }, composer, nodes) {
     table,
     names,
   })
-  console.log(table, names, ptr)
 
   return { type: DsgoType.DSGO, ptr }
 }
