@@ -6,6 +6,13 @@ function ptr({ value }, { nodes, defer, unroll }) {
     ptr: void 0,
   }
   nodes.push(node)
+  const table = {
+    type: 'table',
+    content: {
+      table: [],
+      names: [],
+    }
+  }
   node.ptr = defer(node, 'value', value)
   value.forEach(unroll)
 }

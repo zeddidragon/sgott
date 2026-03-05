@@ -15,7 +15,43 @@ const nodeTypes = {
 
 function jsonToDsgoBlocks(json) {
   const blocks = []
+  const rootNode = {
+    type: 'ptr',
+    value: json.variables,
+  }
 
+  const traversed = new Set()
+  function* eachNode(nodes) {
+    for(const node of nodes) {
+      yield node
+      switch(node.type) {
+        case 'ptr': {
+          yield *eachNode(node.value)
+          break
+        }
+        case 'heap': {
+          const heapNode = json.heap[node.value]
+          if(!traversed.has(heapNode)) {
+            traversed.add(heapNode)
+            yield* eachNode([heapNode])
+          }
+          break
+        }
+      }
+    }
+  }
+
+  let i = 0
+  for(const node of eachNode([rootNode])) {
+    i++;
+    if(node.id)
+      console.log(i, node)
+  }
+
+  return ''
+  return rootNode
+
+  /*
   const nodes = []
   const header = {
     type: 'header',
@@ -54,6 +90,7 @@ function jsonToDsgoBlocks(json) {
   }
 
   unroll({ type: 'ptr', value: json.variables }) // The root node
+  */
 
   return blocks[0].content
 }
