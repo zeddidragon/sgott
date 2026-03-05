@@ -1,11 +1,10 @@
 const DsgoType = require('../dsgo-type')
 
-function double({ value }, { nodes }) {
-  const node = {
+function double({ value }) {
+  return {
     type: DsgoType.DOUBLE,
     double: value,
   }
-  nodes.push(node)
 }
 
 module.exports = { double }

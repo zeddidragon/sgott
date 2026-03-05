@@ -1,3 +1,5 @@
+const { compareStrings } = require('../../helpers/compare-strings')
+
 function identifyData(obj) {
   if(typeof obj === 'string') return
   if(obj.format === 'dsgo') return 'dsgo'
@@ -125,11 +127,7 @@ function compileSgo(compiler, obj, opts, globals) {
       [0x14, Ref, Collection(SgoIndex, obj => {
         return obj.variables
           .map(({ name }, idx) => ({ name, idx }))
-          .sort((a, b) => {
-            if(a.name < b.name) return -1
-            if(a.name > b.name) return 1
-            return 0
-          })
+          .sort((a, b) => compareStrings(a.name, b.name))
       }, {
         padding: 0x10,
         dbg: 'vars',

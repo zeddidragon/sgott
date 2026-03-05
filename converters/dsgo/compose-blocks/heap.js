@@ -1,12 +1,9 @@
 const DsgoType = require('../dsgo-type')
 
-function heap({ value }, { nodes, defer }) {
-  const node = {
-    type: DsgoType.DSGO,
-    ptr: void 0,
-  }
-  nodes.push(node)
-  node.ptr = defer(node, 'value', value)
+function heap({ value }, composer) {
+  const type = DsgoType.DSGO
+  const ptr = void 0
+  return { type, ptr }
 }
 
 module.exports = { heap }

@@ -1,12 +1,9 @@
 const DsgoType = require('../dsgo-type')
 
-function calc({ value }, { nodes, defer }) {
-  const node = {
-    type: DsgoType.CALC,
-    ptr: void 0,
-  }
-  nodes.push(node)
-  node.ptr = defer(node, 'value', value)
+function calc({ value }, composer) {
+  const type = DsgoType.DSGO
+  const ptr = void 0
+  return { type, ptr }
 }
 
 module.exports = { calc }
