@@ -120,17 +120,10 @@ function dsgoBlocksToJson(blocks, opts) {
           break
 
         case CalcType.READ_NODE: {
-          if(heapRefs[value]) { // Referenced node is in the heap
-            cmd.command = 'heapId'
-            cmd.value = heapRefs[value].value
-          } else { // Referenced node is in the main tree
-            const node = nodes[value]
-            if(!node.id)
-              node.id = `node${value}` // Assumed to be unique
-
-            cmd.value = node.id
-          }
-
+          const node = nodes[value]
+          if(!node.id)
+            node.id = `node${value}` // Assumed to be unique
+          cmd.value = node.id
           stack.push(cmd)
           break
         }
