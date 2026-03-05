@@ -4,7 +4,6 @@ const jsonToDsgoBlocks = require('./json-to-dsgo-blocks')
 function compileDsgo(obj) {
   const blocks = jsonToDsgoBlocks(obj)
 
-  console.log(blocks)
   return json(blocks)
 }
 
