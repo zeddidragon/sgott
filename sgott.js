@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const json = require('json-stringify-pretty-compact')
 const globals = require('./globals.js')
+const storage = require('./helpers/storage.js') // Global storage
 const config = require('./package.json')
 const compiler = require('./converters/compiler.js')
 const decompiler = require('./converters/decompiler.js')
@@ -37,7 +38,8 @@ const transforms = {
   dsgo: (...args) => json(decompilers.dsgo(...args)),
   sgo: (...args) => json(decompilers.sgo(decompiler, ...args)),
   rmp: (...args) => json(decompilers.rmp(decompiler, ...args)),
-  json(buffer, opts) {
+  json(buffer) {
+    const opts = storage.get('opts')
     const parsed = JSON.parse(buffer.toString())
     if(isBlocks(parsed)) {
       if(opts.compile) return blocks.toDsgo(parsed)
@@ -58,6 +60,7 @@ const flagMap = {
   o: 'offset',
   v: 'version',
   h: 'help',
+  x: 'export-extra',
 }
 
 const help = `
@@ -91,6 +94,9 @@ Options:
 
   -b --blocks
       Parse into a lossless in-between format that describes chunks of data
+
+  -x --export-extra
+      Instead of embedding extra files as hex strings in the file, dump them to a seperate file
     
   RMP to JSON:
 
@@ -124,6 +130,7 @@ function parseCli(cb) {
   for(const [w, word] of Object.entries(flagMap)) {
     if(opts[w] && !opts[word]) opts[word] = opts[w]
   }
+  storage.set('opts', opts)
 
   const [readFile, writeFile] = plain
 
@@ -151,19 +158,29 @@ function parseCli(cb) {
       target = (data.format || 'sgo').toUpperCase()
     else
       target = 'json'
+
+    let fileName
     if(writeFile && fs.existsSync(writeFile) && fs.lstatSync(writeFile).isDirectory()) {
-      const path = writeFile + '/' + convertFileName(readFile.split('/').pop(), target)
-      fs.writeFileSync(path, data)
-      console.log(path)
+      fileName = writeFile + '/' + convertFileName(readFile.split('/').pop(), target)
     } else if(writeFile) {
-      fs.writeFileSync(writeFile, data)
-      console.log(writeFile)
+      fileName = writeFile
     } else if(readFile) {
-      const path = convertFileName(readFile, target)
-      fs.writeFileSync(path, data)
-      console.log(path)
+      fileName = convertFileName(readFile, target)
     } else {
       process.stdout.write(data)
+      if(opts['export-external'])
+        console.warn('Additional files not supported')
+      // TODO: Write out extra files to stdout
+      return
+    }
+
+    fs.writeFileSync(fileName, data)
+    let extra
+    while(extra = storage.pop('export-extra')) {
+      const baseName = path.basename(readFile, path.extname(readFile))
+      const xPath = path.join(path.dirname(fileName), `${baseName}__${extra.fileName}`)
+      console.log(xPath)
+      fs.writeFileSync(xPath, extra.data)
     }
   }
 

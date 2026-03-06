@@ -1,3 +1,6 @@
+const storage = require('../../../helpers/storage')
+let i = 0;
+
 // # Embedded file
 // SzDp
 // ...data...
@@ -16,11 +19,21 @@ function dsgoExtra(crawler) {
     crawler.abort(`Offset expected to be ${0x08} or ${0x10} but was ${offset}`)
 
   crawler.jump(offset)
-  const content = crawler.hex(0x00, length) // Assumes data immediately follows header
+  let content
+  if(storage.get('opts')?.['export-extra']) {
+    // TODO: Guess the file format
+    const fileName = `extra-${i++}.bin`
+    storage.push('export-extra', { fileName, data: crawler.at(0x00).slice(0x00, length)})
+    content = { format: 'file', value: fileName }
+  } else {
+    const data = crawler.hex(0x00, length) // Assumes data immediately follows header
+    content = { format: 'hex', value: data }
+  }
+
   return {
     size: offset + length,
     type: 'extra',
-    content: { format: 'hex', content },
+    content,
   }
 }
 
