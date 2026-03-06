@@ -14,7 +14,9 @@ function dsgoToBlocks(buffer, config) {
   crawler.addState(State.DSGO, dsgoTable)
   crawler.addState(State.CALC, dsgoCalc)
   crawler.register(0x0, State.HEADER)
-  return crawler.go()
+  const blocks = crawler.go()
+  require('./check-orphans').checkOrphans(blocks)
+  return blocks
 }
 
 BigInt.prototype.toJSON = function () {
