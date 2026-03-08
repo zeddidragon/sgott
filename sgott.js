@@ -106,6 +106,7 @@ Options:
 `
 
 function parseCli(cb) {
+  storage.set('version', config.version)
   const args = process.argv.slice(2)
   const opts = {}
   const plain = []

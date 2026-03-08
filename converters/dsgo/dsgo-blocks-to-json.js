@@ -174,6 +174,7 @@ function dsgoBlocksToJson(blocks) {
 
   return {
     format: 'DSGO',
+    sgott: storage.get('version'),
     endian,
     variables: nodes[rootIndex].value,
     heap,
