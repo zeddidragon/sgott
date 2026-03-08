@@ -14,12 +14,6 @@ const blockComposer = require('./block-composer')
 
 function jsonToDsgoBlocks(json) {
   const composer = blockComposer(json)
-  // composer.addState('double', double)
-  // composer.addState('string', string)
-  // composer.addState('extra', extra)
-  // composer.addState('ptr', ptr)
-  // composer.addState('heap', heap)
-  // composer.addState('calc', calc)
 
   const traversed = new Set()
   function* eachNode(nodes) {
