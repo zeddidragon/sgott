@@ -1,301 +1,213 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "Weapon_VehicleShoot",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "Weapon_VehicleShoot"
     },
-    {"value": null, "type": "ptr", "name": "custom_parameter"},
-    {"value": 1, "type": "double", "name": "use_underground"},
-    {"value": 0, "type": "double", "name": "FireCondition"},
-    {"value": "グレネード射出器（左）", "type": "str", "name": "name.ja"},
-    {"value": "Grenade Discharger (Left)", "type": "str", "name": "name.en"},
-    {"value": "榴彈發射器（左）", "type": "str", "name": "name.cn"},
-    {"value": "그레네이드 사출기(좌)", "type": "str", "name": "name.kr"},
-    {"value": "榴弹发射器（左）", "type": "str", "name": "name.sc"},
-    {"value": "app:/weapon/icon/none", "type": "str", "name": "WeaponIcon"},
+    {"name": "custom_parameter", "type": "ptr", "value": []},
+    {"name": "use_underground", "type": "double", "value": 1},
+    {"name": "FireCondition", "type": "double", "value": 0},
+    {"name": "name.ja", "type": "string", "value": "グレネード射出器（左）"},
+    {"name": "name.en", "type": "string", "value": "Grenade Discharger (Left)"},
+    {"name": "name.cn", "type": "string", "value": "榴彈發射器（左）"},
+    {"name": "name.kr", "type": "string", "value": "그레네이드 사출기(좌)"},
+    {"name": "name.sc", "type": "string", "value": "榴弹发射器（左）"},
+    {"name": "WeaponIcon", "type": "string", "value": "app:/weapon/icon/none"},
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Weapon/v_null.rab", "type": "str"},
-            {"value": "v_null.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Weapon/v_null.rab"},
+            {"type": "string", "value": "v_null.mdb"}
+          ]
         },
-        {"value": 0, "type": "double"},
+        {"type": "double", "value": 0},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000300000010003e00240000003c01000040010000a002000000000800180000000100000010010000020000000801000064020000940200000200000054010000040100009401000000000000040200004a020000740200000200000024010000e40000008401000000000000e4010000300200005402000002000000f4000000c40000008401000000000000c401000016020000340200000200000004010000a40000007401000000000000a4010000fc0100001402000002000000f400000084000000640100000000000084010000e2010000f401000002000000e400000064000000540100000000000064010000c8010000d4010000020000005400000044000000f40000000000000044010000ae010000b4010000020000004400000024000000d40000000000000024010000babababacdcc4c3dcdcc4c3d9a99193e0000803fcdcc4c3e00000000cdcc4c3d0000803fcdcc4c3e00000000cdcc4cbe0000803f8fc2f5bd000000000ad7033f0000803f8fc2f5bd00000000d7a3503f0000803f8fc2f5bd000000009a99993f0000803f8fc2f5bd00000000f6285cbe0000803f8fc2f5bd00000000cdcc0cbf0000803f8fc2f5bd000000007b146ebf0000803f1e3691bf0000000035fa8ebe0000803faa619cbf0000000035fa8ebe0000803faa619cbfdb0fc93f000000000000803f368da7bf0000000035fa8ebe0000803fc3b8b2bf0000000035fa8ebe0000803f4fe4bdbf0000000035fa8ebe0000803fdb0fc9bf0000000035fa8ebe0000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000030003100000030003200000030003300000030003400000030003500000030003600000030003700000030003800000076005f004e0075006c006c000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000300000010003e00240000003c01000040010000a002000000000800180000000100000010010000020000000801000064020000940200000200000054010000040100009401000000000000040200004a020000740200000200000024010000e40000008401000000000000e4010000300200005402000002000000f4000000c40000008401000000000000c401000016020000340200000200000004010000a40000007401000000000000a4010000fc0100001402000002000000f400000084000000640100000000000084010000e2010000f401000002000000e400000064000000540100000000000064010000c8010000d4010000020000005400000044000000f40000000000000044010000ae010000b4010000020000004400000024000000d40000000000000024010000babababacdcc4c3dcdcc4c3d9a99193e0000803fcdcc4c3e00000000cdcc4c3d0000803fcdcc4c3e00000000cdcc4cbe0000803f8fc2f5bd000000000ad7033f0000803f8fc2f5bd00000000d7a3503f0000803f8fc2f5bd000000009a99993f0000803f8fc2f5bd00000000f6285cbe0000803f8fc2f5bd00000000cdcc0cbf0000803f8fc2f5bd000000007b146ebf0000803f1e3691bf0000000035fa8ebe0000803faa619cbf0000000035fa8ebe0000803faa619cbfdb0fc93f000000000000803f368da7bf0000000035fa8ebe0000803fc3b8b2bf0000000035fa8ebe0000803f4fe4bdbf0000000035fa8ebe0000803fdb0fc9bf0000000035fa8ebe0000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000030003100000030003200000030003300000030003400000030003500000030003600000030003700000030003800000076005f004e0075006c006c000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
-      "value": [{"value": "arms_r", "type": "str"}],
+      "name": "ModelConstraint",
       "type": "ptr",
-      "name": "ModelConstraint"
+      "value": [{"type": "string", "value": "arms_r"}]
     },
-    {"value": "waist", "type": "str", "name": "BaseAnimation"},
-    {"value": "", "type": "str", "name": "AimAnimation"},
-    {"value": "", "type": "str", "name": "ChangeAnimation"},
-    {"value": "", "type": "str", "name": "ReloadAnimation"},
-    {"value": 48, "type": "double", "name": "AmmoCount"},
+    {"name": "BaseAnimation", "type": "string", "value": "waist"},
+    {"name": "AimAnimation", "type": "string", "value": ""},
+    {"name": "ChangeAnimation", "type": "string", "value": ""},
+    {"name": "ReloadAnimation", "type": "string", "value": ""},
+    {"name": "AmmoCount", "type": "double", "value": 48},
     {
+      "name": "EnergyChargeRequire",
+      "type": "ptr",
       "value": [
-        {"value": -1, "type": "double"},
-        {"value": -1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "EnergyChargeRequire"
+        {"type": "double", "value": -1},
+        {"type": "double", "value": -1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "ReloadType"},
-    {"value": 1, "type": "double", "name": "ReloadInit"},
-    {"value": -1, "type": "double", "name": "ReloadTime"},
-    {"value": 0, "type": "double", "name": "AngleAdjust"},
-    {"value": 0, "type": "double", "name": "LockonType"},
-    {"value": 0, "type": "double", "name": "LockonTargetType"},
-    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
-    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
-    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
-    {"value": 0, "type": "double", "name": "LockonRange"},
+    {"name": "ReloadType", "type": "double", "value": 0},
+    {"name": "ReloadInit", "type": "double", "value": 1},
+    {"name": "ReloadTime", "type": "double", "value": -1},
+    {"name": "AngleAdjust", "type": "double", "value": 0},
+    {"name": "LockonType", "type": "double", "value": 0},
+    {"name": "LockonTargetType", "type": "double", "value": 0},
+    {"name": "Lockon_DistributionType", "type": "double", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "double", "value": 1},
+    {"name": "Lockon_AutoTimeOut", "type": "double", "value": 1},
+    {"name": "LockonRange", "type": "double", "value": 0},
     {
+      "name": "LockonAngle",
+      "type": "ptr",
       "value": [
-        {"value": 0.30000001192092896, "type": "double"},
-        {"value": 0.30000001192092896, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "LockonAngle"
+        {"type": "double", "value": 0.30000001192092896},
+        {"type": "double", "value": 0.30000001192092896}
+      ]
     },
-    {"value": 0, "type": "double", "name": "LockonTime"},
-    {"value": 0, "type": "double", "name": "LockonFailedTime"},
-    {"value": 0, "type": "double", "name": "LockonHoldTime"},
-    {"value": 0, "type": "double", "name": "FireType"},
-    {"value": 0, "type": "double", "name": "FireSpreadType"},
-    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
-    {"value": 1, "type": "double", "name": "FireCount"},
-    {"value": 80, "type": "double", "name": "FireInterval"},
-    {"value": 8, "type": "double", "name": "FireBurstCount"},
-    {"value": 2, "type": "double", "name": "FireBurstInterval"},
-    {"value": 0.02500000037252903, "type": "double", "name": "FireAccuracy"},
-    {"value": 0.30000001192092896, "type": "double", "name": "FireRecoil"},
-    {"value": null, "type": "ptr", "name": "FireVector"},
+    {"name": "LockonTime", "type": "double", "value": 0},
+    {"name": "LockonFailedTime", "type": "double", "value": 0},
+    {"name": "LockonHoldTime", "type": "double", "value": 0},
+    {"name": "FireType", "type": "double", "value": 0},
+    {"name": "FireSpreadType", "type": "double", "value": 0},
+    {"name": "FireSpreadWidth", "type": "double", "value": 0},
+    {"name": "FireCount", "type": "double", "value": 1},
+    {"name": "FireInterval", "type": "double", "value": 80},
+    {"name": "FireBurstCount", "type": "double", "value": 8},
+    {"name": "FireBurstInterval", "type": "double", "value": 2},
+    {"name": "FireAccuracy", "type": "double", "value": 0.02500000037252903},
+    {"name": "FireRecoil", "type": "double", "value": 0.30000001192092896},
+    {"name": "FireVector", "type": "ptr", "value": []},
     {
+      "name": "FireSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_VHC_tank404_sideGrenade", "type": "str"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 40, "type": "double"}
-      ],
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_VHC_tank404_sideGrenade"},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 40}
+      ]
+    },
+    {"name": "FireLoadSe", "type": "ptr", "value": []},
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": []},
+    {"name": "SecondaryFire_Type", "type": "double", "value": 0},
+    {
+      "name": "SecondaryFire_Parameter",
       "type": "ptr",
-      "name": "FireSe"
+      "value": [{"type": "double", "value": 0}]
     },
-    {"value": null, "type": "ptr", "name": "FireLoadSe"},
-    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
-    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {"name": "AmmoClass", "type": "string", "value": "GrenadeBullet01"},
     {
-      "value": [{"value": 0, "type": "double"}],
+      "name": "AmmoModel",
+      "type": "string",
+      "value": "app:/WEAPON/bullet_grenade.rab"
+    },
+    {"name": "AmmoSpeed", "type": "double", "value": 0.5},
+    {"name": "AmmoOwnerMove", "type": "double", "value": 0},
+    {"name": "AmmoGravityFactor", "type": "double", "value": 1},
+    {"name": "AmmoAlive", "type": "double", "value": 240},
+    {"name": "AmmoDamage", "type": "double", "value": 120},
+    {
+      "name": "AmmoDamageReduce",
       "type": "ptr",
-      "name": "SecondaryFire_Parameter"
+      "value": [{"type": "double", "value": 1}, {"type": "double", "value": 1}]
     },
-    {"value": "GrenadeBullet01", "type": "str", "name": "AmmoClass"},
+    {"name": "AmmoExplosion", "type": "double", "value": 18},
+    {"name": "AmmoIsPenetration", "type": "double", "value": 0},
+    {"name": "AmmoSize", "type": "double", "value": 2},
+    {"name": "AmmoHitSizeAdjust", "type": "double", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "double", "value": 1},
     {
-      "value": "app:/WEAPON/bullet_grenade.rab",
-      "type": "str",
-      "name": "AmmoModel"
-    },
-    {"value": 0.5, "type": "double", "name": "AmmoSpeed"},
-    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
-    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
-    {"value": 240, "type": "double", "name": "AmmoAlive"},
-    {"value": 120, "type": "double", "name": "AmmoDamage"},
-    {
-      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "name": "AmmoColor",
       "type": "ptr",
-      "name": "AmmoDamageReduce"
-    },
-    {"value": 18, "type": "double", "name": "AmmoExplosion"},
-    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
-    {"value": 2, "type": "double", "name": "AmmoSize"},
-    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
-    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
-    {
       "value": [
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0.8999999761581421, "type": "double"},
-        {"value": 0.5, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoColor"
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0.8999999761581421},
+        {"type": "double", "value": 0.5}
+      ]
     },
     {
-      "value": [
-        {"value": 1, "type": "double"},
-        {"value": -0.004000000189989805, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0.20000000298023224, "type": "double"},
-        {"value": 0.05000000074505806, "type": "double"},
-        {"value": 240, "type": "double"}
-      ],
+      "name": "Ammo_CustomParameter",
       "type": "ptr",
-      "name": "Ammo_CustomParameter"
-    },
-    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
-    {
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "common_damages_explode_M", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 200, "type": "double"}
-      ],
+        {"type": "double", "value": 1},
+        {"type": "double", "value": -0.004000000189989805},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0.20000000298023224},
+        {"type": "double", "value": 0.05000000074505806},
+        {"type": "double", "value": 240}
+      ]
+    },
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": []},
+    {
+      "name": "AmmoHitSe",
       "type": "ptr",
-      "name": "AmmoHitSe"
-    },
-    {"value": "MuzzleFlash02", "type": "str", "name": "MuzzleFlash"},
-    {
       "value": [
-        {"value": "マズルフラッシュパターン.dds", "type": "str"},
-        {"value": 4, "type": "double"},
-        {"value": 0.6000000238418579, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 4, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 0.15000000596046448, "type": "double"},
-        {"value": 4, "type": "double"},
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "common_damages_explode_M"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 200}
+      ]
+    },
+    {"name": "MuzzleFlash", "type": "string", "value": "MuzzleFlash02"},
+    {
+      "name": "MuzzleFlash_CustomParameter",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "マズルフラッシュパターン.dds"},
+        {"type": "double", "value": 4},
+        {"type": "double", "value": 0.6000000238418579},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 4},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 0.15000000596046448},
+        {"type": "double", "value": 4},
         {
+          "type": "ptr",
           "value": [
-            {"value": 2.200000047683716, "type": "double"},
-            {"value": 1.600000023841858, "type": "double"},
-            {"value": 0.699999988079071, "type": "double"},
-            {"value": 1, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 2.200000047683716},
+            {"type": "double", "value": 1.600000023841858},
+            {"type": "double", "value": 0.699999988079071},
+            {"type": "double", "value": 1}
+          ]
         },
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "MuzzleFlash_CustomParameter"
+        {"type": "double", "value": 0}
+      ]
     },
     {
+      "name": "ShellCase",
+      "type": "ptr",
       "value": [
-        {"value": "", "type": "str"},
-        {"value": "", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ShellCase"
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": []},
     {
-      "value": [{"value": 1, "type": "double"}],
+      "name": "ExtPrams",
       "type": "ptr",
-      "name": "ExtPrams"
+      "value": [{"type": "double", "value": 1}]
     },
     {
-      "value": [{"value": "app:/WEAPON/bullet_grenade.rab", "type": "str"}],
+      "name": "resource",
       "type": "ptr",
-      "name": "resource"
+      "value": [{"type": "string", "value": "app:/WEAPON/bullet_grenade.rab"}]
     }
   ],
-  "strings": [
-    "MuzzleFlash02",
-    "AmmoExplosion",
-    "LockonTargetType",
-    "BaseAnimation",
-    "AmmoColor",
-    "LockonAngle",
-    "AimAnimation",
-    "WeaponIcon",
-    "Lockon_AutoTimeOut",
-    "ReloadType",
-    "MuzzleFlash",
-    "AmmoAlive",
-    "FireVector",
-    "FireType",
-    "AmmoClass",
-    "AmmoDamageReduce",
-    "AmmoDamage",
-    "AmmoGravityFactor",
-    "AmmoCount",
-    "SecondaryFire_Type",
-    "AmmoHitImpulseAdjust",
-    "AmmoHitSe",
-    "AmmoHitSizeAdjust",
-    "AmmoIsPenetration",
-    "AmmoModel",
-    "AmmoOwnerMove",
-    "FireCondition",
-    "AmmoSize",
-    "AmmoSpeed",
-    "ReloadInit",
-    "Ammo_CustomParameter",
-    "LockonTime",
-    "Ammo_EquipVoice",
-    "AngleAdjust",
-    "name.cn",
-    "SecondaryFire_Parameter",
-    "LockonFailedTime",
-    "ChangeAnimation",
-    "FireAccuracy",
-    "EnergyChargeRequire",
-    "ReloadTime",
-    "ExtPrams",
-    "FireBurstCount",
-    "LockonRange",
-    "FireBurstInterval",
-    "FireCount",
-    "FireInterval",
-    "FireLoadSe",
-    "FireRecoil",
-    "FireSe",
-    "FireSpreadType",
-    "FireSpreadWidth",
-    "LockonHoldTime",
-    "LockonType",
-    "ShellCase_CustomParameter",
-    "Lockon_DistributionType",
-    "Lockon_FireEndToClear",
-    "name.en",
-    "ModelConstraint",
-    "MuzzleFlash_CustomParameter",
-    "ReloadAnimation",
-    "ShellCase",
-    "ShellCaseDischargeSe",
-    "animation_model",
-    "custom_parameter",
-    "name.ja",
-    "name.kr",
-    "name.sc",
-    "resource",
-    "use_underground",
-    "xgs_scene_object_class",
-    "Weapon_VehicleShoot",
-    "グレネード射出器（左）",
-    "Grenade Discharger (Left)",
-    "榴彈發射器（左）",
-    "그레네이드 사출기(좌)",
-    "榴弹发射器（左）",
-    "app:/weapon/icon/none",
-    "app:/Weapon/v_null.rab",
-    "v_null.mdb",
-    "arms_r",
-    "waist",
-    "",
-    "weapon_VHC_tank404_sideGrenade",
-    "GrenadeBullet01",
-    "app:/WEAPON/bullet_grenade.rab",
-    "common_damages_explode_M",
-    "マズルフラッシュパターン.dds"
-  ]
+  "heap": {}
 }

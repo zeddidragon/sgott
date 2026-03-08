@@ -1,256 +1,208 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "EDF6_SpiderEggSac",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "EDF6_SpiderEggSac"
     },
     {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 0}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": -20, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": -20}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "game_object_camera_setting"
+      ]
     },
-    {"value": 25000, "type": "double", "name": "game_object_durability"},
+    {"name": "game_object_durability", "type": "double", "value": 25000},
     {
+      "name": "game_object_encount",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": 300, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "game_object_encount"
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 300}
+      ]
     },
     {
-      "value": [
-        {"value": "app:/sound/adx/tikyuu6_en_SpiderEggSac.acb", "type": "str"}
-      ],
+      "name": "game_sound",
       "type": "ptr",
-      "name": "game_sound"
-    },
-    {
       "value": [
         {
+          "type": "string",
+          "value": "app:/sound/adx/tikyuu6_en_SpiderEggSac.acb"
+        }
+      ]
+    },
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Object/e663_spider_egg_sac.mrab", "type": "str"},
-            {"value": "e663_spider_egg_sac_c.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Object/e663_spider_egg_sac.mrab"},
+            {"type": "string", "value": "e663_spider_egg_sac_c.mdb"}
+          ]
         },
-        {"value": 0, "type": "double"},
+        {"type": "double", "value": 0},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000400000001003a00240000008400000090000000c00000000000010020000000010001003800000002000000500000000300000048000000860000007c000000000000004c0000000000a040ffffffff000000005c000000840000005c000000000000002c0000000000a040ffffffff000000003c000000babababababababababababa0000000000000000000000000000803f53474f000201000000000000200000000000000020000000000000002000000062006f00640079000000b830a730cd30ec30fc30bf30fc30000000000000000000000000000000003b658364ee76196a00000000000000000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000400000001003a00240000008400000090000000c00000000000010020000000010001003800000002000000500000000300000048000000860000007c000000000000004c0000000000a040ffffffff000000005c000000840000005c000000000000002c0000000000a040ffffffff000000003c000000babababababababababababa0000000000000000000000000000803f53474f000201000000000000200000000000000020000000000000002000000062006f00640079000000b830a730cd30ec30fc30bf30fc30000000000000000000000000000000003b658364ee76196a00000000000000000000"
+          }
         },
         {
+          "type": "ptr",
           "value": [
             {
+              "type": "ptr",
               "value": [
-                {"value": 8, "type": "double"},
-                {"value": 8, "type": "double"},
-                {"value": 16, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 8},
+                {"type": "double", "value": 8},
+                {"type": "double", "value": 16}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": -21.426944732666016, "type": "double"},
-                {"value": -27.623794555664062, "type": "double"},
-                {"value": -21.109716415405273, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": -21.426944732666016},
+                {"type": "double", "value": -27.623794555664062},
+                {"type": "double", "value": -21.109716415405273}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": 23.033573150634766, "type": "double"},
-                {"value": 22.49042320251465, "type": "double"},
-                {"value": 19.88884162902832, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 23.033573150634766},
+                {"type": "double", "value": 22.49042320251465},
+                {"type": "double", "value": 19.88884162902832}
+              ]
             }
-          ],
-          "type": "ptr"
+          ]
         },
         {
+          "name": "effect",
+          "type": "ptr",
           "value": [
             {
-              "value": "app:/object/e663_spider_egg_sac.efarc",
-              "type": "str",
-              "name": "path"
+              "name": "path",
+              "type": "string",
+              "value": "app:/object/e663_spider_egg_sac.efarc"
             }
-          ],
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BasicAnimationCharacterSettings",
+      "type": "ptr",
+      "value": [{"name": "Type", "type": "double", "value": 0}]
+    },
+    {
+      "name": "havok",
+      "type": "ptr",
+      "value": [
+        {
+          "name": "shape",
+          "type": "string",
+          "value": "app:/object/e663_spider_egg_sac_c.shkt"
+        }
+      ]
+    },
+    {
+      "name": "EDF6_SpiderEggSac",
+      "type": "ptr",
+      "value": [
+        {"name": "is_large", "type": "double", "value": 1},
+        {"name": "scale", "type": "double", "value": 10},
+        {
+          "name": "shrink_scale_step",
           "type": "ptr",
-          "name": "effect"
-        }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
-    },
-    {
-      "value": [{"value": 0, "type": "double", "name": "Type"}],
-      "type": "ptr",
-      "name": "BasicAnimationCharacterSettings"
-    },
-    {
-      "value": [
-        {
-          "value": "app:/object/e663_spider_egg_sac_c.shkt",
-          "type": "str",
-          "name": "shape"
-        }
-      ],
-      "type": "ptr",
-      "name": "havok"
-    },
-    {
-      "value": [
-        {"value": 1, "type": "double", "name": "is_large"},
-        {"value": 10, "type": "double", "name": "scale"},
-        {
           "value": [
-            {"value": 0.699999988079071, "type": "double"},
-            {"value": 0.4000000059604645, "type": "double"},
-            {"value": 0.20000000298023224, "type": "double"}
-          ],
-          "type": "ptr",
-          "name": "shrink_scale_step"
+            {"type": "double", "value": 0.699999988079071},
+            {"type": "double", "value": 0.4000000059604645},
+            {"type": "double", "value": 0.20000000298023224}
+          ]
         },
-        {"value": 400, "type": "double", "name": "search_length"},
-        {"value": 5, "type": "double", "name": "break_hook_step_num"},
-        {"value": 0.07999999821186066, "type": "double", "name": "fall_speed"},
-        {"value": 60, "type": "double", "name": "fall_margin"},
+        {"name": "search_length", "type": "double", "value": 400},
+        {"name": "break_hook_step_num", "type": "double", "value": 5},
+        {"name": "fall_speed", "type": "double", "value": 0.07999999821186066},
+        {"name": "fall_margin", "type": "double", "value": 60},
         {
-          "value": 0.05000000074505806,
+          "name": "breath_width",
           "type": "double",
-          "name": "breath_width"
+          "value": 0.05000000074505806
         },
         {
+          "name": "shake",
+          "type": "ptr",
           "value": [
             {
-              "value": 0.30000001192092896,
+              "name": "max_velocity",
               "type": "double",
-              "name": "max_velocity"
+              "value": 0.30000001192092896
             },
             {
-              "value": 0.10000000149011612,
+              "name": "min_velocity",
               "type": "double",
-              "name": "min_velocity"
+              "value": 0.10000000149011612
             },
-            {"value": 30, "type": "double", "name": "ratio"},
-            {"value": 15, "type": "double", "name": "move_limit"}
-          ],
+            {"name": "ratio", "type": "double", "value": 30},
+            {"name": "move_limit", "type": "double", "value": 15}
+          ]
+        },
+        {
+          "name": "string_path",
+          "type": "string",
+          "value": "app:/object/e663_spider_egg_sac_string.sgo"
+        },
+        {
+          "name": "effects",
           "type": "ptr",
-          "name": "shake"
-        },
-        {
-          "value": "app:/object/e663_spider_egg_sac_string.sgo",
-          "type": "str",
-          "name": "string_path"
-        },
-        {
           "value": [
-            {"value": "hit.esb", "type": "str", "name": "damage"},
-            {"value": "shrink.esb", "type": "str", "name": "shrink"},
-            {"value": "break_hook.esb", "type": "str", "name": "break_hook"},
-            {"value": "break.esb", "type": "str", "name": "destroy"},
+            {"name": "damage", "type": "string", "value": "hit.esb"},
+            {"name": "shrink", "type": "string", "value": "shrink.esb"},
+            {"name": "break_hook", "type": "string", "value": "break_hook.esb"},
+            {"name": "destroy", "type": "string", "value": "break.esb"},
             {
-              "value": 0.03999999910593033,
+              "name": "damage_scale_min",
               "type": "double",
-              "name": "damage_scale_min"
+              "value": 0.03999999910593033
             },
-            {"value": 1, "type": "double", "name": "damage_scale_max"}
-          ],
-          "type": "ptr",
-          "name": "effects"
+            {"name": "damage_scale_max", "type": "double", "value": 1}
+          ]
         },
-        {"value": 1, "type": "double", "name": "is_tilt"}
-      ],
-      "type": "ptr",
-      "name": "EDF6_SpiderEggSac"
+        {"name": "is_tilt", "type": "double", "value": 1}
+      ]
     },
     {
-      "value": [
-        {"value": "蜘蛛卵嚢大ダメージ", "type": "str"},
-        {"value": "蜘蛛卵嚢大縮小", "type": "str"},
-        {"value": "蜘蛛卵嚢大破壊", "type": "str"},
-        {"value": "蜘蛛卵嚢大糸破壊", "type": "str"},
-        {"value": "蜘蛛卵嚢大稼動", "type": "str"}
-      ],
+      "name": "se_table",
       "type": "ptr",
-      "name": "se_table"
+      "value": [
+        {"type": "string", "value": "蜘蛛卵嚢大ダメージ"},
+        {"type": "string", "value": "蜘蛛卵嚢大縮小"},
+        {"type": "string", "value": "蜘蛛卵嚢大破壊"},
+        {"type": "string", "value": "蜘蛛卵嚢大糸破壊"},
+        {"type": "string", "value": "蜘蛛卵嚢大稼動"}
+      ]
     }
   ],
-  "strings": [
-    "app:/Object/e663_spider_egg_sac.mrab",
-    "BasicAnimationCharacterSettings",
-    "havok",
-    "break_hook",
-    "move_limit",
-    "game_object_encount",
-    "game_object_camera_setting",
-    "app:/sound/adx/tikyuu6_en_SpiderEggSac.acb",
-    "EDF6_SpiderEggSac",
-    "fall_margin",
-    "animation_model",
-    "min_velocity",
-    "game_sound",
-    "destroy",
-    "game_object_durability",
-    "shrink.esb",
-    "shrink_scale_step",
-    "se_table",
-    "xgs_scene_object_class",
-    "hit.esb",
-    "damage_scale_max",
-    "shape",
-    "effect",
-    "break.esb",
-    "shrink",
-    "e663_spider_egg_sac_c.mdb",
-    "search_length",
-    "path",
-    "app:/object/e663_spider_egg_sac.efarc",
-    "Type",
-    "app:/object/e663_spider_egg_sac_c.shkt",
-    "break_hook_step_num",
-    "breath_width",
-    "effects",
-    "fall_speed",
-    "is_large",
-    "is_tilt",
-    "scale",
-    "shake",
-    "string_path",
-    "max_velocity",
-    "break_hook.esb",
-    "damage_scale_min",
-    "ratio",
-    "app:/object/e663_spider_egg_sac_string.sgo",
-    "蜘蛛卵嚢大縮小",
-    "damage",
-    "蜘蛛卵嚢大ダメージ",
-    "蜘蛛卵嚢大破壊",
-    "蜘蛛卵嚢大糸破壊",
-    "蜘蛛卵嚢大稼動"
-  ]
+  "heap": {}
 }

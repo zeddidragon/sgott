@@ -1,57 +1,50 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "TestObjectSato01",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "TestObjectSato01"
     },
     {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 0}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": -4, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": -4}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "game_object_camera_setting"
+      ]
     },
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Object/p605_ranger.mrab", "type": "str"},
-            {"value": "p605_ranger.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Object/p605_ranger.mrab"},
+            {"type": "string", "value": "p605_ranger.mdb"}
+          ]
         },
-        {"value": "app:/Object/TestObjectSato01.cas", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+        {"type": "string", "value": "app:/Object/TestObjectSato01.cas"},
+        {"type": "double", "value": 0}
+      ]
     }
   ],
-  "strings": [
-    "xgs_scene_object_class",
-    "animation_model",
-    "TestObjectSato01",
-    "game_object_camera_setting",
-    "app:/Object/p605_ranger.mrab",
-    "p605_ranger.mdb",
-    "app:/Object/TestObjectSato01.cas"
-  ]
+  "heap": {}
 }

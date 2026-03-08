@@ -1,396 +1,296 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
-    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {"name": "xgs_scene_object_class", "type": "string", "value": "Weapon_Sub"},
     {
-      "value": [
-        {"value": "throwL_swing", "type": "str", "name": "animation"},
-        {"value": 0, "type": "double", "name": "whole_body"},
-        {"value": 1, "type": "double", "name": "animation_speed"},
-        {"value": 1, "type": "double", "name": "is_manual_reload"},
-        {
-          "value": [
-            {"value": 1, "type": "double", "name": "always_show"},
-            {"value": 2, "type": "double", "name": "radius"}
-          ],
-          "type": "ptr",
-          "name": "show_throw_guide"
-        },
-        {"value": 60, "type": "double", "name": "long_press_count"}
-      ],
+      "name": "custom_parameter",
       "type": "ptr",
-      "name": "custom_parameter"
+      "value": [
+        {"name": "animation", "type": "string", "value": "throwL_swing"},
+        {"name": "whole_body", "type": "double", "value": 0},
+        {"name": "animation_speed", "type": "double", "value": 1},
+        {"name": "is_manual_reload", "type": "double", "value": 1},
+        {
+          "name": "show_throw_guide",
+          "type": "ptr",
+          "value": [
+            {"name": "always_show", "type": "double", "value": 1},
+            {"name": "radius", "type": "double", "value": 2}
+          ]
+        },
+        {"name": "long_press_count", "type": "double", "value": 60}
+      ]
     },
-    {"value": 1, "type": "double", "name": "use_underground"},
-    {"value": 0, "type": "double", "name": "FireCondition"},
-    {"value": "ＣＡ２１爆弾", "type": "str", "name": "name.ja"},
-    {"value": "CA21 Bomb", "type": "str", "name": "name.en"},
-    {"value": "ＣＡ２１炸彈", "type": "str", "name": "name.cn"},
-    {"value": "CA21 폭탄", "type": "str", "name": "name.kr"},
-    {"value": "ＣＡ２１炸弹", "type": "str", "name": "name.sc"},
+    {"name": "use_underground", "type": "double", "value": 1},
+    {"name": "FireCondition", "type": "double", "value": 0},
+    {"name": "name.ja", "type": "string", "value": "ＣＡ２１爆弾"},
+    {"name": "name.en", "type": "string", "value": "CA21 Bomb"},
+    {"name": "name.cn", "type": "string", "value": "ＣＡ２１炸彈"},
+    {"name": "name.kr", "type": "string", "value": "CA21 폭탄"},
+    {"name": "name.sc", "type": "string", "value": "ＣＡ２１炸弹"},
     {
-      "value": "app:/weapon/icon/detnator.dds",
-      "type": "str",
-      "name": "WeaponIcon"
+      "name": "WeaponIcon",
+      "type": "string",
+      "value": "app:/weapon/icon/detnator.dds"
     },
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Weapon/e_throw_c4detonator01.rab", "type": "str"},
-            {"value": "e_throw_c4detonator01.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {
+              "type": "string",
+              "value": "app:/Weapon/e_throw_c4detonator01.rab"
+            },
+            {"type": "string", "value": "e_throw_c4detonator01.mdb"}
+          ]
         },
-        {"value": "app:/Weapon/e_throw_c4detonator01.cas", "type": "str"},
+        {"type": "string", "value": "app:/Weapon/e_throw_c4detonator01.cas"},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000300020002002a00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000007e0000000000000010000000100000006400000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000300020002002a00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000007e0000000000000010000000100000006400000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
+      "name": "ModelConstraint",
+      "type": "ptr",
       "value": [
-        {"value": "arms_l", "type": "str"},
+        {"type": "string", "value": "arms_l"},
         {
+          "type": "ptr",
           "value": [
-            {"value": "arms_r", "type": "str"},
-            {"value": "swich", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "arms_r"},
+            {"type": "string", "value": "swich"}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "ModelConstraint"
+      ]
     },
-    {"value": "throw", "type": "str", "name": "BaseAnimation"},
-    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
-    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
-    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"name": "BaseAnimation", "type": "string", "value": "throw"},
+    {"name": "AimAnimation", "type": "string", "value": "aim_no_ik"},
+    {"name": "ChangeAnimation", "type": "string", "value": "throw_change1"},
+    {"name": "ReloadAnimation", "type": "string", "value": "throw_reload1"},
     {
+      "name": "AmmoCount",
+      "type": "ptr",
       "value": [
-        {"value": 5, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoCount"
+        {"type": "double", "value": 5},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
     },
     {
+      "name": "EnergyChargeRequire",
+      "type": "ptr",
       "value": [
-        {"value": -1, "type": "double"},
-        {"value": -1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "EnergyChargeRequire"
+        {"type": "double", "value": -1},
+        {"type": "double", "value": -1}
+      ]
     },
-    {"value": 1, "type": "double", "name": "ReloadType"},
-    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"name": "ReloadType", "type": "double", "value": 1},
+    {"name": "ReloadInit", "type": "double", "value": 1},
     {
+      "name": "ReloadTime",
+      "type": "ptr",
       "value": [
-        {"value": 3600, "type": "double"},
-        {"value": 21, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ReloadTime"
+        {"type": "double", "value": 3600},
+        {"type": "double", "value": 21},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AngleAdjust"},
-    {"value": 0, "type": "double", "name": "LockonType"},
-    {"value": 0, "type": "double", "name": "LockonTargetType"},
-    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
-    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
-    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
-    {"value": 0, "type": "double", "name": "LockonRange"},
+    {"name": "AngleAdjust", "type": "double", "value": 0},
+    {"name": "LockonType", "type": "double", "value": 0},
+    {"name": "LockonTargetType", "type": "double", "value": 0},
+    {"name": "Lockon_DistributionType", "type": "double", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "double", "value": 1},
+    {"name": "Lockon_AutoTimeOut", "type": "double", "value": 1},
+    {"name": "LockonRange", "type": "double", "value": 0},
     {
+      "name": "LockonAngle",
+      "type": "ptr",
       "value": [
-        {"value": 0.30000001192092896, "type": "double"},
-        {"value": 0.30000001192092896, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "LockonAngle"
+        {"type": "double", "value": 0.30000001192092896},
+        {"type": "double", "value": 0.30000001192092896}
+      ]
     },
-    {"value": 0, "type": "double", "name": "LockonTime"},
-    {"value": 0, "type": "double", "name": "LockonFailedTime"},
-    {"value": 0, "type": "double", "name": "LockonHoldTime"},
-    {"value": 0, "type": "double", "name": "FireType"},
-    {"value": 0, "type": "double", "name": "FireSpreadType"},
-    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
-    {"value": 1, "type": "double", "name": "FireCount"},
-    {"value": 40, "type": "double", "name": "FireInterval"},
-    {"value": 1, "type": "double", "name": "FireBurstCount"},
-    {"value": 0, "type": "double", "name": "FireBurstInterval"},
-    {"value": 0, "type": "double", "name": "FireAccuracy"},
-    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"name": "LockonTime", "type": "double", "value": 0},
+    {"name": "LockonFailedTime", "type": "double", "value": 0},
+    {"name": "LockonHoldTime", "type": "double", "value": 0},
+    {"name": "FireType", "type": "double", "value": 0},
+    {"name": "FireSpreadType", "type": "double", "value": 0},
+    {"name": "FireSpreadWidth", "type": "double", "value": 0},
+    {"name": "FireCount", "type": "double", "value": 1},
+    {"name": "FireInterval", "type": "double", "value": 40},
+    {"name": "FireBurstCount", "type": "double", "value": 1},
+    {"name": "FireBurstInterval", "type": "double", "value": 0},
+    {"name": "FireAccuracy", "type": "double", "value": 0},
+    {"name": "FireRecoil", "type": "double", "value": 0},
     {
+      "name": "FireVector",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": 0.125, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireVector"
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0.125},
+        {"type": "double", "value": 1}
+      ]
     },
     {
+      "name": "FireSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_Ranger_GL_throwHeavyNoEquip", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 20, "type": "double"}
-      ],
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_Ranger_GL_throwHeavyNoEquip"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 20}
+      ]
+    },
+    {"name": "FireLoadSe", "type": "ptr", "value": []},
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": []},
+    {"name": "SecondaryFire_Type", "type": "double", "value": 3},
+    {
+      "name": "SecondaryFire_Parameter",
       "type": "ptr",
-      "name": "FireSe"
+      "value": [{"type": "double", "value": 0}]
     },
-    {"value": null, "type": "ptr", "name": "FireLoadSe"},
-    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
-    {"value": 3, "type": "double", "name": "SecondaryFire_Type"},
+    {"name": "AmmoClass", "type": "string", "value": "BombBullet01"},
     {
-      "value": [{"value": 0, "type": "double"}],
+      "name": "AmmoModel",
+      "type": "string",
+      "value": "app:/WEAPON/bullet_c4explosive01.rab"
+    },
+    {"name": "AmmoSpeed", "type": "double", "value": 0.25},
+    {"name": "AmmoOwnerMove", "type": "double", "value": 1},
+    {"name": "AmmoGravityFactor", "type": "double", "value": 1},
+    {"name": "AmmoAlive", "type": "double", "value": 1800},
+    {
+      "name": "AmmoDamage",
       "type": "ptr",
-      "name": "SecondaryFire_Parameter"
-    },
-    {"value": "BombBullet01", "type": "str", "name": "AmmoClass"},
-    {
-      "value": "app:/WEAPON/bullet_c4explosive01.rab",
-      "type": "str",
-      "name": "AmmoModel"
-    },
-    {"value": 0.25, "type": "double", "name": "AmmoSpeed"},
-    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
-    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
-    {"value": 1800, "type": "double", "name": "AmmoAlive"},
-    {
       "value": [
-        {"value": 2000, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 10, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoDamage"
+        {"type": "double", "value": 2000},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 10},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
     {
-      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "name": "AmmoDamageReduce",
       "type": "ptr",
-      "name": "AmmoDamageReduce"
+      "value": [{"type": "double", "value": 1}, {"type": "double", "value": 1}]
     },
     {
+      "name": "AmmoExplosion",
+      "type": "ptr",
       "value": [
-        {"value": 20, "type": "double"},
-        {"value": 32, "type": "double"},
-        {"value": 3, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoExplosion"
+        {"type": "double", "value": 20},
+        {"type": "double", "value": 32},
+        {"type": "double", "value": 3},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
-    {"value": 1, "type": "double", "name": "AmmoSize"},
-    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
-    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {"name": "AmmoIsPenetration", "type": "double", "value": 0},
+    {"name": "AmmoSize", "type": "double", "value": 1},
+    {"name": "AmmoHitSizeAdjust", "type": "double", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "double", "value": 1},
     {
-      "value": [
-        {"value": 1, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0.5, "type": "double"}
-      ],
+      "name": "AmmoColor",
       "type": "ptr",
-      "name": "AmmoColor"
+      "value": [
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0.5}
+      ]
     },
     {
+      "name": "Ammo_CustomParameter",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 60, "type": "double"},
-        {"value": 24, "type": "double"},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 60},
+        {"type": "double", "value": 24},
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 0.10000000149011612, "type": "double"},
-            {"value": 0.10000000149011612, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 0.10000000149011612},
+            {"type": "double", "value": 0.10000000149011612}
+          ]
         },
-        {"value": 0, "type": "double"},
-        {"value": null, "type": "ptr"},
+        {"type": "double", "value": 0},
+        {"type": "ptr", "value": []},
         {
+          "type": "ptr",
           "value": [
-            {"value": "武器Ｃ系爆弾接地Ａ", "type": "str"},
-            {"value": "武器起動可能", "type": "str"},
-            {"value": 0, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "武器Ｃ系爆弾接地Ａ"},
+            {"type": "string", "value": "武器起動可能"},
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 0}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "Ammo_CustomParameter"
+      ]
     },
-    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": []},
     {
+      "name": "AmmoHitSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "common_damages_explode_M", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 200, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoHitSe"
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "common_damages_explode_M"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 200}
+      ]
     },
-    {"value": "", "type": "str", "name": "MuzzleFlash"},
-    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {"name": "MuzzleFlash", "type": "string", "value": ""},
+    {"name": "MuzzleFlash_CustomParameter", "type": "ptr", "value": []},
     {
+      "name": "ShellCase",
+      "type": "ptr",
       "value": [
-        {"value": "", "type": "str"},
-        {"value": "", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ShellCase"
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": []},
     {
-      "value": [{"value": 1, "type": "double"}],
+      "name": "ExtPrams",
       "type": "ptr",
-      "name": "ExtPrams"
+      "value": [{"type": "double", "value": 1}]
     },
     {
+      "name": "resource",
+      "type": "ptr",
       "value": [
-        {"value": "app:/WEAPON/bullet_c4explosive01.rab", "type": "str"}
-      ],
-      "type": "ptr",
-      "name": "resource"
+        {"type": "string", "value": "app:/WEAPON/bullet_c4explosive01.rab"}
+      ]
     }
   ],
-  "strings": [
-    "AmmoExplosion",
-    "LockonTargetType",
-    "BaseAnimation",
-    "AmmoColor",
-    "LockonAngle",
-    "AimAnimation",
-    "WeaponIcon",
-    "Lockon_AutoTimeOut",
-    "ReloadType",
-    "MuzzleFlash",
-    "AmmoAlive",
-    "FireVector",
-    "FireType",
-    "AmmoClass",
-    "AmmoDamageReduce",
-    "AmmoDamage",
-    "AmmoGravityFactor",
-    "AmmoCount",
-    "SecondaryFire_Type",
-    "AmmoHitImpulseAdjust",
-    "BombBullet01",
-    "AmmoHitSe",
-    "AmmoHitSizeAdjust",
-    "AmmoIsPenetration",
-    "is_manual_reload",
-    "AmmoModel",
-    "武器Ｃ系爆弾接地Ａ",
-    "AmmoOwnerMove",
-    "FireCondition",
-    "AmmoSize",
-    "AmmoSpeed",
-    "ReloadInit",
-    "Ammo_CustomParameter",
-    "LockonTime",
-    "weapon_Ranger_GL_throwHeavyNoEquip",
-    "Ammo_EquipVoice",
-    "AngleAdjust",
-    "name.cn",
-    "SecondaryFire_Parameter",
-    "LockonFailedTime",
-    "ChangeAnimation",
-    "FireAccuracy",
-    "武器起動可能",
-    "EnergyChargeRequire",
-    "ReloadTime",
-    "ExtPrams",
-    "FireBurstCount",
-    "LockonRange",
-    "FireBurstInterval",
-    "FireCount",
-    "FireInterval",
-    "FireLoadSe",
-    "FireRecoil",
-    "FireSe",
-    "FireSpreadType",
-    "FireSpreadWidth",
-    "LockonHoldTime",
-    "LockonType",
-    "ShellCase_CustomParameter",
-    "Lockon_DistributionType",
-    "Lockon_FireEndToClear",
-    "name.en",
-    "ModelConstraint",
-    "ＣＡ２１炸彈",
-    "MuzzleFlash_CustomParameter",
-    "ReloadAnimation",
-    "ShellCase",
-    "ShellCaseDischargeSe",
-    "throw",
-    "animation_model",
-    "custom_parameter",
-    "name.ja",
-    "name.kr",
-    "name.sc",
-    "resource",
-    "use_underground",
-    "arms_l",
-    "xgs_scene_object_class",
-    "Weapon_Sub",
-    "aim_no_ik",
-    "ＣＡ２１爆弾",
-    "long_press_count",
-    "animation",
-    "animation_speed",
-    "show_throw_guide",
-    "whole_body",
-    "throwL_swing",
-    "always_show",
-    "radius",
-    "CA21 Bomb",
-    "CA21 폭탄",
-    "ＣＡ２１炸弹",
-    "app:/weapon/icon/detnator.dds",
-    "app:/Weapon/e_throw_c4detonator01.cas",
-    "app:/Weapon/e_throw_c4detonator01.rab",
-    "e_throw_c4detonator01.mdb",
-    "arms_r",
-    "swich",
-    "throw_change1",
-    "throw_reload1",
-    "app:/WEAPON/bullet_c4explosive01.rab",
-    "common_damages_explode_M",
-    ""
-  ]
+  "heap": {}
 }

@@ -1,0 +1,355 @@
+{
+  "format": "DSGO",
+  "sgott": "2.0.0",
+  "endian": "LE",
+  "variables": [
+    {
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "EDF6_MartianWeapon_Basic"
+    },
+    {"name": "weapon_level", "type": "double", "id": "node2", "value": 1},
+    {"name": "base_pose", "type": "string", "value": "basic"},
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "app:/Object/e601_martian.mrab"},
+            {"type": "string", "value": "e601_launcher.mdb"}
+          ]
+        },
+        {"type": "double", "value": 0},
+        {
+          "type": "extra",
+          "value": {
+            "format": "hex",
+            "value": "4d4142000f000000830000000300000002002a00240000005c00000060000000a00000000000010018000000010000003000000002000000280000008000000064000000010000002400000034000000ffffffff0000000044000000babababa00000000cdcccc3d0000c0400000803f0000003f0000003f9a99593f0000803f53474f000201000000000000200000000000000020000000000000002000000065003600300031005f006c00610075006e00630068006500720000000d54217157300000000000000000"
+          }
+        },
+        {"type": "double", "value": 0},
+        {
+          "name": "effect",
+          "type": "ptr",
+          "value": [
+            {
+              "name": "path",
+              "type": "string",
+              "value": "app:/object/e601_launcher.efarc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ragdoll",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "app:/object/Ragdoll_e601_launcher.shkt"},
+        {
+          "type": "extra",
+          "value": {
+            "format": "hex",
+            "value": "53474f0002010000020000002000000002000000d001000000000000e00100000000000001000000180000000000000001000000d800000000000000040000000c00000000000000020000003000000000000000030000003c00000000000000040000005400000000000000030000007800000003000000080000009a01000003000000080000008e01000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f00000000040000000c00000000000000020000003000000000000000030000003c0000000000000004000000540000000000000003000000780000000300000008000000ce0000000300000008000000c200000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f1000000000000000480000000100000061006e0069006d006100740069006f006e005f00660072006f006d005f0072006100670064006f006c006c00000070006f006c0079006d00650073006800000072006100670064006f006c006c005f00660072006f006d005f0061006e0069006d006100740069006f006e000000"
+          }
+        }
+      ]
+    },
+    {
+      "name": "soft_body_basic_weapon_settings",
+      "type": "ptr",
+      "value": [
+        {
+          "name": "aim",
+          "type": "ptr",
+          "value": [
+            {
+              "name": "area",
+              "type": "ptr",
+              "value": [
+                {
+                  "name": "x",
+                  "type": "ptr",
+                  "value": [
+                    {"name": "min", "type": "double", "value": -18.75},
+                    {"name": "max", "type": "double", "value": 18.75}
+                  ]
+                },
+                {
+                  "name": "y",
+                  "type": "ptr",
+                  "value": [
+                    {"name": "min", "type": "double", "value": 8},
+                    {"name": "max", "type": "double", "value": 25}
+                  ]
+                },
+                {
+                  "name": "z",
+                  "type": "ptr",
+                  "value": [
+                    {"name": "min", "type": "double", "value": 12.5},
+                    {"name": "max", "type": "double", "value": 12.5}
+                  ]
+                },
+                {"name": "side_shift", "type": "double", "value": 6.25}
+              ]
+            },
+            {
+              "name": "angular_speed",
+              "type": "double",
+              "value": 0.0020000000949949026
+            },
+            {
+              "name": "fire_angular_speed",
+              "type": "double",
+              "value": 0.0020000000949949026
+            }
+          ]
+        },
+        {
+          "name": "charge",
+          "type": "ptr",
+          "value": [
+            {
+              "name": "time",
+              "type": "ptr",
+              "value": [
+                {"name": "min", "type": "double", "value": 180},
+                {"name": "max", "type": "double", "value": 240}
+              ]
+            },
+            {"name": "esb", "type": "string", "value": "charge.esb"},
+            {"name": "esb_time", "type": "double", "value": 180},
+            {
+              "name": "esb_color",
+              "type": "ptr",
+              "value": [
+                {"type": "double", "value": 3},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1}
+              ]
+            },
+            {
+              "name": "se",
+              "type": "ptr",
+              "value": [
+                {"name": "key", "type": "string", "value": "火星人ランチャーチャージ"},
+                {"name": "is_loop", "type": "double", "value": 0}
+              ]
+            }
+          ]
+        },
+        {
+          "name": "fire",
+          "type": "ptr",
+          "value": [
+            {"name": "esb", "type": "string", "value": "fire.esb"},
+            {"name": "esb_loop", "type": "double", "value": 0},
+            {"name": "end_esb", "type": "string", "value": "fire_end.esb"},
+            {
+              "name": "esb_color",
+              "type": "ptr",
+              "value": [
+                {"type": "double", "value": 3},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "_l",
+      "type": "calc",
+      "id": "node52",
+      "value": {
+        "command": "/",
+        "value": [
+          {
+            "command": "-",
+            "value": [
+              {"command": "nodeId", "value": "node2"},
+              {"command": "value", "value": 1}
+            ]
+          },
+          {"command": "value", "value": 29}
+        ]
+      }
+    },
+    {
+      "name": "bullet_setting",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "EfsBullet"},
+        {"type": "double", "value": 25},
+        {"type": "ptr", "value": [{"type": "double", "value": 1}]},
+        {"type": "double", "value": -1},
+        {
+          "type": "calc",
+          "value": {
+            "command": "f:lerp",
+            "value": [
+              {"command": "value", "value": 10},
+              {"command": "value", "value": 20},
+              {"command": "nodeId", "value": "node52"}
+            ]
+          }
+        },
+        {"type": "ptr", "value": []},
+        {
+          "type": "calc",
+          "value": {
+            "command": "f:lerp",
+            "value": [
+              {"command": "value", "value": 2.5},
+              {"command": "value", "value": 5},
+              {"command": "nodeId", "value": "node52"}
+            ]
+          }
+        },
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1},
+        {"type": "ptr", "value": []},
+        {
+          "type": "calc",
+          "value": {
+            "command": "f:lerp",
+            "value": [
+              {"command": "value", "value": 0.6},
+              {"command": "value", "value": 2},
+              {"command": "nodeId", "value": "node52"}
+            ]
+          }
+        },
+        {"type": "ptr", "value": []},
+        {
+          "type": "calc",
+          "value": {
+            "command": "f:lerp",
+            "value": [
+              {"command": "value", "value": 1},
+              {"command": "value", "value": 2},
+              {"command": "nodeId", "value": "node52"}
+            ]
+          }
+        },
+        {"type": "ptr", "value": []},
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "double", "value": 1},
+            {"type": "double", "value": 1},
+            {"type": "double", "value": 1}
+          ]
+        },
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 1000},
+        {"type": "ptr", "value": []},
+        {
+          "type": "ptr",
+          "value": [
+            {
+              "name": "efarc",
+              "type": "string",
+              "value": "app:/object/e601_launcher.efarc"
+            },
+            {"name": "auto_direction_adjust", "type": "double", "value": 1},
+            {
+              "name": "bullet",
+              "type": "ptr",
+              "value": [
+                {"name": "esb", "type": "string", "value": "bullet.esb"},
+                {"name": "scale", "type": "double", "value": 1},
+                {
+                  "name": "color",
+                  "type": "ptr",
+                  "value": [
+                    {"type": "double", "value": 1},
+                    {"type": "double", "value": 1},
+                    {"type": "double", "value": 1},
+                    {"type": "double", "value": 1}
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "hit",
+              "type": "ptr",
+              "value": [
+                {"name": "esb", "type": "string", "value": "bullet_hit.esb"},
+                {
+                  "name": "color",
+                  "type": "ptr",
+                  "value": [
+                    {"type": "double", "value": 4},
+                    {"type": "double", "value": 1},
+                    {"type": "double", "value": 1},
+                    {"type": "double", "value": 1}
+                  ]
+                },
+                {"name": "scale", "type": "double", "value": 1},
+                {"name": "mark_type", "type": "double", "value": 1}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "火星人ランチャー発射"},
+            {"type": "double", "value": 0}
+          ]
+        },
+        {"type": "string", "value": "火星人ランチャー命中"}
+      ]
+    },
+    {
+      "name": "fire_setting",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 1},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 1},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 60},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 0.03500000014901161},
+        {"type": "ptr", "value": []},
+        {
+          "type": "calc",
+          "value": {
+            "command": "f:lerp",
+            "value": [
+              {"command": "value", "value": 620},
+              {"command": "value", "value": 370},
+              {"command": "nodeId", "value": "node52"}
+            ]
+          }
+        },
+        {"type": "ptr", "value": []}
+      ]
+    },
+    {
+      "name": "flicker_setting",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 0.009999999776482582},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 0.0010000000474974513},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 0.019999999552965164},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 0.8999999761581421},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 0.009999999776482582},
+        {"type": "ptr", "value": []},
+        {"type": "double", "value": 1},
+        {"type": "ptr", "value": []}
+      ]
+    }
+  ],
+  "heap": {}
+}

@@ -1,84 +1,74 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "DemoIndirectFire",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "DemoIndirectFire"
     },
     {
+      "name": "indirect_fire_param",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": 1.5, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 1.5},
+            {"type": "double", "value": 0}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 1000, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 1000},
+            {"type": "double", "value": 0}
+          ]
         },
-        {"value": 300, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": "LaserBullet02", "type": "str"},
-        {"value": 1000, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 48, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 30, "type": "double"},
-        {"value": 1, "type": "double"},
+        {"type": "double", "value": 300},
+        {"type": "double", "value": 2},
+        {"type": "string", "value": "LaserBullet02"},
+        {"type": "double", "value": 1000},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 48},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 30},
+        {"type": "double", "value": 1},
         {
+          "type": "ptr",
           "value": [
-            {"value": 3, "type": "double"},
-            {"value": 0.20000000298023224, "type": "double"},
-            {"value": 3, "type": "double"},
-            {"value": 1, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 3},
+            {"type": "double", "value": 0.20000000298023224},
+            {"type": "double", "value": 3},
+            {"type": "double", "value": 1}
+          ]
         },
-        {"value": [{"value": 0, "type": "double"}], "type": "ptr"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
+        {"type": "ptr", "value": [{"type": "double", "value": 0}]},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
         {
+          "name": "se",
+          "type": "ptr",
           "value": [
             {
-              "value": [
-                {"value": "EDF6翼竜パワーアップビーム照射", "type": "str", "name": "key"},
-                {"value": 1, "type": "double", "name": "is_loop"}
-              ],
+              "name": "fire",
               "type": "ptr",
-              "name": "fire"
+              "value": [
+                {"name": "key", "type": "string", "value": "EDF6翼竜パワーアップビーム照射"},
+                {"name": "is_loop", "type": "double", "value": 1}
+              ]
             }
-          ],
-          "type": "ptr",
-          "name": "se"
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "indirect_fire_param"
+      ]
     },
-    {"value": 3000, "type": "double", "name": "indirect_fire_damage"}
+    {"name": "indirect_fire_damage", "type": "double", "value": 3000}
   ],
-  "strings": [
-    "is_loop",
-    "DemoIndirectFire",
-    "indirect_fire_damage",
-    "LaserBullet02",
-    "indirect_fire_param",
-    "se",
-    "xgs_scene_object_class",
-    "fire",
-    "key",
-    "EDF6翼竜パワーアップビーム照射"
-  ]
+  "heap": {}
 }

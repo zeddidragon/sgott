@@ -1,120 +1,106 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "FarEventObject",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "FarEventObject"
     },
     {
+      "name": "setting",
+      "type": "ptr",
       "value": [
         {
-          "value": [
-            {"value": 2, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 2, "type": "double"}
-          ],
+          "name": "scale",
           "type": "ptr",
-          "name": "scale"
+          "value": [
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 2}
+          ]
         },
-        {"value": "default", "type": "str", "name": "default_animation"}
-      ],
-      "type": "ptr",
-      "name": "setting"
+        {"name": "default_animation", "type": "string", "value": "default"}
+      ]
     },
     {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 0}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": -20, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": -20}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "game_object_camera_setting"
+      ]
     },
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Object/ev602_excavator.mrab", "type": "str"},
-            {"value": "ev602_excavator.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Object/ev602_excavator.mrab"},
+            {"type": "string", "value": "ev602_excavator.mdb"}
+          ]
         },
-        {"value": "app:/Object/ev602_excavator.cas", "type": "str"},
-        {"value": 0, "type": "double"},
+        {"type": "string", "value": "app:/Object/ev602_excavator.cas"},
+        {"type": "double", "value": 0},
         {
+          "type": "ptr",
           "value": [
             {
+              "type": "ptr",
               "value": [
-                {"value": 8, "type": "double"},
-                {"value": 8, "type": "double"},
-                {"value": 8, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 8},
+                {"type": "double", "value": 8},
+                {"type": "double", "value": 8}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": -366.3122863769531, "type": "double"},
-                {"value": -0.9999669790267944, "type": "double"},
-                {"value": -910.7060546875, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": -366.3122863769531},
+                {"type": "double", "value": -0.9999669790267944},
+                {"type": "double", "value": -910.7060546875}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": 472.5487976074219, "type": "double"},
-                {"value": 1569.7410888671875, "type": "double"},
-                {"value": 843.26123046875, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 472.5487976074219},
+                {"type": "double", "value": 1569.7410888671875},
+                {"type": "double", "value": 843.26123046875}
+              ]
             }
-          ],
-          "type": "ptr"
+          ]
         },
         {
+          "name": "effect",
+          "type": "ptr",
           "value": [
             {
-              "value": "app:/object/ev602_excavator.efarc",
-              "type": "str",
-              "name": "path"
+              "name": "path",
+              "type": "string",
+              "value": "app:/object/ev602_excavator.efarc"
             }
-          ],
-          "type": "ptr",
-          "name": "effect"
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     }
   ],
-  "strings": [
-    "xgs_scene_object_class",
-    "animation_model",
-    "setting",
-    "default",
-    "game_object_camera_setting",
-    "FarEventObject",
-    "default_animation",
-    "scale",
-    "effect",
-    "app:/Object/ev602_excavator.mrab",
-    "ev602_excavator.mdb",
-    "app:/Object/ev602_excavator.cas",
-    "path",
-    "app:/object/ev602_excavator.efarc"
-  ]
+  "heap": {}
 }

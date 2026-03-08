@@ -1,480 +1,367 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
-    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {"name": "xgs_scene_object_class", "type": "string", "value": "Weapon_Sub"},
     {
-      "value": [
-        {
-          "value": [
-            {"value": "recoil_sword_a", "type": "str"},
-            {"value": "recoil_sword_b", "type": "str"},
-            {"value": "recoil_sword_c", "type": "str"}
-          ],
-          "type": "ptr",
-          "name": "animation"
-        },
-        {"value": 1, "type": "double", "name": "whole_body"},
-        {"value": 1, "type": "double", "name": "animation_speed"},
-        {"value": 1, "type": "double", "name": "is_manual_reload"},
-        {"value": 60, "type": "double", "name": "long_press_count"}
-      ],
+      "name": "custom_parameter",
       "type": "ptr",
-      "name": "custom_parameter"
-    },
-    {"value": 1, "type": "double", "name": "use_underground"},
-    {"value": 0, "type": "double", "name": "FireCondition"},
-    {"value": "ハンディセイバーＳ", "type": "str", "name": "name.ja"},
-    {"value": "Handy Saber S", "type": "str", "name": "name.en"},
-    {"value": "隨身軍刀Ｓ", "type": "str", "name": "name.cn"},
-    {"value": "핸디 세이버 S", "type": "str", "name": "name.kr"},
-    {"value": "随身军刀Ｓ", "type": "str", "name": "name.sc"},
-    {
-      "value": "app:/weapon/icon/laserblade.dds",
-      "type": "str",
-      "name": "WeaponIcon"
-    },
-    {
       "value": [
         {
+          "name": "animation",
+          "type": "ptr",
           "value": [
-            {"value": "app:/Weapon/p_saber_normal01.rab", "type": "str"},
-            {"value": "p_saber_normal01.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "recoil_sword_a"},
+            {"type": "string", "value": "recoil_sword_b"},
+            {"type": "string", "value": "recoil_sword_c"}
+          ]
         },
-        {"value": 0, "type": "double"},
+        {"name": "whole_body", "type": "double", "value": 1},
+        {"name": "animation_speed", "type": "double", "value": 1},
+        {"name": "is_manual_reload", "type": "double", "value": 1},
+        {"name": "long_press_count", "type": "double", "value": 60}
+      ]
+    },
+    {"name": "use_underground", "type": "double", "value": 1},
+    {"name": "FireCondition", "type": "double", "value": 0},
+    {"name": "name.ja", "type": "string", "value": "ハンディセイバーＳ"},
+    {"name": "name.en", "type": "string", "value": "Handy Saber S"},
+    {"name": "name.cn", "type": "string", "value": "隨身軍刀Ｓ"},
+    {"name": "name.kr", "type": "string", "value": "핸디 세이버 S"},
+    {"name": "name.sc", "type": "string", "value": "随身军刀Ｓ"},
+    {
+      "name": "WeaponIcon",
+      "type": "string",
+      "value": "app:/weapon/icon/laserblade.dds"
+    },
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
         {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "app:/Weapon/p_saber_normal01.rab"},
+            {"type": "string", "value": "p_saber_normal01.mdb"}
+          ]
+        },
+        {"type": "double", "value": 0},
+        {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000300000003002800240000005c00000060000000f0000000000001001800000001000000300000000200000028000000b4000000ba000000020000002400000034000000440000000000000054000000babababa000000006891ed3d000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fdb0fc9bf00000000000000000000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000030003100000070005f00730061006200650072005f006e006f0072006d0061006c00300031000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000300000003002800240000005c00000060000000f0000000000001001800000001000000300000000200000028000000b4000000ba000000020000002400000034000000440000000000000054000000babababa000000006891ed3d000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803fdb0fc9bf00000000000000000000803f53474f00020100000100000020000000010000002c0000000000000034000000010000000400000001000000080000000000000066006900720065005f006d006f00640065006c005f0064006900720065006300740069006f006e000000000030003100000070005f00730061006200650072005f006e006f0072006d0061006c00300031000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
-      "value": [{"value": "arms_l", "type": "str"}],
+      "name": "ModelConstraint",
       "type": "ptr",
-      "name": "ModelConstraint"
+      "value": [{"type": "string", "value": "arms_l"}]
     },
-    {"value": "throw", "type": "str", "name": "BaseAnimation"},
-    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
-    {"value": "", "type": "str", "name": "ChangeAnimation"},
-    {"value": "", "type": "str", "name": "ReloadAnimation"},
-    {"value": 400, "type": "double", "name": "AmmoCount"},
+    {"name": "BaseAnimation", "type": "string", "value": "throw"},
+    {"name": "AimAnimation", "type": "string", "value": "aim_no_ik"},
+    {"name": "ChangeAnimation", "type": "string", "value": ""},
+    {"name": "ReloadAnimation", "type": "string", "value": ""},
+    {"name": "AmmoCount", "type": "double", "value": 400},
     {
+      "name": "EnergyChargeRequire",
+      "type": "ptr",
       "value": [
-        {"value": -1, "type": "double"},
-        {"value": -1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "EnergyChargeRequire"
+        {"type": "double", "value": -1},
+        {"type": "double", "value": -1}
+      ]
     },
-    {"value": 1, "type": "double", "name": "ReloadType"},
-    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"name": "ReloadType", "type": "double", "value": 1},
+    {"name": "ReloadInit", "type": "double", "value": 1},
     {
+      "name": "ReloadTime",
+      "type": "ptr",
       "value": [
-        {"value": 720, "type": "double"},
-        {"value": 21, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ReloadTime"
+        {"type": "double", "value": 720},
+        {"type": "double", "value": 21},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AngleAdjust"},
-    {"value": 0, "type": "double", "name": "LockonType"},
-    {"value": 0, "type": "double", "name": "LockonTargetType"},
-    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
-    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
-    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
-    {"value": 0, "type": "double", "name": "LockonRange"},
+    {"name": "AngleAdjust", "type": "double", "value": 0},
+    {"name": "LockonType", "type": "double", "value": 0},
+    {"name": "LockonTargetType", "type": "double", "value": 0},
+    {"name": "Lockon_DistributionType", "type": "double", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "double", "value": 1},
+    {"name": "Lockon_AutoTimeOut", "type": "double", "value": 1},
+    {"name": "LockonRange", "type": "double", "value": 0},
     {
+      "name": "LockonAngle",
+      "type": "ptr",
       "value": [
-        {"value": 0.30000001192092896, "type": "double"},
-        {"value": 0.30000001192092896, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "LockonAngle"
+        {"type": "double", "value": 0.30000001192092896},
+        {"type": "double", "value": 0.30000001192092896}
+      ]
     },
-    {"value": 0, "type": "double", "name": "LockonTime"},
-    {"value": 0, "type": "double", "name": "LockonFailedTime"},
-    {"value": 0, "type": "double", "name": "LockonHoldTime"},
-    {"value": 0, "type": "double", "name": "FireType"},
-    {"value": 0, "type": "double", "name": "FireSpreadType"},
-    {"value": 1, "type": "double", "name": "FireSpreadWidth"},
-    {"value": 1, "type": "double", "name": "FireCount"},
-    {"value": 0, "type": "double", "name": "FireInterval"},
-    {"value": 20, "type": "double", "name": "FireBurstCount"},
-    {"value": 0, "type": "double", "name": "FireBurstInterval"},
-    {"value": 0, "type": "double", "name": "FireAccuracy"},
-    {"value": 0, "type": "double", "name": "FireRecoil"},
-    {"value": null, "type": "ptr", "name": "FireVector"},
+    {"name": "LockonTime", "type": "double", "value": 0},
+    {"name": "LockonFailedTime", "type": "double", "value": 0},
+    {"name": "LockonHoldTime", "type": "double", "value": 0},
+    {"name": "FireType", "type": "double", "value": 0},
+    {"name": "FireSpreadType", "type": "double", "value": 0},
+    {"name": "FireSpreadWidth", "type": "double", "value": 1},
+    {"name": "FireCount", "type": "double", "value": 1},
+    {"name": "FireInterval", "type": "double", "value": 0},
+    {"name": "FireBurstCount", "type": "double", "value": 20},
+    {"name": "FireBurstInterval", "type": "double", "value": 0},
+    {"name": "FireAccuracy", "type": "double", "value": 0},
+    {"name": "FireRecoil", "type": "double", "value": 0},
+    {"name": "FireVector", "type": "ptr", "value": []},
     {
+      "name": "FireSe",
+      "type": "ptr",
       "value": [
-        {"value": 1, "type": "double"},
-        {"value": "weapon_WD_Saber_HandyS", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 25, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireSe"
+        {"type": "double", "value": 1},
+        {"type": "string", "value": "weapon_WD_Saber_HandyS"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 25}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "FireLoadSe"},
-    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
-    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {"name": "FireLoadSe", "type": "ptr", "value": []},
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": []},
+    {"name": "SecondaryFire_Type", "type": "double", "value": 0},
     {
-      "value": [{"value": 0, "type": "double"}],
+      "name": "SecondaryFire_Parameter",
       "type": "ptr",
-      "name": "SecondaryFire_Parameter"
+      "value": [{"type": "double", "value": 0}]
     },
-    {"value": "EfsExposureBullet", "type": "str", "name": "AmmoClass"},
-    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"name": "AmmoClass", "type": "string", "value": "EfsExposureBullet"},
+    {"name": "AmmoModel", "type": "double", "value": 0},
     {
+      "name": "AmmoSpeed",
+      "type": "ptr",
       "value": [
-        {"value": 8, "type": "double"},
-        {"value": 16, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoSpeed"
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 16},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
-    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
-    {"value": 5, "type": "double", "name": "AmmoAlive"},
+    {"name": "AmmoOwnerMove", "type": "double", "value": 0},
+    {"name": "AmmoGravityFactor", "type": "double", "value": 0},
+    {"name": "AmmoAlive", "type": "double", "value": 5},
     {
+      "name": "AmmoDamage",
+      "type": "ptr",
       "value": [
-        {"value": 2700, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 10, "type": "double"},
-        {"value": 0.800000011920929, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoDamage"
+        {"type": "double", "value": 2700},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 10},
+        {"type": "double", "value": 0.800000011920929},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1}
+      ]
     },
     {
-      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "name": "AmmoDamageReduce",
       "type": "ptr",
-      "name": "AmmoDamageReduce"
+      "value": [{"type": "double", "value": 1}, {"type": "double", "value": 1}]
     },
-    {"value": 0, "type": "double", "name": "AmmoExplosion"},
-    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
-    {"value": 0.10000000149011612, "type": "double", "name": "AmmoSize"},
-    {"value": 20, "type": "double", "name": "AmmoHitSizeAdjust"},
-    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {"name": "AmmoExplosion", "type": "double", "value": 0},
+    {"name": "AmmoIsPenetration", "type": "double", "value": 1},
+    {"name": "AmmoSize", "type": "double", "value": 0.10000000149011612},
+    {"name": "AmmoHitSizeAdjust", "type": "double", "value": 20},
+    {"name": "AmmoHitImpulseAdjust", "type": "double", "value": 1},
     {
+      "name": "AmmoColor",
+      "type": "ptr",
       "value": [
-        {"value": 0.6000000238418579, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoColor"
+        {"type": "double", "value": 0.6000000238418579},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1}
+      ]
     },
     {
+      "name": "Ammo_CustomParameter",
+      "type": "ptr",
       "value": [
         {
-          "value": "app:/weapon/effect/pale_trap_laser01.efarc",
-          "type": "str",
-          "name": "efarc"
+          "name": "efarc",
+          "type": "string",
+          "value": "app:/weapon/effect/pale_trap_laser01.efarc"
         },
         {
+          "name": "bullet",
+          "type": "ptr",
           "value": [
-            {"value": "bullet01.esb", "type": "str", "name": "esb"},
-            {"value": 1, "type": "double", "name": "esb_scale"},
+            {"name": "esb", "type": "string", "value": "bullet01.esb"},
+            {"name": "esb_scale", "type": "double", "value": 1},
             {
-              "value": [
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"}
-              ],
+              "name": "esb_color",
               "type": "ptr",
-              "name": "esb_color"
+              "value": [
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1}
+              ]
             },
             {
-              "value": [
-                {
-                  "value": [
-                    {
-                      "value": "EnergyScroll01.dds",
-                      "type": "str",
-                      "name": "image"
-                    },
-                    {
-                      "value": 0.1648000031709671,
-                      "type": "double",
-                      "name": "speed"
-                    },
-                    {"value": 1, "type": "double", "name": "scale"},
-                    {
-                      "value": 0.07000000029802322,
-                      "type": "double",
-                      "name": "v_scale"
-                    },
-                    {
-                      "value": [
-                        {"value": 4, "type": "double"},
-                        {"value": 4, "type": "double"},
-                        {"value": 4, "type": "double"},
-                        {"value": 1, "type": "double"}
-                      ],
-                      "type": "ptr",
-                      "name": "color"
-                    }
-                  ],
-                  "type": "ptr"
-                },
-                {
-                  "value": [
-                    {
-                      "value": "EnergyScroll02.dds",
-                      "type": "str",
-                      "name": "image"
-                    },
-                    {
-                      "value": 0.24779999256134033,
-                      "type": "double",
-                      "name": "speed"
-                    },
-                    {"value": 1, "type": "double", "name": "scale"},
-                    {
-                      "value": 0.10000000149011612,
-                      "type": "double",
-                      "name": "v_scale"
-                    },
-                    {
-                      "value": [
-                        {"value": 1, "type": "double"},
-                        {"value": 1, "type": "double"},
-                        {"value": 1, "type": "double"},
-                        {"value": 0.20000000298023224, "type": "double"}
-                      ],
-                      "type": "ptr",
-                      "name": "color"
-                    }
-                  ],
-                  "type": "ptr"
-                }
-              ],
+              "name": "scroll",
               "type": "ptr",
-              "name": "scroll"
-            },
-            {
               "value": [
                 {
-                  "value": [
-                    {"value": 4, "type": "double"},
-                    {"value": 4, "type": "double"},
-                    {"value": 4, "type": "double"},
-                    {"value": 1, "type": "double"}
-                  ],
                   "type": "ptr",
-                  "name": "bar_color"
+                  "value": [
+                    {
+                      "name": "image",
+                      "type": "string",
+                      "value": "EnergyScroll01.dds"
+                    },
+                    {
+                      "name": "speed",
+                      "type": "double",
+                      "value": 0.1648000031709671
+                    },
+                    {"name": "scale", "type": "double", "value": 1},
+                    {
+                      "name": "v_scale",
+                      "type": "double",
+                      "value": 0.07000000029802322
+                    },
+                    {
+                      "name": "color",
+                      "type": "ptr",
+                      "value": [
+                        {"type": "double", "value": 4},
+                        {"type": "double", "value": 4},
+                        {"type": "double", "value": 4},
+                        {"type": "double", "value": 1}
+                      ]
+                    }
+                  ]
                 },
-                {"value": 50, "type": "double", "name": "bar_radius"},
-                {"value": 1, "type": "double", "name": "mul_base_color"}
-              ],
+                {
+                  "type": "ptr",
+                  "value": [
+                    {
+                      "name": "image",
+                      "type": "string",
+                      "value": "EnergyScroll02.dds"
+                    },
+                    {
+                      "name": "speed",
+                      "type": "double",
+                      "value": 0.24779999256134033
+                    },
+                    {"name": "scale", "type": "double", "value": 1},
+                    {
+                      "name": "v_scale",
+                      "type": "double",
+                      "value": 0.10000000149011612
+                    },
+                    {
+                      "name": "color",
+                      "type": "ptr",
+                      "value": [
+                        {"type": "double", "value": 1},
+                        {"type": "double", "value": 1},
+                        {"type": "double", "value": 1},
+                        {"type": "double", "value": 0.20000000298023224}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "lighting",
               "type": "ptr",
-              "name": "lighting"
+              "value": [
+                {
+                  "name": "bar_color",
+                  "type": "ptr",
+                  "value": [
+                    {"type": "double", "value": 4},
+                    {"type": "double", "value": 4},
+                    {"type": "double", "value": 4},
+                    {"type": "double", "value": 1}
+                  ]
+                },
+                {"name": "bar_radius", "type": "double", "value": 50},
+                {"name": "mul_base_color", "type": "double", "value": 1}
+              ]
             }
-          ],
-          "type": "ptr",
-          "name": "bullet"
+          ]
         },
         {
-          "value": [
-            {"value": "bullet01_hit.esb", "type": "str", "name": "esb"},
-            {"value": 1, "type": "double", "name": "esb_scale"},
-            {
-              "value": [
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"}
-              ],
-              "type": "ptr",
-              "name": "esb_color"
-            }
-          ],
+          "name": "hit",
           "type": "ptr",
-          "name": "hit"
+          "value": [
+            {"name": "esb", "type": "string", "value": "bullet01_hit.esb"},
+            {"name": "esb_scale", "type": "double", "value": 1},
+            {
+              "name": "esb_color",
+              "type": "ptr",
+              "value": [
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1}
+              ]
+            }
+          ]
         },
-        {"value": 0, "type": "double", "name": "is_continue_damage"}
-      ],
-      "type": "ptr",
-      "name": "Ammo_CustomParameter"
+        {"name": "is_continue_damage", "type": "double", "value": 0}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": []},
     {
+      "name": "AmmoHitSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_Common_hitSound_saber", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 50, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoHitSe"
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_Common_hitSound_saber"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 50}
+      ]
     },
-    {"value": "", "type": "str", "name": "MuzzleFlash"},
-    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {"name": "MuzzleFlash", "type": "string", "value": ""},
+    {"name": "MuzzleFlash_CustomParameter", "type": "ptr", "value": []},
     {
+      "name": "ShellCase",
+      "type": "ptr",
       "value": [
-        {"value": "", "type": "str"},
-        {"value": "", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ShellCase"
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": []},
     {
-      "value": [{"value": 1, "type": "double"}],
+      "name": "ExtPrams",
       "type": "ptr",
-      "name": "ExtPrams"
+      "value": [{"type": "double", "value": 1}]
     },
     {
+      "name": "resource",
+      "type": "ptr",
       "value": [
-        {"value": "app:/weapon/effect/pale_trap_laser01.efarc", "type": "str"}
-      ],
-      "type": "ptr",
-      "name": "resource"
+        {
+          "type": "string",
+          "value": "app:/weapon/effect/pale_trap_laser01.efarc"
+        }
+      ]
     }
   ],
-  "strings": [
-    "AmmoExplosion",
-    "LockonTargetType",
-    "BaseAnimation",
-    "app:/weapon/effect/pale_trap_laser01.efarc",
-    "AmmoColor",
-    "LockonAngle",
-    "AimAnimation",
-    "WeaponIcon",
-    "Lockon_AutoTimeOut",
-    "ReloadType",
-    "MuzzleFlash",
-    "AmmoAlive",
-    "FireVector",
-    "EnergyScroll02.dds",
-    "FireType",
-    "AmmoClass",
-    "AmmoDamageReduce",
-    "AmmoDamage",
-    "AmmoGravityFactor",
-    "AmmoCount",
-    "SecondaryFire_Type",
-    "AmmoHitImpulseAdjust",
-    "AmmoHitSe",
-    "AmmoHitSizeAdjust",
-    "AmmoIsPenetration",
-    "is_manual_reload",
-    "AmmoModel",
-    "AmmoOwnerMove",
-    "FireCondition",
-    "AmmoSize",
-    "AmmoSpeed",
-    "esb_scale",
-    "ReloadInit",
-    "Ammo_CustomParameter",
-    "LockonTime",
-    "Ammo_EquipVoice",
-    "AngleAdjust",
-    "name.cn",
-    "SecondaryFire_Parameter",
-    "LockonFailedTime",
-    "ChangeAnimation",
-    "FireAccuracy",
-    "EnergyChargeRequire",
-    "ReloadTime",
-    "ExtPrams",
-    "FireBurstCount",
-    "LockonRange",
-    "FireBurstInterval",
-    "FireCount",
-    "FireInterval",
-    "FireLoadSe",
-    "FireRecoil",
-    "FireSe",
-    "FireSpreadType",
-    "FireSpreadWidth",
-    "LockonHoldTime",
-    "LockonType",
-    "ShellCase_CustomParameter",
-    "Lockon_DistributionType",
-    "Lockon_FireEndToClear",
-    "name.en",
-    "ModelConstraint",
-    "MuzzleFlash_CustomParameter",
-    "ReloadAnimation",
-    "ShellCase",
-    "ShellCaseDischargeSe",
-    "throw",
-    "animation_model",
-    "scroll",
-    "custom_parameter",
-    "name.ja",
-    "name.kr",
-    "name.sc",
-    "resource",
-    "use_underground",
-    "arms_l",
-    "xgs_scene_object_class",
-    "Weapon_Sub",
-    "aim_no_ik",
-    "long_press_count",
-    "animation",
-    "animation_speed",
-    "whole_body",
-    "recoil_sword_a",
-    "recoil_sword_b",
-    "recoil_sword_c",
-    "ハンディセイバーＳ",
-    "Handy Saber S",
-    "隨身軍刀Ｓ",
-    "핸디 세이버 S",
-    "随身军刀Ｓ",
-    "app:/weapon/icon/laserblade.dds",
-    "app:/Weapon/p_saber_normal01.rab",
-    "p_saber_normal01.mdb",
-    "",
-    "weapon_WD_Saber_HandyS",
-    "EfsExposureBullet",
-    "bullet",
-    "efarc",
-    "hit",
-    "is_continue_damage",
-    "esb",
-    "esb_color",
-    "lighting",
-    "bullet01.esb",
-    "color",
-    "image",
-    "scale",
-    "speed",
-    "v_scale",
-    "EnergyScroll01.dds",
-    "bar_color",
-    "bar_radius",
-    "mul_base_color",
-    "bullet01_hit.esb",
-    "weapon_Common_hitSound_saber"
-  ]
+  "heap": {}
 }
