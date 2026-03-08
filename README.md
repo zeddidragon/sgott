@@ -32,15 +32,6 @@ Usage:
     -d --debug
         Appends debug data to output JSON.
 
-    -m --mode
-        Can be "decompile" or "dumpvalues" .
-
-        decompile:
-          Default mode. Create JSON that can be edited and recompiled.
-        dumpvalues:
-          Array with consecutive values in struct and heap.
-          Pointers are not dereferenced.
-
     -o --offset
         Byte to start reading from.
 ```

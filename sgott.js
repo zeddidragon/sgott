@@ -3,9 +3,15 @@ const fs = require('fs')
 const path = require('path')
 const json = require('json-stringify-pretty-compact')
 const globals = require('./globals.js')
+const storage = require('./helpers/storage.js') // Global storage
 const config = require('./package.json')
 const compiler = require('./converters/compiler.js')
 const decompiler = require('./converters/decompiler.js')
+
+function isBlocks(obj) {
+  if(obj[0]?.type === 'header') return true
+  return false
+}
 
 function isDsgo(obj) {
   if(/^dsgo$/i.test(obj.format)) return true
@@ -27,14 +33,20 @@ function isRmp(obj) {
   return false
 }
 
-const { compilers, decompilers } = globals
+const { compilers, decompilers, blocks } = globals
 const transforms = {
-  dsgo: (...args) => json(decompilers.dsgo(decompiler, ...args)),
+  dsgo: (...args) => json(decompilers.dsgo(...args)),
   sgo: (...args) => json(decompilers.sgo(decompiler, ...args)),
   rmp: (...args) => json(decompilers.rmp(decompiler, ...args)),
-  json(buffer, opts) {
+  json(buffer) {
+    const opts = storage.get('opts')
     const parsed = JSON.parse(buffer.toString())
-    if(isDsgo(parsed)) return compilers.dsgo(compiler, parsed, opts, globals)
+    if(isBlocks(parsed)) {
+      if(opts.compile) return blocks.toDsgo(parsed)
+      if(opts.resolve) return json(blocks.toJson(parsed))
+      throw new Error('Specify if this should be resolved with --resolve or recompiled with --compile')
+    }
+    if(isDsgo(parsed)) return compilers.dsgo(parsed, opts, globals)
     if(isSgo(parsed)) return compilers.sgo(compiler, parsed, opts, globals)
     if(isRmp(parsed)) return compilers.rmp(compiler, parsed, opts, globals)
     throw new Error('Unable to recognize JSON format')
@@ -48,6 +60,7 @@ const flagMap = {
   o: 'offset',
   v: 'version',
   h: 'help',
+  x: 'export-extra',
 }
 
 const help = `
@@ -76,17 +89,14 @@ Options:
   -d --debug
       inserts debug data in output json.
 
-  -m --mode
-      Can be "decompile" or "dumpvalues" .
-
-      decompile:
-        Default mode. Create JSON that can be edited and recompiled.
-      dumpvalues:
-        Array with consecutive values in struct and heap.
-        Pointers are not dereferenced.
-
   -o --offset
       Byte to start reading from.
+
+  -b --blocks
+      Parse into a lossless in-between format that describes chunks of data
+
+  -x --export-extra
+      Instead of embedding extra files as hex strings in the file, dump them to a seperate file
     
   RMP to JSON:
 
@@ -96,6 +106,7 @@ Options:
 `
 
 function parseCli(cb) {
+  storage.set('version', config.version)
   const args = process.argv.slice(2)
   const opts = {}
   const plain = []
@@ -120,33 +131,70 @@ function parseCli(cb) {
   for(const [w, word] of Object.entries(flagMap)) {
     if(opts[w] && !opts[word]) opts[word] = opts[w]
   }
+  storage.set('opts', opts)
 
   const [readFile, writeFile] = plain
+  storage.set('readDir', path.dirname(readFile))
 
   function convertFileName(fileName, target) {
-    return [
-      path.dirname(fileName),
-      path.basename(fileName, path.extname(fileName)),
-    ].join(path.sep) + '.' + target
+    const dir = path.dirname(fileName)
+    const ext1 = path.extname(fileName)
+    fileName = path.basename(fileName, ext1)
+
+    // Remove the .blocks in .blocks.json
+    const ext2 = path.extname(fileName)
+    if(ext2 === '.blocks') {
+      fileName = path.basename(fileName, ext2)
+    }
+
+    return [dir, fileName].join(path.sep) + '.' + target
   }
 
+  function extraPath(fileName) {
+    const baseName = path.basename(readFile, path.extname(readFile))
+    return path.join(path.dirname(readFile), `${baseName}__${fileName}`)
+  }
+  function writeExtra(fileName, ...args) {
+    const filePath = extraPath(fileName);
+    fs.writeFileSync(filePath, ...args)
+    return path.basename(filePath)
+  }
+  function readExtra(fileName) {
+    return fs.readFileSync(path.join(path.dirname(readFile), fileName))
+  }
+  storage.set('writeExtra', writeExtra)
+  storage.set('readExtra', readExtra)
+
   function write(data, type) {
-    const target = type === 'json'
-      ? (data.format || 'sgo').toUpperCase()
-      : 'json'
+    let target
+    if(opts.blocks)
+      target = 'blocks.json'
+    else if(opts.resolve)
+      target = 'json'
+    else if(type === 'json')
+      target = (data.format || 'sgo').toUpperCase()
+    else
+      target = 'json'
+
+    let fileName
     if(writeFile && fs.existsSync(writeFile) && fs.lstatSync(writeFile).isDirectory()) {
-      const path = writeFile + '/' + convertFileName(readFile.split('/').pop(), target)
-      fs.writeFileSync(path, data)
-      console.log(path)
+      fileName = writeFile + '/' + convertFileName(readFile.split('/').pop(), target)
     } else if(writeFile) {
-      fs.writeFileSync(writeFile, data)
-      console.log(writeFile)
+      fileName = writeFile
     } else if(readFile) {
-      const path = convertFileName(readFile, target)
-      fs.writeFileSync(path, data)
-      console.log(path)
+      fileName = convertFileName(readFile, target)
     } else {
       process.stdout.write(data)
+      if(opts['export-external'])
+        console.warn('Additional files not supported')
+      // TODO: Write out extra files to stdout
+      return
+    }
+
+    fs.writeFileSync(fileName, data)
+    let extra
+    while(extra = storage.pop('export-extra')) {
+      fs.writeFileSync(extraPath(extra.fileName), extra.data)
     }
   }
 
