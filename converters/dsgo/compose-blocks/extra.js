@@ -18,9 +18,9 @@ function extra({ value: { format, value } }, composer) {
   }
 
   // `data` should be a hex string by this point
-  const ptr = composer.addBlock(Math.ceil(data.length / 2) + 0x10, {
-    type: 'extra',
-    content: { format: 'hex', value: data },
+  const ptr = composer.addBlock(Math.ceil(data.length / 2) + 0x10, 'extra', {
+    format: 'hex',
+    value: data,
   })
   return { type, ptr }
 }

@@ -75,4 +75,6 @@ function jsonToDsgoBlocks(json) {
   return composer.finalize()
 }
 
-module.exports = jsonToDsgoBlocks
+module.exports = {
+  jsonToDsgoBlocks,
+}

@@ -55,12 +55,13 @@ const transforms = {
 }
 
 const flagMap = {
-  t: 'type',
+  b: 'blocks',
   d: 'debug',
+  h: 'help',
   m: 'mode',
   o: 'offset',
+  t: 'type',
   v: 'version',
-  h: 'help',
   x: 'export-extra',
 }
 
