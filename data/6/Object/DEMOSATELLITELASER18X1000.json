@@ -1,86 +1,82 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "DemoIndirectFire",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "DemoIndirectFire"
     },
     {
+      "name": "indirect_fire_param",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": 1.5, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 1.5},
+            {"type": "double", "value": 0}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 1000, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 1000},
+            {"type": "double", "value": 0}
+          ]
         },
-        {"value": 1000, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": "LaserBullet02", "type": "str"},
-        {"value": 1000, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 18, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 30, "type": "double"},
-        {"value": 1, "type": "double"},
+        {"type": "double", "value": 1000},
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "LaserBullet02"},
+        {"type": "double", "value": 1000},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 18},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 30},
+        {"type": "double", "value": 1},
         {
+          "type": "ptr",
           "value": [
-            {"value": 0.20000000298023224, "type": "double"},
-            {"value": 0.20000000298023224, "type": "double"},
-            {"value": 3, "type": "double"},
-            {"value": 1, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0.20000000298023224},
+            {"type": "double", "value": 0.20000000298023224},
+            {"type": "double", "value": 3},
+            {"type": "double", "value": 1}
+          ]
         },
-        {"value": [{"value": 0, "type": "double"}], "type": "ptr"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
+        {"type": "ptr", "value": [{"type": "double", "value": 0}]},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": "weapon_KUBAKU_satelliteBeta1_shot", "type": "str"},
-            {"value": 1, "type": "double"},
-            {"value": 1, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 1000, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "string", "value": "weapon_KUBAKU_satelliteBeta1_shot"},
+            {"type": "double", "value": 1},
+            {"type": "double", "value": 1},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 1000}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": "common_damages_kuubaku_satelliteBeta1", "type": "str"},
-            {"value": 0.8999999761581421, "type": "double"},
-            {"value": 1, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 200, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {
+              "type": "string",
+              "value": "common_damages_kuubaku_satelliteBeta1"
+            },
+            {"type": "double", "value": 0.8999999761581421},
+            {"type": "double", "value": 1},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 200}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "indirect_fire_param"
+      ]
     },
-    {"value": 3000, "type": "double", "name": "indirect_fire_damage"}
+    {"name": "indirect_fire_damage", "type": "double", "value": 3000}
   ],
-  "strings": [
-    "DemoIndirectFire",
-    "indirect_fire_damage",
-    "LaserBullet02",
-    "indirect_fire_param",
-    "weapon_KUBAKU_satelliteBeta1_shot",
-    "xgs_scene_object_class",
-    "common_damages_kuubaku_satelliteBeta1"
-  ]
+  "heap": {}
 }

@@ -1,470 +1,370 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
-    {"value": "Weapon_Swing", "type": "str", "name": "xgs_scene_object_class"},
     {
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "Weapon_Swing"
+    },
+    {
+      "name": "custom_parameter",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
             {
+              "type": "ptr",
               "value": [
-                {"value": "sword_thrush", "type": "str"},
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"},
-                {"value": 1, "type": "double"},
-                {"value": 1.25, "type": "double"},
-                {"value": 0, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "string", "value": "sword_thrush"},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1},
+                {"type": "double", "value": 1.25},
+                {"type": "double", "value": 0}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": "sword_thrush2", "type": "str"},
-                {"value": 2, "type": "double"},
-                {"value": 1.5, "type": "double"},
-                {"value": 1.5, "type": "double"},
-                {"value": 1.375, "type": "double"},
-                {"value": 0, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "string", "value": "sword_thrush2"},
+                {"type": "double", "value": 2},
+                {"type": "double", "value": 1.5},
+                {"type": "double", "value": 1.5},
+                {"type": "double", "value": 1.375},
+                {"type": "double", "value": 0}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": "sword_thrush3", "type": "str"},
-                {"value": 2, "type": "double"},
-                {"value": 1.5, "type": "double"},
-                {"value": 2, "type": "double"},
-                {"value": 1.5, "type": "double"},
-                {"value": 0, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "string", "value": "sword_thrush3"},
+                {"type": "double", "value": 2},
+                {"type": "double", "value": 1.5},
+                {"type": "double", "value": 2},
+                {"type": "double", "value": 1.5},
+                {"type": "double", "value": 0}
+              ]
             }
-          ],
-          "type": "ptr"
+          ]
         }
-      ],
+      ]
+    },
+    {"name": "use_underground", "type": "double", "value": 1},
+    {"name": "FireCondition", "type": "double", "value": 0},
+    {"name": "name.ja", "type": "string", "value": "電刃刀 極式"},
+    {"name": "name.en", "type": "string", "value": "Power Blade X"},
+    {"name": "name.cn", "type": "string", "value": "電刃刀 極式"},
+    {"name": "name.kr", "type": "string", "value": "전인도 극식"},
+    {"name": "name.sc", "type": "string", "value": "电刃刀 极式"},
+    {
+      "name": "WeaponIcon",
+      "type": "string",
+      "value": "app:/weapon/icon/h_impact_blade03.dds"
+    },
+    {
+      "name": "Sight_animation_model",
       "type": "ptr",
-      "name": "custom_parameter"
-    },
-    {"value": 1, "type": "double", "name": "use_underground"},
-    {"value": 0, "type": "double", "name": "FireCondition"},
-    {"value": "電刃刀 極式", "type": "str", "name": "name.ja"},
-    {"value": "Power Blade X", "type": "str", "name": "name.en"},
-    {"value": "電刃刀 極式", "type": "str", "name": "name.cn"},
-    {"value": "전인도 극식", "type": "str", "name": "name.kr"},
-    {"value": "电刃刀 极式", "type": "str", "name": "name.sc"},
-    {
-      "value": "app:/weapon/icon/h_impact_blade03.dds",
-      "type": "str",
-      "name": "WeaponIcon"
-    },
-    {
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/HUD/sight17.rab", "type": "str"},
-            {"value": "sight17.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/HUD/sight17.rab"},
+            {"type": "string", "value": "sight17.mdb"}
+          ]
         },
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "Sight_animation_model"
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0}
+      ]
     },
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Weapon/h_impact_blade03.rab", "type": "str"},
-            {"value": "h_impact_blade03.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Weapon/h_impact_blade03.rab"},
+            {"type": "string", "value": "h_impact_blade03.mdb"}
+          ]
         },
-        {"value": "app:/Weapon/h_impact_blade03.cas", "type": "str"},
+        {"type": "string", "value": "app:/Weapon/h_impact_blade03.cas"},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000300040002005e00240000005c000000c0000000b001000000000100180000000100000030000000020000002800000074010000b60100000200000084000000940000008400000000000000a400000040000000600000005a0100000100000040000000500000006001000001000000400000004000000066010000000000003000000030000000720100000000000050010000000000000000000064000000400100000000000000000000ac000000babababa0000000000000000000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c0000000000000034000000030000000b0000001e00000008000000000000006e0061006d0065000000cf30f330de30fc30555c8b95005212ff2cff36ff12ff0000000053474f00020100000100000020000000010000002c0000000000000034000000030000000b0000001e00000008000000000000006e0061006d0065000000cf30f330de30fc30555c8b95005212ff2cff36ff13ff000000003000310000006300680061007200670065005f006c007600320000006300680061007200670065005f006c007600330000006600690072006500000073006500000073006c0069006400650000007300740061006e006400620079000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000300040002005e00240000005c000000c0000000b001000000000100180000000100000030000000020000002800000074010000b60100000200000084000000940000008400000000000000a400000040000000600000005a0100000100000040000000500000006001000001000000400000004000000066010000000000003000000030000000720100000000000050010000000000000000000064000000400100000000000000000000ac000000babababa0000000000000000000000000000803fcdcc4c3dcdcc4c3dcdcc4c3d0000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c0000000000000034000000030000000b0000001e00000008000000000000006e0061006d0065000000cf30f330de30fc30555c8b95005212ff2cff36ff12ff0000000053474f00020100000100000020000000010000002c0000000000000034000000030000000b0000001e00000008000000000000006e0061006d0065000000cf30f330de30fc30555c8b95005212ff2cff36ff13ff000000003000310000006300680061007200670065005f006c007600320000006300680061007200670065005f006c007600330000006600690072006500000073006500000073006c0069006400650000007300740061006e006400620079000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
+      "name": "ModelConstraint",
+      "type": "ptr",
       "value": [
-        {"value": "arms", "type": "str"},
+        {"type": "string", "value": "arms"},
         {
-          "value": [
-            {"value": "backWeapon", "type": "str"},
-            {"value": "attach", "type": "str"}
-          ],
-          "type": "ptr"
-        }
-      ],
-      "type": "ptr",
-      "name": "ModelConstraint"
-    },
-    {"value": "base", "type": "str", "name": "BaseAnimation"},
-    {"value": "aim_hammer", "type": "str", "name": "AimAnimation"},
-    {"value": "hammer_change1", "type": "str", "name": "ChangeAnimation"},
-    {"value": "hammer_reload1", "type": "str", "name": "ReloadAnimation"},
-    {
-      "value": [
-        {"value": 16, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 10, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1.2999999523162842, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoCount"
-    },
-    {
-      "value": [
-        {"value": -1, "type": "double"},
-        {"value": -1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "EnergyChargeRequire"
-    },
-    {"value": 0, "type": "double", "name": "ReloadType"},
-    {"value": 1, "type": "double", "name": "ReloadInit"},
-    {
-      "value": [
-        {"value": 240, "type": "double"},
-        {"value": 21, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 5, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ReloadTime"
-    },
-    {"value": 0, "type": "double", "name": "AngleAdjust"},
-    {"value": 0, "type": "double", "name": "LockonType"},
-    {"value": 0, "type": "double", "name": "LockonTargetType"},
-    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
-    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
-    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
-    {"value": 0, "type": "double", "name": "LockonRange"},
-    {
-      "value": [
-        {"value": 0.30000001192092896, "type": "double"},
-        {"value": 0.30000001192092896, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "LockonAngle"
-    },
-    {"value": 0, "type": "double", "name": "LockonTime"},
-    {"value": 0, "type": "double", "name": "LockonFailedTime"},
-    {"value": 0, "type": "double", "name": "LockonHoldTime"},
-    {"value": 0, "type": "double", "name": "FireType"},
-    {"value": 0, "type": "double", "name": "FireSpreadType"},
-    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
-    {"value": 1, "type": "double", "name": "FireCount"},
-    {"value": 1, "type": "double", "name": "FireInterval"},
-    {"value": 1, "type": "double", "name": "FireBurstCount"},
-    {"value": 0, "type": "double", "name": "FireBurstInterval"},
-    {"value": 0, "type": "double", "name": "FireAccuracy"},
-    {"value": 0.5, "type": "double", "name": "FireRecoil"},
-    {"value": null, "type": "ptr", "name": "FireVector"},
-    {
-      "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_Fencer_SWD_kiwame", "type": "str"},
-        {"value": 0.8999999761581421, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 3, "type": "double"},
-        {"value": 25, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireSe"
-    },
-    {"value": null, "type": "ptr", "name": "FireLoadSe"},
-    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
-    {"value": 4, "type": "double", "name": "SecondaryFire_Type"},
-    {
-      "value": [{"value": 0, "type": "double"}],
-      "type": "ptr",
-      "name": "SecondaryFire_Parameter"
-    },
-    {"value": "EfsBullet", "type": "str", "name": "AmmoClass"},
-    {"value": 0, "type": "double", "name": "AmmoModel"},
-    {
-      "value": [
-        {"value": 16, "type": "double"},
-        {"value": 16, "type": "double"},
-        {"value": 3, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoSpeed"
-    },
-    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
-    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
-    {"value": 4, "type": "double", "name": "AmmoAlive"},
-    {
-      "value": [
-        {"value": 3000, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoDamage"
-    },
-    {
-      "value": [{"value": 3, "type": "double", "name": "shield"}],
-      "type": "ptr",
-      "name": "AmmoDamageAttribute"
-    },
-    {
-      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
-      "type": "ptr",
-      "name": "AmmoDamageReduce"
-    },
-    {"value": 0, "type": "double", "name": "AmmoExplosion"},
-    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
-    {"value": 1, "type": "double", "name": "AmmoSize"},
-    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
-    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
-    {
-      "value": [
-        {"value": 4, "type": "double"},
-        {"value": 1.75, "type": "double"},
-        {"value": 1.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoColor"
-    },
-    {
-      "value": [
-        {
-          "value": "app:/weapon/effect/fencer_sword_stab.efarc",
-          "type": "str",
-          "name": "efarc"
-        },
-        {
-          "value": [
-            {"value": "bullet01.esb", "type": "str", "name": "esb"},
-            {"value": 3, "type": "double", "name": "scale"}
-          ],
           "type": "ptr",
-          "name": "bullet"
-        },
-        {
           "value": [
-            {"value": "hit01.esb", "type": "str", "name": "esb"},
-            {"value": 4, "type": "double", "name": "scale"},
-            {"value": 0, "type": "double", "name": "mark_type"}
-          ],
-          "type": "ptr",
-          "name": "hit"
+            {"type": "string", "value": "backWeapon"},
+            {"type": "string", "value": "attach"}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "Ammo_CustomParameter"
+      ]
     },
-    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"name": "BaseAnimation", "type": "string", "value": "base"},
+    {"name": "AimAnimation", "type": "string", "value": "aim_hammer"},
+    {"name": "ChangeAnimation", "type": "string", "value": "hammer_change1"},
+    {"name": "ReloadAnimation", "type": "string", "value": "hammer_reload1"},
     {
+      "name": "AmmoCount",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_Common_hitSound_swd", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 50, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoHitSe"
+        {"type": "double", "value": 16},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 10},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1.2999999523162842},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": "EfsMuzzleFlash", "type": "str", "name": "MuzzleFlash"},
     {
+      "name": "EnergyChargeRequire",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": -1},
+        {"type": "double", "value": -1}
+      ]
+    },
+    {"name": "ReloadType", "type": "double", "value": 0},
+    {"name": "ReloadInit", "type": "double", "value": 1},
+    {
+      "name": "ReloadTime",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 240},
+        {"type": "double", "value": 21},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 5},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
+    },
+    {"name": "AngleAdjust", "type": "double", "value": 0},
+    {"name": "LockonType", "type": "double", "value": 0},
+    {"name": "LockonTargetType", "type": "double", "value": 0},
+    {"name": "Lockon_DistributionType", "type": "double", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "double", "value": 1},
+    {"name": "Lockon_AutoTimeOut", "type": "double", "value": 1},
+    {"name": "LockonRange", "type": "double", "value": 0},
+    {
+      "name": "LockonAngle",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 0.30000001192092896},
+        {"type": "double", "value": 0.30000001192092896}
+      ]
+    },
+    {"name": "LockonTime", "type": "double", "value": 0},
+    {"name": "LockonFailedTime", "type": "double", "value": 0},
+    {"name": "LockonHoldTime", "type": "double", "value": 0},
+    {"name": "FireType", "type": "double", "value": 0},
+    {"name": "FireSpreadType", "type": "double", "value": 0},
+    {"name": "FireSpreadWidth", "type": "double", "value": 0},
+    {"name": "FireCount", "type": "double", "value": 1},
+    {"name": "FireInterval", "type": "double", "value": 1},
+    {"name": "FireBurstCount", "type": "double", "value": 1},
+    {"name": "FireBurstInterval", "type": "double", "value": 0},
+    {"name": "FireAccuracy", "type": "double", "value": 0},
+    {"name": "FireRecoil", "type": "double", "value": 0.5},
+    {"name": "FireVector", "type": "ptr", "value": []},
+    {
+      "name": "FireSe",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_Fencer_SWD_kiwame"},
+        {"type": "double", "value": 0.8999999761581421},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 3},
+        {"type": "double", "value": 25}
+      ]
+    },
+    {"name": "FireLoadSe", "type": "ptr", "value": []},
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": []},
+    {"name": "SecondaryFire_Type", "type": "double", "value": 4},
+    {
+      "name": "SecondaryFire_Parameter",
+      "type": "ptr",
+      "value": [{"type": "double", "value": 0}]
+    },
+    {"name": "AmmoClass", "type": "string", "value": "EfsBullet"},
+    {"name": "AmmoModel", "type": "double", "value": 0},
+    {
+      "name": "AmmoSpeed",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 16},
+        {"type": "double", "value": 16},
+        {"type": "double", "value": 3},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
+    },
+    {"name": "AmmoOwnerMove", "type": "double", "value": 0},
+    {"name": "AmmoGravityFactor", "type": "double", "value": 0},
+    {"name": "AmmoAlive", "type": "double", "value": 4},
+    {
+      "name": "AmmoDamage",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 3000},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
+    },
+    {
+      "name": "AmmoDamageAttribute",
+      "type": "ptr",
+      "value": [{"name": "shield", "type": "double", "value": 3}]
+    },
+    {
+      "name": "AmmoDamageReduce",
+      "type": "ptr",
+      "value": [{"type": "double", "value": 1}, {"type": "double", "value": 1}]
+    },
+    {"name": "AmmoExplosion", "type": "double", "value": 0},
+    {"name": "AmmoIsPenetration", "type": "double", "value": 1},
+    {"name": "AmmoSize", "type": "double", "value": 1},
+    {"name": "AmmoHitSizeAdjust", "type": "double", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "double", "value": 1},
+    {
+      "name": "AmmoColor",
+      "type": "ptr",
+      "value": [
+        {"type": "double", "value": 4},
+        {"type": "double", "value": 1.75},
+        {"type": "double", "value": 1.5},
+        {"type": "double", "value": 1}
+      ]
+    },
+    {
+      "name": "Ammo_CustomParameter",
+      "type": "ptr",
       "value": [
         {
-          "value": "app:/weapon/effect/fencer_sword_stab.efarc",
-          "type": "str",
-          "name": "efarc"
+          "name": "efarc",
+          "type": "string",
+          "value": "app:/weapon/effect/fencer_sword_stab.efarc"
         },
-        {"value": "fire01.esb", "type": "str", "name": "esb"},
         {
-          "value": [
-            {"value": 0.25, "type": "double"},
-            {"value": 0.10000000149011612, "type": "double"},
-            {"value": 0.07500000298023224, "type": "double"},
-            {"value": 1, "type": "double"}
-          ],
+          "name": "bullet",
           "type": "ptr",
-          "name": "color"
+          "value": [
+            {"name": "esb", "type": "string", "value": "bullet01.esb"},
+            {"name": "scale", "type": "double", "value": 3}
+          ]
         },
-        {"value": 4, "type": "double", "name": "scale"}
-      ],
-      "type": "ptr",
-      "name": "MuzzleFlash_CustomParameter"
+        {
+          "name": "hit",
+          "type": "ptr",
+          "value": [
+            {"name": "esb", "type": "string", "value": "hit01.esb"},
+            {"name": "scale", "type": "double", "value": 4},
+            {"name": "mark_type", "type": "double", "value": 0}
+          ]
+        }
+      ]
     },
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": []},
     {
+      "name": "AmmoHitSe",
+      "type": "ptr",
       "value": [
-        {"value": "", "type": "str"},
-        {"value": "", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ShellCase"
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_Common_hitSound_swd"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 50}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {"name": "MuzzleFlash", "type": "string", "value": "EfsMuzzleFlash"},
     {
+      "name": "MuzzleFlash_CustomParameter",
+      "type": "ptr",
       "value": [
         {
+          "name": "efarc",
+          "type": "string",
+          "value": "app:/weapon/effect/fencer_sword_stab.efarc"
+        },
+        {"name": "esb", "type": "string", "value": "fire01.esb"},
+        {
+          "name": "color",
+          "type": "ptr",
           "value": [
-            {"value": 1, "type": "double"},
-            {"value": 80, "type": "double"},
-            {"value": 4, "type": "double"},
-            {"value": 10, "type": "double"},
-            {"value": 0.20000000298023224, "type": "double"},
-            {"value": 1.5, "type": "double"},
-            {"value": 1, "type": "double"}
-          ],
-          "type": "ptr"
-        }
-      ],
-      "type": "ptr",
-      "name": "ExtPrams"
+            {"type": "double", "value": 0.25},
+            {"type": "double", "value": 0.10000000149011612},
+            {"type": "double", "value": 0.07500000298023224},
+            {"type": "double", "value": 1}
+          ]
+        },
+        {"name": "scale", "type": "double", "value": 4}
+      ]
     },
     {
-      "value": [
-        {"value": "app:/weapon/effect/fencer_sword_stab.efarc", "type": "str"},
-        {"value": "app:/weapon/effect/fencer_sword_stab.efarc", "type": "str"}
-      ],
+      "name": "ShellCase",
       "type": "ptr",
-      "name": "resource"
+      "value": [
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "double", "value": 0}
+      ]
+    },
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": []},
+    {
+      "name": "ExtPrams",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "double", "value": 1},
+            {"type": "double", "value": 80},
+            {"type": "double", "value": 4},
+            {"type": "double", "value": 10},
+            {"type": "double", "value": 0.20000000298023224},
+            {"type": "double", "value": 1.5},
+            {"type": "double", "value": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "resource",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "string",
+          "value": "app:/weapon/effect/fencer_sword_stab.efarc"
+        },
+        {
+          "type": "string",
+          "value": "app:/weapon/effect/fencer_sword_stab.efarc"
+        }
+      ]
     }
   ],
-  "strings": [
-    "LockonTargetType",
-    "BaseAnimation",
-    "AmmoColor",
-    "LockonAngle",
-    "AimAnimation",
-    "AmmoModel",
-    "AmmoDamageAttribute",
-    "WeaponIcon",
-    "Lockon_AutoTimeOut",
-    "ReloadType",
-    "MuzzleFlash",
-    "AmmoAlive",
-    "FireVector",
-    "FireType",
-    "AmmoClass",
-    "AmmoDamageReduce",
-    "AmmoDamage",
-    "AmmoGravityFactor",
-    "AmmoCount",
-    "AmmoExplosion",
-    "SecondaryFire_Type",
-    "AmmoHitImpulseAdjust",
-    "AmmoHitSe",
-    "AmmoHitSizeAdjust",
-    "AmmoIsPenetration",
-    "AmmoOwnerMove",
-    "FireCondition",
-    "AmmoSize",
-    "app:/Weapon/h_impact_blade03.cas",
-    "AmmoSpeed",
-    "ReloadInit",
-    "Ammo_CustomParameter",
-    "LockonTime",
-    "Ammo_EquipVoice",
-    "SecondaryFire_Parameter",
-    "LockonFailedTime",
-    "name.cn",
-    "AngleAdjust",
-    "ChangeAnimation",
-    "FireAccuracy",
-    "EnergyChargeRequire",
-    "ReloadTime",
-    "ExtPrams",
-    "FireBurstCount",
-    "LockonRange",
-    "FireBurstInterval",
-    "FireCount",
-    "FireInterval",
-    "FireLoadSe",
-    "hammer_change1",
-    "FireRecoil",
-    "FireSe",
-    "FireSpreadType",
-    "FireSpreadWidth",
-    "Sight_animation_model",
-    "LockonHoldTime",
-    "LockonType",
-    "ShellCase_CustomParameter",
-    "Lockon_DistributionType",
-    "Lockon_FireEndToClear",
-    "ModelConstraint",
-    "MuzzleFlash_CustomParameter",
-    "ReloadAnimation",
-    "ShellCase",
-    "ShellCaseDischargeSe",
-    "animation_model",
-    "custom_parameter",
-    "name.en",
-    "name.ja",
-    "name.kr",
-    "backWeapon",
-    "name.sc",
-    "resource",
-    "use_underground",
-    "電刃刀 極式",
-    "xgs_scene_object_class",
-    "Weapon_Swing",
-    "sword_thrush",
-    "sword_thrush2",
-    "sword_thrush3",
-    "Power Blade X",
-    "전인도 극식",
-    "电刃刀 极式",
-    "app:/weapon/icon/h_impact_blade03.dds",
-    "app:/HUD/sight17.rab",
-    "h_impact_blade03.mdb",
-    "sight17.mdb",
-    "app:/Weapon/h_impact_blade03.rab",
-    "arms",
-    "attach",
-    "base",
-    "aim_hammer",
-    "hammer_reload1",
-    "weapon_Fencer_SWD_kiwame",
-    "EfsBullet",
-    "shield",
-    "bullet",
-    "efarc",
-    "hit",
-    "app:/weapon/effect/fencer_sword_stab.efarc",
-    "esb",
-    "scale",
-    "bullet01.esb",
-    "mark_type",
-    "hit01.esb",
-    "weapon_Common_hitSound_swd",
-    "EfsMuzzleFlash",
-    "color",
-    "fire01.esb",
-    ""
-  ]
+  "heap": {}
 }

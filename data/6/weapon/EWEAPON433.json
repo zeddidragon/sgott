@@ -1,400 +1,297 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
-    {"value": "Weapon_Sub", "type": "str", "name": "xgs_scene_object_class"},
+    {"name": "xgs_scene_object_class", "type": "string", "value": "Weapon_Sub"},
     {
-      "value": [
-        {"value": "vehicle_call", "type": "str", "name": "animation"},
-        {"value": 1, "type": "double", "name": "whole_body"},
-        {"value": 1, "type": "double", "name": "animation_speed"}
-      ],
+      "name": "custom_parameter",
       "type": "ptr",
-      "name": "custom_parameter"
+      "value": [
+        {"name": "animation", "type": "string", "value": "vehicle_call"},
+        {"name": "whole_body", "type": "double", "value": 1},
+        {"name": "animation_speed", "type": "double", "value": 1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "use_underground"},
-    {"value": 0, "type": "double", "name": "FireCondition"},
-    {"value": "ブラッカーＥ４", "type": "str", "name": "name.ja"},
-    {"value": "Blacker E4", "type": "str", "name": "name.en"},
-    {"value": "布萊克戰車Ｅ４", "type": "str", "name": "name.cn"},
-    {"value": "블래커 E4", "type": "str", "name": "name.kr"},
-    {"value": "布莱克战车Ｅ４", "type": "str", "name": "name.sc"},
+    {"name": "use_underground", "type": "double", "value": 0},
+    {"name": "FireCondition", "type": "double", "value": 0},
+    {"name": "name.ja", "type": "string", "value": "ブラッカーＥ４"},
+    {"name": "name.en", "type": "string", "value": "Blacker E4"},
+    {"name": "name.cn", "type": "string", "value": "布萊克戰車Ｅ４"},
+    {"name": "name.kr", "type": "string", "value": "블래커 E4"},
+    {"name": "name.sc", "type": "string", "value": "布莱克战车Ｅ４"},
     {
-      "value": "app:/weapon/icon/tank01.dds",
-      "type": "str",
-      "name": "WeaponIcon"
+      "name": "WeaponIcon",
+      "type": "string",
+      "value": "app:/weapon/icon/tank01.dds"
     },
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Weapon/e_throw_marker01.rab", "type": "str"},
-            {"value": "e_throw_marker01.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Weapon/e_throw_marker01.rab"},
+            {"type": "string", "value": "e_throw_marker01.mdb"}
+          ]
         },
-        {"value": "app:/Weapon/e_throw_marker01.cas", "type": "str"},
+        {"type": "string", "value": "app:/Weapon/e_throw_marker01.cas"},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000300020002002a00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000007e0000000000000010000000100000006400000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000300020002002a00240000005c00000080000000c0000000000001001800000001000000300000000200000028000000840000008a00000002000000440000005400000044000000000000006400000020000000200000007e0000000000000010000000100000006400000000000000babababa0000000000000000000000000000803f0000a0400000a0400000a0400000803f53474f000201000000000000200000000000000020000000000000002000000030003100000062006f00640079000000680069006400650000007300740061006e006400620079000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
-      "value": [{"value": "arms_r", "type": "str"}],
+      "name": "ModelConstraint",
       "type": "ptr",
-      "name": "ModelConstraint"
+      "value": [{"type": "string", "value": "arms_r"}]
     },
-    {"value": "throw", "type": "str", "name": "BaseAnimation"},
-    {"value": "aim_no_ik", "type": "str", "name": "AimAnimation"},
-    {"value": "throw_change1", "type": "str", "name": "ChangeAnimation"},
-    {"value": "throw_reload1", "type": "str", "name": "ReloadAnimation"},
-    {"value": 1, "type": "double", "name": "AmmoCount"},
+    {"name": "BaseAnimation", "type": "string", "value": "throw"},
+    {"name": "AimAnimation", "type": "string", "value": "aim_no_ik"},
+    {"name": "ChangeAnimation", "type": "string", "value": "throw_change1"},
+    {"name": "ReloadAnimation", "type": "string", "value": "throw_reload1"},
+    {"name": "AmmoCount", "type": "double", "value": 1},
     {
+      "name": "EnergyChargeRequire",
+      "type": "ptr",
       "value": [
-        {"value": -1, "type": "double"},
-        {"value": -1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "EnergyChargeRequire"
+        {"type": "double", "value": -1},
+        {"type": "double", "value": -1}
+      ]
     },
-    {"value": 2, "type": "double", "name": "ReloadType"},
-    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"name": "ReloadType", "type": "double", "value": 2},
+    {"name": "ReloadInit", "type": "double", "value": 1},
     {
+      "name": "ReloadTime",
+      "type": "ptr",
       "value": [
-        {"value": 5400, "type": "double"},
-        {"value": 21, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ReloadTime"
+        {"type": "double", "value": 5400},
+        {"type": "double", "value": 21},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AngleAdjust"},
-    {"value": 0, "type": "double", "name": "LockonType"},
-    {"value": 0, "type": "double", "name": "LockonTargetType"},
-    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
-    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
-    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
-    {"value": 0, "type": "double", "name": "LockonRange"},
+    {"name": "AngleAdjust", "type": "double", "value": 0},
+    {"name": "LockonType", "type": "double", "value": 0},
+    {"name": "LockonTargetType", "type": "double", "value": 0},
+    {"name": "Lockon_DistributionType", "type": "double", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "double", "value": 1},
+    {"name": "Lockon_AutoTimeOut", "type": "double", "value": 1},
+    {"name": "LockonRange", "type": "double", "value": 0},
     {
+      "name": "LockonAngle",
+      "type": "ptr",
       "value": [
-        {"value": 0.30000001192092896, "type": "double"},
-        {"value": 0.30000001192092896, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "LockonAngle"
+        {"type": "double", "value": 0.30000001192092896},
+        {"type": "double", "value": 0.30000001192092896}
+      ]
     },
-    {"value": 0, "type": "double", "name": "LockonTime"},
-    {"value": 0, "type": "double", "name": "LockonFailedTime"},
-    {"value": 0, "type": "double", "name": "LockonHoldTime"},
-    {"value": 0, "type": "double", "name": "FireType"},
-    {"value": 0, "type": "double", "name": "FireSpreadType"},
-    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
-    {"value": 1, "type": "double", "name": "FireCount"},
-    {"value": 120, "type": "double", "name": "FireInterval"},
-    {"value": 1, "type": "double", "name": "FireBurstCount"},
-    {"value": 0, "type": "double", "name": "FireBurstInterval"},
-    {"value": 0, "type": "double", "name": "FireAccuracy"},
-    {"value": 0, "type": "double", "name": "FireRecoil"},
+    {"name": "LockonTime", "type": "double", "value": 0},
+    {"name": "LockonFailedTime", "type": "double", "value": 0},
+    {"name": "LockonHoldTime", "type": "double", "value": 0},
+    {"name": "FireType", "type": "double", "value": 0},
+    {"name": "FireSpreadType", "type": "double", "value": 0},
+    {"name": "FireSpreadWidth", "type": "double", "value": 0},
+    {"name": "FireCount", "type": "double", "value": 1},
+    {"name": "FireInterval", "type": "double", "value": 120},
+    {"name": "FireBurstCount", "type": "double", "value": 1},
+    {"name": "FireBurstInterval", "type": "double", "value": 0},
+    {"name": "FireAccuracy", "type": "double", "value": 0},
+    {"name": "FireRecoil", "type": "double", "value": 0},
     {
+      "name": "FireVector",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": 0.25, "type": "double"},
-        {"value": 1.100000023841858, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireVector"
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0.25},
+        {"type": "double", "value": 1.100000023841858}
+      ]
     },
     {
+      "name": "FireSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_Engineer_Vehicle_throw", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 20, "type": "double"}
-      ],
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_Engineer_Vehicle_throw"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 20}
+      ]
+    },
+    {"name": "FireLoadSe", "type": "ptr", "value": []},
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": []},
+    {"name": "SecondaryFire_Type", "type": "double", "value": 0},
+    {
+      "name": "SecondaryFire_Parameter",
       "type": "ptr",
-      "name": "FireSe"
+      "value": [{"type": "double", "value": 0}]
     },
-    {"value": null, "type": "ptr", "name": "FireLoadSe"},
-    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
-    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {"name": "AmmoClass", "type": "string", "value": "SmokeCandleBullet01"},
     {
-      "value": [{"value": 0, "type": "double"}],
+      "name": "AmmoModel",
+      "type": "string",
+      "value": "app:/WEAPON/e_throw_marker01.rab"
+    },
+    {"name": "AmmoSpeed", "type": "double", "value": 0.4000000059604645},
+    {"name": "AmmoOwnerMove", "type": "double", "value": 1},
+    {"name": "AmmoGravityFactor", "type": "double", "value": 1},
+    {"name": "AmmoAlive", "type": "double", "value": 1800},
+    {"name": "AmmoDamage", "type": "double", "value": 1000},
+    {
+      "name": "AmmoDamageReduce",
       "type": "ptr",
-      "name": "SecondaryFire_Parameter"
+      "value": [{"type": "double", "value": 1}, {"type": "double", "value": 1}]
     },
-    {"value": "SmokeCandleBullet01", "type": "str", "name": "AmmoClass"},
+    {"name": "AmmoExplosion", "type": "double", "value": 40},
+    {"name": "AmmoIsPenetration", "type": "double", "value": 0},
+    {"name": "AmmoSize", "type": "double", "value": 1},
+    {"name": "AmmoHitSizeAdjust", "type": "double", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "double", "value": 1},
     {
-      "value": "app:/WEAPON/e_throw_marker01.rab",
-      "type": "str",
-      "name": "AmmoModel"
-    },
-    {"value": 0.4000000059604645, "type": "double", "name": "AmmoSpeed"},
-    {"value": 1, "type": "double", "name": "AmmoOwnerMove"},
-    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
-    {"value": 1800, "type": "double", "name": "AmmoAlive"},
-    {"value": 1000, "type": "double", "name": "AmmoDamage"},
-    {
-      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "name": "AmmoColor",
       "type": "ptr",
-      "name": "AmmoDamageReduce"
-    },
-    {"value": 40, "type": "double", "name": "AmmoExplosion"},
-    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
-    {"value": 1, "type": "double", "name": "AmmoSize"},
-    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
-    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
-    {
       "value": [
-        {"value": 1, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0.5, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoColor"
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0.5}
+      ]
     },
     {
+      "name": "Ammo_CustomParameter",
+      "type": "ptr",
       "value": [
-        {"value": 0.05000000074505806, "type": "double"},
-        {"value": 180, "type": "double"},
-        {"value": 120, "type": "double"},
-        {"value": 1, "type": "double"},
+        {"type": "double", "value": 0.05000000074505806},
+        {"type": "double", "value": 180},
+        {"type": "double", "value": 120},
+        {"type": "double", "value": 1},
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Object/v508_transport.sgo", "type": "str"},
-            {"value": "app:/object/v509_transportbox.sgo", "type": "str"},
-            {"value": "app:/Object/v505_tank.sgo", "type": "str"},
+            {"type": "string", "value": "app:/Object/v508_transport.sgo"},
+            {"type": "string", "value": "app:/object/v509_transportbox.sgo"},
+            {"type": "string", "value": "app:/Object/v505_tank.sgo"},
             {
+              "type": "ptr",
               "value": [
                 {
+                  "type": "ptr",
                   "value": [
-                    {"value": 23, "type": "double"},
-                    {"value": 23, "type": "double"}
-                  ],
-                  "type": "ptr"
+                    {"type": "double", "value": 23},
+                    {"type": "double", "value": 23}
+                  ]
                 },
                 {
+                  "type": "ptr",
                   "value": [
-                    {"value": 0.10000000149011612, "type": "double"},
-                    {"value": 21, "type": "double"},
-                    {"value": 0.012500000186264515, "type": "double"},
-                    {"value": 1, "type": "double"},
-                    {"value": 0.15000000596046448, "type": "double"},
-                    {"value": 0.25, "type": "double"}
-                  ],
-                  "type": "ptr"
+                    {"type": "double", "value": 0.10000000149011612},
+                    {"type": "double", "value": 21},
+                    {"type": "double", "value": 0.012500000186264515},
+                    {"type": "double", "value": 1},
+                    {"type": "double", "value": 0.15000000596046448},
+                    {"type": "double", "value": 0.25}
+                  ]
                 },
                 {
+                  "type": "ptr",
                   "value": [
                     {
+                      "type": "ptr",
                       "value": [
                         {
-                          "value": "app:/weapon/v_505tank_cannon04L.sgo",
-                          "type": "str"
+                          "type": "string",
+                          "value": "app:/weapon/v_505tank_cannon04L.sgo"
                         },
                         {
+                          "type": "ptr",
                           "value": [
-                            {"value": 0.4000000059604645, "type": "double"},
-                            {"value": 1.5, "type": "double"}
-                          ],
-                          "type": "ptr"
+                            {"type": "double", "value": 0.4000000059604645},
+                            {"type": "double", "value": 1.5}
+                          ]
                         },
                         {
+                          "type": "ptr",
                           "value": [
-                            {"value": 55, "type": "double"},
-                            {"value": 0.05000000074505806, "type": "double"},
-                            {"value": 0.10000000149011612, "type": "double"}
-                          ],
-                          "type": "ptr"
+                            {"type": "double", "value": 55},
+                            {"type": "double", "value": 0.05000000074505806},
+                            {"type": "double", "value": 0.10000000149011612}
+                          ]
                         }
-                      ],
-                      "type": "ptr"
+                      ]
                     }
-                  ],
-                  "type": "ptr"
+                  ]
                 }
-              ],
-              "type": "ptr"
+              ]
             }
-          ],
-          "type": "ptr"
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": "輸送部隊目標確認", "type": "str"},
-            {"value": "輸送部隊発射", "type": "str"},
-            {"value": "輸送部隊攻撃後", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "輸送部隊目標確認"},
+            {"type": "string", "value": "輸送部隊発射"},
+            {"type": "string", "value": "輸送部隊攻撃後"}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "Ammo_CustomParameter"
+      ]
     },
     {
+      "name": "Ammo_EquipVoice",
+      "type": "ptr",
       "value": [
-        {"value": "輸送部隊出撃直後", "type": "str"},
-        {"value": "輸送部隊支援不能", "type": "str"}
-      ],
-      "type": "ptr",
-      "name": "Ammo_EquipVoice"
+        {"type": "string", "value": "輸送部隊出撃直後"},
+        {"type": "string", "value": "輸送部隊支援不能"}
+      ]
     },
     {
+      "name": "AmmoHitSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_Engineer_Vehicle_smoke", "type": "str"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 20, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoHitSe"
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_Engineer_Vehicle_smoke"},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 20}
+      ]
     },
-    {"value": "", "type": "str", "name": "MuzzleFlash"},
-    {"value": null, "type": "ptr", "name": "MuzzleFlash_CustomParameter"},
+    {"name": "MuzzleFlash", "type": "string", "value": ""},
+    {"name": "MuzzleFlash_CustomParameter", "type": "ptr", "value": []},
     {
+      "name": "ShellCase",
+      "type": "ptr",
       "value": [
-        {"value": "", "type": "str"},
-        {"value": "", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ShellCase"
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": []},
     {
-      "value": [{"value": 1, "type": "double"}],
+      "name": "ExtPrams",
       "type": "ptr",
-      "name": "ExtPrams"
+      "value": [{"type": "double", "value": 1}]
     },
     {
+      "name": "resource",
+      "type": "ptr",
       "value": [
-        {"value": "app:/WEAPON/e_throw_marker01.rab", "type": "str"},
-        {"value": "app:/Object/v508_transport.sgo", "type": "str"},
-        {"value": "app:/object/v509_transportbox.sgo", "type": "str"},
-        {"value": "app:/Object/v505_tank.sgo", "type": "str"},
-        {"value": "app:/weapon/v_505tank_cannon04L.sgo", "type": "str"}
-      ],
-      "type": "ptr",
-      "name": "resource"
+        {"type": "string", "value": "app:/WEAPON/e_throw_marker01.rab"},
+        {"type": "string", "value": "app:/Object/v508_transport.sgo"},
+        {"type": "string", "value": "app:/object/v509_transportbox.sgo"},
+        {"type": "string", "value": "app:/Object/v505_tank.sgo"},
+        {"type": "string", "value": "app:/weapon/v_505tank_cannon04L.sgo"}
+      ]
     }
   ],
-  "strings": [
-    "AmmoExplosion",
-    "LockonTargetType",
-    "BaseAnimation",
-    "AmmoColor",
-    "LockonAngle",
-    "AimAnimation",
-    "WeaponIcon",
-    "Lockon_AutoTimeOut",
-    "ReloadType",
-    "MuzzleFlash",
-    "AmmoAlive",
-    "FireVector",
-    "FireType",
-    "AmmoClass",
-    "AmmoDamageReduce",
-    "AmmoDamage",
-    "AmmoGravityFactor",
-    "AmmoCount",
-    "SecondaryFire_Type",
-    "AmmoHitImpulseAdjust",
-    "AmmoHitSe",
-    "AmmoHitSizeAdjust",
-    "AmmoIsPenetration",
-    "Blacker E4",
-    "AmmoModel",
-    "AmmoOwnerMove",
-    "FireCondition",
-    "AmmoSize",
-    "AmmoSpeed",
-    "ReloadInit",
-    "Ammo_CustomParameter",
-    "LockonTime",
-    "Ammo_EquipVoice",
-    "AngleAdjust",
-    "name.cn",
-    "SecondaryFire_Parameter",
-    "LockonFailedTime",
-    "ChangeAnimation",
-    "FireAccuracy",
-    "EnergyChargeRequire",
-    "ReloadTime",
-    "ExtPrams",
-    "FireBurstCount",
-    "LockonRange",
-    "FireBurstInterval",
-    "FireCount",
-    "FireInterval",
-    "FireLoadSe",
-    "FireRecoil",
-    "FireSe",
-    "FireSpreadType",
-    "FireSpreadWidth",
-    "LockonHoldTime",
-    "LockonType",
-    "ShellCase_CustomParameter",
-    "Lockon_DistributionType",
-    "Lockon_FireEndToClear",
-    "name.en",
-    "ModelConstraint",
-    "MuzzleFlash_CustomParameter",
-    "ReloadAnimation",
-    "ShellCase",
-    "ShellCaseDischargeSe",
-    "throw",
-    "animation_model",
-    "custom_parameter",
-    "name.ja",
-    "name.kr",
-    "name.sc",
-    "resource",
-    "use_underground",
-    "xgs_scene_object_class",
-    "Weapon_Sub",
-    "aim_no_ik",
-    "animation",
-    "animation_speed",
-    "whole_body",
-    "輸送部隊出撃直後",
-    "vehicle_call",
-    "ブラッカーＥ４",
-    "布萊克戰車Ｅ４",
-    "블래커 E4",
-    "布莱克战车Ｅ４",
-    "app:/weapon/icon/tank01.dds",
-    "app:/Weapon/e_throw_marker01.rab",
-    "e_throw_marker01.mdb",
-    "app:/Weapon/e_throw_marker01.cas",
-    "arms_r",
-    "throw_change1",
-    "throw_reload1",
-    "weapon_Engineer_Vehicle_throw",
-    "SmokeCandleBullet01",
-    "app:/WEAPON/e_throw_marker01.rab",
-    "app:/Object/v508_transport.sgo",
-    "app:/object/v509_transportbox.sgo",
-    "app:/Object/v505_tank.sgo",
-    "app:/weapon/v_505tank_cannon04L.sgo",
-    "輸送部隊目標確認",
-    "輸送部隊発射",
-    "輸送部隊攻撃後",
-    "輸送部隊支援不能",
-    "weapon_Engineer_Vehicle_smoke",
-    ""
-  ]
+  "heap": {}
 }

@@ -1,85 +1,79 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "FarEventObject",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "FarEventObject"
     },
     {
-      "value": [
-        {
-          "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
-        },
-        {
-          "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": -20, "type": "double"}
-          ],
-          "type": "ptr"
-        }
-      ],
+      "name": "game_object_camera_setting",
       "type": "ptr",
-      "name": "game_object_camera_setting"
-    },
-    {
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Object/ev604_FrogCompany.mrab", "type": "str"},
-            {"value": "ev604_FrogCompany.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 0}
+          ]
         },
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
         {
+          "type": "ptr",
+          "value": [
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": -20}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
+        {
+          "type": "ptr",
+          "value": [
+            {"type": "string", "value": "app:/Object/ev604_FrogCompany.mrab"},
+            {"type": "string", "value": "ev604_FrogCompany.mdb"}
+          ]
+        },
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {
+          "type": "ptr",
           "value": [
             {
+              "type": "ptr",
               "value": [
-                {"value": 8, "type": "double"},
-                {"value": 8, "type": "double"},
-                {"value": 8, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 8},
+                {"type": "double", "value": 8},
+                {"type": "double", "value": 8}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": -5909.63037109375, "type": "double"},
-                {"value": -58.248714447021484, "type": "double"},
-                {"value": -9967.7470703125, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": -5909.63037109375},
+                {"type": "double", "value": -58.248714447021484},
+                {"type": "double", "value": -9967.7470703125}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": 7561.6015625, "type": "double"},
-                {"value": 358.743896484375, "type": "double"},
-                {"value": 7266.71142578125, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 7561.6015625},
+                {"type": "double", "value": 358.743896484375},
+                {"type": "double", "value": 7266.71142578125}
+              ]
             }
-          ],
-          "type": "ptr"
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     }
   ],
-  "strings": [
-    "xgs_scene_object_class",
-    "animation_model",
-    "game_object_camera_setting",
-    "FarEventObject",
-    "app:/Object/ev604_FrogCompany.mrab",
-    "ev604_FrogCompany.mdb"
-  ]
+  "heap": {}
 }

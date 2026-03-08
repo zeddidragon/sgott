@@ -1,81 +1,70 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "FarEventObject",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "FarEventObject"
     },
     {
+      "name": "setting",
+      "type": "ptr",
       "value": [
         {
-          "value": [
-            {"value": 100, "type": "double"},
-            {"value": 100, "type": "double"},
-            {"value": 100, "type": "double"}
-          ],
+          "name": "scale",
           "type": "ptr",
-          "name": "scale"
+          "value": [
+            {"type": "double", "value": 100},
+            {"type": "double", "value": 100},
+            {"type": "double", "value": 100}
+          ]
         },
         {
-          "value": "random_run_normal_back",
-          "type": "str",
-          "name": "default_animation"
+          "name": "default_animation",
+          "type": "string",
+          "value": "random_run_normal_back"
         }
-      ],
-      "type": "ptr",
-      "name": "setting"
+      ]
     },
     {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": 0}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 2, "type": "double"},
-            {"value": -20, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 2},
+            {"type": "double", "value": -20}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "game_object_camera_setting"
+      ]
     },
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Object/WOMAN02.mrab", "type": "str"},
-            {"value": "woman02.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Object/WOMAN02.mrab"},
+            {"type": "string", "value": "woman02.mdb"}
+          ]
         },
-        {"value": "app:/Object/FAREVENTOBJECT.cas", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+        {"type": "string", "value": "app:/Object/FAREVENTOBJECT.cas"},
+        {"type": "double", "value": 0}
+      ]
     }
   ],
-  "strings": [
-    "xgs_scene_object_class",
-    "animation_model",
-    "setting",
-    "game_object_camera_setting",
-    "FarEventObject",
-    "default_animation",
-    "scale",
-    "random_run_normal_back",
-    "app:/Object/WOMAN02.mrab",
-    "woman02.mdb",
-    "app:/Object/FAREVENTOBJECT.cas"
-  ]
+  "heap": {}
 }

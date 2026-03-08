@@ -1,189 +1,165 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
-    {"value": "AntHill", "type": "str", "name": "xgs_scene_object_class"},
+    {"name": "xgs_scene_object_class", "type": "string", "value": "AntHill"},
     {
-      "value": "HornetNestSnallKillCount",
-      "type": "str",
-      "name": "game_object_kill_counter"
+      "name": "game_object_kill_counter",
+      "type": "string",
+      "value": "HornetNestSnallKillCount"
     },
     {
+      "name": "game_object_camera_setting",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 10, "type": "double"},
-            {"value": 0, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 10},
+            {"type": "double", "value": 0}
+          ]
         },
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": 10, "type": "double"},
-            {"value": -50, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "double", "value": 10},
+            {"type": "double", "value": -50}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "game_object_camera_setting"
+      ]
     },
-    {"value": 1000, "type": "double", "name": "game_object_durability"},
+    {"name": "game_object_durability", "type": "double", "value": 1000},
     {
-      "value": 0.5,
+      "name": "game_object_destroy_score_adjust",
       "type": "double",
-      "name": "game_object_destroy_score_adjust"
+      "value": 0.5
     },
     {
-      "value": [
-        {"value": 0, "type": "double"},
-        {"value": 150, "type": "double"}
-      ],
+      "name": "game_object_encount",
       "type": "ptr",
-      "name": "game_object_encount"
-    },
-    {
       "value": [
-        {"value": "app:/sound/adx/tikyuu4_en_moundBee.acb", "type": "str"}
-      ],
-      "type": "ptr",
-      "name": "game_sound"
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 150}
+      ]
     },
     {
+      "name": "game_sound",
+      "type": "ptr",
+      "value": [
+        {"type": "string", "value": "app:/sound/adx/tikyuu4_en_moundBee.acb"}
+      ]
+    },
+    {
+      "name": "resource",
+      "type": "ptr",
       "value": [
         {
-          "value": "app:/object/e615_hornetnest_small03_destroy.sgo",
-          "type": "str"
+          "type": "string",
+          "value": "app:/object/e615_hornetnest_small03_destroy.sgo"
         }
-      ],
-      "type": "ptr",
-      "name": "resource"
+      ]
     },
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Object/e615_hornetnest_small.mrab", "type": "str"},
-            {"value": "e615_hornetnest_small03.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {
+              "type": "string",
+              "value": "app:/Object/e615_hornetnest_small.mrab"
+            },
+            {"type": "string", "value": "e615_hornetnest_small03.mdb"}
+          ]
         },
-        {"value": "app:/object/e615_hornetnest_small03.cas", "type": "str"},
+        {"type": "string", "value": "app:/object/e615_hornetnest_small03.cas"},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000400000002003a00240000008400000090000000d00000000000010020000000010001003800000002000000500000000300000048000000b40000008c000000000000005c0000000000a040ffffffff000000006c000000760000006c000000000000002c0000000000a040ffffffff000000004c000000babababababababababababa0000000000000000000050400000803f0000d8c0cdcc34416666fe400000803f53474f000201000000000000200000000000000020000000000000002000000062006f00640079000000bf30fc30b230c330c8304d4f6e7f00000000000000000000000000000000fa51fe734d4f6e7f00000000000000000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000400000002003a00240000008400000090000000d00000000000010020000000010001003800000002000000500000000300000048000000b40000008c000000000000005c0000000000a040ffffffff000000006c000000760000006c000000000000002c0000000000a040ffffffff000000004c000000babababababababababababa0000000000000000000050400000803f0000d8c0cdcc34416666fe400000803f53474f000201000000000000200000000000000020000000000000002000000062006f00640079000000bf30fc30b230c330c8304d4f6e7f00000000000000000000000000000000fa51fe734d4f6e7f00000000000000000000"
+          }
         },
         {
+          "type": "ptr",
           "value": [
             {
+              "type": "ptr",
               "value": [
-                {"value": 16, "type": "double"},
-                {"value": 16, "type": "double"},
-                {"value": 16, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 16},
+                {"type": "double", "value": 16},
+                {"type": "double", "value": 16}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": -18.559226989746094, "type": "double"},
-                {"value": -14.801216125488281, "type": "double"},
-                {"value": -7.492979049682617, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": -18.559226989746094},
+                {"type": "double", "value": -14.801216125488281},
+                {"type": "double", "value": -7.492979049682617}
+              ]
             },
             {
+              "type": "ptr",
               "value": [
-                {"value": 19.558300018310547, "type": "double"},
-                {"value": 24.43073272705078, "type": "double"},
-                {"value": 22.126020431518555, "type": "double"}
-              ],
-              "type": "ptr"
+                {"type": "double", "value": 19.558300018310547},
+                {"type": "double", "value": 24.43073272705078},
+                {"type": "double", "value": 22.126020431518555}
+              ]
             }
-          ],
-          "type": "ptr"
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
+      "name": "ragdoll",
+      "type": "ptr",
       "value": [
-        {"value": "app:/object/e615_hornetnest_small03.shkt", "type": "str"},
+        {"type": "string", "value": "app:/object/e615_hornetnest_small03.shkt"},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "53474f0002010000020000002000000002000000d001000000000000e00100000000000001000000180000000000000001000000d800000000000000040000000c00000000000000020000003000000000000000030000003c00000000000000040000005400000000000000030000007800000003000000040000009a01000003000000040000008e01000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f00000000040000000c00000000000000020000003000000000000000030000003c0000000000000004000000540000000000000003000000780000000300000004000000ce0000000300000004000000c200000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f1000000000000000400000000100000061006e0069006d006100740069006f006e005f00660072006f006d005f0072006100670064006f006c006c00000062006f0064007900000072006100670064006f006c006c005f00660072006f006d005f0061006e0069006d006100740069006f006e000000"
-          },
-          "type": "extra"
+            "value": "53474f0002010000020000002000000002000000d001000000000000e00100000000000001000000180000000000000001000000d800000000000000040000000c00000000000000020000003000000000000000030000003c00000000000000040000005400000000000000030000007800000003000000040000009a01000003000000040000008e01000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f00000000040000000c00000000000000020000003000000000000000030000003c0000000000000004000000540000000000000003000000780000000300000004000000ce0000000300000004000000c200000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000000002000000040000000000803f02000000040000000000803f02000000040000000000803f02000000040000000000803f1000000000000000400000000100000061006e0069006d006100740069006f006e005f00660072006f006d005f0072006100670064006f006c006c00000062006f0064007900000072006100670064006f006c006c005f00660072006f006d005f0061006e0069006d006100740069006f006e000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "ragdoll"
+      ]
     },
     {
-      "value": [
-        {"value": "蜂の巣小稼動", "type": "str"},
-        {"value": "蜂の巣小ダメージ", "type": "str"},
-        {"value": "蜂の巣小破壊", "type": "str"}
-      ],
+      "name": "se_table",
       "type": "ptr",
-      "name": "se_table"
+      "value": [
+        {"type": "string", "value": "蜂の巣小稼動"},
+        {"type": "string", "value": "蜂の巣小ダメージ"},
+        {"type": "string", "value": "蜂の巣小破壊"}
+      ]
     },
     {
-      "value": [
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": -4, "type": "double"}
-      ],
+      "name": "transform_offset",
       "type": "ptr",
-      "name": "transform_offset"
+      "value": [
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": -4}
+      ]
     },
     {
+      "name": "ant_hill",
+      "type": "ptr",
       "value": [
-        {"value": 1, "type": "double", "name": "destruction_type"},
+        {"name": "destruction_type", "type": "double", "value": 1},
         {
-          "value": "app:/object/e615_hornetnest_small03_destroy.sgo",
-          "type": "str",
-          "name": "destroy_object"
+          "name": "destroy_object",
+          "type": "string",
+          "value": "app:/object/e615_hornetnest_small03_destroy.sgo"
         },
-        {"value": 1, "type": "double", "name": "is_closest_building_invincible"}
-      ],
-      "type": "ptr",
-      "name": "ant_hill"
+        {"name": "is_closest_building_invincible", "type": "double", "value": 1}
+      ]
     }
   ],
-  "strings": [
-    "animation_model",
-    "ant_hill",
-    "HornetNestSnallKillCount",
-    "game_object_encount",
-    "game_object_camera_setting",
-    "game_object_destroy_score_adjust",
-    "game_object_kill_counter",
-    "game_sound",
-    "game_object_durability",
-    "ragdoll",
-    "app:/Object/e615_hornetnest_small.mrab",
-    "resource",
-    "se_table",
-    "transform_offset",
-    "xgs_scene_object_class",
-    "AntHill",
-    "app:/sound/adx/tikyuu4_en_moundBee.acb",
-    "app:/object/e615_hornetnest_small03_destroy.sgo",
-    "e615_hornetnest_small03.mdb",
-    "app:/object/e615_hornetnest_small03.cas",
-    "app:/object/e615_hornetnest_small03.shkt",
-    "蜂の巣小稼動",
-    "蜂の巣小ダメージ",
-    "蜂の巣小破壊",
-    "destroy_object",
-    "destruction_type",
-    "is_closest_building_invincible"
-  ]
+  "heap": {}
 }

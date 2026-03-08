@@ -1,401 +1,307 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "Weapon_BasicShoot",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "Weapon_BasicShoot"
     },
     {
-      "value": [
-        {"value": "assault_recoil2", "type": "str"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": [{"value": 1, "type": "double"}], "type": "ptr"}
-      ],
+      "name": "custom_parameter",
       "type": "ptr",
-      "name": "custom_parameter"
-    },
-    {"value": 1, "type": "double", "name": "use_underground"},
-    {"value": 0, "type": "double", "name": "FireCondition"},
-    {"value": "ＭＡ９Ｅスレイド", "type": "str", "name": "name.ja"},
-    {"value": "MA9E Slade", "type": "str", "name": "name.en"},
-    {"value": "ＭＡ９Ｅ史萊德", "type": "str", "name": "name.cn"},
-    {"value": "MA9E 슬레이드", "type": "str", "name": "name.kr"},
-    {"value": "ＭＡ９Ｅ史莱德", "type": "str", "name": "name.sc"},
-    {
-      "value": "app:/weapon/icon/s_assault_601_powerful.dds",
-      "type": "str",
-      "name": "WeaponIcon"
-    },
-    {
       "value": [
-        {
-          "value": [
-            {"value": "app:/HUD/Sight01.rab", "type": "str"},
-            {"value": "Sight01.mdb", "type": "str"}
-          ],
-          "type": "ptr"
-        },
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
+        {"type": "string", "value": "assault_recoil2"},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 1},
+        {"type": "ptr", "value": [{"type": "double", "value": 1}]}
+      ]
+    },
+    {"name": "use_underground", "type": "double", "value": 1},
+    {"name": "FireCondition", "type": "double", "value": 0},
+    {"name": "name.ja", "type": "string", "value": "ＭＡ９Ｅスレイド"},
+    {"name": "name.en", "type": "string", "value": "MA9E Slade"},
+    {"name": "name.cn", "type": "string", "value": "ＭＡ９Ｅ史萊德"},
+    {"name": "name.kr", "type": "string", "value": "MA9E 슬레이드"},
+    {"name": "name.sc", "type": "string", "value": "ＭＡ９Ｅ史莱德"},
+    {
+      "name": "WeaponIcon",
+      "type": "string",
+      "value": "app:/weapon/icon/s_assault_601_powerful.dds"
+    },
+    {
+      "name": "Sight_animation_model",
       "type": "ptr",
-      "name": "Sight_animation_model"
-    },
-    {
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Weapon/s_assault_601_powerful.rab", "type": "str"},
-            {"value": "s_assault_601_powerful.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/HUD/Sight01.rab"},
+            {"type": "string", "value": "Sight01.mdb"}
+          ]
         },
-        {"value": "app:/Weapon/s_assault_601_powerful.cas", "type": "str"},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0}
+      ]
+    },
+    {
+      "name": "animation_model",
+      "type": "ptr",
+      "value": [
         {
+          "type": "ptr",
+          "value": [
+            {
+              "type": "string",
+              "value": "app:/Weapon/s_assault_601_powerful.rab"
+            },
+            {"type": "string", "value": "s_assault_601_powerful.mdb"}
+          ]
+        },
+        {"type": "string", "value": "app:/Weapon/s_assault_601_powerful.cas"},
+        {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000300040007007e00240000009c00000030010000c00400000000010018000000010001003000000002000100480000008404000090040000020000000401000014010000f400000000000000640100006a04000070040000020000002401000004010000140100000000000044010000b8040000500400000200000014010000e4000000b400000000000000dc02000040000000900000008804000000000000300000008000000058040000020000004000000070000000300400000000000030000000600000000a040000030000004204000000000000000000002802000032040000000000000000000020010000220400000000984100000000b401000012040000000034420000000050010000020400000000c84200000000a4000000babababa0000000000000000000000000000803f000000008fc2f53dc74b573f0000803f0ad7a33c0ad7a33c0ad7a33c0000803fcdcccc3ccdcccc3ccdcccc3c0000803fd5068e3dfa3497bf960116400000803f5f97c13dfc7010bcbedc473e0000803f6f1203bd508d973d7f6a3c3e0000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000060000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffcb694830000053474f00020100000100000020000000010000002c000000000000003400000003000000070000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ff4a308d3059300000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffde30b030bb30c330c8300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000a0000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffde30b030d6538a30fa515730000053474f00020100000100000020000000010000002c0000000000000034000000030000000a0000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffde30b030ea30ea30fc30b930000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000049004b00000062006f00640079000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000ac85a283000000000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000300040007007e00240000009c00000030010000c00400000000010018000000010001003000000002000100480000008404000090040000020000000401000014010000f400000000000000640100006a04000070040000020000002401000004010000140100000000000044010000b8040000500400000200000014010000e4000000b400000000000000dc02000040000000900000008804000000000000300000008000000058040000020000004000000070000000300400000000000030000000600000000a040000030000004204000000000000000000002802000032040000000000000000000020010000220400000000984100000000b401000012040000000034420000000050010000020400000000c84200000000a4000000babababa0000000000000000000000000000803f000000008fc2f53dc74b573f0000803f0ad7a33c0ad7a33c0ad7a33c0000803fcdcccc3ccdcccc3ccdcccc3c0000803fd5068e3dfa3497bf960116400000803f5f97c13dfc7010bcbedc473e0000803f6f1203bd508d973d7f6a3c3e0000803f53474f000201000000000000200000000000000020000000000000002000000053474f00020100000100000020000000010000002c000000000000003400000003000000060000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffcb694830000053474f00020100000100000020000000010000002c000000000000003400000003000000070000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ff4a308d3059300000000053474f00020100000100000020000000010000002c000000000000003400000003000000090000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffde30b030bb30c330c8300000000053474f00020100000100000020000000010000002c0000000000000034000000030000000a0000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffde30b030d6538a30fa515730000053474f00020100000100000020000000010000002c0000000000000034000000030000000a0000001e00000008000000000000006e0061006d006500000021ff26ff11ff14ffde30b030ea30ea30fc30b930000053474f0002010000040000002000000004000000e0000000000000000001000000000000030000003000000000000000030000004800000000000000030000006000000000000000030000007800000002000000040000000000803f02000000040000000000803f02000000040000000000803f0200000004000000000080bf0200000004000000000080bf0200000004000000000080bf02000000040000000000c0bf02000000040000000000003f0200000004000000000000000200000004000000000080bf020000000400000000000000020000000400000000000000200000000000000032000000010000004400000002000000560000000300000072006f0074006100740069006f006e005f006d0061007800000072006f0074006100740069006f006e005f006d0069006e000000760065006c006f0063006900740079005f006d00610078000000760065006c006f0063006900740079005f006d0069006e00000030003100000049004b00000062006f00640079000000720065006c006f00610064005f0065006e0064000000720065006c006f00610064005f006c006f006f0070000000720065006c006f00610064005f007300740061007200740000007300650000007300740061006e006400620079000000ac85a283000000000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
-      "value": [{"value": "arms_r", "type": "str"}],
+      "name": "ModelConstraint",
       "type": "ptr",
-      "name": "ModelConstraint"
+      "value": [{"type": "string", "value": "arms_r"}]
     },
-    {"value": "assault", "type": "str", "name": "BaseAnimation"},
-    {"value": "aim", "type": "str", "name": "AimAnimation"},
-    {"value": "assault_change1", "type": "str", "name": "ChangeAnimation"},
-    {"value": "assault_reload1", "type": "str", "name": "ReloadAnimation"},
+    {"name": "BaseAnimation", "type": "string", "value": "assault"},
+    {"name": "AimAnimation", "type": "string", "value": "aim"},
+    {"name": "ChangeAnimation", "type": "string", "value": "assault_change1"},
+    {"name": "ReloadAnimation", "type": "string", "value": "assault_reload1"},
     {
+      "name": "AmmoCount",
+      "type": "ptr",
       "value": [
-        {"value": 160, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 7, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoCount"
+        {"type": "double", "value": 160},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 7},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
     },
     {
+      "name": "EnergyChargeRequire",
+      "type": "ptr",
       "value": [
-        {"value": -1, "type": "double"},
-        {"value": -1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "EnergyChargeRequire"
+        {"type": "double", "value": -1},
+        {"type": "double", "value": -1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "ReloadType"},
-    {"value": 1, "type": "double", "name": "ReloadInit"},
+    {"name": "ReloadType", "type": "double", "value": 0},
+    {"name": "ReloadInit", "type": "double", "value": 1},
     {
+      "name": "ReloadTime",
+      "type": "ptr",
       "value": [
-        {"value": 120, "type": "double"},
-        {"value": 21, "type": "double"},
-        {"value": 4, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ReloadTime"
+        {"type": "double", "value": 120},
+        {"type": "double", "value": 21},
+        {"type": "double", "value": 4},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AngleAdjust"},
-    {"value": 0, "type": "double", "name": "LockonType"},
-    {"value": 0, "type": "double", "name": "LockonTargetType"},
-    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
-    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
-    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
-    {"value": 0, "type": "double", "name": "LockonRange"},
+    {"name": "AngleAdjust", "type": "double", "value": 0},
+    {"name": "LockonType", "type": "double", "value": 0},
+    {"name": "LockonTargetType", "type": "double", "value": 0},
+    {"name": "Lockon_DistributionType", "type": "double", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "double", "value": 1},
+    {"name": "Lockon_AutoTimeOut", "type": "double", "value": 1},
+    {"name": "LockonRange", "type": "double", "value": 0},
     {
+      "name": "LockonAngle",
+      "type": "ptr",
       "value": [
-        {"value": 0.30000001192092896, "type": "double"},
-        {"value": 0.30000001192092896, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "LockonAngle"
+        {"type": "double", "value": 0.30000001192092896},
+        {"type": "double", "value": 0.30000001192092896}
+      ]
     },
-    {"value": 0, "type": "double", "name": "LockonTime"},
-    {"value": 0, "type": "double", "name": "LockonFailedTime"},
-    {"value": 0, "type": "double", "name": "LockonHoldTime"},
-    {"value": 0, "type": "double", "name": "FireType"},
-    {"value": 0, "type": "double", "name": "FireSpreadType"},
-    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
-    {"value": 1, "type": "double", "name": "FireCount"},
+    {"name": "LockonTime", "type": "double", "value": 0},
+    {"name": "LockonFailedTime", "type": "double", "value": 0},
+    {"name": "LockonHoldTime", "type": "double", "value": 0},
+    {"name": "FireType", "type": "double", "value": 0},
+    {"name": "FireSpreadType", "type": "double", "value": 0},
+    {"name": "FireSpreadWidth", "type": "double", "value": 0},
+    {"name": "FireCount", "type": "double", "value": 1},
     {
+      "name": "FireInterval",
+      "type": "ptr",
       "value": [
-        {"value": 4, "type": "double"},
-        {"value": 25, "type": "double"},
-        {"value": 5, "type": "double"},
-        {"value": 3, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireInterval"
+        {"type": "double", "value": 4},
+        {"type": "double", "value": 25},
+        {"type": "double", "value": 5},
+        {"type": "double", "value": 3},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": 1, "type": "double", "name": "FireBurstCount"},
-    {"value": 0, "type": "double", "name": "FireBurstInterval"},
+    {"name": "FireBurstCount", "type": "double", "value": 1},
+    {"name": "FireBurstInterval", "type": "double", "value": 0},
     {
+      "name": "FireAccuracy",
+      "type": "ptr",
       "value": [
-        {"value": 0.004999999888241291, "type": "double"},
-        {"value": 13, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 6, "type": "double"},
-        {"value": 2, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireAccuracy"
+        {"type": "double", "value": 0.004999999888241291},
+        {"type": "double", "value": 13},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 6},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
-    {"value": 0.20000000298023224, "type": "double", "name": "FireRecoil"},
-    {"value": null, "type": "ptr", "name": "FireVector"},
+    {"name": "FireRecoil", "type": "double", "value": 0.20000000298023224},
+    {"name": "FireVector", "type": "ptr", "value": []},
     {
+      "name": "FireSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "e5w_AF_TZ-Stoke", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 25, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireSe"
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "e5w_AF_TZ-Stoke"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 25}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "FireLoadSe"},
-    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
-    {"value": 1, "type": "double", "name": "SecondaryFire_Type"},
-    {"value": 2, "type": "double", "name": "SecondaryFire_Parameter"},
-    {"value": "SolidPelletBullet01", "type": "str", "name": "AmmoClass"},
-    {"value": 0, "type": "double", "name": "AmmoModel"},
+    {"name": "FireLoadSe", "type": "ptr", "value": []},
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": []},
+    {"name": "SecondaryFire_Type", "type": "double", "value": 1},
+    {"name": "SecondaryFire_Parameter", "type": "double", "value": 2},
+    {"name": "AmmoClass", "type": "string", "value": "SolidPelletBullet01"},
+    {"name": "AmmoModel", "type": "double", "value": 0},
     {
+      "name": "AmmoSpeed",
+      "type": "ptr",
       "value": [
-        {"value": 20, "type": "double"},
-        {"value": 16, "type": "double"},
-        {"value": 3, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoSpeed"
+        {"type": "double", "value": 20},
+        {"type": "double", "value": 16},
+        {"type": "double", "value": 3},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
-    {"value": 0, "type": "double", "name": "AmmoGravityFactor"},
-    {"value": 24, "type": "double", "name": "AmmoAlive"},
+    {"name": "AmmoOwnerMove", "type": "double", "value": 0},
+    {"name": "AmmoGravityFactor", "type": "double", "value": 0},
+    {"name": "AmmoAlive", "type": "double", "value": 24},
     {
+      "name": "AmmoDamage",
+      "type": "ptr",
       "value": [
-        {"value": 380, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoDamage"
+        {"type": "double", "value": 380},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
     {
+      "name": "AmmoDamageReduce",
+      "type": "ptr",
       "value": [
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoDamageReduce"
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "AmmoExplosion"},
-    {"value": 1, "type": "double", "name": "AmmoIsPenetration"},
-    {"value": 0.25, "type": "double", "name": "AmmoSize"},
-    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
-    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {"name": "AmmoExplosion", "type": "double", "value": 0},
+    {"name": "AmmoIsPenetration", "type": "double", "value": 1},
+    {"name": "AmmoSize", "type": "double", "value": 0.25},
+    {"name": "AmmoHitSizeAdjust", "type": "double", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "double", "value": 1},
     {
+      "name": "AmmoColor",
+      "type": "ptr",
       "value": [
-        {"value": 8, "type": "double"},
-        {"value": 1.5, "type": "double"},
-        {"value": 2.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoColor"
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 1.5},
+        {"type": "double", "value": 2.5},
+        {"type": "double", "value": 1}
+      ]
     },
     {
-      "value": [{"value": 4, "type": "double"}],
+      "name": "Ammo_CustomParameter",
       "type": "ptr",
-      "name": "Ammo_CustomParameter"
+      "value": [{"type": "double", "value": 4}]
     },
-    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
-    {"value": null, "type": "ptr", "name": "AmmoHitSe"},
-    {"value": "MuzzleFlash02", "type": "str", "name": "MuzzleFlash"},
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": []},
+    {"name": "AmmoHitSe", "type": "ptr", "value": []},
+    {"name": "MuzzleFlash", "type": "string", "value": "MuzzleFlash02"},
     {
+      "name": "MuzzleFlash_CustomParameter",
+      "type": "ptr",
       "value": [
-        {"value": "マズルフラッシュパターン.dds", "type": "str"},
-        {"value": 2, "type": "double"},
-        {"value": 0.3199999928474426, "type": "double"},
-        {"value": 0, "type": "double"},
-        {"value": 8, "type": "double"},
-        {"value": 0.8500000238418579, "type": "double"},
-        {"value": 0.11999999731779099, "type": "double"},
-        {"value": 2, "type": "double"},
+        {"type": "string", "value": "マズルフラッシュパターン.dds"},
+        {"type": "double", "value": 2},
+        {"type": "double", "value": 0.3199999928474426},
+        {"type": "double", "value": 0},
+        {"type": "double", "value": 8},
+        {"type": "double", "value": 0.8500000238418579},
+        {"type": "double", "value": 0.11999999731779099},
+        {"type": "double", "value": 2},
         {
+          "type": "ptr",
           "value": [
-            {"value": 0.5, "type": "double"},
-            {"value": 0.699999988079071, "type": "double"},
-            {"value": 1.7999999523162842, "type": "double"},
-            {"value": 1, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0.5},
+            {"type": "double", "value": 0.699999988079071},
+            {"type": "double", "value": 1.7999999523162842},
+            {"type": "double", "value": 1}
+          ]
         },
-        {"value": -0.20000000298023224, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "MuzzleFlash_CustomParameter"
+        {"type": "double", "value": -0.20000000298023224}
+      ]
     },
     {
+      "name": "ShellCase",
+      "type": "ptr",
       "value": [
-        {"value": "ShellCase_RB", "type": "str"},
-        {"value": "app:/Weapon/ShellCase401.rab", "type": "str"},
+        {"type": "string", "value": "ShellCase_RB"},
+        {"type": "string", "value": "app:/Weapon/ShellCase401.rab"},
         {
+          "type": "ptr",
           "value": [
-            {"value": 0, "type": "double"},
-            {"value": "weapon_Common_shell_9mm", "type": "str"},
-            {"value": 0.1599999964237213, "type": "double"},
-            {"value": 0.699999988079071, "type": "double"},
-            {"value": 1, "type": "double"},
-            {"value": 5, "type": "double"}
-          ],
-          "type": "ptr"
+            {"type": "double", "value": 0},
+            {"type": "string", "value": "weapon_Common_shell_9mm"},
+            {"type": "double", "value": 0.1599999964237213},
+            {"type": "double", "value": 0.699999988079071},
+            {"type": "double", "value": 1},
+            {"type": "double", "value": 5}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "ShellCase"
+      ]
     },
-    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": []},
     {
-      "value": [{"value": 1, "type": "double"}],
+      "name": "ExtPrams",
       "type": "ptr",
-      "name": "ExtPrams"
+      "value": [{"type": "double", "value": 1}]
     },
     {
+      "name": "resource",
+      "type": "ptr",
       "value": [
-        {"value": "app:/Weapon/ShellCase401.rab", "type": "str"},
-        {"value": "app:/Weapon/ShellCase401.shkt", "type": "str"}
-      ],
-      "type": "ptr",
-      "name": "resource"
+        {"type": "string", "value": "app:/Weapon/ShellCase401.rab"},
+        {"type": "string", "value": "app:/Weapon/ShellCase401.shkt"}
+      ]
     }
   ],
-  "strings": [
-    "MuzzleFlash02",
-    "AmmoExplosion",
-    "LockonTargetType",
-    "BaseAnimation",
-    "AmmoColor",
-    "LockonAngle",
-    "AimAnimation",
-    "WeaponIcon",
-    "Lockon_AutoTimeOut",
-    "ReloadType",
-    "ＭＡ９Ｅ史莱德",
-    "MuzzleFlash",
-    "AmmoAlive",
-    "FireVector",
-    "FireType",
-    "AmmoClass",
-    "AmmoDamageReduce",
-    "AmmoDamage",
-    "AmmoGravityFactor",
-    "AmmoCount",
-    "SecondaryFire_Type",
-    "AmmoHitImpulseAdjust",
-    "AmmoHitSe",
-    "AmmoHitSizeAdjust",
-    "AmmoIsPenetration",
-    "AmmoModel",
-    "AmmoOwnerMove",
-    "FireCondition",
-    "AmmoSize",
-    "AmmoSpeed",
-    "ReloadInit",
-    "Ammo_CustomParameter",
-    "LockonTime",
-    "weapon_Common_shell_9mm",
-    "Ammo_EquipVoice",
-    "AngleAdjust",
-    "name.cn",
-    "SecondaryFire_Parameter",
-    "LockonFailedTime",
-    "ChangeAnimation",
-    "FireAccuracy",
-    "app:/HUD/Sight01.rab",
-    "EnergyChargeRequire",
-    "ReloadTime",
-    "ExtPrams",
-    "FireBurstCount",
-    "e5w_AF_TZ-Stoke",
-    "LockonRange",
-    "FireBurstInterval",
-    "FireCount",
-    "FireInterval",
-    "FireLoadSe",
-    "FireRecoil",
-    "FireSe",
-    "FireSpreadType",
-    "FireSpreadWidth",
-    "Sight_animation_model",
-    "LockonHoldTime",
-    "LockonType",
-    "ShellCase_CustomParameter",
-    "Lockon_DistributionType",
-    "Lockon_FireEndToClear",
-    "ModelConstraint",
-    "MuzzleFlash_CustomParameter",
-    "ReloadAnimation",
-    "ShellCase",
-    "ShellCaseDischargeSe",
-    "animation_model",
-    "custom_parameter",
-    "name.en",
-    "name.ja",
-    "ＭＡ９Ｅスレイド",
-    "name.kr",
-    "name.sc",
-    "resource",
-    "use_underground",
-    "xgs_scene_object_class",
-    "Weapon_BasicShoot",
-    "assault_recoil2",
-    "MA9E Slade",
-    "ＭＡ９Ｅ史萊德",
-    "MA9E 슬레이드",
-    "app:/weapon/icon/s_assault_601_powerful.dds",
-    "ShellCase_RB",
-    "Sight01.mdb",
-    "app:/Weapon/s_assault_601_powerful.rab",
-    "s_assault_601_powerful.mdb",
-    "app:/Weapon/s_assault_601_powerful.cas",
-    "arms_r",
-    "assault",
-    "aim",
-    "assault_change1",
-    "assault_reload1",
-    "SolidPelletBullet01",
-    "マズルフラッシュパターン.dds",
-    "app:/Weapon/ShellCase401.rab",
-    "app:/Weapon/ShellCase401.shkt"
-  ]
+  "heap": {}
 }

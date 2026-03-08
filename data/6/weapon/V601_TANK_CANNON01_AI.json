@@ -1,322 +1,231 @@
 {
   "format": "DSGO",
+  "sgott": "2.0.0",
   "endian": "LE",
   "variables": [
     {
-      "value": "Weapon_VehicleShoot",
-      "type": "str",
-      "name": "xgs_scene_object_class"
+      "name": "xgs_scene_object_class",
+      "type": "string",
+      "value": "Weapon_VehicleShoot"
     },
-    {"value": null, "type": "ptr", "name": "custom_parameter"},
-    {"value": 1, "type": "double", "name": "use_underground"},
-    {"value": 0, "type": "double", "name": "FireCondition"},
-    {"value": "v601 滑空榴弾砲", "type": "str", "name": "name.ja"},
-    {"value": "v601 滑空榴弾砲", "type": "str", "name": "name.en"},
-    {"value": "v601 滑空榴弾砲", "type": "str", "name": "name.cn"},
-    {"value": "v601 滑空榴弾砲", "type": "str", "name": "name.kr"},
-    {"value": "v601 滑空榴弾砲", "type": "str", "name": "name.sc"},
-    {"value": "app:/weapon/icon/none", "type": "str", "name": "WeaponIcon"},
+    {"name": "custom_parameter", "type": "ptr", "value": []},
+    {"name": "use_underground", "type": "double", "value": 1},
+    {"name": "FireCondition", "type": "double", "value": 0},
+    {"name": "name.ja", "type": "string", "value": "v601 滑空榴弾砲"},
+    {"name": "name.en", "type": "string", "value": "v601 滑空榴弾砲"},
+    {"name": "name.cn", "type": "string", "value": "v601 滑空榴弾砲"},
+    {"name": "name.kr", "type": "string", "value": "v601 滑空榴弾砲"},
+    {"name": "name.sc", "type": "string", "value": "v601 滑空榴弾砲"},
+    {"name": "WeaponIcon", "type": "string", "value": "app:/weapon/icon/none"},
     {
+      "name": "animation_model",
+      "type": "ptr",
       "value": [
         {
+          "type": "ptr",
           "value": [
-            {"value": "app:/Weapon/v_null.rab", "type": "str"},
-            {"value": "v_null.mdb", "type": "str"}
-          ],
-          "type": "ptr"
+            {"type": "string", "value": "app:/Weapon/v_null.rab"},
+            {"type": "string", "value": "v_null.mdb"}
+          ]
         },
-        {"value": 0, "type": "double"},
+        {"type": "double", "value": 0},
         {
+          "type": "extra",
           "value": {
             "format": "hex",
-            "data": "4d4142000f000000830000000300000003001400240000005c00000060000000b0000000000001001800000001000000300000000200000028000000740000007a000000020000003400000044000000240000000000000054000000babababa0000000000000000000000000000803f0000000000000000333333400000803fcdcc4c3dcdcc4c3d0000803e0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000076005f004e0075006c006c000000"
-          },
-          "type": "extra"
+            "value": "4d4142000f000000830000000300000003001400240000005c00000060000000b0000000000001001800000001000000300000000200000028000000740000007a000000020000003400000044000000240000000000000054000000babababa0000000000000000000000000000803f0000000000000000333333400000803fcdcc4c3dcdcc4c3d0000803e0000803f53474f000201000000000000200000000000000020000000000000002000000030003100000076005f004e0075006c006c000000"
+          }
         }
-      ],
-      "type": "ptr",
-      "name": "animation_model"
+      ]
     },
     {
-      "value": [{"value": "arms_r", "type": "str"}],
+      "name": "ModelConstraint",
       "type": "ptr",
-      "name": "ModelConstraint"
+      "value": [{"type": "string", "value": "arms_r"}]
     },
-    {"value": "none", "type": "str", "name": "BaseAnimation"},
-    {"value": "", "type": "str", "name": "AimAnimation"},
-    {"value": "", "type": "str", "name": "ChangeAnimation"},
-    {"value": "", "type": "str", "name": "ReloadAnimation"},
-    {"value": 25, "type": "double", "name": "AmmoCount"},
+    {"name": "BaseAnimation", "type": "string", "value": "none"},
+    {"name": "AimAnimation", "type": "string", "value": ""},
+    {"name": "ChangeAnimation", "type": "string", "value": ""},
+    {"name": "ReloadAnimation", "type": "string", "value": ""},
+    {"name": "AmmoCount", "type": "double", "value": 25},
     {
+      "name": "EnergyChargeRequire",
+      "type": "ptr",
       "value": [
-        {"value": -1, "type": "double"},
-        {"value": -1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "EnergyChargeRequire"
+        {"type": "double", "value": -1},
+        {"type": "double", "value": -1}
+      ]
     },
-    {"value": 0, "type": "double", "name": "ReloadType"},
-    {"value": 1, "type": "double", "name": "ReloadInit"},
-    {"value": 0, "type": "double", "name": "ReloadTime"},
-    {"value": 0, "type": "double", "name": "AngleAdjust"},
-    {"value": 0, "type": "double", "name": "LockonType"},
-    {"value": 0, "type": "double", "name": "LockonTargetType"},
-    {"value": 0, "type": "double", "name": "Lockon_DistributionType"},
-    {"value": 1, "type": "double", "name": "Lockon_FireEndToClear"},
-    {"value": 1, "type": "double", "name": "Lockon_AutoTimeOut"},
-    {"value": 0, "type": "double", "name": "LockonRange"},
+    {"name": "ReloadType", "type": "double", "value": 0},
+    {"name": "ReloadInit", "type": "double", "value": 1},
+    {"name": "ReloadTime", "type": "double", "value": 0},
+    {"name": "AngleAdjust", "type": "double", "value": 0},
+    {"name": "LockonType", "type": "double", "value": 0},
+    {"name": "LockonTargetType", "type": "double", "value": 0},
+    {"name": "Lockon_DistributionType", "type": "double", "value": 0},
+    {"name": "Lockon_FireEndToClear", "type": "double", "value": 1},
+    {"name": "Lockon_AutoTimeOut", "type": "double", "value": 1},
+    {"name": "LockonRange", "type": "double", "value": 0},
     {
+      "name": "LockonAngle",
+      "type": "ptr",
       "value": [
-        {"value": 0.30000001192092896, "type": "double"},
-        {"value": 0.30000001192092896, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "LockonAngle"
+        {"type": "double", "value": 0.30000001192092896},
+        {"type": "double", "value": 0.30000001192092896}
+      ]
     },
-    {"value": 0, "type": "double", "name": "LockonTime"},
-    {"value": 0, "type": "double", "name": "LockonFailedTime"},
-    {"value": 0, "type": "double", "name": "LockonHoldTime"},
-    {"value": 0, "type": "double", "name": "FireType"},
-    {"value": 0, "type": "double", "name": "FireSpreadType"},
-    {"value": 0, "type": "double", "name": "FireSpreadWidth"},
-    {"value": 1, "type": "double", "name": "FireCount"},
-    {"value": 180, "type": "double", "name": "FireInterval"},
-    {"value": 1, "type": "double", "name": "FireBurstCount"},
-    {"value": 0, "type": "double", "name": "FireBurstInterval"},
-    {"value": 0.02500000037252903, "type": "double", "name": "FireAccuracy"},
-    {"value": 0.30000001192092896, "type": "double", "name": "FireRecoil"},
-    {"value": null, "type": "ptr", "name": "FireVector"},
+    {"name": "LockonTime", "type": "double", "value": 0},
+    {"name": "LockonFailedTime", "type": "double", "value": 0},
+    {"name": "LockonHoldTime", "type": "double", "value": 0},
+    {"name": "FireType", "type": "double", "value": 0},
+    {"name": "FireSpreadType", "type": "double", "value": 0},
+    {"name": "FireSpreadWidth", "type": "double", "value": 0},
+    {"name": "FireCount", "type": "double", "value": 1},
+    {"name": "FireInterval", "type": "double", "value": 180},
+    {"name": "FireBurstCount", "type": "double", "value": 1},
+    {"name": "FireBurstInterval", "type": "double", "value": 0},
+    {"name": "FireAccuracy", "type": "double", "value": 0.02500000037252903},
+    {"name": "FireRecoil", "type": "double", "value": 0.30000001192092896},
+    {"name": "FireVector", "type": "ptr", "value": []},
     {
+      "name": "FireSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "weapon_VHC_tank301_cannon", "type": "str"},
-        {"value": 0.800000011920929, "type": "double"},
-        {"value": 0.8909000158309937, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 40, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "FireSe"
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "weapon_VHC_tank301_cannon"},
+        {"type": "double", "value": 0.800000011920929},
+        {"type": "double", "value": 0.8909000158309937},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 40}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "FireLoadSe"},
-    {"value": null, "type": "ptr", "name": "ShellCaseDischargeSe"},
-    {"value": 0, "type": "double", "name": "SecondaryFire_Type"},
+    {"name": "FireLoadSe", "type": "ptr", "value": []},
+    {"name": "ShellCaseDischargeSe", "type": "ptr", "value": []},
+    {"name": "SecondaryFire_Type", "type": "double", "value": 0},
     {
-      "value": [{"value": 0, "type": "double"}],
+      "name": "SecondaryFire_Parameter",
       "type": "ptr",
-      "name": "SecondaryFire_Parameter"
+      "value": [{"type": "double", "value": 0}]
     },
-    {"value": "EfsBullet", "type": "str", "name": "AmmoClass"},
-    {"value": 0, "type": "double", "name": "AmmoModel"},
-    {"value": 10, "type": "double", "name": "AmmoSpeed"},
-    {"value": 0, "type": "double", "name": "AmmoOwnerMove"},
-    {"value": 1, "type": "double", "name": "AmmoGravityFactor"},
-    {"value": 200, "type": "double", "name": "AmmoAlive"},
-    {"value": 350, "type": "double", "name": "AmmoDamage"},
+    {"name": "AmmoClass", "type": "string", "value": "EfsBullet"},
+    {"name": "AmmoModel", "type": "double", "value": 0},
+    {"name": "AmmoSpeed", "type": "double", "value": 10},
+    {"name": "AmmoOwnerMove", "type": "double", "value": 0},
+    {"name": "AmmoGravityFactor", "type": "double", "value": 1},
+    {"name": "AmmoAlive", "type": "double", "value": 200},
+    {"name": "AmmoDamage", "type": "double", "value": 350},
     {
-      "value": [{"value": 1, "type": "double"}, {"value": 1, "type": "double"}],
+      "name": "AmmoDamageReduce",
       "type": "ptr",
-      "name": "AmmoDamageReduce"
+      "value": [{"type": "double", "value": 1}, {"type": "double", "value": 1}]
     },
-    {"value": 8, "type": "double", "name": "AmmoExplosion"},
-    {"value": 0, "type": "double", "name": "AmmoIsPenetration"},
-    {"value": 0.10000000149011612, "type": "double", "name": "AmmoSize"},
-    {"value": 1, "type": "double", "name": "AmmoHitSizeAdjust"},
-    {"value": 1, "type": "double", "name": "AmmoHitImpulseAdjust"},
+    {"name": "AmmoExplosion", "type": "double", "value": 8},
+    {"name": "AmmoIsPenetration", "type": "double", "value": 0},
+    {"name": "AmmoSize", "type": "double", "value": 0.10000000149011612},
+    {"name": "AmmoHitSizeAdjust", "type": "double", "value": 1},
+    {"name": "AmmoHitImpulseAdjust", "type": "double", "value": 1},
     {
+      "name": "AmmoColor",
+      "type": "ptr",
       "value": [
-        {"value": 1.100000023841858, "type": "double"},
-        {"value": 1.600000023841858, "type": "double"},
-        {"value": 0.5, "type": "double"},
-        {"value": 1, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoColor"
+        {"type": "double", "value": 1.100000023841858},
+        {"type": "double", "value": 1.600000023841858},
+        {"type": "double", "value": 0.5},
+        {"type": "double", "value": 1}
+      ]
     },
     {
+      "name": "Ammo_CustomParameter",
+      "type": "ptr",
       "value": [
         {
-          "value": "app:/weapon/effect/v601_tank_cannon.efarc",
-          "type": "str",
-          "name": "efarc"
+          "name": "efarc",
+          "type": "string",
+          "value": "app:/weapon/effect/v601_tank_cannon.efarc"
         },
-        {"value": 1, "type": "double", "name": "is_break_building"},
+        {"name": "is_break_building", "type": "double", "value": 1},
         {
-          "value": [
-            {"value": "bullet01.esb", "type": "str", "name": "esb"},
-            {"value": 1, "type": "double", "name": "use_far_render"},
-            {"value": 2, "type": "double", "name": "scale"}
-          ],
+          "name": "bullet",
           "type": "ptr",
-          "name": "bullet"
+          "value": [
+            {"name": "esb", "type": "string", "value": "bullet01.esb"},
+            {"name": "use_far_render", "type": "double", "value": 1},
+            {"name": "scale", "type": "double", "value": 2}
+          ]
         },
         {
-          "value": [
-            {"value": 1, "type": "double", "name": "use_default_effect"},
-            {"value": 4, "type": "double", "name": "scale"}
-          ],
+          "name": "hit",
           "type": "ptr",
-          "name": "hit"
+          "value": [
+            {"name": "use_default_effect", "type": "double", "value": 1},
+            {"name": "scale", "type": "double", "value": 4}
+          ]
         }
-      ],
-      "type": "ptr",
-      "name": "Ammo_CustomParameter"
+      ]
     },
-    {"value": null, "type": "ptr", "name": "Ammo_EquipVoice"},
+    {"name": "Ammo_EquipVoice", "type": "ptr", "value": []},
     {
+      "name": "AmmoHitSe",
+      "type": "ptr",
       "value": [
-        {"value": 0, "type": "double"},
-        {"value": "common_damages_explode_S", "type": "str"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 1, "type": "double"},
-        {"value": 200, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "AmmoHitSe"
+        {"type": "double", "value": 0},
+        {"type": "string", "value": "common_damages_explode_S"},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 1},
+        {"type": "double", "value": 200}
+      ]
     },
-    {"value": "EfsMuzzleFlash", "type": "str", "name": "MuzzleFlash"},
+    {"name": "MuzzleFlash", "type": "string", "value": "EfsMuzzleFlash"},
     {
+      "name": "MuzzleFlash_CustomParameter",
+      "type": "ptr",
       "value": [
         {
-          "value": "app:/weapon/effect/v601_tank_cannon.efarc",
-          "type": "str",
-          "name": "efarc"
+          "name": "efarc",
+          "type": "string",
+          "value": "app:/weapon/effect/v601_tank_cannon.efarc"
         },
-        {"value": "fire01.esb", "type": "str", "name": "esb"},
+        {"name": "esb", "type": "string", "value": "fire01.esb"},
         {
-          "value": [
-            {"value": 0.75, "type": "double"},
-            {"value": 1.600000023841858, "type": "double"},
-            {"value": 1.2999999523162842, "type": "double"},
-            {"value": 1, "type": "double"}
-          ],
+          "name": "color",
           "type": "ptr",
-          "name": "color"
+          "value": [
+            {"type": "double", "value": 0.75},
+            {"type": "double", "value": 1.600000023841858},
+            {"type": "double", "value": 1.2999999523162842},
+            {"type": "double", "value": 1}
+          ]
         },
-        {"value": 3, "type": "double", "name": "scale"}
-      ],
-      "type": "ptr",
-      "name": "MuzzleFlash_CustomParameter"
+        {"name": "scale", "type": "double", "value": 3}
+      ]
     },
     {
+      "name": "ShellCase",
+      "type": "ptr",
       "value": [
-        {"value": "", "type": "str"},
-        {"value": "", "type": "str"},
-        {"value": 0, "type": "double"}
-      ],
-      "type": "ptr",
-      "name": "ShellCase"
+        {"type": "string", "value": ""},
+        {"type": "string", "value": ""},
+        {"type": "double", "value": 0}
+      ]
     },
-    {"value": null, "type": "ptr", "name": "ShellCase_CustomParameter"},
+    {"name": "ShellCase_CustomParameter", "type": "ptr", "value": []},
     {
-      "value": [{"value": 1, "type": "double"}],
+      "name": "ExtPrams",
       "type": "ptr",
-      "name": "ExtPrams"
+      "value": [{"type": "double", "value": 1}]
     },
     {
+      "name": "resource",
+      "type": "ptr",
       "value": [
-        {"value": "app:/weapon/effect/v601_tank_cannon.efarc", "type": "str"},
-        {"value": "app:/weapon/effect/v601_tank_cannon.efarc", "type": "str"}
-      ],
-      "type": "ptr",
-      "name": "resource"
+        {
+          "type": "string",
+          "value": "app:/weapon/effect/v601_tank_cannon.efarc"
+        },
+        {"type": "string", "value": "app:/weapon/effect/v601_tank_cannon.efarc"}
+      ]
     }
   ],
-  "strings": [
-    "AmmoExplosion",
-    "LockonTargetType",
-    "BaseAnimation",
-    "AmmoColor",
-    "LockonAngle",
-    "AimAnimation",
-    "WeaponIcon",
-    "Lockon_AutoTimeOut",
-    "ReloadType",
-    "MuzzleFlash",
-    "AmmoAlive",
-    "FireVector",
-    "FireType",
-    "AmmoClass",
-    "AmmoDamageReduce",
-    "AmmoDamage",
-    "AmmoGravityFactor",
-    "AmmoCount",
-    "SecondaryFire_Type",
-    "AmmoHitImpulseAdjust",
-    "AmmoHitSe",
-    "AmmoHitSizeAdjust",
-    "AmmoIsPenetration",
-    "AmmoModel",
-    "AmmoOwnerMove",
-    "FireCondition",
-    "AmmoSize",
-    "AmmoSpeed",
-    "ReloadInit",
-    "Ammo_CustomParameter",
-    "LockonTime",
-    "Ammo_EquipVoice",
-    "AngleAdjust",
-    "name.cn",
-    "SecondaryFire_Parameter",
-    "LockonFailedTime",
-    "ChangeAnimation",
-    "FireAccuracy",
-    "EnergyChargeRequire",
-    "ReloadTime",
-    "ExtPrams",
-    "FireBurstCount",
-    "LockonRange",
-    "FireBurstInterval",
-    "FireCount",
-    "FireInterval",
-    "FireLoadSe",
-    "FireRecoil",
-    "FireSe",
-    "FireSpreadType",
-    "FireSpreadWidth",
-    "LockonHoldTime",
-    "LockonType",
-    "ShellCase_CustomParameter",
-    "Lockon_DistributionType",
-    "Lockon_FireEndToClear",
-    "name.en",
-    "ModelConstraint",
-    "MuzzleFlash_CustomParameter",
-    "ReloadAnimation",
-    "ShellCase",
-    "ShellCaseDischargeSe",
-    "animation_model",
-    "custom_parameter",
-    "name.ja",
-    "name.kr",
-    "name.sc",
-    "resource",
-    "use_underground",
-    "xgs_scene_object_class",
-    "Weapon_VehicleShoot",
-    "v601 滑空榴弾砲",
-    "app:/weapon/icon/none",
-    "app:/Weapon/v_null.rab",
-    "v_null.mdb",
-    "arms_r",
-    "none",
-    "",
-    "weapon_VHC_tank301_cannon",
-    "EfsBullet",
-    "bullet",
-    "is_break_building",
-    "efarc",
-    "hit",
-    "app:/weapon/effect/v601_tank_cannon.efarc",
-    "esb",
-    "scale",
-    "use_far_render",
-    "bullet01.esb",
-    "use_default_effect",
-    "common_damages_explode_S",
-    "EfsMuzzleFlash",
-    "color",
-    "fire01.esb"
-  ]
+  "heap": {}
 }
