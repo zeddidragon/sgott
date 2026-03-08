@@ -133,6 +133,7 @@ function parseCli(cb) {
   storage.set('opts', opts)
 
   const [readFile, writeFile] = plain
+  storage.set('readDir', path.dirname(readFile))
 
   function convertFileName(fileName, target) {
     const dir = path.dirname(fileName)
@@ -147,6 +148,21 @@ function parseCli(cb) {
 
     return [dir, fileName].join(path.sep) + '.' + target
   }
+
+  function extraPath(fileName) {
+    const baseName = path.basename(readFile, path.extname(readFile))
+    return path.join(path.dirname(readFile), `${baseName}__${fileName}`)
+  }
+  function writeExtra(fileName, ...args) {
+    const filePath = extraPath(fileName);
+    fs.writeFileSync(filePath, ...args)
+    return path.basename(filePath)
+  }
+  function readExtra(fileName) {
+    return fs.readFileSync(path.join(path.dirname(readFile), fileName))
+  }
+  storage.set('writeExtra', writeExtra)
+  storage.set('readExtra', readExtra)
 
   function write(data, type) {
     let target
@@ -177,10 +193,7 @@ function parseCli(cb) {
     fs.writeFileSync(fileName, data)
     let extra
     while(extra = storage.pop('export-extra')) {
-      const baseName = path.basename(readFile, path.extname(readFile))
-      const xPath = path.join(path.dirname(fileName), `${baseName}__${extra.fileName}`)
-      console.log(xPath)
-      fs.writeFileSync(xPath, extra.data)
+      fs.writeFileSync(extraPath(extra.fileName), extra.data)
     }
   }
 

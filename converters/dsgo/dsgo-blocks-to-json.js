@@ -1,3 +1,4 @@
+const storage = require('../../helpers/storage')
 const DsgoType = require('./dsgo-type')
 const CalcType = require('./calc-type')
 
@@ -26,7 +27,8 @@ const CalcFunctions = {
   [0x80000006]: { name: 'f:lerp', args: 3 },
 }
 
-function dsgoBlocksToJson(blocks, opts) {
+function dsgoBlocksToJson(blocks) {
+  const opts = storage.get('opts')
   const header = blocks[0]
   if(header.type !== 'header')
     throw new Error(`Expected block[0] to be header, but it's "${block.type}"`)
@@ -58,6 +60,20 @@ function dsgoBlocksToJson(blocks, opts) {
     }
   })
 
+  // BEGIN Resolve type 2 `extra`
+  // With the option --export-extra turned on, embedded files should be exported to a seperate path
+  if(opts['export-extra']) {
+    for(const n of nodes.filter(n => n.type === 'extra')) {
+      const name = `extra_${nodes.indexOf(n)}.bin` // TODO: Handle other file formats
+      const buffer = Buffer.from(n.value.value, 'hex')
+      const path = storage.get('writeExtra')(name, buffer)
+      n.value = {
+        format: 'file',
+        value: path,
+      }
+    }
+  }
+  // END Resolve type 2 `ptr`
 
   // BEGIN Resolve type 3 `ptr`
 

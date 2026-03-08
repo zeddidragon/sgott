@@ -13,6 +13,8 @@ function dsgoExtra(writer, { format, content }) {
   let offset = Math.ceil((writer.address + 0x08) / 0x10) * 0x10 - writer.address
 
   // TODO: Handle formats other than `raw`
+  if(format !== 'hex')
+    throw new Error('format should be hex')
   writer.uint(0x00, content.length / 2) // A byte is 2 hex characters
   writer.uint(0x04, offset) // Relative pointer to content body
   writer.jump(offset)
