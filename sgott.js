@@ -42,6 +42,7 @@ const transforms = {
     const opts = storage.get('opts')
     const parsed = JSON.parse(buffer.toString())
     if(isBlocks(parsed)) {
+      console.log('is blocks')
       if(opts.compile) return blocks.toDsgo(parsed)
       if(opts.resolve) return json(blocks.toJson(parsed))
       throw new Error('Specify if this should be resolved with --resolve or recompiled with --compile')
@@ -157,6 +158,7 @@ function parseCli(cb) {
   function writeExtra(fileName, ...args) {
     const filePath = extraPath(fileName);
     fs.writeFileSync(filePath, ...args)
+    console.log(filePath)
     return path.basename(filePath)
   }
   function readExtra(fileName) {
@@ -191,11 +193,8 @@ function parseCli(cb) {
       return
     }
 
+    console.log(fileName)
     fs.writeFileSync(fileName, data)
-    let extra
-    while(extra = storage.pop('export-extra')) {
-      fs.writeFileSync(extraPath(extra.fileName), extra.data)
-    }
   }
 
   function inferType(buffer) {
