@@ -60,6 +60,8 @@ function calc({ value }, composer, jsonNodes) {
   }
 
   const calcBlock = unrollCalc(value)
+
+  composer.align(0x04)
   const ptr = composer.addBlock(blockSize, 'calc', calcBlock)
 
   return { type, ptr }

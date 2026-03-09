@@ -18,10 +18,18 @@ function extra({ value: { format, value } }, composer) {
   }
 
   // `data` should be a hex string by this point
-  const ptr = composer.addBlock(Math.ceil(data.length / 2) + 0x10, 'extra', {
+  composer.align(0x08)
+  const address = composer.address
+  composer.address += 0x08 // Size of header
+  composer.align()
+  const size = composer.address - address + Math.ceil(data.length / 2)
+  composer.address = address
+
+  const ptr = composer.addBlock(size, 'extra', {
     format: 'hex',
     value: data,
   })
+  composer.align(0x08)
   return { type, ptr }
 }
 

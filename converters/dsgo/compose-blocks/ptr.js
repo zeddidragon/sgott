@@ -25,6 +25,8 @@ function ptr({ value }, composer, jsonNodes) {
     })
 
   const size = 0x10 + table.length * 0x04 + names.length * 0x08
+
+  composer.align(0x08)
   const ptr = composer.addBlock(size, 'table', {
     table,
     names,

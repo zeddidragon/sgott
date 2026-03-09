@@ -1,6 +1,5 @@
 class BlockComposer {
   address = 0x00
-  alignment = 0x10
   blocks = {} // Output data, buffer chunked into human-readable objects
   deferredStrings = []
 
@@ -12,15 +11,16 @@ class BlockComposer {
     this.states[state] = cb
   }
 
+  align(alignment) {
+    const disalignment = this.address % alignment
+    if(disalignment > 0)
+      this.address += alignment - disalignment
+  }
+
   addBlock(size, type, content) {
     const address = this.address
     this.blocks[address] = { type, content }
-
     this.address += +size
-    const disalignment = this.address % this.alignment
-    if(disalignment)
-      this.address += this.alignment - disalignment
-
     return address
   }
 
