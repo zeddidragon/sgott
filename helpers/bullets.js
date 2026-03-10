@@ -425,7 +425,7 @@ const SupportProps = {
 }
 
 function Support(wpn) {
-  if(!wpn.wCustom) {
+  if(!wpn.wCustom?.length) {
     return
   }
   for(const { value: props } of wpn.wCustom[0].value) {

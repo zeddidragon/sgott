@@ -2130,7 +2130,7 @@ async function extractCalcdata() {
     modes,
   ] = await Promise.all([
     extractWeaponData(),
-    extractModesData('config'),
+    extractModesData('DefaultPackage/config'),
   ])
   weapons.sort((a, b) => (
     (a.rawCategory - b.rawCategory)

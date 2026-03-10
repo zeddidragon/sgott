@@ -12,7 +12,9 @@ extractCalcdata()
     if(isDebug) {
       console.log(data)
     } else {
-      fs.writeFileSync(`weapons-${game}.json`, json(data))
+      const path = `weapons-${game}.json`
+      console.log(path)
+      fs.writeFileSync(path, json(data))
     }
   })
   .catch(console.error)
