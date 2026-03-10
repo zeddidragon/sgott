@@ -594,10 +594,6 @@ const headers = {
       en: 'Short-Range',
       ja: '近距離',
     },
-    charge: 0.06,
-    chargeEmergency: 0.12,
-    flightUse: 0.15,
-    boostUse: 0.30,
     headers: [
       'checkbox',
       'stars',
@@ -1806,6 +1802,14 @@ async function extractCalcdata() {
       'Air Raider',
       'Fencer',
     ],
+    gameValues: { // TODO: Armor gain per crate and such could go here
+      winger: {
+        charge: 0.06,
+        chargeEmergency: 0.12,
+        flightUse: 0.15,
+        boostUse: 0.30,
+      },
+    },
     headers,
     weapons,
     modes,
