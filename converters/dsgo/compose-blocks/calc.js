@@ -18,7 +18,7 @@ const CalcCommands = {
 }
 
 function calc({ value }, composer, jsonNodes) {
-  const type = DsgoType.DSGO
+  const type = DsgoType.CALC
 
   let blockSize = 0x08 // Header is 8 bytes
   function unrollCalc(cmd) {
