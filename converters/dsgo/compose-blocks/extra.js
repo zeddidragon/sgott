@@ -2,7 +2,7 @@ const storage = require('../../../helpers/storage')
 const DsgoType = require('../dsgo-type')
 
 function extra({ value: { format, value } }, composer) {
-  const type = DsgoType.DSGO
+  const type = DsgoType.EXTRA
 
   let data
   switch(format) {
