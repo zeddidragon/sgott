@@ -1,10 +1,16 @@
 const { compareStrings } = require('../../../helpers/compare-strings')
 const DsgoType = require('../dsgo-type')
 
-function ptr({ value }, composer, jsonNodes) {
+function ptr({ value }, composer, jsonNodes, json) {
   const table = new Array(value.length)
   for(let i = 0; i < value.length; i++) {
-    const index = jsonNodes.indexOf(value[i])
+    let node = value[i]
+    if(node.type === 'heap') {
+      node = json.heap[node.value]
+      if(node == null)
+        throw new Error(`Heap node not found: "${value[i].value}"`)
+    }
+    const index = jsonNodes.indexOf(node)
     if(index === -1) {
       console.error(value[i])
       throw new Error(`Child node not found in nodes list.`)

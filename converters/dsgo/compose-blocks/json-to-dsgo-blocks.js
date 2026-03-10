@@ -26,13 +26,10 @@ function jsonToDsgoBlocks(json) {
           break
         }
         case 'heap': {
-          // NOT yielded
+          // NOT yielded. Resolved later in ./ptr.js
           const heapNode = json.heap[node.value]
           if(heapNode == null)
             throw new Error(`Heap node not found: "${node.value}"`)
-          // It's now okay to make the structure recursive (I hope)
-          // This makes the scan for table indices later simpler
-          nodes[i] = heapNode
 
           if(!traversed.has(heapNode)) {
             traversed.add(heapNode)
@@ -69,7 +66,7 @@ function jsonToDsgoBlocks(json) {
   let address = 0x10 + jsonNodes.length * 0x10
   for(let i = 0; i < jsonNodes.length; i++) {
     const node = jsonNodes[i]
-    blockNodes[i] = dsgoTypes[node.type](node, composer, jsonNodes)
+    blockNodes[i] = dsgoTypes[node.type](node, composer, jsonNodes, json)
   }
 
   return composer.finalize()
