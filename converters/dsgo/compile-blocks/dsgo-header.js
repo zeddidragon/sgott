@@ -1,3 +1,4 @@
+const DsgoType = require('../dsgo-type')
 const HEADER_SIZE = 0x10
 const NODE_SIZE = 0x10
 
@@ -34,7 +35,7 @@ function dsgoHeader(writer, { leader, rootIndex, nodes }) {
 // 3: Dt points to a DSGO list,      Bg is 0
 // 4: Dt points to a Calc node,      Bg is 0
 function dsgoNode(writer, { type, double, ptr }) {
-  if(type === 0)
+  if(type == DsgoType.DOUBLE)
     writer.double(0x00, double)
   else
     writer.ptr(0x00, ptr)
