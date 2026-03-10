@@ -2160,7 +2160,7 @@ async function extractCalcdata() {
         charge: 0.06,
         chargeEmergency: 0.15,
         flightUse: 0.15,
-        boostUse: 0.45,
+        boostUse: 0.045,
       },
     },
     headers,
