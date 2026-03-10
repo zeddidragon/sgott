@@ -594,6 +594,10 @@ const headers = {
       en: 'Short-Range',
       ja: '近距離',
     },
+    charge: 0.06,
+    chargeEmergency: 0.12,
+    flightUse: 0.15,
+    boostUse: 0.30,
     headers: [
       'checkbox',
       'stars',
