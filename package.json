@@ -1,13 +1,18 @@
 {
   "name": "sgott",
+  "type": "commonjs",
   "version": "2.0.1",
   "description": "SGO Transformation Tool, SGO to JSON and back.",
   "main": "sgott.js",
   "bin": "sgott.js",
   "scripts": {
-    "test": "./test",
+    "test": "concurrently --kill-others-on-fail --prefix none npm:test:*",
+    "test:sgo": "node --test ./tests/converters/sgo/to-json.spec.*",
     "build-sgott": "pkg -t node16-win -o ./release/sgott.exe ./sgott.js",
     "build": "npm run build-sgott"
+  },
+  "imports": {
+    "#converters/*": "./converters/*"
   },
   "repository": {
     "type": "git",
@@ -33,7 +38,7 @@
     "pkg": "^5.8.1"
   },
   "devDependencies": {
-    "@pmoo/testy": "^8.0.0",
+    "concurrently": "^9.2.1",
     "eslint": "^8.2.0"
   },
   "overrides": {
