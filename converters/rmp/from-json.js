@@ -36,7 +36,7 @@ function compileRmp(compiler, obj, opts, globals) {
       format: 'SGO',
       endian: node.cfgEn || endian,
       variables: [{
-        type: "float",
+        type: 'float',
         name: 'rmpa_float_WayPointWidth',
         value: node.width == null ? -1 : node.width,
       }],

@@ -6,15 +6,15 @@ function extra({ value: { format, value } }, composer) {
 
   let data
   switch(format) {
-    case 'hex':
-      data = value
-      break
-    case 'file': {
-      data = storage.get('readExtra')(value)
-      break
-    }
-    default:
-      throw new Error(`Unknown data format: "${format}"`)
+  case 'hex':
+    data = value
+    break
+  case 'file': {
+    data = storage.get('readExtra')(value)
+    break
+  }
+  default:
+    throw new Error(`Unknown data format: "${format}"`)
   }
 
   // `data` should be a hex string by this point

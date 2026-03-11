@@ -112,7 +112,7 @@ class BufferCrawler {
     this.addBlock(this.address, {
       size: address - this.address,
       type: 'SKIPPED',
-      content: this.buffer.slice(this.address, address).toString('hex')
+      content: this.buffer.slice(this.address, address).toString('hex'),
     })
     this.address = address
   }
@@ -175,7 +175,7 @@ class BufferCrawler {
   [util.inspect.custom]() {
     const startAt = Math.max(0, Math.floor((this.address / 0x10) - 1) * 0x10)
     const endAt = Math.min(startAt + 0x80, this.buffer.length)
-    let bufferView = []
+    const bufferView = []
     for(let i = startAt; i < endAt; i += 0x2) {
       if(!(i % 0x10)) {
         bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])

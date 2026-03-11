@@ -30,17 +30,17 @@ function dsgoCalc(writer, content) {
     int(command)
     
     switch(command) {
-      case CalcCommand.END: break;
+    case CalcCommand.END: break
 
-      case CalcCommand.READ_VALUE: double(value); break;
-      case CalcCommand.READ_NODE: int(value); break;
-      case CalcCommand.FUNCTION: int(value); break;
+    case CalcCommand.READ_VALUE: double(value); break
+    case CalcCommand.READ_NODE: int(value); break
+    case CalcCommand.FUNCTION: int(value); break
 
       // These do not have values. Left for completeness
-      case CalcCommand.MATH_ADD: break;
-      case CalcCommand.MATH_SUB: break;
-      case CalcCommand.MATH_MUL: break;
-      case CalcCommand.MATH_DIV: break;
+    case CalcCommand.MATH_ADD: break
+    case CalcCommand.MATH_SUB: break
+    case CalcCommand.MATH_MUL: break
+    case CalcCommand.MATH_DIV: break
     }
   }
 

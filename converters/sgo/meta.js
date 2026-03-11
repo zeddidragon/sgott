@@ -34,12 +34,12 @@ const ammoClasses = {
   BombBullet01: [
     'BombMobility',
     'IsDetector',
-     null,
-     'PrimerDelay',
-     null,
-     'LedPosition',
-     'BombExplosionType',
-     'SplendorParameter',
+    null,
+    'PrimerDelay',
+    null,
+    'LedPosition',
+    'BombExplosionType',
+    'SplendorParameter',
   ],
   GrenadeBullet01: [
     'IsBouncy',
@@ -63,8 +63,8 @@ const ammoClasses = {
     'LaserSegments',
   ],
   LaserBullet02: [
-    'LaserType'
-   ],
+    'LaserType',
+  ],
   LightningBullet01: [
     'InitialNoise',
     'Random_Velocity',
@@ -122,15 +122,15 @@ const ammoClasses = {
     'ShockWaveType',
   ],
   SmokeCandleBullet01: [
-    "SmokeSpread",
-    "SmokeSize",
-    "SummonDelay",
-    "SummonType",
-    "Summon_CustomParameter",
+    'SmokeSpread',
+    'SmokeSize',
+    'SummonDelay',
+    'SummonType',
+    'Summon_CustomParameter',
   ],
   SolidBullet01: [
     'IsBouncy',
-   ],
+  ],
   Summon_CustomParameter00: [
     null,
     null,
@@ -274,7 +274,7 @@ const names = {
   HammerChargeParameters: [
     'BasicCharge',
     'HighVoltageCharge',
-    'MaximumCharge'
+    'MaximumCharge',
   ],
   BasicCharge: hammerChargeParameters,
   HighVoltageCharge: hammerChargeParameters,
@@ -306,12 +306,12 @@ const names = {
   FireSe: soundEffect,
   EmitterSe: soundEffect,
   name: [
-   'Japanese',
-   'English',
-   'Chinese',
+    'Japanese',
+    'English',
+    'Chinese',
   ],
   resource: [
-   'path',
+    'path',
   ],
 }
 
@@ -385,7 +385,7 @@ const values = {
     'Shockwave': 0,
     'Shockwave and Gravel': 1,
     'Gravel': 2,
-  }
+  },
 }
 
 module.exports = {names, values}

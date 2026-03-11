@@ -157,7 +157,7 @@ function parseCli(cb) {
     return path.join(path.dirname(readFile), `${baseName}__${fileName}`)
   }
   function writeExtra(fileName, ...args) {
-    const filePath = extraPath(fileName);
+    const filePath = extraPath(fileName)
     fs.writeFileSync(filePath, ...args)
     console.log(filePath)
     return path.basename(filePath)

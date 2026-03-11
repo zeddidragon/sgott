@@ -1,5 +1,4 @@
 const storage = require('../../../helpers/storage')
-let i = 0;
 
 // # Embedded file
 // SzDp

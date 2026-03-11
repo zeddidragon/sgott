@@ -10,7 +10,7 @@
 // The data is padded up to the nearest 8 bytes
 function dsgoExtra(writer, { format, value }) {
   // Extra data wants to be aligned at the next 0
-  let offset = Math.ceil((writer.address + 0x08) / 0x10) * 0x10 - writer.address
+  const offset = Math.ceil((writer.address + 0x08) / 0x10) * 0x10 - writer.address
 
   // TODO: Handle formats other than `raw`
   if(format !== 'hex')

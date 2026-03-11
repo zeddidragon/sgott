@@ -101,9 +101,9 @@ function render(weapons, maxes) {
     if(!weapon.damage) continue
     console.log(`<h3>${weapon.name}</h3>`)
     console.log('<div class="weapon">')
-    console.log(`<span class="attr-label">Damage</span>`)
-    console.log(`<div class="dmg">`)
-    console.log(`<div class="scale">`)
+    console.log('<span class="attr-label">Damage</span>')
+    console.log('<div class="dmg">')
+    console.log('<div class="scale">')
     let previous = 0
     const max = +roundUp(maxes[weapon.category] / 10000) * 10000
     if(typeof weapon.damage === 'object') {
@@ -112,9 +112,9 @@ function render(weapons, maxes) {
         const ratio = Math.ceil((damage - previous) * 1000)
         const markClass
           = i === weapon.damage.minLevel ? ' min-mark'
-          : i === 5  ? ' base-mark'
-          : i === weapon.damage.maxLevel ? ' max-mark'
-          : ''
+            : i === 5  ? ' base-mark'
+              : i === weapon.damage.maxLevel ? ' max-mark'
+                : ''
         console.log(`
           <span class="bar" style="flex: ${ratio}">
             <div class="mark${markClass}">${i}* ${round(damage)}</div>
@@ -130,8 +130,8 @@ function render(weapons, maxes) {
     const ratio = Math.floor((max - previous) * 1000)
     console.log(`<span class="bar void" style="flex: ${ratio}"}"></span>`)
     //console.log(`<span class="max">${round(max || 0)}</span>`)
-    console.log(`</div>`)
-    console.log(`</div>`)
+    console.log('</div>')
+    console.log('</div>')
     console.log('</div>')
   }
 

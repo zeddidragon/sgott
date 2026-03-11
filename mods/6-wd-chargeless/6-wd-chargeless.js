@@ -19,7 +19,7 @@ async function main() {
   const table = await readWeapon('weapontable')
   const textTable = await readWeapon('weapontext.en')
   
-  const outDir = `./release/6-wd-chargeless/weapon`
+  const outDir = './release/6-wd-chargeless/weapon'
   await mkdir(outDir, { recursive: true })
 
   const weapons = await Promise.all(
@@ -27,7 +27,7 @@ async function main() {
       .map(({ value: [
         { value: name },
         { value: path },
-        { value: category }
+        { value: category },
       ] }) => ({ name, path, category }))
       .filter(({ category }) => Math.floor(category / 100) === 1)
       .map(async ({ name, path, category }) => {
@@ -39,7 +39,7 @@ async function main() {
           category,
           config: await readWeapon(id),
         }
-      })
+      }),
   )
   const wpnClassFrom = 'Weapon_ChargeShoot'
   const wpnClassTo = 'Weapon_PreChargeShoot'
@@ -52,11 +52,11 @@ async function main() {
       const name = getNode(config, 'name.en')
 
       if(custom.value.length > 7) { // Lightninb Bow and Monster have their step only described charging, clobber it with data from the second node
-        custom.value.pop(); // [9] Unknown parameter. It's blank.
-        custom.value[6] = custom.value.pop(); // [8] Flag Mask
-        custom.value[4] = custom.value.pop(); // [7] Curve parameter
+        custom.value.pop() // [9] Unknown parameter. It's blank.
+        custom.value[6] = custom.value.pop() // [8] Flag Mask
+        custom.value[4] = custom.value.pop() // [7] Curve parameter
 
-        console.log(name.value.padEnd(24), custom.value.slice(3).map(v => +v.value.toFixed(2)).join(' '));
+        console.log(name.value.padEnd(24), custom.value.slice(3).map(v => +v.value.toFixed(2)).join(' '))
       }
 
       wpnClass.value = wpnClassTo
@@ -67,7 +67,7 @@ async function main() {
       const compiled = compileDsgo(config)
       const path = `${outDir}/${id}.sgo`
 
-      console.log(`writing ${path}...`);
+      console.log(`writing ${path}...`)
       return writeFile(path, compiled)
     })
   return Promise.all(writes)

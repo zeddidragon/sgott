@@ -260,10 +260,10 @@ const html = `
     </thead>
     <tbody>
       ${data.map(wpn => {
-        return '<tr>' +
+    return '<tr>' +
           props.map(p => `<td class="${p} ${wpn[p]}">${wpn[p]}</td>`).join('') +
         '</tr>'
-       }).join('\n')}
+  }).join('\n')}
     </tbody>
   </table>
 </body>

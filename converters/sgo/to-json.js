@@ -18,15 +18,15 @@ function decompileSgo(decompiler, buffer, config) {
     const leader = cursor.at(offset).slice(0x00, 0x04).toString()
     const data = cursor.at(offset).slice(0x00, size)
     switch(leader) {
-      case 'SGO\0':
-      case '\0OGS': {
-        return decompileSgo(decompiler, cursor, {
-          offset,
-        })
-      }
-      default: {
-        return data.toString('base64')
-      }
+    case 'SGO\0':
+    case '\0OGS': {
+      return decompileSgo(decompiler, cursor, {
+        offset,
+      })
+    }
+    default: {
+      return data.toString('base64')
+    }
     }
   }
 

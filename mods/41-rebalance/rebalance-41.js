@@ -71,7 +71,7 @@ rebalance({category: 0, name: /AF\d\d-ST/}, (template, i, meta, text) => {
 
   replaceText(text,
     /Capacity: \d+/,
-    `Capacity: ${cap}                          Zoom: ${zoom}x`
+    `Capacity: ${cap}                          Zoom: ${zoom}x`,
   )
 })
 
@@ -81,7 +81,7 @@ rebalance({category: 0, name: /Fusion Blaster/}, (template, i, meta, text) => {
 
   replaceText(text,
     'However, that tremendous energy is difficult to control, so once the trigger is pulled, it will fire at full blast continuously until the wielder switches weapons. Recharging it, too, ',
-    'However, recharging it '
+    'However, recharging it ',
   )
 })
 
@@ -91,7 +91,7 @@ rebalance({category: 1}, (template, i, meta, text) => {
     const reload = Math.floor(v * 0.75)
     replaceText(text,
       /Reload Time: .*sec/,
-      `Reload Time: ${(reload / seconds).toFixed(1)}sec`
+      `Reload Time: ${(reload / seconds).toFixed(1)}sec`,
     )
     return reload
   })
@@ -103,7 +103,7 @@ rebalance({category: 2, name: /Nova Buster/}, (template, i, meta, text) => {
     const reload = 1 * minutes + (i * 20) * seconds
     replaceText(text,
       'Reload Time: ----',
-      `Reload Time: ${Math.floor(reload / 60)}sec`
+      `Reload Time: ${Math.floor(reload / 60)}sec`,
     )
     return reload
   })
@@ -114,7 +114,7 @@ rebalance({category: 2, name: /Nova Buster/}, (template, i, meta, text) => {
 
   replaceText(text,
     'However, the output is so extreme that it melts the body of the weapon when fired, meaning you only get one single shot.',
-    'After firing, the weapon\'s built-in generator will start recharging it, but this process is very slow.'
+    'After firing, the weapon\'s built-in generator will start recharging it, but this process is very slow.',
   )
 })
 
@@ -130,7 +130,7 @@ rebalance({category: 4, name: /^(?!Prominence).*$/}, (template, i, meta, text) =
     const damage = Math.ceil(v * 0.12) * 10
     replaceText(text,
       /Damage: \d+/,
-      `Damage: ${damage}`
+      `Damage: ${damage}`,
     )
     return damage
   })
@@ -142,11 +142,11 @@ rebalance({category: 4, name: /Emerald/}, (template, i, meta, text) => {
     const count = Math.ceil(v * 1.5)
     replaceText(text,
       /Capacity: \d+ /,
-      `Capacity: ${count}`
+      `Capacity: ${count}`,
     )
     replaceText(text,
       /\d targets/,
-      `${count} targets`
+      `${count} targets`,
     )
     patch(template, 'FireBurstCount', count)
     return count
@@ -158,7 +158,7 @@ rebalance({category: 4, name: /Prominence/}, (template, i, meta, text) => {
     const lockon = i * 40  + 120
     replaceText(text,
       /Lock-on Time: .*sec/,
-      `Lock-on Time: ${(lockon / seconds).toFixed(1)}sec`
+      `Lock-on Time: ${(lockon / seconds).toFixed(1)}sec`,
     )
 
     return lockon
@@ -169,7 +169,7 @@ rebalance({category: 4, name: /Prominence/}, (template, i, meta, text) => {
     const reload = v * Math.pow(2, i)
     replaceText(text,
       /Reload Time: .*sec/,
-      `Reload Time: ${(reload / seconds).toFixed(1)}sec`
+      `Reload Time: ${(reload / seconds).toFixed(1)}sec`,
     )
     return reload
   })
@@ -196,7 +196,7 @@ rebalance({category: 5, name: /UMA[XZ]/}, (template, i, meta, text) => {
     const cap = v + 1
     replaceText(text,
       /Capacity: \d/,
-      `Capacity: ${cap}`
+      `Capacity: ${cap}`,
     )
     return cap
   })
@@ -207,7 +207,7 @@ rebalance({category: 5, name: /UMA[XZ]/}, (template, i, meta, text) => {
     const damage = v + 500
     replaceText(text,
       /Damage: \d+/,
-      `Damage: ${(damage + '')}`
+      `Damage: ${(damage + '')}`,
     )
     return damage
   })
@@ -227,7 +227,7 @@ rebalance({category: 6, name: 'PX50 Bound Shot'}, (template, i, meta, text) => {
     const reload = Math.floor(v * 0.75)
     replaceText(text,
       /Reload Time: .*sec/,
-      `Reload Time: ${(reload / seconds).toFixed(1)}sec`
+      `Reload Time: ${(reload / seconds).toFixed(1)}sec`,
     )
     return reload
   })
@@ -248,7 +248,7 @@ rebalance({category: 13}, (template, i, meta, text) => {
     const energy = v * 0.75
     replaceText(text,
       /Energy Cost: .*%/,
-      `Energy Cost: ${energy.toFixed(1)}%`
+      `Energy Cost: ${energy.toFixed(1)}%`,
     )
     return energy
   })
@@ -275,7 +275,7 @@ rebalance({category: 16}, (template, i, meta, text) => {
     const damage = Math.ceil(v * 0.15) * 10
     replaceText(text,
       /Damage: \d+/,
-      `Damage: ${damage}`
+      `Damage: ${damage}`,
     )
     return damage
   })
@@ -285,7 +285,7 @@ rebalance({category: 16}, (template, i, meta, text) => {
     const energy = v * 0.75
     replaceText(text,
       /Energy Cost: .*%/,
-      `Energy Cost: ${energy.toFixed(1)}%`
+      `Energy Cost: ${energy.toFixed(1)}%`,
     )
     return energy
   })
@@ -301,7 +301,7 @@ rebalance({category: 17}, (template, i, meta, text) => {
     const energy = v * 0.5
     replaceText(text,
       /Energy Cost: .*%/,
-      `Energy Cost: ${energy.toFixed(1)}%`
+      `Energy Cost: ${energy.toFixed(1)}%`,
     )
     return energy
   })
@@ -313,7 +313,7 @@ rebalance({category: 20, name: /Vibro Roller/}, (template, i, meta, text) => {
     const reload = Math.floor(v * 0.8)
     replaceText(text,
       /Reload: .*sec/,
-      `Reload: ${(reload / seconds).toFixed(1)}sec`
+      `Reload: ${(reload / seconds).toFixed(1)}sec`,
     )
     return reload
   })
@@ -339,8 +339,8 @@ rebalance({category: 21, name: /Flashing Spear/}, (template, i, meta, text) => {
     const range = alive * getNode(template, 'AmmoSpeed').value
     replaceText(text,
       /Range: .*m/,
-      `Range: ${range.toFixed(1)}m`
-  )
+      `Range: ${range.toFixed(1)}m`,
+    )
     return alive
   })
 })
@@ -352,8 +352,8 @@ rebalance({category: 21, name: /Spine Driver/}, (template, i, meta, text) => {
     const range = alive * getNode(template, 'AmmoSpeed').value
     replaceText(text,
       /Range: .*m/,
-      `Range: ${range.toFixed(1)}m`
-  )
+      `Range: ${range.toFixed(1)}m`,
+    )
     return alive
   })
 })
@@ -370,7 +370,7 @@ rebalance({category: 24, name: /Mortar/}, (template, i, meta, text) => {
     const damage = v * 1.25
     replaceText(text,
       /Damage: \d+/,
-      `Damage: ${(damage + '')}`
+      `Damage: ${(damage + '')}`,
     )
     return damage
   })
@@ -407,7 +407,7 @@ rebalance({category: 24, name: /Light Mortar/}, (template, i, meta, text) => {
   patch(template, 'SecondaryFire_Type', 4)
   replaceText(text,
     ' \n\nThis weapon comes fitted with a scope featuring one zoom level.',
-    blurbs.jump
+    blurbs.jump,
   )
 })
 
@@ -438,7 +438,7 @@ rebalance({category: 25, name: /Arcane/}, (template, i, meta, text) => {
     const radius = Math.ceil(v * 1.6)
     replaceText(text,
       /Blast Area: Radius \d+m/,
-      `Blast Area: Radius ${radius}m`
+      `Blast Area: Radius ${radius}m`,
     )
     return radius
   })
@@ -458,7 +458,7 @@ rebalance({category: 32, name: /Charger|Streamer|Post|Territory|Zone/}, (templat
 
   replaceText(text,
     /$/,
-    '\n\nWhen depleted, the posts\' internal engine will reload it even when not actively wielded by the user.'
+    '\n\nWhen depleted, the posts\' internal engine will reload it even when not actively wielded by the user.',
   )
 })
 
@@ -468,7 +468,7 @@ rebalance({category: 32, name: /Post|Territory|Zone/}, (template, i, meta, text)
     const reload = Math.floor(v * 0.5)
     replaceText(text,
       /Reload: .*sec/,
-      `Reload: ${(reload / seconds).toFixed(1)}sec`
+      `Reload: ${(reload / seconds).toFixed(1)}sec`,
     )
     return reload
   })
@@ -497,7 +497,7 @@ rebalance({category: 31, name: /Attack Whale/}, (template, i, meta, text) => {
     const reload = Math.floor(v * (100 - i * 2.5) / 100)
     replaceText(text,
       /Reload: \d+pt/,
-      `Reload: ${(reload / seconds).toFixed(1)}sec`
+      `Reload: ${(reload / seconds).toFixed(1)}sec`,
     )
     return reload
   })
@@ -516,7 +516,7 @@ rebalance({category: 31, name: /Rule of God/}, (template, i, meta, text) => {
     const damage = v * 2
     replaceText(text,
       /Damage: \d+/,
-      `Damage: ${damage}`
+      `Damage: ${damage}`,
     )
     return damage
   })
@@ -545,7 +545,7 @@ rebalance({category: 35, name: /Bunker|Shelter|Prison|Wall|Border|^Decoy/}, (tem
 
   replaceText(text,
     /$/,
-    '\n\nWhen depleted, the device\'s internal engine will reload it even when not actively wielded by the user.'
+    '\n\nWhen depleted, the device\'s internal engine will reload it even when not actively wielded by the user.',
   )
 })
 
@@ -590,7 +590,7 @@ rebalance({category: 36, name: /Titan/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 3}`
+    (match, hp) => `Durability: ${hp * 3}`,
   )
 })
 
@@ -606,7 +606,7 @@ rebalance({category: 36, name: /Gigantus|Melt/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 3}`
+    (match, hp) => `Durability: ${hp * 3}`,
   )
 })
 
@@ -622,7 +622,7 @@ rebalance({category: 36, name: /Armored Railgun/}, (template, i, meta, text) => 
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 2}`
+    (match, hp) => `Durability: ${hp * 2}`,
   )
 })
 
@@ -655,7 +655,7 @@ rebalance({category: 37, name: /SDL1/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 2}`
+    (match, hp) => `Durability: ${hp * 2}`,
   )
 })
 
@@ -695,7 +695,7 @@ rebalance({category: 37, name: /Grape/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 4}`
+    (match, hp) => `Durability: ${hp * 4}`,
   )
 })
 
@@ -711,7 +711,7 @@ rebalance({category: 37, name: /Caravan/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 2}`
+    (match, hp) => `Durability: ${hp * 2}`,
   )
 })
 
@@ -727,7 +727,7 @@ rebalance({category: 37, name: /Naegling/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 3}`
+    (match, hp) => `Durability: ${hp * 3}`,
   )
 })
 
@@ -743,7 +743,7 @@ rebalance({category: 38}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 4}`
+    (match, hp) => `Durability: ${hp * 4}`,
   )
 })
 
@@ -759,7 +759,7 @@ rebalance({category: 39, name: /Depth Crawler/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 5}`
+    (match, hp) => `Durability: ${hp * 5}`,
   )
 })
 
@@ -775,7 +775,7 @@ rebalance({category: 39, name:/Vegalta/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 2.5}`
+    (match, hp) => `Durability: ${hp * 2.5}`,
   )
 })
 
@@ -790,7 +790,7 @@ rebalance({category: 39, name:/Proteus/}, (template, i, meta, text) => {
   })
   replaceText(text,
     /Durability: (\d+)/,
-    (match, hp) => `Durability: ${hp * 1.5}`
+    (match, hp) => `Durability: ${hp * 1.5}`,
   )
 })
 

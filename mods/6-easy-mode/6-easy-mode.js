@@ -70,7 +70,7 @@ function access(node, ...address) {
 }
 
 function accessMap(node, cb) {
-  let arr = Array.isArray(node) ? node : node.value
+  const arr = Array.isArray(node) ? node : node.value
   return arr.map(v => cb(v.value))
 }
 
@@ -107,7 +107,7 @@ function writeValues(mode, header) {
 }
 
 async function main() {
-  const config  = JSON.parse(await readFile(`data/6/config.json`))
+  const config  = JSON.parse(await readFile('data/6/config.json'))
   const modes = config.variables[0]
   const offline = access(modes, 0)
   const online = findMode(modes, 'GameMode_OnlineScenario')
@@ -138,7 +138,7 @@ async function main() {
   writeValues(dlc1, 'DLC1 Online (After)')
   writeValues(dlc2, 'DLC2 Online (After)')
 
-  const outDir = `./release/6-easy-mode/defaultpackage`
+  const outDir = './release/6-easy-mode/defaultpackage'
   await mkdir(outDir, { recursive: true })
 
   const compiled = compileSgo(config)

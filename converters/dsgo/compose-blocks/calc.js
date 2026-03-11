@@ -25,37 +25,37 @@ function calc({ value }, composer, jsonNodes) {
     const { command, size } = CalcCommands[cmd.command]
     blockSize += size
     switch(cmd.command) {
-      case 'value': {
-        return { command, value: cmd.value }
-      }
+    case 'value': {
+      return { command, value: cmd.value }
+    }
 
-      case 'nodeId': {
-        const index = jsonNodes.findIndex(n => n.id === cmd.value)
-        if(index === -1)
-          throw new Error(`No index found for node ID: "${cmd.value}"`)
-        return { command, value: index }
-      }
+    case 'nodeId': {
+      const index = jsonNodes.findIndex(n => n.id === cmd.value)
+      if(index === -1)
+        throw new Error(`No index found for node ID: "${cmd.value}"`)
+      return { command, value: index }
+    }
 
-      case 'f:limit':
-      case 'f:lerp': {
-        return [
-          ...cmd.value.flatMap(unrollCalc),
-          { command, value: CalcFunctions[cmd.command] },
-        ]
-      }
+    case 'f:limit':
+    case 'f:lerp': {
+      return [
+        ...cmd.value.flatMap(unrollCalc),
+        { command, value: CalcFunctions[cmd.command] },
+      ]
+    }
 
-      case '+':
-      case '-':
-      case '*':
-      case '/': {
-        return [
-          ...cmd.value.flatMap(unrollCalc),
-          { command },
-        ]
-      }
+    case '+':
+    case '-':
+    case '*':
+    case '/': {
+      return [
+        ...cmd.value.flatMap(unrollCalc),
+        { command },
+      ]
+    }
 
-      default:
-        throw new Error(`Calc command not recognized: "${cmd.command}"`)
+    default:
+      throw new Error(`Calc command not recognized: "${cmd.command}"`)
     }
   }
 

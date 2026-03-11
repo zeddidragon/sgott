@@ -86,7 +86,7 @@ function compileSgo(compiler, obj, opts, globals) {
   SgoNodeTypes.ptr = Struct([
     [0x00, UInt, () => 0],
     [0x04, UInt, obj => (obj.value && obj.value.length) || 0x00],
-    [0x08, Ref, Collection(SgoNode, obj => obj.value)]
+    [0x08, Ref, Collection(SgoNode, obj => obj.value)],
   ], 0x0C)
 
   const SgoHeader = (() => {

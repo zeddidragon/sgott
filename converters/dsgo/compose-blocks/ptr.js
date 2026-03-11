@@ -13,7 +13,7 @@ function ptr({ value }, composer, jsonNodes, json) {
     const index = jsonNodes.indexOf(node)
     if(index === -1) {
       console.error(value[i])
-      throw new Error(`Child node not found in nodes list.`)
+      throw new Error('Child node not found in nodes list.')
     }
     table[i] = index
   }

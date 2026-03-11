@@ -94,7 +94,7 @@ function compile(obj) {
       strings.push(nullString)
     }
     const stringCursors = {}
-    for(let str of strings) {
+    for(const str of strings) {
       const written = str + '\0'
       const cursor = malloc(stringBytes(written))
       cursor.buffer.write(written, 'utf16le')
@@ -154,7 +154,7 @@ function compile(obj) {
     [util.inspect.custom]() {
       const startAt = Math.max(0, Math.floor((this.pos / 0x10) - 1) * 0x10)
       const endAt = Math.min(startAt + 0x40, this.buffer.length)
-      let bufferView = []
+      const bufferView = []
       for(let i = startAt; i < endAt; i += 0x2) {
         if(!(i % 0x10)) {
           bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])

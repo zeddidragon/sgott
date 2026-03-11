@@ -9,7 +9,7 @@ module.exports = {
       [ // Image on the side or something
         'app:/Mission/MissionList.offline.list.sgo',
         'app:/Mission/MissionList.offline.txt.%LOCALE%.sgo',
-        'app:/Mission/MissionList.offline.image.rab'
+        'app:/Mission/MissionList.offline.image.rab',
       ],
       [
         [
@@ -20,7 +20,7 @@ module.exports = {
           [ 1, 0.75 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 10, 24 ],
@@ -30,7 +30,7 @@ module.exports = {
           [ 0.5, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 20, 60 ],
@@ -40,7 +40,7 @@ module.exports = {
           [ 0.75, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 70, 150 ],
@@ -50,7 +50,7 @@ module.exports = {
           [ 1, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 160, 280 ],
@@ -60,14 +60,14 @@ module.exports = {
           [ 1.25, 0.5 ],
           [ 1, 1 ],
           0,
-          0
-        ]
+          0,
+        ],
       ],
       0,
       0,
       0,
       0,
-      [ 1, 2 ]
+      [ 1, 2 ],
     ],
     [
       'GameMode_OnlineScenario',
@@ -78,7 +78,7 @@ module.exports = {
       [
         'app:/Mission/MissionList.online.list.sgo',
         'app:/Mission/MissionList.online.txt.%LOCALE%.sgo',
-        'app:/Mission/MissionList.online.image.rab'
+        'app:/Mission/MissionList.online.image.rab',
       ],
       [
         [
@@ -87,14 +87,14 @@ module.exports = {
             1.2000000476837158,
             0.800000011920929,
             1,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 0, 0.949999988079071, 0.20000000298023224 ],
           [ 1.7999999523162842, 1.5, 1 ],
           [ 1, 0.75 ],
           [ 1.7999999523162842, 1.7999999523162842 ],
           [ 0.10000000149011612, 1.100000023841858 ],
-          [ 350, 2000 ]
+          [ 350, 2000 ],
         ],
         [
           [ 10, 25 ],
@@ -102,14 +102,14 @@ module.exports = {
             1.2000000476837158,
             0.800000011920929,
             1,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 0, 1, 0.20000000298023224 ],
           [ 2.4000000953674316, 2, 1 ],
           [ 1, 0.5 ],
           [ 2, 1.5 ],
           [ 0.10000000149011612, 1.100000023841858 ],
-          [ 350, 2000 ]
+          [ 350, 2000 ],
         ],
         [
           [ 20, 60 ],
@@ -117,14 +117,14 @@ module.exports = {
             1.2000000476837158,
             0.8999999761581421,
             1.0499999523162842,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 0.10000000149011612, 2, 0.25 ],
           [ 2.299999952316284, 2, 1 ],
           [ 1.25, 0.5 ],
           [ 2, 1.5 ],
           [ 0.20000000298023224, 2.0999999046325684 ],
-          [ 700, 4500 ]
+          [ 700, 4500 ],
         ],
         [
           [ 70, 150 ],
@@ -132,31 +132,31 @@ module.exports = {
             1.2000000476837158,
             1,
             1.100000023841858,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 1.7599999904632568, 3, 0.30000001192092896 ],
           [ 2.200000047683716, 2, 1 ],
           [ 1.5, 0.5 ],
           [ 1.75, 1.5 ],
           [ 2.0999999046325684, 3.0999999046325684 ],
-          [ 4500, 8000 ]
+          [ 4500, 8000 ],
         ],
         [
           [ 160, 280 ], // Base scaling by mission [first, ..., last]
-          [ 1.2, 1.1, 1.15, 1.2, ], // Enemy scaling by player count [1,2,3,4]
+          [ 1.2, 1.1, 1.15, 1.2 ], // Enemy scaling by player count [1,2,3,4]
           [ 2, 4, 1 ], // Drop range by mission [first, last, negative spread]
           [ 2.200000047683716, 2, 1 ], // Enemy scaling [hp, dmg, ???]
           [ 1.5, 0.5 ], // NPC infantry scaling [hp, dmg]
           [ 1.5, 1.5 ], // NPC vehicle scaling [hp, dmg]
           [ 2.4, 3.2, 3.999, 3.999 ], // Weapon limit [first, ..., last]
-          [ 8000, 20000 ] // HP Limit [first, ..., last]
-        ]
+          [ 8000, 20000 ], // HP Limit [first, ..., last]
+        ],
       ],
       1,
       0,
       1,
       0,
-      [ 1 ] // Allowed player counts [1], [1,2] or [2]
+      [ 1 ], // Allowed player counts [1], [1,2] or [2]
     ],
     [
       'GameMode_Offline_MissionPack01',
@@ -167,7 +167,7 @@ module.exports = {
       [
         'app:/Mission/DLC1_MissionList.offline.list.sgo',
         'app:/Mission/DLC1_MissionList.offline.txt.%LOCALE%.sgo',
-        'app:/Mission/DLC1_MissionList.offline.image.rab'
+        'app:/Mission/DLC1_MissionList.offline.image.rab',
       ],
       [
         [
@@ -178,7 +178,7 @@ module.exports = {
           [ 1, 0.75 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 17, 24 ],
@@ -188,7 +188,7 @@ module.exports = {
           [ 0.5, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 40, 60 ],
@@ -198,7 +198,7 @@ module.exports = {
           [ 0.75, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 110, 150 ],
@@ -208,7 +208,7 @@ module.exports = {
           [ 1, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 220, 280 ],
@@ -218,14 +218,14 @@ module.exports = {
           [ 1.25, 0.5 ],
           [ 1, 1 ],
           0,
-          0
-        ]
+          0,
+        ],
       ],
       0,
       1,
       0,
       0,
-      [ 1, 2 ]
+      [ 1, 2 ],
     ],
     [
       'GameMode_Online_MissionPack01',
@@ -236,7 +236,7 @@ module.exports = {
       [
         'app:/Mission/DLC1_MissionList.online.list.sgo',
         'app:/Mission/DLC1_MissionList.online.txt.%LOCALE%.sgo',
-        'app:/Mission/DLC1_MissionList.online.image.rab'
+        'app:/Mission/DLC1_MissionList.online.image.rab',
       ],
       [
         [
@@ -245,14 +245,14 @@ module.exports = {
             1.2000000476837158,
             0.800000011920929,
             1,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 0.5, 1, 0.20000000298023224 ],
           [ 1.7999999523162842, 1.5, 1 ],
           [ 1, 0.75 ],
           [ 1.7999999523162842, 1.7999999523162842 ],
           [ 0.6000000238418579, 1.100000023841858 ],
-          [ 1100, 2000 ]
+          [ 1100, 2000 ],
         ],
         [
           [ 17, 25 ],
@@ -260,14 +260,14 @@ module.exports = {
             1.2000000476837158,
             0.800000011920929,
             1,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 0.5, 1, 0.20000000298023224 ],
           [ 2.4000000953674316, 2, 1 ],
           [ 1, 0.5 ],
           [ 2, 1.5 ],
           [ 0.6000000238418579, 1.100000023841858 ],
-          [ 1100, 2000 ]
+          [ 1100, 2000 ],
         ],
         [
           [ 40, 60 ],
@@ -275,14 +275,14 @@ module.exports = {
             1.2000000476837158,
             0.8999999761581421,
             1.0499999523162842,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 1, 1.5499999523162842, 0.25 ],
           [ 2.299999952316284, 2, 1 ],
           [ 1.25, 0.5 ],
           [ 2, 1.5 ],
           [ 1.100000023841858, 1.649999976158142 ],
-          [ 2600, 4500 ]
+          [ 2600, 4500 ],
         ],
         [
           [ 110, 150 ],
@@ -290,14 +290,14 @@ module.exports = {
             1.2000000476837158,
             1,
             1.100000023841858,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 2.380000114440918, 3, 0.30000001192092896 ],
           [ 2.200000047683716, 2, 1 ],
           [ 1.5, 0.5 ],
           [ 1.75, 1.5 ],
           [ 2.4800000190734863, 3.0999999046325684 ],
-          [ 6200, 8000 ]
+          [ 6200, 8000 ],
         ],
         [
           [ 220, 280 ],
@@ -305,21 +305,21 @@ module.exports = {
             1.2000000476837158,
             1.100000023841858,
             1.149999976158142,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 4, 4.5, 1 ],
           [ 2.200000047683716, 2, 1 ],
           [ 1.5, 0.5 ],
           [ 1.5, 1.5 ],
           [ -1, -1 ],
-          [ 14000, 20000 ]
-        ]
+          [ 14000, 20000 ],
+        ],
       ],
       1,
       1,
       1,
       0,
-      [ 1 ]
+      [ 1 ],
     ],
     [
       'GameMode_Offline_MissionPack02',
@@ -330,7 +330,7 @@ module.exports = {
       [
         'app:/Mission/DLC2_MissionList.offline.list.sgo',
         'app:/Mission/DLC2_MissionList.offline.txt.%LOCALE%.sgo',
-        'app:/Mission/DLC2_MissionList.offline.image.rab'
+        'app:/Mission/DLC2_MissionList.offline.image.rab',
       ],
       [
         [
@@ -341,7 +341,7 @@ module.exports = {
           [ 1, 0.75 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 24, 40 ],
@@ -351,7 +351,7 @@ module.exports = {
           [ 0.5, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 60, 110 ],
@@ -361,7 +361,7 @@ module.exports = {
           [ 0.75, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 150, 220 ],
@@ -371,7 +371,7 @@ module.exports = {
           [ 1, 0.5 ],
           [ 1, 1 ],
           0,
-          0
+          0,
         ],
         [
           [ 250, 330 ],
@@ -381,14 +381,14 @@ module.exports = {
           [ 1.25, 0.5 ],
           [ 1, 1 ],
           0,
-          0
-        ]
+          0,
+        ],
       ],
       0,
       2,
       0,
       0,
-      [ 1, 2 ]
+      [ 1, 2 ],
     ],
     [
       'GameMode_Online_MissionPack02',
@@ -399,7 +399,7 @@ module.exports = {
       [
         'app:/Mission/DLC2_MissionList.online.list.sgo',
         'app:/Mission/DLC2_MissionList.online.txt.%LOCALE%.sgo',
-        'app:/Mission/DLC2_MissionList.online.image.rab'
+        'app:/Mission/DLC2_MissionList.online.image.rab',
       ],
       [
         [
@@ -408,14 +408,14 @@ module.exports = {
             1.2000000476837158,
             0.800000011920929,
             1,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 1, 1.5, 0.20000000298023224 ],
           [ 1.7999999523162842, 1.5, 1 ],
           [ 1, 0.75 ],
           [ 1.7999999523162842, 1.7999999523162842 ],
           [ 1.100000023841858, 1.600000023841858 ],
-          [ 2000, 3500 ]
+          [ 2000, 3500 ],
         ],
         [
           [ 24, 40 ],
@@ -423,14 +423,14 @@ module.exports = {
             1.2000000476837158,
             0.800000011920929,
             1,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 1, 1.5, 0.20000000298023224 ],
           [ 2.4000000953674316, 2, 1 ],
           [ 1, 0.5 ],
           [ 2, 1.5 ],
           [ 1.100000023841858, 1.600000023841858 ],
-          [ 2000, 3500 ]
+          [ 2000, 3500 ],
         ],
         [
           [ 60, 110 ],
@@ -438,14 +438,14 @@ module.exports = {
             1.2000000476837158,
             0.8999999761581421,
             1.0499999523162842,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 1.774999976158142, 2.5, 0.25 ],
           [ 2.299999952316284, 2, 1 ],
           [ 1.25, 0.5 ],
           [ 2, 1.5 ],
           [ 1.875, 2.5999999046325684 ],
-          [ 4500, 7000 ]
+          [ 4500, 7000 ],
         ],
         [
           [ 150, 220 ],
@@ -453,14 +453,14 @@ module.exports = {
             1.2000000476837158,
             1,
             1.100000023841858,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 3, 3.5, 0.30000001192092896 ],
           [ 2.0999999046325684, 2, 1 ],
           [ 1.5, 0.5 ],
           [ 1.75, 1.5 ],
           [ 3.0999999046325684, 3.5999999046325684 ],
-          [ 8000, 14000 ]
+          [ 8000, 14000 ],
         ],
         [
           [ 250, 330 ],
@@ -468,22 +468,22 @@ module.exports = {
             1.2000000476837158,
             1.100000023841858,
             1.149999976158142,
-            1.2000000476837158
+            1.2000000476837158,
           ],
           [ 4.25, 4.75, 1 ],
           [ 2, 2, 1 ],
           [ 1.5, 0.5 ],
           [ 1.5, 1.5 ],
           [ -1, -1 ],
-          [ 20000, 25000 ]
-        ]
+          [ 20000, 25000 ],
+        ],
       ],
       1,
       2,
       1,
       0,
-      [ 1 ]
-    ]
+      [ 1 ],
+    ],
   ],
   PackageName: 'DEFP',
   SoldierInit: [
@@ -492,7 +492,7 @@ module.exports = {
       'SoldierType_Ranger',
       [
         'app:/object/ArmySoldier.sgo',
-        'app:/object/SecurityGuard.sgo'
+        'app:/object/SecurityGuard.sgo',
       ],
       [ 200, 0.6399999856948853 ],
       [
@@ -501,28 +501,28 @@ module.exports = {
           'AssultRifle01',
           [
             0, 1, 2, 3,
-            4, 5, 6
+            4, 5, 6,
           ],
           0,
-          0
+          0,
         ],
         [
           'Weapon_Slot2',
           'RocketLauncher01',
           [
             0, 1, 2, 3,
-            4, 5, 6
+            4, 5, 6,
           ],
           0,
-          0
+          0,
         ],
-        [ 'Weapon_SlotSupport', 'aSupportNone', [ 7, 8, 9, 10 ], 0, 1 ]
+        [ 'Weapon_SlotSupport', 'aSupportNone', [ 7, 8, 9, 10 ], 0, 1 ],
       ],
       [
         'App:/DefaultPackage/CustomColorRanger.sgo',
         [
           'APP:/MENUOBJECT/ARMYSOLDIER.SGO',
-          'APP:/MENUOBJECT/SECURITYGUARD.SGO'
+          'APP:/MENUOBJECT/SECURITYGUARD.SGO',
         ],
         'App:/UI/TypeSelectImage.rab',
         [
@@ -530,9 +530,9 @@ module.exports = {
           'SoldierType_Ranger_02.dds',
           'SoldierType_Ranger_03.dds',
           'SoldierType_Ranger_04.dds',
-          'SoldierType_Ranger_05.dds'
-        ]
-      ]
+          'SoldierType_Ranger_05.dds',
+        ],
+      ],
     ],
     [
       1,
@@ -546,10 +546,10 @@ module.exports = {
           [
             100, 101, 102,
             103, 104, 105,
-            106, 107
+            106, 107,
           ],
           0,
-          0
+          0,
         ],
         [
           'Weapon_Slot2',
@@ -557,12 +557,12 @@ module.exports = {
           [
             100, 101, 102,
             103, 104, 105,
-            106, 107
+            106, 107,
           ],
           0,
-          0
+          0,
         ],
-        [ 'Weapon_SlotPaleSupport', 'pSupportNone', [ 108 ], 0, 1 ]
+        [ 'Weapon_SlotPaleSupport', 'pSupportNone', [ 108 ], 0, 1 ],
       ],
       [
         'App:/DefaultPackage/CustomColorWingDiver.sgo',
@@ -572,9 +572,9 @@ module.exports = {
           'SoldierType_WingDiver_01.dds',
           'SoldierType_WingDiver_02.dds',
           'SoldierType_WingDiver_03.dds',
-          'SoldierType_WingDiver_04.dds'
-        ]
-      ]
+          'SoldierType_WingDiver_04.dds',
+        ],
+      ],
     ],
     [
       2,
@@ -588,10 +588,10 @@ module.exports = {
           [
             310, 311, 312,
             313, 314, 303,
-            304, 302, 305
+            304, 302, 305,
           ],
           0,
-          0
+          0,
         ],
         [
           'Weapon_Slot2',
@@ -599,10 +599,10 @@ module.exports = {
           [
             310, 311, 312,
             313, 314, 303,
-            304, 302, 305
+            304, 302, 305,
           ],
           0,
-          0
+          0,
         ],
         [
           'Weapon_Slot3',
@@ -610,33 +610,33 @@ module.exports = {
           [
             310, 311, 312,
             313, 314, 303,
-            304, 302, 305
+            304, 302, 305,
           ],
           0,
-          0
+          0,
         ],
         [
           'Weapon_SlotVehicle',
           'eVehicleNone',
           [ 306, 307, 308, 309, 320 ],
           0,
-          1
-        ]
+          1,
+        ],
       ],
       [
         'App:/DefaultPackage/CustomColorAirRaider.sgo',
         [
           'APP:/MENUOBJECT/ENGINEER.SGO',
-          'APP:/MENUOBJECT/MAINTENANCE.SGO'
+          'APP:/MENUOBJECT/MAINTENANCE.SGO',
         ],
         'App:/UI/TypeSelectImage.rab',
         [
           'SoldierType_AirRaider_01.dds',
           'SoldierType_AirRaider_02.dds',
           'SoldierType_AirRaider_03.dds',
-          'SoldierType_AirRaider_04.dds'
-        ]
-      ]
+          'SoldierType_AirRaider_04.dds',
+        ],
+      ],
     ],
     [
       3,
@@ -649,49 +649,49 @@ module.exports = {
           'hShield01',
           [ 200, 201, 202, 203, 204, 205 ],
           1,
-          0
+          0,
         ],
         [
           'Weapon_Slot1R',
           'hGatling01',
           [ 200, 201, 202, 203, 204, 205 ],
           1,
-          0
+          0,
         ],
         [
           'Weapon_Slot2L',
           'hShield01',
           [ 200, 201, 202, 203, 204, 205 ],
           1,
-          0
+          0,
         ],
         [
           'Weapon_Slot2R',
           'hPileBanker01',
           [ 200, 201, 202, 203, 204, 205 ],
           1,
-          0
+          0,
         ],
         [
           'Weapon_SlotSupport',
           'hSupportNone0',
           [ 206, 207, 208, 209 ],
           0,
-          1
+          1,
         ],
         [
           'Weapon_SlotSupport',
           'hSupportNone1',
           [ 206, 207, 208, 209 ],
           0,
-          1
-        ]
+          1,
+        ],
       ],
       [
         'App:/DefaultPackage/CustomColorHeavyArmor.sgo',
         [
           'APP:/MENUOBJECT/HEAVYARMOR.SGO',
-          'APP:/MENUOBJECT/WORKER.SGO'
+          'APP:/MENUOBJECT/WORKER.SGO',
         ],
         'App:/UI/TypeSelectImage.rab',
         [
@@ -699,10 +699,10 @@ module.exports = {
           'SoldierType_Fencer_02.dds',
           'SoldierType_Fencer_03.dds',
           'SoldierType_Fencer_04.dds',
-          'SoldierType_Fencer_05.dds'
-        ]
-      ]
-    ]
+          'SoldierType_Fencer_05.dds',
+        ],
+      ],
+    ],
   ],
   SoldierWeaponCategory: [
     [ 0, 'Weapon_AssaultRifle' ],
@@ -749,8 +749,8 @@ module.exports = {
     [ 307, 'Weapon_Engineer_Vehicle2' ],
     [ 308, 'Weapon_Engineer_Vehicle3' ],
     [ 309, 'Weapon_Engineer_Vehicle4' ],
-    [ 320, 'Weapon_Engineer_Vehicle5' ]
+    [ 320, 'Weapon_Engineer_Vehicle5' ],
   ],
   WeaponTable: 'app:/Weapon/WeaponTable.sgo',
-  WeaponText: 'app:/Weapon/WeaponText.%LOCALE%.sgo'
+  WeaponText: 'app:/Weapon/WeaponText.%LOCALE%.sgo',
 }

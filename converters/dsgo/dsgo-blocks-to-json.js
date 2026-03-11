@@ -128,42 +128,42 @@ function dsgoBlocksToJson(blocks) {
       const cmd = { command: CalcCommandNames[command], value }
 
       switch(command) {
-        case CalcType.END:
-          break loop;
+      case CalcType.END:
+        break loop
 
-        case CalcType.READ_VALUE:
-          stack.push(cmd)
-          break
+      case CalcType.READ_VALUE:
+        stack.push(cmd)
+        break
 
-        case CalcType.READ_NODE: {
-          const node = nodes[value]
-          if(!node.id)
-            node.id = `node${value}` // Assumed to be unique
-          cmd.value = node.id
-          stack.push(cmd)
-          break
-        }
+      case CalcType.READ_NODE: {
+        const node = nodes[value]
+        if(!node.id)
+          node.id = `node${value}` // Assumed to be unique
+        cmd.value = node.id
+        stack.push(cmd)
+        break
+      }
 
-        case CalcType.FUNCTION: {
-          const func = CalcFunctions[value]
+      case CalcType.FUNCTION: {
+        const func = CalcFunctions[value]
 
-          if(!func)
-            throw new Error(`Unknown calc function: ${value}`)
+        if(!func)
+          throw new Error(`Unknown calc function: ${value}`)
 
-          cmd.command = func.name
-          cmd.value = stack.splice(-func.args)
-          stack.push(cmd)
-          break
-        }
+        cmd.command = func.name
+        cmd.value = stack.splice(-func.args)
+        stack.push(cmd)
+        break
+      }
 
-        case CalcType.MATH_ADD:
-        case CalcType.MATH_SUB:
-        case CalcType.MATH_MUL:
-        case CalcType.MATH_DIV: {
-          cmd.value = stack.splice(-2)
-          stack.push(cmd)
-          break
-        }
+      case CalcType.MATH_ADD:
+      case CalcType.MATH_SUB:
+      case CalcType.MATH_MUL:
+      case CalcType.MATH_DIV: {
+        cmd.value = stack.splice(-2)
+        stack.push(cmd)
+        break
+      }
       }
     }
 

@@ -20,27 +20,27 @@ function jsonToDsgoBlocks(json) {
     for(let i = 0; i < nodes.length; i++) {
       const node = nodes[i]
       switch(node.type) {
-        case 'ptr': {
-          yield node
-          yield *eachNode(node.value)
-          break
-        }
-        case 'heap': {
-          // NOT yielded. Resolved later in ./ptr.js
-          const heapNode = json.heap[node.value]
-          if(heapNode == null)
-            throw new Error(`Heap node not found: "${node.value}"`)
+      case 'ptr': {
+        yield node
+        yield *eachNode(node.value)
+        break
+      }
+      case 'heap': {
+        // NOT yielded. Resolved later in ./ptr.js
+        const heapNode = json.heap[node.value]
+        if(heapNode == null)
+          throw new Error(`Heap node not found: "${node.value}"`)
 
-          if(!traversed.has(heapNode)) {
-            traversed.add(heapNode)
-            yield* eachNode([heapNode])
-          }
-          break
+        if(!traversed.has(heapNode)) {
+          traversed.add(heapNode)
+          yield* eachNode([heapNode])
         }
-        default: {
-          yield node
-          break
-        }
+        break
+      }
+      default: {
+        yield node
+        break
+      }
       }
     }
   }
@@ -63,7 +63,7 @@ function jsonToDsgoBlocks(json) {
   })
 
   // Now that we know the total amount of nodes we have an address
-  let address = 0x10 + jsonNodes.length * 0x10
+  const address = 0x10 + jsonNodes.length * 0x10
   for(let i = 0; i < jsonNodes.length; i++) {
     const node = jsonNodes[i]
     blockNodes[i] = dsgoTypes[node.type](node, composer, jsonNodes, json)

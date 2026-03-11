@@ -93,7 +93,7 @@ function decompiler(format, fullBuffer, config = {}) {
   HexInt.size = 0x04
 
   function HexView(buffer) {
-    let bufferView = []
+    const bufferView = []
     for(let i = startAt; i < endAt; i += 0x2) {
       if(!(i % 0x10)) {
         bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])
@@ -168,7 +168,7 @@ Contact the developers of this tool and tell them which file this happened in!
     [util.inspect.custom]() {
       const startAt = Math.max(0, Math.floor((this.pos / 0x10) - 1) * 0x10)
       const endAt = Math.min(startAt + 0x40, this.buffer.length)
-      let bufferView = []
+      const bufferView = []
       for(let i = startAt; i < endAt; i += 0x2) {
         if(!(i % 0x10)) {
           bufferView.push([kleur.magenta(`${i.toString(16).padStart(8, 0)}:`)])

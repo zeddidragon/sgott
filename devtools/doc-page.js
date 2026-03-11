@@ -39,7 +39,7 @@ for(const entry of text.variables[0].value) {
     .replace(/<font.*color=.*ffffff.*>/, '<pre class="stats">')
     .replace(/<font.*color=.*00ffff.*>/, '</pre><pre class="vehicle">')
     .replace(/<font.*color=.*808080.*>/, '</pre><pre class="vehicle-legend">')
-    .replace(/<font.*>/, '</pre><p class="description">')
+    .replace(/<font.*>/, '</pre><p class="description">'),
   )
   console.log('</p></section>')
 }
