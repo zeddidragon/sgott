@@ -1,3 +1,4 @@
+const crypto = require('crypto')
 const storage = require('../../helpers/storage')
 const DsgoType = require('./dsgo-type')
 const CalcType = require('./calc-type')
@@ -23,8 +24,8 @@ const CalcCommandNames = [
 ]
 
 const CalcFunctions = {
-  [0x80000005]: { name: 'f:limit', args: 1 },
-  [0x80000006]: { name: 'f:lerp', args: 3 },
+  [0x80000005]: 'f:limit',
+  [0x80000006]: 'f:lerp',
 }
 
 function dsgoBlocksToJson(blocks) {
@@ -121,53 +122,30 @@ function dsgoBlocksToJson(blocks) {
   // BEGIN Resolve type 4 `calc`
   // First pass to translate the commands into plaintext names
   for(const n of nodes.filter(n => n.type === 'calc')) {
-    const stack = []
-
-    loop:
-    for(const { command, value } of n.value) {
-      const cmd = { command: CalcCommandNames[command], value }
-
+    n.value = n.value.map(({ command, value }) => {
       switch(command) {
       case CalcType.END:
-        break loop
-
+        return 'end'
       case CalcType.READ_VALUE:
-        stack.push(cmd)
-        break
+        return value
 
       case CalcType.READ_NODE: {
         const node = nodes[value]
         if(!node.id)
-          node.id = `node${value}` // Assumed to be unique
-        cmd.value = node.id
-        stack.push(cmd)
-        break
+          node.id = `node${value}`
+        return `@${node.id}`
       }
 
-      case CalcType.FUNCTION: {
-        const func = CalcFunctions[value]
+      case CalcType.FUNCTION:
+        return CalcFunctions[value] || `f:${value.toString(16)}`
 
-        if(!func)
-          throw new Error(`Unknown calc function: ${value}`)
-
-        cmd.command = func.name
-        cmd.value = stack.splice(-func.args)
-        stack.push(cmd)
-        break
+      default:
+        return CalcCommandNames[command]
       }
-
-      case CalcType.MATH_ADD:
-      case CalcType.MATH_SUB:
-      case CalcType.MATH_MUL:
-      case CalcType.MATH_DIV: {
-        cmd.value = stack.splice(-2)
-        stack.push(cmd)
-        break
-      }
-      }
+    })
+    while(n.value[n.value.length - 1] === 'end') {
+      n.value.pop()
     }
-
-    n.value = stack[0]
   }
 
   // END Resolve type 4 `calc`
