@@ -21,6 +21,7 @@ const CalcCommandSizes = {
   [CalcType.MATH_SUB]: 0x04,
   [CalcType.MATH_MUL]: 0x04,
   [CalcType.MATH_DIV]: 0x04,
+  [CalcType.END]: 0x04,
 }
 
 function calc({ value }, composer, jsonNodes) {
@@ -54,6 +55,7 @@ function calc({ value }, composer, jsonNodes) {
   }
 
   const calcBlock = value.map(decodeCalc)
+  calcBlock.push({ command: CalcType.END })
   const size = calcBlock.reduce((sum, { command }) => sum + CalcCommandSizes[command], 0x08)
 
   composer.align(0x04)
