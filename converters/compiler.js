@@ -66,7 +66,7 @@ function compile(obj) {
 
   function unrollDeferred() {
     for(const { buffer, cursor, offset } of deferred) {
-      const allocated = malloc(padCeil(buffer.length))
+      const allocated = malloc(buffer.length)
       buffer.copy(allocated.buffer)
       Int(cursor, cursor.pointer(allocated.pos), offset)
     }

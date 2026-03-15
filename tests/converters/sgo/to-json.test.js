@@ -28,7 +28,7 @@ describe('sgo\\to-json.js', () => {
     ]
   }
 
-  it('should identify a file being Big-Endian', t => {
+  it('should identify a file being Big-Endian', async t => {
     const header = Buffer.alloc(0x20)
     const vars = Buffer.alloc(0x0C)
     const varNames = Buffer.alloc(0x08)

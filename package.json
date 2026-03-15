@@ -6,8 +6,8 @@
   "main": "sgott.js",
   "bin": "sgott.js",
   "scripts": {
-    "test": "concurrently --kill-others-on-fail --prefix none npm:test:*",
-    "test:sgo": "node --test ./tests/converters/sgo/to-json.spec.*",
+    "test": "node --test",
+    "test:sgo": "node --test ./tests/converters/sgo/to-json.test.*",
     "build-sgott": "pkg -t node16-win -o ./release/sgott.exe ./sgott.js",
     "build": "npm run build-sgott"
   },
