@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -165,19 +165,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node52",
-      "value": {
-        "command": "/",
-        "value": [
-          {
-            "command": "-",
-            "value": [
-              {"command": "nodeId", "value": "node2"},
-              {"command": "value", "value": 1}
-            ]
-          },
-          {"command": "value", "value": 29}
-        ]
-      }
+      "value": ["@node2", 1, "-", 29, "/"]
     },
     {
       "name": "bullet_setting",
@@ -187,55 +175,15 @@
         {"type": "double", "value": 25},
         {"type": "ptr", "value": [{"type": "double", "value": 1}]},
         {"type": "double", "value": -1},
-        {
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 10},
-              {"command": "value", "value": 20},
-              {"command": "nodeId", "value": "node52"}
-            ]
-          }
-        },
+        {"type": "calc", "value": [10, 20, "@node52", "f:lerp"]},
         {"type": "ptr", "value": []},
-        {
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 2.5},
-              {"command": "value", "value": 5},
-              {"command": "nodeId", "value": "node52"}
-            ]
-          }
-        },
+        {"type": "calc", "value": [2.5, 5, "@node52", "f:lerp"]},
         {"type": "double", "value": 0.5},
         {"type": "double", "value": 1},
         {"type": "ptr", "value": []},
-        {
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 0.6},
-              {"command": "value", "value": 2},
-              {"command": "nodeId", "value": "node52"}
-            ]
-          }
-        },
+        {"type": "calc", "value": [0.6, 2, "@node52", "f:lerp"]},
         {"type": "ptr", "value": []},
-        {
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 1},
-              {"command": "value", "value": 2},
-              {"command": "nodeId", "value": "node52"}
-            ]
-          }
-        },
+        {"type": "calc", "value": [1, 2, "@node52", "f:lerp"]},
         {"type": "ptr", "value": []},
         {
           "type": "ptr",
@@ -318,17 +266,7 @@
         {"type": "ptr", "value": []},
         {"type": "double", "value": 0.03500000014901161},
         {"type": "ptr", "value": []},
-        {
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 620},
-              {"command": "value", "value": 370},
-              {"command": "nodeId", "value": "node52"}
-            ]
-          }
-        },
+        {"type": "calc", "value": [620, 370, "@node52", "f:lerp"]},
         {"type": "ptr", "value": []}
       ]
     },

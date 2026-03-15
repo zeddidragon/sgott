@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {"name": "weapon_level", "type": "double", "id": "node1", "value": 1},
@@ -191,18 +191,7 @@
             {
               "name": "max",
               "type": "ptr",
-              "value": [
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 520},
-                      {"command": "nodeId", "value": "node1"}
-                    ]
-                  }
-                }
-              ]
+              "value": [{"type": "calc", "value": [520, "@node1", "*"]}]
             },
             {
               "name": "online_adjust",
@@ -221,24 +210,7 @@
             {
               "name": "_l",
               "type": "calc",
-              "value": {
-                "command": "f:limit",
-                "value": [
-                  {
-                    "command": "/",
-                    "value": [
-                      {
-                        "command": "-",
-                        "value": [
-                          {"command": "nodeId", "value": "node1"},
-                          {"command": "value", "value": 1}
-                        ]
-                      },
-                      {"command": "value", "value": 15}
-                    ]
-                  }
-                ]
-              }
+              "value": ["@node1", 1, "-", 15, "/", "f:limit"]
             },
             {
               "name": "esb_name",

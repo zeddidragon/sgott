@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -663,24 +663,7 @@
           "name": "_l",
           "type": "calc",
           "id": "node242",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node11"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 29}
-                ]
-              }
-            ]
-          }
+          "value": ["@node11", 1, "-", 29, "/", "f:limit"]
         },
         {
           "name": "attack",
@@ -694,26 +677,12 @@
                 {
                   "name": "min",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 300},
-                      {"command": "value", "value": 150},
-                      {"command": "nodeId", "value": "node242"}
-                    ]
-                  }
+                  "value": [300, 150, "@node242", "f:lerp"]
                 },
                 {
                   "name": "max",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 1200},
-                      {"command": "value", "value": 600},
-                      {"command": "nodeId", "value": "node242"}
-                    ]
-                  }
+                  "value": [1200, 600, "@node242", "f:lerp"]
                 }
               ]
             }
@@ -723,14 +692,7 @@
           "name": "_speed_adjust",
           "type": "calc",
           "id": "node249",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 1},
-              {"command": "value", "value": 1.5},
-              {"command": "nodeId", "value": "node242"}
-            ]
-          }
+          "value": [1, 1.5, "@node242", "f:lerp"]
         },
         {
           "name": "move",
@@ -739,13 +701,7 @@
             {
               "name": "linear_speed",
               "type": "calc",
-              "value": {
-                "command": "*",
-                "value": [
-                  {"command": "value", "value": 0.225},
-                  {"command": "nodeId", "value": "node249"}
-                ]
-              }
+              "value": [0.225, "@node249", "*"]
             },
             {
               "name": "approach",
@@ -758,24 +714,12 @@
                     {
                       "name": "min",
                       "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "value", "value": 300},
-                          {"command": "nodeId", "value": "node249"}
-                        ]
-                      }
+                      "value": [300, "@node249", "/"]
                     },
                     {
                       "name": "max",
                       "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "value", "value": 600},
-                          {"command": "nodeId", "value": "node249"}
-                        ]
-                      }
+                      "value": [600, "@node249", "/"]
                     }
                   ]
                 },
@@ -866,19 +810,7 @@
           "name": "_l",
           "type": "calc",
           "id": "node278",
-          "value": {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node11"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 29}
-            ]
-          }
+          "value": ["@node11", 1, "-", 29, "/"]
         },
         {
           "name": "effect_arc",
@@ -996,89 +928,28 @@
               "name": "color",
               "type": "ptr",
               "value": [
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 1},
-                      {"command": "value", "value": 2},
-                      {"command": "nodeId", "value": "node278"}
-                    ]
-                  }
-                },
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 0.25},
-                      {"command": "value", "value": 0.5},
-                      {"command": "nodeId", "value": "node278"}
-                    ]
-                  }
-                },
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 0.25},
-                      {"command": "value", "value": 5},
-                      {"command": "nodeId", "value": "node278"}
-                    ]
-                  }
-                },
+                {"type": "calc", "value": [1, 2, "@node278", "f:lerp"]},
+                {"type": "calc", "value": [0.25, 0.5, "@node278", "f:lerp"]},
+                {"type": "calc", "value": [0.25, 5, "@node278", "f:lerp"]},
                 {"type": "double", "value": 1}
               ]
             },
             {
               "name": "size",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 0.5},
-                  {"command": "value", "value": 1},
-                  {"command": "nodeId", "value": "node278"}
-                ]
-              }
+              "value": [0.5, 1, "@node278", "f:lerp"]
             },
             {
               "name": "speed",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 0.8999999999999999},
-                  {"command": "value", "value": 1.2},
-                  {"command": "nodeId", "value": "node278"}
-                ]
-              }
+              "value": [0.8999999999999999, 1.2, "@node278", "f:lerp"]
             },
             {"name": "alive_time", "type": "double", "value": 1800},
-            {
-              "name": "damage",
-              "type": "calc",
-              "value": {
-                "command": "*",
-                "value": [
-                  {"command": "value", "value": 5},
-                  {"command": "nodeId", "value": "node11"}
-                ]
-              }
-            },
+            {"name": "damage", "type": "calc", "value": [5, "@node11", "*"]},
             {
               "name": "explosion_radius",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 3},
-                  {"command": "value", "value": 6},
-                  {"command": "nodeId", "value": "node278"}
-                ]
-              }
+              "value": [3, 6, "@node278", "f:lerp"]
             },
             {"name": "hit_size_adjust", "type": "double", "value": 0.5},
             {
@@ -1089,14 +960,7 @@
             {
               "name": "gravity_factor",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 3.75},
-                  {"command": "value", "value": 5},
-                  {"command": "nodeId", "value": "node278"}
-                ]
-              }
+              "value": [3.75, 5, "@node278", "f:lerp"]
             },
             {
               "name": "custom_parameter",

@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -295,13 +295,7 @@
                 {
                   "name": "damage",
                   "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 2.5},
-                      {"command": "nodeId", "value": "node2"}
-                    ]
-                  }
+                  "value": [2.5, "@node2", "*"]
                 },
                 {"name": "explosion_radius", "type": "double", "value": 10},
                 {"name": "hit_se", "type": "string", "value": "e609側面砲台着弾S01"},

@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -327,37 +327,13 @@
           "name": "_l",
           "type": "calc",
           "id": "node207",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node12"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 29}
-                ]
-              }
-            ]
-          }
+          "value": ["@node12", 1, "-", 29, "/", "f:limit"]
         },
         {"name": "gun_battery_fire_range", "type": "double", "value": 150},
         {
           "name": "gun_battery_target_trace_ratio",
           "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 0.1},
-              {"command": "value", "value": 0.2},
-              {"command": "nodeId", "value": "node207"}
-            ]
-          }
+          "value": [0.1, 0.2, "@node207", "f:lerp"]
         }
       ]
     }
@@ -436,24 +412,7 @@
           "name": "_l",
           "type": "calc",
           "id": "node107",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node12"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 29}
-                ]
-              }
-            ]
-          }
+          "value": ["@node12", 1, "-", 29, "/", "f:limit"]
         },
         {"name": "factory", "type": "string", "value": "EfsExposureBullet"},
         {
@@ -468,28 +427,8 @@
         },
         {"name": "size", "type": "double", "value": 1},
         {"name": "speed", "type": "double", "id": "node115", "value": 5},
-        {
-          "name": "alive_time",
-          "type": "calc",
-          "value": {
-            "command": "/",
-            "value": [
-              {"command": "value", "value": 150},
-              {"command": "nodeId", "value": "node115"}
-            ]
-          }
-        },
-        {
-          "name": "damage",
-          "type": "calc",
-          "value": {
-            "command": "*",
-            "value": [
-              {"command": "value", "value": 0.3},
-              {"command": "nodeId", "value": "node12"}
-            ]
-          }
-        },
+        {"name": "alive_time", "type": "calc", "value": [150, "@node115", "/"]},
+        {"name": "damage", "type": "calc", "value": [0.3, "@node12", "*"]},
         {
           "name": "hit_size_adjust",
           "type": "double",
@@ -498,14 +437,7 @@
         {
           "name": "hit_stop",
           "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 0.99},
-              {"command": "value", "value": 0.8},
-              {"command": "nodeId", "value": "node107"}
-            ]
-          }
+          "value": [0.99, 0.8, "@node107", "f:lerp"]
         },
         {
           "name": "hit_impulse_adjust",

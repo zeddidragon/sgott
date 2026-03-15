@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -340,26 +340,8 @@
                   "type": "ptr",
                   "value": [
                     {"type": "heap", "value": "node113"},
-                    {
-                      "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "nodeId", "value": "node113"},
-                          {"command": "value", "value": 1.5}
-                        ]
-                      }
-                    },
-                    {
-                      "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "nodeId", "value": "node113"},
-                          {"command": "value", "value": 2}
-                        ]
-                      }
-                    }
+                    {"type": "calc", "value": ["@node113", 1.5, "/"]},
+                    {"type": "calc", "value": ["@node113", 2, "/"]}
                   ]
                 },
                 {"name": "explosion_radius", "type": "double", "value": 8},
@@ -405,16 +387,6 @@
     }
   ],
   "heap": {
-    "node113": {
-      "type": "calc",
-      "id": "node113",
-      "value": {
-        "command": "*",
-        "value": [
-          {"command": "value", "value": 20},
-          {"command": "nodeId", "value": "node6"}
-        ]
-      }
-    }
+    "node113": {"type": "calc", "id": "node113", "value": [20, "@node6", "*"]}
   }
 }

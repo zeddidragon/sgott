@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {"name": "weapon_level", "type": "double", "id": "node1", "value": 1},
@@ -193,36 +193,9 @@
               "name": "max",
               "type": "ptr",
               "value": [
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 260},
-                      {"command": "nodeId", "value": "node1"}
-                    ]
-                  }
-                },
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 171.6},
-                      {"command": "nodeId", "value": "node1"}
-                    ]
-                  }
-                },
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 197.6},
-                      {"command": "nodeId", "value": "node1"}
-                    ]
-                  }
-                }
+                {"type": "calc", "value": [260, "@node1", "*"]},
+                {"type": "calc", "value": [171.6, "@node1", "*"]},
+                {"type": "calc", "value": [197.6, "@node1", "*"]}
               ]
             },
             {
@@ -243,24 +216,7 @@
               "name": "_l",
               "type": "calc",
               "id": "node62",
-              "value": {
-                "command": "f:limit",
-                "value": [
-                  {
-                    "command": "/",
-                    "value": [
-                      {
-                        "command": "-",
-                        "value": [
-                          {"command": "nodeId", "value": "node1"},
-                          {"command": "value", "value": 1}
-                        ]
-                      },
-                      {"command": "value", "value": 15}
-                    ]
-                  }
-                ]
-              }
+              "value": ["@node1", 1, "-", 15, "/", "f:limit"]
             },
             {
               "name": "esb_name",
@@ -270,14 +226,7 @@
             {
               "name": "time",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 230},
-                  {"command": "value", "value": 260},
-                  {"command": "nodeId", "value": "node62"}
-                ]
-              }
+              "value": [230, 260, "@node62", "f:lerp"]
             },
             {
               "name": "se",

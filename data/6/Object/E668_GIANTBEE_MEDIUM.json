@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {"name": "xgs_scene_object_class", "type": "string", "value": "GiantBeeEX"},
@@ -406,24 +406,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node151",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node12"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 29}
-            ]
-          }
-        ]
-      }
+      "value": ["@node12", 1, "-", 29, "/", "f:limit"]
     },
     {
       "name": "bee_SettingEX",
@@ -440,19 +423,7 @@
         {
           "name": "attack_rate",
           "type": "calc",
-          "value": {
-            "command": "+",
-            "value": [
-              {"command": "value", "value": 0.5},
-              {
-                "command": "/",
-                "value": [
-                  {"command": "value", "value": 1},
-                  {"command": "nodeId", "value": "node12"}
-                ]
-              }
-            ]
-          }
+          "value": [0.5, 1, "@node12", "/", "+"]
         },
         {"name": "attack_range", "type": "double", "value": 300}
       ]
@@ -493,38 +464,21 @@
                     {
                       "name": "count",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {
-                            "command": "/",
-                            "value": [
-                              {"command": "value", "value": 32},
-                              {"command": "nodeId", "value": "node167"}
-                            ]
-                          },
-                          {
-                            "command": "/",
-                            "value": [
-                              {"command": "value", "value": 64},
-                              {"command": "nodeId", "value": "node167"}
-                            ]
-                          },
-                          {"command": "nodeId", "value": "node151"}
-                        ]
-                      }
+                      "value": [
+                        32,
+                        "@node167",
+                        "/",
+                        64,
+                        "@node167",
+                        "/",
+                        "@node151",
+                        "f:lerp"
+                      ]
                     },
                     {
                       "name": "interval",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {"command": "value", "value": 2},
-                          {"command": "value", "value": 0},
-                          {"command": "nodeId", "value": "node151"}
-                        ]
-                      }
+                      "value": [2, 0, "@node151", "f:lerp"]
                     },
                     {
                       "name": "accuracy",
@@ -564,26 +518,13 @@
                     {
                       "name": "speed",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {"command": "value", "value": 3},
-                          {"command": "value", "value": 5.94},
-                          {"command": "nodeId", "value": "node151"}
-                        ]
-                      }
+                      "value": [3, 5.94, "@node151", "f:lerp"]
                     },
                     {"name": "alive_time", "type": "double", "value": 180},
                     {
                       "name": "damage",
                       "type": "calc",
-                      "value": {
-                        "command": "*",
-                        "value": [
-                          {"command": "value", "value": 4},
-                          {"command": "nodeId", "value": "node12"}
-                        ]
-                      }
+                      "value": [4, "@node12", "*"]
                     },
                     {
                       "name": "hit_size_adjust",

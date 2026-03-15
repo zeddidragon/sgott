@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -334,13 +334,7 @@
                 {
                   "name": "damage",
                   "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 1.2},
-                      {"command": "nodeId", "value": "node6"}
-                    ]
-                  }
+                  "value": [1.2, "@node6", "*"]
                 },
                 {"name": "hit_size_adjust", "type": "double", "value": 1.5},
                 {

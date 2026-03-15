@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -322,26 +322,8 @@
                   "type": "ptr",
                   "value": [
                     {"type": "heap", "value": "node105"},
-                    {
-                      "type": "calc",
-                      "value": {
-                        "command": "*",
-                        "value": [
-                          {"command": "nodeId", "value": "node105"},
-                          {"command": "value", "value": 1.5}
-                        ]
-                      }
-                    },
-                    {
-                      "type": "calc",
-                      "value": {
-                        "command": "*",
-                        "value": [
-                          {"command": "nodeId", "value": "node105"},
-                          {"command": "value", "value": 2}
-                        ]
-                      }
-                    }
+                    {"type": "calc", "value": ["@node105", 1.5, "*"]},
+                    {"type": "calc", "value": ["@node105", 2, "*"]}
                   ]
                 },
                 {
@@ -386,16 +368,6 @@
     }
   ],
   "heap": {
-    "node105": {
-      "type": "calc",
-      "id": "node105",
-      "value": {
-        "command": "*",
-        "value": [
-          {"command": "value", "value": 0.3},
-          {"command": "nodeId", "value": "node6"}
-        ]
-      }
-    }
+    "node105": {"type": "calc", "id": "node105", "value": [0.3, "@node6", "*"]}
   }
 }

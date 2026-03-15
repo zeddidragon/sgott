@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -343,17 +343,7 @@
                 {"name": "size", "type": "double", "value": 4},
                 {"name": "speed", "type": "double", "value": 0.5},
                 {"name": "alive_time", "type": "double", "value": 3600},
-                {
-                  "name": "damage",
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 8},
-                      {"command": "nodeId", "value": "node6"}
-                    ]
-                  }
-                },
+                {"name": "damage", "type": "calc", "value": [8, "@node6", "*"]},
                 {"name": "explosion_radius", "type": "double", "value": 8},
                 {"name": "hit_size_adjust", "type": "double", "value": 1},
                 {"name": "gravity_factor", "type": "double", "value": 0},

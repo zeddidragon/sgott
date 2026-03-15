@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.0.1",
   "endian": "LE",
   "variables": [
     {
@@ -61,24 +61,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node16",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node3"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 39}
-            ]
-          }
-        ]
-      }
+      "value": ["@node3", 1, "-", 39, "/", "f:limit"]
     },
     {
       "name": "soft_body_basic_weapon_settings",
@@ -128,14 +111,7 @@
             {
               "name": "fire_angular_speed",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 0.01},
-                  {"command": "value", "value": 0.06},
-                  {"command": "nodeId", "value": "node16"}
-                ]
-              }
+              "value": [0.01, 0.06, "@node16", "f:lerp"]
             }
           ]
         },
