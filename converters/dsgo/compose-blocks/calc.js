@@ -6,63 +6,58 @@ const CalcFunctions = {
   'f:lerp': 0x80000006, 
 }
 
-const CalcCommands = {
-  value: { command: CalcType.READ_VALUE, size: 0x04 + 0x08 },
-  nodeId: { command: CalcType.READ_NODE, size: 0x04 + 0x04 },
-  'f:limit': { command: CalcType.FUNCTION, size: 0x04 + 0x04 },
-  'f:lerp': { command: CalcType.FUNCTION, size: 0x04 + 0x04 },
-  '+': { command: CalcType.MATH_ADD, size: 0x04 },
-  '-': { command: CalcType.MATH_SUB, size: 0x04 },
-  '*': { command: CalcType.MATH_MUL, size: 0x04 },
-  '/': { command: CalcType.MATH_DIV, size: 0x04 },
+const CalcOperations = {
+  '+': CalcType.MATH_ADD,
+  '-': CalcType.MATH_SUB,
+  '*': CalcType.MATH_MUL,
+  '/': CalcType.MATH_DIV,
+}
+
+const CalcCommandSizes = {
+  [CalcType.READ_VALUE]: 0x04 + 0x08,
+  [CalcType.READ_NODE]: 0x04 + 0x04,
+  [CalcType.FUNCTION]: 0x04 + 0x04,
+  [CalcType.MATH_ADD]: 0x04,
+  [CalcType.MATH_SUB]: 0x04,
+  [CalcType.MATH_MUL]: 0x04,
+  [CalcType.MATH_DIV]: 0x04,
 }
 
 function calc({ value }, composer, jsonNodes) {
   const type = DsgoType.CALC
 
-  let blockSize = 0x08 // Header is 8 bytes
-  function unrollCalc(cmd) {
-    const { command, size } = CalcCommands[cmd.command]
-    blockSize += size
-    switch(cmd.command) {
-    case 'value': {
-      return { command, value: cmd.value }
+  function decodeCalc(value) {
+    if(!isNaN(value)) {
+      const command = CalcType.READ_VALUE
+      return { command, value }
     }
 
-    case 'nodeId': {
-      const index = jsonNodes.findIndex(n => n.id === cmd.value)
-      if(index === -1)
-        throw new Error(`No index found for node ID: "${cmd.value}"`)
+    if(value.startsWith('@')) {
+      const command = CalcType.READ_NODE
+      const nodeId = value.slice(1)
+      const index = jsonNodes.findIndex(n => n.id === nodeId)
       return { command, value: index }
     }
 
-    case 'f:limit':
-    case 'f:lerp': {
-      return [
-        ...cmd.value.flatMap(unrollCalc),
-        { command, value: CalcFunctions[cmd.command] },
-      ]
+    if(value.startsWith('f:')) {
+      const command = CalcType.FUNCTION
+      const functionId = CalcFunctions[value] || Number.parseInt(value.slice(2), 16) // Hex value of function id
+      return { command, value: functionId }
     }
 
-    case '+':
-    case '-':
-    case '*':
-    case '/': {
-      return [
-        ...cmd.value.flatMap(unrollCalc),
-        { command },
-      ]
+
+    if(CalcOperations[value]) {
+      return { command: CalcOperations[value] }
     }
 
-    default:
-      throw new Error(`Calc command not recognized: "${cmd.command}"`)
-    }
+    throw new Error(`Calc command not recognized: "${value}"`)
   }
 
-  const calcBlock = unrollCalc(value)
+  const calcBlock = value.map(decodeCalc)
+  const size = calcBlock.reduce((sum, { command }) => sum + CalcCommandSizes[command], 0x08)
 
   composer.align(0x04)
-  const ptr = composer.addBlock(blockSize, 'calc', calcBlock)
+  const ptr = composer.addBlock(size, 'calc', calcBlock)
 
   return { type, ptr }
 }
