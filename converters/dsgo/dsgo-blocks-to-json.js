@@ -1,4 +1,3 @@
-const crypto = require('crypto')
 const storage = require('../../helpers/storage')
 const DsgoType = require('./dsgo-type')
 const CalcType = require('./calc-type')
