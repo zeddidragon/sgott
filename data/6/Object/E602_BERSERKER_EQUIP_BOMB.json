@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -197,31 +197,12 @@
           "name": "_l",
           "type": "calc",
           "id": "node65",
-          "value": {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node2"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 29}
-            ]
-          }
+          "value": ["@node2", 1, "-", 29, "/"]
         },
         {
           "name": "explosion_radius",
           "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 15},
-              {"command": "value", "value": 30},
-              {"command": "nodeId", "value": "node65"}
-            ]
-          }
+          "value": [15, 30, "@node65", "f:lerp"]
         },
         {
           "name": "explosion_time",
@@ -230,40 +211,16 @@
             {
               "name": "min",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 210},
-                  {"command": "value", "value": 90},
-                  {"command": "nodeId", "value": "node65"}
-                ]
-              }
+              "value": [210, 90, "@node65", "f:lerp"]
             },
             {
               "name": "max",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 270},
-                  {"command": "value", "value": 150},
-                  {"command": "nodeId", "value": "node65"}
-                ]
-              }
+              "value": [270, 150, "@node65", "f:lerp"]
             }
           ]
         },
-        {
-          "name": "damage",
-          "type": "calc",
-          "value": {
-            "command": "*",
-            "value": [
-              {"command": "value", "value": 20},
-              {"command": "nodeId", "value": "node2"}
-            ]
-          }
-        },
+        {"name": "damage", "type": "calc", "value": [20, "@node2", "*"]},
         {
           "name": "effect",
           "type": "ptr",

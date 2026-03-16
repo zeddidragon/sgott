@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -215,17 +215,7 @@
         {"name": "size", "type": "double", "value": 105},
         {"name": "speed", "type": "double", "value": 40},
         {"name": "alive_time", "type": "double", "value": 100},
-        {
-          "name": "damage",
-          "type": "calc",
-          "value": {
-            "command": "*",
-            "value": [
-              {"command": "value", "value": 0.1},
-              {"command": "nodeId", "value": "node2"}
-            ]
-          }
-        },
+        {"name": "damage", "type": "calc", "value": [0.1, "@node2", "*"]},
         {"name": "hit_size_adjust", "type": "double", "value": 1},
         {"name": "is_ignore_friend", "type": "double", "value": 1},
         {"name": "is_penetration", "type": "double", "value": 1},

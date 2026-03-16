@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -61,24 +61,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node16",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node3"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 39}
-            ]
-          }
-        ]
-      }
+      "value": ["@node3", 1, "-", 39, "/", "f:limit"]
     },
     {
       "name": "soft_body_basic_weapon_settings",
@@ -128,14 +111,7 @@
             {
               "name": "fire_angular_speed",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 0.01},
-                  {"command": "value", "value": 0.06},
-                  {"command": "nodeId", "value": "node16"}
-                ]
-              }
+              "value": [0.01, 0.06, "@node16", "f:lerp"]
             }
           ]
         },
@@ -150,26 +126,12 @@
                 {
                   "name": "min",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 60},
-                      {"command": "value", "value": 40},
-                      {"command": "nodeId", "value": "node16"}
-                    ]
-                  }
+                  "value": [60, 40, "@node16", "f:lerp"]
                 },
                 {
                   "name": "max",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 210},
-                      {"command": "value", "value": 140},
-                      {"command": "nodeId", "value": "node16"}
-                    ]
-                  }
+                  "value": [210, 140, "@node16", "f:lerp"]
                 }
               ]
             },
@@ -251,17 +213,7 @@
             {"type": "double", "value": 1.2000000476837158}
           ]
         },
-        {
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 0.5},
-              {"command": "value", "value": 2},
-              {"command": "nodeId", "value": "node16"}
-            ]
-          }
-        },
+        {"type": "calc", "value": [0.5, 2, "@node16", "f:lerp"]},
         {"type": "ptr", "value": []},
         {"type": "double", "value": 0},
         {"type": "ptr", "value": []},
@@ -274,17 +226,7 @@
           ]
         },
         {"type": "ptr", "value": []},
-        {
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 350},
-              {"command": "value", "value": 525},
-              {"command": "nodeId", "value": "node16"}
-            ]
-          }
-        },
+        {"type": "calc", "value": [350, 525, "@node16", "f:lerp"]},
         {"type": "ptr", "value": []},
         {
           "type": "ptr",
@@ -321,14 +263,7 @@
                         {
                           "name": "add",
                           "type": "calc",
-                          "value": {
-                            "command": "f:lerp",
-                            "value": [
-                              {"command": "value", "value": 0.005},
-                              {"command": "value", "value": 0.03},
-                              {"command": "nodeId", "value": "node16"}
-                            ]
-                          }
+                          "value": [0.005, 0.03, "@node16", "f:lerp"]
                         }
                       ]
                     }

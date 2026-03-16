@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -282,48 +282,17 @@
                   "name": "l",
                   "type": "calc",
                   "id": "node95",
-                  "value": {
-                    "command": "f:limit",
-                    "value": [
-                      {
-                        "command": "/",
-                        "value": [
-                          {
-                            "command": "-",
-                            "value": [
-                              {"command": "nodeId", "value": "node2"},
-                              {"command": "value", "value": 3}
-                            ]
-                          },
-                          {"command": "value", "value": 16}
-                        ]
-                      }
-                    ]
-                  }
+                  "value": ["@node2", 3, "-", 16, "/", "f:limit"]
                 },
                 {
                   "name": "count",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 10},
-                      {"command": "value", "value": 20},
-                      {"command": "nodeId", "value": "node95"}
-                    ]
-                  }
+                  "value": [10, 20, "@node95", "f:lerp"]
                 },
                 {
                   "name": "speed",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 1.3333333333333333},
-                      {"command": "value", "value": 2},
-                      {"command": "nodeId", "value": "node95"}
-                    ]
-                  }
+                  "value": [1.3333333333333333, 2, "@node95", "f:lerp"]
                 },
                 {
                   "name": "spread",
@@ -359,48 +328,17 @@
                   "name": "l",
                   "type": "calc",
                   "id": "node108",
-                  "value": {
-                    "command": "f:limit",
-                    "value": [
-                      {
-                        "command": "/",
-                        "value": [
-                          {
-                            "command": "-",
-                            "value": [
-                              {"command": "nodeId", "value": "node2"},
-                              {"command": "value", "value": 3}
-                            ]
-                          },
-                          {"command": "value", "value": 16}
-                        ]
-                      }
-                    ]
-                  }
+                  "value": ["@node2", 3, "-", 16, "/", "f:limit"]
                 },
                 {
                   "name": "count",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 40},
-                      {"command": "value", "value": 40},
-                      {"command": "nodeId", "value": "node108"}
-                    ]
-                  }
+                  "value": [40, 40, "@node108", "f:lerp"]
                 },
                 {
                   "name": "speed",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 1.6},
-                      {"command": "value", "value": 2.4},
-                      {"command": "nodeId", "value": "node108"}
-                    ]
-                  }
+                  "value": [1.6, 2.4, "@node108", "f:lerp"]
                 },
                 {
                   "name": "spread",

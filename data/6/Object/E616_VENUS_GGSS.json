@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {"name": "xgs_scene_object_class", "type": "string", "value": "EDF6_Venus"},
@@ -328,24 +328,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node123",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node2"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 10}
-            ]
-          }
-        ]
-      }
+      "value": ["@node2", 1, "-", 10, "/", "f:limit"]
     },
     {"name": "_dodge_speed", "type": "heap", "value": "node124"},
     {
@@ -382,24 +365,7 @@
       "name": "__l",
       "type": "calc",
       "id": "node143",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node2"},
-                  {"command": "value", "value": 6.9}
-                ]
-              },
-              {"command": "value", "value": 0.09999999999999964}
-            ]
-          }
-        ]
-      }
+      "value": ["@node2", 6.9, "-", 0.09999999999999964, "/", "f:limit"]
     },
     {"name": "_weapon_arm_revive_time", "type": "heap", "value": "node144"},
     {"name": "_shield_arm_revive_time", "type": "heap", "value": "node145"},
@@ -1874,17 +1840,7 @@
     }
   ],
   "heap": {
-    "node124": {
-      "type": "calc",
-      "value": {
-        "command": "f:lerp",
-        "value": [
-          {"command": "value", "value": 0.5},
-          {"command": "value", "value": 1},
-          {"command": "nodeId", "value": "node123"}
-        ]
-      }
-    },
+    "node124": {"type": "calc", "value": [0.5, 1, "@node123", "f:lerp"]},
     "node144": {"type": "double", "value": 1800},
     "node135": {
       "type": "ptr",
@@ -1898,16 +1854,6 @@
         {"name": "angular_damping", "type": "double", "value": 1}
       ]
     },
-    "node145": {
-      "type": "calc",
-      "value": {
-        "command": "f:lerp",
-        "value": [
-          {"command": "value", "value": 1800},
-          {"command": "value", "value": 2700},
-          {"command": "nodeId", "value": "node143"}
-        ]
-      }
-    }
+    "node145": {"type": "calc", "value": [1800, 2700, "@node143", "f:lerp"]}
   }
 }

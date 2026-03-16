@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -465,24 +465,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node191",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node190"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 29}
-            ]
-          }
-        ]
-      }
+      "value": ["@node190", 1, "-", 29, "/", "f:limit"]
     },
     {
       "name": "spd_SettingEX",
@@ -507,41 +490,12 @@
         {
           "name": "attack_rate",
           "type": "calc",
-          "value": {
-            "command": "+",
-            "value": [
-              {"command": "value", "value": 0.5},
-              {
-                "command": "/",
-                "value": [
-                  {"command": "value", "value": 1},
-                  {"command": "nodeId", "value": "node190"}
-                ]
-              }
-            ]
-          }
+          "value": [0.5, 1, "@node190", "/", "+"]
         },
         {
           "name": "_ll",
           "type": "calc",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node190"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 30}
-                ]
-              }
-            ]
-          }
+          "value": ["@node190", 1, "-", 30, "/", "f:limit"]
         }
       ]
     },
@@ -575,26 +529,12 @@
                     {
                       "name": "count",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {"command": "value", "value": 16},
-                          {"command": "value", "value": 32},
-                          {"command": "nodeId", "value": "node191"}
-                        ]
-                      }
+                      "value": [16, 32, "@node191", "f:lerp"]
                     },
                     {
                       "name": "interval",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {"command": "value", "value": 8},
-                          {"command": "value", "value": 4},
-                          {"command": "nodeId", "value": "node191"}
-                        ]
-                      }
+                      "value": [8, 4, "@node191", "f:lerp"]
                     },
                     {
                       "name": "accuracy",
@@ -621,44 +561,18 @@
                     {
                       "name": "size",
                       "type": "calc",
-                      "value": {
-                        "command": "*",
-                        "value": [
-                          {
-                            "command": "f:lerp",
-                            "value": [
-                              {"command": "value", "value": 0.3},
-                              {"command": "value", "value": 0.4},
-                              {"command": "nodeId", "value": "node191"}
-                            ]
-                          },
-                          {"command": "value", "value": 4}
-                        ]
-                      }
+                      "value": [0.3, 0.4, "@node191", "f:lerp", 4, "*"]
                     },
                     {
                       "name": "speed",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {"command": "value", "value": 4},
-                          {"command": "value", "value": 7.5},
-                          {"command": "nodeId", "value": "node191"}
-                        ]
-                      }
+                      "value": [4, 7.5, "@node191", "f:lerp"]
                     },
                     {"name": "alive_time", "type": "double", "value": 300},
                     {
                       "name": "damage",
                       "type": "calc",
-                      "value": {
-                        "command": "*",
-                        "value": [
-                          {"command": "value", "value": 0.5},
-                          {"command": "nodeId", "value": "node190"}
-                        ]
-                      }
+                      "value": [0.5, "@node190", "*"]
                     },
                     {"name": "hit_size_adjust", "type": "double", "value": 3.5},
                     {
@@ -722,20 +636,7 @@
                             {
                               "name": "scale",
                               "type": "calc",
-                              "value": {
-                                "command": "*",
-                                "value": [
-                                  {
-                                    "command": "f:lerp",
-                                    "value": [
-                                      {"command": "value", "value": 3},
-                                      {"command": "value", "value": 4},
-                                      {"command": "nodeId", "value": "node191"}
-                                    ]
-                                  },
-                                  {"command": "value", "value": 4}
-                                ]
-                              }
+                              "value": [3, 4, "@node191", "f:lerp", 4, "*"]
                             },
                             {
                               "name": "player_hit_scale",

@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -341,17 +341,7 @@
         {"name": "size", "type": "double", "value": 1},
         {"name": "speed", "type": "double", "value": 1.5},
         {"name": "alive_time", "type": "double", "value": 500},
-        {
-          "name": "damage",
-          "type": "calc",
-          "value": {
-            "command": "*",
-            "value": [
-              {"command": "value", "value": 1},
-              {"command": "nodeId", "value": "node12"}
-            ]
-          }
-        },
+        {"name": "damage", "type": "calc", "value": [1, "@node12", "*"]},
         {"name": "hit_size_adjust", "type": "double", "value": 1},
         {"name": "gravity_factor", "type": "double", "value": 0},
         {"name": "hit_se", "type": "string", "value": "e612アンカー弾命中"},

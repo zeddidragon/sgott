@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -72,24 +72,7 @@
           "name": "_l",
           "type": "calc",
           "id": "node19",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node2"},
-                      {"command": "value", "value": 8}
-                    ]
-                  },
-                  {"command": "value", "value": 17}
-                ]
-              }
-            ]
-          }
+          "value": ["@node2", 8, "-", 17, "/", "f:limit"]
         },
         {
           "name": "animation_model",
@@ -181,18 +164,7 @@
           "type": "string",
           "value": "e616_venus_SHIELD_HIT.ESB"
         },
-        {
-          "name": "scale",
-          "type": "calc",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 4},
-              {"command": "value", "value": 8},
-              {"command": "nodeId", "value": "node19"}
-            ]
-          }
-        },
+        {"name": "scale", "type": "calc", "value": [4, 8, "@node19", "f:lerp"]},
         {"name": "min_scale", "type": "double", "value": 1.2000000476837158},
         {
           "name": "hit_se",
@@ -221,36 +193,9 @@
               "name": "max",
               "type": "ptr",
               "value": [
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 780},
-                      {"command": "nodeId", "value": "node2"}
-                    ]
-                  }
-                },
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 514.8000000000001},
-                      {"command": "nodeId", "value": "node2"}
-                    ]
-                  }
-                },
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 592.8},
-                      {"command": "nodeId", "value": "node2"}
-                    ]
-                  }
-                }
+                {"type": "calc", "value": [780, "@node2", "*"]},
+                {"type": "calc", "value": [514.8000000000001, "@node2", "*"]},
+                {"type": "calc", "value": [592.8, "@node2", "*"]}
               ]
             },
             {
@@ -262,24 +207,12 @@
             {
               "name": "recover_speed",
               "type": "calc",
-              "value": {
-                "command": "*",
-                "value": [
-                  {"command": "value", "value": 0.1},
-                  {"command": "nodeId", "value": "node2"}
-                ]
-              }
+              "value": [0.1, "@node2", "*"]
             },
             {
               "name": "recover_speed_up",
               "type": "calc",
-              "value": {
-                "command": "*",
-                "value": [
-                  {"command": "value", "value": 0},
-                  {"command": "nodeId", "value": "node2"}
-                ]
-              }
+              "value": [0, "@node2", "*"]
             }
           ]
         },
@@ -307,17 +240,7 @@
           "name": "reflection",
           "type": "ptr",
           "value": [
-            {
-              "name": "is_enable",
-              "type": "calc",
-              "value": {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node2"},
-                  {"command": "value", "value": 7}
-                ]
-              }
-            },
+            {"name": "is_enable", "type": "calc", "value": ["@node2", 7, "-"]},
             {
               "name": "solid",
               "type": "ptr",

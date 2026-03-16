@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {"name": "game_object_level", "type": "double", "id": "node1", "value": 1},
@@ -591,14 +591,7 @@
             {
               "name": "animation_speed",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 1},
-                  {"command": "value", "value": 2},
-                  {"command": "nodeId", "value": "node294"}
-                ]
-              }
+              "value": [1, 2, "@node294", "f:lerp"]
             }
           ]
         },
@@ -695,19 +688,7 @@
           "name": "_l",
           "type": "calc",
           "id": "node294",
-          "value": {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node1"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 29}
-            ]
-          }
+          "value": ["@node1", 1, "-", 29, "/"]
         },
         {"name": "ExplosionBlowAdjust", "type": "double", "value": 0.5}
       ]
@@ -865,37 +846,13 @@
           "name": "_l",
           "type": "calc",
           "id": "node333",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node1"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 29}
-                ]
-              }
-            ]
-          }
+          "value": ["@node1", 1, "-", 29, "/", "f:limit"]
         },
         {
           "name": "_speed_adjust",
           "type": "calc",
           "id": "node334",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 1},
-              {"command": "value", "value": 2},
-              {"command": "nodeId", "value": "node333"}
-            ]
-          }
+          "value": [1, 2, "@node333", "f:lerp"]
         },
         {
           "name": "move",
@@ -904,13 +861,7 @@
             {
               "name": "linear_speed",
               "type": "calc",
-              "value": {
-                "command": "*",
-                "value": [
-                  {"command": "value", "value": 0.5},
-                  {"command": "nodeId", "value": "node334"}
-                ]
-              }
+              "value": [0.5, "@node334", "*"]
             },
             {
               "name": "ai_character",
@@ -938,24 +889,12 @@
                     {
                       "name": "min",
                       "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "value", "value": 300},
-                          {"command": "nodeId", "value": "node334"}
-                        ]
-                      }
+                      "value": [300, "@node334", "/"]
                     },
                     {
                       "name": "max",
                       "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "value", "value": 600},
-                          {"command": "nodeId", "value": "node334"}
-                        ]
-                      }
+                      "value": [600, "@node334", "/"]
                     }
                   ]
                 },

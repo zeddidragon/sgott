@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -333,24 +333,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node124",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node2"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 10}
-            ]
-          }
-        ]
-      }
+      "value": ["@node2", 1, "-", 10, "/", "f:limit"]
     },
     {"name": "_dodge_speed", "type": "heap", "value": "node125"},
     {
@@ -1723,17 +1706,7 @@
     }
   ],
   "heap": {
-    "node125": {
-      "type": "calc",
-      "value": {
-        "command": "f:lerp",
-        "value": [
-          {"command": "value", "value": 0.7},
-          {"command": "value", "value": 1},
-          {"command": "nodeId", "value": "node124"}
-        ]
-      }
-    },
+    "node125": {"type": "calc", "value": [0.7, 1, "@node124", "f:lerp"]},
     "node136": {
       "type": "ptr",
       "value": [

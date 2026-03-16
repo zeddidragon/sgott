@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -565,24 +565,7 @@
       "name": "_l",
       "type": "calc",
       "id": "node191",
-      "value": {
-        "command": "f:limit",
-        "value": [
-          {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node2"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 10}
-            ]
-          }
-        ]
-      }
+      "value": ["@node2", 1, "-", 10, "/", "f:limit"]
     },
     {"name": "_dodge_speed", "type": "heap", "value": "node192"},
     {
@@ -2164,39 +2147,11 @@
               "name": "height",
               "type": "ptr",
               "value": [
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 8},
-                      {"command": "nodeId", "value": "node872"}
-                    ]
-                  }
-                },
-                {
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 18.75},
-                      {"command": "nodeId", "value": "node872"}
-                    ]
-                  }
-                }
+                {"type": "calc", "value": [8, "@node872", "*"]},
+                {"type": "calc", "value": [18.75, "@node872", "*"]}
               ]
             },
-            {
-              "name": "radius",
-              "type": "calc",
-              "value": {
-                "command": "*",
-                "value": [
-                  {"command": "value", "value": 15},
-                  {"command": "nodeId", "value": "node872"}
-                ]
-              }
-            }
+            {"name": "radius", "type": "calc", "value": [15, "@node872", "*"]}
           ]
         }
       ]
@@ -2327,20 +2282,7 @@
   "heap": {
     "node192": {
       "type": "calc",
-      "value": {
-        "command": "/",
-        "value": [
-          {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 0.7},
-              {"command": "value", "value": 1},
-              {"command": "nodeId", "value": "node191"}
-            ]
-          },
-          {"command": "value", "value": 2}
-        ]
-      }
+      "value": [0.7, 1, "@node191", "f:lerp", 2, "/"]
     },
     "node203": {
       "type": "ptr",

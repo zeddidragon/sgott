@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {
@@ -219,24 +219,7 @@
           "name": "_l",
           "type": "calc",
           "id": "node64",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node2"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 29}
-                ]
-              }
-            ]
-          }
+          "value": ["@node2", 1, "-", 29, "/", "f:limit"]
         },
         {
           "name": "gun_battery_setting",
@@ -261,14 +244,7 @@
                 {
                   "name": "accuracy",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 0.075},
-                      {"command": "value", "value": 0.03},
-                      {"command": "nodeId", "value": "node64"}
-                    ]
-                  }
+                  "value": [0.075, 0.03, "@node64", "f:lerp"]
                 },
                 {
                   "name": "se",
@@ -357,17 +333,7 @@
                 {"name": "size", "type": "double", "value": 3.3333332538604736},
                 {"name": "speed", "type": "double", "value": 20},
                 {"name": "alive_time", "type": "double", "value": 180},
-                {
-                  "name": "damage",
-                  "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "value", "value": 1},
-                      {"command": "nodeId", "value": "node2"}
-                    ]
-                  }
-                },
+                {"name": "damage", "type": "calc", "value": [1, "@node2", "*"]},
                 {"name": "hit_se", "type": "string", "value": "e609側面砲台着弾L02"},
                 {
                   "name": "custom_parameter",

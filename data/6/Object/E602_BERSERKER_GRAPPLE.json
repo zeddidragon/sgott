@@ -1,6 +1,6 @@
 {
   "format": "DSGO",
-  "sgott": "2.0.0",
+  "sgott": "2.1.0",
   "endian": "LE",
   "variables": [
     {"name": "game_object_level", "type": "double", "id": "node1", "value": 1},
@@ -634,13 +634,7 @@
                 {
                   "name": "hit_volume_size",
                   "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "nodeId", "value": "node314"},
-                      {"command": "value", "value": 3}
-                    ]
-                  }
+                  "value": ["@node314", 3, "*"]
                 },
                 {"name": "knock_back", "type": "heap", "value": "node310"},
                 {"name": "ext_bullet", "type": "heap", "value": "node293"},
@@ -751,13 +745,7 @@
                 {
                   "name": "hit_volume_size",
                   "type": "calc",
-                  "value": {
-                    "command": "*",
-                    "value": [
-                      {"command": "nodeId", "value": "node338"},
-                      {"command": "value", "value": 3}
-                    ]
-                  }
+                  "value": ["@node338", 3, "*"]
                 },
                 {"name": "knock_back", "type": "heap", "value": "node310"},
                 {"name": "ext_bullet", "type": "heap", "value": "node293"},
@@ -943,42 +931,13 @@
           "name": "_l",
           "type": "calc",
           "id": "node305",
-          "value": {
-            "command": "/",
-            "value": [
-              {
-                "command": "-",
-                "value": [
-                  {"command": "nodeId", "value": "node1"},
-                  {"command": "value", "value": 1}
-                ]
-              },
-              {"command": "value", "value": 29}
-            ]
-          }
+          "value": ["@node1", 1, "-", 29, "/"]
         },
         {
           "name": "_ls",
           "type": "calc",
           "id": "node306",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node1"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 29}
-                ]
-              }
-            ]
-          }
+          "value": ["@node1", 1, "-", 29, "/", "f:limit"]
         },
         {"name": "_accuracy", "type": "heap", "value": "node307"},
         {"name": "_velocity", "type": "heap", "value": "node308"},
@@ -1081,24 +1040,7 @@
           "name": "_l",
           "type": "calc",
           "id": "node366",
-          "value": {
-            "command": "f:limit",
-            "value": [
-              {
-                "command": "/",
-                "value": [
-                  {
-                    "command": "-",
-                    "value": [
-                      {"command": "nodeId", "value": "node1"},
-                      {"command": "value", "value": 1}
-                    ]
-                  },
-                  {"command": "value", "value": 29}
-                ]
-              }
-            ]
-          }
+          "value": ["@node1", 1, "-", 29, "/", "f:limit"]
         },
         {
           "name": "attack",
@@ -1107,14 +1049,7 @@
             {
               "name": "range",
               "type": "calc",
-              "value": {
-                "command": "f:lerp",
-                "value": [
-                  {"command": "value", "value": 200},
-                  {"command": "value", "value": 300},
-                  {"command": "nodeId", "value": "node366"}
-                ]
-              }
+              "value": [200, 300, "@node366", "f:lerp"]
             },
             {
               "name": "interval",
@@ -1123,26 +1058,12 @@
                 {
                   "name": "min",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 300},
-                      {"command": "value", "value": 60},
-                      {"command": "nodeId", "value": "node366"}
-                    ]
-                  }
+                  "value": [300, 60, "@node366", "f:lerp"]
                 },
                 {
                   "name": "max",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 900},
-                      {"command": "value", "value": 90},
-                      {"command": "nodeId", "value": "node366"}
-                    ]
-                  }
+                  "value": [900, 90, "@node366", "f:lerp"]
                 }
               ]
             },
@@ -1154,38 +1075,17 @@
                 {
                   "name": "max",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 2},
-                      {"command": "value", "value": 3},
-                      {"command": "nodeId", "value": "node366"}
-                    ]
-                  }
+                  "value": [2, 3, "@node366", "f:lerp"]
                 },
                 {
                   "name": "interval_min",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 60},
-                      {"command": "value", "value": 30},
-                      {"command": "nodeId", "value": "node366"}
-                    ]
-                  }
+                  "value": [60, 30, "@node366", "f:lerp"]
                 },
                 {
                   "name": "interval_max",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 60},
-                      {"command": "value", "value": 45},
-                      {"command": "nodeId", "value": "node366"}
-                    ]
-                  }
+                  "value": [60, 45, "@node366", "f:lerp"]
                 }
               ]
             },
@@ -1204,14 +1104,7 @@
           "name": "_speed_adjust",
           "type": "calc",
           "id": "node381",
-          "value": {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 1},
-              {"command": "value", "value": 2},
-              {"command": "nodeId", "value": "node366"}
-            ]
-          }
+          "value": [1, 2, "@node366", "f:lerp"]
         },
         {
           "name": "move",
@@ -1220,13 +1113,7 @@
             {
               "name": "linear_speed",
               "type": "calc",
-              "value": {
-                "command": "*",
-                "value": [
-                  {"command": "value", "value": 0.25},
-                  {"command": "nodeId", "value": "node381"}
-                ]
-              }
+              "value": [0.25, "@node381", "*"]
             },
             {
               "name": "approach",
@@ -1239,24 +1126,12 @@
                     {
                       "name": "min",
                       "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "value", "value": 300},
-                          {"command": "nodeId", "value": "node381"}
-                        ]
-                      }
+                      "value": [300, "@node381", "/"]
                     },
                     {
                       "name": "max",
                       "type": "calc",
-                      "value": {
-                        "command": "/",
-                        "value": [
-                          {"command": "value", "value": 600},
-                          {"command": "nodeId", "value": "node381"}
-                        ]
-                      }
+                      "value": [600, "@node381", "/"]
                     }
                   ]
                 },
@@ -1284,13 +1159,7 @@
                         {
                           "name": "distance",
                           "type": "calc",
-                          "value": {
-                            "command": "*",
-                            "value": [
-                              {"command": "value", "value": 10},
-                              {"command": "nodeId", "value": "node381"}
-                            ]
-                          }
+                          "value": [10, "@node381", "*"]
                         },
                         {"name": "min", "type": "double", "value": 0},
                         {
@@ -1306,13 +1175,7 @@
                         {
                           "name": "distance",
                           "type": "calc",
-                          "value": {
-                            "command": "*",
-                            "value": [
-                              {"command": "value", "value": 200},
-                              {"command": "nodeId", "value": "node381"}
-                            ]
-                          }
+                          "value": [200, "@node381", "*"]
                         },
                         {
                           "name": "distance_lerp_pow",
@@ -1351,14 +1214,7 @@
                 {
                   "name": "speed",
                   "type": "calc",
-                  "value": {
-                    "command": "f:lerp",
-                    "value": [
-                      {"command": "value", "value": 0.5},
-                      {"command": "value", "value": 1},
-                      {"command": "nodeId", "value": "node366"}
-                    ]
-                  }
+                  "value": [0.5, 1, "@node366", "f:lerp"]
                 },
                 {
                   "name": "ground_interval",
@@ -1385,26 +1241,12 @@
                     {
                       "name": "min",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {"command": "value", "value": 60},
-                          {"command": "value", "value": 30},
-                          {"command": "nodeId", "value": "node366"}
-                        ]
-                      }
+                      "value": [60, 30, "@node366", "f:lerp"]
                     },
                     {
                       "name": "max",
                       "type": "calc",
-                      "value": {
-                        "command": "f:lerp",
-                        "value": [
-                          {"command": "value", "value": 480},
-                          {"command": "value", "value": 180},
-                          {"command": "nodeId", "value": "node366"}
-                        ]
-                      }
+                      "value": [480, 180, "@node366", "f:lerp"]
                     },
                     {"name": "pow", "type": "double", "value": 3}
                   ]
@@ -1431,71 +1273,18 @@
   "heap": {
     "node307": {
       "type": "calc",
-      "value": {
-        "command": "*",
-        "value": [
-          {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 0.075},
-              {"command": "value", "value": 0.0125},
-              {"command": "nodeId", "value": "node306"}
-            ]
-          },
-          {"command": "value", "value": 1.5}
-        ]
-      }
+      "value": [0.075, 0.0125, "@node306", "f:lerp", 1.5, "*"]
     },
-    "node308": {
-      "type": "calc",
-      "value": {
-        "command": "f:lerp",
-        "value": [
-          {"command": "value", "value": 0.7},
-          {"command": "value", "value": 2},
-          {"command": "nodeId", "value": "node305"}
-        ]
-      }
-    },
+    "node308": {"type": "calc", "value": [0.7, 2, "@node305", "f:lerp"]},
     "node309": {
       "type": "calc",
-      "value": {
-        "command": "f:lerp",
-        "value": [
-          {"command": "value", "value": 0.5},
-          {"command": "value", "value": 1.3333333333333333},
-          {"command": "nodeId", "value": "node305"}
-        ]
-      }
+      "value": [0.5, 1.3333333333333333, "@node305", "f:lerp"]
     },
     "node311": {
       "type": "calc",
-      "value": {
-        "command": "*",
-        "value": [
-          {
-            "command": "f:lerp",
-            "value": [
-              {"command": "value", "value": 8},
-              {"command": "value", "value": 12},
-              {"command": "nodeId", "value": "node305"}
-            ]
-          },
-          {"command": "nodeId", "value": "node1"}
-        ]
-      }
+      "value": [8, 12, "@node305", "f:lerp", "@node1", "*"]
     },
-    "node310": {
-      "type": "calc",
-      "value": {
-        "command": "f:lerp",
-        "value": [
-          {"command": "value", "value": 15},
-          {"command": "value", "value": 45},
-          {"command": "nodeId", "value": "node305"}
-        ]
-      }
-    },
+    "node310": {"type": "calc", "value": [15, 45, "@node305", "f:lerp"]},
     "node293": {
       "type": "ptr",
       "value": [
