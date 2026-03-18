@@ -1,7 +1,9 @@
+const util = require('util')
+const child = require('child_process')
 const fs = require('fs/promises')
 const path = require('path')
 const { describe, it } = require('node:test')
-const { exec } = require('child_process')
+const exec = util.promisify(child.exec)
 
 describe('end-to-end tests', async () => {
   function p(filePath) {
@@ -28,4 +30,23 @@ describe('end-to-end tests', async () => {
     ])
     t.assert.deepStrictEqual(original, testRun)
   })
+
+  it('converts a 2017 SGO to JSON', async t => {
+    await exec(`node sgott.js ${p('../testdata/2017-weapon043.SGO')} ${p('./_output/2017-weapon043.json')}`)
+    const [original, testRun] = await Promise.all([
+      fs.readFile(p('../data/3/weapon/Weapon043.json'), 'utf8'),
+      fs.readFile(p('./_output/2017-weapon043.json'), 'utf8'),
+    ])
+    t.assert.deepStrictEqual(JSON.parse(original), JSON.parse(testRun))
+  })
+
+  it('converts a 2017 JSON to SGO', async t => {
+    await exec(`node sgott.js ${p('../data/3/weapon/weapon043.json')} ${p('./_output/WEAPON043.SGO')}`)
+    const [original, testRun] = await Promise.all([
+      fs.readFile(p('../testdata/2017-weapon043.sgo')), // The real file was a few bytes different, so I use a conversion
+      fs.readFile(p('./_output/WEAPON043.SGO')),
+    ])
+    t.assert.deepStrictEqual(original, testRun)
+  })
+
 })
