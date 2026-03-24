@@ -42,7 +42,6 @@ const transforms = {
     const opts = storage.get('opts')
     const parsed = JSON.parse(buffer.toString())
     if(isBlocks(parsed)) {
-      console.log('is blocks')
       if(opts.compile) return blocks.toDsgo(parsed)
       if(opts.resolve) return json(blocks.toJson(parsed))
       throw new Error('Specify if this should be resolved with --resolve or recompiled with --compile')

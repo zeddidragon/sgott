@@ -49,4 +49,22 @@ describe('end-to-end tests', async () => {
     t.assert.deepStrictEqual(original, testRun)
   })
 
+  it('converts a 6 DSGO to JSON', async t => {
+    await exec(`node sgott.js ${p('../testdata/E605_SPINNERUFO_BLUE.SGO')} ${p('./_output/E605_SPINNERUFO_BLUE.json')}`)
+    const [original, testRun] = await Promise.all([
+      fs.readFile(p('../data/6/OBJECT/E605_SPINNERUFO_BLUE.json'), 'utf8'),
+      fs.readFile(p('./_output/E605_SPINNERUFO_BLUE.json'), 'utf8'),
+    ])
+    t.assert.deepStrictEqual(JSON.parse(original), JSON.parse(testRun))
+  })
+
+  it('converts a 6 JSON to DSGO', async t => {
+    await exec(`node sgott.js ${p('../data/6/OBJECT/E605_SPINNERUFO_BLUE.json')} ${p('./_output/E605_SPINNERUFO_BLUE.SGO')}`)
+    const [original, testRun] = await Promise.all([
+      fs.readFile(p('../testdata/E605_SPINNERUFO_BLUE-baseline.SGO')), // The real file had a ton of redundant data discarded in conversion
+      fs.readFile(p('./_output/E605_SPINNERUFO_BLUE.SGO')),
+    ])
+    t.assert.deepStrictEqual(original, testRun)
+  })
+
 })
