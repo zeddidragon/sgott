@@ -67,4 +67,14 @@ describe('end-to-end tests', async () => {
     t.assert.deepStrictEqual(original, testRun)
   })
 
+  it('converts a converteded file back', async t => {
+    await exec(`node sgott.js ${p('../testdata/E605_SPINNERUFO_BLUE.SGO')} ${p('./_output/E605_SPINNERUFO_BLUE-bnf-test.json')}`)
+    await exec(`node sgott.js ${p('./_output/E605_SPINNERUFO_BLUE-bnf-test.json')} ${p('./_output/E605_SPINNERUFO_BLUE-bnf-test.SGO')}`)
+    await exec(`node sgott.js ${p('./_output/E605_SPINNERUFO_BLUE-bnf-test.SGO')} ${p('./_output/E605_SPINNERUFO_BLUE-bnf-test-forth.json')}`)
+    const [original, testRun] = await Promise.all([
+      fs.readFile(p('./_output/E605_SPINNERUFO_BLUE-bnf-test.SGO'), 'utf8'),
+      fs.readFile(p('../testdata/E605_SPINNERUFO_BLUE-baseline.SGO'), 'utf8'),
+    ])
+    t.assert.deepStrictEqual(original, testRun)
+  })
 })

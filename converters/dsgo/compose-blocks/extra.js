@@ -21,11 +21,12 @@ function extra({ value: { format, value } }, composer) {
   composer.align(0x08)
   const address = composer.address
   composer.address += 0x08 // Size of header
-  composer.align()
-  const size = composer.address - address + Math.ceil(data.length / 2)
+  composer.align(0x10)
+  const offset = composer.address - address
+  const size = Math.ceil(data.length / 2)
   composer.address = address
 
-  const ptr = composer.addBlock(size, 'extra', {
+  const ptr = composer.addBlock(offset + size, 'extra', {
     format: 'hex',
     value: data,
   })
