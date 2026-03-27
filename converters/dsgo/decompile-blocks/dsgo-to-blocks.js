@@ -6,8 +6,8 @@ const { dsgoExtra } = require('./dsgo-extra')
 const { dsgoTable } = require('./dsgo-table')
 const { dsgoCalc } = require('./dsgo-calc')
 
-function dsgoToBlocks(buffer) {
-  const crawler = bufferCrawler(buffer)
+function dsgoToBlocks(buffer, state) {
+  const crawler = bufferCrawler(buffer, state)
   crawler.addState(State.HEADER, dsgoHeader)
   crawler.addState(State.STRING, dsgoString)
   crawler.addState(State.EXTRA, dsgoExtra)

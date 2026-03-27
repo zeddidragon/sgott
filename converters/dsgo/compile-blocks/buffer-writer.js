@@ -53,6 +53,10 @@ class BufferWriter {
     return this.at(offset).write(value)
   }
 
+  copyFrom(offset = 0x00, value) {
+    return value.copy(this.at(offset))
+  }
+
   uint(offset = 0x00, value) {
     return (this.endian === 'LE')
       ? this.at(offset).writeUInt32LE(value)

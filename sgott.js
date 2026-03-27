@@ -107,6 +107,8 @@ Options:
 function parseCli(cb) {
   const state = {
     version: config.version,
+    compiler,
+    decompiler,
     compilers,
     decompilers,
   }

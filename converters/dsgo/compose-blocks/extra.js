@@ -1,30 +1,51 @@
 const DsgoType = require('../dsgo-type')
 
-function extra({ value: { format, value } }, composer) {
+function handleSgo(sgoValue, composer) {
   const type = DsgoType.EXTRA
 
-  let data
-  switch(format) {
-  case 'hex':
-    data = value
-    break
-  case 'file': {
-    data = composer.state.readExtra(value)
-    break
-  }
-  default:
-    throw new Error(`Unknown data format: "${format}"`)
-  }
+  const compiled = composer.state.compilers.sgo(composer.state.compiler, sgoValue, composer.state)
+  const size = compiled.length
+  const offset = alignHeader(composer)
+  const ptr = composer.addBlock(offset + size, 'extra', sgoValue)
+  composer.align(0x08)
+  return { type, ptr }
+}
 
-  // `data` should be a hex string by this point
+function alignHeader(composer) {
   composer.align(0x08)
   const address = composer.address
   composer.address += 0x08 // Size of header
   composer.align(0x10)
   const offset = composer.address - address
-  const size = Math.ceil(data.length / 2)
   composer.address = address
+  return offset
+}
 
+function extra({ value }, composer) {
+  const type = DsgoType.EXTRA
+
+  let data
+  switch(value.format) {
+  case 'hex':
+    data = value.value
+    break
+  case 'file': {
+    data = composer.state.readExtra(value.value)
+    if(value.value.endsWith('.json'))
+      return handleSgo(JSON.parse(data), composer)
+    format = 'hex'
+    data = data.toString('hex')
+    break
+  }
+  case 'SGO':
+    return handleSgo(value, composer)
+  default:
+    throw new Error(`Unknown data format: "${format}"`)
+  }
+
+  // `data` should be a hex string by this point
+  const offset = alignHeader(composer)
+  const size = Math.ceil(data.length / 2)
   const ptr = composer.addBlock(offset + size, 'extra', {
     format: 'hex',
     value: data,

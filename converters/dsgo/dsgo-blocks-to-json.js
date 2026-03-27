@@ -1,3 +1,4 @@
+const json = require('json-stringify-pretty-compact')
 const DsgoType = require('./dsgo-type')
 const CalcType = require('./calc-type')
 
@@ -63,12 +64,22 @@ function dsgoBlocksToJson(blocks, state) {
   // With the option --export-extra turned on, embedded files should be exported to a seperate path
   if(opts['export-extra']) {
     for(const n of nodes.filter(n => n.type === 'extra')) {
-      const name = `extra_${nodes.indexOf(n)}.bin` // TODO: Handle other file formats
-      const buffer = Buffer.from(n.value.value, 'hex')
-      const path = state.writeExtra(name, buffer)
-      n.value = {
-        format: 'file',
-        value: path,
+      if(n.value.format === 'hex') {
+        const name = `extra_${nodes.indexOf(n)}.bin`
+        const buffer = Buffer.from(n.value.value, 'hex')
+        const path = state.writeExtra(name, buffer)
+        n.value = {
+          format: 'file',
+          value: path,
+        }
+      } else {
+        const name = `extra_${nodes.indexOf(n)}.json`
+        const buffer = json(n.value)
+        const path = state.writeExtra(name, buffer)
+        n.value = {
+          format: 'file',
+          value: path,
+        }
       }
     }
   }

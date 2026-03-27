@@ -96,7 +96,7 @@ describe('end-to-end tests', async () => {
       'E605_SPINNERUFO_BLUE__extra_85.bin',
       'E605_SPINNERUFO_BLUE__extra_88.bin',
       'E605_SPINNERUFO_BLUE__extra_91.bin',
-      'E605_SPINNERUFO_BLUE__extra_97.bin',
+      'E605_SPINNERUFO_BLUE__extra_97.json',
     ]
     const testExtras = fileNames.map(fileName => fs.readFile(p(`./_output/${fileName}`)))
     const baselines = fileNames.map(fileName => fs.readFile(p(`../testdata/${fileName}`)))

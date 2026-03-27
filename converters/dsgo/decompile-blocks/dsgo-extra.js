@@ -16,8 +16,15 @@ function dsgoExtra(crawler) {
     crawler.abort(`Offset expected to be ${0x08} or ${0x10} but was ${offset}`)
 
   crawler.jump(offset)
-  const data = crawler.hex(0x00, length) // Assumes data immediately follows header
-  const content = { format: 'hex', value: data }
+  const leader = crawler.at(0x00).slice(0x00, 0x04).toString('utf8')
+  let content
+  if(leader === 'SGO\0' || leader === '\0OGS') {
+    const { state } = crawler
+    content = state.decompilers.sgo(state.decompiler, crawler.at(0x00).slice(0x00, length), state)
+  } else {
+    const data = crawler.hex(0x00, length) // Assumes data immediately follows header
+    content = { format: 'hex', value: data }
+  }
 
   return {
     size: offset + length,
