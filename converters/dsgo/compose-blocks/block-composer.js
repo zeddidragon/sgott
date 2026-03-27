@@ -1,14 +1,11 @@
 class BlockComposer {
   address = 0x00
+  state = null
   blocks = {} // Output data, buffer chunked into human-readable objects
   deferredStrings = []
 
-  addState(state, cb) {
-    if(state == null) {
-      console.error({ state, cb })
-      throw new Error('Trying to add a null state, which is not valid')
-    }
-    this.states[state] = cb
+  constructor(_, state) {
+    this.state = state
   }
 
   align(alignment) {
@@ -49,8 +46,8 @@ class BlockComposer {
   }
 }
 
-function blockComposer() {
-  return new BlockComposer()
+function blockComposer(_, state) {
+  return new BlockComposer(_, state)
 }
 
 module.exports = blockComposer

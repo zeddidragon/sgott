@@ -3,7 +3,6 @@ const fs = require('fs')
 const path = require('path')
 const json = require('json-stringify-pretty-compact')
 const globals = require('./globals.js')
-const storage = require('./helpers/storage.js') // Global storage
 const config = require('./package.json')
 const compiler = require('./converters/compiler.js')
 const decompiler = require('./converters/decompiler.js')
@@ -38,17 +37,16 @@ const transforms = {
   dsgo: (...args) => json(decompilers.dsgo(...args)),
   sgo: (...args) => json(decompilers.sgo(decompiler, ...args)),
   rmp: (...args) => json(decompilers.rmp(decompiler, ...args)),
-  json(buffer) {
-    const opts = storage.get('opts')
+  json(buffer, state) {
     const parsed = JSON.parse(buffer.toString())
     if(isBlocks(parsed)) {
-      if(opts.compile) return blocks.toDsgo(parsed)
-      if(opts.resolve) return json(blocks.toJson(parsed))
+      if(state.opts.compile) return blocks.toDsgo(parsed)
+      if(state.opts.resolve) return json(blocks.toJson(parsed))
       throw new Error('Specify if this should be resolved with --resolve or recompiled with --compile')
     }
-    if(isDsgo(parsed)) return compilers.dsgo(parsed, opts, globals)
-    if(isSgo(parsed)) return compilers.sgo(compiler, parsed, opts, globals)
-    if(isRmp(parsed)) return compilers.rmp(compiler, parsed, opts, globals)
+    if(isDsgo(parsed)) return compilers.dsgo(parsed, state, globals)
+    if(isSgo(parsed)) return compilers.sgo(compiler, parsed, state, globals)
+    if(isRmp(parsed)) return compilers.rmp(compiler, parsed, state, globals)
     throw new Error('Unable to recognize JSON format')
   },
 }
@@ -107,7 +105,11 @@ Options:
 `
 
 function parseCli(cb) {
-  storage.set('version', config.version)
+  const state = {
+    version: config.version,
+    compilers,
+    decompilers,
+  }
   const args = process.argv.slice(2)
   const opts = {}
   const plain = []
@@ -132,10 +134,12 @@ function parseCli(cb) {
   for(const [w, word] of Object.entries(flagMap)) {
     if(opts[w] && !opts[word]) opts[word] = opts[w]
   }
-  storage.set('opts', opts)
+  state.opts = opts
+  state.debug = opts.debug
 
   const [readFile, writeFile] = plain
-  storage.set('readDir', path.dirname(readFile))
+  const readDir = path.dirname(path.resolve(readFile))
+  const writeDir = writeFile ? path.dirname(path.resolve(writeFile)) : readDir
 
   function convertFileName(fileName, target) {
     const dir = path.dirname(fileName)
@@ -153,7 +157,7 @@ function parseCli(cb) {
 
   function extraPath(fileName) {
     const baseName = path.basename(readFile, path.extname(readFile))
-    return path.join(path.dirname(readFile), `${baseName}__${fileName}`)
+    return path.join(writeDir, `${baseName}__${fileName}`)
   }
   function writeExtra(fileName, ...args) {
     const filePath = extraPath(fileName)
@@ -162,10 +166,10 @@ function parseCli(cb) {
     return path.basename(filePath)
   }
   function readExtra(fileName) {
-    return fs.readFileSync(path.join(path.dirname(readFile), fileName))
+    return fs.readFileSync(path.join(readDir, fileName))
   }
-  storage.set('writeExtra', writeExtra)
-  storage.set('readExtra', readExtra)
+  state.writeExtra = writeExtra
+  state.readExtra = readExtra
 
   function write(data, type) {
     let target
@@ -222,19 +226,19 @@ function parseCli(cb) {
     console.log(help)
   } else if(readFile) {
     const buffer = fs.readFileSync(readFile)
-    cb(buffer, type || inferType(buffer), opts, write)
+    cb(buffer, type || inferType(buffer), state, write)
   } else {
     const chunks = []
     process.stdin.on('data', chunk => chunks.push(chunk))
     process.stdin.on('end', () => {
       const buffer = Buffer.concat(chunks)
-      cb(Buffer.concat(chunks), type || inferType(buffer), opts, write)
+      cb(Buffer.concat(chunks), type || inferType(buffer), state, write)
     })
   }
 }
 
-function handle(buffer, type, opts, write) {
-  write(transforms[type](buffer, opts, globals), type)
+function handle(buffer, type, state, write) {
+  write(transforms[type](buffer, state, globals), type)
 }
 
 parseCli(handle)

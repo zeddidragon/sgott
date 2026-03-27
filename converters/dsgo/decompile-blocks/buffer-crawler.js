@@ -11,13 +11,15 @@ const { count } = require('../../../helpers/count')
 class BufferCrawler {
   address = 0x00 // Cursor
   buffer = null // Input data cursor seeks over
+  state = null // "Global" config
   blocks = {} // Output data, buffer chunked into human-readable objects
   states = {}
   refs = []
   endian = 'LE'
 
-  constructor(buffer) {
+  constructor(buffer, state) {
     this.buffer = buffer
+    this.state = state
   }
 
   abort(message) {
@@ -192,8 +194,8 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
   }
 }
 
-function bufferCrawler(buffer) {
-  return new BufferCrawler(buffer)
+function bufferCrawler(buffer, state) {
+  return new BufferCrawler(buffer, state)
 }
 
 function hex(value) {

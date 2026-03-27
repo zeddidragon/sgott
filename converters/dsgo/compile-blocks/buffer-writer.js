@@ -5,13 +5,15 @@
 // const output = writer.go()
 class BufferWriter {
   address = 0x00 // Cursor
+  state = null // "Global" config
   blocks = null // Input data
   buffer = null // Output data
   types = { SKIPPED: () => {}, END: () => {} }
   endian = 'LE'
 
-  constructor(blocks) {
+  constructor(blocks, state) {
     this.blocks = blocks
+    this.state = state
     const size = +Object.entries(blocks)
       .find(([address, block]) => block.type === 'END')
       ?.[0]
@@ -86,8 +88,8 @@ class BufferWriter {
   }
 }
 
-function bufferWriter(blocks) {
-  return new BufferWriter(blocks)
+function bufferWriter(blocks, state) {
+  return new BufferWriter(blocks, state)
 }
 
 module.exports = bufferWriter

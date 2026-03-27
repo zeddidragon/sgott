@@ -1,4 +1,3 @@
-const storage = require('../../../helpers/storage')
 const DsgoType = require('../dsgo-type')
 
 function extra({ value: { format, value } }, composer) {
@@ -10,7 +9,7 @@ function extra({ value: { format, value } }, composer) {
     data = value
     break
   case 'file': {
-    data = storage.get('readExtra')(value)
+    data = composer.state.readExtra(value)
     break
   }
   default:

@@ -1,11 +1,11 @@
 const { dsgoToBlocks } = require('./dsgo-to-blocks')
 const { dsgoBlocksToJson } = require('./dsgo-blocks-to-json')
 
-function decompileDsgo(buffer, opts) {
-  const blocks = dsgoToBlocks(buffer, opts)
-  if(opts.blocks)
+function decompileDsgo(buffer, state) {
+  const blocks = dsgoToBlocks(buffer, state)
+  if(state.opts.blocks)
     return blocks
-  const resolved = dsgoBlocksToJson(blocks, opts)
+  const resolved = dsgoBlocksToJson(blocks, state)
   return resolved
 }
 

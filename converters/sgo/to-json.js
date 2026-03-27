@@ -1,5 +1,5 @@
-function decompileSgo(decompiler, buffer, config) {
-  const { decompile, types } = decompiler('SGO', buffer, config)
+function decompileSgo(decompiler, buffer, state = {}) {
+  const { decompile, types } = decompiler('SGO', buffer, state)
   const {
     Str,
     UInt,
@@ -21,6 +21,7 @@ function decompileSgo(decompiler, buffer, config) {
     case 'SGO\0':
     case '\0OGS': {
       return decompileSgo(decompiler, cursor, {
+        ...state,
         offset,
       })
     }

@@ -7,7 +7,7 @@ function padCeil(value, divisor = 0x10) {
 
 const Long = BigInt
 
-function compile(obj) {
+function compile(obj, state) {
   const endian = obj.endian || 'LE'
   function Str({ buffer, index = 0x00 }, value, offset = 0x00) {
     return buffer.write(value, index + offset)
@@ -318,6 +318,4 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
 }
 
 compile.compile = compile
-compile.compiler = opts => obj => compile(obj, opts)
-
 module.exports = compile

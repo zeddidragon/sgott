@@ -1,7 +1,7 @@
 const sgo = require('../sgo/to-json.js')
 
-function decompile(decompiler, buffer, config) {
-  const { decompile, types } = decompiler('RMP', buffer, config)
+function decompile(decompiler, buffer, state) {
+  const { decompile, types } = decompiler('RMP', buffer, state)
   const {
     Str,
     UInt,

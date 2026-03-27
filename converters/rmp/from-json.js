@@ -1,8 +1,6 @@
-function compileRmp(compiler, obj, opts, globals) {
-  if(!globals)
-    throw new Error('globals must be supplied')
+function compileRmp(compiler, obj, state) {
   const { compile, types } = compiler(obj)
-  const { sgo } = opts.globals.compilers
+  const { sgo } = state.compilers
   if(!sgo)
     throw new Error('SGO compiler MUST be supplied in RMP compiler')
 
@@ -159,6 +157,4 @@ function compileRmp(compiler, obj, opts, globals) {
 }
 
 compileRmp.compile = compileRmp
-compileRmp.compiler = opts => obj => compileRmp(obj, opts)
-
 module.exports = compileRmp

@@ -18,18 +18,16 @@ const supported = [
   'rmp',
 ]
 
-function inferAndCompile(compiler, obj, opts, globals) {
+function inferAndCompile(compiler, obj, state) {
   const type = identifyData(obj)
   if(supported.includes(type))  {
-    return globals.compilers[type](compiler, obj, opts, globals)
+    return state.compilers[type](compiler, obj, state)
   }
   return Buffer.from(obj, 'base64')
 }
 
-function compileSgo(compiler, obj, opts, globals) {
-  // if(!globals)
-  //   throw new Error('globals must be supplied')
-  const { compile, types } = compiler(obj)
+function compileSgo(compiler, obj, state) {
+  const { compile, types } = compiler(obj, state)
   const {
     Str,
     Ref,
@@ -45,7 +43,7 @@ function compileSgo(compiler, obj, opts, globals) {
   } = types
 
   function ExtraSize(cursor, value, offset, tmp) {
-    const buffer = inferAndCompile(compiler, value.data || value, opts, globals)
+    const buffer = inferAndCompile(compiler, value.data || value, state)
     tmp.buffer = buffer
     if(/sgo/i.test(value.format || value.type)) {
       const variables = value.data ? value.data.variables : value.variables

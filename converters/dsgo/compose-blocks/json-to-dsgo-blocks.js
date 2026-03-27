@@ -12,8 +12,8 @@ const dsgoTypes = {
 }
 const blockComposer = require('./block-composer')
 
-function jsonToDsgoBlocks(json) {
-  const composer = blockComposer(json)
+function jsonToDsgoBlocks(json, state) {
+  const composer = blockComposer(json, state)
 
   const traversed = new Set()
   function* eachNode(nodes) {

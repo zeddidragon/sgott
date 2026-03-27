@@ -5,8 +5,8 @@ function padCeil(value, divisor = 0x10) {
   return Math.ceil(value / divisor) * divisor
 }
 
-function decompiler(format, fullBuffer, config = {}) {
-  if(config.index) fullBuffer = fullBuffer.slice(config.index)
+function decompiler(format, fullBuffer, state) {
+  if(state.index) fullBuffer = fullBuffer.slice(state.index)
   if(fullBuffer.pos) fullBuffer = fullBuffer.buffer.slice(fullBuffer.pos)
   {
     const length = padCeil(fullBuffer.length)
@@ -138,7 +138,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
     function AssertNullPtr(cursor, offset = 0x00) {
       const count = UInt(cursor, offset)
       if(!count) return null
-      if(config.debug) return [count, Hex(cursor, offset + 0x04)]
+      if(state.debug) return [count, Hex(cursor, offset + 0x04)]
       console.error(`Expected count at ${HexKey(offset)} \
 in ${label} (${HexKey(cursor.pos)}) to be 0, \
 but it was ${count}, pointing to ${HexKey(Ptr(cursor, offset + 0x04).pos)}.
@@ -218,10 +218,10 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
 
       var idx = 0x00 
       const obj = {}
-      if(config.debug) obj.dbg = { '@': HexKey(cursor.pos), raw: [], deref: [] }
+      if(state.debug) obj.dbg = { '@': HexKey(cursor.pos), raw: [], deref: [] }
       while(idx < size) {
         const def = definitions[idx]
-        const raw = !def || config.debug
+        const raw = !def || state.debug
         const hexKey = raw && HexKey(idx)
         const hexVal = raw && Hex(cursor, idx)
         const [key, fn, opts = {}] = def || []
@@ -236,7 +236,7 @@ ${bufferView.map(r => r.join(' ')).join('\n')}`
           setter(obj, value == null ? null : value, cursor)
         }
 
-        if(config.debug) {
+        if(state.debug) {
           obj.dbg.raw.push([hexKey, hexVal])
         }
 

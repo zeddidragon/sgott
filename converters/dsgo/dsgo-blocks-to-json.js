@@ -1,4 +1,3 @@
-const storage = require('../../helpers/storage')
 const DsgoType = require('./dsgo-type')
 const CalcType = require('./calc-type')
 
@@ -27,8 +26,8 @@ const CalcFunctions = {
   [0x80000006]: 'f:lerp',
 }
 
-function dsgoBlocksToJson(blocks) {
-  const opts = storage.get('opts')
+function dsgoBlocksToJson(blocks, state) {
+  const opts = state.opts
   const header = blocks[0]
   if(header.type !== 'header')
     throw new Error(`Expected block[0] to be header, but it's "${block.type}"`)
@@ -66,7 +65,7 @@ function dsgoBlocksToJson(blocks) {
     for(const n of nodes.filter(n => n.type === 'extra')) {
       const name = `extra_${nodes.indexOf(n)}.bin` // TODO: Handle other file formats
       const buffer = Buffer.from(n.value.value, 'hex')
-      const path = storage.get('writeExtra')(name, buffer)
+      const path = state.writeExtra(name, buffer)
       n.value = {
         format: 'file',
         value: path,
@@ -151,7 +150,7 @@ function dsgoBlocksToJson(blocks) {
 
   return {
     format: 'DSGO',
-    sgott: storage.get('version'),
+    sgott: state.version,
     endian,
     variables: nodes[rootIndex].value,
     heap,

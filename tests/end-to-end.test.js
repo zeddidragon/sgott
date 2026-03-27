@@ -77,4 +77,29 @@ describe('end-to-end tests', async () => {
     ])
     t.assert.deepStrictEqual(original, testRun)
   })
+
+  it('exports embedded files when configured to', async t => {
+    await exec(`node sgott.js ${p('../testdata/E605_SPINNERUFO_BLUE.SGO')} --export-extra ${p('./_output/E605_SPINNERUFO_BLUE_EXPORT.json')}`)
+    const [original, testRun] = await Promise.all([
+      fs.readFile(p('../testdata/E605_SPINNERUFO_BLUE_EXPORT.json'), 'utf8'),
+      fs.readFile(p('./_output/E605_SPINNERUFO_BLUE_EXPORT.json'), 'utf8'),
+    ])
+    t.assert.deepStrictEqual(JSON.parse(original), JSON.parse(testRun))
+
+    const fileNames = [
+      'E605_SPINNERUFO_BLUE__extra_35.bin',
+      'E605_SPINNERUFO_BLUE__extra_380.bin',
+      'E605_SPINNERUFO_BLUE__extra_383.bin',
+      'E605_SPINNERUFO_BLUE__extra_386.bin',
+      'E605_SPINNERUFO_BLUE__extra_389.bin',
+      'E605_SPINNERUFO_BLUE__extra_82.bin',
+      'E605_SPINNERUFO_BLUE__extra_85.bin',
+      'E605_SPINNERUFO_BLUE__extra_88.bin',
+      'E605_SPINNERUFO_BLUE__extra_91.bin',
+      'E605_SPINNERUFO_BLUE__extra_97.bin',
+    ]
+    const testExtras = fileNames.map(fileName => fs.readFile(p(`./_output/${fileName}`)))
+    const baselines = fileNames.map(fileName => fs.readFile(p(`../testdata/${fileName}`)))
+    t.assert.deepStrictEqual(await Promise.all(testExtras), await Promise.all(baselines))
+  })
 })

@@ -1,5 +1,3 @@
-const storage = require('../../../helpers/storage')
-
 // # Embedded file
 // SzDp
 // ...data...

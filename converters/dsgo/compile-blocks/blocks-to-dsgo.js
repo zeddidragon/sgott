@@ -5,8 +5,8 @@ const { dsgoExtra } = require('./dsgo-extra')
 const { dsgoTable } = require('./dsgo-table')
 const { dsgoCalc } = require('./dsgo-calc')
 
-function blocksToDsgo(obj) {
-  const writer = new bufferWriter(obj)
+function blocksToDsgo(obj, state) {
+  const writer = new bufferWriter(obj, state)
   writer.addType('header', dsgoHeader)
   writer.addType('string', dsgoString)
   writer.addType('extra', dsgoExtra)
