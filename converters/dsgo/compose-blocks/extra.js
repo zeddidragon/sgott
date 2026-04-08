@@ -35,8 +35,13 @@ function extra({ value }, composer) {
     break
   case 'file': {
     data = composer.state.readExtra(value.value)
-    if(value.value.endsWith('.json'))
-      return handleSgo(JSON.parse(data), composer)
+    if(value.value.endsWith('.json')) {
+      contents = JSON.parse(data)
+      if(contents.format === 'SGO')
+        return handleSgo(contents, composer)
+      else
+        throw new Error('Expected an "SGO" format file, but it was not one')
+    }
     format = 'hex'
     data = data.toString('hex')
     break
