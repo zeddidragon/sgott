@@ -12,8 +12,8 @@ function dsgoExtra(crawler) {
   const length = crawler.uint(0x00)
   const offset = crawler.uint(0x04)
 
-  if (offset !== 0x08 && offset !== 0x10)
-    crawler.abort(`Offset expected to be ${0x08} or ${0x10} but was ${offset}`)
+  if (offset > 0x14)
+    crawler.abort(`Offset expected to be less than ${0x14} but was ${offset}`)
 
   crawler.jump(offset)
   const leader = crawler.at(0x00).slice(0x00, 0x04).toString('utf8')
