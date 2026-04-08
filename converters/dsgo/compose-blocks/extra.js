@@ -17,7 +17,7 @@ function extra({ value: { format, value } }, composer) {
   }
 
   // `data` should be a hex string by this point
-  composer.align(0x08)
+  composer.align(0x02)
   const address = composer.address
   composer.address += 0x08 // Size of header
   composer.align(0x10)
