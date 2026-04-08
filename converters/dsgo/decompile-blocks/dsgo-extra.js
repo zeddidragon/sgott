@@ -16,7 +16,6 @@ function dsgoExtra(crawler) {
     crawler.abort(`Offset expected to be less than ${0x14} but was ${offset}`)
 
   crawler.jump(offset)
-  const leader = crawler.at(0x00).slice(0x00, 0x04).toString('utf8')
   const data = crawler.hex(0x00, length) // Assumes data immediately follows header
   const content = { format: 'hex', value: data }
 
