@@ -17,14 +17,8 @@ function dsgoExtra(crawler) {
 
   crawler.jump(offset)
   const leader = crawler.at(0x00).slice(0x00, 0x04).toString('utf8')
-  let content
-  if(leader === 'SGO\0' || leader === '\0OGS') {
-    const { state } = crawler
-    content = state.decompilers.sgo(state.decompiler, crawler.at(0x00).slice(0x00, length), state)
-  } else {
-    const data = crawler.hex(0x00, length) // Assumes data immediately follows header
-    content = { format: 'hex', value: data }
-  }
+  const data = crawler.hex(0x00, length) // Assumes data immediately follows header
+  const content = { format: 'hex', value: data }
 
   return {
     size: offset + length,

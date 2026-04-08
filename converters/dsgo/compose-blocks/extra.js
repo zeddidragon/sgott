@@ -6,7 +6,10 @@ function handleSgo(sgoValue, composer) {
   const compiled = composer.state.compilers.sgo(composer.state.compiler, sgoValue, composer.state)
   const size = compiled.length
   const offset = alignHeader(composer)
-  const ptr = composer.addBlock(offset + size, 'extra', sgoValue)
+  const ptr = composer.addBlock(offset + size, 'extra', {
+    format: 'hex',
+    value: compiled.toString('hex'),
+  })
   composer.align(0x08)
   return { type, ptr }
 }

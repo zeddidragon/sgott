@@ -9,24 +9,15 @@
 // Contents of embedded files are independent from this file and will not reference our data
 // The data is padded up to the nearest 8 bytes
 function dsgoExtra(writer, value) {
+  if(value.format !== 'hex')
+    throw new Error('format should be hex')
+
   // Extra data wants to be aligned at the next 0
   const offset = Math.ceil((writer.address + 0x08) / 0x10) * 0x10 - writer.address
-
-  if(value.format === 'SGO') {
-    const compiled = writer.state.compilers.sgo(writer.state.compiler, value, writer.state)
-    writer.uint(0x00, compiled.length) // value is now a compiled buffer
-    writer.uint(0x04, offset) // Relative pointer to content body
-    writer.jump(offset)
-    writer.copyFrom(0x00, compiled)
-
-  } else if(value.format === 'hex') {
-    writer.uint(0x00, value.value.length / 2) // A byte is 2 hex characters
-    writer.uint(0x04, offset) // Relative pointer to content body
-    writer.jump(offset)
-    writer.hex(0x00, value.value)
-  } else {
-    throw new Error('format should be hex or SGO')
-  }
+  writer.uint(0x00, value.value.length / 2) // A byte is 2 hex characters
+  writer.uint(0x04, offset) // Relative pointer to content body
+  writer.jump(offset)
+  writer.hex(0x00, value.value)
 }
 
 module.exports = {

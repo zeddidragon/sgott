@@ -60,6 +60,16 @@ function dsgoBlocksToJson(blocks, state) {
     }
   })
 
+  for(const n of nodes.filter(n => n.type === 'extra')) {
+    if(n.value.format !== 'hex') continue
+
+    const leader = Buffer.from(n.value.value.slice(0, 8), 'hex').toString('utf8')
+    if(leader === 'SGO\0' || leader === '\0OGS') {
+      const buffer = Buffer.from(n.value.value, 'hex')
+      n.value = state.decompilers.sgo(state.decompiler, buffer, state)
+    }
+  }
+
   // BEGIN Resolve type 2 `extra`
   // With the option --export-extra turned on, embedded files should be exported to a seperate path
   if(opts['export-extra']) {
