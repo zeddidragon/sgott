@@ -14,14 +14,16 @@ describe('end-to-end tests', async () => {
   await fs.mkdir(p('./_output'), { recursive: true })
 
   async function compareFiles(t, fileA, fileB) {
+    fileA = p(fileA)
+    fileB = p(fileB)
     const [a, b] = await Promise.all([
-      fs.readFile(p(fileA), 'utf8'),
-      fs.readFile(p(fileB), 'utf8'),
+      fs.readFile(fileA, 'utf8'),
+      fs.readFile(fileB, 'utf8'),
     ])
     try {
       t.assert.deepStrictEqual(a, b)
     } catch {
-      throw new Error(`Expected the two files to be equal but they weren't:\n${fileA}\n${fileB}`)
+      throw new Error(`Expected the two files to be equal but they weren't:\n${fileA} ${fileB}`)
     }
   }
 
