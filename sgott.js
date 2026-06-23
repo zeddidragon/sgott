@@ -140,7 +140,7 @@ function parseCli(cb) {
   state.debug = opts.debug
 
   const [readFile, writeFile] = plain
-  const readDir = path.dirname(path.resolve(readFile))
+  const readDir = readFile && path.dirname(path.resolve(readFile))
   const writeDir = writeFile ? path.dirname(path.resolve(writeFile)) : readDir
 
   function convertFileName(fileName, target) {
