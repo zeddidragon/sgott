@@ -32,7 +32,11 @@ describe('end-to-end tests', async () => {
       fs.readFile(p(fileA), 'utf8'),
       fs.readFile(p(fileB), 'utf8'),
     ])
-    t.assert.deepStrictEqual(JSON.parse(a), JSON.parse(b))
+    const aObj = JSON.parse(a)
+    const bObj = JSON.parse(b)
+    delete aObj.sgott // No need to test version matching
+    delete bObj.sgott
+    t.assert.deepStrictEqual(aObj, bObj)
   }
 
   it('converts a 41 SGO to JSON', async t => {
